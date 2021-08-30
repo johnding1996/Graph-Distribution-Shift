@@ -85,7 +85,7 @@ class OGBPCBADataset(WILDSDataset):
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
-        import pdb;pdb.set_trace()
+ 
 
         self._y_array = self.ogb_dataset.data.y
 
