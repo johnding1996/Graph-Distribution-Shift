@@ -1,4 +1,5 @@
-import os, csv
+import os
+import csv
 import time
 import argparse
 import pandas as pd
@@ -12,7 +13,7 @@ import wilds
 from wilds.common.data_loaders import get_train_loader, get_eval_loader
 from wilds.common.grouper import CombinatorialGrouper
 
-from utils import set_seed, Logger, BatchLogger, log_config, ParseKwargs, load, initialize_wandb, log_group_data, parse_bool, get_model_prefix
+from utils import set_seed, Logger, BatchLogger, log_config, initialize_wandb, close_wandb, ParseKwargs, load, log_group_data, parse_bool, get_model_prefix
 from train import train, evaluate
 from algorithms.initializer import initialize_algorithm
 from transforms import initialize_transform
@@ -20,6 +21,7 @@ from configs.utils import populate_defaults
 import configs.supported as supported
 
 import torch.multiprocessing
+
 
 def main():
 
@@ -173,6 +175,7 @@ def main():
         groupby_fields=config.groupby_fields)
 
     datasets = defaultdict(dict)
+    wandb_runner = initialize_wandb(config)
     for split in full_dataset.split_dict.keys():
         if split=='train':
             transform = train_transform
@@ -217,9 +220,6 @@ def main():
             os.path.join(config.log_dir, f'{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
         datasets[split]['algo_logger'] = BatchLogger(
             os.path.join(config.log_dir, f'{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
-
-        if config.use_wandb:
-            initialize_wandb(config)
 
     # Logging dataset info
     # Show class breakdown if feasible
@@ -291,6 +291,8 @@ def main():
             config=config,
             is_best=is_best)
 
+    # have to close wandb runner before closing logger (and stdout)
+    close_wandb(wandb_runner)
     logger.close()
     for split in datasets:
         datasets[split]['eval_logger'].close()

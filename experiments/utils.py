@@ -155,7 +155,6 @@ class BatchLogger:
         self.file.flush()
 
     def close(self):
-        wandb.finish()
         self.file.close()
 
 def set_seed(seed):
@@ -174,9 +173,12 @@ def log_config(config, logger):
     logger.write('\n')
 
 def initialize_wandb(config):
-    name = config.dataset + '_' + config.algorithm + '_' + config.log_dir
-    wandb.init(name=name, project=f"graphdg", entity='graphnet')
-    wandb.config.update(config)
+    name = config.dataset + '_' + config.algorithm + '_' + f"seed-{config.seed}"
+    wandb_runner = wandb.init(name=name, project=f"graphdg", entity='graphnet', config=config, reinit=True)
+    return wandb_runner
+
+def close_wandb(wandb_runner):
+    wandb_runner.finish()
 
 def save_pred(y_pred, prefix, suffix):
     csv_path = prefix.parent / (prefix.name + suffix + '.csv')
