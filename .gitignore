@@ -142,3 +142,9 @@ data/
 
 # Mac OS
 .DS_Store
+
+# logs
+logs/
+
+# mypy config
+mypy.ini

@@ -52,7 +52,8 @@ def parse_bool(v):
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
-def save_model(algorithm, epoch, best_val_metric, path):
+def save_model(algorithm, epoch, best_val_metric, prefix, suffix):
+    path = prefix.parent / (prefix.name + suffix)
     state = {}
     state['algorithm'] = algorithm.state_dict()
     state['epoch'] = epoch
@@ -60,6 +61,7 @@ def save_model(algorithm, epoch, best_val_metric, path):
     torch.save(state, path)
 
 def load(algorithm, path):
+    path = Path(path)
     state = torch.load(path)
     algorithm.load_state_dict(state['algorithm'])
     return state['epoch'], state['best_val_metric']
@@ -85,7 +87,7 @@ class Logger(object):
         self.console = sys.stdout
         self.file = None
         if fpath is not None:
-            self.file = open(fpath, mode)
+            self.file = open(Path(fpath), mode)
 
     def __del__(self):
         self.close()
@@ -114,7 +116,7 @@ class Logger(object):
 
 class BatchLogger:
     def __init__(self, csv_path, mode='w', use_wandb=False):
-        self.path = csv_path
+        self.path = Path(csv_path)
         self.mode = mode
         self.file = open(csv_path, mode)
         self.is_initialized = False
@@ -122,7 +124,7 @@ class BatchLogger:
         # Use Weights and Biases for logging
         self.use_wandb = use_wandb
         if use_wandb:
-            self.split = Path(csv_path).stem
+            self.split = csv_path.stem
 
     def setup(self, log_dict):
         columns = log_dict.keys()
@@ -176,39 +178,37 @@ def initialize_wandb(config):
                project=f"wilds")
     wandb.config.update(config)
 
-def save_pred(y_pred, path_prefix):
+def save_pred(y_pred, prefix, suffix):
+    csv_path = prefix.parent / (prefix.name + suffix + '.csv')
+    pth_path = prefix.parent / (prefix.name + suffix + '.pth')
     # Single tensor
     if torch.is_tensor(y_pred):
         df = pd.DataFrame(y_pred.numpy())
-        df.to_csv(path_prefix + '.csv', index=False, header=False)
+        df.to_csv(csv_path, index=False, header=False)
     # Dictionary
     elif isinstance(y_pred, dict) or isinstance(y_pred, list):
-        torch.save(y_pred, path_prefix + '.pth')
+        torch.save(y_pred, pth_path)
     else:
         raise TypeError("Invalid type for save_pred")
 
 def get_replicate_str(dataset, config):
     if dataset['dataset'].dataset_name == 'poverty':
-        replicate_str = f"fold:{config.dataset_kwargs['fold']}"
+        replicate_str = f"fold-{config.dataset_kwargs['fold']}"
     else:
-        replicate_str = f"seed:{config.seed}"
+        replicate_str = f"seed-{config.seed}"
     return replicate_str
 
 def get_pred_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     split = dataset['split']
     replicate_str = get_replicate_str(dataset, config)
-    prefix = os.path.join(
-        config.log_dir,
-        f"{dataset_name}_split:{split}_{replicate_str}_")
+    prefix = Path(config.log_dir) / f"{dataset_name}_split-{split}_{replicate_str}_"
     return prefix
 
 def get_model_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     replicate_str = get_replicate_str(dataset, config)
-    prefix = os.path.join(
-        config.log_dir,
-        f"{dataset_name}_{replicate_str}_")
+    prefix = Path(config.log_dir) / f"{dataset_name}_{replicate_str}_"
     return prefix
 
 def move_to(obj, device):
