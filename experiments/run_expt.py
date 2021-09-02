@@ -29,8 +29,6 @@ def main():
     # Required arguments
     parser.add_argument('-d', '--dataset', choices=wilds.supported_datasets, required=True)
     parser.add_argument('--algorithm', required=True, choices=supported.algorithms)
-    parser.add_argument('--root_dir', required=True,
-                        help='The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).')
 
     # Dataset
     parser.add_argument('--split_scheme', help='Identifies how the train/val/test split is constructed. Choices are dataset-specific.')
@@ -102,6 +100,7 @@ def main():
     # Misc
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--seed', type=int, default=0)
+    parser.add_argument('--root_dir', default='./data', help='The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).')
     parser.add_argument('--log_dir', default='./logs')
     parser.add_argument('--log_every', default=50, type=int)
     parser.add_argument('--save_step', type=int)
@@ -109,7 +108,7 @@ def main():
     parser.add_argument('--save_last', type=parse_bool, const=True, nargs='?', default=True)
     parser.add_argument('--save_pred', type=parse_bool, const=True, nargs='?', default=True)
     parser.add_argument('--no_group_logging', type=parse_bool, const=True, nargs='?')
-    parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=False)
+    parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=True)
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
@@ -252,7 +251,7 @@ def main():
                     for file in os.listdir(config.log_dir) if file.endswith('.pth')]
                 if len(epochs) > 0:
                     latest_epoch = max(epochs)
-                    save_path = model_prefix + f'epoch:{latest_epoch}_model.pth'
+                    save_path = model_prefix + f'epoch-{latest_epoch}_model.pth'
             try:
                 prev_epoch, best_val_metric = load(algorithm, save_path)
                 epoch_offset = prev_epoch + 1
@@ -276,7 +275,7 @@ def main():
         if config.eval_epoch is None:
             eval_model_path = model_prefix + 'epoch:best_model.pth'
         else:
-            eval_model_path = model_prefix +  f'epoch:{config.eval_epoch}_model.pth'
+            eval_model_path = model_prefix +  f'epoch-{config.eval_epoch}_model.pth'
         best_epoch, best_val_metric = load(algorithm, eval_model_path)
         if config.eval_epoch is None:
             epoch = best_epoch

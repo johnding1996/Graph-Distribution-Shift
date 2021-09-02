@@ -146,5 +146,8 @@ data/
 # logs
 logs/
 
+# wandb
+wandb/
+
 # mypy config
 mypy.ini

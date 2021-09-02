@@ -118,13 +118,13 @@ class BatchLogger:
     def __init__(self, csv_path, mode='w', use_wandb=False):
         self.path = Path(csv_path)
         self.mode = mode
-        self.file = open(csv_path, mode)
+        self.file = open(self.path, mode)
         self.is_initialized = False
 
         # Use Weights and Biases for logging
         self.use_wandb = use_wandb
         if use_wandb:
-            self.split = csv_path.stem
+            self.split = self.path.stem
 
     def setup(self, log_dict):
         columns = log_dict.keys()
@@ -155,6 +155,7 @@ class BatchLogger:
         self.file.flush()
 
     def close(self):
+        wandb.finish()
         self.file.close()
 
 def set_seed(seed):
@@ -174,8 +175,7 @@ def log_config(config, logger):
 
 def initialize_wandb(config):
     name = config.dataset + '_' + config.algorithm + '_' + config.log_dir
-    wandb.init(name=name,
-               project=f"wilds")
+    wandb.init(name=name, project=f"graphdg", entity='graphnet')
     wandb.config.update(config)
 
 def save_pred(y_pred, prefix, suffix):

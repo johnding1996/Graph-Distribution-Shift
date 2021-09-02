@@ -67,7 +67,7 @@ def evaluate_benchmark(
 
     def get_replicates(dataset_name: str) -> List[str]:
         if dataset_name == "poverty":
-            return [f"fold:{fold}" for fold in ["A", "B", "C", "D", "E"]]
+            return [f"fold-{fold}" for fold in ["A", "B", "C", "D", "E"]]
         else:
             if dataset_name == "camelyon17":
                 seeds = range(0, 10)
@@ -75,12 +75,12 @@ def evaluate_benchmark(
                 seeds = range(0, 5)
             else:
                 seeds = range(0, 3)
-            return [f"seed:{seed}" for seed in seeds]
+            return [f"seed-{seed}" for seed in seeds]
 
     def get_prediction_file(
         predictions_dir: str, dataset_name: str, split: str, replicate: str
     ) -> str:
-        run_id = f"{dataset_name}_split:{split}_{replicate}"
+        run_id = f"{dataset_name}_split-{split}_{replicate}"
         for file in os.listdir(predictions_dir):
             if file.startswith(run_id) and (
                 file.endswith(".csv") or file.endswith(".pth")
