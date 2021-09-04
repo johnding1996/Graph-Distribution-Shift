@@ -85,17 +85,19 @@ class OGBHIVDataset(WILDSDataset):
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
- 
-
+        # import pdb;pdb.set_trace()
         self._y_array = self.ogb_dataset.data.y
+       
 
-        self._metadata_fields = ['scaffold']
+        self._metadata_fields = ['scaffold', 'y']
 
         metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
         if not os.path.exists(metadata_file_path):
-            download_url('https://snap.stanford.edu/ogb/data/misc/ogbg_molhiv/scaffold_group.npy', os.path.join(self.ogb_dataset.root, 'raw'))
-        self._metadata_array = torch.from_numpy(np.load(metadata_file_path)).reshape(-1,1).long()
-
+            download_url('https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1', os.path.join(self.ogb_dataset.root, 'raw'))
+        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1,1).long()
+        self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
+  
+        
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:
@@ -123,6 +125,7 @@ class OGBHIVDataset(WILDSDataset):
         """
         assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"
         input_dict = {"y_true": y_true, "y_pred": y_pred}
+       
         results = self._metric.eval(input_dict)
 
-        return results, f"Average precision: {results['ap']:.3f}\n"
+        return results, f"Average precision: {results['rocauc']:.3f}\n"

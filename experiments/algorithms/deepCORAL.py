@@ -85,7 +85,7 @@ class DeepCORAL(SingleModelAlgorithm):
         # outputs = self.classifier(features)
     
 
- 
+       
 
         # package the results
         results = {

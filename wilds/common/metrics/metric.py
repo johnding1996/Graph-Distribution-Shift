@@ -240,8 +240,10 @@ class MultiTaskMetric(Metric):
     def compute_flattened(self, y_pred, y_true, return_dict=True):
         is_labeled = ~torch.isnan(y_true)
         batch_idx = torch.where(is_labeled)[0]
+    
         flattened_y_pred = y_pred[is_labeled]
         flattened_y_true = y_true[is_labeled]
+      
         flattened_metrics = self._compute_flattened(flattened_y_pred, flattened_y_true)
         if return_dict:
             return {self.name: flattened_metrics, 'index': batch_idx}

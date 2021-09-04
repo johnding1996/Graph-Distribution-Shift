@@ -1,5 +1,5 @@
 # metrics
-from wilds.common.metrics.all_metrics import Accuracy, MultiTaskAccuracy, MSE, multiclass_logits_to_pred, binary_logits_to_pred, MultiTaskAveragePrecision
+from wilds.common.metrics.all_metrics import Accuracy, MultiTaskAccuracy, MSE, multiclass_logits_to_pred, binary_logits_to_pred, MultiTaskAveragePrecision, binary_logits_to_score
 
 algo_log_metrics = {
     'accuracy': Accuracy(prediction_fn=multiclass_logits_to_pred),
@@ -36,4 +36,4 @@ schedulers = ['linear_schedule_with_warmup', 'cosine_schedule_with_warmup', 'Red
 transforms = ['bert', 'image_base', 'image_resize_and_center_crop', 'poverty_train']
 
 # See losses.py
-losses = ['cross_entropy', 'lm_cross_entropy', 'MSE', 'multitask_bce', 'fasterrcnn_criterion']
+losses = ['cross_entropy', 'lm_cross_entropy', 'MSE', 'multitask_bce', 'fasterrcnn_criterion', 'BCEWithLogitsLoss']

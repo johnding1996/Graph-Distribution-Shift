@@ -5,6 +5,9 @@ from wilds.common.metrics.all_metrics import MSE
 def initialize_loss(config, d_out):
     if config.loss_function == 'cross_entropy':
         return ElementwiseLoss(loss_fn=nn.CrossEntropyLoss(reduction='none'))
+    
+    if config.loss_function == 'BCEWithLogitsLoss':
+        return ElementwiseLoss(loss_fn=nn.BCEWithLogitsLoss(reduction='none'))
 
     elif config.loss_function == 'lm_cross_entropy':
         return MultiTaskLoss(loss_fn=nn.CrossEntropyLoss(reduction='none'))

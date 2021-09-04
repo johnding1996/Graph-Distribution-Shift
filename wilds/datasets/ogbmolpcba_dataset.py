@@ -96,6 +96,8 @@ class OGBPCBADataset(WILDSDataset):
             download_url('https://snap.stanford.edu/ogb/data/misc/ogbg_molpcba/scaffold_group.npy', os.path.join(self.ogb_dataset.root, 'raw'))
         self._metadata_array = torch.from_numpy(np.load(metadata_file_path)).reshape(-1,1).long()
 
+  
+
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:

@@ -7,6 +7,7 @@ benchmark_datasets = [
     'civilcomments',
     'iwildcam',
     'ogb-molpcba',
+    'ogb-molhiv',
     'poverty',
     'fmow',
     'py150',

@@ -75,6 +75,7 @@ class CombinatorialGrouper(Grouper):
             - dataset (WILDSDataset)
             - groupby_fields (list of str)
         """
+        
         if isinstance(dataset, WILDSSubset):
             raise ValueError("Grouper should be defined for the full dataset, not a subset")
         self.groupby_fields = groupby_fields
@@ -107,6 +108,7 @@ class CombinatorialGrouper(Grouper):
             self.factors_np = np.concatenate(([1], cumprod[:-1]))
             self.factors = torch.from_numpy(self.factors_np)
             self.metadata_map = dataset.metadata_map
+           
 
     def metadata_to_group(self, metadata, return_counts=False):
         if self.groupby_fields is None:

@@ -16,6 +16,7 @@ def binary_logits_to_score(logits):
     if logits.dim()==2: #multi-class logits
         assert logits.size(1)==2, "Only binary classification"
         score = F.softmax(logits, dim=1)[:,1]
+        
     else:
         score = logits
     return score
@@ -56,6 +57,7 @@ class MultiTaskAccuracy(MultiTaskMetric):
     def _compute_flattened(self, flattened_y_pred, flattened_y_true):
         if self.prediction_fn is not None:
             flattened_y_pred = self.prediction_fn(flattened_y_pred)
+            
         return (flattened_y_pred==flattened_y_true).float()
 
     def worst(self, metrics):

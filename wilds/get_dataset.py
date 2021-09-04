@@ -52,6 +52,10 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
         from wilds.datasets.ogbmolpcba_dataset import OGBPCBADataset
         return OGBPCBADataset(version=version, **dataset_kwargs)
 
+    elif dataset == 'ogb-molhiv':
+        from wilds.datasets.ogbmolhiv_dataset import OGBHIVDataset
+        return OGBHIVDataset(version=version, **dataset_kwargs)
+
     elif dataset == 'poverty':
         if version == '1.0':
             from wilds.datasets.archive.poverty_v1_0_dataset import PovertyMapDataset

@@ -15,7 +15,9 @@ def initialize_algorithm(config, datasets, train_grouper):
     if train_dataset.is_classification:
         if train_dataset.y_size == 1:
             # For single-task classification, we have one output per class
-            d_out = train_dataset.n_classes
+            # d_out = train_dataset.n_classes
+            d_out = 1
+          
         elif train_dataset.y_size is None:
             d_out = train_dataset.n_classes
         elif (train_dataset.y_size > 1) and (train_dataset.n_classes == 2):
