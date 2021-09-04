@@ -138,11 +138,12 @@ def evaluate(algorithm, datasets, epoch, general_logger, config, is_best):
         epoch_y_pred = collate_list(epoch_y_pred)
         epoch_y_true = collate_list(epoch_y_true)
         epoch_metadata = collate_list(epoch_metadata)
+        
         results, results_str = dataset['dataset'].eval(
             epoch_y_pred,
             epoch_y_true,
             epoch_metadata)
-
+    
         results['epoch'] = epoch
         dataset['eval_logger'].log(results)
         general_logger.write(f'Eval split {split} at epoch {epoch}:\n')
@@ -164,22 +165,42 @@ def log_results(algorithm, dataset, general_logger, epoch, batch_idx):
         algorithm.reset_log()
 
 
+# def save_pred_if_needed(y_pred, dataset, epoch, config, is_best, force_save=False):
+#     if config.save_pred:
+#         prefix = get_pred_prefix(dataset, config)
+#         if force_save or (config.save_step is not None and (epoch + 1) % config.save_step == 0):
+#             save_pred(y_pred, prefix, f'epoch-{epoch}_pred')
+#         if (not force_save) and config.save_last:
+#             save_pred(y_pred, prefix, f'epoch-last_pred')
+#         if config.save_best and is_best:
+#             save_pred(y_pred, prefix, f'epoch-best_pred')
+
 def save_pred_if_needed(y_pred, dataset, epoch, config, is_best, force_save=False):
     if config.save_pred:
         prefix = get_pred_prefix(dataset, config)
         if force_save or (config.save_step is not None and (epoch + 1) % config.save_step == 0):
-            save_pred(y_pred, prefix, f'epoch-{epoch}_pred')
+            save_pred(y_pred, prefix + f'epoch:{epoch}_pred')
         if (not force_save) and config.save_last:
-            save_pred(y_pred, prefix, f'epoch-last_pred')
+            save_pred(y_pred, prefix + f'epoch:last_pred')
         if config.save_best and is_best:
-            save_pred(y_pred, prefix, f'epoch-best_pred')
+            save_pred(y_pred, prefix + f'epoch:best_pred')
+
+
+# def save_model_if_needed(algorithm, dataset, epoch, config, is_best, best_val_metric):
+#     prefix = get_model_prefix(dataset, config)
+#     if config.save_step is not None and (epoch + 1) % config.save_step == 0:
+#         save_model(algorithm, epoch, best_val_metric, prefix, f'epoch-{epoch}_model.pth')
+#     if config.save_last:
+#         save_model(algorithm, epoch, best_val_metric, prefix, 'epoch-last_model.pth')
+#     if config.save_best and is_best:
+#         save_model(algorithm, epoch, best_val_metric, prefix, 'epoch-best_model.pth')
 
 
 def save_model_if_needed(algorithm, dataset, epoch, config, is_best, best_val_metric):
     prefix = get_model_prefix(dataset, config)
     if config.save_step is not None and (epoch + 1) % config.save_step == 0:
-        save_model(algorithm, epoch, best_val_metric, prefix, f'epoch-{epoch}_model.pth')
+        save_model(algorithm, epoch, best_val_metric, prefix + f'epoch-{epoch}_model.pth')
     if config.save_last:
-        save_model(algorithm, epoch, best_val_metric, prefix, 'epoch-last_model.pth')
+        save_model(algorithm, epoch, best_val_metric, prefix + 'epoch-last_model.pth')
     if config.save_best and is_best:
-        save_model(algorithm, epoch, best_val_metric, prefix, 'epoch-best_model.pth')
+        save_model(algorithm, epoch, best_val_metric, prefix + 'epoch-best_model.pth')

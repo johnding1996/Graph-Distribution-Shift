@@ -79,6 +79,8 @@ class OGBPCBADataset(WILDSDataset):
         self._y_size = self.ogb_dataset.num_tasks
         self._n_classes = self.ogb_dataset.__num_classes__
 
+    
+
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx  = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0

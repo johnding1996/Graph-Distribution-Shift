@@ -52,13 +52,21 @@ def parse_bool(v):
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
-def save_model(algorithm, epoch, best_val_metric, prefix, suffix):
-    path = prefix.parent / (prefix.name + suffix)
+# def save_model(algorithm, epoch, best_val_metric, prefix, suffix):
+#     path = prefix.parent / (prefix.name + suffix)
+#     state = {}
+#     state['algorithm'] = algorithm.state_dict()
+#     state['epoch'] = epoch
+#     state['best_val_metric'] = best_val_metric
+#     torch.save(state, path)
+
+def save_model(algorithm, epoch, best_val_metric, path):
     state = {}
     state['algorithm'] = algorithm.state_dict()
     state['epoch'] = epoch
     state['best_val_metric'] = best_val_metric
     torch.save(state, path)
+    
 
 def load(algorithm, path):
     path = Path(path)
@@ -180,18 +188,30 @@ def initialize_wandb(config):
 def close_wandb(wandb_runner):
     wandb_runner.finish()
 
-def save_pred(y_pred, prefix, suffix):
-    csv_path = prefix.parent / (prefix.name + suffix + '.csv')
-    pth_path = prefix.parent / (prefix.name + suffix + '.pth')
+# def save_pred(y_pred, prefix, suffix):
+#     csv_path = prefix.parent / (prefix.name + suffix + '.csv')
+#     pth_path = prefix.parent / (prefix.name + suffix + '.pth')
+#     # Single tensor
+#     if torch.is_tensor(y_pred):
+#         df = pd.DataFrame(y_pred.numpy())
+#         df.to_csv(csv_path, index=False, header=False)
+#     # Dictionary
+#     elif isinstance(y_pred, dict) or isinstance(y_pred, list):
+#         torch.save(y_pred, pth_path)
+#     else:
+#         raise TypeError("Invalid type for save_pred")
+
+def save_pred(y_pred, path_prefix):
     # Single tensor
     if torch.is_tensor(y_pred):
         df = pd.DataFrame(y_pred.numpy())
-        df.to_csv(csv_path, index=False, header=False)
+        df.to_csv(path_prefix + '.csv', index=False, header=False)
     # Dictionary
     elif isinstance(y_pred, dict) or isinstance(y_pred, list):
-        torch.save(y_pred, pth_path)
+        torch.save(y_pred, path_prefix + '.pth')
     else:
         raise TypeError("Invalid type for save_pred")
+
 
 def get_replicate_str(dataset, config):
     if dataset['dataset'].dataset_name == 'poverty':
@@ -204,13 +224,17 @@ def get_pred_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     split = dataset['split']
     replicate_str = get_replicate_str(dataset, config)
-    prefix = Path(config.log_dir) / f"{dataset_name}_split-{split}_{replicate_str}_"
+    # prefix = Path(config.log_dir) / f"{dataset_name}_split-{split}_{replicate_str}_"
+
+    prefix = os.path.join(config.log_dir, f"{dataset_name}_split:{split}_{replicate_str}_")
     return prefix
 
 def get_model_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     replicate_str = get_replicate_str(dataset, config)
-    prefix = Path(config.log_dir) / f"{dataset_name}_{replicate_str}_"
+    # prefix = Path(config.log_dir) / f"{dataset_name}_{replicate_str}_"
+
+    prefix = os.path.join(config.log_dir, f"{dataset_name}_{replicate_str}_")
     return prefix
 
 def move_to(obj, device):

@@ -77,7 +77,11 @@ class OGBHIVDataset(WILDSDataset):
         self._split_scheme = split_scheme
         self._y_type = 'float' # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
-        self._n_classes = self.ogb_dataset.__num_classes__
+        # self._n_classes = self.ogb_dataset.__num_classes__
+        self._n_classes = 1
+
+
+       
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx  = self.ogb_dataset.get_idx_split()
@@ -128,4 +132,4 @@ class OGBHIVDataset(WILDSDataset):
        
         results = self._metric.eval(input_dict)
 
-        return results, f"Average precision: {results['rocauc']:.3f}\n"
+        return results, f"ROCAUC: {results['rocauc']:.3f}\n"

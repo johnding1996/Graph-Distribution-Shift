@@ -196,7 +196,7 @@ dataset_defaults = {
         'split_scheme': 'official',
         'model': 'gin-virtual',
         'model_kwargs': {'dropout':0.5}, # include pretrained
-        'loss_function': 'multitask_bce',
+        'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['scaffold',],
         'val_metric': 'rocauc',
         'val_metric_decreasing': False,
@@ -210,7 +210,7 @@ dataset_defaults = {
         'coral_penalty_weight': 0.1,
         'no_group_logging': True,
         'process_outputs_function': None,
-        'algo_log_metric': 'multitask_binary_accuracy',
+        'algo_log_metric': 'accuracy',
     },
         'mnist': {
         'split_scheme': 'official',

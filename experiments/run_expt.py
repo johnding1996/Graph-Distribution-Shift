@@ -240,6 +240,7 @@ def main():
         train_grouper=train_grouper)
 
     model_prefix = get_model_prefix(datasets['train'], config)
+ 
     if not config.eval_only:
         ## Load saved results if resuming
         resume_success = False
@@ -273,7 +274,7 @@ def main():
             best_val_metric=best_val_metric)
     else:
         if config.eval_epoch is None:
-            eval_model_path = model_prefix + 'epoch:best_model.pth'
+            eval_model_path = model_prefix + 'epoch-best_model.pth'
         else:
             eval_model_path = model_prefix +  f'epoch-{config.eval_epoch}_model.pth'
         best_epoch, best_val_metric = load(algorithm, eval_model_path)

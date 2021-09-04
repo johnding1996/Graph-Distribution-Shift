@@ -1,8 +1,17 @@
 # metrics
 from wilds.common.metrics.all_metrics import Accuracy, MultiTaskAccuracy, MSE, multiclass_logits_to_pred, binary_logits_to_pred, MultiTaskAveragePrecision, binary_logits_to_score
 
+# algo_log_metrics = {
+#     'accuracy': Accuracy(prediction_fn=multiclass_logits_to_pred),
+#     'mse': MSE(),
+#     'multitask_accuracy': MultiTaskAccuracy(prediction_fn=multiclass_logits_to_pred),
+#     'multitask_binary_accuracy': MultiTaskAccuracy(prediction_fn=binary_logits_to_pred),
+#     'multitask_avgprec': MultiTaskAveragePrecision(prediction_fn=None),
+#     None: None,
+# }
+
 algo_log_metrics = {
-    'accuracy': Accuracy(prediction_fn=multiclass_logits_to_pred),
+    'accuracy': Accuracy(prediction_fn=binary_logits_to_pred),
     'mse': MSE(),
     'multitask_accuracy': MultiTaskAccuracy(prediction_fn=multiclass_logits_to_pred),
     'multitask_binary_accuracy': MultiTaskAccuracy(prediction_fn=binary_logits_to_pred),

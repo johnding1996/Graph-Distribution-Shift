@@ -18,6 +18,7 @@ class Loss(Metric):
         Output:
             - element_wise_metrics (Tensor): tensor of size (batch_size, )
         """
+        
         return self.loss_fn(y_pred, y_true)
 
     def worst(self, metrics):
@@ -46,7 +47,8 @@ class ElementwiseLoss(ElementwiseMetric):
         Output:
             - element_wise_metrics (Tensor): tensor of size (batch_size, )
         """
-        return self.loss_fn(y_pred, y_true)
+      
+        return self.loss_fn(y_pred.to(torch.float32), y_true.to(torch.float32))
 
     def worst(self, metrics):
         """
