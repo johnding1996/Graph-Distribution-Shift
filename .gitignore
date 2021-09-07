@@ -151,3 +151,6 @@ wandb/
 
 # mypy config
 mypy.ini
+
+# dependent repos
+benchmarking-gnns-master/
