@@ -2,30 +2,23 @@ import os
 import torch
 import numpy as np
 from wilds.datasets.wilds_dataset import WILDSDataset
-from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
+from ogb.nodeproppred import Evaluator
+from ogb.nodeproppred.dataset_pyg import PygNodePropPredDataset
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
+import torch_geometric.transforms as T
 
 from torch_geometric.datasets import GNNBenchmarkDataset
 
-class OGBPCBADataset(WILDSDataset):
+class OGBPROTEINSDataset(WILDSDataset):
     """
-    The OGB-molpcba dataset.
+    The OGB-Proteins dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.
 
     Supported `split_scheme`:
-        - 'official' or 'scaffold', which are equivalent
+        - 'species',
 
-    Input (x):
-        Molecular graphs represented as Pytorch Geometric data objects
-
-    Label (y):
-        y represents 128-class binary labels.
-
-    Metadata:
-        - scaffold
-            Each molecule is annotated with the scaffold ID that the molecule is assigned to.
 
     Website:
         https://ogb.stanford.edu/docs/graphprop/#ogbg-mol
@@ -54,7 +47,7 @@ class OGBPCBADataset(WILDSDataset):
         https://github.com/snap-stanford/ogb/blob/master/LICENSE
     """
 
-    _dataset_name = 'ogb-molpcba'
+    _dataset_name = 'ogb-proteins'
     _versions_dict = {
         '1.0': {
             'download_url': None,
@@ -63,9 +56,9 @@ class OGBPCBADataset(WILDSDataset):
     def __init__(self, version=None, root_dir='data', download=False, split_scheme='official'):
         self._version = version
         if version is not None:
-            raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
+            raise ValueError('Versioning for OGB-Proteins is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-molpcba', root = root_dir)
+        self.ogb_dataset = PygNodePropPredDataset(name = 'ogbn-proteins', root = root_dir, transform=T.ToSparseTensor())
 
 
      
@@ -73,41 +66,46 @@ class OGBPCBADataset(WILDSDataset):
         # set variables
         self._data_dir = self.ogb_dataset.root
         if split_scheme=='official':
-            split_scheme = 'scaffold'
+            split_scheme = 'species'
         self._split_scheme = split_scheme
         self._y_type = 'float' # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
         self._n_classes = self.ogb_dataset.__num_classes__
-
     
 
-        self._split_array = torch.zeros(len(self.ogb_dataset)).long()
+
+       
+        self._y_array = self.ogb_dataset.data.y
+        self._split_array = torch.zeros(len(self._y_array)).long()
         split_idx  = self.ogb_dataset.get_idx_split()
+
         self._split_array[split_idx['train']] = 0
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
+
+
+        # Move edge features to node features.
+        data = self.ogb_dataset[0]
+        data.x = data.adj_t.mean(dim=1)
+        data.adj_t.set_value_(None)
+
+
+
         import pdb;pdb.set_trace()
+        
+       
 
- 
-
-        self._y_array = self.ogb_dataset.data.y
-
-        self._metadata_fields = ['scaffold']
-
-        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
-        if not os.path.exists(metadata_file_path):
-            download_url('https://snap.stanford.edu/ogb/data/misc/ogbg_molpcba/scaffold_group.npy', os.path.join(self.ogb_dataset.root, 'raw'))
-        self._metadata_array = torch.from_numpy(np.load(metadata_file_path)).reshape(-1,1).long()
-
+        self._metadata_fields = ['species']
+        self._metadata_array = self.ogb_dataset.data.node_species.reshape(-1,1).long()
   
-
+        
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:
             self._collate = PyGCollater(follow_batch=[])
 
-        self._metric = Evaluator('ogbg-molpcba')
+        self._metric = Evaluator('ogbn-proteins')
 
         super().__init__(root_dir, download, split_scheme)
 
@@ -127,8 +125,9 @@ class OGBPCBADataset(WILDSDataset):
             - results (dictionary): Dictionary of evaluation metrics
             - results_str (str): String summarizing the evaluation metrics
         """
-        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"
+        assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"
         input_dict = {"y_true": y_true, "y_pred": y_pred}
+       
         results = self._metric.eval(input_dict)
 
-        return results, f"Average precision: {results['ap']:.3f}\n"
+        return results, f"ROCAUC: {results['rocauc']:.3f}\n"

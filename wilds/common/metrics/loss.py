@@ -46,9 +46,13 @@ class ElementwiseLoss(ElementwiseMetric):
             - y_true (Tensor): True targets
         Output:
             - element_wise_metrics (Tensor): tensor of size (batch_size, )
+            
         """
-      
-        return self.loss_fn(y_pred.to(torch.float32), y_true.to(torch.float32))
+        if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):
+            return self.loss_fn(y_pred.float(), y_true.float())
+        else:
+            return self.loss_fn(y_pred, y_true)
+
 
     def worst(self, metrics):
         """

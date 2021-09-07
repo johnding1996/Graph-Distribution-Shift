@@ -16,7 +16,6 @@ from wilds.common.grouper import CombinatorialGrouper
 from utils import set_seed, Logger, BatchLogger, log_config, initialize_wandb, close_wandb, ParseKwargs, load, log_group_data, parse_bool, get_model_prefix
 from train import train, evaluate
 from algorithms.initializer import initialize_algorithm
-from transforms import initialize_transform
 from configs.utils import populate_defaults
 import configs.supported as supported
 
@@ -54,12 +53,6 @@ def main():
     parser.add_argument('--model', choices=supported.models)
     parser.add_argument('--model_kwargs', nargs='*', action=ParseKwargs, default={},
         help='keyword arguments for model initialization passed as key1=value1 key2=value2')
-
-    # Transforms
-    parser.add_argument('--transform', choices=supported.transforms)
-    parser.add_argument('--target_resolution', nargs='+', type=int, help='The input resolution that images will be resized to before being passed into the model. For example, use --target_resolution 224 224 for a standard ResNet.')
-    parser.add_argument('--resize_scale', type=float)
-    parser.add_argument('--max_token_length', type=int)
 
     # Objective
     parser.add_argument('--loss_function', choices = supported.losses)
@@ -156,19 +149,6 @@ def main():
         split_scheme=config.split_scheme,
         **config.dataset_kwargs)
 
-    # To modify data augmentation, modify the following code block.
-    # If you want to use transforms that modify both `x` and `y`,
-    # set `do_transform_y` to True when initializing the `WILDSSubset` below.
-    train_transform = initialize_transform(
-        transform_name=config.transform,
-        config=config,
-        dataset=full_dataset,
-        is_training=True)
-    eval_transform = initialize_transform(
-        transform_name=config.transform,
-        config=config,
-        dataset=full_dataset,
-        is_training=False)
 
     train_grouper = CombinatorialGrouper(
         dataset=full_dataset,
@@ -178,19 +158,16 @@ def main():
     wandb_runner = initialize_wandb(config)
     for split in full_dataset.split_dict.keys():
         if split=='train':
-            transform = train_transform
             verbose = True
         elif split == 'val':
-            transform = eval_transform
             verbose = True
         else:
-            transform = eval_transform
             verbose = False
+
         # Get subset
         datasets[split]['dataset'] = full_dataset.get_subset(
             split,
-            frac=config.frac,
-            transform=transform)
+            frac=config.frac)
 
         if split == 'train':
             datasets[split]['loader'] = get_train_loader(

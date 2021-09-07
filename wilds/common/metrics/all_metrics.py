@@ -27,6 +27,7 @@ def multiclass_logits_to_pred(logits):
     by taking an argmax at the last dimension
     """
     assert logits.dim() > 1
+
     return logits.argmax(-1)
 
 def binary_logits_to_pred(logits):
@@ -41,7 +42,9 @@ class Accuracy(ElementwiseMetric):
 
     def _compute_element_wise(self, y_pred, y_true):
         if self.prediction_fn is not None:
+       
             y_pred = self.prediction_fn(y_pred)
+         
         return (y_pred==y_true).float()
 
     def worst(self, metrics):

@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 from ogb.graphproppred.mol_encoder import AtomEncoder,BondEncoder
 
-class GINVirtual(torch.nn.Module):
+class GINVirtual_mol(torch.nn.Module):
     """
     Graph Isomorphism Network augmented with virtual node for multi-task binary graph classification
     Input:
@@ -23,7 +23,7 @@ class GINVirtual(torch.nn.Module):
             - dropout (float): dropout ratio applied to hidden channels
         """
 
-        super(GINVirtual, self).__init__()
+        super(GINVirtual_mol, self).__init__()
 
         self.num_layers = num_layers
         self.dropout = dropout
@@ -127,6 +127,7 @@ class GINVirtual_node(torch.nn.Module):
         ### virtual node embeddings for graphs
         virtualnode_embedding = self.virtualnode_embedding(torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))
 
+     
         h_list = [self.atom_encoder(x)]
         for layer in range(self.num_layers):
             ### add message from virtual nodes to graph nodes

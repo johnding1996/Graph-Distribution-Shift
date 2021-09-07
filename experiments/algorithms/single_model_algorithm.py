@@ -59,6 +59,7 @@ class SingleModelAlgorithm(GroupAlgorithm):
             else:
                 outputs = self.model(x, None)
         else:
+           
             outputs = self.model(x)
             
         results = {
