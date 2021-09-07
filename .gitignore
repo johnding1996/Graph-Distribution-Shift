@@ -143,5 +143,11 @@ data/
 # Mac OS
 .DS_Store
 
-# Kezhi
-preprocessing/benchmarking-gnns-master
+# logs
+logs/
+
+# wandb
+wandb/
+
+# mypy config
+mypy.ini
