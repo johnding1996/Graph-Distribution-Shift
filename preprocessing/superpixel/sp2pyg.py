@@ -5,7 +5,6 @@ import torch
 from itertools import chain
 from data.superpixels import SuperPixDataset, SuperPixDGL
 import dgl
-import pdb
 
 # DATASET_NAME = 'MNIST'
 # DATASET_NAME = 'CIFAR10'
@@ -17,8 +16,6 @@ def data_list(name) :
 
     graph_lists = dataset.graph_lists
     graph_labels = dataset.graph_labels
-
-    pdb.set_trace()
 
     data_list = []
     for G, y in zip(graph_lists, graph_labels):

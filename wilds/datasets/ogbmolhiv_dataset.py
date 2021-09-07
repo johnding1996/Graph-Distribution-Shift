@@ -67,9 +67,6 @@ class OGBHIVDataset(WILDSDataset):
         # internally call ogb package
         self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-molhiv', root = root_dir)
 
-
-     
-
         # set variables
         self._data_dir = self.ogb_dataset.root
         if split_scheme=='official':
@@ -80,19 +77,13 @@ class OGBHIVDataset(WILDSDataset):
         # self._n_classes = self.ogb_dataset.__num_classes__
         self._n_classes = 1
 
-
-       
-
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx  = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
-        # import pdb;pdb.set_trace()
         self._y_array = self.ogb_dataset.data.y
-       
-
         self._metadata_fields = ['scaffold', 'y']
 
         metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')

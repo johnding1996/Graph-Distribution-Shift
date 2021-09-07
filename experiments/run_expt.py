@@ -29,7 +29,7 @@ def main():
 
     # Required arguments
     parser.add_argument('-d', '--dataset', choices=wilds.supported_datasets, required=True)
-    parser.add_argument('--algorithm', required=True, choices=supported.algorithms)
+    parser.add_argument('-a', '--algorithm', required=True, choices=supported.algorithms)
 
     # Dataset
     parser.add_argument('--split_scheme', help='Identifies how the train/val/test split is constructed. Choices are dataset-specific.')
@@ -103,7 +103,7 @@ def main():
     parser.add_argument('--save_last', type=parse_bool, const=True, nargs='?', default=True)
     parser.add_argument('--save_pred', type=parse_bool, const=True, nargs='?', default=True)
     parser.add_argument('--no_group_logging', type=parse_bool, const=True, nargs='?')
-    parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=True)
+    parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
@@ -155,7 +155,8 @@ def main():
         groupby_fields=config.groupby_fields)
 
     datasets = defaultdict(dict)
-    wandb_runner = initialize_wandb(config)
+    if config.use_wandb:
+        wandb_runner = initialize_wandb(config)
     for split in full_dataset.split_dict.keys():
         if split=='train':
             verbose = True
@@ -270,7 +271,8 @@ def main():
             is_best=is_best)
 
     # have to close wandb runner before closing logger (and stdout)
-    close_wandb(wandb_runner)
+    if config.use_wandb:
+        close_wandb(wandb_runner)
     logger.close()
     for split in datasets:
         datasets[split]['eval_logger'].close()

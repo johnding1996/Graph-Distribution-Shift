@@ -60,9 +60,6 @@ class OGBPROTEINSDataset(WILDSDataset):
         # internally call ogb package
         self.ogb_dataset = PygNodePropPredDataset(name = 'ogbn-proteins', root = root_dir, transform=T.ToSparseTensor())
 
-
-     
-
         # set variables
         self._data_dir = self.ogb_dataset.root
         if split_scheme=='official':
@@ -72,9 +69,6 @@ class OGBPROTEINSDataset(WILDSDataset):
         self._y_size = self.ogb_dataset.num_tasks
         self._n_classes = self.ogb_dataset.__num_classes__
     
-
-
-       
         self._y_array = self.ogb_dataset.data.y
         self._split_array = torch.zeros(len(self._y_array)).long()
         split_idx  = self.ogb_dataset.get_idx_split()
@@ -83,18 +77,10 @@ class OGBPROTEINSDataset(WILDSDataset):
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
-
-
         # Move edge features to node features.
         data = self.ogb_dataset[0]
         data.x = data.adj_t.mean(dim=1)
-        data.adj_t.set_value_(None)
-
-
-
-        import pdb;pdb.set_trace()
-        
-       
+        data.adj_t.set_value_(None)        
 
         self._metadata_fields = ['species']
         self._metadata_array = self.ogb_dataset.data.node_species.reshape(-1,1).long()

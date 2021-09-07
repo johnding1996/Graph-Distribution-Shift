@@ -38,6 +38,5 @@ optimizers = ['SGD', 'Adam', 'AdamW']
 # See scheduler.py
 schedulers = ['linear_schedule_with_warmup', 'cosine_schedule_with_warmup', 'ReduceLROnPlateau', 'StepLR', 'MultiStepLR']
 
-
 # See losses.py
 losses = ['cross_entropy', 'lm_cross_entropy', 'MSE', 'multitask_bce', 'fasterrcnn_criterion', 'BCEWithLogitsLoss']
