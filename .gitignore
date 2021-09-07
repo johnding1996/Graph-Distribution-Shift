@@ -142,3 +142,6 @@ data/
 
 # Mac OS
 .DS_Store
+
+# Kezhi
+preprocessing/benchmarking-gnns-master
