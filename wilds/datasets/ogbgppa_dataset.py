@@ -6,12 +6,18 @@ from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
+import pandas as pd
 
 from torch_geometric.datasets import GNNBenchmarkDataset
 
-class OGBHIVDataset(WILDSDataset):
+def add_zeros(data):
+    data.x = torch.zeros(data.num_nodes, dtype=torch.long)
+    return data
+    
+
+class OGBGPPADataset(WILDSDataset):
     """
-    The OGB-molhiv dataset.
+    The OGB-ppa dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.
 
     Supported `split_scheme`:
@@ -54,7 +60,7 @@ class OGBHIVDataset(WILDSDataset):
         https://github.com/snap-stanford/ogb/blob/master/LICENSE
     """
 
-    _dataset_name = 'ogb-molhiv'
+    _dataset_name = 'ogbg-ppa'
     _versions_dict = {
         '1.0': {
             'download_url': None,
@@ -63,9 +69,12 @@ class OGBHIVDataset(WILDSDataset):
     def __init__(self, version=None, root_dir='data', download=False, split_scheme='official'):
         self._version = version
         if version is not None:
-            raise ValueError('Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.')
+            raise ValueError('Versioning for OGB-PPA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-molhiv', root = root_dir)
+        self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-ppa', root = root_dir, transform = add_zeros)
+
+
+     
 
         # set variables
         self._data_dir = self.ogb_dataset.root
@@ -74,8 +83,8 @@ class OGBHIVDataset(WILDSDataset):
         self._split_scheme = split_scheme
         self._y_type = 'float' # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
-        # self._n_classes = self.ogb_dataset.__num_classes__
-        self._n_classes = 1
+        self._n_classes = self.ogb_dataset.__num_classes__
+      
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx  = self.ogb_dataset.get_idx_split()
@@ -83,22 +92,26 @@ class OGBHIVDataset(WILDSDataset):
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
-        self._y_array = self.ogb_dataset.data.y
-        self._metadata_fields = ['scaffold', 'y']
-
-        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
-        if not os.path.exists(metadata_file_path):
-            download_url('https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1', os.path.join(self.ogb_dataset.root, 'raw'))
-        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1,1).long()
-        self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
-  
+    
+        self._y_array = self.ogb_dataset.data.y.squeeze()
         
+       
+
+        self._metadata_fields = ['species', 'y']
+        metadata_file_path = os.path.join(self.ogb_dataset.root, 'mapping', 'graphidx2speciesid.csv.gz')
+        df = pd.read_csv(metadata_file_path)
+        df_np = df['species id'].to_numpy()
+        self._metadata_array_wo_y = torch.from_numpy(df_np - df_np.min()).reshape(-1,1).long()
+        self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
+
+       
+
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:
             self._collate = PyGCollater(follow_batch=[])
 
-        self._metric = Evaluator('ogbg-molhiv')
+        self._metric = Evaluator('ogbg-ppa')
 
         super().__init__(root_dir, download, split_scheme)
 
@@ -119,8 +132,10 @@ class OGBHIVDataset(WILDSDataset):
             - results_str (str): String summarizing the evaluation metrics
         """
         assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"
+        y_true = y_true.view(-1,1)
+        y_pred = torch.argmax(y_pred.detach(), dim = 1).view(-1,1)
         input_dict = {"y_true": y_true, "y_pred": y_pred}
        
         results = self._metric.eval(input_dict)
 
-        return results, f"ROCAUC: {results['rocauc']:.3f}\n"
+        return results, f"Accuracy: {results['acc']:.3f}\n"

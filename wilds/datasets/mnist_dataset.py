@@ -67,14 +67,8 @@ class MnistDataset(WILDSDataset):
         # internally call ogb package
         # self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-molpcba', root = root_dir)
         
-
         # self.mnist_dataset = GNNBenchmarkDataset(name = 'MNIST', root = root_dir)
         self.ogb_dataset = GNNBenchmarkDataset(name = 'MNIST', split = 'val', root = root_dir)
-
-
-
-
-     
 
         # set variables
         self._data_dir = self.ogb_dataset.root
@@ -86,7 +80,7 @@ class MnistDataset(WILDSDataset):
         # self._n_classes = self.ogb_dataset.__num_classes__
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
-        import pdb;pdb.set_trace()
+
         split_idx  = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0
         self._split_array[split_idx['valid']] = 1

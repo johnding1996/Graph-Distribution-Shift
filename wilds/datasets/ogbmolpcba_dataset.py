@@ -66,10 +66,7 @@ class OGBPCBADataset(WILDSDataset):
             raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
         self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-molpcba', root = root_dir)
-
-
-     
-
+        
         # set variables
         self._data_dir = self.ogb_dataset.root
         if split_scheme=='official':
@@ -79,18 +76,13 @@ class OGBPCBADataset(WILDSDataset):
         self._y_size = self.ogb_dataset.num_tasks
         self._n_classes = self.ogb_dataset.__num_classes__
 
-    
-
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx  = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
-
  
-
         self._y_array = self.ogb_dataset.data.y
-
         self._metadata_fields = ['scaffold']
 
         metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
