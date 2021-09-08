@@ -80,13 +80,13 @@ dataset_defaults = {
         'process_outputs_function': None,
         'algo_log_metric': 'multitask_binary_accuracy',
     },
-    'mnist': {
+    'RotatedMNIST': {
         'split_scheme': 'official',
-        'model': 'gin-virtual',
+        'model': 'gin_virtual_mol',
         'model_kwargs': {'dropout':0.5}, # include pretrained
-        'loss_function': 'multitask_bce',
+        'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
-        'val_metric': 'ap',
+        'val_metric': 'acc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
         'batch_size': 32,
@@ -98,7 +98,7 @@ dataset_defaults = {
         'coral_penalty_weight': 0.1,
         'no_group_logging': True,
         'process_outputs_function': None,
-        'algo_log_metric': 'multitask_binary_accuracy',
+        'algo_log_metric': 'multiclass_accuracy',
     }
 }
 

@@ -3,11 +3,10 @@ import os.path as osp
 
 import torch
 from torch_geometric.data import (InMemoryDataset, download_url, extract_zip, Data)
-import pdb
 import os
 
 
-class SuperPixelDataset(InMemoryDataset):
+class PyGSuperPixelDataset(InMemoryDataset):
     r"""A variety of artificially and semi-artificially generated graph
     datasets from the `"Benchmarking Graph Neural Networks"
     <https://arxiv.org/abs/2003.00982>`_ paper.
@@ -52,7 +51,6 @@ class SuperPixelDataset(InMemoryDataset):
                  pre_filter: Optional[Callable] = None):
         self.name = name
         assert self.name in self.names
-        self.root = root
         if name == 'RotatedMNIST' :
              self.num_tasks = 1
              self.__num_classes__ = 10

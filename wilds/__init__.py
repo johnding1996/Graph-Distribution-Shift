@@ -6,7 +6,7 @@ benchmark_datasets = [
     'ogb-molhiv',
     'ogbg-ppa',
     'ogb-proteins',
-    'mnist',
+    'RotatedMNIST',
 ]
 
 

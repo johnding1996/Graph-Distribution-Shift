@@ -2,14 +2,15 @@ import os
 import torch
 import numpy as np
 from wilds.datasets.wilds_dataset import WILDSDataset
-from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
+from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
 
-from torch_geometric.datasets import GNNBenchmarkDataset
+from pyg_superpixel_dataset import PyGSuperPixelDataset
+import pdb
 
-class MnistDataset(WILDSDataset):
+class SuperPixelDataset(WILDSDataset):
     """
     The OGB-molpcba dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.
@@ -54,7 +55,7 @@ class MnistDataset(WILDSDataset):
         https://github.com/snap-stanford/ogb/blob/master/LICENSE
     """
 
-    _dataset_name = 'mnist'
+    _dataset_name = 'RotatedMNIST'
     _versions_dict = {
         '1.0': {
             'download_url': None,
@@ -65,44 +66,55 @@ class MnistDataset(WILDSDataset):
         if version is not None:
             raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        # self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-molpcba', root = root_dir)
-        
-        # self.mnist_dataset = GNNBenchmarkDataset(name = 'MNIST', root = root_dir)
-        self.ogb_dataset = GNNBenchmarkDataset(name = 'MNIST', split = 'val', root = root_dir)
+        self.ogb_dataset = PyGSuperPixelDataset(name='RotatedMNIST', root=root_dir)
 
         # set variables
         self._data_dir = self.ogb_dataset.root
-        if split_scheme=='official':
+        if split_scheme == 'official':
             split_scheme = 'scaffold'
         self._split_scheme = split_scheme
-        self._y_type = 'float' # although the task is binary classification, the prediction target contains nan value, thus we need float
-        # self._y_size = self.ogb_dataset.num_tasks
-        # self._n_classes = self.ogb_dataset.__num_classes__
+        self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float
+        self._y_size = self.ogb_dataset.num_tasks
+        self._n_classes = self.ogb_dataset.__num_classes__
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
 
-        split_idx  = self.ogb_dataset.get_idx_split()
-        self._split_array[split_idx['train']] = 0
-        self._split_array[split_idx['valid']] = 1
-        self._split_array[split_idx['test']] = 2
-
         self._y_array = self.ogb_dataset.data.y
+        self._metadata_fields = ['scaffold', 'y']
 
-        self._metadata_fields = ['scaffold']
-
-        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
+        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'RotatedMNIST_group.npy')
         if not os.path.exists(metadata_file_path):
-            download_url('https://snap.stanford.edu/ogb/data/misc/ogbg_molpcba/scaffold_group.npy', os.path.join(self.ogb_dataset.root, 'raw'))
-        self._metadata_array = torch.from_numpy(np.load(metadata_file_path)).reshape(-1,1).long()
+            download_url('https://www.dropbox.com/s/2e7alhvw6fvxtt2/RotatedMNIST_group.npy?dl=1',
+                         self.ogb_dataset.raw_dir)
+        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
+        self._metadata_array = torch.cat((self._metadata_array_wo_y,
+                                          torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)
+
+        # use the group info split data
+        train_group_idx, val_group_idx, test_group_idx = [0,1,2,3], [4], [5]
+        train_group_idx, val_group_idx, test_group_idx = \
+            torch.tensor(train_group_idx), torch.tensor(val_group_idx), torch.tensor(test_group_idx)
+
+        def split_idx(group_idx) :
+            split_idx = torch.zeros(len(torch.squeeze(self._metadata_array_wo_y)), dtype=torch.bool)
+            for idx in group_idx :
+                split_idx += (torch.squeeze(self._metadata_array_wo_y) == idx)
+            return split_idx
+
+        train_split_idx, val_split_idx, test_split_idx = \
+            split_idx(train_group_idx), split_idx(val_group_idx), split_idx(test_group_idx)
+
+        self._split_array[train_split_idx] = 0
+        self._split_array[val_split_idx] = 1
+        self._split_array[test_split_idx] = 2
+
 
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:
             self._collate = PyGCollater(follow_batch=[])
 
-        self._metric = Evaluator('ogbg-molpcba')
-
-   
+        self._metric = Evaluator('ogbg-ppa')
 
         super().__init__(root_dir, download, split_scheme)
 
@@ -127,3 +139,11 @@ class MnistDataset(WILDSDataset):
         results = self._metric.eval(input_dict)
 
         return results, f"Average precision: {results['ap']:.3f}\n"
+
+
+if __name__ == '__main__':
+    root = '/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data'
+    name = 'RotatedMNIST'
+    dataset = SuperPixelDataset(root_dir=root)
+
+    pdb.set_trace()
