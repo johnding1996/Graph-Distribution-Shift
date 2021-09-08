@@ -149,6 +149,15 @@ logs/
 # wandb
 wandb/
 
+# reports
+reports/
+
+# docs
+docs/
+
+# PyCharm config
+.idea/
+
 # mypy config
 mypy.ini
 

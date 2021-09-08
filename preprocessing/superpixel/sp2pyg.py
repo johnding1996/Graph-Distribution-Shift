@@ -2,15 +2,14 @@
     File to load dataset based on user control from main file
 """
 import torch
-from itertools import chain
-from data.superpixels import SuperPixDataset, SuperPixDGL
-import dgl
+from data.superpixels import SuperPixDGL
 
 # DATASET_NAME = 'MNIST'
 # DATASET_NAME = 'CIFAR10'
 DATASET_NAME = 'RotatedMNIST'
 
-def data_list(name) :
+
+def data_list(name):
     data_dir = '/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data'
     dataset = SuperPixDGL(data_dir=data_dir, dataset=name, split='train')
 
@@ -28,10 +27,11 @@ def data_list(name) :
 
     return data_list
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     data_list = data_list(DATASET_NAME)
-    torch.save(data_list, f'/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data/{DATASET_NAME}.pt')
+    torch.save(data_list,
+               f'/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data/{DATASET_NAME}.pt')
 
     # dataset = SuperPixDataset('MNIST')
     # data_list = torch.load(f'/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data/{DATASET_NAME}.pt')

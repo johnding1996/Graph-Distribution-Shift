@@ -1,25 +1,25 @@
 import numpy as np
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 from torchvision.ops.boxes import box_iou
 from torchvision.models.detection._utils import Matcher
-from torchvision.ops import nms, box_convert
 from wilds.common.metrics.metric import Metric, ElementwiseMetric, MultiTaskMetric
 from wilds.common.metrics.loss import ElementwiseLoss
 from wilds.common.utils import avg_over_groups, minimum, maximum, get_counts
 import sklearn.metrics
 from scipy.stats import pearsonr
 
+
 def binary_logits_to_score(logits):
-    assert logits.dim() in (1,2)
-    if logits.dim()==2: #multi-class logits
-        assert logits.size(1)==2, "Only binary classification"
-        score = F.softmax(logits, dim=1)[:,1]
-        
+    assert logits.dim() in (1, 2)
+    if logits.dim() == 2:  # multi-class logits
+        assert logits.size(1) == 2, "Only binary classification"
+        score = F.softmax(logits, dim=1)[:, 1]
+
     else:
         score = logits
     return score
+
 
 def multiclass_logits_to_pred(logits):
     """
@@ -30,8 +30,10 @@ def multiclass_logits_to_pred(logits):
 
     return logits.argmax(-1)
 
+
 def binary_logits_to_pred(logits):
-    return (logits>0).long()
+    return (logits > 0).long()
+
 
 class Accuracy(ElementwiseMetric):
     def __init__(self, prediction_fn=None, name=None):
@@ -42,13 +44,13 @@ class Accuracy(ElementwiseMetric):
 
     def _compute_element_wise(self, y_pred, y_true):
         if self.prediction_fn is not None:
-       
             y_pred = self.prediction_fn(y_pred)
-         
-        return (y_pred==y_true).float()
+
+        return (y_pred == y_true).float()
 
     def worst(self, metrics):
         return minimum(metrics)
+
 
 class MultiTaskAccuracy(MultiTaskMetric):
     def __init__(self, prediction_fn=None, name=None):
@@ -60,11 +62,12 @@ class MultiTaskAccuracy(MultiTaskMetric):
     def _compute_flattened(self, flattened_y_pred, flattened_y_true):
         if self.prediction_fn is not None:
             flattened_y_pred = self.prediction_fn(flattened_y_pred)
-            
-        return (flattened_y_pred==flattened_y_true).float()
+
+        return (flattened_y_pred == flattened_y_true).float()
 
     def worst(self, metrics):
         return minimum(metrics)
+
 
 class MultiTaskAveragePrecision(MultiTaskMetric):
     def __init__(self, prediction_fn=None, name=None, average='macro'):
@@ -72,7 +75,7 @@ class MultiTaskAveragePrecision(MultiTaskMetric):
         if name is None:
             name = f'avgprec'
             if average is not None:
-                name+=f'-{average}'
+                name += f'-{average}'
         self.average = average
         super().__init__(name=name)
 
@@ -93,7 +96,7 @@ class MultiTaskAveragePrecision(MultiTaskMetric):
         group_metrics = []
         group_counts = get_counts(g, n_groups)
         for group_idx in range(n_groups):
-            if group_counts[group_idx]==0:
+            if group_counts[group_idx] == 0:
                 group_metrics.append(torch.tensor(0., device=g.device))
             else:
                 flattened_metrics, _ = self.compute_flattened(
@@ -102,7 +105,7 @@ class MultiTaskAveragePrecision(MultiTaskMetric):
                     return_dict=False)
                 group_metrics.append(flattened_metrics)
         group_metrics = torch.stack(group_metrics)
-        worst_group_metric = self.worst(group_metrics[group_counts>0])
+        worst_group_metric = self.worst(group_metrics[group_counts > 0])
 
         return group_metrics, group_counts, worst_group_metric
 
@@ -112,13 +115,14 @@ class MultiTaskAveragePrecision(MultiTaskMetric):
     def worst(self, metrics):
         return minimum(metrics)
 
+
 class Recall(Metric):
     def __init__(self, prediction_fn=None, name=None, average='binary'):
         self.prediction_fn = prediction_fn
         if name is None:
             name = f'recall'
             if average is not None:
-                name+=f'-{average}'
+                name += f'-{average}'
         self.average = average
         super().__init__(name=name)
 
@@ -131,13 +135,14 @@ class Recall(Metric):
     def worst(self, metrics):
         return minimum(metrics)
 
+
 class F1(Metric):
     def __init__(self, prediction_fn=None, name=None, average='binary'):
         self.prediction_fn = prediction_fn
         if name is None:
             name = f'F1'
             if average is not None:
-                name+=f'-{average}'
+                name += f'-{average}'
         self.average = average
         super().__init__(name=name)
 
@@ -149,6 +154,7 @@ class F1(Metric):
 
     def worst(self, metrics):
         return minimum(metrics)
+
 
 class PearsonCorrelation(Metric):
     def __init__(self, name=None):
@@ -163,16 +169,18 @@ class PearsonCorrelation(Metric):
     def worst(self, metrics):
         return minimum(metrics)
 
+
 def mse_loss(out, targets):
-    assert out.size()==targets.size()
-    if out.numel()==0:
+    assert out.size() == targets.size()
+    if out.numel() == 0:
         return torch.Tensor()
     else:
-        assert out.dim()>1, 'MSE loss currently supports Tensors of dimensions > 1'
-        losses = (out - targets)**2
+        assert out.dim() > 1, 'MSE loss currently supports Tensors of dimensions > 1'
+        losses = (out - targets) ** 2
         reduce_dims = tuple(list(range(1, len(targets.shape))))
         losses = torch.mean(losses, dim=reduce_dims)
         return losses
+
 
 class MSE(ElementwiseLoss):
     def __init__(self, name=None):
@@ -180,8 +188,10 @@ class MSE(ElementwiseLoss):
             name = 'mse'
         super().__init__(name=name, loss_fn=mse_loss)
 
+
 class PrecisionAtRecall(Metric):
     """Given a specific model threshold, determine the precision score achieved"""
+
     def __init__(self, threshold, score_fn=None, name=None):
         self.score_fn = score_fn
         self.threshold = threshold
@@ -197,10 +207,12 @@ class PrecisionAtRecall(Metric):
     def worst(self, metrics):
         return minimum(metrics)
 
+
 class DummyMetric(Metric):
     """
     For testing purposes. This Metric always returns -1.
     """
+
     def __init__(self, prediction_fn=None, name=None):
         self.prediction_fn = prediction_fn
         if name is None:
@@ -219,11 +231,13 @@ class DummyMetric(Metric):
     def worst(self, metrics):
         return minimum(metrics)
 
+
 class DetectionAccuracy(ElementwiseMetric):
     """
     Given a specific Intersection over union threshold,
     determine the accuracy achieved for a one-class detector
     """
+
     def __init__(self, iou_threshold=0.5, score_threshold=0.5, name=None):
         self.iou_threshold = iou_threshold
         self.score_threshold = score_threshold
@@ -238,12 +252,13 @@ class DetectionAccuracy(ElementwiseMetric):
             target_scores = target["scores"]
 
             pred_boxes = target_boxes[target_scores > self.score_threshold]
-            det_accuracy = torch.mean(torch.stack([ self._accuracy(src_boxes["boxes"],pred_boxes,iou_thr) for iou_thr in np.arange(0.5,0.51,0.05)]))
+            det_accuracy = torch.mean(torch.stack(
+                [self._accuracy(src_boxes["boxes"], pred_boxes, iou_thr) for iou_thr in np.arange(0.5, 0.51, 0.05)]))
             batch_results.append(det_accuracy)
 
         return torch.tensor(batch_results)
 
-    def _accuracy(self, src_boxes,pred_boxes ,  iou_threshold):
+    def _accuracy(self, src_boxes, pred_boxes, iou_threshold):
         total_gt = len(src_boxes)
         total_pred = len(pred_boxes)
         if total_gt > 0 and total_pred > 0:
@@ -260,12 +275,12 @@ class DetectionAccuracy(ElementwiseMetric):
             matched_elements = results[results > -1]
             # in Matcher, a pred element can be matched only twice
             false_positive = (
-                torch.count_nonzero(results == -1) +
-                (len(matched_elements) - len(matched_elements.unique()))
+                    torch.count_nonzero(results == -1) +
+                    (len(matched_elements) - len(matched_elements.unique()))
             )
             false_negative = total_gt - true_positive
-            acc = true_positive / ( true_positive + false_positive + false_negative )
-            return true_positive / ( true_positive + false_positive + false_negative )
+            acc = true_positive / (true_positive + false_positive + false_negative)
+            return true_positive / (true_positive + false_positive + false_negative)
         elif total_gt == 0:
             if total_pred > 0:
                 return torch.tensor(0.)

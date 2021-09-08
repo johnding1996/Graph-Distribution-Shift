@@ -1,18 +1,19 @@
-import torch
 from algorithms.group_algorithm import GroupAlgorithm
-from scheduler import initialize_scheduler
 from optimizer import initialize_optimizer
+from scheduler import initialize_scheduler
 from torch.nn.utils import clip_grad_norm_
 from utils import move_to
+
 
 class SingleModelAlgorithm(GroupAlgorithm):
     """
     An abstract class for algorithm that has one underlying model.
     """
+
     def __init__(self, config, model, grouper, loss, metric, n_train_steps):
         # get metrics
         self.loss = loss
-        logged_metrics = [self.loss,]
+        logged_metrics = [self.loss, ]
         if metric is not None:
             self.metric = metric
             logged_metrics.append(self.metric)
@@ -28,8 +29,8 @@ class SingleModelAlgorithm(GroupAlgorithm):
             grouper=grouper,
             logged_metrics=logged_metrics,
             logged_fields=['objective'],
-            schedulers=[scheduler,],
-            scheduler_metric_names=[config.scheduler_metric_name,],
+            schedulers=[scheduler, ],
+            scheduler_metric_names=[config.scheduler_metric_name, ],
             no_group_logging=config.no_group_logging,
         )
         self.model = model
@@ -52,22 +53,21 @@ class SingleModelAlgorithm(GroupAlgorithm):
         y_true = move_to(y_true, self.device)
         g = move_to(self.grouper.metadata_to_group(metadata), self.device)
 
-
         if self.model.needs_y:
             if self.training:
                 outputs = self.model(x, y_true)
             else:
                 outputs = self.model(x, None)
         else:
-           
+
             outputs = self.model(x)
-            
+
         results = {
             'g': g,
             'y_true': y_true,
             'y_pred': outputs,
             'metadata': metadata,
-            }
+        }
         return results
 
     def objective(self, results):
@@ -89,9 +89,9 @@ class SingleModelAlgorithm(GroupAlgorithm):
         """
         assert not self.is_training
         results = self.process_batch(batch)
-    
+
         results['objective'] = self.objective(results).item()
-        
+
         self.update_log(results)
         return self.sanitize_dict(results)
 
@@ -112,7 +112,7 @@ class SingleModelAlgorithm(GroupAlgorithm):
         assert self.is_training
         # process batch
         results = self.process_batch(batch)
-       
+
         self._update(results)
         # import pdb;pdb.set_trace()
         # log results

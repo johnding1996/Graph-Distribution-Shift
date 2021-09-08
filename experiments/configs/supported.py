@@ -1,5 +1,6 @@
 # metrics
-from wilds.common.metrics.all_metrics import Accuracy, MultiTaskAccuracy, MSE, multiclass_logits_to_pred, binary_logits_to_pred, MultiTaskAveragePrecision, binary_logits_to_score
+from wilds.common.metrics.all_metrics import Accuracy, MultiTaskAccuracy, MSE, multiclass_logits_to_pred, \
+    binary_logits_to_pred, MultiTaskAveragePrecision
 
 # algo_log_metrics = {
 #     'accuracy': Accuracy(prediction_fn=multiclass_logits_to_pred),
@@ -36,7 +37,8 @@ algorithms = ['ERM', 'groupDRO', 'deepCORAL', 'IRM']
 optimizers = ['SGD', 'Adam', 'AdamW']
 
 # See scheduler.py
-schedulers = ['linear_schedule_with_warmup', 'cosine_schedule_with_warmup', 'ReduceLROnPlateau', 'StepLR', 'MultiStepLR']
+schedulers = ['linear_schedule_with_warmup', 'cosine_schedule_with_warmup', 'ReduceLROnPlateau', 'StepLR',
+              'MultiStepLR']
 
 # See losses.py
 losses = ['cross_entropy', 'lm_cross_entropy', 'MSE', 'multitask_bce', 'fasterrcnn_criterion', 'BCEWithLogitsLoss']

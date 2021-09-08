@@ -1,10 +1,12 @@
-from wilds.common.utils import get_counts
 from algorithms.ERM import ERM
-from algorithms.groupDRO import GroupDRO
-from algorithms.deepCORAL import DeepCORAL
 from algorithms.IRM import IRM
+from algorithms.deepCORAL import DeepCORAL
+from algorithms.groupDRO import GroupDRO
 from configs.supported import algo_log_metrics
 from losses import initialize_loss
+
+from wilds.common.utils import get_counts
+
 
 def initialize_algorithm(config, datasets, train_grouper):
     train_dataset = datasets['train']['dataset']
@@ -16,8 +18,8 @@ def initialize_algorithm(config, datasets, train_grouper):
         if train_dataset.y_size == 1:
             # For single-task classification, we have one output per class
             d_out = train_dataset.n_classes
-           
-          
+
+
         elif train_dataset.y_size is None:
             d_out = train_dataset.n_classes
         elif (train_dataset.y_size > 1) and (train_dataset.n_classes == 2):

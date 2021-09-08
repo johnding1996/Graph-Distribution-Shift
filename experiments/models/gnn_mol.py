@@ -1,9 +1,9 @@
 import torch
+import torch.nn.functional as F
+from ogb.graphproppred.mol_encoder import AtomEncoder, BondEncoder
 from torch_geometric.nn import MessagePassing
 from torch_geometric.nn import global_mean_pool, global_add_pool
-import torch.nn.functional as F
 
-from ogb.graphproppred.mol_encoder import AtomEncoder,BondEncoder
 
 class GINVirtual_mol(torch.nn.Module):
     """
@@ -14,7 +14,7 @@ class GINVirtual_mol(torch.nn.Module):
         - prediction (Tensor): float torch tensor of shape (num_graphs, num_tasks)
     """
 
-    def __init__(self, num_tasks=128, num_layers = 5, emb_dim = 300, dropout = 0.5):
+    def __init__(self, num_tasks=128, num_layers=5, emb_dim=300, dropout=0.5):
         """
         Args:
             - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)
@@ -38,7 +38,7 @@ class GINVirtual_mol(torch.nn.Module):
             raise ValueError("Number of GNN layers must be greater than 1.")
 
         # GNN to generate node embeddings
-        self.gnn_node = GINVirtual_node(num_layers, emb_dim, dropout = dropout)
+        self.gnn_node = GINVirtual_node(num_layers, emb_dim, dropout=dropout)
 
         # Pooling function to generate whole-graph embeddings
         self.pool = global_mean_pool
@@ -46,13 +46,9 @@ class GINVirtual_mol(torch.nn.Module):
             self.graph_pred_linear = None
         else:
             self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)
-     
-       
 
     def forward(self, batched_data):
         h_node = self.gnn_node(batched_data)
-
-        
 
         ## return the features after pooling
         # h_graph = self.pool(h_node, batched_data.batch)
@@ -60,9 +56,6 @@ class GINVirtual_mol(torch.nn.Module):
         #     return h_graph
         # else:
         #     return self.graph_pred_linear(h_graph)
-
-     
-
 
         # return the features before pooling and after pooling
         if self.graph_pred_linear is None:
@@ -82,7 +75,8 @@ class GINVirtual_node(torch.nn.Module):
     Output:
         - node_embedding (Tensor): float torch tensor of shape (num_nodes, emb_dim)
     """
-    def __init__(self, num_layers, emb_dim, dropout = 0.5):
+
+    def __init__(self, num_layers, emb_dim, dropout=0.5):
         '''
         Args:
             - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)
@@ -117,17 +111,19 @@ class GINVirtual_node(torch.nn.Module):
             self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))
 
         for layer in range(num_layers - 1):
-            self.mlp_virtualnode_list.append(torch.nn.Sequential(torch.nn.Linear(emb_dim, 2*emb_dim), torch.nn.BatchNorm1d(2*emb_dim), torch.nn.ReLU(), \
-                                                    torch.nn.Linear(2*emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU()))
-
+            self.mlp_virtualnode_list.append(
+                torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),
+                                    torch.nn.ReLU(), \
+                                    torch.nn.Linear(2 * emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim),
+                                    torch.nn.ReLU()))
 
     def forward(self, batched_data):
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
         ### virtual node embeddings for graphs
-        virtualnode_embedding = self.virtualnode_embedding(torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))
+        virtualnode_embedding = self.virtualnode_embedding(
+            torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))
 
-     
         h_list = [self.atom_encoder(x)]
         for layer in range(self.num_layers):
             ### add message from virtual nodes to graph nodes
@@ -138,10 +134,10 @@ class GINVirtual_node(torch.nn.Module):
 
             h = self.batch_norms[layer](h)
             if layer == self.num_layers - 1:
-                #remove relu for the last layer
-                h = F.dropout(h, self.dropout, training = self.training)
+                # remove relu for the last layer
+                h = F.dropout(h, self.dropout, training=self.training)
             else:
-                h = F.dropout(F.relu(h), self.dropout, training = self.training)
+                h = F.dropout(F.relu(h), self.dropout, training=self.training)
 
             h_list.append(h)
 
@@ -150,7 +146,8 @@ class GINVirtual_node(torch.nn.Module):
                 ### add message from graph nodes to virtual nodes
                 virtualnode_embedding_temp = global_add_pool(h_list[layer], batch) + virtualnode_embedding
                 ### transform virtual nodes using MLP
-                virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.dropout, training = self.training)
+                virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp),
+                                                  self.dropout, training=self.training)
 
         node_embedding = h_list[-1]
 
@@ -168,22 +165,24 @@ class GINConv(MessagePassing):
     Output:
         - prediction (Tensor): output node emebedding
     """
+
     def __init__(self, emb_dim):
         """
         Args:
             - emb_dim (int): node embedding dimensionality
         """
 
-        super(GINConv, self).__init__(aggr = "add")
+        super(GINConv, self).__init__(aggr="add")
 
-        self.mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2*emb_dim), torch.nn.BatchNorm1d(2*emb_dim), torch.nn.ReLU(), torch.nn.Linear(2*emb_dim, emb_dim))
+        self.mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),
+                                       torch.nn.ReLU(), torch.nn.Linear(2 * emb_dim, emb_dim))
         self.eps = torch.nn.Parameter(torch.Tensor([0]))
 
-        self.bond_encoder = BondEncoder(emb_dim = emb_dim)
+        self.bond_encoder = BondEncoder(emb_dim=emb_dim)
 
     def forward(self, x, edge_index, edge_attr):
         edge_embedding = self.bond_encoder(edge_attr)
-        out = self.mlp((1 + self.eps) *x + self.propagate(edge_index, x=x, edge_attr=edge_embedding))
+        out = self.mlp((1 + self.eps) * x + self.propagate(edge_index, x=x, edge_attr=edge_embedding))
 
         return out
 

@@ -1,19 +1,18 @@
 import os
-import torch
-import numpy as np
-from wilds.datasets.wilds_dataset import WILDSDataset
-from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
-from ogb.utils.url import download_url
-from torch_geometric.data.dataloader import Collater as PyGCollater
-import torch_geometric
-import pandas as pd
 
-from torch_geometric.datasets import GNNBenchmarkDataset
+import pandas as pd
+import torch
+import torch_geometric
+from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
+from torch_geometric.data.dataloader import Collater as PyGCollater
+
+from wilds.datasets.wilds_dataset import WILDSDataset
+
 
 def add_zeros(data):
     data.x = torch.zeros(data.num_nodes, dtype=torch.long)
     return data
-    
+
 
 class OGBGPPADataset(WILDSDataset):
     """
@@ -71,40 +70,31 @@ class OGBGPPADataset(WILDSDataset):
         if version is not None:
             raise ValueError('Versioning for OGB-PPA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-ppa', root = root_dir, transform = add_zeros)
-
-
-     
+        self.ogb_dataset = PygGraphPropPredDataset(name='ogbg-ppa', root=root_dir, transform=add_zeros)
 
         # set variables
         self._data_dir = self.ogb_dataset.root
-        if split_scheme=='official':
+        if split_scheme == 'official':
             split_scheme = 'scaffold'
         self._split_scheme = split_scheme
-        self._y_type = 'float' # although the task is binary classification, the prediction target contains nan value, thus we need float
+        self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
         self._n_classes = self.ogb_dataset.__num_classes__
-      
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
-        split_idx  = self.ogb_dataset.get_idx_split()
+        split_idx = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
-    
         self._y_array = self.ogb_dataset.data.y.squeeze()
-        
-       
 
         self._metadata_fields = ['species', 'y']
         metadata_file_path = os.path.join(self.ogb_dataset.root, 'mapping', 'graphidx2speciesid.csv.gz')
         df = pd.read_csv(metadata_file_path)
         df_np = df['species id'].to_numpy()
-        self._metadata_array_wo_y = torch.from_numpy(df_np - df_np.min()).reshape(-1,1).long()
+        self._metadata_array_wo_y = torch.from_numpy(df_np - df_np.min()).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
-
-       
 
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
@@ -132,10 +122,10 @@ class OGBGPPADataset(WILDSDataset):
             - results_str (str): String summarizing the evaluation metrics
         """
         assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"
-        y_true = y_true.view(-1,1)
-        y_pred = torch.argmax(y_pred.detach(), dim = 1).view(-1,1)
+        y_true = y_true.view(-1, 1)
+        y_pred = torch.argmax(y_pred.detach(), dim=1).view(-1, 1)
         input_dict = {"y_true": y_true, "y_pred": y_pred}
-       
+
         results = self._metric.eval(input_dict)
 
         return results, f"Accuracy: {results['acc']:.3f}\n"

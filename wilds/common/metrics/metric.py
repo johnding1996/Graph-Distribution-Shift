@@ -1,11 +1,13 @@
-import numpy as np
-from wilds.common.utils import avg_over_groups, get_counts, numel
 import torch
+
+from wilds.common.utils import avg_over_groups, get_counts, numel
+
 
 class Metric:
     """
     Parent class for metrics.
     """
+
     def __init__(self, name):
         self._name = name
 
@@ -126,7 +128,7 @@ class Metric:
         group_metrics = []
         group_counts = get_counts(g, n_groups)
         for group_idx in range(n_groups):
-            if group_counts[group_idx]==0:
+            if group_counts[group_idx] == 0:
                 group_metrics.append(torch.tensor(0., device=g.device))
             else:
                 group_metrics.append(
@@ -135,14 +137,16 @@ class Metric:
                         y_true[g == group_idx]))
 
         group_metrics = torch.stack(group_metrics)
-        worst_group_metric = self.worst(group_metrics[group_counts>0])
+        worst_group_metric = self.worst(group_metrics[group_counts > 0])
 
         return group_metrics, group_counts, worst_group_metric
+
 
 class ElementwiseMetric(Metric):
     """
     Averages.
     """
+
     def _compute_element_wise(self, y_pred, y_true):
         """
         Helper for computing element-wise metric, implemented for each metric
@@ -180,7 +184,7 @@ class ElementwiseMetric(Metric):
     def _compute_group_wise(self, y_pred, y_true, g, n_groups):
         element_wise_metrics = self._compute_element_wise(y_pred, y_true)
         group_metrics, group_counts = avg_over_groups(element_wise_metrics, g, n_groups)
-        worst_group_metric = self.worst(group_metrics[group_counts>0])
+        worst_group_metric = self.worst(group_metrics[group_counts > 0])
         return group_metrics, group_counts, worst_group_metric
 
     @property
@@ -204,7 +208,7 @@ class ElementwiseMetric(Metric):
         """
         element_wise_metrics = self._compute_element_wise(y_pred, y_true)
         batch_size = y_pred.size()[0]
-        assert element_wise_metrics.dim()==1 and element_wise_metrics.numel()==batch_size
+        assert element_wise_metrics.dim() == 1 and element_wise_metrics.numel() == batch_size
 
         if return_dict:
             return {self.name: element_wise_metrics}
@@ -219,13 +223,14 @@ class ElementwiseMetric(Metric):
         else:
             return flattened_metrics, index
 
+
 class MultiTaskMetric(Metric):
     def _compute_flattened(self, flattened_y_pred, flattened_y_true):
         raise NotImplementedError
 
     def _compute(self, y_pred, y_true):
         flattened_metrics, _ = self.compute_flattened(y_pred, y_true, return_dict=False)
-        if flattened_metrics.numel()==0:
+        if flattened_metrics.numel() == 0:
             return torch.tensor(0., device=y_true.device)
         else:
             return flattened_metrics.mean()
@@ -234,16 +239,16 @@ class MultiTaskMetric(Metric):
         flattened_metrics, indices = self.compute_flattened(y_pred, y_true, return_dict=False)
         flattened_g = g[indices]
         group_metrics, group_counts = avg_over_groups(flattened_metrics, flattened_g, n_groups)
-        worst_group_metric = self.worst(group_metrics[group_counts>0])
+        worst_group_metric = self.worst(group_metrics[group_counts > 0])
         return group_metrics, group_counts, worst_group_metric
 
     def compute_flattened(self, y_pred, y_true, return_dict=True):
         is_labeled = ~torch.isnan(y_true)
         batch_idx = torch.where(is_labeled)[0]
-    
+
         flattened_y_pred = y_pred[is_labeled]
         flattened_y_true = y_true[is_labeled]
-      
+
         flattened_metrics = self._compute_flattened(flattened_y_pred, flattened_y_true)
         if return_dict:
             return {self.name: flattened_metrics, 'index': batch_idx}

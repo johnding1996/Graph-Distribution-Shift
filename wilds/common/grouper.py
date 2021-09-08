@@ -1,8 +1,11 @@
+import warnings
+
 import numpy as np
 import torch
+
 from wilds.common.utils import get_counts
 from wilds.datasets.wilds_dataset import WILDSSubset
-import warnings
+
 
 class Grouper:
     """
@@ -10,6 +13,7 @@ class Grouper:
     They are used for training and evaluation,
     e.g., to measure the accuracies of different groups of data.
     """
+
     def __init__(self):
         raise NotImplementedError
 
@@ -52,6 +56,7 @@ class Grouper:
         """
         raise NotImplementedError
 
+
 class CombinatorialGrouper(Grouper):
     def __init__(self, dataset, groupby_fields):
         """
@@ -75,7 +80,7 @@ class CombinatorialGrouper(Grouper):
             - dataset (WILDSDataset)
             - groupby_fields (list of str)
         """
-        
+
         if isinstance(dataset, WILDSSubset):
             raise ValueError("Grouper should be defined for the full dataset, not a subset")
         self.groupby_fields = groupby_fields
@@ -86,21 +91,25 @@ class CombinatorialGrouper(Grouper):
             # We assume that the metadata fields are integers,
             # so we can measure the cardinality of each field by taking its max + 1.
             # Note that this might result in some empty groups.
-            self.groupby_field_indices = [i for (i, field) in enumerate(dataset.metadata_fields) if field in groupby_fields]
+            self.groupby_field_indices = [i for (i, field) in enumerate(dataset.metadata_fields) if
+                                          field in groupby_fields]
             if len(self.groupby_field_indices) != len(self.groupby_fields):
                 raise ValueError('At least one group field not found in dataset.metadata_fields')
             grouped_metadata = dataset.metadata_array[:, self.groupby_field_indices]
             if not isinstance(grouped_metadata, torch.LongTensor):
                 grouped_metadata_long = grouped_metadata.long()
                 if not torch.all(grouped_metadata == grouped_metadata_long):
-                    warnings.warn(f'CombinatorialGrouper: converting metadata with fields [{", ".join(groupby_fields)}] into long')
+                    warnings.warn(
+                        f'CombinatorialGrouper: converting metadata with fields [{", ".join(groupby_fields)}] into long')
                 grouped_metadata = grouped_metadata_long
             for idx, field in enumerate(self.groupby_fields):
-                min_value = grouped_metadata[:,idx].min()
+                min_value = grouped_metadata[:, idx].min()
                 if min_value < 0:
-                    raise ValueError(f"Metadata for CombinatorialGrouper cannot have values less than 0: {field}, {min_value}")
+                    raise ValueError(
+                        f"Metadata for CombinatorialGrouper cannot have values less than 0: {field}, {min_value}")
                 if min_value > 0:
-                    warnings.warn(f"Minimum metadata value for CombinatorialGrouper is not 0 ({field}, {min_value}). This will result in empty groups")
+                    warnings.warn(
+                        f"Minimum metadata value for CombinatorialGrouper is not 0 ({field}, {min_value}). This will result in empty groups")
             self.cardinality = 1 + torch.max(
                 grouped_metadata, dim=0)[0]
             cumprod = torch.cumprod(self.cardinality, dim=0)
@@ -108,7 +117,6 @@ class CombinatorialGrouper(Grouper):
             self.factors_np = np.concatenate(([1], cumprod[:-1]))
             self.factors = torch.from_numpy(self.factors_np)
             self.metadata_map = dataset.metadata_map
-           
 
     def metadata_to_group(self, metadata, return_counts=False):
         if self.groupby_fields is None:
@@ -129,9 +137,9 @@ class CombinatorialGrouper(Grouper):
         # group is just an integer, not a Tensor
         n = len(self.factors_np)
         metadata = np.zeros(n)
-        for i in range(n-1):
-            metadata[i] = (group % self.factors_np[i+1]) // self.factors_np[i]
-        metadata[n-1] = group // self.factors_np[n-1]
+        for i in range(n - 1):
+            metadata[i] = (group % self.factors_np[i + 1]) // self.factors_np[i]
+        metadata[n - 1] = group // self.factors_np[n - 1]
         group_name = ''
         for i in reversed(range(n)):
             meta_val = int(metadata[i])
@@ -153,4 +161,4 @@ class CombinatorialGrouper(Grouper):
         # a_n * x_n
 
     def group_field_str(self, group):
-        return self.group_str(group).replace('=', ':').replace(',','_').replace(' ','')
+        return self.group_str(group).replace('=', ':').replace(',', '_').replace(' ', '')

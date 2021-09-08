@@ -1,41 +1,43 @@
-import torch
 import numpy as np
-from torch.utils.data import Subset
+import torch
 from pandas.api.types import CategoricalDtype
+
 
 def minimum(numbers, empty_val=0.):
     if isinstance(numbers, torch.Tensor):
-        if numbers.numel()==0:
+        if numbers.numel() == 0:
             return torch.tensor(empty_val, device=numbers.device)
         else:
             return numbers[~torch.isnan(numbers)].min()
     elif isinstance(numbers, np.ndarray):
-        if numbers.size==0:
+        if numbers.size == 0:
             return np.array(empty_val)
         else:
             return np.nanmin(numbers)
     else:
-        if len(numbers)==0:
+        if len(numbers) == 0:
             return empty_val
         else:
             return min(numbers)
 
+
 def maximum(numbers, empty_val=0.):
     if isinstance(numbers, torch.Tensor):
-        if numbers.numel()==0:
+        if numbers.numel() == 0:
             return torch.tensor(empty_val, device=numbers.device)
         else:
             return numbers[~torch.isnan(numbers)].max()
     elif isinstance(numbers, np.ndarray):
-        if numbers.size==0:
+        if numbers.size == 0:
             return np.array(empty_val)
         else:
             return np.nanmax(numbers)
     else:
-        if len(numbers)==0:
+        if len(numbers) == 0:
             return empty_val
         else:
             return max(numbers)
+
 
 def split_into_groups(g):
     """
@@ -56,6 +58,7 @@ def split_into_groups(g):
             torch.nonzero(g == group, as_tuple=True)[0])
     return unique_groups, group_indices, unique_counts
 
+
 def get_counts(g, n_groups):
     """
     This differs from split_into_groups in how it handles missing groups.
@@ -72,6 +75,7 @@ def get_counts(g, n_groups):
     counts[unique_groups] = unique_counts.float()
     return counts
 
+
 def avg_over_groups(v, g, n_groups):
     """
     Args:
@@ -82,11 +86,12 @@ def avg_over_groups(v, g, n_groups):
         group_counts (Tensor)
     """
     import torch_scatter
-    assert v.device==g.device
-    assert v.numel()==g.numel()
+    assert v.device == g.device
+    assert v.numel() == g.numel()
     group_count = get_counts(g, n_groups)
     group_avgs = torch_scatter.scatter(src=v, index=g, dim_size=n_groups, reduce='mean')
     return group_avgs, group_count
+
 
 def map_to_id_array(df, ordered_map={}):
     maps = {}
@@ -98,8 +103,9 @@ def map_to_id_array(df, ordered_map={}):
             category_type = 'category'
         series = df[c].astype(category_type)
         maps[c] = series.cat.categories.values
-        array[:,i] = series.cat.codes.values
+        array[:, i] = series.cat.codes.values
     return maps, array
+
 
 def subsample_idxs(idxs, num=5000, take_rest=False, seed=None):
     seed = (seed + 541433) if seed is not None else None
@@ -113,6 +119,7 @@ def subsample_idxs(idxs, num=5000, take_rest=False, seed=None):
         idxs = idxs[:num]
     return idxs
 
+
 def shuffle_arr(arr, seed=None):
     seed = (seed + 548207) if seed is not None else None
     rng = np.random.default_rng(seed)
@@ -121,10 +128,12 @@ def shuffle_arr(arr, seed=None):
     rng.shuffle(arr)
     return arr
 
+
 def threshold_at_recall(y_pred, y_true, global_recall=60):
     """ Calculate the model threshold to use to achieve a desired global_recall level. Assumes that
     y_true is a vector of the true binary labels."""
-    return np.percentile(y_pred[y_true == 1], 100-global_recall)
+    return np.percentile(y_pred[y_true == 1], 100 - global_recall)
+
 
 def numel(obj):
     if torch.is_tensor(obj):

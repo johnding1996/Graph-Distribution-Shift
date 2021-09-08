@@ -1,7 +1,5 @@
-import torch
 import torch.nn as nn
 
-from models.layers import Identity
 
 def initialize_model(config, d_out, is_featurizer=False):
     """

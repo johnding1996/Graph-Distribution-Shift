@@ -1,5 +1,6 @@
 import wilds
 
+
 def get_dataset(dataset, version=None, **dataset_kwargs):
     """
     Returns the appropriate WILDS dataset class.
@@ -17,7 +18,6 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
     if dataset not in wilds.supported_datasets:
         raise ValueError(f'The dataset {dataset} is not recognized. Must be one of {wilds.supported_datasets}.')
 
-
     if dataset == 'ogb-molpcba':
         from wilds.datasets.ogbmolpcba_dataset import OGBPCBADataset
         return OGBPCBADataset(version=version, **dataset_kwargs)
@@ -25,7 +25,7 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
     elif dataset == 'ogb-molhiv':
         from wilds.datasets.ogbmolhiv_dataset import OGBHIVDataset
         return OGBHIVDataset(version=version, **dataset_kwargs)
-    
+
     elif dataset == 'ogbg-ppa':
         from wilds.datasets.ogbgppa_dataset import OGBGPPADataset
         return OGBGPPADataset(version=version, **dataset_kwargs)

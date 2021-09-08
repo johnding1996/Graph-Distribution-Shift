@@ -1,6 +1,9 @@
-import os, sys
 import argparse
 import wilds
+import argparse
+
+import wilds
+
 
 def main():
     """
@@ -23,12 +26,12 @@ def main():
 
     print(f'Downloading the following datasets: {config.datasets}')
     for dataset in config.datasets:
-        print(f'=== {dataset} ===')        
+        print(f'=== {dataset} ===')
         wilds.get_dataset(
             dataset=dataset,
             root_dir=config.root_dir,
             download=True)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

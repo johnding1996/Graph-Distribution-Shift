@@ -1,18 +1,16 @@
 import argparse
 import json
+import numpy as np
 import os
+import torch
 import urllib.request
 from ast import literal_eval
 from typing import Dict, List
 from urllib.parse import urlparse
 
-import numpy as np
-import torch
-
 from wilds import benchmark_datasets
 from wilds import get_dataset
 from wilds.datasets.wilds_dataset import WILDSDataset, WILDSSubset
-
 
 """
 Evaluate predictions for WILDS datasets.
@@ -50,7 +48,7 @@ def evaluate_all_benchmarks(predictions_dir: str, output_dir: str, root_dir: str
 
 
 def evaluate_benchmark(
-    dataset_name: str, predictions_dir: str, output_dir: str, root_dir: str
+        dataset_name: str, predictions_dir: str, output_dir: str, root_dir: str
 ) -> Dict[str, Dict[str, float]]:
     """
     Evaluate across multiple replicates for a single benchmark.
@@ -78,12 +76,12 @@ def evaluate_benchmark(
             return [f"seed-{seed}" for seed in seeds]
 
     def get_prediction_file(
-        predictions_dir: str, dataset_name: str, split: str, replicate: str
+            predictions_dir: str, dataset_name: str, split: str, replicate: str
     ) -> str:
         run_id = f"{dataset_name}_split-{split}_{replicate}"
         for file in os.listdir(predictions_dir):
             if file.startswith(run_id) and (
-                file.endswith(".csv") or file.endswith(".pth")
+                    file.endswith(".csv") or file.endswith(".pth")
             ):
                 return file
         raise FileNotFoundError(
@@ -175,7 +173,7 @@ def evaluate_benchmark(
 
 
 def evaluate_replicate(
-    dataset: WILDSDataset, split: str, predicted_labels: torch.Tensor
+        dataset: WILDSDataset, split: str, predicted_labels: torch.Tensor
 ) -> Dict[str, float]:
     """
     Evaluate the given predictions and return the appropriate metrics.
@@ -198,7 +196,7 @@ def evaluate_replicate(
 
 
 def evaluate_replicate_for_globalwheat(
-    dataset: WILDSDataset, split: str, path_to_predictions: str
+        dataset: WILDSDataset, split: str, path_to_predictions: str
 ) -> Dict[str, float]:
     predicted_labels = torch.load(path_to_predictions)
     subset: WILDSSubset = dataset.get_subset(split)

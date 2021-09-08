@@ -1,15 +1,12 @@
-import os
 import torch
-import numpy as np
-from wilds.datasets.wilds_dataset import WILDSDataset
-from ogb.nodeproppred import Evaluator
-from ogb.nodeproppred.dataset_pyg import PygNodePropPredDataset
-from ogb.utils.url import download_url
-from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
 import torch_geometric.transforms as T
+from ogb.nodeproppred import Evaluator
+from ogb.nodeproppred.dataset_pyg import PygNodePropPredDataset
+from torch_geometric.data.dataloader import Collater as PyGCollater
 
-from torch_geometric.datasets import GNNBenchmarkDataset
+from wilds.datasets.wilds_dataset import WILDSDataset
+
 
 class OGBPROTEINSDataset(WILDSDataset):
     """
@@ -58,20 +55,20 @@ class OGBPROTEINSDataset(WILDSDataset):
         if version is not None:
             raise ValueError('Versioning for OGB-Proteins is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        self.ogb_dataset = PygNodePropPredDataset(name = 'ogbn-proteins', root = root_dir, transform=T.ToSparseTensor())
+        self.ogb_dataset = PygNodePropPredDataset(name='ogbn-proteins', root=root_dir, transform=T.ToSparseTensor())
 
         # set variables
         self._data_dir = self.ogb_dataset.root
-        if split_scheme=='official':
+        if split_scheme == 'official':
             split_scheme = 'species'
         self._split_scheme = split_scheme
-        self._y_type = 'float' # although the task is binary classification, the prediction target contains nan value, thus we need float
+        self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
         self._n_classes = self.ogb_dataset.__num_classes__
-    
+
         self._y_array = self.ogb_dataset.data.y
         self._split_array = torch.zeros(len(self._y_array)).long()
-        split_idx  = self.ogb_dataset.get_idx_split()
+        split_idx = self.ogb_dataset.get_idx_split()
 
         self._split_array[split_idx['train']] = 0
         self._split_array[split_idx['valid']] = 1
@@ -80,12 +77,11 @@ class OGBPROTEINSDataset(WILDSDataset):
         # Move edge features to node features.
         data = self.ogb_dataset[0]
         data.x = data.adj_t.mean(dim=1)
-        data.adj_t.set_value_(None)        
+        data.adj_t.set_value_(None)
 
         self._metadata_fields = ['species']
-        self._metadata_array = self.ogb_dataset.data.node_species.reshape(-1,1).long()
-  
-        
+        self._metadata_array = self.ogb_dataset.data.node_species.reshape(-1, 1).long()
+
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:
@@ -113,7 +109,7 @@ class OGBPROTEINSDataset(WILDSDataset):
         """
         assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"
         input_dict = {"y_true": y_true, "y_pred": y_pred}
-       
+
         results = self._metric.eval(input_dict)
 
         return results, f"ROCAUC: {results['rocauc']:.3f}\n"
