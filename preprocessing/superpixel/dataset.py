@@ -7,7 +7,7 @@ import pdb
 import os
 
 
-class OurDataset(InMemoryDataset):
+class SuperPixelDataset(InMemoryDataset):
     r"""A variety of artificially and semi-artificially generated graph
     datasets from the `"Benchmarking Graph Neural Networks"
     <https://arxiv.org/abs/2003.00982>`_ paper.
@@ -51,7 +51,13 @@ class OurDataset(InMemoryDataset):
                  pre_transform: Optional[Callable] = None,
                  pre_filter: Optional[Callable] = None):
         self.name = name
-        # assert self.name in self.names
+        assert self.name in self.names
+        self.root = root
+        if name == 'RotatedMNIST' :
+             self.num_tasks = 1
+             self.__num_classes__ = 10
+        else :
+            raise NotImplemented
 
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[0])
@@ -98,4 +104,8 @@ if __name__ == '__main__':
     dataset = OurDataset(root=root, name=name)
 
     # pdb.set_trace()
+
+    self._y_size = 1
+    self._n_classes = 10
+    self._metric = Evaluator('ogbg-ppa')
 
