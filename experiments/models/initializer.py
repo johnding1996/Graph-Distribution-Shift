@@ -38,6 +38,15 @@ def initialize_model(config, d_out, is_featurizer=False):
         else:
             model = GINVirtual_ppa(num_class=d_out, **config.model_kwargs)
 
+    elif config.model == 'gin_virtual_mnist':
+        from models.gnn_mnist import GINVirtual_mnist
+        if is_featurizer:
+            featurizer = GINVirtual_mnist(num_class=None, **config.model_kwargs)
+            classifier = nn.Linear(featurizer.d_out, d_out)
+            model = (featurizer, classifier)
+        else:
+            model = GINVirtual_mnist(num_class=d_out, **config.model_kwargs)
+
     else:
         raise ValueError(f'Model: {config.model} not recognized.')
 

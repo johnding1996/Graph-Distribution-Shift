@@ -2,13 +2,11 @@ import torch
 from models.initializer import initialize_model
 from algorithms.single_model_algorithm import SingleModelAlgorithm
 from wilds.common.utils import split_into_groups
-from torch_geometric.nn import global_mean_pool, global_add_pool
 
 class DeepCORAL(SingleModelAlgorithm):
     """
     Deep CORAL.
     This algorithm was originally proposed as an unsupervised domain adaptation algorithm.
-
     Original paper:
         @inproceedings{sun2016deep,
           title={Deep CORAL: Correlation alignment for deep domain adaptation},
@@ -18,7 +16,6 @@ class DeepCORAL(SingleModelAlgorithm):
           year={2016},
           organization={Springer}
         }
-
     The CORAL penalty function below is adapted from DomainBed's implementation:
     https://github.com/facebookresearch/DomainBed/blob/1a61f7ff44b02776619803a1dd12f952528ca531/domainbed/algorithms.py#L539
     """
@@ -74,22 +71,14 @@ class DeepCORAL(SingleModelAlgorithm):
         """
         # forward pass
         x, y_true, metadata = batch
-
         x = x.to(self.device)
         y_true = y_true.to(self.device)
         g = self.grouper.metadata_to_group(metadata).to(self.device)
         features = self.featurizer(x)
-        h_graph = global_mean_pool(features, x.batch)
-        outputs = self.classifier(h_graph)
-        # features = self.featurizer(x)
-        # outputs = self.classifier(features)
-    
-
-       
+        outputs = self.classifier(features)
 
         # package the results
         results = {
-            'x': x,
             'g': g,
             'y_true': y_true,
             'y_pred': outputs,
@@ -101,13 +90,10 @@ class DeepCORAL(SingleModelAlgorithm):
     def objective(self, results):
         # extract features
         features = results.pop('features')
-        graph = results.pop('x')
-        # import pdb;pdb.set_trace()
 
         if self.is_training:
             # split into groups
             unique_groups, group_indices, _ = split_into_groups(results['g'])
-      
             # compute penalty
             n_groups_per_batch = unique_groups.numel()
             penalty = torch.zeros(1, device=self.device)
@@ -125,7 +111,7 @@ class DeepCORAL(SingleModelAlgorithm):
         else:
             results['penalty'] = penalty
 
-        
+
         avg_loss = self.loss.compute(results['y_pred'], results['y_true'], return_dict=False)
 
         return avg_loss + penalty * self.penalty_weight

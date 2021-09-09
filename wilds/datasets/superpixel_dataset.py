@@ -6,8 +6,7 @@ from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
-
-from pyg_superpixel_dataset import PyGSuperPixelDataset
+from .pyg_superpixel_dataset import PyGSuperPixelDataset
 import pdb
 
 class SuperPixelDataset(WILDSDataset):
@@ -135,10 +134,12 @@ class SuperPixelDataset(WILDSDataset):
             - results_str (str): String summarizing the evaluation metrics
         """
         assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"
+        y_true = y_true.view(-1,1)
+        y_pred = torch.argmax(y_pred.detach(), dim = 1).view(-1,1)
         input_dict = {"y_true": y_true, "y_pred": y_pred}
         results = self._metric.eval(input_dict)
 
-        return results, f"Average precision: {results['ap']:.3f}\n"
+        return results, f"Accuracy: {results['acc']:.3f}\n"
 
 
 if __name__ == '__main__':

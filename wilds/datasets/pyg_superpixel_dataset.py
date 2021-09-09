@@ -45,6 +45,8 @@ class PyGSuperPixelDataset(InMemoryDataset):
             # 'https://www.dropbox.com/s/v2iwdes7k3vuk4l/RotatedMNIST.pt?dl=1'
     }
 
+
+
     def __init__(self, root: str, name: str,
                  transform: Optional[Callable] = None,
                  pre_transform: Optional[Callable] = None,
@@ -94,10 +96,11 @@ class PyGSuperPixelDataset(InMemoryDataset):
         if self.pre_transform is not None:
             data_list = [self.pre_transform(d) for d in data_list]
 
+
         torch.save(self.collate(data_list), self.processed_paths[0])
 
 if __name__ == '__main__':
-    root = '/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data'
+    root = '/home/ubuntu/Graph-Distribution-Shift/preprocessing/superpixel/data'
     name = 'RotatedMNIST'
     dataset = OurDataset(root=root, name=name)
 

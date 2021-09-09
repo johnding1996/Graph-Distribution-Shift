@@ -82,7 +82,7 @@ dataset_defaults = {
     },
     'RotatedMNIST': {
         'split_scheme': 'official',
-        'model': 'gin_virtual_mol',
+        'model': 'gin_virtual_mnist',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
