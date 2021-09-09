@@ -3,9 +3,9 @@ import torch
 import torch.nn.functional as F
 from torchvision.ops.boxes import box_iou
 from torchvision.models.detection._utils import Matcher
-from wilds.common.metrics.metric import Metric, ElementwiseMetric, MultiTaskMetric
-from wilds.common.metrics.loss import ElementwiseLoss
-from wilds.common.utils import avg_over_groups, minimum, maximum, get_counts
+from gds.common.metrics.metric import Metric, ElementwiseMetric, MultiTaskMetric
+from gds.common.metrics.loss import ElementwiseLoss
+from gds.common.utils import avg_over_groups, minimum, maximum, get_counts
 import sklearn.metrics
 from scipy.stats import pearsonr
 

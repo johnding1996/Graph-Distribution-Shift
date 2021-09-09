@@ -4,8 +4,8 @@ from algorithms.single_model_algorithm import SingleModelAlgorithm
 from models.initializer import initialize_model
 from optimizer import initialize_optimizer
 
-from wilds.common.metrics.metric import ElementwiseMetric, MultiTaskMetric
-from wilds.common.utils import split_into_groups
+from gds.common.metrics.metric import ElementwiseMetric, MultiTaskMetric
+from gds.common.utils import split_into_groups
 
 
 class IRM(SingleModelAlgorithm):

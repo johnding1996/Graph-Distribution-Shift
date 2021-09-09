@@ -3,14 +3,15 @@ import os
 import numpy as np
 import torch
 import torch_geometric
-from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
+from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
+from torch_geometric.datasets import GNNBenchmarkDataset
 
-from wilds.datasets.wilds_dataset import WILDSDataset
+from gds.datasets.wilds_dataset import WILDSDataset
 
 
-class OGBPCBADataset(WILDSDataset):
+class MnistDataset(WILDSDataset):
     """
     The OGB-molpcba dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.
@@ -55,7 +56,7 @@ class OGBPCBADataset(WILDSDataset):
         https://github.com/snap-stanford/ogb/blob/master/LICENSE
     """
 
-    _dataset_name = 'ogb-molpcba'
+    _dataset_name = 'mnist'
     _versions_dict = {
         '1.0': {
             'download_url': None,
@@ -66,7 +67,10 @@ class OGBPCBADataset(WILDSDataset):
         if version is not None:
             raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        self.ogb_dataset = PygGraphPropPredDataset(name='ogbg-molpcba', root=root_dir)
+        # self.ogb_dataset = PygGraphPropPredDataset(name = 'ogbg-molpcba', root = root_dir)
+
+        # self.mnist_dataset = GNNBenchmarkDataset(name = 'MNIST', root = root_dir)
+        self.ogb_dataset = GNNBenchmarkDataset(name='MNIST', split='val', root=root_dir)
 
         # set variables
         self._data_dir = self.ogb_dataset.root
@@ -74,16 +78,18 @@ class OGBPCBADataset(WILDSDataset):
             split_scheme = 'scaffold'
         self._split_scheme = split_scheme
         self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float
-        self._y_size = self.ogb_dataset.num_tasks
-        self._n_classes = self.ogb_dataset.__num_classes__
+        # self._y_size = self.ogb_dataset.num_tasks
+        # self._n_classes = self.ogb_dataset.__num_classes__
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
+
         split_idx = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
         self._y_array = self.ogb_dataset.data.y
+
         self._metadata_fields = ['scaffold']
 
         metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')

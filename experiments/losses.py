@@ -1,7 +1,7 @@
 import torch.nn as nn
 
-from wilds.common.metrics.all_metrics import MSE
-from wilds.common.metrics.loss import ElementwiseLoss, Loss, MultiTaskLoss
+from gds.common.metrics.all_metrics import MSE
+from gds.common.metrics.loss import ElementwiseLoss, Loss, MultiTaskLoss
 
 
 def initialize_loss(config, d_out):

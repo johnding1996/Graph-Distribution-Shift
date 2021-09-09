@@ -15,7 +15,7 @@ except ImportError:
 
 def check():
     try:
-        is_outdated, latest = check_outdated('wilds', __version__)
+        is_outdated, latest = check_outdated('gds', __version__)
         if is_outdated:
             logging.warning(
                 f'The WILDS package is out of date. Your version is '

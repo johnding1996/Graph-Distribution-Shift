@@ -5,7 +5,7 @@ from algorithms.groupDRO import GroupDRO
 from configs.supported import algo_log_metrics
 from losses import initialize_loss
 
-from wilds.common.utils import get_counts
+from gds.common.utils import get_counts
 
 
 def initialize_algorithm(config, datasets, train_grouper):

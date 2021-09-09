@@ -3,7 +3,7 @@ from algorithms.single_model_algorithm import SingleModelAlgorithm
 from models.initializer import initialize_model
 from torch_geometric.nn import global_mean_pool
 
-from wilds.common.utils import split_into_groups
+from gds.common.utils import split_into_groups
 
 
 class DeepCORAL(SingleModelAlgorithm):

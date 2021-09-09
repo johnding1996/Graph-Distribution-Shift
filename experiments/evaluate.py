@@ -8,9 +8,9 @@ from ast import literal_eval
 from typing import Dict, List
 from urllib.parse import urlparse
 
-from wilds import benchmark_datasets
-from wilds import get_dataset
-from wilds.datasets.wilds_dataset import WILDSDataset, WILDSSubset
+from gds import benchmark_datasets
+from gds import get_dataset
+from gds.datasets.wilds_dataset import WILDSDataset, WILDSSubset
 
 """
 Evaluate predictions for WILDS datasets.
