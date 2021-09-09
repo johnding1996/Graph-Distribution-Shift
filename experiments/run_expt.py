@@ -195,9 +195,9 @@ def main():
 
         # Loggers
         datasets[split]['eval_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
         datasets[split]['algo_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
 
     # Logging dataset info
     # Show class breakdown if feasible

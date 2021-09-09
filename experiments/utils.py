@@ -234,7 +234,7 @@ def get_model_prefix(dataset, config):
     replicate_str = get_replicate_str(dataset, config)
     # prefix = Path(config.log_dir) / f"{dataset_name}_{replicate_str}_"
 
-    prefix = os.path.join(config.log_dir, f"{dataset_name}_{replicate_str}_")
+    prefix = os.path.join(config.log_dir, f"{dataset_name}_{replicate_str}_{config.algorithm}_")
     return prefix
 
 def move_to(obj, device):
