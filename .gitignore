@@ -143,6 +143,18 @@ data/
 # Mac OS
 .DS_Store
 
+# PyCharm config
+.idea/
+
+# mypy config
+mypy.ini
+
+# pyenv local config
+.python-version
+
+# pipenv lock file
+Pipfile.lock
+
 # logs
 logs/
 
@@ -154,12 +166,6 @@ reports/
 
 # docs
 docs/
-
-# PyCharm config
-.idea/
-
-# mypy config
-mypy.ini
 
 # dependent repos
 benchmarking-gnns-master/
