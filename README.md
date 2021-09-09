@@ -1,7 +1,7 @@
-# OOD Generalization in GNNs
+# Graph Distribution Shift
 
 ## Overview
-TODO
+GDS (Graph Distribution Shift) is a benchmark for distribution shifts of graph data.
 
 ## Dependencies
 TODO

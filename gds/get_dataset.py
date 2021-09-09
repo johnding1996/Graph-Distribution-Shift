@@ -1,4 +1,4 @@
-import wilds
+import gds
 
 
 def get_dataset(dataset, version=None, **dataset_kwargs):
@@ -15,23 +15,23 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
     if version is not None:
         version = str(version)
 
-    if dataset not in wilds.supported_datasets:
-        raise ValueError(f'The dataset {dataset} is not recognized. Must be one of {wilds.supported_datasets}.')
+    if dataset not in gds.supported_datasets:
+        raise ValueError(f'The dataset {dataset} is not recognized. Must be one of {gds.supported_datasets}.')
 
     if dataset == 'ogb-molpcba':
-        from wilds.datasets.ogbmolpcba_dataset import OGBPCBADataset
+        from gds.datasets.ogbmolpcba_dataset import OGBPCBADataset
         return OGBPCBADataset(version=version, **dataset_kwargs)
 
     elif dataset == 'ogb-molhiv':
-        from wilds.datasets.ogbmolhiv_dataset import OGBHIVDataset
+        from gds.datasets.ogbmolhiv_dataset import OGBHIVDataset
         return OGBHIVDataset(version=version, **dataset_kwargs)
 
     elif dataset == 'ogbg-ppa':
-        from wilds.datasets.ogbgppa_dataset import OGBGPPADataset
+        from gds.datasets.ogbgppa_dataset import OGBGPPADataset
         return OGBGPPADataset(version=version, **dataset_kwargs)
 
     elif dataset == 'ogb-proteins':
-        from wilds.datasets.ogbproteins_dataset import OGBPROTEINSDataset
+        from gds.datasets.ogbproteins_dataset import OGBPROTEINSDataset
         return OGBPROTEINSDataset(version=version, **dataset_kwargs)
 
     elif dataset == 'RotatedMNIST':

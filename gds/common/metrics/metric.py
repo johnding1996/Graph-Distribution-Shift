@@ -1,6 +1,6 @@
 import torch
 
-from wilds.common.utils import avg_over_groups, get_counts, numel
+from gds.common.utils import avg_over_groups, get_counts, numel
 
 
 class Metric:

@@ -4,7 +4,7 @@ from algorithms.algorithm import Algorithm
 from scheduler import step_scheduler
 from utils import update_average
 
-from wilds.common.utils import numel
+from gds.common.utils import numel
 
 
 class GroupAlgorithm(Algorithm):

@@ -1,18 +1,22 @@
 import os
 
-import numpy as np
+import pandas as pd
 import torch
 import torch_geometric
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
-from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 
-from wilds.datasets.wilds_dataset import WILDSDataset
+from gds.datasets.wilds_dataset import WILDSDataset
 
 
-class OGBPCBADataset(WILDSDataset):
+def add_zeros(data):
+    data.x = torch.zeros(data.num_nodes, dtype=torch.long)
+    return data
+
+
+class OGBGPPADataset(WILDSDataset):
     """
-    The OGB-molpcba dataset.
+    The OGB-ppa dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.
 
     Supported `split_scheme`:
@@ -55,7 +59,7 @@ class OGBPCBADataset(WILDSDataset):
         https://github.com/snap-stanford/ogb/blob/master/LICENSE
     """
 
-    _dataset_name = 'ogb-molpcba'
+    _dataset_name = 'ogbg-ppa'
     _versions_dict = {
         '1.0': {
             'download_url': None,
@@ -64,9 +68,9 @@ class OGBPCBADataset(WILDSDataset):
     def __init__(self, version=None, root_dir='data', download=False, split_scheme='official'):
         self._version = version
         if version is not None:
-            raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
+            raise ValueError('Versioning for OGB-PPA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        self.ogb_dataset = PygGraphPropPredDataset(name='ogbg-molpcba', root=root_dir)
+        self.ogb_dataset = PygGraphPropPredDataset(name='ogbg-ppa', root=root_dir, transform=add_zeros)
 
         # set variables
         self._data_dir = self.ogb_dataset.root
@@ -83,21 +87,21 @@ class OGBPCBADataset(WILDSDataset):
         self._split_array[split_idx['valid']] = 1
         self._split_array[split_idx['test']] = 2
 
-        self._y_array = self.ogb_dataset.data.y
-        self._metadata_fields = ['scaffold']
+        self._y_array = self.ogb_dataset.data.y.squeeze()
 
-        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
-        if not os.path.exists(metadata_file_path):
-            download_url('https://snap.stanford.edu/ogb/data/misc/ogbg_molpcba/scaffold_group.npy',
-                         os.path.join(self.ogb_dataset.root, 'raw'))
-        self._metadata_array = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
+        self._metadata_fields = ['species', 'y']
+        metadata_file_path = os.path.join(self.ogb_dataset.root, 'mapping', 'graphidx2speciesid.csv.gz')
+        df = pd.read_csv(metadata_file_path)
+        df_np = df['species id'].to_numpy()
+        self._metadata_array_wo_y = torch.from_numpy(df_np - df_np.min()).reshape(-1, 1).long()
+        self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
 
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:
             self._collate = PyGCollater(follow_batch=[])
 
-        self._metric = Evaluator('ogbg-molpcba')
+        self._metric = Evaluator('ogbg-ppa')
 
         super().__init__(root_dir, download, split_scheme)
 
@@ -117,8 +121,11 @@ class OGBPCBADataset(WILDSDataset):
             - results (dictionary): Dictionary of evaluation metrics
             - results_str (str): String summarizing the evaluation metrics
         """
-        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"
+        assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"
+        y_true = y_true.view(-1, 1)
+        y_pred = torch.argmax(y_pred.detach(), dim=1).view(-1, 1)
         input_dict = {"y_true": y_true, "y_pred": y_pred}
+
         results = self._metric.eval(input_dict)
 
-        return results, f"Average precision: {results['ap']:.3f}\n"
+        return results, f"Accuracy: {results['acc']:.3f}\n"

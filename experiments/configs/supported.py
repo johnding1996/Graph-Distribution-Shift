@@ -1,5 +1,5 @@
 # metrics
-from wilds.common.metrics.all_metrics import Accuracy, MultiTaskAccuracy, MSE, multiclass_logits_to_pred, \
+from gds.common.metrics.all_metrics import Accuracy, MultiTaskAccuracy, MSE, multiclass_logits_to_pred, \
     binary_logits_to_pred, MultiTaskAveragePrecision
 
 # algo_log_metrics = {

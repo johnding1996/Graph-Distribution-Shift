@@ -3,8 +3,8 @@ import warnings
 import numpy as np
 import torch
 
-from wilds.common.utils import get_counts
-from wilds.datasets.wilds_dataset import WILDSSubset
+from gds.common.utils import get_counts
+from gds.datasets.wilds_dataset import WILDSSubset
 
 
 class Grouper:

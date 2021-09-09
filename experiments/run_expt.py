@@ -12,14 +12,14 @@ import torch.nn as nn
 import torchvision
 
 import configs.supported as supported
-import wilds
+import gds
 from algorithms.initializer import initialize_algorithm
 from configs.utils import populate_defaults
 from train import train, evaluate
 from utils import set_seed, Logger, BatchLogger, log_config, initialize_wandb, close_wandb, ParseKwargs, load, \
     log_group_data, parse_bool, get_model_prefix
-from wilds.common.data_loaders import get_train_loader, get_eval_loader
-from wilds.common.grouper import CombinatorialGrouper
+from gds.common.data_loaders import get_train_loader, get_eval_loader
+from gds.common.grouper import CombinatorialGrouper
 
 
 def main():
@@ -143,7 +143,7 @@ def main():
     set_seed(config.seed)
 
     # Data
-    full_dataset = wilds.get_dataset(
+    full_dataset = gds.get_dataset(
         dataset=config.dataset,
         version=config.version,
         root_dir=config.root_dir,

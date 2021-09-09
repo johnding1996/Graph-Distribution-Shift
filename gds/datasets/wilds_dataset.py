@@ -361,7 +361,7 @@ class WILDSDataset:
             raise ValueError(
                 f'Sorry, {self.dataset_name} cannot be automatically downloaded. Please download it manually.')
 
-        from wilds.datasets.download_utils import download_and_extract_archive
+        from gds.datasets.download_utils import download_and_extract_archive
         print(f'Downloading dataset to {data_dir}...')
         print(f'You can also download the dataset manually at https://wilds.stanford.edu/downloads.')
         try:

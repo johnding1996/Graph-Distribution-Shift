@@ -11,8 +11,8 @@ from torchvision import transforms
 from torchvision.datasets import MNIST, ImageFolder
 from torchvision.transforms.functional import rotate
 
-# from wilds.datasets.camelyon17_dataset import Camelyon17Dataset
-# from wilds.datasets.fmow_dataset import FMoWDataset
+# from gds.datasets.camelyon17_dataset import Camelyon17Dataset
+# from gds.datasets.fmow_dataset import FMoWDataset
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 

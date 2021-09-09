@@ -2,7 +2,7 @@ import numpy as np
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import WeightedRandomSampler
 
-from wilds.common.utils import split_into_groups
+from gds.common.utils import split_into_groups
 
 
 def get_train_loader(loader, dataset, batch_size,

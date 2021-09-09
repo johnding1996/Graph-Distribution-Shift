@@ -1,7 +1,7 @@
 import torch
 
-from wilds.common.metrics.metric import ElementwiseMetric, Metric, MultiTaskMetric
-from wilds.common.utils import maximum
+from gds.common.metrics.metric import ElementwiseMetric, Metric, MultiTaskMetric
+from gds.common.utils import maximum
 
 
 class Loss(Metric):

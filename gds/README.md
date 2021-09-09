@@ -23,20 +23,20 @@ For questions and feedback, please post on the [discussion board](https://github
 
 We recommend using pip to install WILDS:
 ```bash
-pip install wilds
+pip install gds
 ```
 
 If you have already installed it, please check that you have the latest version:
 ```bash
 python -c "import wilds; print(wilds.__version__)"
 # This should print "1.2.2". If it doesn't, update by running:
-pip install -U wilds
+pip install -U gds
 ```
 
 If you plan to edit or contribute to WILDS, you should install from source:
 ```bash
-git clone git@github.com:p-lambda/wilds.git
-cd wilds
+git clone git@github.com:p-lambda/gds.git
+cd gds
 pip install -e .
 ```
 
@@ -63,7 +63,7 @@ We recommend torch<1.9.0 because of data loader warnings described [here](https:
 After installing the WILDS package, you can use the scripts in `examples/` to train default models on the WILDS datasets.
 These scripts are not part of the installed WILDS package. To use them, you should clone the repo (assuming you did not install from source):
 ```bash
-git clone git@github.com:p-lambda/wilds.git
+git clone git@github.com:p-lambda/gds.git
 ```
 
 To run these scripts, you will also need to install this additional dependency:
@@ -94,7 +94,7 @@ python examples/run_expt.py --dataset civilcomments --algorithm groupDRO --root_
 Alternatively, you can use the standalone `wilds/download_datasets.py` script to download the datasets, for example:
 
 ```bash
-python wilds/download_datasets.py --root_dir data
+python gds/download_datasets.py --root_dir data
 ```
 
 This will download all datasets to the specified `data` folder. You can also use the `--datasets` argument to download particular datasets.
@@ -143,8 +143,8 @@ This short Python snippet covers all of the steps of getting started with a WILD
 We discuss data loading in more detail in [#Data loading](#data-loading).
 
 ```py
->>> from wilds import get_dataset
->>> from wilds.common.data_loaders import get_train_loader
+>>> from gds import get_dataset
+>>> from gds.common.data_loaders import get_train_loader
 >>> import torchvision.transforms as transforms
 
 # Load the full dataset, and download it if necessary
@@ -172,7 +172,7 @@ They are used to initialize group-aware data loaders (as discussed in [#Data loa
 In the following code snippet, we initialize and use a `Grouper` that extracts the domain annotations on the iWildCam dataset, where the domain is location.
 
 ```py
->>> from wilds.common.grouper import CombinatorialGrouper
+>>> from gds.common.grouper import CombinatorialGrouper
 
 # Initialize grouper, which extracts domain information
 # In this example, we form domains based on location
@@ -188,8 +188,9 @@ In the following code snippet, we initialize and use a `Grouper` that extracts t
 
 For training, the WILDS package provides two types of data loaders.
 The standard data loader shuffles examples in the training set, and is used for the standard approach of empirical risk minimization (ERM), where we minimize the average loss.
+
 ```py
->>> from wilds.common.data_loaders import get_train_loader
+>>> from gds.common.data_loaders import get_train_loader
 
 # Prepare the standard data loader
 >>> train_loader = get_train_loader('standard', train_data, batch_size=16)
@@ -211,7 +212,7 @@ We initialize group loaders as follows, using `Grouper` that specifies the group
 Lastly, we also provide a data loader for evaluation, which loads examples without shuffling (unlike the training loaders).
 
 ```py
->>> from wilds.common.data_loaders import get_eval_loader
+>>> from gds.common.data_loaders import get_eval_loader
 
 # Get the test set
 >>> test_data = dataset.get_subset('test',
@@ -228,7 +229,7 @@ The WILDS package standardizes and automates evaluation for each dataset.
 Invoking the `eval` method of each dataset yields all metrics reported in the paper and on the leaderboard.
 
 ```py
->>> from wilds.common.data_loaders import get_eval_loader
+>>> from gds.common.data_loaders import get_eval_loader
 
 # Get the test set
 >>> test_data = dataset.get_subset('test',
