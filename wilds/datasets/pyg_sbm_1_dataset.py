@@ -6,7 +6,7 @@ from torch_geometric.data import (InMemoryDataset, download_url, extract_zip, Da
 import os
 
 
-class PyGSuperPixelDataset(InMemoryDataset):
+class PyGSBM1Dataset(InMemoryDataset):
     r"""A variety of artificially and semi-artificially generated graph
     datasets from the `"Benchmarking Graph Neural Networks"
     <https://arxiv.org/abs/2003.00982>`_ paper.
@@ -39,9 +39,9 @@ class PyGSuperPixelDataset(InMemoryDataset):
             final dataset. (default: :obj:`None`)
     """
 
-    names = ['RotatedMNIST']
+    names = ['SBM1']
     urls = {
-        'RotatedMNIST': 'https://www.dropbox.com/s/u413w9e2cyw7org/SBM_1.zip?dl=1'
+        'SBM1': 'https://www.dropbox.com/s/zkg39v8se86ixpx/SBM1.zip?dl=1'
     }
 
 
@@ -97,13 +97,3 @@ class PyGSuperPixelDataset(InMemoryDataset):
 
 
         torch.save(self.collate(data_list), self.processed_paths[0])
-
-if __name__ == '__main__':
-    name = 'SBM1'
-    dataset = OurDataset(root=root, name=name)
-
-    # pdb.set_trace()
-
-    self._y_size = 1
-    self._n_classes = 10
-    self._metric = Evaluator('ogbg-ppa')

@@ -6,10 +6,10 @@ from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
-from .pyg_superpixel_dataset import PyGSuperPixelDataset
+from .pyg_sbm_1_dataset import PyGSBM1Dataset
 import pdb
 
-class SuperPixelDataset(WILDSDataset):
+class SBM1Dataset(WILDSDataset):
     """
     The OGB-molpcba dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.
@@ -54,7 +54,7 @@ class SuperPixelDataset(WILDSDataset):
         https://github.com/snap-stanford/ogb/blob/master/LICENSE
     """
 
-    _dataset_name = 'RotatedMNIST'
+    _dataset_name = 'SBM1'
     _versions_dict = {
         '1.0': {
             'download_url': None,
@@ -65,7 +65,7 @@ class SuperPixelDataset(WILDSDataset):
         if version is not None:
             raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        self.ogb_dataset = PyGSuperPixelDataset(name='RotatedMNIST', root=root_dir)
+        self.ogb_dataset = PyGSBM1Dataset(name='SBM1', root=root_dir)
 
         # set variables
         self._data_dir = self.ogb_dataset.root
@@ -78,19 +78,19 @@ class SuperPixelDataset(WILDSDataset):
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
 
-        self._y_array = self.ogb_dataset.data.y
+        self._y_array = self.ogb_dataset.data.y.long()
         self._metadata_fields = ['scaffold', 'y']
 
-        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'RotatedMNIST_group.npy')
+        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'SBM1_group.npy')
         if not os.path.exists(metadata_file_path):
-            download_url('https://www.dropbox.com/s/hvnakp1rhmm3fec/SBM_1_group.npy?dl=1',
+            download_url('https://www.dropbox.com/s/hvnakp1rhmm3fec/SBM1_group.npy?dl=1',
                          self.ogb_dataset.raw_dir)
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y,
                                           torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)
 
         # use the group info split data
-        train_group_idx, val_group_idx, test_group_idx = range(0, 40), range(40, 45), range(45, 50)
+        train_group_idx, val_group_idx, test_group_idx = range(0, 30), range(30, 40), range(40, 50)
         train_group_idx, val_group_idx, test_group_idx = \
             torch.tensor(train_group_idx), torch.tensor(val_group_idx), torch.tensor(test_group_idx)
 
@@ -140,11 +140,3 @@ class SuperPixelDataset(WILDSDataset):
         results = self._metric.eval(input_dict)
 
         return results, f"Accuracy: {results['acc']:.3f}\n"
-
-
-if __name__ == '__main__':
-    root = '/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data'
-    name = 'RotatedMNIST'
-    dataset = SuperPixelDataset(root_dir=root)
-
-    pdb.set_trace()
