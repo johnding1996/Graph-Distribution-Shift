@@ -53,19 +53,12 @@ class GINVirtual_mnist(torch.nn.Module):
 
         h_node = self.gnn_node(batched_data)
 
-  
-
-        
-
         # return the features after pooling
         h_graph = self.pool(h_node, batched_data.batch)
         if self.graph_pred_linear is None:
             return h_graph
         else:
             return self.graph_pred_linear(h_graph)
-
-     
-
 
         # # return the features before pooling and after pooling
         # if self.graph_pred_linear is None:

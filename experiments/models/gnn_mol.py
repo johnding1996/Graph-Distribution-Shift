@@ -49,7 +49,6 @@ class GINVirtual_mol(torch.nn.Module):
 
     def forward(self, batched_data):
         h_node = self.gnn_node(batched_data)
-
         h_graph = self.pool(h_node, batched_data.batch)
 
         if self.graph_pred_linear is None:
@@ -58,87 +57,158 @@ class GINVirtual_mol(torch.nn.Module):
             return self.graph_pred_linear(h_graph)
 
 
+
+### fake virutal, real non-virtual
 class GINVirtual_node(torch.nn.Module):
     """
-    Helper function of Graph Isomorphism Network augmented with virtual node for multi-task binary graph classification
-    This will generate node embeddings
-    Input:
-        - batched Pytorch Geometric graph object
     Output:
-        - node_embedding (Tensor): float torch tensor of shape (num_nodes, emb_dim)
+        node representations
     """
-    def __init__(self, num_layers, emb_dim, dropout = 0.5):
+    def __init__(self, num_layer, emb_dim, dropout = 0.5, JK = "last", residual = False, gnn_type = 'gin'):
         '''
-        Args:
-            - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)
-            - num_layers (int): number of message passing layers of GNN
-            - emb_dim (int): dimensionality of hidden channels
-            - dropout (float): dropout ratio applied to hidden channels
+            emb_dim (int): node embedding dimensionality
+            num_layer (int): number of GNN message passing layers
         '''
 
         super(GINVirtual_node, self).__init__()
-        self.num_layers = num_layers
-        self.dropout = dropout
+        self.num_layer = num_layer
+        self.drop_ratio = dropout
+        self.JK = JK
+        ### add residual connection or not
+        self.residual = residual
 
-        if self.num_layers < 2:
+        if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
 
         self.atom_encoder = AtomEncoder(emb_dim)
 
-        ### set the initial virtual node embedding to 0.
-        self.virtualnode_embedding = torch.nn.Embedding(1, emb_dim)
-        torch.nn.init.constant_(self.virtualnode_embedding.weight.data, 0)
-
-        ### List of GNNs
+        ###List of GNNs
         self.convs = torch.nn.ModuleList()
-        ### batch norms applied to node embeddings
         self.batch_norms = torch.nn.ModuleList()
 
-        ### List of MLPs to transform virtual node at every layer
-        self.mlp_virtualnode_list = torch.nn.ModuleList()
+        for layer in range(num_layer):
+            if gnn_type == 'gin':
+                self.convs.append(GINConv(emb_dim))
+            else:
+                raise ValueError('Undefined GNN type called {}'.format(gnn_type))
 
-        for layer in range(num_layers):
-            self.convs.append(GINConv(emb_dim))
             self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))
-
-        for layer in range(num_layers - 1):
-            self.mlp_virtualnode_list.append(torch.nn.Sequential(torch.nn.Linear(emb_dim, 2*emb_dim), torch.nn.BatchNorm1d(2*emb_dim), torch.nn.ReLU(), \
-                                                    torch.nn.Linear(2*emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU()))
-
 
     def forward(self, batched_data):
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
-        ### virtual node embeddings for graphs
-        virtualnode_embedding = self.virtualnode_embedding(torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))
+        ### computing input node embedding
 
         h_list = [self.atom_encoder(x)]
-        for layer in range(self.num_layers):
-            ### add message from virtual nodes to graph nodes
-            h_list[layer] = h_list[layer] + virtualnode_embedding[batch]
+        for layer in range(self.num_layer):
 
-            ### Message passing among graph nodes
             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
-
             h = self.batch_norms[layer](h)
-            if layer == self.num_layers - 1:
+
+            if layer == self.num_layer - 1:
                 #remove relu for the last layer
-                h = F.dropout(h, self.dropout, training = self.training)
+                h = F.dropout(h, self.drop_ratio, training = self.training)
             else:
-                h = F.dropout(F.relu(h), self.dropout, training = self.training)
+                h = F.dropout(F.relu(h), self.drop_ratio, training = self.training)
+
+            if self.residual:
+                h += h_list[layer]
 
             h_list.append(h)
 
-            ### update the virtual nodes
-            if layer < self.num_layers - 1:
-                ### add message from graph nodes to virtual nodes
-                virtualnode_embedding_temp = global_add_pool(h_list[layer], batch) + virtualnode_embedding
-                ### transform virtual nodes using MLP
-                virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.dropout, training = self.training)
+        ### Different implementations of Jk-concat
+        if self.JK == "last":
+            node_representation = h_list[-1]
+        elif self.JK == "sum":
+            node_representation = 0
+            for layer in range(self.num_layer + 1):
+                node_representation += h_list[layer]
 
-        node_embedding = h_list[-1]
+        return node_representation
 
-        return node_embedding
+
+# original virutal one
+# class GINVirtual_node(torch.nn.Module):
+#     """
+#     Helper function of Graph Isomorphism Network augmented with virtual node for multi-task binary graph classification
+#     This will generate node embeddings
+#     Input:
+#         - batched Pytorch Geometric graph object
+#     Output:
+#         - node_embedding (Tensor): float torch tensor of shape (num_nodes, emb_dim)
+#     """
+#     def __init__(self, num_layers, emb_dim, dropout = 0.5):
+#         '''
+#         Args:
+#             - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)
+#             - num_layers (int): number of message passing layers of GNN
+#             - emb_dim (int): dimensionality of hidden channels
+#             - dropout (float): dropout ratio applied to hidden channels
+#         '''
+#
+#         super(GINVirtual_node, self).__init__()
+#         self.num_layers = num_layers
+#         self.dropout = dropout
+#
+#         if self.num_layers < 2:
+#             raise ValueError("Number of GNN layers must be greater than 1.")
+#
+#         self.atom_encoder = AtomEncoder(emb_dim)
+#
+#         ### set the initial virtual node embedding to 0.
+#         self.virtualnode_embedding = torch.nn.Embedding(1, emb_dim)
+#         torch.nn.init.constant_(self.virtualnode_embedding.weight.data, 0)
+#
+#         ### List of GNNs
+#         self.convs = torch.nn.ModuleList()
+#         ### batch norms applied to node embeddings
+#         self.batch_norms = torch.nn.ModuleList()
+#
+#         ### List of MLPs to transform virtual node at every layer
+#         self.mlp_virtualnode_list = torch.nn.ModuleList()
+#
+#         for layer in range(num_layers):
+#             self.convs.append(GINConv(emb_dim))
+#             self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))
+#
+#         for layer in range(num_layers - 1):
+#             self.mlp_virtualnode_list.append(torch.nn.Sequential(torch.nn.Linear(emb_dim, 2*emb_dim), torch.nn.BatchNorm1d(2*emb_dim), torch.nn.ReLU(), \
+#                                                     torch.nn.Linear(2*emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU()))
+#
+#
+#     def forward(self, batched_data):
+#         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
+#
+#         ### virtual node embeddings for graphs
+#         virtualnode_embedding = self.virtualnode_embedding(torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))
+#
+#         h_list = [self.atom_encoder(x)]
+#         for layer in range(self.num_layers):
+#             ### add message from virtual nodes to graph nodes
+#             h_list[layer] = h_list[layer] + virtualnode_embedding[batch]
+#
+#             ### Message passing among graph nodes
+#             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
+#
+#             h = self.batch_norms[layer](h)
+#             if layer == self.num_layers - 1:
+#                 #remove relu for the last layer
+#                 h = F.dropout(h, self.dropout, training = self.training)
+#             else:
+#                 h = F.dropout(F.relu(h), self.dropout, training = self.training)
+#
+#             h_list.append(h)
+#
+#             ### update the virtual nodes
+#             if layer < self.num_layers - 1:
+#                 ### add message from graph nodes to virtual nodes
+#                 virtualnode_embedding_temp = global_add_pool(h_list[layer], batch) + virtualnode_embedding
+#                 ### transform virtual nodes using MLP
+#                 virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.dropout, training = self.training)
+#
+#         node_embedding = h_list[-1]
+#
+#         return node_embedding
 
 
 ### GIN convolution along the graph structure
