@@ -154,3 +154,6 @@ mypy.ini
 
 # dependent repos
 benchmarking-gnns-master/
+
+# temporary scripts
+run.sh

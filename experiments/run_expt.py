@@ -29,7 +29,8 @@ def main():
 
     # Required arguments
     parser.add_argument('-d', '--dataset', choices=wilds.supported_datasets, required=True)
-    parser.add_argument('-a', '--algorithm', required=True, choices=supported.algorithms)
+    parser.add_argument('-a', '--algorithm', choices=supported.algorithms, required=True)
+    parser.add_argument('-m', '--model', choices=supported.models, required=True)
 
     # Dataset
     parser.add_argument('--split_scheme', help='Identifies how the train/val/test split is constructed. Choices are dataset-specific.')
@@ -50,7 +51,6 @@ def main():
     parser.add_argument('--eval_loader', choices=['standard'], default='standard')
 
     # Model
-    parser.add_argument('--model', choices=supported.models)
     parser.add_argument('--model_kwargs', nargs='*', action=ParseKwargs, default={},
         help='keyword arguments for model initialization passed as key1=value1 key2=value2')
 
