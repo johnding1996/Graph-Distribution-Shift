@@ -7,6 +7,7 @@ benchmark_datasets = [
     'ogbg-ppa',
     'ogb-proteins',
     'RotatedMNIST',
+    'SBM1'
 ]
 
 
