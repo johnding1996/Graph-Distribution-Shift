@@ -1,7 +1,6 @@
 dataset_defaults = {
     'ogb-molpcba': {
         'split_scheme': 'official',
-        'model': 'gin_virtual_mol',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'frac': 0.1,
         'loss_function': 'multitask_bce',
@@ -22,7 +21,6 @@ dataset_defaults = {
     },
     'ogb-molhiv': {
         'split_scheme': 'official',
-        'model': 'gin_virtual_mol',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['scaffold',],
@@ -42,7 +40,6 @@ dataset_defaults = {
     },
     'ogbg-ppa': {
         'split_scheme': 'official',
-        'model': 'gin_virtual_ppa',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'cross_entropy',
         'groupby_fields': ['species',],
@@ -62,7 +59,6 @@ dataset_defaults = {
     },
     'ogb-proteins': {
         'split_scheme': 'official',
-        'model': 'gin-virtual',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'multitask_bce',
         'groupby_fields': ['species',],
@@ -82,7 +78,6 @@ dataset_defaults = {
     },
     'RotatedMNIST': {
         'split_scheme': 'official',
-        'model': 'gin_virtual_mnist',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
@@ -102,7 +97,6 @@ dataset_defaults = {
     },
     'SBM1': {
         'split_scheme': 'official',
-        'model': 'gin_virtual_mol',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
