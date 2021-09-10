@@ -78,19 +78,19 @@ class SBM1Dataset(WILDSDataset):
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
 
-        self._y_array = self.ogb_dataset.data.y.long()
+        self._y_array = self.ogb_dataset.data.y
         self._metadata_fields = ['scaffold', 'y']
 
         metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'SBM1_group.npy')
         if not os.path.exists(metadata_file_path):
-            download_url('https://www.dropbox.com/s/hvnakp1rhmm3fec/SBM1_group.npy?dl=1',
+            download_url('https://www.dropbox.com/s/ysrf4fnvegkqtuj/SBM1_group.npy?dl=1',
                          self.ogb_dataset.raw_dir)
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y,
                                           torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)
 
         # use the group info split data
-        train_group_idx, val_group_idx, test_group_idx = range(0, 30), range(30, 40), range(40, 50)
+        train_group_idx, val_group_idx, test_group_idx = range(0, 40), range(40, 45), range(45, 50)
         train_group_idx, val_group_idx, test_group_idx = \
             torch.tensor(train_group_idx), torch.tensor(val_group_idx), torch.tensor(test_group_idx)
 

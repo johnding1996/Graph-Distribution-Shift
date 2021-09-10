@@ -41,7 +41,7 @@ class PyGSBM1Dataset(InMemoryDataset):
 
     names = ['SBM1']
     urls = {
-        'SBM1': 'https://www.dropbox.com/s/zkg39v8se86ixpx/SBM1.zip?dl=1'
+        'SBM1': 'https://www.dropbox.com/s/btxq6a3jy95nyay/SBM1.zip?dl=1'
     }
 
 

@@ -102,7 +102,7 @@ dataset_defaults = {
     },
     'SBM1': {
         'split_scheme': 'official',
-        'model': 'gin_virtual_mnist',
+        'model': 'gin_virtual_mol',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
