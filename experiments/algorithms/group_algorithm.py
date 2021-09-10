@@ -1,16 +1,20 @@
-import torch, time
 import numpy as np
+import torch
 from algorithms.algorithm import Algorithm
-from utils import update_average
 from scheduler import step_scheduler
-from wilds.common.utils import get_counts, numel
+from utils import update_average
+
+from wilds.common.utils import numel
+
 
 class GroupAlgorithm(Algorithm):
     """
     Parent class for algorithms with group-wise logging.
     Also handles schedulers.
     """
-    def __init__(self, device, grouper, logged_metrics, logged_fields, schedulers, scheduler_metric_names, no_group_logging, **kwargs):
+
+    def __init__(self, device, grouper, logged_metrics, logged_fields, schedulers, scheduler_metric_names,
+                 no_group_logging, **kwargs):
         """
         Args:
             - device: torch device
@@ -64,26 +68,27 @@ class GroupAlgorithm(Algorithm):
             if field.startswith(self.group_prefix) and self.no_group_logging:
                 continue
             v = results[field]
-            if isinstance(v, torch.Tensor) and v.numel()==1:
+            if isinstance(v, torch.Tensor) and v.numel() == 1:
                 batch_log[field] = v.item()
             else:
                 if isinstance(v, torch.Tensor):
-                    assert v.numel()==self.grouper.n_groups, "Current implementation deals only with group-wise statistics or a single-number statistic"
+                    assert v.numel() == self.grouper.n_groups, "Current implementation deals only with group-wise statistics or a single-number statistic"
                     assert field.startswith(self.group_prefix)
                 batch_log[field] = v
 
         # update the log dict with the current batch
-        if not self._has_log: # since it is the first log entry, just save the current log
+        if not self._has_log:  # since it is the first log entry, just save the current log
             self.log_dict = batch_log
             if not self.no_group_logging:
                 self.log_dict[self.group_count_field] = group_counts
             self.log_dict[self.count_field] = count
-        else: # take a running average across batches otherwise
+        else:  # take a running average across batches otherwise
             for k, v in batch_log.items():
                 if k.startswith(self.group_prefix):
                     if self.no_group_logging:
                         continue
-                    self.log_dict[k] = update_average(self.log_dict[k], self.log_dict[self.group_count_field], v, group_counts)
+                    self.log_dict[k] = update_average(self.log_dict[k], self.log_dict[self.group_count_field], v,
+                                                      group_counts)
                 else:
                     self.log_dict[k] = update_average(self.log_dict[k], self.log_dict[self.count_field], v, count)
             if not self.no_group_logging:
@@ -102,7 +107,7 @@ class GroupAlgorithm(Algorithm):
                 for g in range(self.grouper.n_groups):
                     # set relevant values to NaN depending on the group count
                     count = self.log_dict[self.group_count_field][g].item()
-                    if count==0 and k!=self.group_count_field:
+                    if count == 0 and k != self.group_count_field:
                         outval = np.nan
                     else:
                         outval = v[g].item()
@@ -110,10 +115,10 @@ class GroupAlgorithm(Algorithm):
                     # in practice, it is saving each value as {field}_group:{g}
                     added = False
                     for m in self.logged_metrics:
-                        if field==m.name:
+                        if field == m.name:
                             sanitized_log[m.group_metric_field(g)] = outval
                             added = True
-                    if k==self.group_count_field:
+                    if k == self.group_count_field:
                         sanitized_log[self.loss.group_count_field(g)] = outval
                         added = True
                     elif not added:

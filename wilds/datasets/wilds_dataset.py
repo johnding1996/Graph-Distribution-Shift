@@ -1,8 +1,9 @@
 import os
 import time
 
-import torch
 import numpy as np
+import torch
+
 
 class WILDSDataset:
     """
@@ -91,7 +92,7 @@ class WILDSDataset:
                 f'{self.data_dir} does not exist yet. Please generate the dataset first.')
 
         # Check splits
-        assert self.split_dict.keys()==self.split_names.keys()
+        assert self.split_dict.keys() == self.split_names.keys()
         assert 'train' in self.split_dict
         assert 'val' in self.split_dict
 
@@ -121,7 +122,7 @@ class WILDSDataset:
             u_major, u_minor = tuple(map(int, u.split('.')))
             v_major, v_minor = tuple(map(int, v.split('.')))
             if (u_major > v_major) or (
-                (u_major == v_major) and (u_minor > v_minor)):
+                    (u_major == v_major) and (u_minor > v_minor)):
                 return True
             else:
                 return False
@@ -341,21 +342,24 @@ class WILDSDataset:
         # If the data_dir exists and does not contain the right RELEASE file, but it is not empty and the download_url is not set,
         # we assume the dataset is correctly set up
         if ((os.path.exists(data_dir)) and
-            (len(os.listdir(data_dir)) > 0) and
-            (download_url is None)):
+                (len(os.listdir(data_dir)) > 0) and
+                (download_url is None)):
             return data_dir
 
         # Otherwise, we assume the dataset needs to be downloaded.
         # If download == False, then return an error.
         if download == False:
             if download_url is None:
-                raise FileNotFoundError(f'The {self.dataset_name} dataset could not be found in {data_dir}. {self.dataset_name} cannot be automatically downloaded. Please download it manually.')
+                raise FileNotFoundError(
+                    f'The {self.dataset_name} dataset could not be found in {data_dir}. {self.dataset_name} cannot be automatically downloaded. Please download it manually.')
             else:
-                raise FileNotFoundError(f'The {self.dataset_name} dataset could not be found in {data_dir}. Initialize the dataset with download=True to download the dataset. If you are using the example script, run with --download. This might take some time for large datasets.')
+                raise FileNotFoundError(
+                    f'The {self.dataset_name} dataset could not be found in {data_dir}. Initialize the dataset with download=True to download the dataset. If you are using the example script, run with --download. This might take some time for large datasets.')
 
         # Otherwise, proceed with downloading.
         if download_url is None:
-            raise ValueError(f'Sorry, {self.dataset_name} cannot be automatically downloaded. Please download it manually.')
+            raise ValueError(
+                f'Sorry, {self.dataset_name} cannot be automatically downloaded. Please download it manually.')
 
         from wilds.datasets.download_utils import download_and_extract_archive
         print(f'Downloading dataset to {data_dir}...')
@@ -372,7 +376,8 @@ class WILDSDataset:
             download_time_in_minutes = (time.time() - start_time) / 60
             print(f"It took {round(download_time_in_minutes, 2)} minutes to download and uncompress the dataset.")
         except Exception as e:
-            print(f"\n{os.path.join(data_dir, 'archive.tar.gz')} may be corrupted. Please try deleting it and rerunning this command.\n")
+            print(
+                f"\n{os.path.join(data_dir, 'archive.tar.gz')} may be corrupted. Please try deleting it and rerunning this command.\n")
             print(f"Exception: ", e)
 
         return data_dir

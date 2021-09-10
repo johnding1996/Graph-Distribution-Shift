@@ -1,30 +1,33 @@
-import sys
-import os
-import csv
 import argparse
+import csv
+import os
 import random
+import sys
 from pathlib import Path
+
 import numpy as np
-import torch
 import pandas as pd
+import torch
 
 try:
     import wandb
 except Exception as e:
     pass
 
+
 def update_average(prev_avg, prev_counts, curr_avg, curr_counts):
     denom = prev_counts + curr_counts
     if isinstance(curr_counts, torch.Tensor):
-        denom += (denom==0).float()
+        denom += (denom == 0).float()
     elif isinstance(curr_counts, int) or isinstance(curr_counts, float):
-        if denom==0:
+        if denom == 0:
             return 0.
     else:
         raise ValueError('Type of curr_counts not recognized')
-    prev_weight = prev_counts/denom
-    curr_weight = curr_counts/denom
-    return prev_weight*prev_avg + curr_weight*curr_avg
+    prev_weight = prev_counts / denom
+    curr_weight = curr_counts / denom
+    return prev_weight * prev_avg + curr_weight * curr_avg
+
 
 # Taken from https://sumit-ghosh.com/articles/parsing-dictionary-key-value-pairs-kwargs-argparse-python/
 class ParseKwargs(argparse.Action):
@@ -32,9 +35,9 @@ class ParseKwargs(argparse.Action):
         setattr(namespace, self.dest, dict())
         for value in values:
             key, value_str = value.split('=')
-            if value_str.replace('-','').isnumeric():
+            if value_str.replace('-', '').isnumeric():
                 processed_val = int(value_str)
-            elif value_str.replace('-','').replace('.','').isnumeric():
+            elif value_str.replace('-', '').replace('.', '').isnumeric():
                 processed_val = float(value_str)
             elif value_str in ['True', 'true']:
                 processed_val = True
@@ -44,13 +47,15 @@ class ParseKwargs(argparse.Action):
                 processed_val = value_str
             getattr(namespace, self.dest)[key] = processed_val
 
+
 def parse_bool(v):
-    if v.lower()=='true':
+    if v.lower() == 'true':
         return True
-    elif v.lower()=='false':
+    elif v.lower() == 'false':
         return False
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
+
 
 # def save_model(algorithm, epoch, best_val_metric, prefix, suffix):
 #     path = prefix.parent / (prefix.name + suffix)
@@ -66,13 +71,14 @@ def save_model(algorithm, epoch, best_val_metric, path):
     state['epoch'] = epoch
     state['best_val_metric'] = best_val_metric
     torch.save(state, path)
-    
+
 
 def load(algorithm, path):
     path = Path(path)
     state = torch.load(path)
     algorithm.load_state_dict(state['algorithm'])
     return state['epoch'], state['best_val_metric']
+
 
 def log_group_data(datasets, grouper, logger):
     for k, dataset in datasets.items():
@@ -89,6 +95,7 @@ def log_group_data(datasets, grouper, logger):
             for group_idx in range(grouper.n_groups):
                 logger.write(f'    {grouper.group_str(group_idx)}: n = {group_counts[group_idx]:.0f}\n')
     logger.flush()
+
 
 class Logger(object):
     def __init__(self, fpath=None, mode='w'):
@@ -122,6 +129,7 @@ class Logger(object):
         if self.file is not None:
             self.file.close()
 
+
 class BatchLogger:
     def __init__(self, csv_path, mode='w', use_wandb=False):
         self.path = Path(csv_path)
@@ -142,7 +150,7 @@ class BatchLogger:
                 columns = [key] + [k for k in columns if k != key]
 
         self.writer = csv.DictWriter(self.file, fieldnames=columns)
-        if self.mode=='w' or (not os.path.exists(self.path)) or os.path.getsize(self.path)==0:
+        if self.mode == 'w' or (not os.path.exists(self.path)) or os.path.getsize(self.path) == 0:
             self.writer.writeheader()
         self.is_initialized = True
 
@@ -165,6 +173,7 @@ class BatchLogger:
     def close(self):
         self.file.close()
 
+
 def set_seed(seed):
     """Sets seed"""
     if torch.cuda.is_available():
@@ -175,18 +184,22 @@ def set_seed(seed):
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
 
+
 def log_config(config, logger):
     for name, val in vars(config).items():
-        logger.write(f'{name.replace("_"," ").capitalize()}: {val}\n')
+        logger.write(f'{name.replace("_", " ").capitalize()}: {val}\n')
     logger.write('\n')
+
 
 def initialize_wandb(config):
     name = config.dataset + '_' + config.algorithm + '_' + f"seed-{config.seed}"
     wandb_runner = wandb.init(name=name, project=f"graphdg", entity='graphnet', config=config, reinit=True)
     return wandb_runner
 
+
 def close_wandb(wandb_runner):
     wandb_runner.finish()
+
 
 # def save_pred(y_pred, prefix, suffix):
 #     csv_path = prefix.parent / (prefix.name + suffix + '.csv')
@@ -220,6 +233,7 @@ def get_replicate_str(dataset, config):
         replicate_str = f"seed-{config.seed}"
     return replicate_str
 
+
 def get_pred_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     split = dataset['split']
@@ -229,6 +243,7 @@ def get_pred_prefix(dataset, config):
     prefix = os.path.join(config.log_dir, f"{dataset_name}_split:{split}_{replicate_str}_")
     return prefix
 
+
 def get_model_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     replicate_str = get_replicate_str(dataset, config)
@@ -236,6 +251,7 @@ def get_model_prefix(dataset, config):
 
     prefix = os.path.join(config.log_dir, f"{dataset_name}_{replicate_str}_{config.algorithm}_")
     return prefix
+
 
 def move_to(obj, device):
     if isinstance(obj, dict):
@@ -249,6 +265,7 @@ def move_to(obj, device):
         # (like Batch, for MolPCBA) that supports .to(device)
         return obj.to(device)
 
+
 def detach_and_clone(obj):
     if torch.is_tensor(obj):
         return obj.detach().clone()
@@ -260,6 +277,7 @@ def detach_and_clone(obj):
         return obj
     else:
         raise TypeError("Invalid type for detach_and_clone")
+
 
 def collate_list(vec):
     """
@@ -283,12 +301,15 @@ def collate_list(vec):
     else:
         raise TypeError("Elements of the list to collate must be tensors or dicts.")
 
+
 def remove_key(key):
     """
     Returns a function that strips out a key from a dict.
     """
+
     def remove(d):
         if not isinstance(d, dict):
             raise TypeError("remove_key must take in a dict")
-        return {k: v for (k,v) in d.items() if k != key}
+        return {k: v for (k, v) in d.items() if k != key}
+
     return remove

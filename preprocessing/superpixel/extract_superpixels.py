@@ -1,27 +1,29 @@
 # Source repo: https://github.com/bknyaz/graph_attention_pool
 # Compute superpixels for MNIST/CIFAR-10 using SLIC algorithm
 # https://scikit-image.org/docs/dev/api/skimage.segmentation.html#skimage.segmentation.slic
-import pdb
 
-import numpy as np
-import random
-import os
-import scipy
-import pickle
-from skimage.segmentation import slic
-from torchvision import datasets
-import multiprocessing as mp
-import scipy.ndimage
-import scipy.spatial
 import argparse
 import datetime
+import multiprocessing as mp
+import os
+import pickle
+import random
+
+import numpy as np
+import scipy
+import scipy.ndimage
+import scipy.spatial
+import torch
+from skimage.segmentation import slic
+from torchvision import datasets
 
 from generate_image_dataset import get_dataset_class
-import torch
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Extract SLIC superpixels from images')
-    parser.add_argument('-D', '--dataset', type=str, default='mnist', choices=['mnist', 'cifar10', 'ColoredMNIST', 'RotatedMNIST'])
+    parser.add_argument('-D', '--dataset', type=str, default='mnist',
+                        choices=['mnist', 'cifar10', 'ColoredMNIST', 'RotatedMNIST'])
     parser.add_argument('-d', '--data_dir', type=str, default='./data', help='path to the data  set')
     parser.add_argument('-o', '--out_dir', type=str, default='./data', help='path where to save superpixels')
     parser.add_argument('-s', '--split', type=str, default='train', choices=['train', 'val', 'test'])
@@ -57,7 +59,7 @@ def process_image(params):
 
     assert n_sp_extracted <= args.n_sp and n_sp_extracted > 0, (args.split, index, n_sp_extracted, args.n_sp)
     assert n_sp_extracted == np.max(superpixels) + 1, (
-    'superpixel indices', np.unique(superpixels))  # make sure superpixel indices are numbers from 0 to n-1
+        'superpixel indices', np.unique(superpixels))  # make sure superpixel indices are numbers from 0 to n-1
 
     if shuffle:
         ind = np.random.permutation(n_sp_extracted)
@@ -115,7 +117,7 @@ if __name__ == '__main__':
         assert args.n_sp > 1 and args.n_sp < 32 * 32, (
             'the number of superpixels cannot exceed the total number of pixels or be too small')
 
-    elif args.dataset == 'ColoredMNIST' or 'RotatedMNIST' :
+    elif args.dataset == 'ColoredMNIST' or 'RotatedMNIST':
         datasets_instance = get_dataset_class(args.dataset)(args.data_dir, None, None)
         datasets = datasets_instance.datasets
         environments = datasets_instance.environments
@@ -124,10 +126,10 @@ if __name__ == '__main__':
         raise NotImplementedError('unsupported dataset: ' + args.dataset)
 
     images, labels, data_envs = [], [], []
-    for i in range(len(environments)) :
+    for i in range(len(environments)):
         environment = environments[i]
         dataset = datasets[i]
-        for j in range(len(dataset)) :
+        for j in range(len(dataset)):
             image, label = dataset[j]
             images.append(image)
             labels.append(label.item())
@@ -135,7 +137,7 @@ if __name__ == '__main__':
     images = torch.stack(images)
 
     if not isinstance(images, np.ndarray):
-        images = np.squeeze(images.numpy()) # [0,1]
+        images = np.squeeze(images.numpy())  # [0,1]
     if isinstance(labels, list):
         labels = np.array(labels)
     if isinstance(data_envs, list):

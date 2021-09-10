@@ -1,6 +1,8 @@
 import torch
-from wilds.common.utils import avg_over_groups, maximum
+
 from wilds.common.metrics.metric import ElementwiseMetric, Metric, MultiTaskMetric
+from wilds.common.utils import maximum
+
 
 class Loss(Metric):
     def __init__(self, loss_fn, name=None):
@@ -18,7 +20,7 @@ class Loss(Metric):
         Output:
             - element_wise_metrics (Tensor): tensor of size (batch_size, )
         """
-        
+
         return self.loss_fn(y_pred, y_true)
 
     def worst(self, metrics):
@@ -30,6 +32,7 @@ class Loss(Metric):
             - worst_metric (float): Worst-case metric
         """
         return maximum(metrics)
+
 
 class ElementwiseLoss(ElementwiseMetric):
     def __init__(self, loss_fn, name=None):
@@ -53,7 +56,6 @@ class ElementwiseLoss(ElementwiseMetric):
         else:
             return self.loss_fn(y_pred, y_true)
 
-
     def worst(self, metrics):
         """
         Given a list/numpy array/Tensor of metrics, computes the worst-case metric
@@ -64,9 +66,10 @@ class ElementwiseLoss(ElementwiseMetric):
         """
         return maximum(metrics)
 
+
 class MultiTaskLoss(MultiTaskMetric):
     def __init__(self, loss_fn, name=None):
-        self.loss_fn = loss_fn # should be elementwise
+        self.loss_fn = loss_fn  # should be elementwise
         if name is None:
             name = 'loss'
         super().__init__(name=name)

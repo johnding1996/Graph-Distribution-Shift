@@ -4,7 +4,7 @@ dataset_defaults = {
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'frac': 0.1,
         'loss_function': 'multitask_bce',
-        'groupby_fields': ['scaffold',],
+        'groupby_fields': ['scaffold', ],
         'val_metric': 'ap',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
@@ -23,7 +23,7 @@ dataset_defaults = {
         'split_scheme': 'official',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'BCEWithLogitsLoss',
-        'groupby_fields': ['scaffold',],
+        'groupby_fields': ['scaffold', ],
         'val_metric': 'rocauc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
@@ -42,7 +42,7 @@ dataset_defaults = {
         'split_scheme': 'official',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'cross_entropy',
-        'groupby_fields': ['species',],
+        'groupby_fields': ['species', ],
         'val_metric': 'acc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
@@ -61,7 +61,7 @@ dataset_defaults = {
         'split_scheme': 'official',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'multitask_bce',
-        'groupby_fields': ['species',],
+        'groupby_fields': ['species', ],
         'val_metric': 'rocauc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
@@ -115,4 +115,3 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
     }
 }
-

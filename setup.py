@@ -20,7 +20,7 @@ setuptools.setup(
     description="WILDS distribution shift benchmark",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    install_requires = [
+    install_requires=[
         'numpy>=1.19.1',
         'ogb>=1.2.6',
         'outdated>=0.2.0',
@@ -34,7 +34,8 @@ setuptools.setup(
         'scipy>=1.5.4'
     ],
     license='MIT',
-    packages=setuptools.find_packages(exclude=['dataset_preprocessing', 'examples', 'examples.models', 'examples.models.bert']),
+    packages=setuptools.find_packages(
+        exclude=['dataset_preprocessing', 'examples', 'examples.models', 'examples.models.bert']),
     classifiers=[
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Intended Audience :: Science/Research',

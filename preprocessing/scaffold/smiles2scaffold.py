@@ -1,13 +1,9 @@
-import torch
-import random
 import numpy as np
-from itertools import compress
 from rdkit.Chem.Scaffolds import MurckoScaffold
-from collections import defaultdict
-import gzip
-import pandas as pd
-from rdkit import RDLogger  
-RDLogger.DisableLog('rdApp.*')  
+from rdkit.Chem.Scaffolds import MurckoScaffold
+
+RDLogger.DisableLog('rdApp.*')
+
 
 def generate_scaffold(smiles, include_chirality=False):
     """
@@ -19,6 +15,7 @@ def generate_scaffold(smiles, include_chirality=False):
     scaffold = MurckoScaffold.MurckoScaffoldSmiles(
         smiles=smiles, includeChirality=include_chirality)
     return scaffold
+
 
 # # test generate scaffold
 # s = 'Cc1cc(Oc2nccc(CCC)c2)ccc1'
@@ -44,19 +41,19 @@ def scaffold_split(smiles_list, frac_train=0.8, frac_valid=0.1, frac_test=0.1):
     all_scaffolds = {}
     for i, smiles in enumerate(smiles_list):
         scaffold = generate_scaffold(smiles, include_chirality=True)
-        
+
         if scaffold not in all_scaffolds:
             all_scaffolds[scaffold] = [i]
         else:
             all_scaffolds[scaffold].append(i)
-   
+
     # sort from largest to smallest sets
     all_scaffolds = {key: sorted(value) for key, value in all_scaffolds.items()}
     all_scaffold_sets = [
         scaffold_set for (scaffold, scaffold_set) in sorted(
             all_scaffolds.items(), key=lambda x: (len(x[1]), x[1][0]), reverse=True)
     ]
-    
+
     # get train, valid test indices
     train_cutoff = frac_train * len(smiles_list)
     valid_cutoff = (frac_train + frac_valid) * len(smiles_list)
@@ -80,16 +77,10 @@ def scaffold_split(smiles_list, frac_train=0.8, frac_valid=0.1, frac_test=0.1):
 
     np.save('scaffold_group', scaffold_group)
 
-
     return train_idx, valid_idx, test_idx
 
 
-
 if __name__ == '__main__':
-
     df = pd.read_csv('mol.csv.gz')
     smiles_list = df['smiles'].tolist()
     train_idx, valid_idx, test_idx = scaffold_split(smiles_list)
-   
-
-

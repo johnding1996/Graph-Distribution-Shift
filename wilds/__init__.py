@@ -1,5 +1,5 @@
-from .version import __version__
 from .get_dataset import get_dataset
+from .version import __version__
 
 benchmark_datasets = [
     'ogb-molpcba',
@@ -9,6 +9,5 @@ benchmark_datasets = [
     'RotatedMNIST',
     'SBM1'
 ]
-
 
 supported_datasets = benchmark_datasets

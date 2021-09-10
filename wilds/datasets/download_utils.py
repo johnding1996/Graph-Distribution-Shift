@@ -36,14 +36,13 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
+import gzip
+import hashlib
 import os
 import os.path
-import hashlib
-import gzip
-import errno
 import tarfile
-from typing import Any, Callable, List, Iterable, Optional, TypeVar
 import zipfile
+from typing import Any, Callable, List, Iterable, Optional, TypeVar
 
 import torch
 from torch.utils.model_zoo import tqdm
@@ -81,7 +80,8 @@ def check_integrity(fpath: str, md5: Optional[str] = None) -> bool:
     return check_md5(fpath, md5)
 
 
-def download_url(url: str, root: str, filename: Optional[str] = None, md5: Optional[str] = None, size: Optional[int] = None) -> None:
+def download_url(url: str, root: str, filename: Optional[str] = None, md5: Optional[str] = None,
+                 size: Optional[int] = None) -> None:
     """Download a file from a url and place it in root.
 
     Args:
@@ -102,7 +102,7 @@ def download_url(url: str, root: str, filename: Optional[str] = None, md5: Optio
     # check if file is already present locally
     if check_integrity(fpath, md5):
         print('Using downloaded and verified file: ' + fpath)
-    else:   # download the file
+    else:  # download the file
         try:
             print('Downloading ' + url + ' to ' + fpath)
             urllib.request.urlretrieve(
@@ -213,7 +213,7 @@ def _get_confirm_token(response: "requests.models.Response") -> Optional[str]:  
 
 
 def _save_response_content(
-    response: "requests.models.Response", destination: str, chunk_size: int = 32768,  # type: ignore[name-defined]
+        response: "requests.models.Response", destination: str, chunk_size: int = 32768,  # type: ignore[name-defined]
 ) -> None:
     with open(destination, "wb") as f:
         pbar = tqdm(total=None)
@@ -278,13 +278,13 @@ def extract_archive(from_path: str, to_path: Optional[str] = None, remove_finish
 
 
 def download_and_extract_archive(
-    url: str,
-    download_root: str,
-    extract_root: Optional[str] = None,
-    filename: Optional[str] = None,
-    md5: Optional[str] = None,
-    remove_finished: bool = False,
-    size: Optional[int] = None
+        url: str,
+        download_root: str,
+        extract_root: Optional[str] = None,
+        filename: Optional[str] = None,
+        md5: Optional[str] = None,
+        remove_finished: bool = False,
+        size: Optional[int] = None
 ) -> None:
     download_root = os.path.expanduser(download_root)
     if extract_root is None:
@@ -307,7 +307,7 @@ T = TypeVar("T", str, bytes)
 
 
 def verify_str_arg(
-    value: T, arg: Optional[str] = None, valid_values: Iterable[T] = None, custom_msg: Optional[str] = None,
+        value: T, arg: Optional[str] = None, valid_values: Iterable[T] = None, custom_msg: Optional[str] = None,
 ) -> T:
     if not isinstance(value, torch._six.string_classes):
         if arg is None:

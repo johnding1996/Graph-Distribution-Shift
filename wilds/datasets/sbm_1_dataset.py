@@ -1,5 +1,5 @@
 import os
-import torch
+
 import numpy as np
 from wilds.datasets.wilds_dataset import WILDSDataset
 from ogb.graphproppred import Evaluator

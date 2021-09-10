@@ -1,5 +1,6 @@
-from typing import Optional, Callable, List
+import os
 import os.path as osp
+from typing import Optional, Callable, List
 
 import torch
 from torch_geometric.data import (InMemoryDataset, download_url, extract_zip, Data)
@@ -42,7 +43,7 @@ class PyGSuperPixelDataset(InMemoryDataset):
     names = ['RotatedMNIST']
     urls = {
         'RotatedMNIST': 'https://www.dropbox.com/s/5kybifusm8jexna/RotatedMNIST.zip?dl=1'
-            # 'https://www.dropbox.com/s/v2iwdes7k3vuk4l/RotatedMNIST.pt?dl=1'
+        # 'https://www.dropbox.com/s/v2iwdes7k3vuk4l/RotatedMNIST.pt?dl=1'
     }
 
 
@@ -61,7 +62,6 @@ class PyGSuperPixelDataset(InMemoryDataset):
 
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[0])
-
 
     @property
     def raw_dir(self) -> str:
@@ -99,6 +99,7 @@ class PyGSuperPixelDataset(InMemoryDataset):
 
         torch.save(self.collate(data_list), self.processed_paths[0])
 
+
 if __name__ == '__main__':
     root = '/home/ubuntu/Graph-Distribution-Shift/preprocessing/superpixel/data'
     name = 'RotatedMNIST'
@@ -109,4 +110,3 @@ if __name__ == '__main__':
     self._y_size = 1
     self._n_classes = 10
     self._metric = Evaluator('ogbg-ppa')
-
