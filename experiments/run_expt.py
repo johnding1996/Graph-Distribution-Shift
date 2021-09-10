@@ -23,11 +23,11 @@ from gds.common.grouper import CombinatorialGrouper
 
 
 def main():
-    ''' to see default hyperparams for each dataset/model, look at configs/ '''
+    """ to see default hyperparams for each dataset/model, look at configs/ """
     parser = argparse.ArgumentParser()
 
     # Required arguments
-    parser.add_argument('-d', '--dataset', choices=wilds.supported_datasets, required=True)
+    parser.add_argument('-d', '--dataset', choices=gds.supported_datasets, required=True)
     parser.add_argument('-a', '--algorithm', choices=supported.algorithms, required=True)
     parser.add_argument('-m', '--model', choices=supported.models, required=True)
 
@@ -86,10 +86,10 @@ def main():
     parser.add_argument('--scheduler_metric_name')
 
     # Evaluation
+    parser.add_argument('--eval_only', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--process_outputs_function', choices=supported.process_outputs_functions)
     parser.add_argument('--evaluate_all_splits', type=parse_bool, const=True, nargs='?', default=True)
     parser.add_argument('--eval_splits', nargs='+', default=[])
-    parser.add_argument('--eval_only', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--eval_epoch', default=None, type=int,
                         help='If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.')
 
@@ -224,14 +224,14 @@ def main():
         ## Load saved results if resuming
         resume_success = False
         if resume:
-            save_path = model_prefix + 'epoch:last_model.pth'
+            save_path = model_prefix.with_name(model_prefix.name + 'epoch-last_model.pth')
             if not os.path.exists(save_path):
                 epochs = [
                     int(file.split('epoch:')[1].split('_')[0])
                     for file in os.listdir(config.log_dir) if file.endswith('.pth')]
                 if len(epochs) > 0:
                     latest_epoch = max(epochs)
-                    save_path = model_prefix + f'epoch-{latest_epoch}_model.pth'
+                    save_path = model_prefix.with_name(model_prefix.name + f'epoch-{latest_epoch}_model.pth')
             try:
                 prev_epoch, best_val_metric = load(algorithm, save_path)
                 epoch_offset = prev_epoch + 1
@@ -253,9 +253,9 @@ def main():
             best_val_metric=best_val_metric)
     else:
         if config.eval_epoch is None:
-            eval_model_path = model_prefix + 'epoch-best_model.pth'
+            eval_model_path = model_prefix.with_name(model_prefix.name + 'epoch-best_model.pth')
         else:
-            eval_model_path = model_prefix + f'epoch-{config.eval_epoch}_model.pth'
+            eval_model_path = model_prefix.with_name(model_prefix.name + f'epoch-{config.eval_epoch}_model.pth')
         best_epoch, best_val_metric = load(algorithm, eval_model_path)
         if config.eval_epoch is None:
             epoch = best_epoch
