@@ -7,10 +7,10 @@ from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 
-from gds.datasets.wilds_dataset import WILDSDataset
+from gds.datasets.wilds_dataset import GDSDataset
 
 
-class OGBHIVDataset(WILDSDataset):
+class OGBHIVDataset(GDSDataset):
     """
     The OGB-molhiv dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.

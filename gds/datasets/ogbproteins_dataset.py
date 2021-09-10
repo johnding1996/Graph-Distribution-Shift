@@ -5,10 +5,10 @@ from ogb.nodeproppred import Evaluator
 from ogb.nodeproppred.dataset_pyg import PygNodePropPredDataset
 from torch_geometric.data.dataloader import Collater as PyGCollater
 
-from gds.datasets.wilds_dataset import WILDSDataset
+from gds.datasets.wilds_dataset import GDSDataset
 
 
-class OGBPROTEINSDataset(WILDSDataset):
+class OGBPROTEINSDataset(GDSDataset):
     """
     The OGB-Proteins dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.

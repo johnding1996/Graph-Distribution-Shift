@@ -4,7 +4,6 @@ from typing import Optional, Callable, List
 
 import torch
 from torch_geometric.data import (InMemoryDataset, download_url, extract_zip, Data)
-import os
 
 
 class PyGSuperPixelDataset(InMemoryDataset):

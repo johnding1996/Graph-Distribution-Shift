@@ -114,7 +114,6 @@ class DeepCORAL(SingleModelAlgorithm):
         else:
             results['penalty'] = penalty
 
-
         avg_loss = self.loss.compute(results['y_pred'], results['y_true'], return_dict=False)
 
         return avg_loss + penalty * self.penalty_weight

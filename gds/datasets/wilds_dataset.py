@@ -5,7 +5,7 @@ import numpy as np
 import torch
 
 
-class WILDSDataset:
+class GDSDataset:
     """
     Shared dataset class for all WILDS datasets.
     Each data point in the dataset is an (x, y, metadata) tuple, where:
@@ -72,7 +72,7 @@ class WILDSDataset:
         if frac < 1.0:
             num_to_retain = int(np.round(float(len(split_idx)) * frac))
             split_idx = np.sort(np.random.permutation(split_idx)[:num_to_retain])
-        subset = WILDSSubset(self, split_idx, transform)
+        subset = GDSSubset(self, split_idx, transform)
         return subset
 
     def check_init(self):
@@ -195,7 +195,7 @@ class WILDSDataset:
         e.g., {'train': 0, 'val': 1, 'test': 2}.
         Keys should match up with split_names.
         """
-        return getattr(self, '_split_dict', WILDSDataset.DEFAULT_SPLITS)
+        return getattr(self, '_split_dict', GDSDataset.DEFAULT_SPLITS)
 
     @property
     def split_names(self):
@@ -204,7 +204,7 @@ class WILDSDataset:
         e.g., {'train': 'Train', 'val': 'Validation', 'test': 'Test'}.
         Keys should match up with split_dict.
         """
-        return getattr(self, '_split_names', WILDSDataset.DEFAULT_SPLIT_NAMES)
+        return getattr(self, '_split_names', GDSDataset.DEFAULT_SPLIT_NAMES)
 
     @property
     def split_array(self):
@@ -437,7 +437,7 @@ class WILDSDataset:
         return results, results_str
 
 
-class WILDSSubset(WILDSDataset):
+class GDSSubset(GDSDataset):
     def __init__(self, dataset, indices, transform, do_transform_y=False):
         """
         This acts like `torch.utils.data.Subset`, but on `WILDSDatasets`.

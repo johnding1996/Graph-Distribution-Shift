@@ -4,7 +4,7 @@ import numpy as np
 import torch
 
 from gds.common.utils import get_counts
-from gds.datasets.wilds_dataset import WILDSSubset
+from gds.datasets.wilds_dataset import GDSSubset
 
 
 class Grouper:
@@ -81,7 +81,7 @@ class CombinatorialGrouper(Grouper):
             - groupby_fields (list of str)
         """
 
-        if isinstance(dataset, WILDSSubset):
+        if isinstance(dataset, GDSSubset):
             raise ValueError("Grouper should be defined for the full dataset, not a subset")
         self.groupby_fields = groupby_fields
 

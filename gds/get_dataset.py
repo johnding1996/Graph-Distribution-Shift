@@ -35,9 +35,9 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
         return OGBPROTEINSDataset(version=version, **dataset_kwargs)
 
     elif dataset == 'RotatedMNIST':
-        from wilds.datasets.superpixel_dataset import SuperPixelDataset
+        from gds.datasets.superpixel_dataset import SuperPixelDataset
         return SuperPixelDataset(version=version, **dataset_kwargs)
 
     elif dataset == 'SBM1':
-        from wilds.datasets.sbm_1_dataset import SBM1Dataset
+        from gds.datasets.sbm_1_dataset import SBM1Dataset
         return SBM1Dataset(version=version, **dataset_kwargs)

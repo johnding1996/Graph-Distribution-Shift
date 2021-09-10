@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 
 from gds import benchmark_datasets
 from gds import get_dataset
-from gds.datasets.wilds_dataset import WILDSDataset, WILDSSubset
+from gds.datasets.wilds_dataset import GDSDataset, GDSSubset
 
 """
 Evaluate predictions for WILDS datasets.
@@ -113,7 +113,7 @@ def evaluate_benchmark(
             raise ValueError(f"Invalid dataset: {dataset_name}")
 
     # Dataset will only be downloaded if it does not exist
-    wilds_dataset: WILDSDataset = get_dataset(
+    wilds_dataset: GDSDataset = get_dataset(
         dataset=dataset_name, root_dir=root_dir, download=True
     )
     splits: List[str] = list(wilds_dataset.split_dict.keys())
@@ -173,13 +173,13 @@ def evaluate_benchmark(
 
 
 def evaluate_replicate(
-        dataset: WILDSDataset, split: str, predicted_labels: torch.Tensor
+        dataset: GDSDataset, split: str, predicted_labels: torch.Tensor
 ) -> Dict[str, float]:
     """
     Evaluate the given predictions and return the appropriate metrics.
 
     Parameters:
-        dataset (WILDSDataset): A WILDS Dataset
+        dataset (GDSDataset): A WILDS Dataset
         split (str): split we are evaluating on
         predicted_labels (torch.Tensor): Predictions
 
@@ -187,7 +187,7 @@ def evaluate_replicate(
         Metrics as a dictionary with metrics as the keys and metric values as the values
     """
     # Dataset will only be downloaded if it does not exist
-    subset: WILDSSubset = dataset.get_subset(split)
+    subset: GDSSubset = dataset.get_subset(split)
     metadata: torch.Tensor = subset.metadata_array
     true_labels = subset.y_array
     if predicted_labels.shape != true_labels.shape:
@@ -196,10 +196,10 @@ def evaluate_replicate(
 
 
 def evaluate_replicate_for_globalwheat(
-        dataset: WILDSDataset, split: str, path_to_predictions: str
+        dataset: GDSDataset, split: str, path_to_predictions: str
 ) -> Dict[str, float]:
     predicted_labels = torch.load(path_to_predictions)
-    subset: WILDSSubset = dataset.get_subset(split)
+    subset: GDSSubset = dataset.get_subset(split)
     metadata: torch.Tensor = subset.metadata_array
     true_labels = [subset.dataset.y_array[idx] for idx in subset.indices]
     return dataset.eval(predicted_labels, true_labels, metadata)[0]

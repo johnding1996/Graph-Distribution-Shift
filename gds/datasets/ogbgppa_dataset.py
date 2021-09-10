@@ -6,7 +6,7 @@ import torch_geometric
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 from torch_geometric.data.dataloader import Collater as PyGCollater
 
-from gds.datasets.wilds_dataset import WILDSDataset
+from gds.datasets.wilds_dataset import GDSDataset
 
 
 def add_zeros(data):
@@ -14,7 +14,7 @@ def add_zeros(data):
     return data
 
 
-class OGBGPPADataset(WILDSDataset):
+class OGBGPPADataset(GDSDataset):
     """
     The OGB-ppa dataset.
     This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.
