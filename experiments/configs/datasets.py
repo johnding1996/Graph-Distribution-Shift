@@ -1,10 +1,10 @@
 dataset_defaults = {
     'ogb-molpcba': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5}, # include pretrained
+        'model_kwargs': {'dropout': 0.5, 'dataset_group':'mol'},  # include pretrained
         'frac': 0.1,
         'loss_function': 'multitask_bce',
-        'groupby_fields': ['scaffold',],
+        'groupby_fields': ['scaffold', ],
         'val_metric': 'ap',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
@@ -19,6 +19,27 @@ dataset_defaults = {
         'process_outputs_function': None,
         'algo_log_metric': 'multitask_binary_accuracy',
     },
+    # 'ogb-molpcba': {
+    #     'split_scheme': 'official',
+    #     'model': 'gin_virtual_mol',
+    #     'model_kwargs': {'dropout':0.5}, # include pretrained
+    #     'frac': 0.1,
+    #     'loss_function': 'multitask_bce',
+    #     'groupby_fields': ['scaffold',],
+    #     'val_metric': 'ap',
+    #     'val_metric_decreasing': False,
+    #     'optimizer': 'Adam',
+    #     'batch_size': 32,
+    #     'lr': 1e-03,
+    #     'weight_decay': 0.,
+    #     'n_epochs': 100,
+    #     'n_groups_per_batch': 4,
+    #     'irm_lambda': 1.,
+    #     'coral_penalty_weight': 0.1,
+    #     'no_group_logging': True,
+    #     'process_outputs_function': None,
+    #     'algo_log_metric': 'multitask_binary_accuracy',
+    # },
     'ogb-molhiv': {
         'split_scheme': 'official',
         'model_kwargs': {'dropout':0.5}, # include pretrained
@@ -78,7 +99,7 @@ dataset_defaults = {
     },
     'RotatedMNIST': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5}, # include pretrained
+        'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
         'val_metric': 'acc',
@@ -97,6 +118,7 @@ dataset_defaults = {
     },
     'SBM1': {
         'split_scheme': 'official',
+        'model': 'gin_virtual_mnist',
         'model_kwargs': {'dropout':0.5}, # include pretrained
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
