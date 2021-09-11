@@ -1,7 +1,9 @@
 import torch
-from models.initializer import initialize_model
 from algorithms.single_model_algorithm import SingleModelAlgorithm
-from wilds.common.utils import split_into_groups
+from models.initializer import initialize_model
+from torch_geometric.nn import global_mean_pool
+
+from gds.common.utils import split_into_groups
 
 class DeepCORAL(SingleModelAlgorithm):
     """
@@ -19,6 +21,7 @@ class DeepCORAL(SingleModelAlgorithm):
     The CORAL penalty function below is adapted from DomainBed's implementation:
     https://github.com/facebookresearch/DomainBed/blob/1a61f7ff44b02776619803a1dd12f952528ca531/domainbed/algorithms.py#L539
     """
+
     def __init__(self, config, d_out, grouper, loss, metric, n_train_steps):
         # check config
         assert config.train_loader == 'group'
@@ -47,7 +50,7 @@ class DeepCORAL(SingleModelAlgorithm):
         self.classifier = classifier
 
     def coral_penalty(self, x, y):
-        if x.dim() > 2: 
+        if x.dim() > 2:
             # featurizers output Tensors of size (batch_size, ..., feature dimensionality).
             # we flatten to Tensors of size (*, feature dimensionality)
             x = x.view(-1, x.size(-1))
@@ -63,7 +66,7 @@ class DeepCORAL(SingleModelAlgorithm):
         mean_diff = (mean_x - mean_y).pow(2).mean()
         cova_diff = (cova_x - cova_y).pow(2).mean()
 
-        return mean_diff+cova_diff
+        return mean_diff + cova_diff
 
     def process_batch(self, batch):
         """
@@ -84,7 +87,7 @@ class DeepCORAL(SingleModelAlgorithm):
             'y_pred': outputs,
             'metadata': metadata,
             'features': features,
-            }
+        }
         return results
 
     def objective(self, results):
@@ -98,10 +101,10 @@ class DeepCORAL(SingleModelAlgorithm):
             n_groups_per_batch = unique_groups.numel()
             penalty = torch.zeros(1, device=self.device)
             for i_group in range(n_groups_per_batch):
-                for j_group in range(i_group+1, n_groups_per_batch):
+                for j_group in range(i_group + 1, n_groups_per_batch):
                     penalty += self.coral_penalty(features[group_indices[i_group]], features[group_indices[j_group]])
             if n_groups_per_batch > 1:
-                penalty /= (n_groups_per_batch * (n_groups_per_batch-1) / 2) # get the mean penalty
+                penalty /= (n_groups_per_batch * (n_groups_per_batch - 1) / 2)  # get the mean penalty
             # save penalty
         else:
             penalty = 0.
@@ -110,7 +113,6 @@ class DeepCORAL(SingleModelAlgorithm):
             results['penalty'] = penalty.item()
         else:
             results['penalty'] = penalty
-
 
         avg_loss = self.loss.compute(results['y_pred'], results['y_true'], return_dict=False)
 

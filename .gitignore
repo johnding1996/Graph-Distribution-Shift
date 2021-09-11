@@ -143,14 +143,26 @@ data/
 # Mac OS
 .DS_Store
 
+# PyCharm config
+.idea/
+
+# mypy config
+mypy.ini
+
+# pipenv lock file
+Pipfile.lock
+
 # logs
 logs/
 
 # wandb
 wandb/
 
-# mypy config
-mypy.ini
+# reports
+reports/
+
+# docs
+docs/
 
 # dependent repos
 benchmarking-gnns-master/

@@ -2,6 +2,7 @@ import torch
 from algorithms.single_model_algorithm import SingleModelAlgorithm
 from models.initializer import initialize_model
 
+
 class GroupDRO(SingleModelAlgorithm):
     """
     Group distributionally robust optimization.
@@ -14,6 +15,7 @@ class GroupDRO(SingleModelAlgorithm):
           year={2019}
         }    
     """
+
     def __init__(self, config, d_out, grouper, loss, metric, n_train_steps, is_group_in_train):
         # check config
         assert config.uniform_over_groups
@@ -35,7 +37,7 @@ class GroupDRO(SingleModelAlgorithm):
         # initialize adversarial weights
         self.group_weights = torch.zeros(grouper.n_groups)
         self.group_weights[is_group_in_train] = 1
-        self.group_weights = self.group_weights/self.group_weights.sum()
+        self.group_weights = self.group_weights / self.group_weights.sum()
         self.group_weights = self.group_weights.to(self.device)
 
     def process_batch(self, batch):
@@ -96,8 +98,8 @@ class GroupDRO(SingleModelAlgorithm):
             self.grouper.n_groups,
             return_dict=False)
         # update group weights
-        self.group_weights = self.group_weights * torch.exp(self.group_weights_step_size*group_losses.data)
-        self.group_weights = (self.group_weights/(self.group_weights.sum()))
+        self.group_weights = self.group_weights * torch.exp(self.group_weights_step_size * group_losses.data)
+        self.group_weights = (self.group_weights / (self.group_weights.sum()))
         # save updated group weights
         results['group_weight'] = self.group_weights
         # update model

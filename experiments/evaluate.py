@@ -1,18 +1,16 @@
 import argparse
 import json
+import numpy as np
 import os
+import torch
 import urllib.request
 from ast import literal_eval
 from typing import Dict, List
 from urllib.parse import urlparse
 
-import numpy as np
-import torch
-
-from wilds import benchmark_datasets
-from wilds import get_dataset
-from wilds.datasets.wilds_dataset import WILDSDataset, WILDSSubset
-
+from gds import benchmark_datasets
+from gds import get_dataset
+from gds.datasets.wilds_dataset import GDSDataset, GDSSubset
 
 """
 Evaluate predictions for WILDS datasets.
@@ -50,7 +48,7 @@ def evaluate_all_benchmarks(predictions_dir: str, output_dir: str, root_dir: str
 
 
 def evaluate_benchmark(
-    dataset_name: str, predictions_dir: str, output_dir: str, root_dir: str
+        dataset_name: str, predictions_dir: str, output_dir: str, root_dir: str
 ) -> Dict[str, Dict[str, float]]:
     """
     Evaluate across multiple replicates for a single benchmark.
@@ -78,12 +76,12 @@ def evaluate_benchmark(
             return [f"seed-{seed}" for seed in seeds]
 
     def get_prediction_file(
-        predictions_dir: str, dataset_name: str, split: str, replicate: str
+            predictions_dir: str, dataset_name: str, split: str, replicate: str
     ) -> str:
         run_id = f"{dataset_name}_split-{split}_{replicate}"
         for file in os.listdir(predictions_dir):
             if file.startswith(run_id) and (
-                file.endswith(".csv") or file.endswith(".pth")
+                    file.endswith(".csv") or file.endswith(".pth")
             ):
                 return file
         raise FileNotFoundError(
@@ -115,7 +113,7 @@ def evaluate_benchmark(
             raise ValueError(f"Invalid dataset: {dataset_name}")
 
     # Dataset will only be downloaded if it does not exist
-    wilds_dataset: WILDSDataset = get_dataset(
+    wilds_dataset: GDSDataset = get_dataset(
         dataset=dataset_name, root_dir=root_dir, download=True
     )
     splits: List[str] = list(wilds_dataset.split_dict.keys())
@@ -175,13 +173,13 @@ def evaluate_benchmark(
 
 
 def evaluate_replicate(
-    dataset: WILDSDataset, split: str, predicted_labels: torch.Tensor
+        dataset: GDSDataset, split: str, predicted_labels: torch.Tensor
 ) -> Dict[str, float]:
     """
     Evaluate the given predictions and return the appropriate metrics.
 
     Parameters:
-        dataset (WILDSDataset): A WILDS Dataset
+        dataset (GDSDataset): A WILDS Dataset
         split (str): split we are evaluating on
         predicted_labels (torch.Tensor): Predictions
 
@@ -189,7 +187,7 @@ def evaluate_replicate(
         Metrics as a dictionary with metrics as the keys and metric values as the values
     """
     # Dataset will only be downloaded if it does not exist
-    subset: WILDSSubset = dataset.get_subset(split)
+    subset: GDSSubset = dataset.get_subset(split)
     metadata: torch.Tensor = subset.metadata_array
     true_labels = subset.y_array
     if predicted_labels.shape != true_labels.shape:
@@ -198,10 +196,10 @@ def evaluate_replicate(
 
 
 def evaluate_replicate_for_globalwheat(
-    dataset: WILDSDataset, split: str, path_to_predictions: str
+        dataset: GDSDataset, split: str, path_to_predictions: str
 ) -> Dict[str, float]:
     predicted_labels = torch.load(path_to_predictions)
-    subset: WILDSSubset = dataset.get_subset(split)
+    subset: GDSSubset = dataset.get_subset(split)
     metadata: torch.Tensor = subset.metadata_array
     true_labels = [subset.dataset.y_array[idx] for idx in subset.indices]
     return dataset.eval(predicted_labels, true_labels, metadata)[0]

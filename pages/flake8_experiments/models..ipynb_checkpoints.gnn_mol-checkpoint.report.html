@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: .\models\.ipynb_checkpoints\gnn_mol-checkpoint.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               .\models\.ipynb_checkpoints\gnn_mol-checkpoint.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="E251">
+               <span class="count sev-2">
+                  20
+               </span>
+               <strong>E251:</strong> unexpected spaces around keyword / parameter equals
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 6 places):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l17">
+                  <tt><i>17</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">emb_dim</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l41">
+                  <tt><i>41</i>         <span class="bp">self</span><span class="o">.</span><span class="n">gnn_node</span> <span class="o">=</span> <span class="n">GINVirtual_node</span><span class="p">(</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="n">dropout</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l85">
+                  <tt><i>85</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l142">
+                  <tt><i>142</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l144">
+                  <tt><i>144</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l153">
+                  <tt><i>153</i>                 <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l177">
+                  <tt><i>177</i>         <span class="nb">super</span><span class="p">(</span><span class="n">GINConv</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">aggr</span> <span class="o">=</span> <span class="s2">&quot;add&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l182">
+                  <tt><i>182</i>         <span class="bp">self</span><span class="o">.</span><span class="n">bond_encoder</span> <span class="o">=</span> <span class="n">BondEncoder</span><span class="p">(</span><span class="n">emb_dim</span> <span class="o">=</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  17
+               </span>
+               <strong>E501:</strong> line too long (100 > 79 characters)
+               
+                  (and 14 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l10">
+                  <tt><i>10</i> <span class="sd">    Graph Isomorphism Network augmented with virtual node for multi-task binary graph classification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l14">
+                  <tt><i>14</i> <span class="sd">        - prediction (Tensor): float torch tensor of shape (num_graphs, num_tasks)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l17">
+                  <tt><i>17</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">emb_dim</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l20">
+                  <tt><i>20</i> <span class="sd">            - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l48">
+                  <tt><i>48</i>             <span class="bp">self</span><span class="o">.</span><span class="n">graph_pred_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emb_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_tasks</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (119 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l77">
+                  <tt><i>77</i> <span class="sd">    Helper function of Graph Isomorphism Network augmented with virtual node for multi-task binary graph classification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l83">
+                  <tt><i>83</i> <span class="sd">        - node_embedding (Tensor): float torch tensor of shape (num_nodes, emb_dim)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l88">
+                  <tt><i>88</i> <span class="sd">            - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (153 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l120">
+                  <tt><i>120</i>             <span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> \</tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (137 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l121">
+                  <tt><i>121</i>                                                     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (125 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l125">
+                  <tt><i>125</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (136 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l128">
+                  <tt><i>128</i>         <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtualnode_embedding</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">device</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l144">
+                  <tt><i>144</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (106 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l151">
+                  <tt><i>151</i>                 <span class="n">virtualnode_embedding_temp</span> <span class="o">=</span> <span class="n">global_add_pool</span><span class="p">(</span><span class="n">h_list</span><span class="p">[</span><span class="n">layer</span><span class="p">],</span> <span class="n">batch</span><span class="p">)</span> <span class="o">+</span> <span class="n">virtualnode_embedding</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (151 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l153">
+                  <tt><i>153</i>                 <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (162 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l179">
+                  <tt><i>179</i>         <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l186">
+                  <tt><i>186</i>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E266">
+               <span class="count sev-2">
+                  12
+               </span>
+               <strong>E266:</strong> too many leading '#' for block comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l57">
+                  <tt><i>57</i>         <span class="c1">## return the features after pooling</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l103">
+                  <tt><i>103</i>         <span class="c1">### set the initial virtual node embedding to 0.</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l107">
+                  <tt><i>107</i>         <span class="c1">### List of GNNs</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l109">
+                  <tt><i>109</i>         <span class="c1">### batch norms applied to node embeddings</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l112">
+                  <tt><i>112</i>         <span class="c1">### List of MLPs to transform virtual node at every layer</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l127">
+                  <tt><i>127</i>         <span class="c1">### virtual node embeddings for graphs</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l133">
+                  <tt><i>133</i>             <span class="c1">### add message from virtual nodes to graph nodes</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l136">
+                  <tt><i>136</i>             <span class="c1">### Message passing among graph nodes</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l148">
+                  <tt><i>148</i>             <span class="c1">### update the virtual nodes</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l150">
+                  <tt><i>150</i>                 <span class="c1">### add message from graph nodes to virtual nodes</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l152">
+                  <tt><i>152</i>                 <span class="c1">### transform virtual nodes using MLP</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l160">
+                  <tt><i>160</i> <span class="c1">### GIN convolution along the graph structure</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  5
+               </span>
+               <strong>E303:</strong> too many blank lines (3)
+               
+                  (and 2 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l52">
+                  <tt><i>52</i>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batched_data</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l57">
+                  <tt><i>57</i>         <span class="c1">## return the features after pooling</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (4):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l67">
+                  <tt><i>67</i>         <span class="c1"># return the features before pooling and after pooling</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l124">
+                  <tt><i>124</i>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batched_data</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l131">
+                  <tt><i>131</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">atom_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  5
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l49">
+                  <tt><i>49</i>      </tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l50">
+                  <tt><i>50</i>        </tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l55">
+                  <tt><i>55</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l64">
+                  <tt><i>64</i>      </tt>
+               </a>
+            </li><li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l130">
+                  <tt><i>130</i>      </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E128">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E128:</strong> continuation line under-indented for visual indent
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l121">
+                  <tt><i>121</i>                                                     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E225">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E225:</strong> missing whitespace around operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l186">
+                  <tt><i>186</i>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E231:</strong> missing whitespace after ','
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l6">
+                  <tt><i>6</i> <span class="kn">from</span> <span class="nn">ogb.graphproppred.mol_encoder</span> <span class="kn">import</span> <span class="n">AtomEncoder</span><span class="p">,</span><span class="n">BondEncoder</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E265">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E265:</strong> block comment should start with '# '
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l141">
+                  <tt><i>141</i>                 <span class="c1">#remove relu for the last layer</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l8">
+                  <tt><i>8</i> <span class="k">class</span> <span class="nc">GINVirtual_mol</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E502">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E502:</strong> the backslash is redundant between brackets
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models..ipynb_checkpoints.gnn_mol-checkpoint.source.html#l120">
+                  <tt><i>120</i>             <span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> \</tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

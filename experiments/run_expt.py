@@ -1,39 +1,39 @@
-import os
-import csv
-import time
 import argparse
-import pandas as pd
-import torch
-import torch.nn as nn
-import torchvision
+import csv
+import os
 import sys
+import time
 from collections import defaultdict
 
-import wilds
-from wilds.common.data_loaders import get_train_loader, get_eval_loader
-from wilds.common.grouper import CombinatorialGrouper
+import pandas as pd
+import torch
+import torch.multiprocessing
+import torch.nn as nn
+import torchvision
 
-from utils import set_seed, Logger, BatchLogger, log_config, initialize_wandb, close_wandb, ParseKwargs, load, log_group_data, parse_bool, get_model_prefix
-from train import train, evaluate
+import configs.supported as supported
+import gds
 from algorithms.initializer import initialize_algorithm
 from configs.utils import populate_defaults
-import configs.supported as supported
-
-import torch.multiprocessing
+from train import train, evaluate
+from utils import set_seed, Logger, BatchLogger, log_config, initialize_wandb, close_wandb, ParseKwargs, load, \
+    log_group_data, parse_bool, get_model_prefix
+from gds.common.data_loaders import get_train_loader, get_eval_loader
+from gds.common.grouper import CombinatorialGrouper
 
 
 def main():
-
-    ''' to see default hyperparams for each dataset/model, look at configs/ '''
+    """ to see default hyperparams for each dataset/model, look at configs/ """
     parser = argparse.ArgumentParser()
 
     # Required arguments
-    parser.add_argument('-d', '--dataset', choices=wilds.supported_datasets, required=True)
+    parser.add_argument('-d', '--dataset', choices=gds.supported_datasets, required=True)
     parser.add_argument('-a', '--algorithm', choices=supported.algorithms, required=True)
     parser.add_argument('-m', '--model', choices=supported.models, required=True)
 
     # Dataset
-    parser.add_argument('--split_scheme', help='Identifies how the train/val/test split is constructed. Choices are dataset-specific.')
+    parser.add_argument('--split_scheme',
+                        help='Identifies how the train/val/test split is constructed. Choices are dataset-specific.')
     parser.add_argument('--dataset_kwargs', nargs='*', action=ParseKwargs, default={})
     parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',
                         help='If true, tries to downloads the dataset if it does not exist in root_dir.')
@@ -52,12 +52,12 @@ def main():
 
     # Model
     parser.add_argument('--model_kwargs', nargs='*', action=ParseKwargs, default={},
-        help='keyword arguments for model initialization passed as key1=value1 key2=value2')
+                        help='keyword arguments for model initialization passed as key1=value1 key2=value2')
 
     # Objective
-    parser.add_argument('--loss_function', choices = supported.losses)
+    parser.add_argument('--loss_function', choices=supported.losses)
     parser.add_argument('--loss_kwargs', nargs='*', action=ParseKwargs, default={},
-        help='keyword arguments for loss initialization passed as key1=value1 key2=value2')
+                        help='keyword arguments for loss initialization passed as key1=value1 key2=value2')
 
     # Algorithm
     parser.add_argument('--groupby_fields', nargs='+')
@@ -86,16 +86,18 @@ def main():
     parser.add_argument('--scheduler_metric_name')
 
     # Evaluation
-    parser.add_argument('--process_outputs_function', choices = supported.process_outputs_functions)
+    parser.add_argument('--eval_only', type=parse_bool, const=True, nargs='?', default=False)
+    parser.add_argument('--process_outputs_function', choices=supported.process_outputs_functions)
     parser.add_argument('--evaluate_all_splits', type=parse_bool, const=True, nargs='?', default=True)
     parser.add_argument('--eval_splits', nargs='+', default=[])
-    parser.add_argument('--eval_only', type=parse_bool, const=True, nargs='?', default=False)
-    parser.add_argument('--eval_epoch', default=None, type=int, help='If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.')
+    parser.add_argument('--eval_epoch', default=None, type=int,
+                        help='If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.')
 
     # Misc
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--seed', type=int, default=0)
-    parser.add_argument('--root_dir', default='./data', help='The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).')
+    parser.add_argument('--root_dir', default='./data',
+                        help='The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).')
     parser.add_argument('--log_dir', default='./logs')
     parser.add_argument('--log_every', default=50, type=int)
     parser.add_argument('--save_step', type=int)
@@ -121,14 +123,14 @@ def main():
 
     # Initialize logs
     if os.path.exists(config.log_dir) and config.resume:
-        resume=True
-        mode='a'
+        resume = True
+        mode = 'a'
     elif os.path.exists(config.log_dir) and config.eval_only:
-        resume=False
-        mode='a'
+        resume = False
+        mode = 'a'
     else:
-        resume=False
-        mode='w'
+        resume = False
+        mode = 'w'
 
     if not os.path.exists(config.log_dir):
         os.makedirs(config.log_dir)
@@ -141,14 +143,13 @@ def main():
     set_seed(config.seed)
 
     # Data
-    full_dataset = wilds.get_dataset(
+    full_dataset = gds.get_dataset(
         dataset=config.dataset,
         version=config.version,
         root_dir=config.root_dir,
         download=config.download,
         split_scheme=config.split_scheme,
         **config.dataset_kwargs)
-
 
     train_grouper = CombinatorialGrouper(
         dataset=full_dataset,
@@ -158,7 +159,7 @@ def main():
     if config.use_wandb:
         wandb_runner = initialize_wandb(config)
     for split in full_dataset.split_dict.keys():
-        if split=='train':
+        if split == 'train':
             verbose = True
         elif split == 'val':
             verbose = True
@@ -201,7 +202,7 @@ def main():
 
     # Logging dataset info
     # Show class breakdown if feasible
-    if config.no_group_logging and full_dataset.is_classification and full_dataset.y_size==1 and full_dataset.n_classes <= 10:
+    if config.no_group_logging and full_dataset.is_classification and full_dataset.y_size == 1 and full_dataset.n_classes <= 10:
         log_grouper = CombinatorialGrouper(
             dataset=full_dataset,
             groupby_fields=['y'])
@@ -218,19 +219,19 @@ def main():
         train_grouper=train_grouper)
 
     model_prefix = get_model_prefix(datasets['train'], config)
- 
+
     if not config.eval_only:
         ## Load saved results if resuming
         resume_success = False
         if resume:
-            save_path = model_prefix + 'epoch:last_model.pth'
+            save_path = model_prefix.with_name(model_prefix.name + 'epoch-last_model.pth')
             if not os.path.exists(save_path):
                 epochs = [
                     int(file.split('epoch:')[1].split('_')[0])
                     for file in os.listdir(config.log_dir) if file.endswith('.pth')]
                 if len(epochs) > 0:
                     latest_epoch = max(epochs)
-                    save_path = model_prefix + f'epoch-{latest_epoch}_model.pth'
+                    save_path = model_prefix.with_name(model_prefix.name + f'epoch-{latest_epoch}_model.pth')
             try:
                 prev_epoch, best_val_metric = load(algorithm, save_path)
                 epoch_offset = prev_epoch + 1
@@ -240,8 +241,8 @@ def main():
                 pass
 
         if resume_success == False:
-            epoch_offset=0
-            best_val_metric=None
+            epoch_offset = 0
+            best_val_metric = None
 
         train(
             algorithm=algorithm,
@@ -252,9 +253,9 @@ def main():
             best_val_metric=best_val_metric)
     else:
         if config.eval_epoch is None:
-            eval_model_path = model_prefix + 'epoch-best_model.pth'
+            eval_model_path = model_prefix.with_name(model_prefix.name + 'epoch-best_model.pth')
         else:
-            eval_model_path = model_prefix +  f'epoch-{config.eval_epoch}_model.pth'
+            eval_model_path = model_prefix.with_name(model_prefix.name + f'epoch-{config.eval_epoch}_model.pth')
         best_epoch, best_val_metric = load(algorithm, eval_model_path)
         if config.eval_epoch is None:
             epoch = best_epoch
@@ -278,5 +279,6 @@ def main():
         datasets[split]['eval_logger'].close()
         datasets[split]['algo_logger'].close()
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()

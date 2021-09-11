@@ -1,10 +1,12 @@
 import torch
-from models.initializer import initialize_model
-from algorithms.single_model_algorithm import SingleModelAlgorithm
-from wilds.common.utils import split_into_groups
 import torch.autograd as autograd
-from wilds.common.metrics.metric import ElementwiseMetric, MultiTaskMetric
+from algorithms.single_model_algorithm import SingleModelAlgorithm
+from models.initializer import initialize_model
 from optimizer import initialize_optimizer
+
+from gds.common.metrics.metric import ElementwiseMetric, MultiTaskMetric
+from gds.common.utils import split_into_groups
+
 
 class IRM(SingleModelAlgorithm):
     """
@@ -21,6 +23,7 @@ class IRM(SingleModelAlgorithm):
     The IRM penalty function below is adapted from the code snippet
     provided in the above paper.
     """
+
     def __init__(self, config, d_out, grouper, loss, metric, n_train_steps):
         """
         Algorithm-specific arguments (in config):
@@ -50,7 +53,7 @@ class IRM(SingleModelAlgorithm):
         self.irm_penalty_anneal_iters = config.irm_penalty_anneal_iters
         self.scale = torch.tensor(1.).to(self.device).requires_grad_()
         self.update_count = 0
-        self.config = config # Need to store config for IRM because we need to re-init optimizer
+        self.config = config  # Need to store config for IRM because we need to re-init optimizer
 
         assert isinstance(self.loss, ElementwiseMetric) or isinstance(self.loss, MultiTaskMetric)
 
@@ -70,14 +73,14 @@ class IRM(SingleModelAlgorithm):
         avg_loss = 0.
         penalty = 0.
 
-        for i_group in group_indices: # Each element of group_indices is a list of indices
+        for i_group in group_indices:  # Each element of group_indices is a list of indices
             group_losses, _ = self.loss.compute_flattened(
                 self.scale * results['y_pred'][i_group],
                 results['y_true'][i_group],
                 return_dict=False)
-            if group_losses.numel()>0:
+            if group_losses.numel() > 0:
                 avg_loss += group_losses.mean()
-            if self.is_training: # Penalties only make sense when training
+            if self.is_training:  # Penalties only make sense when training
                 penalty += self.irm_penalty(group_losses)
         avg_loss /= n_groups_per_batch
         penalty /= n_groups_per_batch
