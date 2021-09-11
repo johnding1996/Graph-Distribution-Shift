@@ -149,9 +149,6 @@ data/
 # mypy config
 mypy.ini
 
-# pyenv local config
-.python-version
-
 # pipenv lock file
 Pipfile.lock
 
