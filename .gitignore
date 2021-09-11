@@ -158,14 +158,5 @@ logs/
 # wandb
 wandb/
 
-# reports
-reports/
-
-# docs
-docs/
-
 # dependent repos
 benchmarking-gnns-master/
-
-# temporary scripts
-run.sh

@@ -6,6 +6,7 @@ install:
 script:
   - pytest . --html=./pages/pytest/index.html
 after_success:
+  - coverage run -m pytest .
   - coverage html -d ./pages/converage/
   - sphinx-apidoc -f -o ./pages/docs/source .
   - sphinx-build -b html ./pages/docs/source ./pages/docs/build
@@ -14,7 +15,7 @@ after_success:
   - cd ../experiments/
   - flake8 . --format=html --htmldir=../pages/flake8_experiments/
   - cd ../
-  - mypy . --html-repot ./pages/mupy/
+  - mypy . --html-report ./pages/mypy/
 
 deploy:
   provider: pages
