@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>datasets/download_utils.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <h1>
+            <a href="datasets.download_utils.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               datasets/download_utils.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="sd">&quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> <span class="sd">This file contains utility functions for downloading datasets.</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev- "><tt><i>3</i> <span class="sd">The code in this file is taken from the torchvision package,</span></tt>
+            </div>
+            <div id="l4"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (90 > 79 characters)</li>
+               
+               </ul><tt><i>4</i> <span class="sd">specifically, https://github.com/pytorch/vision/blob/master/torchvision/datasets/utils.py.</span></tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i> <span class="sd">We package it here to avoid users having to install the rest of torchvision.</span></tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i> <span class="sd">It is licensed under the following license:</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i> &nbsp;</tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i> <span class="sd">BSD 3-Clause License</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i> &nbsp;</tt>
+            </div>
+            <div id="l10"
+               class="code sev- "><tt><i>10</i> <span class="sd">Copyright (c) Soumith Chintala 2016,</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev- "><tt><i>11</i> <span class="sd">All rights reserved.</span></tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i> &nbsp;</tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i> <span class="sd">Redistribution and use in source and binary forms, with or without</span></tt>
+            </div>
+            <div id="l14"
+               class="code sev- "><tt><i>14</i> <span class="sd">modification, are permitted provided that the following conditions are met:</span></tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i> &nbsp;</tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i> <span class="sd">* Redistributions of source code must retain the above copyright notice, this</span></tt>
+            </div>
+            <div id="l17"
+               class="code sev- "><tt><i>17</i> <span class="sd">  list of conditions and the following disclaimer.</span></tt>
+            </div>
+            <div id="l18"
+               class="code sev- "><tt><i>18</i> &nbsp;</tt>
+            </div>
+            <div id="l19"
+               class="code sev- "><tt><i>19</i> <span class="sd">* Redistributions in binary form must reproduce the above copyright notice,</span></tt>
+            </div>
+            <div id="l20"
+               class="code sev- "><tt><i>20</i> <span class="sd">  this list of conditions and the following disclaimer in the documentation</span></tt>
+            </div>
+            <div id="l21"
+               class="code sev- "><tt><i>21</i> <span class="sd">  and/or other materials provided with the distribution.</span></tt>
+            </div>
+            <div id="l22"
+               class="code sev- "><tt><i>22</i> &nbsp;</tt>
+            </div>
+            <div id="l23"
+               class="code sev- "><tt><i>23</i> <span class="sd">* Neither the name of the copyright holder nor the names of its</span></tt>
+            </div>
+            <div id="l24"
+               class="code sev- "><tt><i>24</i> <span class="sd">  contributors may be used to endorse or promote products derived from</span></tt>
+            </div>
+            <div id="l25"
+               class="code sev- "><tt><i>25</i> <span class="sd">  this software without specific prior written permission.</span></tt>
+            </div>
+            <div id="l26"
+               class="code sev- "><tt><i>26</i> &nbsp;</tt>
+            </div>
+            <div id="l27"
+               class="code sev- "><tt><i>27</i> <span class="sd">THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span></tt>
+            </div>
+            <div id="l28"
+               class="code sev- "><tt><i>28</i> <span class="sd">AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span></tt>
+            </div>
+            <div id="l29"
+               class="code sev- "><tt><i>29</i> <span class="sd">IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></tt>
+            </div>
+            <div id="l30"
+               class="code sev- "><tt><i>30</i> <span class="sd">DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE</span></tt>
+            </div>
+            <div id="l31"
+               class="code sev- "><tt><i>31</i> <span class="sd">FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</span></tt>
+            </div>
+            <div id="l32"
+               class="code sev- "><tt><i>32</i> <span class="sd">DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span></tt>
+            </div>
+            <div id="l33"
+               class="code sev- "><tt><i>33</i> <span class="sd">SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER</span></tt>
+            </div>
+            <div id="l34"
+               class="code sev- "><tt><i>34</i> <span class="sd">CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,</span></tt>
+            </div>
+            <div id="l35"
+               class="code sev- "><tt><i>35</i> <span class="sd">OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span></tt>
+            </div>
+            <div id="l36"
+               class="code sev- "><tt><i>36</i> <span class="sd">OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></tt>
+            </div>
+            <div id="l37"
+               class="code sev- "><tt><i>37</i> <span class="sd">&quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l38"
+               class="code sev- "><tt><i>38</i> &nbsp;</tt>
+            </div>
+            <div id="l39"
+               class="code sev- "><tt><i>39</i> <span class="kn">import</span> <span class="nn">gzip</span></tt>
+            </div>
+            <div id="l40"
+               class="code sev- "><tt><i>40</i> <span class="kn">import</span> <span class="nn">hashlib</span></tt>
+            </div>
+            <div id="l41"
+               class="code sev- "><tt><i>41</i> <span class="kn">import</span> <span class="nn">os</span></tt>
+            </div>
+            <div id="l42"
+               class="code sev- "><tt><i>42</i> <span class="kn">import</span> <span class="nn">os.path</span></tt>
+            </div>
+            <div id="l43"
+               class="code sev- "><tt><i>43</i> <span class="kn">import</span> <span class="nn">tarfile</span></tt>
+            </div>
+            <div id="l44"
+               class="code sev- "><tt><i>44</i> <span class="kn">import</span> <span class="nn">zipfile</span></tt>
+            </div>
+            <div id="l45"
+               class="code sev- "><tt><i>45</i> <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TypeVar</span></tt>
+            </div>
+            <div id="l46"
+               class="code sev- "><tt><i>46</i> &nbsp;</tt>
+            </div>
+            <div id="l47"
+               class="code sev- "><tt><i>47</i> <span class="kn">import</span> <span class="nn">torch</span></tt>
+            </div>
+            <div id="l48"
+               class="code sev- "><tt><i>48</i> <span class="kn">from</span> <span class="nn">torch.utils.model_zoo</span> <span class="kn">import</span> <span class="n">tqdm</span></tt>
+            </div>
+            <div id="l49"
+               class="code sev- "><tt><i>49</i> &nbsp;</tt>
+            </div>
+            <div id="l50"
+               class="code sev- "><tt><i>50</i> &nbsp;</tt>
+            </div>
+            <div id="l51"
+               class="code sev- "><tt><i>51</i> <span class="k">def</span> <span class="nf">gen_bar_updater</span><span class="p">(</span><span class="n">total</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]:</span></tt>
+            </div>
+            <div id="l52"
+               class="code sev- "><tt><i>52</i>     <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Byte&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l53"
+               class="code sev- "><tt><i>53</i> &nbsp;</tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i>     <span class="k">def</span> <span class="nf">bar_update</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">block_size</span><span class="p">,</span> <span class="n">total_size</span><span class="p">):</span></tt>
+            </div>
+            <div id="l55"
+               class="code sev- "><tt><i>55</i>         <span class="k">if</span> <span class="n">pbar</span><span class="o">.</span><span class="n">total</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">total_size</span><span class="p">:</span></tt>
+            </div>
+            <div id="l56"
+               class="code sev- "><tt><i>56</i>             <span class="n">pbar</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="n">total_size</span></tt>
+            </div>
+            <div id="l57"
+               class="code sev- "><tt><i>57</i>         <span class="n">progress_bytes</span> <span class="o">=</span> <span class="n">count</span> <span class="o">*</span> <span class="n">block_size</span></tt>
+            </div>
+            <div id="l58"
+               class="code sev- "><tt><i>58</i>         <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">progress_bytes</span> <span class="o">-</span> <span class="n">pbar</span><span class="o">.</span><span class="n">n</span><span class="p">)</span></tt>
+            </div>
+            <div id="l59"
+               class="code sev- "><tt><i>59</i> &nbsp;</tt>
+            </div>
+            <div id="l60"
+               class="code sev- "><tt><i>60</i>     <span class="k">return</span> <span class="n">bar_update</span></tt>
+            </div>
+            <div id="l61"
+               class="code sev- "><tt><i>61</i> &nbsp;</tt>
+            </div>
+            <div id="l62"
+               class="code sev- "><tt><i>62</i> &nbsp;</tt>
+            </div>
+            <div id="l63"
+               class="code sev- "><tt><i>63</i> <span class="k">def</span> <span class="nf">calculate_md5</span><span class="p">(</span><span class="n">fpath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></tt>
+            </div>
+            <div id="l64"
+               class="code sev- "><tt><i>64</i>     <span class="n">md5</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">()</span></tt>
+            </div>
+            <div id="l65"
+               class="code sev- "><tt><i>65</i>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span></tt>
+            </div>
+            <div id="l66"
+               class="code sev- "><tt><i>66</i>         <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">),</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">):</span></tt>
+            </div>
+            <div id="l67"
+               class="code sev- "><tt><i>67</i>             <span class="n">md5</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span></tt>
+            </div>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i>     <span class="k">return</span> <span class="n">md5</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span></tt>
+            </div>
+            <div id="l69"
+               class="code sev- "><tt><i>69</i> &nbsp;</tt>
+            </div>
+            <div id="l70"
+               class="code sev- "><tt><i>70</i> &nbsp;</tt>
+            </div>
+            <div id="l71"
+               class="code sev- "><tt><i>71</i> <span class="k">def</span> <span class="nf">check_md5</span><span class="p">(</span><span class="n">fpath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">md5</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span></tt>
+            </div>
+            <div id="l72"
+               class="code sev- "><tt><i>72</i>     <span class="k">return</span> <span class="n">md5</span> <span class="o">==</span> <span class="n">calculate_md5</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></tt>
+            </div>
+            <div id="l73"
+               class="code sev- "><tt><i>73</i> &nbsp;</tt>
+            </div>
+            <div id="l74"
+               class="code sev- "><tt><i>74</i> &nbsp;</tt>
+            </div>
+            <div id="l75"
+               class="code sev- "><tt><i>75</i> <span class="k">def</span> <span class="nf">check_integrity</span><span class="p">(</span><span class="n">fpath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">md5</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span></tt>
+            </div>
+            <div id="l76"
+               class="code sev- "><tt><i>76</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fpath</span><span class="p">):</span></tt>
+            </div>
+            <div id="l77"
+               class="code sev- "><tt><i>77</i>         <span class="k">return</span> <span class="kc">False</span></tt>
+            </div>
+            <div id="l78"
+               class="code sev- "><tt><i>78</i>     <span class="k">if</span> <span class="n">md5</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l79"
+               class="code sev- "><tt><i>79</i>         <span class="k">return</span> <span class="kc">True</span></tt>
+            </div>
+            <div id="l80"
+               class="code sev- "><tt><i>80</i>     <span class="k">return</span> <span class="n">check_md5</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">md5</span><span class="p">)</span></tt>
+            </div>
+            <div id="l81"
+               class="code sev- "><tt><i>81</i> &nbsp;</tt>
+            </div>
+            <div id="l82"
+               class="code sev- "><tt><i>82</i> &nbsp;</tt>
+            </div>
+            <div id="l83"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (96 > 79 characters)</li>
+               
+               </ul><tt><i>83</i> <span class="k">def</span> <span class="nf">download_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">md5</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+            </div>
+            <div id="l84"
+               class="code sev- "><tt><i>84</i>                  <span class="n">size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l85"
+               class="code sev- "><tt><i>85</i>     <span class="sd">&quot;&quot;&quot;Download a file from a url and place it in root.</span></tt>
+            </div>
+            <div id="l86"
+               class="code sev- "><tt><i>86</i> &nbsp;</tt>
+            </div>
+            <div id="l87"
+               class="code sev- "><tt><i>87</i> <span class="sd">    Args:</span></tt>
+            </div>
+            <div id="l88"
+               class="code sev- "><tt><i>88</i> <span class="sd">        url (str): URL to download file from</span></tt>
+            </div>
+            <div id="l89"
+               class="code sev- "><tt><i>89</i> <span class="sd">        root (str): Directory to place downloaded file in</span></tt>
+            </div>
+            <div id="l90"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (99 > 79 characters)</li>
+               
+               </ul><tt><i>90</i> <span class="sd">        filename (str, optional): Name to save the file under. If None, use the basename of the URL</span></tt>
+            </div>
+            <div id="l91"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (80 > 79 characters)</li>
+               
+               </ul><tt><i>91</i> <span class="sd">        md5 (str, optional): MD5 checksum of the download. If None, do not check</span></tt>
+            </div>
+            <div id="l92"
+               class="code sev- "><tt><i>92</i> <span class="sd">    &quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l93"
+               class="code sev- "><tt><i>93</i>     <span class="kn">import</span> <span class="nn">urllib</span></tt>
+            </div>
+            <div id="l94"
+               class="code sev- "><tt><i>94</i> &nbsp;</tt>
+            </div>
+            <div id="l95"
+               class="code sev- "><tt><i>95</i>     <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">root</span><span class="p">)</span></tt>
+            </div>
+            <div id="l96"
+               class="code sev- "><tt><i>96</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span></tt>
+            </div>
+            <div id="l97"
+               class="code sev- "><tt><i>97</i>         <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></tt>
+            </div>
+            <div id="l98"
+               class="code sev- "><tt><i>98</i>     <span class="n">fpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></tt>
+            </div>
+            <div id="l99"
+               class="code sev- "><tt><i>99</i> &nbsp;</tt>
+            </div>
+            <div id="l100"
+               class="code sev- "><tt><i>100</i>     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+            </div>
+            <div id="l101"
+               class="code sev- "><tt><i>101</i> &nbsp;</tt>
+            </div>
+            <div id="l102"
+               class="code sev- "><tt><i>102</i>     <span class="c1"># check if file is already present locally</span></tt>
+            </div>
+            <div id="l103"
+               class="code sev- "><tt><i>103</i>     <span class="k">if</span> <span class="n">check_integrity</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">md5</span><span class="p">):</span></tt>
+            </div>
+            <div id="l104"
+               class="code sev- "><tt><i>104</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using downloaded and verified file: &#39;</span> <span class="o">+</span> <span class="n">fpath</span><span class="p">)</span></tt>
+            </div>
+            <div id="l105"
+               class="code sev- "><tt><i>105</i>     <span class="k">else</span><span class="p">:</span>  <span class="c1"># download the file</span></tt>
+            </div>
+            <div id="l106"
+               class="code sev- "><tt><i>106</i>         <span class="k">try</span><span class="p">:</span></tt>
+            </div>
+            <div id="l107"
+               class="code sev- "><tt><i>107</i>             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Downloading &#39;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s1">&#39; to &#39;</span> <span class="o">+</span> <span class="n">fpath</span><span class="p">)</span></tt>
+            </div>
+            <div id="l108"
+               class="code sev- "><tt><i>108</i>             <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span></tt>
+            </div>
+            <div id="l109"
+               class="code sev- "><tt><i>109</i>                 <span class="n">url</span><span class="p">,</span> <span class="n">fpath</span><span class="p">,</span></tt>
+            </div>
+            <div id="l110"
+               class="code sev- "><tt><i>110</i>                 <span class="n">reporthook</span><span class="o">=</span><span class="n">gen_bar_updater</span><span class="p">(</span><span class="n">size</span><span class="p">)</span></tt>
+            </div>
+            <div id="l111"
+               class="code sev- "><tt><i>111</i>             <span class="p">)</span></tt>
+            </div>
+            <div id="l112"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (83 > 79 characters)</li>
+               
+               </ul><tt><i>112</i>         <span class="k">except</span> <span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span><span class="p">,</span> <span class="ne">IOError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># type: ignore[attr-defined]</span></tt>
+            </div>
+            <div id="l113"
+               class="code sev- "><tt><i>113</i>             <span class="k">if</span> <span class="n">url</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;https&#39;</span><span class="p">:</span></tt>
+            </div>
+            <div id="l114"
+               class="code sev- "><tt><i>114</i>                 <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;https:&#39;</span><span class="p">,</span> <span class="s1">&#39;http:&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l115"
+               class="code sev- "><tt><i>115</i>                 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed download. Trying https -&gt; http instead.&#39;</span></tt>
+            </div>
+            <div id="l116"
+               class="code sev- "><tt><i>116</i>                       <span class="s1">&#39; Downloading &#39;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s1">&#39; to &#39;</span> <span class="o">+</span> <span class="n">fpath</span><span class="p">)</span></tt>
+            </div>
+            <div id="l117"
+               class="code sev- "><tt><i>117</i>                 <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span></tt>
+            </div>
+            <div id="l118"
+               class="code sev- "><tt><i>118</i>                     <span class="n">url</span><span class="p">,</span> <span class="n">fpath</span><span class="p">,</span></tt>
+            </div>
+            <div id="l119"
+               class="code sev- "><tt><i>119</i>                     <span class="n">reporthook</span><span class="o">=</span><span class="n">gen_bar_updater</span><span class="p">(</span><span class="n">size</span><span class="p">)</span></tt>
+            </div>
+            <div id="l120"
+               class="code sev- "><tt><i>120</i>                 <span class="p">)</span></tt>
+            </div>
+            <div id="l121"
+               class="code sev- "><tt><i>121</i>             <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l122"
+               class="code sev- "><tt><i>122</i>                 <span class="k">raise</span> <span class="n">e</span></tt>
+            </div>
+            <div id="l123"
+               class="code sev- "><tt><i>123</i>         <span class="c1"># check integrity of downloaded file</span></tt>
+            </div>
+            <div id="l124"
+               class="code sev- "><tt><i>124</i>         <span class="k">if</span> <span class="ow">not</span> <span class="n">check_integrity</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">md5</span><span class="p">):</span></tt>
+            </div>
+            <div id="l125"
+               class="code sev- "><tt><i>125</i>             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;File not found or corrupted.&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l126"
+               class="code sev- "><tt><i>126</i> &nbsp;</tt>
+            </div>
+            <div id="l127"
+               class="code sev- "><tt><i>127</i> &nbsp;</tt>
+            </div>
+            <div id="l128"
+               class="code sev- "><tt><i>128</i> <span class="k">def</span> <span class="nf">list_dir</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span></tt>
+            </div>
+            <div id="l129"
+               class="code sev- "><tt><i>129</i>     <span class="sd">&quot;&quot;&quot;List all directories at a given root</span></tt>
+            </div>
+            <div id="l130"
+               class="code sev- "><tt><i>130</i> &nbsp;</tt>
+            </div>
+            <div id="l131"
+               class="code sev- "><tt><i>131</i> <span class="sd">    Args:</span></tt>
+            </div>
+            <div id="l132"
+               class="code sev- "><tt><i>132</i> <span class="sd">        root (str): Path to directory whose folders need to be listed</span></tt>
+            </div>
+            <div id="l133"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>133</i> <span class="sd">        prefix (bool, optional): If true, prepends the path to each result, otherwise</span></tt>
+            </div>
+            <div id="l134"
+               class="code sev- "><tt><i>134</i> <span class="sd">            only returns the name of the directories found</span></tt>
+            </div>
+            <div id="l135"
+               class="code sev- "><tt><i>135</i> <span class="sd">    &quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l136"
+               class="code sev- "><tt><i>136</i>     <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">root</span><span class="p">)</span></tt>
+            </div>
+            <div id="l137"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (87 > 79 characters)</li>
+               
+               </ul><tt><i>137</i>     <span class="n">directories</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">p</span><span class="p">))]</span></tt>
+            </div>
+            <div id="l138"
+               class="code sev- "><tt><i>138</i>     <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span></tt>
+            </div>
+            <div id="l139"
+               class="code sev- "><tt><i>139</i>         <span class="n">directories</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">directories</span><span class="p">]</span></tt>
+            </div>
+            <div id="l140"
+               class="code sev- "><tt><i>140</i>     <span class="k">return</span> <span class="n">directories</span></tt>
+            </div>
+            <div id="l141"
+               class="code sev- "><tt><i>141</i> &nbsp;</tt>
+            </div>
+            <div id="l142"
+               class="code sev- "><tt><i>142</i> &nbsp;</tt>
+            </div>
+            <div id="l143"
+               class="code sev- "><tt><i>143</i> <span class="k">def</span> <span class="nf">list_files</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">suffix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span></tt>
+            </div>
+            <div id="l144"
+               class="code sev- "><tt><i>144</i>     <span class="sd">&quot;&quot;&quot;List all files ending with a suffix at a given root</span></tt>
+            </div>
+            <div id="l145"
+               class="code sev- "><tt><i>145</i> &nbsp;</tt>
+            </div>
+            <div id="l146"
+               class="code sev- "><tt><i>146</i> <span class="sd">    Args:</span></tt>
+            </div>
+            <div id="l147"
+               class="code sev- "><tt><i>147</i> <span class="sd">        root (str): Path to directory whose folders need to be listed</span></tt>
+            </div>
+            <div id="l148"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (93 > 79 characters)</li>
+               
+               </ul><tt><i>148</i> <span class="sd">        suffix (str or tuple): Suffix of the files to match, e.g. &#39;.png&#39; or (&#39;.jpg&#39;, &#39;.png&#39;).</span></tt>
+            </div>
+            <div id="l149"
+               class="code sev- "><tt><i>149</i> <span class="sd">            It uses the Python &quot;str.endswith&quot; method and is passed directly</span></tt>
+            </div>
+            <div id="l150"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>150</i> <span class="sd">        prefix (bool, optional): If true, prepends the path to each result, otherwise</span></tt>
+            </div>
+            <div id="l151"
+               class="code sev- "><tt><i>151</i> <span class="sd">            only returns the name of the files found</span></tt>
+            </div>
+            <div id="l152"
+               class="code sev- "><tt><i>152</i> <span class="sd">    &quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l153"
+               class="code sev- "><tt><i>153</i>     <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">root</span><span class="p">)</span></tt>
+            </div>
+            <div id="l154"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (105 > 79 characters)</li>
+               
+               </ul><tt><i>154</i>     <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">suffix</span><span class="p">)]</span></tt>
+            </div>
+            <div id="l155"
+               class="code sev- "><tt><i>155</i>     <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span></tt>
+            </div>
+            <div id="l156"
+               class="code sev- "><tt><i>156</i>         <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span></tt>
+            </div>
+            <div id="l157"
+               class="code sev- "><tt><i>157</i>     <span class="k">return</span> <span class="n">files</span></tt>
+            </div>
+            <div id="l158"
+               class="code sev- "><tt><i>158</i> &nbsp;</tt>
+            </div>
+            <div id="l159"
+               class="code sev- "><tt><i>159</i> &nbsp;</tt>
+            </div>
+            <div id="l160"
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F821
+                     </span>
+                     Undefined name 'requests'</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (96 > 79 characters)</li>
+               
+               </ul><tt><i>160</i> <span class="k">def</span> <span class="nf">_quota_exceeded</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="s2">&quot;requests.models.Response&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>  <span class="c1"># type: ignore[name-defined]</span></tt>
+            </div>
+            <div id="l161"
+               class="code sev- "><tt><i>161</i>     <span class="k">return</span> <span class="s2">&quot;Google Drive - Quota exceeded&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span></tt>
+            </div>
+            <div id="l162"
+               class="code sev- "><tt><i>162</i> &nbsp;</tt>
+            </div>
+            <div id="l163"
+               class="code sev- "><tt><i>163</i> &nbsp;</tt>
+            </div>
+            <div id="l164"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (120 > 79 characters)</li>
+               
+               </ul><tt><i>164</i> <span class="k">def</span> <span class="nf">download_file_from_google_drive</span><span class="p">(</span><span class="n">file_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">md5</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span></tt>
+            </div>
+            <div id="l165"
+               class="code sev- "><tt><i>165</i>     <span class="sd">&quot;&quot;&quot;Download a Google Drive file from  and place it in root.</span></tt>
+            </div>
+            <div id="l166"
+               class="code sev- "><tt><i>166</i> &nbsp;</tt>
+            </div>
+            <div id="l167"
+               class="code sev- "><tt><i>167</i> <span class="sd">    Args:</span></tt>
+            </div>
+            <div id="l168"
+               class="code sev- "><tt><i>168</i> <span class="sd">        file_id (str): id of file to be downloaded</span></tt>
+            </div>
+            <div id="l169"
+               class="code sev- "><tt><i>169</i> <span class="sd">        root (str): Directory to place downloaded file in</span></tt>
+            </div>
+            <div id="l170"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (95 > 79 characters)</li>
+               
+               </ul><tt><i>170</i> <span class="sd">        filename (str, optional): Name to save the file under. If None, use the id of the file.</span></tt>
+            </div>
+            <div id="l171"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (80 > 79 characters)</li>
+               
+               </ul><tt><i>171</i> <span class="sd">        md5 (str, optional): MD5 checksum of the download. If None, do not check</span></tt>
+            </div>
+            <div id="l172"
+               class="code sev- "><tt><i>172</i> <span class="sd">    &quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l173"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (109 > 79 characters)</li>
+               
+               </ul><tt><i>173</i>     <span class="c1"># Based on https://stackoverflow.com/questions/38511444/python-download-files-from-google-drive-using-url</span></tt>
+            </div>
+            <div id="l174"
+               class="code sev- "><tt><i>174</i>     <span class="kn">import</span> <span class="nn">requests</span></tt>
+            </div>
+            <div id="l175"
+               class="code sev- "><tt><i>175</i>     <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/uc?export=download&quot;</span></tt>
+            </div>
+            <div id="l176"
+               class="code sev- "><tt><i>176</i> &nbsp;</tt>
+            </div>
+            <div id="l177"
+               class="code sev- "><tt><i>177</i>     <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">root</span><span class="p">)</span></tt>
+            </div>
+            <div id="l178"
+               class="code sev- "><tt><i>178</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span></tt>
+            </div>
+            <div id="l179"
+               class="code sev- "><tt><i>179</i>         <span class="n">filename</span> <span class="o">=</span> <span class="n">file_id</span></tt>
+            </div>
+            <div id="l180"
+               class="code sev- "><tt><i>180</i>     <span class="n">fpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></tt>
+            </div>
+            <div id="l181"
+               class="code sev- "><tt><i>181</i> &nbsp;</tt>
+            </div>
+            <div id="l182"
+               class="code sev- "><tt><i>182</i>     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+            </div>
+            <div id="l183"
+               class="code sev- "><tt><i>183</i> &nbsp;</tt>
+            </div>
+            <div id="l184"
+               class="code sev- "><tt><i>184</i>     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span> <span class="ow">and</span> <span class="n">check_integrity</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">md5</span><span class="p">):</span></tt>
+            </div>
+            <div id="l185"
+               class="code sev- "><tt><i>185</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using downloaded and verified file: &#39;</span> <span class="o">+</span> <span class="n">fpath</span><span class="p">)</span></tt>
+            </div>
+            <div id="l186"
+               class="code sev- "><tt><i>186</i>     <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l187"
+               class="code sev- "><tt><i>187</i>         <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span></tt>
+            </div>
+            <div id="l188"
+               class="code sev- "><tt><i>188</i> &nbsp;</tt>
+            </div>
+            <div id="l189"
+               class="code sev- "><tt><i>189</i>         <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">file_id</span><span class="p">},</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+            </div>
+            <div id="l190"
+               class="code sev- "><tt><i>190</i>         <span class="n">token</span> <span class="o">=</span> <span class="n">_get_confirm_token</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></tt>
+            </div>
+            <div id="l191"
+               class="code sev- "><tt><i>191</i> &nbsp;</tt>
+            </div>
+            <div id="l192"
+               class="code sev- "><tt><i>192</i>         <span class="k">if</span> <span class="n">token</span><span class="p">:</span></tt>
+            </div>
+            <div id="l193"
+               class="code sev- "><tt><i>193</i>             <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">file_id</span><span class="p">,</span> <span class="s1">&#39;confirm&#39;</span><span class="p">:</span> <span class="n">token</span><span class="p">}</span></tt>
+            </div>
+            <div id="l194"
+               class="code sev- "><tt><i>194</i>             <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+            </div>
+            <div id="l195"
+               class="code sev- "><tt><i>195</i> &nbsp;</tt>
+            </div>
+            <div id="l196"
+               class="code sev- "><tt><i>196</i>         <span class="k">if</span> <span class="n">_quota_exceeded</span><span class="p">(</span><span class="n">response</span><span class="p">):</span></tt>
+            </div>
+            <div id="l197"
+               class="code sev- "><tt><i>197</i>             <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span></tt>
+            </div>
+            <div id="l198"
+               class="code sev- "><tt><i>198</i>                 <span class="sa">f</span><span class="s2">&quot;The daily quota of the file </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> is exceeded and it &quot;</span></tt>
+            </div>
+            <div id="l199"
+               class="code sev- "><tt><i>199</i>                 <span class="sa">f</span><span class="s2">&quot;can&#39;t be downloaded. This is a limitation of Google Drive &quot;</span></tt>
+            </div>
+            <div id="l200"
+               class="code sev- "><tt><i>200</i>                 <span class="sa">f</span><span class="s2">&quot;and can only be overcome by trying again later.&quot;</span></tt>
+            </div>
+            <div id="l201"
+               class="code sev- "><tt><i>201</i>             <span class="p">)</span></tt>
+            </div>
+            <div id="l202"
+               class="code sev- "><tt><i>202</i>             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></tt>
+            </div>
+            <div id="l203"
+               class="code sev- "><tt><i>203</i> &nbsp;</tt>
+            </div>
+            <div id="l204"
+               class="code sev- "><tt><i>204</i>         <span class="n">_save_response_content</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span></tt>
+            </div>
+            <div id="l205"
+               class="code sev- "><tt><i>205</i> &nbsp;</tt>
+            </div>
+            <div id="l206"
+               class="code sev- "><tt><i>206</i> &nbsp;</tt>
+            </div>
+            <div id="l207"
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F821
+                     </span>
+                     Undefined name 'requests'</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (108 > 79 characters)</li>
+               
+               </ul><tt><i>207</i> <span class="k">def</span> <span class="nf">_get_confirm_token</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="s2">&quot;requests.models.Response&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>  <span class="c1"># type: ignore[name-defined]</span></tt>
+            </div>
+            <div id="l208"
+               class="code sev- "><tt><i>208</i>     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
+            </div>
+            <div id="l209"
+               class="code sev- "><tt><i>209</i>         <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;download_warning&#39;</span><span class="p">):</span></tt>
+            </div>
+            <div id="l210"
+               class="code sev- "><tt><i>210</i>             <span class="k">return</span> <span class="n">value</span></tt>
+            </div>
+            <div id="l211"
+               class="code sev- "><tt><i>211</i> &nbsp;</tt>
+            </div>
+            <div id="l212"
+               class="code sev- "><tt><i>212</i>     <span class="k">return</span> <span class="kc">None</span></tt>
+            </div>
+            <div id="l213"
+               class="code sev- "><tt><i>213</i> &nbsp;</tt>
+            </div>
+            <div id="l214"
+               class="code sev- "><tt><i>214</i> &nbsp;</tt>
+            </div>
+            <div id="l215"
+               class="code sev- "><tt><i>215</i> <span class="k">def</span> <span class="nf">_save_response_content</span><span class="p">(</span></tt>
+            </div>
+            <div id="l216"
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F821
+                     </span>
+                     Undefined name 'requests'</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (118 > 79 characters)</li>
+               
+               </ul><tt><i>216</i>         <span class="n">response</span><span class="p">:</span> <span class="s2">&quot;requests.models.Response&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32768</span><span class="p">,</span>  <span class="c1"># type: ignore[name-defined]</span></tt>
+            </div>
+            <div id="l217"
+               class="code sev- "><tt><i>217</i> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l218"
+               class="code sev- "><tt><i>218</i>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span></tt>
+            </div>
+            <div id="l219"
+               class="code sev- "><tt><i>219</i>         <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></tt>
+            </div>
+            <div id="l220"
+               class="code sev- "><tt><i>220</i>         <span class="n">progress</span> <span class="o">=</span> <span class="mi">0</span></tt>
+            </div>
+            <div id="l221"
+               class="code sev- "><tt><i>221</i>         <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">):</span></tt>
+            </div>
+            <div id="l222"
+               class="code sev- "><tt><i>222</i>             <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>  <span class="c1"># filter out keep-alive new chunks</span></tt>
+            </div>
+            <div id="l223"
+               class="code sev- "><tt><i>223</i>                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span></tt>
+            </div>
+            <div id="l224"
+               class="code sev- "><tt><i>224</i>                 <span class="n">progress</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span></tt>
+            </div>
+            <div id="l225"
+               class="code sev- "><tt><i>225</i>                 <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">progress</span> <span class="o">-</span> <span class="n">pbar</span><span class="o">.</span><span class="n">n</span><span class="p">)</span></tt>
+            </div>
+            <div id="l226"
+               class="code sev- "><tt><i>226</i>         <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></tt>
+            </div>
+            <div id="l227"
+               class="code sev- "><tt><i>227</i> &nbsp;</tt>
+            </div>
+            <div id="l228"
+               class="code sev- "><tt><i>228</i> &nbsp;</tt>
+            </div>
+            <div id="l229"
+               class="code sev- "><tt><i>229</i> <span class="k">def</span> <span class="nf">_is_tarxz</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span></tt>
+            </div>
+            <div id="l230"
+               class="code sev- "><tt><i>230</i>     <span class="k">return</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tar.xz&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l231"
+               class="code sev- "><tt><i>231</i> &nbsp;</tt>
+            </div>
+            <div id="l232"
+               class="code sev- "><tt><i>232</i> &nbsp;</tt>
+            </div>
+            <div id="l233"
+               class="code sev- "><tt><i>233</i> <span class="k">def</span> <span class="nf">_is_tar</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span></tt>
+            </div>
+            <div id="l234"
+               class="code sev- "><tt><i>234</i>     <span class="k">return</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tar&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l235"
+               class="code sev- "><tt><i>235</i> &nbsp;</tt>
+            </div>
+            <div id="l236"
+               class="code sev- "><tt><i>236</i> &nbsp;</tt>
+            </div>
+            <div id="l237"
+               class="code sev- "><tt><i>237</i> <span class="k">def</span> <span class="nf">_is_targz</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span></tt>
+            </div>
+            <div id="l238"
+               class="code sev- "><tt><i>238</i>     <span class="k">return</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tar.gz&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l239"
+               class="code sev- "><tt><i>239</i> &nbsp;</tt>
+            </div>
+            <div id="l240"
+               class="code sev- "><tt><i>240</i> &nbsp;</tt>
+            </div>
+            <div id="l241"
+               class="code sev- "><tt><i>241</i> <span class="k">def</span> <span class="nf">_is_tgz</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span></tt>
+            </div>
+            <div id="l242"
+               class="code sev- "><tt><i>242</i>     <span class="k">return</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tgz&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l243"
+               class="code sev- "><tt><i>243</i> &nbsp;</tt>
+            </div>
+            <div id="l244"
+               class="code sev- "><tt><i>244</i> &nbsp;</tt>
+            </div>
+            <div id="l245"
+               class="code sev- "><tt><i>245</i> <span class="k">def</span> <span class="nf">_is_gzip</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span></tt>
+            </div>
+            <div id="l246"
+               class="code sev- "><tt><i>246</i>     <span class="k">return</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.gz&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tar.gz&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l247"
+               class="code sev- "><tt><i>247</i> &nbsp;</tt>
+            </div>
+            <div id="l248"
+               class="code sev- "><tt><i>248</i> &nbsp;</tt>
+            </div>
+            <div id="l249"
+               class="code sev- "><tt><i>249</i> <span class="k">def</span> <span class="nf">_is_zip</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span></tt>
+            </div>
+            <div id="l250"
+               class="code sev- "><tt><i>250</i>     <span class="k">return</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.zip&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l251"
+               class="code sev- "><tt><i>251</i> &nbsp;</tt>
+            </div>
+            <div id="l252"
+               class="code sev- "><tt><i>252</i> &nbsp;</tt>
+            </div>
+            <div id="l253"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (106 > 79 characters)</li>
+               
+               </ul><tt><i>253</i> <span class="k">def</span> <span class="nf">extract_archive</span><span class="p">(</span><span class="n">from_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">to_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">remove_finished</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l254"
+               class="code sev- "><tt><i>254</i>     <span class="k">if</span> <span class="n">to_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l255"
+               class="code sev- "><tt><i>255</i>         <span class="n">to_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">from_path</span><span class="p">)</span></tt>
+            </div>
+            <div id="l256"
+               class="code sev- "><tt><i>256</i> &nbsp;</tt>
+            </div>
+            <div id="l257"
+               class="code sev- "><tt><i>257</i>     <span class="k">if</span> <span class="n">_is_tar</span><span class="p">(</span><span class="n">from_path</span><span class="p">):</span></tt>
+            </div>
+            <div id="l258"
+               class="code sev- "><tt><i>258</i>         <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">from_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span></tt>
+            </div>
+            <div id="l259"
+               class="code sev- "><tt><i>259</i>             <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">to_path</span><span class="p">)</span></tt>
+            </div>
+            <div id="l260"
+               class="code sev- "><tt><i>260</i>     <span class="k">elif</span> <span class="n">_is_targz</span><span class="p">(</span><span class="n">from_path</span><span class="p">)</span> <span class="ow">or</span> <span class="n">_is_tgz</span><span class="p">(</span><span class="n">from_path</span><span class="p">):</span></tt>
+            </div>
+            <div id="l261"
+               class="code sev- "><tt><i>261</i>         <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">from_path</span><span class="p">,</span> <span class="s1">&#39;r:gz&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span></tt>
+            </div>
+            <div id="l262"
+               class="code sev- "><tt><i>262</i>             <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">to_path</span><span class="p">)</span></tt>
+            </div>
+            <div id="l263"
+               class="code sev- "><tt><i>263</i>     <span class="k">elif</span> <span class="n">_is_tarxz</span><span class="p">(</span><span class="n">from_path</span><span class="p">):</span></tt>
+            </div>
+            <div id="l264"
+               class="code sev- "><tt><i>264</i>         <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">from_path</span><span class="p">,</span> <span class="s1">&#39;r:xz&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span></tt>
+            </div>
+            <div id="l265"
+               class="code sev- "><tt><i>265</i>             <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">to_path</span><span class="p">)</span></tt>
+            </div>
+            <div id="l266"
+               class="code sev- "><tt><i>266</i>     <span class="k">elif</span> <span class="n">_is_gzip</span><span class="p">(</span><span class="n">from_path</span><span class="p">):</span></tt>
+            </div>
+            <div id="l267"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (89 > 79 characters)</li>
+               
+               </ul><tt><i>267</i>         <span class="n">to_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to_path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">from_path</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span></tt>
+            </div>
+            <div id="l268"
+               class="code sev- "><tt><i>268</i>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">to_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_f</span><span class="p">,</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">from_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_f</span><span class="p">:</span></tt>
+            </div>
+            <div id="l269"
+               class="code sev- "><tt><i>269</i>             <span class="n">out_f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zip_f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></tt>
+            </div>
+            <div id="l270"
+               class="code sev- "><tt><i>270</i>     <span class="k">elif</span> <span class="n">_is_zip</span><span class="p">(</span><span class="n">from_path</span><span class="p">):</span></tt>
+            </div>
+            <div id="l271"
+               class="code sev- "><tt><i>271</i>         <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">from_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">z</span><span class="p">:</span></tt>
+            </div>
+            <div id="l272"
+               class="code sev- "><tt><i>272</i>             <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">to_path</span><span class="p">)</span></tt>
+            </div>
+            <div id="l273"
+               class="code sev- "><tt><i>273</i>     <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l274"
+               class="code sev- "><tt><i>274</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Extraction of </span><span class="si">{}</span><span class="s2"> not supported&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">from_path</span><span class="p">))</span></tt>
+            </div>
+            <div id="l275"
+               class="code sev- "><tt><i>275</i> &nbsp;</tt>
+            </div>
+            <div id="l276"
+               class="code sev- "><tt><i>276</i>     <span class="k">if</span> <span class="n">remove_finished</span><span class="p">:</span></tt>
+            </div>
+            <div id="l277"
+               class="code sev- "><tt><i>277</i>         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">from_path</span><span class="p">)</span></tt>
+            </div>
+            <div id="l278"
+               class="code sev- "><tt><i>278</i> &nbsp;</tt>
+            </div>
+            <div id="l279"
+               class="code sev- "><tt><i>279</i> &nbsp;</tt>
+            </div>
+            <div id="l280"
+               class="code sev- "><tt><i>280</i> <span class="k">def</span> <span class="nf">download_and_extract_archive</span><span class="p">(</span></tt>
+            </div>
+            <div id="l281"
+               class="code sev- "><tt><i>281</i>         <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span></tt>
+            </div>
+            <div id="l282"
+               class="code sev- "><tt><i>282</i>         <span class="n">download_root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span></tt>
+            </div>
+            <div id="l283"
+               class="code sev- "><tt><i>283</i>         <span class="n">extract_root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+            </div>
+            <div id="l284"
+               class="code sev- "><tt><i>284</i>         <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+            </div>
+            <div id="l285"
+               class="code sev- "><tt><i>285</i>         <span class="n">md5</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+            </div>
+            <div id="l286"
+               class="code sev- "><tt><i>286</i>         <span class="n">remove_finished</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span></tt>
+            </div>
+            <div id="l287"
+               class="code sev- "><tt><i>287</i>         <span class="n">size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></tt>
+            </div>
+            <div id="l288"
+               class="code sev- "><tt><i>288</i> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l289"
+               class="code sev- "><tt><i>289</i>     <span class="n">download_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">download_root</span><span class="p">)</span></tt>
+            </div>
+            <div id="l290"
+               class="code sev- "><tt><i>290</i>     <span class="k">if</span> <span class="n">extract_root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l291"
+               class="code sev- "><tt><i>291</i>         <span class="n">extract_root</span> <span class="o">=</span> <span class="n">download_root</span></tt>
+            </div>
+            <div id="l292"
+               class="code sev- "><tt><i>292</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span></tt>
+            </div>
+            <div id="l293"
+               class="code sev- "><tt><i>293</i>         <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></tt>
+            </div>
+            <div id="l294"
+               class="code sev- "><tt><i>294</i> &nbsp;</tt>
+            </div>
+            <div id="l295"
+               class="code sev- "><tt><i>295</i>     <span class="n">download_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">download_root</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">md5</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span></tt>
+            </div>
+            <div id="l296"
+               class="code sev- "><tt><i>296</i> &nbsp;</tt>
+            </div>
+            <div id="l297"
+               class="code sev- "><tt><i>297</i>     <span class="n">archive</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></tt>
+            </div>
+            <div id="l298"
+               class="code sev- "><tt><i>298</i>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracting </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">archive</span><span class="p">,</span> <span class="n">extract_root</span><span class="p">))</span></tt>
+            </div>
+            <div id="l299"
+               class="code sev- "><tt><i>299</i>     <span class="n">extract_archive</span><span class="p">(</span><span class="n">archive</span><span class="p">,</span> <span class="n">extract_root</span><span class="p">,</span> <span class="n">remove_finished</span><span class="p">)</span></tt>
+            </div>
+            <div id="l300"
+               class="code sev- "><tt><i>300</i> &nbsp;</tt>
+            </div>
+            <div id="l301"
+               class="code sev- "><tt><i>301</i> &nbsp;</tt>
+            </div>
+            <div id="l302"
+               class="code sev- "><tt><i>302</i> <span class="k">def</span> <span class="nf">iterable_to_str</span><span class="p">(</span><span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></tt>
+            </div>
+            <div id="l303"
+               class="code sev- "><tt><i>303</i>     <span class="k">return</span> <span class="s2">&quot;&#39;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&#39;, &#39;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span></tt>
+            </div>
+            <div id="l304"
+               class="code sev- "><tt><i>304</i> &nbsp;</tt>
+            </div>
+            <div id="l305"
+               class="code sev- "><tt><i>305</i> &nbsp;</tt>
+            </div>
+            <div id="l306"
+               class="code sev- "><tt><i>306</i> <span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)</span></tt>
+            </div>
+            <div id="l307"
+               class="code sev- "><tt><i>307</i> &nbsp;</tt>
+            </div>
+            <div id="l308"
+               class="code sev- "><tt><i>308</i> &nbsp;</tt>
+            </div>
+            <div id="l309"
+               class="code sev- "><tt><i>309</i> <span class="k">def</span> <span class="nf">verify_str_arg</span><span class="p">(</span></tt>
+            </div>
+            <div id="l310"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (112 > 79 characters)</li>
+               
+               </ul><tt><i>310</i>         <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">arg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">valid_values</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">custom_msg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+            </div>
+            <div id="l311"
+               class="code sev- "><tt><i>311</i> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span></tt>
+            </div>
+            <div id="l312"
+               class="code sev- "><tt><i>312</i>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">_six</span><span class="o">.</span><span class="n">string_classes</span><span class="p">):</span></tt>
+            </div>
+            <div id="l313"
+               class="code sev- "><tt><i>313</i>         <span class="k">if</span> <span class="n">arg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l314"
+               class="code sev- "><tt><i>314</i>             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Expected type str, but got type </span><span class="si">{type}</span><span class="s2">.&quot;</span></tt>
+            </div>
+            <div id="l315"
+               class="code sev- "><tt><i>315</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l316"
+               class="code sev- "><tt><i>316</i>             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Expected type str for argument </span><span class="si">{arg}</span><span class="s2">, but got type </span><span class="si">{type}</span><span class="s2">.&quot;</span></tt>
+            </div>
+            <div id="l317"
+               class="code sev- "><tt><i>317</i>         <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">arg</span><span class="o">=</span><span class="n">arg</span><span class="p">)</span></tt>
+            </div>
+            <div id="l318"
+               class="code sev- "><tt><i>318</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></tt>
+            </div>
+            <div id="l319"
+               class="code sev- "><tt><i>319</i> &nbsp;</tt>
+            </div>
+            <div id="l320"
+               class="code sev- "><tt><i>320</i>     <span class="k">if</span> <span class="n">valid_values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l321"
+               class="code sev- "><tt><i>321</i>         <span class="k">return</span> <span class="n">value</span></tt>
+            </div>
+            <div id="l322"
+               class="code sev- "><tt><i>322</i> &nbsp;</tt>
+            </div>
+            <div id="l323"
+               class="code sev- "><tt><i>323</i>     <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_values</span><span class="p">:</span></tt>
+            </div>
+            <div id="l324"
+               class="code sev- "><tt><i>324</i>         <span class="k">if</span> <span class="n">custom_msg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l325"
+               class="code sev- "><tt><i>325</i>             <span class="n">msg</span> <span class="o">=</span> <span class="n">custom_msg</span></tt>
+            </div>
+            <div id="l326"
+               class="code sev- "><tt><i>326</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l327"
+               class="code sev- "><tt><i>327</i>             <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Unknown value &#39;</span><span class="si">{value}</span><span class="s2">&#39; for argument </span><span class="si">{arg}</span><span class="s2">. &quot;</span></tt>
+            </div>
+            <div id="l328"
+               class="code sev- "><tt><i>328</i>                    <span class="s2">&quot;Valid values are {{</span><span class="si">{valid_values}</span><span class="s2">}}.&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l329"
+               class="code sev- "><tt><i>329</i>             <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">arg</span><span class="o">=</span><span class="n">arg</span><span class="p">,</span></tt>
+            </div>
+            <div id="l330"
+               class="code sev- "><tt><i>330</i>                              <span class="n">valid_values</span><span class="o">=</span><span class="n">iterable_to_str</span><span class="p">(</span><span class="n">valid_values</span><span class="p">))</span></tt>
+            </div>
+            <div id="l331"
+               class="code sev- "><tt><i>331</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></tt>
+            </div>
+            <div id="l332"
+               class="code sev- "><tt><i>332</i> &nbsp;</tt>
+            </div>
+            <div id="l333"
+               class="code sev- "><tt><i>333</i>     <span class="k">return</span> <span class="n">value</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>

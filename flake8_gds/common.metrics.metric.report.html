@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: common/metrics/metric.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="common.metrics.metric.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               common/metrics/metric.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  25
+               </span>
+               <strong>E501:</strong> line too long (82 > 79 characters)
+               
+                  (and 14 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l28">
+                  <tt><i>28</i> <span class="sd">        Given a list/numpy array/Tensor of metrics, computes the worst-case metric</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l40">
+                  <tt><i>40</i> <span class="sd">        Used to name the key in the results dictionaries returned by the metric.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l47">
+                  <tt><i>47</i> <span class="sd">        The name of the key in the results dictionary returned by Metric.compute().</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l48">
+                  <tt><i>48</i> <span class="sd">        This should correspond to the aggregate metric computed on all of y_pred and y_true,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l81">
+                  <tt><i>81</i> <span class="sd">            - return_dict (bool): Whether to return the output as a dictionary or a tensor</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l83">
+                  <tt><i>83</i> <span class="sd">            - metric (0-dim tensor): metric. If the inputs are empty, returns tensor(0.)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l85">
+                  <tt><i>85</i> <span class="sd">            - results (dict): Dictionary of results, mapping metric.agg_metric_field to avg_metric</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l99">
+                  <tt><i>99</i>     <span class="k">def</span> <span class="nf">compute_group_wise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">n_groups</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l107">
+                  <tt><i>107</i> <span class="sd">            - return_dict (bool): Whether to return the output as a dictionary or a tensor</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l109">
+                  <tt><i>109</i> <span class="sd">            - group_metrics (Tensor): tensor of size (n_groups, ) including the average metric for each group</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l110">
+                  <tt><i>110</i> <span class="sd">            - group_counts (Tensor): tensor of size (n_groups, ) including the group count</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (111 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l116">
+                  <tt><i>116</i>         <span class="n">group_metrics</span><span class="p">,</span> <span class="n">group_counts</span><span class="p">,</span> <span class="n">worst_group_metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_group_wise</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">n_groups</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l120">
+                  <tt><i>120</i>                 <span class="n">results</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">group_metric_field</span><span class="p">(</span><span class="n">group_idx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">group_metrics</span><span class="p">[</span><span class="n">group_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l121">
+                  <tt><i>121</i>                 <span class="n">results</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">group_count_field</span><span class="p">(</span><span class="n">group_idx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">group_counts</span><span class="p">[</span><span class="n">group_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l163">
+                  <tt><i>163</i> <span class="sd">        Given a list/numpy array/Tensor of metrics, computes the worst-case metric</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l186">
+                  <tt><i>186</i>         <span class="n">group_metrics</span><span class="p">,</span> <span class="n">group_counts</span> <span class="o">=</span> <span class="n">avg_over_groups</span><span class="p">(</span><span class="n">element_wise_metrics</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">n_groups</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l193">
+                  <tt><i>193</i> <span class="sd">        The name of the key in the results dictionary returned by Metric.compute().</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l203">
+                  <tt><i>203</i> <span class="sd">            - return_dict (bool): Whether to return the output as a dictionary or a tensor</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l207">
+                  <tt><i>207</i> <span class="sd">            - results (dict): Dictionary of results, mapping metric.name to element_wise_metrics</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l211">
+                  <tt><i>211</i>         <span class="k">assert</span> <span class="n">element_wise_metrics</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">element_wise_metrics</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="n">batch_size</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l219">
+                  <tt><i>219</i>         <span class="n">flattened_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_element_wise</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l232">
+                  <tt><i>232</i>         <span class="n">flattened_metrics</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_flattened</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l239">
+                  <tt><i>239</i>         <span class="n">flattened_metrics</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_flattened</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l241">
+                  <tt><i>241</i>         <span class="n">group_metrics</span><span class="p">,</span> <span class="n">group_counts</span> <span class="o">=</span> <span class="n">avg_over_groups</span><span class="p">(</span><span class="n">flattened_metrics</span><span class="p">,</span> <span class="n">flattened_g</span><span class="p">,</span> <span class="n">n_groups</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="common.metrics.metric.source.html#l252">
+                  <tt><i>252</i>         <span class="n">flattened_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_flattened</span><span class="p">(</span><span class="n">flattened_y_pred</span><span class="p">,</span> <span class="n">flattened_y_true</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

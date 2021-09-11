@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: models/gnn_mol.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="models.gnn_mol.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               models/gnn_mol.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'torch_geometric.nn.global_add_pool' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gnn_mol.source.html#l5">
+                  <tt><i>5</i> <span class="kn">from</span> <span class="nn">torch_geometric.nn</span> <span class="kn">import</span> <span class="n">global_mean_pool</span><span class="p">,</span> <span class="n">global_add_pool</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F841">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F841:</strong> local variable 'batch' is assigned to but never used
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gnn_mol.source.html#l98">
+                  <tt><i>98</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  21
+               </span>
+               <strong>E501:</strong> line too long (100 > 79 characters)
+               
+                  (and 18 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l10">
+                  <tt><i>10</i> <span class="sd">    Graph Isomorphism Network augmented with virtual node for multi-task binary graph classification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l14">
+                  <tt><i>14</i> <span class="sd">        - prediction (Tensor): float torch tensor of shape (num_graphs, num_tasks)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l20">
+                  <tt><i>20</i> <span class="sd">            - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l48">
+                  <tt><i>48</i>             <span class="bp">self</span><span class="o">.</span><span class="n">graph_pred_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emb_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_tasks</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (107 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l67">
+                  <tt><i>67</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l93">
+                  <tt><i>93</i>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Undefined GNN type called </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gnn_type</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (125 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l98">
+                  <tt><i>98</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l112">
+                  <tt><i>112</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (121 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l133">
+                  <tt><i>133</i> <span class="c1">#     Helper function of Graph Isomorphism Network augmented with virtual node for multi-task binary graph classification</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l138">
+                  <tt><i>138</i> <span class="c1">#         - node_embedding (Tensor): float torch tensor of shape (num_nodes, emb_dim)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (111 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l143">
+                  <tt><i>143</i> <span class="c1">#             - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (155 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l175">
+                  <tt><i>175</i> <span class="c1">#             self.mlp_virtualnode_list.append(torch.nn.Sequential(torch.nn.Linear(emb_dim, 2*emb_dim), torch.nn.BatchNorm1d(2*emb_dim), torch.nn.ReLU(), \</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (139 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l176">
+                  <tt><i>176</i> <span class="c1">#                                                     torch.nn.Linear(2*emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU()))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (127 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l180">
+                  <tt><i>180</i> <span class="c1">#         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (138 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l183">
+                  <tt><i>183</i> <span class="c1">#         virtualnode_embedding = self.virtualnode_embedding(torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l198">
+                  <tt><i>198</i> <span class="c1">#                 h = F.dropout(F.relu(h), self.dropout, training = self.training)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (108 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l205">
+                  <tt><i>205</i> <span class="c1">#                 virtualnode_embedding_temp = global_add_pool(h_list[layer], batch) + virtualnode_embedding</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (153 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l207">
+                  <tt><i>207</i> <span class="c1">#                 virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.dropout, training = self.training)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (112 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l234">
+                  <tt><i>234</i>         <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l235">
+                  <tt><i>235</i>                                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (102 > 79 characters):</p>
+               
+               <a href="models.gnn_mol.source.html#l242">
+                  <tt><i>242</i>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E251">
+               <span class="count sev-2">
+                  12
+               </span>
+               <strong>E251:</strong> unexpected spaces around keyword / parameter equals
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 8 places):</p>
+               
+               <a href="models.gnn_mol.source.html#l67">
+                  <tt><i>67</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.gnn_mol.source.html#l110">
+                  <tt><i>110</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.gnn_mol.source.html#l112">
+                  <tt><i>112</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E266">
+               <span class="count sev-2">
+                  5
+               </span>
+               <strong>E266:</strong> too many leading '#' for block comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gnn_mol.source.html#l61">
+                  <tt><i>61</i> <span class="c1">### fake virutal, real non-virtual</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn_mol.source.html#l77">
+                  <tt><i>77</i>         <span class="c1">### add residual connection or not</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn_mol.source.html#l100">
+                  <tt><i>100</i>         <span class="c1">### computing input node embedding</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn_mol.source.html#l119">
+                  <tt><i>119</i>         <span class="c1">### Different implementations of Jk-concat</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn_mol.source.html#l214">
+                  <tt><i>214</i> <span class="c1">### GIN convolution along the graph structure</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E265">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E265:</strong> block comment should start with '# '
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gnn_mol.source.html#l85">
+                  <tt><i>85</i>         <span class="c1">###List of GNNs</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn_mol.source.html#l109">
+                  <tt><i>109</i>                 <span class="c1">#remove relu for the last layer</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 3
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gnn_mol.source.html#l62">
+                  <tt><i>62</i> <span class="k">class</span> <span class="nc">GINVirtual_node</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E303:</strong> too many blank lines (3)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gnn_mol.source.html#l61">
+                  <tt><i>61</i> <span class="c1">### fake virutal, real non-virtual</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W292">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W292:</strong> no newline at end of file
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gnn_mol.source.html#l250">
+                  <tt><i>250</i>         <span class="k">return</span> <span class="n">aggr_out</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

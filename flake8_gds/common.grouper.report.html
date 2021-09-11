@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: common/grouper.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="common.grouper.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               common/grouper.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  18
+               </span>
+               <strong>E501:</strong> line too long (88 > 79 characters)
+               
+                  (and 13 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l36">
+                  <tt><i>36</i> <span class="sd">                                     An n_group-length vector of integers containing the</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l37">
+                  <tt><i>37</i> <span class="sd">                                     numbers of data points in each group in the metadata.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l46">
+                  <tt><i>46</i> <span class="sd">            - group_str (str): A string containing the pretty name of that group.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l63">
+                  <tt><i>63</i> <span class="sd">        CombinatorialGroupers form groups by taking all possible combinations of the metadata</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l68">
+                  <tt><i>68</i> <span class="sd">        and if in dataset.metadata, country is in {0, 1} and time is in {0, 1, 2},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l77">
+                  <tt><i>77</i> <span class="sd">        If groupby_fields is None, then all data points are assigned to group 0.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l85">
+                  <tt><i>85</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Grouper should be defined for the full dataset, not a subset&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l92">
+                  <tt><i>92</i>             <span class="c1"># so we can measure the cardinality of each field by taking its max + 1.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (99 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l94">
+                  <tt><i>94</i>             <span class="bp">self</span><span class="o">.</span><span class="n">groupby_field_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">metadata_fields</span><span class="p">)</span> <span class="k">if</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (97 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l97">
+                  <tt><i>97</i>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;At least one group field not found in dataset.metadata_fields&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l98">
+                  <tt><i>98</i>             <span class="n">grouped_metadata</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">metadata_array</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby_field_indices</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (121 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l103">
+                  <tt><i>103</i>                         <span class="sa">f</span><span class="s1">&#39;CombinatorialGrouper: converting metadata with fields [</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">groupby_fields</span><span class="p">)</span><span class="si">}</span><span class="s1">] into long&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (114 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l109">
+                  <tt><i>109</i>                         <span class="sa">f</span><span class="s2">&quot;Metadata for CombinatorialGrouper cannot have values less than 0: </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">min_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (141 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l112">
+                  <tt><i>112</i>                         <span class="sa">f</span><span class="s2">&quot;Minimum metadata value for CombinatorialGrouper is not 0 (</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">min_value</span><span class="si">}</span><span class="s2">). This will result in empty groups&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l125">
+                  <tt><i>125</i>             <span class="n">groups</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby_field_indices</span><span class="p">]</span><span class="o">.</span><span class="n">long</span><span class="p">()</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">factors</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l141">
+                  <tt><i>141</i>             <span class="n">metadata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">group</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">factors_np</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">factors_np</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l148">
+                  <tt><i>148</i>                     <span class="n">meta_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">groupby_fields</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">meta_val</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="common.grouper.source.html#l164">
+                  <tt><i>164</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_str</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>
