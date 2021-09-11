@@ -7,7 +7,7 @@ script:
   - pytest . --html=./pages/pytest/index.html
 after_success:
   - coverage run -m pytest .
-  - coverage html -d ./pages/converage/
+  - coverage html -d ./pages/coverage/
   - sphinx-apidoc -f -o ./pages/docs/source .
   - sphinx-build -b html ./pages/docs/source ./pages/docs/build
   - cd ./gds/
