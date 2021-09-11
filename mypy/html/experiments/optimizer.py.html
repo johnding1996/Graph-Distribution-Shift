@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.optimizer</h2>
 <table>
-<caption>experiments\optimizer.py</caption>
+<caption>experiments/optimizer.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -48,8 +48,8 @@
 <span id="L38" class="lineno"><a class="lineno" href="#L38">38</a></span>
 <span id="L39" class="lineno"><a class="lineno" href="#L39">39</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">from torch.optim import SGD, Adam</span>
-<span class="line-precise" title="No Anys on this line!">from transformers import AdamW</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from torch.optim import SGD, Adam</span>
+<span class="line-any" title="No Anys on this line!">from transformers import AdamW</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def initialize_optimizer(config, model):</span>
@@ -61,7 +61,7 @@ Unannotated (x6)
 Explicit (x1)">        params = filter(lambda p: p.requires_grad, model.parameters())</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
-Omitted Generics (x2)">        optimizer = SGD(</span>
+Unimported (x1)">        optimizer = SGD(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            params,</span>
 <span class="line-any" title="Any Types on this line: 
@@ -90,7 +90,8 @@ Unannotated (x2)">             'weight_decay': config.weight_decay},</span>
 Unannotated (x11)">            {'params': [p for n, p in model.named_parameters() if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}</span>
 <span class="line-empty" title="No Anys on this line!">        ]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        optimizer = AdamW(</span>
+Unannotated (x2)
+Unimported (x1)">        optimizer = AdamW(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            params,</span>
 <span class="line-any" title="Any Types on this line: 
@@ -104,7 +105,7 @@ Unannotated (x6)
 Explicit (x1)">        params = filter(lambda p: p.requires_grad, model.parameters())</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
-Omitted Generics (x2)">        optimizer = Adam(</span>
+Unimported (x1)">        optimizer = Adam(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            params,</span>
 <span class="line-any" title="Any Types on this line: 

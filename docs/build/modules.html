@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Graph-Distribution-Shift &#8212; GDS  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="graph-distribution-shift">
+<h1>Graph-Distribution-Shift<a class="headerlink" href="#graph-distribution-shift" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments.html">experiments package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="experiments.algorithms.html">experiments.algorithms package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#experiments-algorithms-erm-module">experiments.algorithms.ERM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#experiments-algorithms-irm-module">experiments.algorithms.IRM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#experiments-algorithms-algorithm-module">experiments.algorithms.algorithm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#experiments-algorithms-deepcoral-module">experiments.algorithms.deepCORAL module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#experiments-algorithms-groupdro-module">experiments.algorithms.groupDRO module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#experiments-algorithms-group-algorithm-module">experiments.algorithms.group_algorithm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#experiments-algorithms-initializer-module">experiments.algorithms.initializer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#experiments-algorithms-single-model-algorithm-module">experiments.algorithms.single_model_algorithm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.algorithms.html#module-experiments.algorithms">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="experiments.configs.html">experiments.configs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#module-experiments.configs.algorithm">experiments.configs.algorithm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#module-experiments.configs.data_loader">experiments.configs.data_loader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#module-experiments.configs.datasets">experiments.configs.datasets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#module-experiments.configs.model">experiments.configs.model module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#module-experiments.configs.scheduler">experiments.configs.scheduler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#experiments-configs-supported-module">experiments.configs.supported module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#experiments-configs-utils-module">experiments.configs.utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.configs.html#module-experiments.configs">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="experiments.models.html">experiments.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="experiments.models.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.models.html#experiments-models-gnn-mnist-module">experiments.models.gnn_mnist module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.models.html#experiments-models-gnn-mol-module">experiments.models.gnn_mol module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.models.html#experiments-models-gnn-ppa-module">experiments.models.gnn_ppa module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.models.html#experiments-models-initializer-module">experiments.models.initializer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.models.html#experiments-models-layers-module">experiments.models.layers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experiments.models.html#module-experiments.models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#experiments-evaluate-module">experiments.evaluate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#experiments-losses-module">experiments.losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#experiments-optimizer-module">experiments.optimizer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#experiments-run-expt-module">experiments.run_expt module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#experiments-scheduler-module">experiments.scheduler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#experiments-train-module">experiments.train module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#experiments-utils-module">experiments.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html#module-experiments">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gds.html">gds package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gds.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gds.common.html">gds.common package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gds.common.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.common.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.common.html#gds-common-data-loaders-module">gds.common.data_loaders module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.common.html#gds-common-grouper-module">gds.common.grouper module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.common.html#gds-common-utils-module">gds.common.utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.common.html#module-gds.common">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gds.datasets.html">gds.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-download-utils-module">gds.datasets.download_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-ogbgppa-dataset-module">gds.datasets.ogbgppa_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-ogbmolhiv-dataset-module">gds.datasets.ogbmolhiv_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-ogbmolpcba-dataset-module">gds.datasets.ogbmolpcba_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-ogbproteins-dataset-module">gds.datasets.ogbproteins_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-pyg-sbm-1-dataset-module">gds.datasets.pyg_sbm_1_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-pyg-superpixel-dataset-module">gds.datasets.pyg_superpixel_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-sbm-1-dataset-module">gds.datasets.sbm_1_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-superpixel-dataset-module">gds.datasets.superpixel_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#gds-datasets-wilds-dataset-module">gds.datasets.wilds_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gds.datasets.html#module-gds.datasets">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gds.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gds.html#module-gds.download_datasets">gds.download_datasets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gds.html#module-gds.get_dataset">gds.get_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gds.html#module-gds.version">gds.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gds.html#module-gds">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">preprocessing package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing.SBM.html">preprocessing.SBM package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.SBM.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.SBM.html#preprocessing-sbm-sbms-module">preprocessing.SBM.SBMs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.SBM.html#module-preprocessing.SBM">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing.scaffold.html">preprocessing.scaffold package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.scaffold.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.scaffold.html#preprocessing-scaffold-smiles2scaffold-module">preprocessing.scaffold.smiles2scaffold module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.scaffold.html#module-preprocessing.scaffold">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing.superpixel.html">preprocessing.superpixel package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.superpixel.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.superpixel.html#preprocessing-superpixel-extract-superpixels-module">preprocessing.superpixel.extract_superpixels module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.superpixel.html#preprocessing-superpixel-generate-image-dataset-module">preprocessing.superpixel.generate_image_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.superpixel.html#preprocessing-superpixel-sp2pyg-module">preprocessing.superpixel.sp2pyg module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.superpixel.html#module-preprocessing.superpixel">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html#module-preprocessing">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests.experiments.html">tests.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tests.experiments.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.experiments.html#module-tests.experiments">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tests.gds.html">tests.gds package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tests.gds.html#module-tests.gds">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GDS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, GDS team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

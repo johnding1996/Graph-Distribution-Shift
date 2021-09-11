@@ -6,7 +6,7 @@
 <body>
 <h2>gds.common.metrics.all_metrics</h2>
 <table>
-<caption>gds\common\metrics\all_metrics.py</caption>
+<caption>gds/common/metrics/all_metrics.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -302,9 +302,9 @@
 <span id="L292" class="lineno"><a class="lineno" href="#L292">292</a></span>
 <span id="L293" class="lineno"><a class="lineno" href="#L293">293</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import numpy as np</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
-<span class="line-precise" title="No Anys on this line!">import torch.nn.functional as F</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-any" title="No Anys on this line!">from torchvision.ops.boxes import box_iou</span>
 <span class="line-any" title="No Anys on this line!">from torchvision.models.detection._utils import Matcher</span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.metrics.metric import Metric, ElementwiseMetric, MultiTaskMetric</span>
@@ -322,7 +322,8 @@ Unannotated (x4)">    if logits.dim() == 2:  # multi-class logits</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        assert logits.size(1) == 2, "Only binary classification"</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        score = F.softmax(logits, dim=1)[:, 1]</span>
+Unannotated (x5)
+Unimported (x1)">        score = F.softmax(logits, dim=1)[:, 1]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -421,8 +422,8 @@ Unannotated (x1)">        if self.prediction_fn is not None:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            flattened_y_pred = self.prediction_fn(flattened_y_pred)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)
-Omitted Generics (x9)">        ytr = np.array(flattened_y_true.squeeze().detach().cpu().numpy() &gt; 0)</span>
+Unannotated (x13)
+Unimported (x1)">        ytr = np.array(flattened_y_true.squeeze().detach().cpu().numpy() &gt; 0)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)">        ypr = flattened_y_pred.squeeze().detach().cpu().numpy()</span>
 <span class="line-any" title="Any Types on this line: 
@@ -436,8 +437,8 @@ Unannotated (x1)">            ypr,</span>
 Unannotated (x1)">            average=self.average</span>
 <span class="line-empty" title="No Anys on this line!">        )</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Explicit (x1)">        to_ret = torch.tensor(score).to(flattened_y_pred.device)</span>
+Unannotated (x8)
+Unimported (x1)">        to_ret = torch.tensor(score).to(flattened_y_pred.device)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        return to_ret</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -451,8 +452,8 @@ Unannotated (x3)">        for group_idx in range(n_groups):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            if group_counts[group_idx] == 0:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Explicit (x1)">                group_metrics.append(torch.tensor(0., device=g.device))</span>
+Unannotated (x7)
+Unimported (x1)">                group_metrics.append(torch.tensor(0., device=g.device))</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                flattened_metrics, _ = self.compute_flattened(</span>
@@ -464,7 +465,8 @@ Unannotated (x5)">                    y_true[g == group_idx],</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">                group_metrics.append(flattened_metrics)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        group_metrics = torch.stack(group_metrics)</span>
+Unannotated (x4)
+Unimported (x1)">        group_metrics = torch.stack(group_metrics)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">        worst_group_metric = self.worst(group_metrics[group_counts &gt; 0])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -503,10 +505,10 @@ Unannotated (x1)">        if self.prediction_fn is not None:</span>
 Unannotated (x4)">            y_pred = self.prediction_fn(y_pred)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)
-Unimported (x1)">        recall = sklearn.metrics.recall_score(y_true, y_pred, average=self.average, labels=torch.unique(y_true))</span>
+Unimported (x2)">        recall = sklearn.metrics.recall_score(y_true, y_pred, average=self.average, labels=torch.unique(y_true))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x1)">        return torch.tensor(recall)</span>
+Unannotated (x3)
+Unimported (x1)">        return torch.tensor(recall)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def worst(self, metrics):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -537,10 +539,10 @@ Unannotated (x1)">        if self.prediction_fn is not None:</span>
 Unannotated (x4)">            y_pred = self.prediction_fn(y_pred)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)
-Unimported (x1)">        score = sklearn.metrics.f1_score(y_true, y_pred, average=self.average, labels=torch.unique(y_true))</span>
+Unimported (x2)">        score = sklearn.metrics.f1_score(y_true, y_pred, average=self.average, labels=torch.unique(y_true))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x1)">        return torch.tensor(score)</span>
+Unannotated (x3)
+Unimported (x1)">        return torch.tensor(score)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def worst(self, metrics):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -561,8 +563,8 @@ Unannotated (x2)">        super().__init__(name=name)</span>
 Unannotated (x21)
 Unimported (x1)">        r = pearsonr(y_pred.squeeze().detach().cpu().numpy(), y_true.squeeze().detach().cpu().numpy())[0]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x1)">        return torch.tensor(r)</span>
+Unannotated (x3)
+Unimported (x1)">        return torch.tensor(r)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def worst(self, metrics):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -575,8 +577,8 @@ Unannotated (x7)">    assert out.size() == targets.size()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    if out.numel() == 0:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Explicit (x1)">        return torch.Tensor()</span>
+Unannotated (x2)
+Unimported (x1)">        return torch.Tensor()</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        assert out.dim() &gt; 1, 'MSE loss currently supports Tensors of dimensions &gt; 1'</span>
@@ -585,7 +587,8 @@ Unannotated (x5)">        losses = (out - targets) ** 2</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">        reduce_dims = tuple(list(range(1, len(targets.shape))))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        losses = torch.mean(losses, dim=reduce_dims)</span>
+Unannotated (x5)
+Unimported (x1)">        losses = torch.mean(losses, dim=reduce_dims)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        return losses</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -621,9 +624,8 @@ Unannotated (x4)">        score = self.score_fn(y_pred)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        predictions = (score &gt; self.threshold)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Explicit (x1)
-Unimported (x1)">        return torch.tensor(sklearn.metrics.precision_score(y_true, predictions))</span>
+Unannotated (x7)
+Unimported (x2)">        return torch.tensor(sklearn.metrics.precision_score(y_true, predictions))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def worst(self, metrics):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -647,12 +649,13 @@ Unannotated (x2)">        super().__init__(name=name)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def _compute(self, y_pred, y_true):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x1)">        return torch.tensor(-1)</span>
+Unannotated (x3)
+Unimported (x1)">        return torch.tensor(-1)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def _compute_group_wise(self, y_pred, y_true, g, n_groups):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        group_metrics = torch.ones(n_groups, device=g.device) * -1</span>
+Unannotated (x8)
+Unimported (x1)">        group_metrics = torch.ones(n_groups, device=g.device) * -1</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">        group_counts = get_counts(g, n_groups)</span>
 <span class="line-any" title="Any Types on this line: 
@@ -697,15 +700,17 @@ Unannotated (x3)">            target_scores = target["scores"]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            pred_boxes = target_boxes[target_scores &gt; self.score_threshold]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            det_accuracy = torch.mean(torch.stack(</span>
+Unannotated (x5)
+Unimported (x2)">            det_accuracy = torch.mean(torch.stack(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x18)">                [self._accuracy(src_boxes["boxes"], pred_boxes, iou_thr) for iou_thr in np.arange(0.5, 0.51, 0.05)]))</span>
+Unannotated (x9)
+Unimported (x1)">                [self._accuracy(src_boxes["boxes"], pred_boxes, iou_thr) for iou_thr in np.arange(0.5, 0.51, 0.05)]))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            batch_results.append(det_accuracy)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x1)">        return torch.tensor(batch_results)</span>
+Unannotated (x3)
+Unimported (x1)">        return torch.tensor(batch_results)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def _accuracy(self, src_boxes, pred_boxes, iou_threshold):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -733,14 +738,16 @@ Unannotated (x1)">                pred_boxes)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            results = matcher(match_quality_matrix)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            true_positive = torch.count_nonzero(results.unique() != -1)</span>
+Unannotated (x8)
+Unimported (x1)">            true_positive = torch.count_nonzero(results.unique() != -1)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            matched_elements = results[results &gt; -1]</span>
 <span class="line-empty" title="No Anys on this line!">            # in Matcher, a pred element can be matched only twice</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            false_positive = (</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                    torch.count_nonzero(results == -1) +</span>
+Unannotated (x6)
+Unimported (x1)">                    torch.count_nonzero(results == -1) +</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">                    (len(matched_elements) - len(matched_elements.unique()))</span>
 <span class="line-empty" title="No Anys on this line!">            )</span>
@@ -755,17 +762,17 @@ Unannotated (x2)">        elif total_gt == 0:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            if total_pred &gt; 0:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Explicit (x1)">                return torch.tensor(0.)</span>
+Unannotated (x2)
+Unimported (x1)">                return torch.tensor(0.)</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Explicit (x1)">                return torch.tensor(1.)</span>
+Unannotated (x2)
+Unimported (x1)">                return torch.tensor(1.)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        elif total_gt &gt; 0 and total_pred == 0:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Explicit (x1)">            return torch.tensor(0.)</span>
+Unannotated (x2)
+Unimported (x1)">            return torch.tensor(0.)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def worst(self, metrics):</span>
 <span class="line-any" title="Any Types on this line: 

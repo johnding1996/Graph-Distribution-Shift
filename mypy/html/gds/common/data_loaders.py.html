@@ -6,7 +6,7 @@
 <body>
 <h2>gds.common.data_loaders</h2>
 <table>
-<caption>gds\common\data_loaders.py</caption>
+<caption>gds/common/data_loaders.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -168,9 +168,9 @@
 <span id="L158" class="lineno"><a class="lineno" href="#L158">158</a></span>
 <span id="L159" class="lineno"><a class="lineno" href="#L159">159</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import numpy as np</span>
-<span class="line-precise" title="No Anys on this line!">from torch.utils.data import DataLoader</span>
-<span class="line-precise" title="No Anys on this line!">from torch.utils.data.sampler import WeightedRandomSampler</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">from torch.utils.data import DataLoader</span>
+<span class="line-any" title="No Anys on this line!">from torch.utils.data.sampler import WeightedRandomSampler</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.utils import split_into_groups</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -203,8 +203,8 @@ Unannotated (x2)">    if loader == 'standard':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        if uniform_over_groups is None or not uniform_over_groups:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Omitted Generics (x1)">            return DataLoader(</span>
+Unannotated (x1)
+Unimported (x1)">            return DataLoader(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                dataset,</span>
 <span class="line-any" title="No Anys on this line!">                shuffle=True,  # Shuffle training dataset</span>
@@ -230,10 +230,11 @@ Unannotated (x4)">            weights = group_weights[groups]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # Replacement needs to be set to True, otherwise we'll run out of minority samples</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            sampler = WeightedRandomSampler(weights, len(dataset), replacement=True)</span>
+Unannotated (x5)
+Unimported (x1)">            sampler = WeightedRandomSampler(weights, len(dataset), replacement=True)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Omitted Generics (x1)">            return DataLoader(</span>
+Unannotated (x1)
+Unimported (x1)">            return DataLoader(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                dataset,</span>
 <span class="line-any" title="No Anys on this line!">                shuffle=False,  # The WeightedRandomSampler already shuffles</span>
@@ -279,8 +280,8 @@ Unannotated (x1)">            uniform_over_groups=uniform_over_groups,</span>
 Unannotated (x1)">            distinct_groups=distinct_groups)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Omitted Generics (x1)">        return DataLoader(dataset,</span>
+Unannotated (x2)
+Unimported (x1)">        return DataLoader(dataset,</span>
 <span class="line-any" title="No Anys on this line!">                          shuffle=None,</span>
 <span class="line-any" title="No Anys on this line!">                          sampler=None,</span>
 <span class="line-any" title="Any Types on this line: 
@@ -306,8 +307,8 @@ Unannotated (x1)">                          **loader_kwargs)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    if loader == 'standard':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Omitted Generics (x1)">        return DataLoader(</span>
+Unannotated (x1)
+Unimported (x1)">        return DataLoader(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            dataset,</span>
 <span class="line-any" title="No Anys on this line!">            shuffle=False,  # Do not shuffle eval datasets</span>
@@ -373,9 +374,8 @@ Unannotated (x10)">            self.group_prob = unique_counts.numpy() / unique_
 Unannotated (x3)">        for batch_id in range(self.num_batches):</span>
 <span class="line-empty" title="No Anys on this line!">            # Note that we are selecting group indices rather than groups</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x4)
-Omitted Generics (x10)">            groups_for_batch = np.random.choice(</span>
+Unannotated (x4)
+Unimported (x1)">            groups_for_batch = np.random.choice(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                len(self.unique_groups),</span>
 <span class="line-any" title="Any Types on this line: 
@@ -387,9 +387,8 @@ Unannotated (x1)">                p=self.group_prob)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            sampled_ids = [</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Explicit (x4)
-Omitted Generics (x10)">                np.random.choice(</span>
+Unannotated (x3)
+Unimported (x1)">                np.random.choice(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                    self.group_indices[group],</span>
 <span class="line-any" title="Any Types on this line: 
@@ -403,7 +402,8 @@ Unannotated (x2)">                for group in groups_for_batch]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # Flatten</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">            sampled_ids = np.concatenate(sampled_ids)</span>
+Unannotated (x4)
+Unimported (x1)">            sampled_ids = np.concatenate(sampled_ids)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            yield sampled_ids</span>
 <span class="line-empty" title="No Anys on this line!"></span>

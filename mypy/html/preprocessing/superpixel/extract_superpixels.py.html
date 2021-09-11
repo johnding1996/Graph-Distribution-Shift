@@ -6,7 +6,7 @@
 <body>
 <h2>preprocessing.superpixel.extract_superpixels</h2>
 <table>
-<caption>preprocessing\superpixel\extract_superpixels.py</caption>
+<caption>preprocessing/superpixel/extract_superpixels.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -186,11 +186,11 @@
 <span class="line-precise" title="No Anys on this line!">import pickle</span>
 <span class="line-precise" title="No Anys on this line!">import random</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-any" title="No Anys on this line!">import scipy</span>
 <span class="line-any" title="No Anys on this line!">import scipy.ndimage</span>
 <span class="line-any" title="No Anys on this line!">import scipy.spatial</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from skimage.segmentation import slic</span>
 <span class="line-any" title="No Anys on this line!">from torchvision import datasets</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -254,7 +254,8 @@ Unannotated (x4)">    while n_sp_extracted &gt; args.n_sp:</span>
 Unannotated (x10)
 Unimported (x1)">        superpixels = slic(img, n_segments=n_sp_query, compactness=args.compactness, multichannel=len(img.shape) &gt; 2)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        sp_indices = np.unique(superpixels)</span>
+Unannotated (x4)
+Unimported (x1)">        sp_indices = np.unique(superpixels)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        n_sp_extracted = len(sp_indices)</span>
 <span class="line-any" title="Any Types on this line: 
@@ -263,22 +264,25 @@ Unannotated (x1)">        n_sp_query -= 1  # reducing the number of superpixels 
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x13)">    assert n_sp_extracted &lt;= args.n_sp and n_sp_extracted &gt; 0, (args.split, index, n_sp_extracted, args.n_sp)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">    assert n_sp_extracted == np.max(superpixels) + 1, (</span>
+Unannotated (x6)
+Unimported (x1)">    assert n_sp_extracted == np.max(superpixels) + 1, (</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        'superpixel indices', np.unique(superpixels))  # make sure superpixel indices are numbers from 0 to n-1</span>
+Unannotated (x3)
+Unimported (x1)">        'superpixel indices', np.unique(superpixels))  # make sure superpixel indices are numbers from 0 to n-1</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    if shuffle:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Explicit (x3)
-Omitted Generics (x5)">        ind = np.random.permutation(n_sp_extracted)</span>
+Unannotated (x5)
+Unimported (x1)">        ind = np.random.permutation(n_sp_extracted)</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x13)">        ind = np.arange(n_sp_extracted)</span>
+Unannotated (x4)
+Unimported (x1)">        ind = np.arange(n_sp_extracted)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">    sp_order = sp_indices[ind].astype(np.int32)</span>
+Unannotated (x7)
+Unimported (x1)">    sp_order = sp_indices[ind].astype(np.int32)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    if len(img.shape) == 2:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -294,28 +298,26 @@ Unannotated (x2)">    for seg in sp_order:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        mask = (superpixels == seg).squeeze()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Omitted Generics (x9)">        avg_value = np.zeros(n_ch)</span>
+Unannotated (x4)
+Unimported (x1)">        avg_value = np.zeros(n_ch)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for c in range(n_ch):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Omitted Generics (x9)
-Explicit (x1)">            avg_value[c] = np.mean(img[:, :, c][mask])</span>
+Unannotated (x9)
+Unimported (x1)">            avg_value[c] = np.mean(img[:, :, c][mask])</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Omitted Generics (x9)
-Unimported (x1)">        cntr = np.array(scipy.ndimage.measurements.center_of_mass(mask))  # row, col</span>
+Unannotated (x8)
+Unimported (x2)">        cntr = np.array(scipy.ndimage.measurements.center_of_mass(mask))  # row, col</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        sp_intensity.append(avg_value)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        sp_coord.append(cntr)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Omitted Generics (x9)">    sp_intensity = np.array(sp_intensity, np.float32)</span>
+Unannotated (x5)
+Unimported (x2)">    sp_intensity = np.array(sp_intensity, np.float32)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Omitted Generics (x9)">    sp_coord = np.array(sp_coord, np.float32)</span>
+Unannotated (x5)
+Unimported (x2)">    sp_coord = np.array(sp_coord, np.float32)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    if to_print:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -346,6 +348,7 @@ Unannotated (x2)">        os.mkdir(args.out_dir)</span>
 Explicit (x1)
 Unannotated (x2)">    random.seed(args.seed)</span>
 <span class="line-any" title="Any Types on this line: 
+Unimported (x4)
 Unannotated (x2)">    np.random.seed(args.seed)  # to make node random permutation reproducible (not tested)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Read image data using torchvision</span>
@@ -402,27 +405,24 @@ Unimported (x3)">            images.append(image)</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x5)">            labels.append(label.item())</span>
 <span class="line-precise" title="No Anys on this line!">            data_envs.append(i)</span>
-<span class="line-imprecise" title="Any Types on this line: 
-Unimported (x2)">    images = torch.stack(images)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-imprecise" title="Any Types on this line: 
-Explicit (x3)
-Unimported (x1)
-Omitted Generics (x4)">    if not isinstance(images, np.ndarray):</span>
 <span class="line-any" title="Any Types on this line: 
-Error (x3)
-Omitted Generics (x7)
-Unimported (x2)">        images = np.squeeze(images.numpy())  # [0,1]</span>
+Unimported (x5)">    images = torch.stack(images)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Explicit (x1)
+Unimported (x3)">    if not isinstance(images, np.ndarray):</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x5)
+Error (x2)">        images = np.squeeze(images.numpy())  # [0,1]</span>
 <span class="line-imprecise" title="Any Types on this line: 
 Explicit (x1)
 Unimported (x1)">    if isinstance(labels, list):</span>
-<span class="line-imprecise" title="Any Types on this line: 
-Omitted Generics (x11)
-Unimported (x2)">        labels = np.array(labels)</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x5)">        labels = np.array(labels)</span>
 <span class="line-imprecise" title="Any Types on this line: 
 Explicit (x1)">    if isinstance(data_envs, list):</span>
-<span class="line-imprecise" title="Any Types on this line: 
-Omitted Generics (x11)">        data_envs = np.array(data_envs)</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x3)">        data_envs = np.array(data_envs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-imprecise" title="Any Types on this line: 
 Unimported (x1)">    n_images = len(labels)</span>
@@ -452,7 +452,7 @@ Unannotated (x8)">    with open('%s/%s_%dsp_%s.pkl' % (args.out_dir, args.datase
 <span class="line-any" title="Any Types on this line: 
 Explicit (x1)
 Error (x2)
-Unimported (x1)
+Unimported (x3)
 Unannotated (x1)">        pickle.dump((labels.astype(np.int32), sp_data), f, protocol=2)</span>
 <span class="line-any" title="Any Types on this line: 
 Explicit (x1)
@@ -465,7 +465,7 @@ Unannotated (x1)">        pickle.dump(superpixels, f, protocol=2)</span>
 Explicit (x1)
 Unannotated (x4)">    with open(f'{args.out_dir}/{args.dataset}_group.npy', 'wb') as f:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        np.save(f, data_envs)</span>
+Unimported (x3)">        np.save(f, data_envs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">    print('done in {}'.format(datetime.datetime.now() - dt))</span>
 </pre></td>

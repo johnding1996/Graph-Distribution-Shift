@@ -6,7 +6,7 @@
 <body>
 <h2>gds.datasets.sbm_1_dataset</h2>
 <table>
-<caption>gds\datasets\sbm_1_dataset.py</caption>
+<caption>gds/datasets/sbm_1_dataset.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -153,7 +153,7 @@
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-precise" title="No Anys on this line!">from gds.datasets.wilds_dataset import GDSDataset</span>
 <span class="line-any" title="No Anys on this line!">from ogb.graphproppred import Evaluator</span>
 <span class="line-any" title="No Anys on this line!">from ogb.utils.url import download_url</span>
@@ -260,8 +260,9 @@ Unimported (x1)">            download_url('https://www.dropbox.com/s/ysrf4fnvegk
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                         self.ogb_dataset.raw_dir)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x16)
-Error (x1)">        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()</span>
+Unannotated (x11)
+Error (x1)
+Unimported (x1)">        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Error (x1)">        self._metadata_array = torch.cat((self._metadata_array_wo_y,</span>

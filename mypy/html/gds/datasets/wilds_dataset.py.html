@@ -6,7 +6,7 @@
 <body>
 <h2>gds.datasets.wilds_dataset</h2>
 <table>
-<caption>gds\datasets\wilds_dataset.py</caption>
+<caption>gds/datasets/wilds_dataset.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -501,8 +501,8 @@
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-precise" title="No Anys on this line!">import time</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">import numpy as np</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class GDSDataset:</span>
@@ -580,15 +580,16 @@ Unannotated (x6)">            raise ValueError(f"Split {split} not found in data
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        split_mask = self.split_array == self.split_dict[split]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">        split_idx = np.where(split_mask)[0]</span>
+Unannotated (x5)
+Unimported (x1)">        split_idx = np.where(split_mask)[0]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if frac &lt; 1.0:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">            num_to_retain = int(np.round(float(len(split_idx)) * frac))</span>
+Unannotated (x9)
+Unimported (x1)">            num_to_retain = int(np.round(float(len(split_idx)) * frac))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Omitted Generics (x12)
-Explicit (x3)">            split_idx = np.sort(np.random.permutation(split_idx)[:num_to_retain])</span>
+Unannotated (x9)
+Unimported (x2)">            split_idx = np.sort(np.random.permutation(split_idx)[:num_to_retain])</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)">        subset = GDSSubset(self, split_idx, transform)</span>
 <span class="line-any" title="Any Types on this line: 
@@ -627,23 +628,25 @@ Unannotated (x1)">        assert 'val' in self.split_dict</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Check the form of the required arrays</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Explicit (x3)">        assert (isinstance(self.y_array, torch.Tensor) or isinstance(self.y_array, list))</span>
+Unannotated (x6)
+Explicit (x2)
+Unimported (x1)">        assert (isinstance(self.y_array, torch.Tensor) or isinstance(self.y_array, list))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">        assert isinstance(self.metadata_array, torch.Tensor), 'metadata_array must be a torch.Tensor'</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">        assert isinstance(self.metadata_array, torch.Tensor), 'metadata_array must be a torch.Tensor'</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Check that dimensions match</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        assert len(self.y_array) == len(self.metadata_array)</span>
+Unannotated (x5)">        assert len(self.y_array) == len(self.metadata_array)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        assert len(self.split_array) == len(self.metadata_array)</span>
+Unannotated (x5)">        assert len(self.split_array) == len(self.metadata_array)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Check metadata</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        assert len(self.metadata_array.shape) == 2</span>
+Unannotated (x4)">        assert len(self.metadata_array.shape) == 2</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        assert len(self.metadata_fields) == self.metadata_array.shape[1]</span>
+Unannotated (x6)">        assert len(self.metadata_fields) == self.metadata_array.shape[1]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Check that it is not both classification and detection</span>
 <span class="line-any" title="Any Types on this line: 

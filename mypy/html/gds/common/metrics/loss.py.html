@@ -6,7 +6,7 @@
 <body>
 <h2>gds.common.metrics.loss</h2>
 <table>
-<caption>gds\common\metrics\loss.py</caption>
+<caption>gds/common/metrics/loss.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -103,7 +103,7 @@
 <span id="L93" class="lineno"><a class="lineno" href="#L93">93</a></span>
 <span id="L94" class="lineno"><a class="lineno" href="#L94">94</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.metrics.metric import ElementwiseMetric, Metric, MultiTaskMetric</span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.utils import maximum</span>
@@ -168,9 +168,10 @@ Unannotated (x2)">        super().__init__(name=name)</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Explicit (x1)">        if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):</span>
+Explicit (x1)
+Unimported (x1)">        if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            return self.loss_fn(y_pred.float(), y_true.float())</span>
+Unannotated (x8)">            return self.loss_fn(y_pred.float(), y_true.float())</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            return self.loss_fn(y_pred, y_true)</span>
@@ -201,14 +202,16 @@ Unannotated (x2)">        super().__init__(name=name)</span>
 <span class="line-any" title="No Anys on this line!">    def _compute_flattened(self, flattened_y_pred, flattened_y_true):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Explicit (x1)">        if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):</span>
+Explicit (x1)
+Unimported (x1)">        if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            flattened_y_pred = flattened_y_pred.float()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            flattened_y_true = flattened_y_true.float()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Explicit (x1)">        elif isinstance(self.loss_fn, torch.nn.CrossEntropyLoss):</span>
+Explicit (x1)
+Unimported (x1)">        elif isinstance(self.loss_fn, torch.nn.CrossEntropyLoss):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            flattened_y_true = flattened_y_true.long()</span>
 <span class="line-any" title="Any Types on this line: 

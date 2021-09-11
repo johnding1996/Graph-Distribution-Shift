@@ -6,7 +6,7 @@
 <body>
 <h2>gds.datasets.pyg_sbm_1_dataset</h2>
 <table>
-<caption>gds\datasets\pyg_sbm_1_dataset.py</caption>
+<caption>gds/datasets/pyg_sbm_1_dataset.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -111,7 +111,7 @@
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">from typing import Optional, Callable, List</span>
 <span class="line-precise" title="No Anys on this line!">import os.path as osp</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.data import (InMemoryDataset, download_url, extract_zip, Data)</span>
 <span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -172,7 +172,7 @@ Omitted Generics (x9)">    def __init__(self, root: str, name: str,</span>
 <span class="line-precise" title="Any Types on this line: 
 Omitted Generics (x9)">        super().__init__(root, transform, pre_transform, pre_filter)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        self.data, self.slices = torch.load(self.processed_paths[0])</span>
+Unimported (x5)">        self.data, self.slices = torch.load(self.processed_paths[0])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    @property</span>
@@ -204,7 +204,8 @@ Unannotated (x2)">        os.unlink(path)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def process(self):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        inputs = torch.load(self.raw_paths[0])</span>
+Unannotated (x5)
+Unimported (x1)">        inputs = torch.load(self.raw_paths[0])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
@@ -222,8 +223,8 @@ Unannotated (x6)">            data_list = [self.pre_transform(d) for d in data_l
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)
-Omitted Generics (x1)">        torch.save(self.collate(data_list), self.processed_paths[0])</span>
+Unannotated (x7)
+Unimported (x1)">        torch.save(self.collate(data_list), self.processed_paths[0])</span>
 </pre></td>
 </tr></tbody>
 </table>

@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.algorithms.deepCORAL</h2>
 <table>
-<caption>experiments\algorithms\deepCORAL.py</caption>
+<caption>experiments/algorithms/deepCORAL.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -128,7 +128,7 @@
 <span id="L118" class="lineno"><a class="lineno" href="#L118">118</a></span>
 <span id="L119" class="lineno"><a class="lineno" href="#L119">119</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.single_model_algorithm import SingleModelAlgorithm</span>
 <span class="line-any" title="No Anys on this line!">from models.initializer import initialize_model</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import global_mean_pool</span>
@@ -169,7 +169,8 @@ Unannotated (x6)">        featurizer = featurizer.to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        classifier = classifier.to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        model = torch.nn.Sequential(featurizer, classifier).to(config.device)</span>
+Unannotated (x10)
+Unimported (x1)">        model = torch.nn.Sequential(featurizer, classifier).to(config.device)</span>
 <span class="line-empty" title="No Anys on this line!">        # initialize module</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        super().__init__(</span>
@@ -278,7 +279,8 @@ Unannotated (x7)">            unique_groups, group_indices, _ = split_into_group
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            n_groups_per_batch = unique_groups.numel()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            penalty = torch.zeros(1, device=self.device)</span>
+Unannotated (x4)
+Unimported (x1)">            penalty = torch.zeros(1, device=self.device)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            for i_group in range(n_groups_per_batch):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -295,10 +297,11 @@ Unannotated (x6)">                penalty /= (n_groups_per_batch * (n_groups_per
 Unannotated (x1)">            penalty = 0.</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">        if isinstance(penalty, torch.Tensor):</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">        if isinstance(penalty, torch.Tensor):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            results['penalty'] = penalty.item()</span>
+Unannotated (x4)">            results['penalty'] = penalty.item()</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            results['penalty'] = penalty</span>

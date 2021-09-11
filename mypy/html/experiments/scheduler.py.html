@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.scheduler</h2>
 <table>
-<caption>experiments\scheduler.py</caption>
+<caption>experiments/scheduler.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -61,8 +61,8 @@
 <span id="L51" class="lineno"><a class="lineno" href="#L51">51</a></span>
 <span id="L52" class="lineno"><a class="lineno" href="#L52">52</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">from torch.optim.lr_scheduler import ReduceLROnPlateau, StepLR, MultiStepLR</span>
-<span class="line-precise" title="No Anys on this line!">from transformers import (get_linear_schedule_with_warmup,</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from torch.optim.lr_scheduler import ReduceLROnPlateau, StepLR, MultiStepLR</span>
+<span class="line-any" title="No Anys on this line!">from transformers import (get_linear_schedule_with_warmup,</span>
 <span class="line-empty" title="No Anys on this line!">                          get_cosine_schedule_with_warmup)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -74,7 +74,8 @@ Unannotated (x2)">    if config.scheduler is None:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.scheduler == 'linear_schedule_with_warmup':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        scheduler = get_linear_schedule_with_warmup(</span>
+Unannotated (x2)
+Unimported (x1)">        scheduler = get_linear_schedule_with_warmup(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            optimizer,</span>
 <span class="line-any" title="Any Types on this line: 
@@ -88,7 +89,8 @@ Unannotated (x1)">        use_metric = False</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.scheduler == 'cosine_schedule_with_warmup':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        scheduler = get_cosine_schedule_with_warmup(</span>
+Unannotated (x2)
+Unimported (x1)">        scheduler = get_cosine_schedule_with_warmup(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            optimizer,</span>
 <span class="line-any" title="Any Types on this line: 
@@ -104,7 +106,8 @@ Unannotated (x3)">    elif config.scheduler == 'ReduceLROnPlateau':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)">        assert config.scheduler_metric_name, f'scheduler metric must be specified for {config.scheduler}'</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        scheduler = ReduceLROnPlateau(</span>
+Unannotated (x2)
+Unimported (x1)">        scheduler = ReduceLROnPlateau(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            optimizer,</span>
 <span class="line-any" title="Any Types on this line: 
@@ -116,7 +119,8 @@ Unannotated (x1)">        use_metric = True</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.scheduler == 'StepLR':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        scheduler = StepLR(optimizer, **config.scheduler_kwargs)</span>
+Unannotated (x5)
+Unimported (x1)">        scheduler = StepLR(optimizer, **config.scheduler_kwargs)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        step_every_batch = False</span>
 <span class="line-any" title="Any Types on this line: 
@@ -124,7 +128,8 @@ Unannotated (x1)">        use_metric = False</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.scheduler == 'MultiStepLR':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        scheduler = MultiStepLR(optimizer, **config.scheduler_kwargs)</span>
+Unannotated (x5)
+Unimported (x1)">        scheduler = MultiStepLR(optimizer, **config.scheduler_kwargs)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        step_every_batch = False</span>
 <span class="line-any" title="Any Types on this line: 
@@ -144,11 +149,12 @@ Unannotated (x1)">    return scheduler</span>
 <span class="line-any" title="No Anys on this line!">def step_scheduler(scheduler, metric=None):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
-Explicit (x1)">    if isinstance(scheduler, ReduceLROnPlateau):</span>
+Explicit (x1)
+Unimported (x1)">    if isinstance(scheduler, ReduceLROnPlateau):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        assert metric is not None</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        scheduler.step(metric)</span>
+Unannotated (x4)">        scheduler.step(metric)</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        scheduler.step()</span>

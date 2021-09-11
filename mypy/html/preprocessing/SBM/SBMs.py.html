@@ -6,7 +6,7 @@
 <body>
 <h2>preprocessing.SBM.SBMs</h2>
 <table>
-<caption>preprocessing\SBM\SBMs.py</caption>
+<caption>preprocessing/SBM/SBMs.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -263,13 +263,13 @@
 <span class="line-precise" title="No Anys on this line!">import time</span>
 <span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-precise" title="No Anys on this line!">import pickle</span>
-<span class="line-precise" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">import dgl</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">from scipy import sparse as sp</span>
-<span class="line-precise" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -331,7 +331,8 @@ Unannotated (x9)">                g.add_edges(src.item(), dst.item())</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            edge_feat_dim = 1 # dim same as node feature dim</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            g.edata['feat'] = torch.ones(g.number_of_edges(), edge_feat_dim)</span>
+Unannotated (x8)
+Unimported (x1)">            g.edata['feat'] = torch.ones(g.number_of_edges(), edge_feat_dim)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            self.graph_lists.append(g)</span>
@@ -416,7 +417,8 @@ Unimported (x1)">    dst = dgl.backend.zerocopy_to_numpy(dst)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    non_self_edges_idx = src != dst</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x15)">    nodes = np.arange(g.number_of_nodes())</span>
+Unannotated (x6)
+Unimported (x1)">    nodes = np.arange(g.number_of_nodes())</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x9)">    new_g.add_edges(src[non_self_edges_idx], dst[non_self_edges_idx])</span>
 <span class="line-any" title="Any Types on this line: 
@@ -425,7 +427,8 @@ Unannotated (x5)">    new_g.add_edges(nodes, nodes)</span>
 <span class="line-empty" title="No Anys on this line!">    # This new edata is not used since this function gets called only for GCN, GAT</span>
 <span class="line-empty" title="No Anys on this line!">    # However, we need this for the generic requirement of ndata and edata</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">    new_g.edata['feat'] = torch.zeros(new_g.number_of_edges())</span>
+Unannotated (x7)
+Unimported (x1)">    new_g.edata['feat'] = torch.zeros(new_g.number_of_edges())</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    return new_g</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -460,7 +463,8 @@ Unimported (x1)">    EigVal, EigVec = sp.linalg.eigs(L, k=pos_enc_dim+1, which='
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">    EigVec = EigVec[:, EigVal.argsort()] # increasing order</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x13)">    g.ndata['pos_enc'] = torch.from_numpy(np.real(EigVec[:,1:pos_enc_dim+1])).float()</span>
+Unannotated (x12)
+Unimported (x2)">    g.ndata['pos_enc'] = torch.from_numpy(np.real(EigVec[:,1:pos_enc_dim+1])).float()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    return g</span>
@@ -508,7 +512,8 @@ Unannotated (x6)">        print("[I] Data load time: {:.4f}s".format(time.time()
 Unannotated (x5)
 Explicit (x17)">        graphs, labels = map(list, zip(*samples))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        labels = torch.cat(labels).long()</span>
+Unannotated (x6)
+Unimported (x1)">        labels = torch.cat(labels).long()</span>
 <span class="line-empty" title="No Anys on this line!">        #tab_sizes_n = [ graphs[i].number_of_nodes() for i in range(len(graphs))]</span>
 <span class="line-empty" title="No Anys on this line!">        #tab_snorm_n = [ torch.FloatTensor(size,1).fill_(1./float(size)) for size in tab_sizes_n ]</span>
 <span class="line-empty" title="No Anys on this line!">        #snorm_n = torch.cat(tab_snorm_n).sqrt()  </span>
@@ -529,7 +534,8 @@ Unannotated (x2)">        return batched_graph, labels</span>
 Unannotated (x5)
 Explicit (x17)">        graphs, labels = map(list, zip(*samples))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        labels = torch.cat(labels).long()</span>
+Unannotated (x6)
+Unimported (x1)">        labels = torch.cat(labels).long()</span>
 <span class="line-empty" title="No Anys on this line!">        #tab_sizes_n = [ graphs[i].number_of_nodes() for i in range(len(graphs))]</span>
 <span class="line-empty" title="No Anys on this line!">        #tab_snorm_n = [ torch.FloatTensor(size,1).fill_(1./float(size)) for size in tab_sizes_n ]</span>
 <span class="line-empty" title="No Anys on this line!">        #snorm_n = tab_snorm_n[0][0].sqrt()  </span>
@@ -550,7 +556,8 @@ Unannotated (x8)">        adj = self._sym_normalize_adj(g.adjacency_matrix().to_
 <span class="line-empty" title="No Anys on this line!">        """</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        zero_adj = torch.zeros_like(adj)</span>
+Unannotated (x4)
+Unimported (x1)">        zero_adj = torch.zeros_like(adj)</span>
 <span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if self.name == 'SBM_CLUSTER': </span>
@@ -563,9 +570,11 @@ Unannotated (x1)">            self.num_node_type = 3</span>
 <span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!">        # use node feats to prepare adj</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        adj_node_feat = torch.stack([zero_adj for j in range(self.num_node_type)])</span>
+Unannotated (x7)
+Unimported (x1)">        adj_node_feat = torch.stack([zero_adj for j in range(self.num_node_type)])</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        adj_node_feat = torch.cat([adj.unsqueeze(0), adj_node_feat], dim=0)</span>
+Unannotated (x7)
+Unimported (x1)">        adj_node_feat = torch.cat([adj.unsqueeze(0), adj_node_feat], dim=0)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        for node, node_label in enumerate(g.ndata['feat']):</span>
@@ -580,13 +589,17 @@ Unannotated (x2)">        return x_node_feat, labels</span>
 <span class="line-empty" title="No Anys on this line!">    </span>
 <span class="line-any" title="No Anys on this line!">    def _sym_normalize_adj(self, adj):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        deg = torch.sum(adj, dim = 0)#.squeeze()</span>
+Unannotated (x4)
+Unimported (x1)">        deg = torch.sum(adj, dim = 0)#.squeeze()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x11)">        deg_inv = torch.where(deg&gt;0, 1./torch.sqrt(deg), torch.zeros(deg.size()))</span>
+Unannotated (x14)
+Unimported (x3)">        deg_inv = torch.where(deg&gt;0, 1./torch.sqrt(deg), torch.zeros(deg.size()))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        deg_inv = torch.diag(deg_inv)</span>
+Unannotated (x4)
+Unimported (x1)">        deg_inv = torch.diag(deg_inv)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        return torch.mm(deg_inv, torch.mm(adj, deg_inv))</span>
+Unannotated (x7)
+Unimported (x2)">        return torch.mm(deg_inv, torch.mm(adj, deg_inv))</span>
 <span class="line-empty" title="No Anys on this line!">    </span>
 <span class="line-empty" title="No Anys on this line!">    </span>
 <span class="line-any" title="No Anys on this line!">    def _add_self_loops(self):</span>

@@ -6,7 +6,7 @@
 <body>
 <h2>gds.common.grouper</h2>
 <table>
-<caption>gds\common\grouper.py</caption>
+<caption>gds/common/grouper.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -175,8 +175,8 @@
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import warnings</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">import numpy as np</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.utils import get_counts</span>
 <span class="line-precise" title="No Anys on this line!">from gds.datasets.wilds_dataset import GDSSubset</span>
@@ -284,12 +284,14 @@ Unannotated (x1)">                raise ValueError('At least one group field not
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">            grouped_metadata = dataset.metadata_array[:, self.groupby_field_indices]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">            if not isinstance(grouped_metadata, torch.LongTensor):</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">            if not isinstance(grouped_metadata, torch.LongTensor):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">                grouped_metadata_long = grouped_metadata.long()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                if not torch.all(grouped_metadata == grouped_metadata_long):</span>
+Unannotated (x5)
+Unimported (x1)">                if not torch.all(grouped_metadata == grouped_metadata_long):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)
 Explicit (x3)">                    warnings.warn(</span>
@@ -315,17 +317,21 @@ Explicit (x3)">                    warnings.warn(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)">                        f"Minimum metadata value for CombinatorialGrouper is not 0 ({field}, {min_value}). This will result in empty groups")</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            self.cardinality = 1 + torch.max(</span>
+Unannotated (x5)
+Unimported (x1)">            self.cardinality = 1 + torch.max(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                grouped_metadata, dim=0)[0]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            cumprod = torch.cumprod(self.cardinality, dim=0)</span>
+Unannotated (x4)
+Unimported (x1)">            cumprod = torch.cumprod(self.cardinality, dim=0)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            self._n_groups = cumprod[-1].item()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x11)">            self.factors_np = np.concatenate(([1], cumprod[:-1]))</span>
+Unannotated (x6)
+Unimported (x1)">            self.factors_np = np.concatenate(([1], cumprod[:-1]))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            self.factors = torch.from_numpy(self.factors_np)</span>
+Unannotated (x4)
+Unimported (x1)">            self.factors = torch.from_numpy(self.factors_np)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            self.metadata_map = dataset.metadata_map</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -333,7 +339,8 @@ Unannotated (x3)">            self.metadata_map = dataset.metadata_map</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if self.groupby_fields is None:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            groups = torch.zeros(metadata.shape[0], dtype=torch.long)</span>
+Unannotated (x7)
+Unimported (x2)">            groups = torch.zeros(metadata.shape[0], dtype=torch.long)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)">            groups = metadata[:, self.groupby_field_indices].long() @ self.factors</span>
@@ -357,8 +364,8 @@ Unannotated (x1)">        if self.groupby_fields is None:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        n = len(self.factors_np)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Omitted Generics (x9)">        metadata = np.zeros(n)</span>
+Unannotated (x4)
+Unimported (x1)">        metadata = np.zeros(n)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        for i in range(n - 1):</span>
 <span class="line-any" title="Any Types on this line: 

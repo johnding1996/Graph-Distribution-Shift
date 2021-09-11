@@ -6,7 +6,7 @@
 <body>
 <h2>gds.common.utils</h2>
 <table>
-<caption>gds\common\utils.py</caption>
+<caption>gds/common/utils.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -153,35 +153,38 @@
 <span id="L143" class="lineno"><a class="lineno" href="#L143">143</a></span>
 <span id="L144" class="lineno"><a class="lineno" href="#L144">144</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import numpy as np</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from pandas.api.types import CategoricalDtype</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def minimum(numbers, empty_val=0.):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">    if isinstance(numbers, torch.Tensor):</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">    if isinstance(numbers, torch.Tensor):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        if numbers.numel() == 0:</span>
+Unannotated (x4)">        if numbers.numel() == 0:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            return torch.tensor(empty_val, device=numbers.device)</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)
+Unimported (x1)">            return numbers[~torch.isnan(numbers)].min()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
-Explicit (x1)">            return torch.tensor(empty_val, device=numbers.device)</span>
+Explicit (x1)
+Unimported (x1)">    elif isinstance(numbers, np.ndarray):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        if numbers.size == 0:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">            return np.array(empty_val)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            return numbers[~torch.isnan(numbers)].min()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x3)
-Omitted Generics (x4)">    elif isinstance(numbers, np.ndarray):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if numbers.size == 0:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Omitted Generics (x9)">            return np.array(empty_val)</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            return np.nanmin(numbers)</span>
+Unannotated (x3)
+Unimported (x1)">            return np.nanmin(numbers)</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        if len(numbers) == 0:</span>
@@ -194,28 +197,31 @@ Unannotated (x2)">            return min(numbers)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def maximum(numbers, empty_val=0.):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">    if isinstance(numbers, torch.Tensor):</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">    if isinstance(numbers, torch.Tensor):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        if numbers.numel() == 0:</span>
+Unannotated (x4)">        if numbers.numel() == 0:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            return torch.tensor(empty_val, device=numbers.device)</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)
+Unimported (x1)">            return numbers[~torch.isnan(numbers)].max()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
-Explicit (x1)">            return torch.tensor(empty_val, device=numbers.device)</span>
+Explicit (x1)
+Unimported (x1)">    elif isinstance(numbers, np.ndarray):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        if numbers.size == 0:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">            return np.array(empty_val)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            return numbers[~torch.isnan(numbers)].max()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x3)
-Omitted Generics (x4)">    elif isinstance(numbers, np.ndarray):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if numbers.size == 0:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Omitted Generics (x9)">            return np.array(empty_val)</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            return np.nanmax(numbers)</span>
+Unannotated (x3)
+Unimported (x1)">            return np.nanmax(numbers)</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        if len(numbers) == 0:</span>
@@ -239,7 +245,8 @@ Unannotated (x2)">            return max(numbers)</span>
 <span class="line-empty" title="No Anys on this line!">                                 Has the same length as len(groups).</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">    unique_groups, unique_counts = torch.unique(g, sorted=False, return_counts=True)</span>
+Unannotated (x5)
+Unimported (x1)">    unique_groups, unique_counts = torch.unique(g, sorted=False, return_counts=True)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    group_indices = []</span>
 <span class="line-any" title="Any Types on this line: 
@@ -247,7 +254,8 @@ Unannotated (x2)">    for group in unique_groups:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        group_indices.append(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            torch.nonzero(g == group, as_tuple=True)[0])</span>
+Unannotated (x6)
+Unimported (x1)">            torch.nonzero(g == group, as_tuple=True)[0])</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    return unique_groups, group_indices, unique_counts</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -264,9 +272,11 @@ Unannotated (x3)">    return unique_groups, group_indices, unique_counts</span>
 <span class="line-empty" title="No Anys on this line!">        - counts (Tensor): A list of length n_groups, denoting the count of each group.</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">    unique_groups, unique_counts = torch.unique(g, sorted=False, return_counts=True)</span>
+Unannotated (x5)
+Unimported (x1)">    unique_groups, unique_counts = torch.unique(g, sorted=False, return_counts=True)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">    counts = torch.zeros(n_groups, device=g.device)</span>
+Unannotated (x6)
+Unimported (x1)">    counts = torch.zeros(n_groups, device=g.device)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    counts[unique_groups] = unique_counts.float()</span>
 <span class="line-any" title="Any Types on this line: 
@@ -300,8 +310,8 @@ Unannotated (x2)">    return group_avgs, group_count</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    maps = {}</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Omitted Generics (x9)">    array = np.zeros(df.shape)</span>
+Unannotated (x5)
+Unimported (x1)">    array = np.zeros(df.shape)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    for i, c in enumerate(df.columns):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -326,7 +336,8 @@ Unannotated (x2)">    return maps, array</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    seed = (seed + 541433) if seed is not None else None</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    rng = np.random.default_rng(seed)</span>
+Unannotated (x5)
+Unimported (x1)">    rng = np.random.default_rng(seed)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    idxs = idxs.copy()</span>
@@ -347,7 +358,8 @@ Unannotated (x1)">    return idxs</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    seed = (seed + 548207) if seed is not None else None</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    rng = np.random.default_rng(seed)</span>
+Unannotated (x5)
+Unimported (x1)">    rng = np.random.default_rng(seed)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    arr = arr.copy()</span>
@@ -361,12 +373,14 @@ Unannotated (x1)">    return arr</span>
 <span class="line-empty" title="No Anys on this line!">    """ Calculate the model threshold to use to achieve a desired global_recall level. Assumes that</span>
 <span class="line-empty" title="No Anys on this line!">    y_true is a vector of the true binary labels."""</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x15)">    return np.percentile(y_pred[y_true == 1], 100 - global_recall)</span>
+Unannotated (x8)
+Unimported (x1)">    return np.percentile(y_pred[y_true == 1], 100 - global_recall)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def numel(obj):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">    if torch.is_tensor(obj):</span>
+Unannotated (x3)
+Unimported (x1)">    if torch.is_tensor(obj):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        return obj.numel()</span>
 <span class="line-any" title="Any Types on this line: 

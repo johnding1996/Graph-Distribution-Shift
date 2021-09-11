@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.utils</h2>
 <table>
-<caption>experiments\utils.py</caption>
+<caption>experiments/utils.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -309,12 +309,12 @@
 <span class="line-precise" title="No Anys on this line!">import sys</span>
 <span class="line-precise" title="No Anys on this line!">from pathlib import Path</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-any" title="No Anys on this line!">import pandas as pd</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">try:</span>
-<span class="line-precise" title="No Anys on this line!">    import wandb</span>
+<span class="line-any" title="No Anys on this line!">    import wandb</span>
 <span class="line-precise" title="No Anys on this line!">except Exception as e:</span>
 <span class="line-precise" title="No Anys on this line!">    pass</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -323,8 +323,9 @@
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    denom = prev_counts + curr_counts</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">    if isinstance(curr_counts, torch.Tensor):</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">    if isinstance(curr_counts, torch.Tensor):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        denom += (denom == 0).float()</span>
 <span class="line-any" title="Any Types on this line: 
@@ -402,8 +403,8 @@ Unannotated (x2)">    state['epoch'] = epoch</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    state['best_val_metric'] = best_val_metric</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Omitted Generics (x1)">    torch.save(state, path)</span>
+Unannotated (x4)
+Unimported (x1)">    torch.save(state, path)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def load(algorithm, path):</span>
@@ -411,7 +412,8 @@ Omitted Generics (x1)">    torch.save(state, path)</span>
 Unannotated (x3)
 Explicit (x1)">    path = Path(path)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">    state = torch.load(path)</span>
+Unannotated (x4)
+Unimported (x1)">    state = torch.load(path)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    algorithm.load_state_dict(state['algorithm'])</span>
 <span class="line-any" title="Any Types on this line: 
@@ -560,8 +562,8 @@ Unannotated (x9)">                new_key = f'{self.split}/{key}'</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">                results[new_key] = log_dict[key]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Error (x1)">            wandb.log(results)</span>
+Unannotated (x3)
+Unimported (x1)">            wandb.log(results)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def flush(self):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -575,18 +577,26 @@ Unannotated (x3)">        self.file.close()</span>
 <span class="line-any" title="No Anys on this line!">def set_seed(seed):</span>
 <span class="line-empty" title="No Anys on this line!">    """Sets seed"""</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">    if torch.cuda.is_available():</span>
+Unannotated (x3)
+Unimported (x1)">    if torch.cuda.is_available():</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        torch.cuda.manual_seed(seed)</span>
+Unannotated (x4)
+Unimported (x1)">        torch.cuda.manual_seed(seed)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    torch.manual_seed(seed)</span>
+Unannotated (x3)
+Unimported (x1)">    torch.manual_seed(seed)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">    np.random.seed(seed)</span>
+Unannotated (x4)
+Unimported (x1)">    np.random.seed(seed)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Explicit (x1)">    random.seed(seed)</span>
-<span class="line-any" title="No Anys on this line!">    torch.backends.cudnn.benchmark = False</span>
-<span class="line-any" title="No Anys on this line!">    torch.backends.cudnn.deterministic = True</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">    torch.backends.cudnn.benchmark = False</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">    torch.backends.cudnn.deterministic = True</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def log_config(config, logger):</span>
@@ -603,9 +613,8 @@ Unannotated (x3)">    logger.write('\n')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x15)">    name = config.dataset + '_' + config.algorithm + '_' + f"seed-{config.seed}"</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)
-Omitted Generics (x5)
-Explicit (x1)">    wandb_runner = wandb.init(name=name, project=f"graphdg", entity='graphnet', config=config, reinit=True)</span>
+Unannotated (x5)
+Unimported (x1)">    wandb_runner = wandb.init(name=name, project=f"graphdg", entity='graphnet', config=config, reinit=True)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    return wandb_runner</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -622,7 +631,8 @@ Unannotated (x9)">    csv_path = prefix.parent / (prefix.name + suffix + '.csv')
 Unannotated (x9)">    pth_path = prefix.parent / (prefix.name + suffix + '.pth')</span>
 <span class="line-empty" title="No Anys on this line!">    # Single tensor</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">    if torch.is_tensor(y_pred):</span>
+Unannotated (x3)
+Unimported (x1)">    if torch.is_tensor(y_pred):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">        df = pd.DataFrame(y_pred.numpy())</span>
@@ -633,8 +643,8 @@ Unannotated (x4)">        df.to_csv(csv_path, index=False, header=False)</span>
 Unannotated (x5)
 Explicit (x2)">    elif isinstance(y_pred, dict) or isinstance(y_pred, list):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Omitted Generics (x1)">        torch.save(y_pred, pth_path)</span>
+Unannotated (x3)
+Unimported (x1)">        torch.save(y_pred, pth_path)</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        raise TypeError("Invalid type for save_pred")</span>
@@ -702,7 +712,8 @@ Unannotated (x4)">        return obj.to(device)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def detach_and_clone(obj):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">    if torch.is_tensor(obj):</span>
+Unannotated (x3)
+Unimported (x1)">    if torch.is_tensor(obj):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        return obj.detach().clone()</span>
 <span class="line-any" title="Any Types on this line: 
@@ -742,9 +753,11 @@ Unannotated (x1)">        raise TypeError("collate_list must take in a list")</s
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    elem = vec[0]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">    if torch.is_tensor(elem):</span>
+Unannotated (x3)
+Unimported (x1)">    if torch.is_tensor(elem):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        return torch.cat(vec)</span>
+Unannotated (x2)
+Unimported (x1)">        return torch.cat(vec)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Explicit (x1)">    elif isinstance(elem, list):</span>

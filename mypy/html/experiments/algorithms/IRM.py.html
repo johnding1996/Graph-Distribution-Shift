@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.algorithms.IRM</h2>
 <table>
-<caption>experiments\algorithms\IRM.py</caption>
+<caption>experiments/algorithms/IRM.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -116,8 +116,8 @@
 <span id="L106" class="lineno"><a class="lineno" href="#L106">106</a></span>
 <span id="L107" class="lineno"><a class="lineno" href="#L107">107</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch</span>
-<span class="line-precise" title="No Anys on this line!">import torch.autograd as autograd</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch.autograd as autograd</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.single_model_algorithm import SingleModelAlgorithm</span>
 <span class="line-any" title="No Anys on this line!">from models.initializer import initialize_model</span>
 <span class="line-any" title="No Anys on this line!">from optimizer import initialize_optimizer</span>
@@ -185,8 +185,8 @@ Unannotated (x3)">        self.irm_lambda = config.irm_lambda</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        self.irm_penalty_anneal_iters = config.irm_penalty_anneal_iters</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Explicit (x1)">        self.scale = torch.tensor(1.).to(self.device).requires_grad_()</span>
+Unannotated (x8)
+Unimported (x1)">        self.scale = torch.tensor(1.).to(self.device).requires_grad_()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        self.update_count = 0</span>
 <span class="line-any" title="Any Types on this line: 
@@ -198,11 +198,14 @@ Explicit (x2)">        assert isinstance(self.loss, ElementwiseMetric) or isinst
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def irm_penalty(self, losses):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        grad_1 = autograd.grad(losses[0::2].mean(), [self.scale], create_graph=True)[0]</span>
+Unannotated (x9)
+Unimported (x1)">        grad_1 = autograd.grad(losses[0::2].mean(), [self.scale], create_graph=True)[0]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        grad_2 = autograd.grad(losses[1::2].mean(), [self.scale], create_graph=True)[0]</span>
+Unannotated (x9)
+Unimported (x1)">        grad_2 = autograd.grad(losses[1::2].mean(), [self.scale], create_graph=True)[0]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        result = torch.sum(grad_1 * grad_2)</span>
+Unannotated (x6)
+Unimported (x1)">        result = torch.sum(grad_1 * grad_2)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        return result</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -252,10 +255,11 @@ Unannotated (x1)">            penalty_weight = 1.0</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Package the results</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">        if isinstance(penalty, torch.Tensor):</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">        if isinstance(penalty, torch.Tensor):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            results['penalty'] = penalty.item()</span>
+Unannotated (x4)">            results['penalty'] = penalty.item()</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            results['penalty'] = penalty</span>

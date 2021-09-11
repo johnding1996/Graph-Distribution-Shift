@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.algorithms.group_algorithm</h2>
 <table>
-<caption>experiments\algorithms\group_algorithm.py</caption>
+<caption>experiments/algorithms/group_algorithm.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -244,8 +244,8 @@
 <span id="L234" class="lineno"><a class="lineno" href="#L234">234</a></span>
 <span id="L235" class="lineno"><a class="lineno" href="#L235">235</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import numpy as np</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.algorithm import Algorithm</span>
 <span class="line-any" title="No Anys on this line!">from scheduler import step_scheduler</span>
 <span class="line-any" title="No Anys on this line!">from utils import update_average</span>
@@ -308,7 +308,8 @@ Unannotated (x7)">            assert field in results, f"field {field} missing"<
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        batch_log = {}</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        with torch.no_grad():</span>
+Unannotated (x2)
+Unimported (x1)">        with torch.no_grad():</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            for m in self.logged_metrics:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -345,16 +346,18 @@ Unannotated (x6)">            if field.startswith(self.group_prefix) and self.no
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            v = results[field]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Explicit (x2)">            if isinstance(v, torch.Tensor) and v.numel() == 1:</span>
+Unannotated (x8)
+Explicit (x1)
+Unimported (x1)">            if isinstance(v, torch.Tensor) and v.numel() == 1:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                batch_log[field] = v.item()</span>
+Unannotated (x5)">                batch_log[field] = v.item()</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">                if isinstance(v, torch.Tensor):</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">                if isinstance(v, torch.Tensor):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                    assert v.numel() == self.grouper.n_groups, "Current implementation deals only with group-wise statistics or a single-number statistic"</span>
+Unannotated (x6)">                    assert v.numel() == self.grouper.n_groups, "Current implementation deals only with group-wise statistics or a single-number statistic"</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">                    assert field.startswith(self.group_prefix)</span>
 <span class="line-any" title="Any Types on this line: 
@@ -417,7 +420,8 @@ Unannotated (x8)">                    count = self.log_dict[self.group_count_fie
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">                    if count == 0 and k != self.group_count_field:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                        outval = np.nan</span>
+Unannotated (x2)
+Unimported (x1)">                        outval = np.nan</span>
 <span class="line-empty" title="No Anys on this line!">                    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">                        outval = v[g].item()</span>
@@ -445,8 +449,9 @@ Unannotated (x1)">                    elif not added:</span>
 Unannotated (x10)">                        sanitized_log[f'{field}_group:{g}'] = outval</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Explicit (x2)">                assert not isinstance(v, torch.Tensor)</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">                assert not isinstance(v, torch.Tensor)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                sanitized_log[k] = v</span>
 <span class="line-any" title="Any Types on this line: 

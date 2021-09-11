@@ -6,7 +6,7 @@
 <body>
 <h2>gds.datasets.ogbproteins_dataset</h2>
 <table>
-<caption>gds\datasets\ogbproteins_dataset.py</caption>
+<caption>gds/datasets/ogbproteins_dataset.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -124,7 +124,7 @@
 <span id="L114" class="lineno"><a class="lineno" href="#L114">114</a></span>
 <span id="L115" class="lineno"><a class="lineno" href="#L115">115</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch_geometric</span>
 <span class="line-any" title="No Anys on this line!">import torch_geometric.transforms as T</span>
 <span class="line-any" title="No Anys on this line!">from ogb.nodeproppred import Evaluator</span>
@@ -207,7 +207,8 @@ Unannotated (x3)">        self._n_classes = self.ogb_dataset.__num_classes__</sp
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        self._y_array = self.ogb_dataset.data.y</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        self._split_array = torch.zeros(len(self._y_array)).long()</span>
+Unannotated (x7)
+Unimported (x1)">        self._split_array = torch.zeros(len(self._y_array)).long()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        split_idx = self.ogb_dataset.get_idx_split()</span>
 <span class="line-empty" title="No Anys on this line!"></span>

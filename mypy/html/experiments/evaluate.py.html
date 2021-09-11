@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.evaluate</h2>
 <table>
-<caption>experiments\evaluate.py</caption>
+<caption>experiments/evaluate.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -291,9 +291,9 @@
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import json</span>
-<span class="line-precise" title="No Anys on this line!">import numpy as np</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-precise" title="No Anys on this line!">import os</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-precise" title="No Anys on this line!">import urllib.request</span>
 <span class="line-precise" title="No Anys on this line!">from ast import literal_eval</span>
 <span class="line-precise" title="No Anys on this line!">from typing import Dict, List</span>
@@ -441,9 +441,12 @@ Unannotated (x3)">    splits: List[str] = list(wilds_dataset.split_dict.keys())<
 <span class="line-precise" title="No Anys on this line!">                    wilds_dataset, split, full_path</span>
 <span class="line-empty" title="No Anys on this line!">                )</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
-<span class="line-precise" title="No Anys on this line!">                predicted_labels: torch.Tensor = get_predictions(full_path)</span>
-<span class="line-precise" title="No Anys on this line!">                metric_results = evaluate_replicate(</span>
-<span class="line-precise" title="No Anys on this line!">                    wilds_dataset, split, predicted_labels</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x4)">                predicted_labels: torch.Tensor = get_predictions(full_path)</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)">                metric_results = evaluate_replicate(</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)">                    wilds_dataset, split, predicted_labels</span>
 <span class="line-empty" title="No Anys on this line!">                )</span>
 <span class="line-precise" title="No Anys on this line!">            for metric in metrics:</span>
 <span class="line-precise" title="No Anys on this line!">                replicates_results[split][metric].append(metric_results[metric])</span>
@@ -456,13 +459,11 @@ Unannotated (x3)">    splits: List[str] = list(wilds_dataset.split_dict.keys())<
 <span class="line-precise" title="No Anys on this line!">        for metric in metrics:</span>
 <span class="line-precise" title="No Anys on this line!">            replicates_metric_values: List[float] = replicates_results[split][metric]</span>
 <span class="line-any" title="Any Types on this line: 
-Explicit (x2)
-Omitted Generics (x9)">            aggregated_results[split][f"{metric}_std"] = np.std(</span>
+Unimported (x3)">            aggregated_results[split][f"{metric}_std"] = np.std(</span>
 <span class="line-precise" title="No Anys on this line!">                replicates_metric_values, ddof=1</span>
 <span class="line-empty" title="No Anys on this line!">            )</span>
 <span class="line-any" title="Any Types on this line: 
-Explicit (x2)
-Omitted Generics (x9)">            aggregated_results[split][metric] = np.mean(replicates_metric_values)</span>
+Unimported (x3)">            aggregated_results[split][metric] = np.mean(replicates_metric_values)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Write out aggregated results to output file</span>
 <span class="line-precise" title="No Anys on this line!">    print(f"Writing aggregated results for {dataset_name} to {output_dir}...")</span>
@@ -474,7 +475,8 @@ Explicit (x4)">        json.dump(aggregated_results, f, indent=4)</span>
 <span class="line-precise" title="No Anys on this line!">    return aggregated_results</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">def evaluate_replicate(</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)">def evaluate_replicate(</span>
 <span class="line-empty" title="No Anys on this line!">        dataset: GDSDataset, split: str, predicted_labels: torch.Tensor</span>
 <span class="line-empty" title="No Anys on this line!">) -&gt; Dict[str, float]:</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
@@ -492,32 +494,39 @@ Explicit (x4)">        json.dump(aggregated_results, f, indent=4)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    subset: GDSSubset = dataset.get_subset(split)</span>
 <span class="line-any" title="Any Types on this line: 
+Unimported (x2)
 Unannotated (x1)">    metadata: torch.Tensor = subset.metadata_array</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    true_labels = subset.y_array</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    if predicted_labels.shape != true_labels.shape:</span>
-<span class="line-precise" title="No Anys on this line!">        predicted_labels.unsqueeze_(-1)</span>
+Unimported (x3)
+Unannotated (x2)">    if predicted_labels.shape != true_labels.shape:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">    return dataset.eval(predicted_labels, true_labels, metadata)[0]</span>
+Unimported (x3)">        predicted_labels.unsqueeze_(-1)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x2)">    return dataset.eval(predicted_labels, true_labels, metadata)[0]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">def evaluate_replicate_for_globalwheat(</span>
 <span class="line-empty" title="No Anys on this line!">        dataset: GDSDataset, split: str, path_to_predictions: str</span>
 <span class="line-empty" title="No Anys on this line!">) -&gt; Dict[str, float]:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">    predicted_labels = torch.load(path_to_predictions)</span>
+Unimported (x4)">    predicted_labels = torch.load(path_to_predictions)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    subset: GDSSubset = dataset.get_subset(split)</span>
 <span class="line-any" title="Any Types on this line: 
+Unimported (x2)
 Unannotated (x1)">    metadata: torch.Tensor = subset.metadata_array</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">    true_labels = [subset.dataset.y_array[idx] for idx in subset.indices]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">    return dataset.eval(predicted_labels, true_labels, metadata)[0]</span>
+Unannotated (x7)
+Unimported (x2)">    return dataset.eval(predicted_labels, true_labels, metadata)[0]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">def get_predictions(path: str) -&gt; torch.Tensor:</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)">def get_predictions(path: str) -&gt; torch.Tensor:</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!">    Extract out the predictions from the file at path.</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -538,8 +547,7 @@ Explicit (x1)">        file = open(path, mode="r")</span>
 <span class="line-any" title="Any Types on this line: 
 Explicit (x3)">    predicted_labels = [literal_eval(line.rstrip()) for line in data if line.rstrip()]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Omitted Generics (x11)
+Unimported (x6)
 Explicit (x1)">    return torch.from_numpy(np.array(predicted_labels))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>

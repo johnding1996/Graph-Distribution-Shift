@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.algorithms.single_model_algorithm</h2>
 <table>
-<caption>experiments\algorithms\single_model_algorithm.py</caption>
+<caption>experiments/algorithms/single_model_algorithm.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -152,7 +152,7 @@
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from algorithms.group_algorithm import GroupAlgorithm</span>
 <span class="line-any" title="No Anys on this line!">from optimizer import initialize_optimizer</span>
 <span class="line-any" title="No Anys on this line!">from scheduler import initialize_scheduler</span>
-<span class="line-precise" title="No Anys on this line!">from torch.nn.utils import clip_grad_norm_</span>
+<span class="line-any" title="No Anys on this line!">from torch.nn.utils import clip_grad_norm_</span>
 <span class="line-any" title="No Anys on this line!">from utils import move_to</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -336,7 +336,8 @@ Unannotated (x3)">        objective.backward()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if self.max_grad_norm:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            clip_grad_norm_(self.model.parameters(), self.max_grad_norm)</span>
+Unannotated (x5)
+Unimported (x1)">            clip_grad_norm_(self.model.parameters(), self.max_grad_norm)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        self.optimizer.step()</span>
 <span class="line-any" title="Any Types on this line: 

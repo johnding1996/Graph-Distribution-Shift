@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.models.gnn_mol</h2>
 <table>
-<caption>experiments\models\gnn_mol.py</caption>
+<caption>experiments/models/gnn_mol.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -259,8 +259,8 @@
 <span id="L249" class="lineno"><a class="lineno" href="#L249">249</a></span>
 <span id="L250" class="lineno"><a class="lineno" href="#L250">250</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch</span>
-<span class="line-precise" title="No Anys on this line!">import torch.nn.functional as F</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-any" title="No Anys on this line!">from ogb.graphproppred.mol_encoder import AtomEncoder, BondEncoder</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import MessagePassing</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import global_mean_pool, global_add_pool</span>
@@ -322,7 +322,8 @@ Unannotated (x1)">        if num_tasks is None:</span>
 Unannotated (x1)">            self.graph_pred_linear = None</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)</span>
+Unannotated (x6)
+Unimported (x1)">            self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, batched_data):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -375,9 +376,11 @@ Unimported (x1)">        self.atom_encoder = AtomEncoder(emb_dim)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        ###List of GNNs</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.convs = torch.nn.ModuleList()</span>
+Unannotated (x4)
+Unimported (x1)">        self.convs = torch.nn.ModuleList()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.batch_norms = torch.nn.ModuleList()</span>
+Unannotated (x4)
+Unimported (x1)">        self.batch_norms = torch.nn.ModuleList()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(num_layer):</span>
@@ -390,7 +393,8 @@ Unannotated (x6)">                self.convs.append(GINConv(emb_dim))</span>
 Unannotated (x4)">                raise ValueError('Undefined GNN type called {}'.format(gnn_type))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">            self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))</span>
+Unannotated (x7)
+Unimported (x1)">            self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, batched_data):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -412,10 +416,12 @@ Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 Unannotated (x4)">            if layer == self.num_layer - 1:</span>
 <span class="line-empty" title="No Anys on this line!">                #remove relu for the last layer</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                h = F.dropout(h, self.drop_ratio, training = self.training)</span>
+Unannotated (x6)
+Unimported (x1)">                h = F.dropout(h, self.drop_ratio, training = self.training)</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">                h = F.dropout(F.relu(h), self.drop_ratio, training = self.training)</span>
+Unannotated (x8)
+Unimported (x2)">                h = F.dropout(F.relu(h), self.drop_ratio, training = self.training)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            if self.residual:</span>
@@ -549,12 +555,14 @@ Unannotated (x1)">        return node_representation</span>
 Unannotated (x1)">        super(GINConv, self).__init__(aggr="add")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x18)">        self.mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),</span>
+Unannotated (x15)
+Unimported (x3)">        self.mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">                                       torch.nn.ReLU(), torch.nn.Linear(2 * emb_dim, emb_dim))</span>
+Unannotated (x9)
+Unimported (x2)">                                       torch.nn.ReLU(), torch.nn.Linear(2 * emb_dim, emb_dim))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Explicit (x1)">        self.eps = torch.nn.Parameter(torch.Tensor([0]))</span>
+Unannotated (x6)
+Unimported (x2)">        self.eps = torch.nn.Parameter(torch.Tensor([0]))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
@@ -571,7 +579,8 @@ Unannotated (x1)">        return out</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def message(self, x_j, edge_attr):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        return F.relu(x_j + edge_attr)</span>
+Unannotated (x5)
+Unimported (x1)">        return F.relu(x_j + edge_attr)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def update(self, aggr_out):</span>
 <span class="line-any" title="Any Types on this line: 

@@ -6,7 +6,7 @@
 <body>
 <h2>gds.common.metrics.metric</h2>
 <table>
-<caption>gds\common\metrics\metric.py</caption>
+<caption>gds/common/metrics/metric.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -265,7 +265,7 @@
 <span id="L255" class="lineno"><a class="lineno" href="#L255">255</a></span>
 <span id="L256" class="lineno"><a class="lineno" href="#L256">256</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.utils import avg_over_groups, get_counts, numel</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -360,8 +360,8 @@ Unannotated (x5)">        return f'count_group:{group_idx}'</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        if numel(y_true) == 0:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Explicit (x1)">            agg_metric = torch.tensor(0., device=y_true.device)</span>
+Unannotated (x5)
+Unimported (x1)">            agg_metric = torch.tensor(0., device=y_true.device)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">            agg_metric = self._compute(y_pred, y_true)</span>
@@ -425,8 +425,8 @@ Unannotated (x3)">        for group_idx in range(n_groups):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            if group_counts[group_idx] == 0:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Explicit (x1)">                group_metrics.append(torch.tensor(0., device=g.device))</span>
+Unannotated (x7)
+Unimported (x1)">                group_metrics.append(torch.tensor(0., device=g.device))</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                group_metrics.append(</span>
@@ -438,7 +438,8 @@ Unannotated (x5)">                        y_pred[g == group_idx],</span>
 Unannotated (x5)">                        y_true[g == group_idx]))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        group_metrics = torch.stack(group_metrics)</span>
+Unannotated (x4)
+Unimported (x1)">        group_metrics = torch.stack(group_metrics)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">        worst_group_metric = self.worst(group_metrics[group_counts &gt; 0])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -537,7 +538,8 @@ Unannotated (x1)">            return element_wise_metrics</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        flattened_metrics = self.compute_element_wise(y_pred, y_true, return_dict=False)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        index = torch.arange(y_true.numel())</span>
+Unannotated (x6)
+Unimported (x1)">        index = torch.arange(y_true.numel())</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if return_dict:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -557,8 +559,8 @@ Unannotated (x5)">        flattened_metrics, _ = self.compute_flattened(y_pred, 
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        if flattened_metrics.numel() == 0:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Explicit (x1)">            return torch.tensor(0., device=y_true.device)</span>
+Unannotated (x4)
+Unimported (x1)">            return torch.tensor(0., device=y_true.device)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            return flattened_metrics.mean()</span>
@@ -577,9 +579,11 @@ Unannotated (x3)">        return group_metrics, group_counts, worst_group_metric
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def compute_flattened(self, y_pred, y_true, return_dict=True):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        is_labeled = ~torch.isnan(y_true)</span>
+Unannotated (x5)
+Unimported (x1)">        is_labeled = ~torch.isnan(y_true)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        batch_idx = torch.where(is_labeled)[0]</span>
+Unannotated (x5)
+Unimported (x1)">        batch_idx = torch.where(is_labeled)[0]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        flattened_y_pred = y_pred[is_labeled]</span>

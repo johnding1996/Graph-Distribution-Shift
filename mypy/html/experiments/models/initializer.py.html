@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.models.initializer</h2>
 <table>
-<caption>experiments\models\initializer.py</caption>
+<caption>experiments/models/initializer.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -73,7 +73,7 @@
 <span id="L63" class="lineno"><a class="lineno" href="#L63">63</a></span>
 <span id="L64" class="lineno"><a class="lineno" href="#L64">64</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch.nn as nn</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch.nn as nn</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def initialize_model(config, d_out, is_featurizer=False):</span>
@@ -101,7 +101,8 @@ Unannotated (x1)">        if is_featurizer:</span>
 Unannotated (x4)
 Unimported (x1)">            featurizer = GINVirtual_mol(num_tasks=None, **config.model_kwargs)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
+Unannotated (x6)
+Unimported (x1)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            model = (featurizer, classifier)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
@@ -119,7 +120,8 @@ Unannotated (x1)">        if is_featurizer:</span>
 Unannotated (x4)
 Unimported (x1)">            featurizer = GINVirtual_ppa(num_class=None, **config.model_kwargs)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
+Unannotated (x6)
+Unimported (x1)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            model = (featurizer, classifier)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
@@ -136,7 +138,8 @@ Unannotated (x1)">        if is_featurizer:</span>
 Unannotated (x4)
 Unimported (x1)">            featurizer = GINVirtual_mnist(num_class=None, **config.model_kwargs)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
+Unannotated (x6)
+Unimported (x1)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            model = (featurizer, classifier)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>

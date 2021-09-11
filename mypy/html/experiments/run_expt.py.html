@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.run_expt</h2>
 <table>
-<caption>experiments\run_expt.py</caption>
+<caption>experiments/run_expt.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -301,9 +301,9 @@
 <span class="line-precise" title="No Anys on this line!">from collections import defaultdict</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">import pandas as pd</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
-<span class="line-precise" title="No Anys on this line!">import torch.multiprocessing</span>
-<span class="line-precise" title="No Anys on this line!">import torch.nn as nn</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch.multiprocessing</span>
+<span class="line-any" title="No Anys on this line!">import torch.nn as nn</span>
 <span class="line-any" title="No Anys on this line!">import torchvision</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">import configs.supported as supported</span>
@@ -497,11 +497,13 @@ Unimported (x1)">    config = populate_defaults(config)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    if config.dataset == 'globalwheat':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        torch.multiprocessing.set_sharing_strategy('file_system')</span>
+Unannotated (x3)
+Unimported (x1)">        torch.multiprocessing.set_sharing_strategy('file_system')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Set device</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">    config.device = torch.device("cuda:" + str(config.device)) if torch.cuda.is_available() else torch.device("cpu")</span>
+Unannotated (x13)
+Unimported (x3)">    config.device = torch.device("cuda:" + str(config.device)) if torch.cuda.is_available() else torch.device("cpu")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Initialize logs</span>
 <span class="line-any" title="Any Types on this line: 

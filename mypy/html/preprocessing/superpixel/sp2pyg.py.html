@@ -6,7 +6,7 @@
 <body>
 <h2>preprocessing.superpixel.sp2pyg</h2>
 <table>
-<caption>preprocessing\superpixel\sp2pyg.py</caption>
+<caption>preprocessing/superpixel/sp2pyg.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -51,7 +51,7 @@
 <td class="table-code"><pre><span class="line-empty" title="No Anys on this line!">"""</span>
 <span class="line-empty" title="No Anys on this line!">    File to load dataset based on user control from main file</span>
 <span class="line-empty" title="No Anys on this line!">"""</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from data.superpixels import SuperPixDGL</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"># DATASET_NAME = 'MNIST'</span>
@@ -77,13 +77,16 @@ Unannotated (x1)">    data_list = []</span>
 Unannotated (x5)
 Explicit (x8)">    for G, y in zip(graph_lists, graph_labels):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        y = y.to(torch.long)</span>
+Unannotated (x5)
+Unimported (x1)">        y = y.to(torch.long)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        x = G.ndata['feat'].to(torch.float)</span>
+Unannotated (x7)
+Unimported (x1)">        x = G.ndata['feat'].to(torch.float)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        row, col = G.edges()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        edge_index = torch.stack([row, col], dim=0).to(torch.long)</span>
+Unannotated (x8)
+Unimported (x2)">        edge_index = torch.stack([row, col], dim=0).to(torch.long)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        data = {'x': x, 'y': y, 'edge_index': edge_index}</span>
 <span class="line-any" title="Any Types on this line: 
@@ -97,8 +100,8 @@ Unannotated (x1)">    return data_list</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    data_list = data_list(DATASET_NAME)</span>
 <span class="line-any" title="Any Types on this line: 
-Omitted Generics (x1)
-Unannotated (x6)">    torch.save(data_list,</span>
+Unimported (x3)
+Unannotated (x2)">    torch.save(data_list,</span>
 <span class="line-precise" title="No Anys on this line!">               f'/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data/{DATASET_NAME}.pt')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # dataset = SuperPixDataset('MNIST')</span>

@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.models.gnn_ppa</h2>
 <table>
-<caption>experiments\models\gnn_ppa.py</caption>
+<caption>experiments/models/gnn_ppa.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -316,8 +316,8 @@
 <span id="L306" class="lineno"><a class="lineno" href="#L306">306</a></span>
 <span id="L307" class="lineno"><a class="lineno" href="#L307">307</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch</span>
-<span class="line-precise" title="No Anys on this line!">import torch.nn.functional as F</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import MessagePassing</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import global_mean_pool, global_add_pool, global_max_pool, GlobalAttention, Set2Set</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.utils import degree</span>
@@ -386,9 +386,11 @@ Unannotated (x2)">        elif self.graph_pooling == "attention":</span>
 Unannotated (x2)
 Unimported (x1)">            self.pool = GlobalAttention(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x17)">                gate_nn=torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),</span>
+Unannotated (x14)
+Unimported (x3)">                gate_nn=torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">                                            torch.nn.ReLU(), torch.nn.Linear(2 * emb_dim, 1)))</span>
+Unannotated (x8)
+Unimported (x2)">                                            torch.nn.ReLU(), torch.nn.Linear(2 * emb_dim, 1)))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        elif self.graph_pooling == "set2set":</span>
 <span class="line-any" title="Any Types on this line: 
@@ -408,7 +410,8 @@ Unannotated (x1)">        if num_class is None:</span>
 Unannotated (x1)">            self.graph_pred_linear = None</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_class)</span>
+Unannotated (x6)
+Unimported (x1)">            self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_class)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, batched_data):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -437,15 +440,18 @@ Unannotated (x3)">            return self.graph_pred_linear(h_graph)</span>
 Unannotated (x1)">        super(GINConv, self).__init__(aggr="add")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x18)">        self.mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),</span>
+Unannotated (x15)
+Unimported (x3)">        self.mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">                                       torch.nn.ReLU(), torch.nn.Linear(2 * emb_dim, emb_dim))</span>
+Unannotated (x9)
+Unimported (x2)">                                       torch.nn.ReLU(), torch.nn.Linear(2 * emb_dim, emb_dim))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Explicit (x1)">        self.eps = torch.nn.Parameter(torch.Tensor([0]))</span>
+Unannotated (x6)
+Unimported (x2)">        self.eps = torch.nn.Parameter(torch.Tensor([0]))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        self.edge_encoder = torch.nn.Linear(7, emb_dim)</span>
+Unannotated (x5)
+Unimported (x1)">        self.edge_encoder = torch.nn.Linear(7, emb_dim)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, x, edge_index, edge_attr):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -458,7 +464,8 @@ Unannotated (x1)">        return out</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def message(self, x_j, edge_attr):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        return F.relu(x_j + edge_attr)</span>
+Unannotated (x5)
+Unimported (x1)">        return F.relu(x_j + edge_attr)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def update(self, aggr_out):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -472,11 +479,14 @@ Unannotated (x1)">        return aggr_out</span>
 Unannotated (x1)">        super(GCNConv, self).__init__(aggr='add')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        self.linear = torch.nn.Linear(emb_dim, emb_dim)</span>
+Unannotated (x6)
+Unimported (x1)">        self.linear = torch.nn.Linear(emb_dim, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        self.root_emb = torch.nn.Embedding(1, emb_dim)</span>
+Unannotated (x5)
+Unimported (x1)">        self.root_emb = torch.nn.Embedding(1, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        self.edge_encoder = torch.nn.Linear(7, emb_dim)</span>
+Unannotated (x5)
+Unimported (x1)">        self.edge_encoder = torch.nn.Linear(7, emb_dim)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, x, edge_index, edge_attr):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -500,13 +510,15 @@ Unannotated (x4)">        deg_inv_sqrt[deg_inv_sqrt == float('inf')] = 0</span>
 Unannotated (x8)">        norm = deg_inv_sqrt[row] * deg_inv_sqrt[col]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        return self.propagate(edge_index, x=x, edge_attr=edge_embedding, norm=norm) + F.relu(</span>
+Unannotated (x10)
+Unimported (x1)">        return self.propagate(edge_index, x=x, edge_attr=edge_embedding, norm=norm) + F.relu(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x9)">            x + self.root_emb.weight) * 1. / deg.view(-1, 1)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def message(self, x_j, edge_attr, norm):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        return norm.view(-1, 1) * F.relu(x_j + edge_attr)</span>
+Unannotated (x10)
+Unimported (x1)">        return norm.view(-1, 1) * F.relu(x_j + edge_attr)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def update(self, aggr_out):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -544,13 +556,16 @@ Unannotated (x2)">        if self.num_layer &lt; 2:</span>
 Unannotated (x1)">            raise ValueError("Number of GNN layers must be greater than 1.")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        self.node_encoder = torch.nn.Embedding(1, emb_dim)  # uniform input node embedding</span>
+Unannotated (x5)
+Unimported (x1)">        self.node_encoder = torch.nn.Embedding(1, emb_dim)  # uniform input node embedding</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        ###List of GNNs</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.convs = torch.nn.ModuleList()</span>
+Unannotated (x4)
+Unimported (x1)">        self.convs = torch.nn.ModuleList()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.batch_norms = torch.nn.ModuleList()</span>
+Unannotated (x4)
+Unimported (x1)">        self.batch_norms = torch.nn.ModuleList()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(num_layer):</span>
@@ -567,7 +582,8 @@ Unannotated (x6)">                self.convs.append(GCNConv(emb_dim))</span>
 Unannotated (x4)">                raise ValueError('Undefined GNN type called {}'.format(gnn_type))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">            self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))</span>
+Unannotated (x7)
+Unimported (x1)">            self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, batched_data):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -589,10 +605,12 @@ Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 Unannotated (x4)">            if layer == self.num_layer - 1:</span>
 <span class="line-empty" title="No Anys on this line!">                # remove relu for the last layer</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                h = F.dropout(h, self.dropout, training=self.training)</span>
+Unannotated (x6)
+Unimported (x1)">                h = F.dropout(h, self.dropout, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">                h = F.dropout(F.relu(h), self.dropout, training=self.training)</span>
+Unannotated (x8)
+Unimported (x2)">                h = F.dropout(F.relu(h), self.dropout, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            if self.residual:</span>
@@ -650,24 +668,30 @@ Unannotated (x2)">        if self.num_layer &lt; 2:</span>
 Unannotated (x1)">            raise ValueError("Number of GNN layers must be greater than 1.")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        self.node_encoder = torch.nn.Embedding(1, emb_dim)  # uniform input node embedding</span>
+Unannotated (x5)
+Unimported (x1)">        self.node_encoder = torch.nn.Embedding(1, emb_dim)  # uniform input node embedding</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        ### set the initial virtual node embedding to 0.</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        self.virtualnode_embedding = torch.nn.Embedding(1, emb_dim)</span>
+Unannotated (x5)
+Unimported (x1)">        self.virtualnode_embedding = torch.nn.Embedding(1, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        torch.nn.init.constant_(self.virtualnode_embedding.weight.data, 0)</span>
+Unannotated (x7)
+Unimported (x1)">        torch.nn.init.constant_(self.virtualnode_embedding.weight.data, 0)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        ### List of GNNs</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.convs = torch.nn.ModuleList()</span>
+Unannotated (x4)
+Unimported (x1)">        self.convs = torch.nn.ModuleList()</span>
 <span class="line-empty" title="No Anys on this line!">        ### batch norms applied to node embeddings</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.batch_norms = torch.nn.ModuleList()</span>
+Unannotated (x4)
+Unimported (x1)">        self.batch_norms = torch.nn.ModuleList()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        ### List of MLPs to transform virtual node at every layer</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.mlp_virtualnode_list = torch.nn.ModuleList()</span>
+Unannotated (x4)
+Unimported (x1)">        self.mlp_virtualnode_list = torch.nn.ModuleList()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(num_layer):</span>
@@ -684,20 +708,25 @@ Unannotated (x6)">                self.convs.append(GCNConv(emb_dim))</span>
 Unannotated (x4)">                raise ValueError('Undefined GNN type called {}'.format(gnn_type))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">            self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))</span>
+Unannotated (x7)
+Unimported (x1)">            self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        for layer in range(num_layer - 1):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            self.mlp_virtualnode_list.append(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x17)">                torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),</span>
+Unannotated (x14)
+Unimported (x3)">                torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                                    torch.nn.ReLU(), \</span>
+Unannotated (x3)
+Unimported (x1)">                                    torch.nn.ReLU(), \</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x15)">                                    torch.nn.Linear(2 * emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim),</span>
+Unannotated (x10)
+Unimported (x2)">                                    torch.nn.Linear(2 * emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                                    torch.nn.ReLU()))</span>
+Unannotated (x3)
+Unimported (x1)">                                    torch.nn.ReLU()))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, batched_data):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -708,7 +737,8 @@ Unannotated (x12)">        x, edge_index, edge_attr, batch = batched_data.x, bat
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        virtualnode_embedding = self.virtualnode_embedding(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x15)">            torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))</span>
+Unannotated (x16)
+Unimported (x1)">            torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        h_list = [self.node_encoder(x)]</span>
@@ -728,10 +758,12 @@ Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 Unannotated (x4)">            if layer == self.num_layer - 1:</span>
 <span class="line-empty" title="No Anys on this line!">                # remove relu for the last layer</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                h = F.dropout(h, self.dropout, training=self.training)</span>
+Unannotated (x6)
+Unimported (x1)">                h = F.dropout(h, self.dropout, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">                h = F.dropout(F.relu(h), self.dropout, training=self.training)</span>
+Unannotated (x8)
+Unimported (x2)">                h = F.dropout(F.relu(h), self.dropout, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            if self.residual:</span>
@@ -753,14 +785,16 @@ Unimported (x1)">                virtualnode_embedding_temp = global_add_pool(h_
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                if self.residual:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                    virtualnode_embedding = virtualnode_embedding + F.dropout(</span>
+Unannotated (x5)
+Unimported (x1)">                    virtualnode_embedding = virtualnode_embedding + F.dropout(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">                        self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.dropout,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                        training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!">                else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">                    virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp),</span>
+Unannotated (x8)
+Unimported (x1)">                    virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                                                      self.dropout, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!"></span>

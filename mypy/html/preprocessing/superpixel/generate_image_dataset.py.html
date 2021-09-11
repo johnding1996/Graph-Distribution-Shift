@@ -6,7 +6,7 @@
 <body>
 <h2>preprocessing.superpixel.generate_image_dataset</h2>
 <table>
-<caption>preprocessing\superpixel\generate_image_dataset.py</caption>
+<caption>preprocessing/superpixel/generate_image_dataset.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -390,10 +390,10 @@
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torchvision.datasets.folder</span>
 <span class="line-any" title="No Anys on this line!">from PIL import Image, ImageFile</span>
-<span class="line-precise" title="No Anys on this line!">from torch.utils.data import TensorDataset</span>
+<span class="line-any" title="No Anys on this line!">from torch.utils.data import TensorDataset</span>
 <span class="line-any" title="No Anys on this line!">from torchvision import transforms</span>
 <span class="line-any" title="No Anys on this line!">from torchvision.datasets import MNIST, ImageFolder</span>
 <span class="line-any" title="No Anys on this line!">from torchvision.transforms.functional import rotate</span>
@@ -471,11 +471,14 @@ Unannotated (x1)">        self.datasets = []</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            self.datasets.append(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                TensorDataset(</span>
+Unannotated (x1)
+Unimported (x1)">                TensorDataset(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                    torch.randn(16, *self.INPUT_SHAPE),</span>
+Unannotated (x3)
+Unimported (x1)">                    torch.randn(16, *self.INPUT_SHAPE),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                    torch.randint(0, self.num_classes, (16,))</span>
+Unannotated (x3)
+Unimported (x1)">                    torch.randint(0, self.num_classes, (16,))</span>
 <span class="line-empty" title="No Anys on this line!">                )</span>
 <span class="line-empty" title="No Anys on this line!">            )</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -508,17 +511,20 @@ Unannotated (x3)
 Unimported (x1)">        original_dataset_te = MNIST(root, train=False, download=True)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        original_images = torch.cat((original_dataset_tr.data,</span>
+Unannotated (x5)
+Unimported (x1)">        original_images = torch.cat((original_dataset_tr.data,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                                     original_dataset_te.data))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        original_labels = torch.cat((original_dataset_tr.targets,</span>
+Unannotated (x5)
+Unimported (x1)">        original_labels = torch.cat((original_dataset_tr.targets,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                                     original_dataset_te.targets))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        shuffle = torch.randperm(len(original_images))</span>
+Unannotated (x5)
+Unimported (x1)">        shuffle = torch.randperm(len(original_images))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        original_images = original_images[shuffle]</span>
@@ -580,11 +586,12 @@ Unannotated (x3)">                                 self.torch_bernoulli_(environ
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                                                       len(labels)))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        images = torch.stack([images, images], dim=1)</span>
+Unannotated (x5)
+Unimported (x1)">        images = torch.stack([images, images], dim=1)</span>
 <span class="line-empty" title="No Anys on this line!">        # Apply the color to the image by zeroing out the other color channel</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Explicit (x1)">        images[torch.tensor(range(len(images))), (</span>
+Unannotated (x7)
+Unimported (x1)">        images[torch.tensor(range(len(images))), (</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">                                                         1 - colors).long(), :, :] *= 0</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -594,11 +601,13 @@ Unannotated (x6)">        x = images.float().div_(255.0)</span>
 Unannotated (x7)">        y = labels.view(-1).long()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        return TensorDataset(x, y)</span>
+Unannotated (x3)
+Unimported (x1)">        return TensorDataset(x, y)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def torch_bernoulli_(self, p, size):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        return (torch.rand(size) &lt; p).float()</span>
+Unannotated (x7)
+Unimported (x1)">        return (torch.rand(size) &lt; p).float()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def torch_xor_(self, a, b):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -633,7 +642,8 @@ Unimported (x1)">            transforms.ToTensor()</span>
 <span class="line-empty" title="No Anys on this line!">        ])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        x = torch.zeros(len(images), 1, 28, 28)</span>
+Unannotated (x5)
+Unimported (x1)">        x = torch.zeros(len(images), 1, 28, 28)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        for i in range(len(images)):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -643,7 +653,8 @@ Unannotated (x7)">            x[i] = rotation(images[i])</span>
 Unannotated (x5)">        y = labels.view(-1)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        return TensorDataset(x, y)</span>
+Unannotated (x3)
+Unimported (x1)">        return TensorDataset(x, y)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class MultipleEnvironmentImageFolder(MultipleDomainDataset):</span>
@@ -806,7 +817,8 @@ Unannotated (x6)">        metadata_index = wilds_dataset.metadata_fields.index(m
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        metadata_array = wilds_dataset.metadata_array</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        subset_indices = torch.where(</span>
+Unannotated (x4)
+Unimported (x1)">        subset_indices = torch.where(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">            metadata_array[:, metadata_index] == metadata_value)[0]</span>
 <span class="line-empty" title="No Anys on this line!"></span>

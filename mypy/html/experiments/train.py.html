@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.train</h2>
 <table>
-<caption>experiments\train.py</caption>
+<caption>experiments/train.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -194,7 +194,7 @@
 <span id="L184" class="lineno"><a class="lineno" href="#L184">184</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from tqdm import tqdm</span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from utils import save_model, save_pred, get_pred_prefix, get_model_prefix, detach_and_clone, collate_list</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -209,12 +209,14 @@ Unannotated (x1)">    if train:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        algorithm.train()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        torch.set_grad_enabled(True)</span>
+Unannotated (x2)
+Unimported (x1)">        torch.set_grad_enabled(True)</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        algorithm.eval()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        torch.set_grad_enabled(False)</span>
+Unannotated (x2)
+Unimported (x1)">        torch.set_grad_enabled(False)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Not preallocating memory is slower</span>
 <span class="line-empty" title="No Anys on this line!">    # but makes it easier to handle different types of data loaders</span>
@@ -386,7 +388,8 @@ Unannotated (x3)">        general_logger.write('\n')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    algorithm.eval()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">    torch.set_grad_enabled(False)</span>
+Unannotated (x2)
+Unimported (x1)">    torch.set_grad_enabled(False)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    for split, dataset in datasets.items():</span>
 <span class="line-any" title="Any Types on this line: 

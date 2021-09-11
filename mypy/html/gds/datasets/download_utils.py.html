@@ -6,7 +6,7 @@
 <body>
 <h2>gds.datasets.download_utils</h2>
 <table>
-<caption>gds\datasets\download_utils.py</caption>
+<caption>gds/datasets/download_utils.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -388,8 +388,8 @@
 <span class="line-precise" title="No Anys on this line!">import zipfile</span>
 <span class="line-precise" title="No Anys on this line!">from typing import Any, Callable, List, Iterable, Optional, TypeVar</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">import torch</span>
-<span class="line-precise" title="No Anys on this line!">from torch.utils.model_zoo import tqdm</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">from torch.utils.model_zoo import tqdm</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
@@ -465,25 +465,27 @@ Explicit (x1)">    return check_md5(fpath, md5)</span>
 <span class="line-empty" title="No Anys on this line!">    else:  # download the file</span>
 <span class="line-empty" title="No Anys on this line!">        try:</span>
 <span class="line-precise" title="No Anys on this line!">            print('Downloading ' + url + ' to ' + fpath)</span>
-<span class="line-imprecise" title="Any Types on this line: 
-Explicit (x1)">            urllib.request.urlretrieve(</span>
+<span class="line-any" title="Any Types on this line: 
+Error (x2)">            urllib.request.urlretrieve(</span>
 <span class="line-precise" title="No Anys on this line!">                url, fpath,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                reporthook=gen_bar_updater(size)</span>
 <span class="line-empty" title="No Anys on this line!">            )</span>
-<span class="line-precise" title="No Anys on this line!">        except (urllib.error.URLError, IOError) as e:  # type: ignore[attr-defined]</span>
+<span class="line-any" title="Any Types on this line: 
+Error (x2)">        except (urllib.error.URLError, IOError) as e:  # type: ignore[attr-defined]</span>
 <span class="line-precise" title="No Anys on this line!">            if url[:5] == 'https':</span>
 <span class="line-precise" title="No Anys on this line!">                url = url.replace('https:', 'http:')</span>
 <span class="line-precise" title="No Anys on this line!">                print('Failed download. Trying https -&gt; http instead.'</span>
 <span class="line-precise" title="No Anys on this line!">                      ' Downloading ' + url + ' to ' + fpath)</span>
-<span class="line-imprecise" title="Any Types on this line: 
-Explicit (x1)">                urllib.request.urlretrieve(</span>
+<span class="line-any" title="Any Types on this line: 
+Error (x2)">                urllib.request.urlretrieve(</span>
 <span class="line-precise" title="No Anys on this line!">                    url, fpath,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                    reporthook=gen_bar_updater(size)</span>
 <span class="line-empty" title="No Anys on this line!">                )</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
-<span class="line-precise" title="No Anys on this line!">                raise e</span>
+<span class="line-imprecise" title="Any Types on this line: 
+Error (x1)">                raise e</span>
 <span class="line-empty" title="No Anys on this line!">        # check integrity of downloaded file</span>
 <span class="line-precise" title="No Anys on this line!">        if not check_integrity(fpath, md5):</span>
 <span class="line-precise" title="No Anys on this line!">            raise RuntimeError("File not found or corrupted.")</span>
@@ -687,30 +689,36 @@ Omitted Generics (x3)">    return "'" + "', '".join([str(item) for item in itera
 <span class="line-precise" title="No Anys on this line!">def verify_str_arg(</span>
 <span class="line-precise" title="No Anys on this line!">        value: T, arg: Optional[str] = None, valid_values: Iterable[T] = None, custom_msg: Optional[str] = None,</span>
 <span class="line-empty" title="No Anys on this line!">) -&gt; T:</span>
-<span class="line-imprecise" title="Any Types on this line: 
-Explicit (x2)">    if not isinstance(value, torch._six.string_classes):</span>
-<span class="line-unanalyzed" title="No Anys on this line!">        if arg is None:</span>
-<span class="line-unanalyzed" title="No Anys on this line!">            msg = "Expected type str, but got type {type}."</span>
+<span class="line-any" title="Any Types on this line: 
+Explicit (x2)
+Unimported (x6)">    if not isinstance(value, torch._six.string_classes):</span>
+<span class="line-precise" title="No Anys on this line!">        if arg is None:</span>
+<span class="line-precise" title="No Anys on this line!">            msg = "Expected type str, but got type {type}."</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-unanalyzed" title="No Anys on this line!">            msg = "Expected type str for argument {arg}, but got type {type}."</span>
-<span class="line-unanalyzed" title="No Anys on this line!">        msg = msg.format(type=type(value), arg=arg)</span>
-<span class="line-unanalyzed" title="No Anys on this line!">        raise ValueError(msg)</span>
+<span class="line-precise" title="No Anys on this line!">            msg = "Expected type str for argument {arg}, but got type {type}."</span>
+<span class="line-precise" title="Any Types on this line: 
+Explicit (x4)">        msg = msg.format(type=type(value), arg=arg)</span>
+<span class="line-precise" title="No Anys on this line!">        raise ValueError(msg)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">    if valid_values is None:</span>
-<span class="line-precise" title="No Anys on this line!">        return value</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x2)">        return value</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    if value not in valid_values:</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x2)">    if value not in valid_values:</span>
 <span class="line-precise" title="No Anys on this line!">        if custom_msg is not None:</span>
 <span class="line-precise" title="No Anys on this line!">            msg = custom_msg</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-precise" title="No Anys on this line!">            msg = ("Unknown value '{value}' for argument {arg}. "</span>
 <span class="line-empty" title="No Anys on this line!">                   "Valid values are {{{valid_values}}}.")</span>
-<span class="line-precise" title="No Anys on this line!">            msg = msg.format(value=value, arg=arg,</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x2)">            msg = msg.format(value=value, arg=arg,</span>
 <span class="line-imprecise" title="Any Types on this line: 
 Omitted Generics (x2)">                             valid_values=iterable_to_str(valid_values))</span>
 <span class="line-precise" title="No Anys on this line!">        raise ValueError(msg)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    return value</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x2)">    return value</span>
 </pre></td>
 </tr></tbody>
 </table>

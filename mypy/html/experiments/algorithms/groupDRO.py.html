@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.algorithms.groupDRO</h2>
 <table>
-<caption>experiments\algorithms\groupDRO.py</caption>
+<caption>experiments/algorithms/groupDRO.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -115,7 +115,7 @@
 <span id="L105" class="lineno"><a class="lineno" href="#L105">105</a></span>
 <span id="L106" class="lineno"><a class="lineno" href="#L106">106</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.single_model_algorithm import SingleModelAlgorithm</span>
 <span class="line-any" title="No Anys on this line!">from models.initializer import initialize_model</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -165,7 +165,8 @@ Unannotated (x3)">        self.logged_fields.append('group_weight')</span>
 Unannotated (x3)">        self.group_weights_step_size = config.group_dro_step_size</span>
 <span class="line-empty" title="No Anys on this line!">        # initialize adversarial weights</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        self.group_weights = torch.zeros(grouper.n_groups)</span>
+Unannotated (x5)
+Unimported (x1)">        self.group_weights = torch.zeros(grouper.n_groups)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.group_weights[is_group_in_train] = 1</span>
 <span class="line-any" title="Any Types on this line: 
@@ -246,7 +247,8 @@ Unannotated (x2)">            self.grouper.n_groups,</span>
 <span class="line-any" title="No Anys on this line!">            return_dict=False)</span>
 <span class="line-empty" title="No Anys on this line!">        # update group weights</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        self.group_weights = self.group_weights * torch.exp(self.group_weights_step_size * group_losses.data)</span>
+Unannotated (x9)
+Unimported (x1)">        self.group_weights = self.group_weights * torch.exp(self.group_weights_step_size * group_losses.data)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        self.group_weights = (self.group_weights / (self.group_weights.sum()))</span>
 <span class="line-empty" title="No Anys on this line!">        # save updated group weights</span>

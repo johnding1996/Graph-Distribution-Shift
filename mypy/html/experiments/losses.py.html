@@ -6,7 +6,7 @@
 <body>
 <h2>experiments.losses</h2>
 <table>
-<caption>experiments\losses.py</caption>
+<caption>experiments/losses.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -37,7 +37,7 @@
 <span id="L27" class="lineno"><a class="lineno" href="#L27">27</a></span>
 <span id="L28" class="lineno"><a class="lineno" href="#L28">28</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import torch.nn as nn</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch.nn as nn</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.metrics.all_metrics import MSE</span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.metrics.loss import ElementwiseLoss, Loss, MultiTaskLoss</span>
@@ -47,17 +47,20 @@
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    if config.loss_function == 'cross_entropy':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        return ElementwiseLoss(loss_fn=nn.CrossEntropyLoss(reduction='none'))</span>
+Unannotated (x5)
+Unimported (x1)">        return ElementwiseLoss(loss_fn=nn.CrossEntropyLoss(reduction='none'))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    if config.loss_function == 'BCEWithLogitsLoss':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        return ElementwiseLoss(loss_fn=nn.BCEWithLogitsLoss(reduction='none'))</span>
+Unannotated (x5)
+Unimported (x1)">        return ElementwiseLoss(loss_fn=nn.BCEWithLogitsLoss(reduction='none'))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.loss_function == 'lm_cross_entropy':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        return MultiTaskLoss(loss_fn=nn.CrossEntropyLoss(reduction='none'))</span>
+Unannotated (x5)
+Unimported (x1)">        return MultiTaskLoss(loss_fn=nn.CrossEntropyLoss(reduction='none'))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.loss_function == 'mse':</span>
@@ -67,7 +70,8 @@ Unannotated (x2)">        return MSE(name='loss')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.loss_function == 'multitask_bce':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        return MultiTaskLoss(loss_fn=nn.BCEWithLogitsLoss(reduction='none'))</span>
+Unannotated (x5)
+Unimported (x1)">        return MultiTaskLoss(loss_fn=nn.BCEWithLogitsLoss(reduction='none'))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.loss_function == 'fasterrcnn_criterion':</span>
