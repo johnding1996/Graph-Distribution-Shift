@@ -110,6 +110,7 @@ def main():
     config = parser.parse_args()
     config = populate_defaults(config)
 
+
     # For the GlobalWheat detection dataset,
     # we need to change the multiprocessing strategy or there will be
     # too many open file descriptors.
@@ -195,9 +196,9 @@ def main():
 
         # Loggers
         datasets[split]['eval_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
         datasets[split]['algo_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
 
     # Logging dataset info
     # Show class breakdown if feasible

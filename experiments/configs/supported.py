@@ -27,7 +27,7 @@ process_outputs_functions = {
 }
 
 # See models/initializer.py
-models = ['gin']
+models = ['gin', 'gcn', 'gin_virtual', 'gcn_virtual']
 
 # See algorithms/initializer.py
 algorithms = ['ERM', 'groupDRO', 'deepCORAL', 'IRM']

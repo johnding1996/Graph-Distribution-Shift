@@ -204,8 +204,9 @@ class ElementwiseMetric(Metric):
         """
         element_wise_metrics = self._compute_element_wise(y_pred, y_true)
         batch_size = y_pred.size()[0]
-        assert element_wise_metrics.dim()==1 and element_wise_metrics.numel()==batch_size
 
+        assert element_wise_metrics.dim()==1 and element_wise_metrics.numel()==batch_size
+     
         if return_dict:
             return {self.name: element_wise_metrics}
         else:
@@ -232,6 +233,7 @@ class MultiTaskMetric(Metric):
 
     def _compute_group_wise(self, y_pred, y_true, g, n_groups):
         flattened_metrics, indices = self.compute_flattened(y_pred, y_true, return_dict=False)
+    
         flattened_g = g[indices]
         group_metrics, group_counts = avg_over_groups(flattened_metrics, flattened_g, n_groups)
         worst_group_metric = self.worst(group_metrics[group_counts>0])

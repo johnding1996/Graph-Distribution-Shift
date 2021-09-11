@@ -1,3 +1,6 @@
 model_defaults = {
-    'gin':{}
+    'gin':{},
+    'gcn':{},
+    'gin_virtual':{},
+    'gcn_virtual':{},
 }

@@ -90,29 +90,7 @@ def evaluate_benchmark(
             f"Could not find CSV or pth prediction file that starts with {run_id}."
         )
 
-    def get_metrics(dataset_name: str) -> List[str]:
-        if "amazon" == dataset_name:
-            return ["10th_percentile_acc", "acc_avg"]
-        elif "camelyon17" == dataset_name:
-            return ["acc_avg"]
-        elif "civilcomments" == dataset_name:
-            return ["acc_wg", "acc_avg"]
-        elif "fmow" == dataset_name:
-            return ["acc_worst_region", "acc_avg"]
-        elif "iwildcam" == dataset_name:
-            return ["F1-macro_all", "acc_avg"]
-        elif "ogb-molpcba" == dataset_name:
-            return ["ap"]
-        elif "poverty" == dataset_name:
-            return ["r_wg", "r_all"]
-        elif "py150" == dataset_name:
-            return ["acc", "Acc (Overall)"]
-        elif "globalwheat" == dataset_name:
-            return ["detection_acc_avg_dom"]
-        elif "rxrx1" == dataset_name:
-            return ["acc_avg"]
-        else:
-            raise ValueError(f"Invalid dataset: {dataset_name}")
+
 
     # Dataset will only be downloaded if it does not exist
     wilds_dataset: WILDSDataset = get_dataset(

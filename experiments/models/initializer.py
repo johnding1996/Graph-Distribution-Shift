@@ -19,34 +19,6 @@ def initialize_model(config, d_out, is_featurizer=False):
             - model: a model that is equivalent to nn.Sequential(featurizer, classifier)
     """
 
-    # if config.model == 'gin_virtual_mol':
-    #     from models.gnn_mol import GINVirtual_mol
-    #     if is_featurizer:
-    #         featurizer = GINVirtual_mol(num_tasks=None, **config.model_kwargs)
-    #         classifier = nn.Linear(featurizer.d_out, d_out)
-    #         model = (featurizer, classifier)
-    #     else:
-    #         model = GINVirtual_mol(num_tasks=d_out, **config.model_kwargs)
-    #
-    #
-    # elif config.model == 'gin_virtual_ppa':
-    #     from models.gnn_ppa import GINVirtual_ppa
-    #     if is_featurizer:
-    #         featurizer = GINVirtual_ppa(num_class=None, **config.model_kwargs)
-    #         classifier = nn.Linear(featurizer.d_out, d_out)
-    #         model = (featurizer, classifier)
-    #     else:
-    #         model = GINVirtual_ppa(num_class=d_out, **config.model_kwargs)
-    #
-    # elif config.model == 'gin_virtual_mnist':
-    #     from models.gnn_mnist import GINVirtual_mnist
-    #     if is_featurizer:
-    #         featurizer = GINVirtual_mnist(num_class=None, **config.model_kwargs)
-    #         classifier = nn.Linear(featurizer.d_out, d_out)
-    #         model = (featurizer, classifier)
-    #     else:
-    #         model = GINVirtual_mnist(num_class=d_out, **config.model_kwargs)
-
 
     from models.gnn import GNN
     if is_featurizer:

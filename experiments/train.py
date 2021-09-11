@@ -126,7 +126,6 @@ def evaluate(algorithm, datasets, epoch, general_logger, config, is_best):
         epoch_metadata = []
         iterator = tqdm(dataset['loader']) if config.progress_bar else dataset['loader']
         for batch in iterator:
-          
             batch_results = algorithm.evaluate(batch)
             epoch_y_true.append(detach_and_clone(batch_results['y_true']))
             y_pred = detach_and_clone(batch_results['y_pred'])
