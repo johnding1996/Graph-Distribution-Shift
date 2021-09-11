@@ -6,7 +6,7 @@ GDS (Graph Distribution Shift) is a benchmark for distribution shifts of graph d
 ## Setup
 To ensure that the developers are using exactly the same environment, please follow the guide below to set up the virtualenv.
 1. Install Pyenv
-Please follow the guide at https://github.com/pyenv/pyenv#installation, this does not require sudo privillage.
+Please follow the guide at https://github.com/pyenv/pyenv#installation; this does not require `sudo` privileges.
 2. Install Python 3.7.9
 ~~~bash
 $pyenv install 3.7.9
@@ -34,7 +34,9 @@ $python -m venv env
 
 $source env/bin/activate
 ~~~
+
 6. Install the packages using the requirements.txt
+
 If on Linux:
 ~~~bash
 (env) $pip install -r requirements.linux.txt
