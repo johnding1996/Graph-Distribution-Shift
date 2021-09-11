@@ -1,0 +1,27 @@
+language: python
+python:
+  - 3.7
+install:
+  - pip install -r requirements.travis.txt
+script:
+  - pytest . --html=./pages/pytest/index.html
+after_success:
+  - coverage html -d ./pages/converage/
+  - sphinx-apidoc -f -o ./pages/docs/source .
+  - sphinx-build -b html ./pages/docs/source ./pages/docs/build
+  - cd ./gds/
+  - flake8 . --format=html --htmldir=../pages/flake8_gds/
+  - cd ../experiments/
+  - flake8 . --format=html --htmldir=../pages/flake8_experiments/
+  - cd ../
+  - mypy . --html-repot ./pages/mupy/
+
+deploy:
+  provider: pages
+  local_dir: ./pages/
+  project_name: GDS
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  keep_history: true
+  committer_from_gh: ture
+  allow_empty_commit: true

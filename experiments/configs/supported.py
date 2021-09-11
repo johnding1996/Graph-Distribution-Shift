@@ -1,6 +1,9 @@
-# metrics
 from gds.common.metrics.all_metrics import Accuracy, MultiTaskAccuracy, MSE, multiclass_logits_to_pred, \
     binary_logits_to_pred, MultiTaskAveragePrecision
+
+from experiments.configs.model import model_defaults
+from experiments.configs.algorithm import algorithm_defaults
+
 
 # algo_log_metrics = {
 #     'accuracy': Accuracy(prediction_fn=multiclass_logits_to_pred),
@@ -28,11 +31,10 @@ process_outputs_functions = {
 }
 
 # See models/initializer.py
-models = ['gin_virtual_mol', 'gin_virtual_ppa', 'gin_virtual_mnist']
-# models = ['gin', 'gcn']
+models = list(model_defaults.keys())
 
 # See algorithms/initializer.py
-algorithms = ['ERM', 'groupDRO', 'deepCORAL', 'IRM']
+algorithms = list(algorithm_defaults.keys())
 
 # See optimizer.py
 optimizers = ['SGD', 'Adam', 'AdamW']

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: .\datasets\wilds_dataset.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="datasets.wilds_dataset.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               .\datasets\wilds_dataset.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F541">
+               <span class="count sev-1">
+                  2
+               </span>
+               <strong>F541:</strong> f-string is missing placeholders
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.wilds_dataset.source.html#l366">
+                  <tt><i>366</i>         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;You can also download the dataset manually at https://wilds.stanford.edu/downloads.&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.wilds_dataset.source.html#l381">
+                  <tt><i>381</i>             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception: &quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  48
+               </span>
+               <strong>E501:</strong> line too long (81 > 79 characters)
+               
+                  (and 26 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l18">
+                  <tt><i>18</i>     <span class="n">DEFAULT_SPLIT_NAMES</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">:</span> <span class="s1">&#39;Validation&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="s1">&#39;Test&#39;</span><span class="p">}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l30">
+                  <tt><i>30</i>         <span class="c1"># since different subsets (e.g., train vs test) might have different transforms</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l64">
+                  <tt><i>64</i> <span class="sd">            - transform (function): Any data transformations to be applied to the input x.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l66">
+                  <tt><i>66</i> <span class="sd">            - subset (WILDSSubset): A (potentially subsampled) subset of the WILDSDataset.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l69">
+                  <tt><i>69</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Split </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s2"> not found in dataset&#39;s split_dict.&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l74">
+                  <tt><i>74</i>             <span class="n">split_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">split_idx</span><span class="p">)[:</span><span class="n">num_to_retain</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l80">
+                  <tt><i>80</i> <span class="sd">        Convenience function to check that the WILDSDataset is properly configured.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l87">
+                  <tt><i>87</i>             <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;WILDSDataset is missing </span><span class="si">{</span><span class="n">attr_name</span><span class="si">}</span><span class="s1">.&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l92">
+                  <tt><i>92</i>                 <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span><span class="si">}</span><span class="s1"> does not exist yet. Please generate the dataset first.&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l100">
+                  <tt><i>100</i>         <span class="k">assert</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_array</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_array</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l101">
+                  <tt><i>101</i>         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata_array</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">),</span> <span class="s1">&#39;metadata_array must be a torch.Tensor&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l164">
+                  <tt><i>164</i> <span class="sd">        &#39;compressed_size&#39; is the approximate size of the compressed dataset in bytes.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l194">
+                  <tt><i>194</i> <span class="sd">        A dictionary mapping splits to integer identifiers (used in split_array),</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l212">
+                  <tt><i>212</i> <span class="sd">        An array of integers, with split_array[i] representing what split the i-th data point</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l232">
+                  <tt><i>232</i> <span class="sd">        Used for logging and to configure models to produce appropriately-sized output.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l240">
+                  <tt><i>240</i> <span class="sd">        Used for logging and to configure models to produce appropriately-sized output.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l242">
+                  <tt><i>242</i> <span class="sd">        Leave as None if not applicable (e.g., regression or multi-task classification).</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l251">
+                  <tt><i>251</i>         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_is_classification&#39;</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l263">
+                  <tt><i>263</i> <span class="sd">        A list of strings naming each column of the metadata table, e.g., [&#39;hospital&#39;, &#39;y&#39;].</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l271">
+                  <tt><i>271</i> <span class="sd">        A Tensor of metadata, with the i-th row representing the metadata associated with</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l272">
+                  <tt><i>272</i> <span class="sd">        the i-th data point. The columns correspond to the metadata_fields defined above.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l279">
+                  <tt><i>279</i> <span class="sd">        An optional dictionary that, for each metadata field, contains a list that maps from</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (86 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l280">
+                  <tt><i>280</i> <span class="sd">        integers (in metadata_array) to a string representing what that integer means.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l281">
+                  <tt><i>281</i> <span class="sd">        This is only used for logging, so that we print out more intelligible metadata values.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l286">
+                  <tt><i>286</i> <span class="sd">        then if metadata_array[i, 0] == 0, the i-th data point belongs to the &#39;East&#39; hospital</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l301">
+                  <tt><i>301</i> <span class="sd">        Note that we only do a version check for datasets where the download_url is set.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (110 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l307">
+                  <tt><i>307</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Version </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s1"> not supported. Must be in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">versions_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l314">
+                  <tt><i>314</i>         <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">_v</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l316">
+                  <tt><i>316</i>         <span class="n">current_major_version</span><span class="p">,</span> <span class="n">current_minor_version</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l319">
+                  <tt><i>319</i>         <span class="n">latest_major_version</span><span class="p">,</span> <span class="n">latest_minor_version</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">latest_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l323">
+                  <tt><i>323</i>                 <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1"> has been updated to version </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">latest_version</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (150 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l325">
+                  <tt><i>325</i>                 <span class="sa">f</span><span class="s1">&#39;We highly recommend updating the dataset by not specifying the older version in the command-line argument or dataset constructor.</span><span class="se">\n</span><span class="s1">&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l331">
+                  <tt><i>331</i>                 <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1"> has been updated to version </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">latest_version</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (130 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l342">
+                  <tt><i>342</i>         <span class="c1"># If the data_dir exists and does not contain the right RELEASE file, but it is not empty and the download_url is not set,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (174 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l354">
+                  <tt><i>354</i>                     <span class="sa">f</span><span class="s1">&#39;The </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1"> dataset could not be found in </span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">. </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1"> cannot be automatically downloaded. Please download it manually.&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (260 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l357">
+                  <tt><i>357</i>                     <span class="sa">f</span><span class="s1">&#39;The </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1"> dataset could not be found in </span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">. Initialize the dataset with download=True to download the dataset. If you are using the example script, run with --download. This might take some time for large datasets.&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (111 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l362">
+                  <tt><i>362</i>                 <span class="sa">f</span><span class="s1">&#39;Sorry, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1"> cannot be automatically downloaded. Please download it manually.&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l366">
+                  <tt><i>366</i>         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;You can also download the dataset manually at https://wilds.stanford.edu/downloads.&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (114 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l377">
+                  <tt><i>377</i>             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;It took </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">download_time_in_minutes</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> minutes to download and uncompress the dataset.&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (135 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l380">
+                  <tt><i>380</i>                 <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;archive.tar.gz&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> may be corrupted. Please try deleting it and rerunning this command.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l405">
+                  <tt><i>405</i>     <span class="k">def</span> <span class="nf">standard_group_eval</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="n">grouper</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l409">
+                  <tt><i>409</i> <span class="sd">            - grouper (CombinatorialGrouper): Grouper object that converts metadata into groups</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l420">
+                  <tt><i>420</i>             <span class="n">results_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Average </span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">agg_metric_field</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (86 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l422">
+                  <tt><i>422</i>         <span class="n">group_results</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">compute_group_wise</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">grouper</span><span class="o">.</span><span class="n">n_groups</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l433">
+                  <tt><i>433</i>                 <span class="sa">f</span><span class="s2">&quot;[n = </span><span class="si">{</span><span class="n">group_results</span><span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">group_count_field</span><span class="p">(</span><span class="n">group_idx</span><span class="p">)]</span><span class="si">:</span><span class="s2">6.0f</span><span class="si">}</span><span class="s2">]:</span><span class="se">\t</span><span class="s2">&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l434">
+                  <tt><i>434</i>                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">group_results</span><span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">group_metric_field</span><span class="p">(</span><span class="n">group_idx</span><span class="p">)]</span><span class="si">:</span><span class="s2">5.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (107 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l435">
+                  <tt><i>435</i>         <span class="n">results</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">worst_group_metric_field</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_results</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">worst_group_metric_field</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (107 > 79 characters):</p>
+               
+               <a href="datasets.wilds_dataset.source.html#l436">
+                  <tt><i>436</i>         <span class="n">results_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Worst-group </span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_results</span><span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">worst_group_metric_field</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E712">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E712:</strong> comparison to False should be 'if cond is False:' or 'if not cond:'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.wilds_dataset.source.html#l351">
+                  <tt><i>351</i>         <span class="k">if</span> <span class="n">download</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: .\datasets\ogbproteins_dataset.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="datasets.ogbproteins_dataset.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               .\datasets\ogbproteins_dataset.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  12
+               </span>
+               <strong>E501:</strong> line too long (102 > 79 characters)
+               
+                  (and 10 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (102 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l14">
+                  <tt><i>14</i> <span class="sd">    This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l25">
+                  <tt><i>25</i> <span class="sd">            title={Open Graph Benchmark: Datasets for Machine Learning on Graphs},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (112 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l26">
+                  <tt><i>26</i> <span class="sd">            author={W. {Hu}, M. {Fey}, M. {Zitnik}, Y. {Dong}, H. {Ren}, B. {Liu}, M. {Catasta}, J. {Leskovec}},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (129 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l33">
+                  <tt><i>33</i> <span class="sd">            author={Z. {Wu}, B. {Ramsundar}, E. V {Feinberg}, J. {Gomes}, C. {Geniesse}, A. S {Pappu}, K. {Leswing}, V. {Pande}},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l53">
+                  <tt><i>53</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root_dir</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">split_scheme</span><span class="o">=</span><span class="s1">&#39;official&#39;</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (120 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l56">
+                  <tt><i>56</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Versioning for OGB-Proteins is handled through the OGB package. Please set version=none.&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (116 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l58">
+                  <tt><i>58</i>         <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span> <span class="o">=</span> <span class="n">PygNodePropPredDataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ogbn-proteins&#39;</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">T</span><span class="o">.</span><span class="n">ToSparseTensor</span><span class="p">())</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (138 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l65">
+                  <tt><i>65</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_y_type</span> <span class="o">=</span> <span class="s1">&#39;float&#39;</span>  <span class="c1"># although the task is binary classification, the prediction target contains nan value, thus we need float</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l83">
+                  <tt><i>83</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">node_species</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l104">
+                  <tt><i>104</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (106 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l105">
+                  <tt><i>105</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (120 > 79 characters):</p>
+               
+               <a href="datasets.ogbproteins_dataset.source.html#l110">
+                  <tt><i>110</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>
