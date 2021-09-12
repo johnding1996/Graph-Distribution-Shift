@@ -26,7 +26,7 @@ def initialize_model(config, d_out, is_featurizer=False):
         classifier = nn.Linear(featurizer.d_out, d_out)
         model = (featurizer, classifier)
     else:
-        model = GNN(num_tasks=d_out, **config.model_kwargs)
+        model = GNN(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
 
 
     # The `needs_y` attribute specifies whether the model's forward function
