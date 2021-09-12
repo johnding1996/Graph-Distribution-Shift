@@ -45,7 +45,7 @@ class GNN(torch.nn.Module):
         # GNN to generate node embeddings
         if self.gnn_type == 'gin_virtual':
             self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type='gin', drop_ratio=dropout)
-        elif self.gnn_type == 'gcn_virutal' :
+        elif self.gnn_type == 'gcn_virtual' :
             self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type='gcn', drop_ratio=dropout)
         elif self.gnn_type == 'gin' :
             self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type='gin', drop_ratio=dropout)
