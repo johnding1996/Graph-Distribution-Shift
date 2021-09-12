@@ -66,6 +66,7 @@ def save_model(algorithm, epoch, best_val_metric, prefix, suffix):
     torch.save(state, path)
 
 
+
 def load(algorithm, path):
     path = Path(path)
     state = torch.load(path)
@@ -220,18 +221,16 @@ def get_pred_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     split = dataset['split']
     replicate_str = get_replicate_str(dataset, config)
-    # prefix = Path(config.log_dir) / f"{dataset_name}_split-{split}_{replicate_str}_"
+    prefix = Path(config.log_dir) / f"{dataset_name}_{config.algorithm}_{config.model}_{replicate_str}_split-{split}_"
 
-    prefix = os.path.join(config.log_dir, f"{dataset_name}_{config.algorithm}_{config.model}_{replicate_str}_split:{split}_")
     return prefix
 
 
 def get_model_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     replicate_str = get_replicate_str(dataset, config)
-    # prefix = Path(config.log_dir) / f"{dataset_name}_{replicate_str}_"
+    prefix = Path(config.log_dir) / f"{dataset_name}_{config.algorithm}_{config.model}_{replicate_str}_"
 
-    prefix = os.path.join(config.log_dir, f"{dataset_name}_{config.algorithm}_{config.model}_{replicate_str}_")
     return prefix
 
 
