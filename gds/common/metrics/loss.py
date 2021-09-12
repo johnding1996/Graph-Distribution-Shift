@@ -51,10 +51,16 @@ class ElementwiseLoss(ElementwiseMetric):
             - element_wise_metrics (Tensor): tensor of size (batch_size, )
             
         """
+       
+        # import pdb;pdb.set_trace()
+ 
         if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):
-            return self.loss_fn(y_pred.float(), y_true.float())
-        else:
+            return self.loss_fn(y_pred.float(), y_true.float()).squeeze(dim=-1)
+        elif isinstance(self.loss_fn, torch.nn.CrossEntropyLoss):
             return self.loss_fn(y_pred, y_true)
+        else:
+            raise NotImplementedError
+
 
     def worst(self, metrics):
         """
@@ -76,6 +82,7 @@ class MultiTaskLoss(MultiTaskMetric):
 
     def _compute_flattened(self, flattened_y_pred, flattened_y_true):
         if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):
+           
             flattened_y_pred = flattened_y_pred.float()
             flattened_y_true = flattened_y_true.float()
         elif isinstance(self.loss_fn, torch.nn.CrossEntropyLoss):

@@ -31,7 +31,7 @@ process_outputs_functions = {
 }
 
 # See models/initializer.py
-models = list(model_defaults.keys())
+models = ['gin', 'gcn', 'gin_virtual', 'gcn_virtual']
 
 # See algorithms/initializer.py
 algorithms = list(algorithm_defaults.keys())
