@@ -112,6 +112,8 @@ class SingleModelAlgorithm(GroupAlgorithm):
         # process batch
         results = self.process_batch(batch)
 
+      
+
         self._update(results)
         # import pdb;pdb.set_trace()
         # log results
@@ -126,6 +128,8 @@ class SingleModelAlgorithm(GroupAlgorithm):
         """
         # compute objective
         objective = self.objective(results)
+
+
         results['objective'] = objective.item()
         # update
         self.model.zero_grad()
