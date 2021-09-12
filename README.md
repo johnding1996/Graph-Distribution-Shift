@@ -1,48 +1,13 @@
-# Graph Distribution Shift
+<div align="center">
 
-## Overview
-GDS (Graph Distribution Shift) is a benchmark for distribution shifts of graph data.
+# Graph Distribution Shift <br>
 
-## Setup
-To ensure that the developers are using exactly the same environment, please follow the guide below to set up the virtualenv.
-1. Install Pyenv
-Please follow the guide at https://github.com/pyenv/pyenv#installation; this does not require `sudo` privileges.
-2. Install Python 3.7.9
-~~~bash
-$pyenv install 3.7.9
+#### A benchmark for distribution shifts of graph data
 
-$pyenv rehash
-~~~
-3. Enter the project folder and check your Python version
-~~~bash
-$pyenv versions
-  system
-  3.6.15
-  3.7.12
-* 3.7.9 (set by /nfshomes/mcding/Graph-Distribution-Shift/.python-version)
-  3.8.12
-  3.9.7
-  
-$python -V
-Python 3.7.9
-~~~
-By default, because of the `.python-version` config file, the python version you use will be automatically switched to `3.7.9`.
+[![UMD - Graph-Distribution-Shift](https://img.shields.io/static/v1?label=UMD&message=Graph-Distribution-Shift&color=blue&logo=github)](https://github.com/johnding1996/Graph-Distribution-Shift) [![Build Status](https://app.travis-ci.com/johnding1996/Graph-Distribution-Shift.svg?token=qpnUpbz369JqpsEBsqs6&branch=master)](https://app.travis-ci.com/johnding1996/Graph-Distribution-Shift) [![License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/johnding1996/Graph-Distribution-Shift/blob/master/LICENSE)
 
-4. Create a virtualenv
-~~~bash
-$python -m venv env
+[![GitHub tag](https://img.shields.io/github/tag/johnding1996/Graph-Distribution-Shift?include_prereleases=&sort=semver)](https://github.com/johnding1996/Graph-Distribution-Shift/releases/) [![stars - Graph-Distribution-Shift](https://img.shields.io/github/stars/johnding1996/Graph-Distribution-Shift?style=social)](https://github.com/johnding1996/Graph-Distribution-Shift) [![forks - Graph-Distribution-Shift](https://img.shields.io/github/forks/johnding1996/Graph-Distribution-Shift?style=social)](https://github.com/johnding1996/Graph-Distribution-Shift)
 
-$source env/bin/activate
-~~~
+[![Read - Meeting Notes](https://img.shields.io/badge/Read-Meeting_notes-e91e63?style=for-the-badge)](https://hackmd.io/@wbDOc0LvRQmEXfGKMGObfw/HJiwKR9Gt) [![Read - Notice Board](https://img.shields.io/badge/Read-Notice_board-7b1fa2?style=for-the-badge)](https://hackmd.io/@wbDOc0LvRQmEXfGKMGObfw/H1j51TjfK) [![View site - Dev Homepage](https://img.shields.io/badge/View_site-Dev_homepage-8d6e63?style=for-the-badge)](https://johnding1996.github.io/Graph-Distribution-Shift/index.html)
 
-6. Install the packages using the requirements.txt
-
-If on Linux:
-~~~bash
-(env) $pip install -r requirements.linux.txt
-~~~
-If on Windows:
-~~~bash
-(env) $pip install -r requirements.win.txt
-~~~
-7. That's it. Please notify the team if you want to update some dependencies so that we can update the `requirements.txt`.
+</div>
