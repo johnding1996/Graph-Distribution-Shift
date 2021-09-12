@@ -125,11 +125,12 @@
 <span id="L115" class="lineno"><a class="lineno" href="#L115">115</a></span>
 <span id="L116" class="lineno"><a class="lineno" href="#L116">116</a></span>
 <span id="L117" class="lineno"><a class="lineno" href="#L117">117</a></span>
+<span id="L118" class="lineno"><a class="lineno" href="#L118">118</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">dataset_defaults = {</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molpcba': {</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5}, # include pretrained</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout': 0.5, 'dataset_group':'mol'},  # include pretrained</span>
 <span class="line-precise" title="No Anys on this line!">        'frac': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'multitask_bce',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['scaffold', ],</span>
@@ -149,7 +150,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molhiv': {</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5}, # include pretrained</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5, 'dataset_group':'mol'}, # include pretrained</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'BCEWithLogitsLoss',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['scaffold', ],</span>
 <span class="line-precise" title="No Anys on this line!">        'val_metric': 'rocauc',</span>
@@ -168,7 +169,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ogbg-ppa': {</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5}, # include pretrained</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5, 'dataset_group':'ppa'}, # include pretrained</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['species', ],</span>
 <span class="line-precise" title="No Anys on this line!">        'val_metric': 'acc',</span>
@@ -206,7 +207,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'RotatedMNIST': {</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5}, # include pretrained</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['scaffold',],</span>
 <span class="line-precise" title="No Anys on this line!">        'val_metric': 'acc',</span>
@@ -225,6 +226,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM1': {</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual_mnist',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5}, # include pretrained</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['scaffold',],</span>

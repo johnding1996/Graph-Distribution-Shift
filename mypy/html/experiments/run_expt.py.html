@@ -292,6 +292,7 @@
 <span id="L282" class="lineno"><a class="lineno" href="#L282">282</a></span>
 <span id="L283" class="lineno"><a class="lineno" href="#L283">283</a></span>
 <span id="L284" class="lineno"><a class="lineno" href="#L284">284</a></span>
+<span id="L285" class="lineno"><a class="lineno" href="#L285">285</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -491,6 +492,7 @@ Unannotated (x4)">    config = parser.parse_args()</span>
 Unannotated (x3)
 Unimported (x1)">    config = populate_defaults(config)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # For the GlobalWheat detection dataset,</span>
 <span class="line-empty" title="No Anys on this line!">    # we need to change the multiprocessing strategy or there will be</span>
 <span class="line-empty" title="No Anys on this line!">    # too many open file descriptors.</span>
@@ -641,12 +643,12 @@ Unannotated (x4)">        datasets[split]['verbose'] = verbose</span>
 Unannotated (x4)
 Unimported (x1)">        datasets[split]['eval_logger'] = BatchLogger(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x21)">            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))</span>
+Unannotated (x25)">            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Unimported (x1)">        datasets[split]['algo_logger'] = BatchLogger(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x21)">            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))</span>
+Unannotated (x25)">            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Logging dataset info</span>
 <span class="line-empty" title="No Anys on this line!">    # Show class breakdown if feasible</span>

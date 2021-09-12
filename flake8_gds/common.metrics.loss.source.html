@@ -203,117 +203,72 @@
                class="code sev- "><tt><i>53</i> <span class="sd">        &quot;&quot;&quot;</span></tt>
             </div>
             <div id="l54"
-               class="code sev- "><tt><i>54</i>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">):</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>54</i>        </tt>
             </div>
             <div id="l55"
-               class="code sev- "><tt><i>55</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">y_true</span><span class="o">.</span><span class="n">float</span><span class="p">())</span></tt>
+               class="code sev- "><tt><i>55</i>         <span class="c1"># import pdb;pdb.set_trace()</span></tt>
             </div>
             <div id="l56"
-               class="code sev- "><tt><i>56</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>56</i>  </tt>
             </div>
             <div id="l57"
-               class="code sev- "><tt><i>57</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>57</i>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">):</span></tt>
             </div>
             <div id="l58"
-               class="code sev- "><tt><i>58</i> &nbsp;</tt>
+               class="code sev- "><tt><i>58</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">y_true</span><span class="o">.</span><span class="n">float</span><span class="p">())</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span></tt>
             </div>
             <div id="l59"
-               class="code sev- "><tt><i>59</i>     <span class="k">def</span> <span class="nf">worst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>59</i>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">):</span></tt>
             </div>
             <div id="l60"
-               class="code sev- "><tt><i>60</i>         <span class="sd">&quot;&quot;&quot;</span></tt>
+               class="code sev- "><tt><i>60</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span></tt>
             </div>
             <div id="l61"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (82 > 79 characters)</li>
-               
-               </ul><tt><i>61</i> <span class="sd">        Given a list/numpy array/Tensor of metrics, computes the worst-case metric</span></tt>
+               class="code sev- "><tt><i>61</i>         <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l62"
-               class="code sev- "><tt><i>62</i> <span class="sd">        Args:</span></tt>
+               class="code sev- "><tt><i>62</i>             <span class="k">raise</span> <span class="ne">NotImplementedError</span></tt>
             </div>
             <div id="l63"
-               class="code sev- "><tt><i>63</i> <span class="sd">            - metrics (Tensor, numpy array, or list): Metrics</span></tt>
+               class="code sev- "><tt><i>63</i> &nbsp;</tt>
             </div>
             <div id="l64"
-               class="code sev- "><tt><i>64</i> <span class="sd">        Output:</span></tt>
+               class="code sev- "><tt><i>64</i> &nbsp;</tt>
             </div>
             <div id="l65"
-               class="code sev- "><tt><i>65</i> <span class="sd">            - worst_metric (float): Worst-case metric</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (2)</li>
+               
+               </ul><tt><i>65</i>     <span class="k">def</span> <span class="nf">worst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span></tt>
             </div>
             <div id="l66"
-               class="code sev- "><tt><i>66</i> <span class="sd">        &quot;&quot;&quot;</span></tt>
+               class="code sev- "><tt><i>66</i>         <span class="sd">&quot;&quot;&quot;</span></tt>
             </div>
             <div id="l67"
-               class="code sev- "><tt><i>67</i>         <span class="k">return</span> <span class="n">maximum</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span></tt>
-            </div>
-            <div id="l68"
-               class="code sev- "><tt><i>68</i> &nbsp;</tt>
-            </div>
-            <div id="l69"
-               class="code sev- "><tt><i>69</i> &nbsp;</tt>
-            </div>
-            <div id="l70"
-               class="code sev- "><tt><i>70</i> <span class="k">class</span> <span class="nc">MultiTaskLoss</span><span class="p">(</span><span class="n">MultiTaskMetric</span><span class="p">):</span></tt>
-            </div>
-            <div id="l71"
-               class="code sev- "><tt><i>71</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
-            </div>
-            <div id="l72"
-               class="code sev- "><tt><i>72</i>         <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">loss_fn</span>  <span class="c1"># should be elementwise</span></tt>
-            </div>
-            <div id="l73"
-               class="code sev- "><tt><i>73</i>         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
-            </div>
-            <div id="l74"
-               class="code sev- "><tt><i>74</i>             <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;loss&#39;</span></tt>
-            </div>
-            <div id="l75"
-               class="code sev- "><tt><i>75</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></tt>
-            </div>
-            <div id="l76"
-               class="code sev- "><tt><i>76</i> &nbsp;</tt>
-            </div>
-            <div id="l77"
-               class="code sev- "><tt><i>77</i>     <span class="k">def</span> <span class="nf">_compute_flattened</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flattened_y_pred</span><span class="p">,</span> <span class="n">flattened_y_true</span><span class="p">):</span></tt>
-            </div>
-            <div id="l78"
-               class="code sev- "><tt><i>78</i>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">):</span></tt>
-            </div>
-            <div id="l79"
-               class="code sev- "><tt><i>79</i>             <span class="n">flattened_y_pred</span> <span class="o">=</span> <span class="n">flattened_y_pred</span><span class="o">.</span><span class="n">float</span><span class="p">()</span></tt>
-            </div>
-            <div id="l80"
-               class="code sev- "><tt><i>80</i>             <span class="n">flattened_y_true</span> <span class="o">=</span> <span class="n">flattened_y_true</span><span class="o">.</span><span class="n">float</span><span class="p">()</span></tt>
-            </div>
-            <div id="l81"
-               class="code sev- "><tt><i>81</i>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">):</span></tt>
-            </div>
-            <div id="l82"
-               class="code sev- "><tt><i>82</i>             <span class="n">flattened_y_true</span> <span class="o">=</span> <span class="n">flattened_y_true</span><span class="o">.</span><span class="n">long</span><span class="p">()</span></tt>
-            </div>
-            <div id="l83"
-               class="code sev- "><tt><i>83</i>         <span class="n">flattened_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">flattened_y_pred</span><span class="p">,</span> <span class="n">flattened_y_true</span><span class="p">)</span></tt>
-            </div>
-            <div id="l84"
-               class="code sev- "><tt><i>84</i>         <span class="k">return</span> <span class="n">flattened_loss</span></tt>
-            </div>
-            <div id="l85"
-               class="code sev- "><tt><i>85</i> &nbsp;</tt>
-            </div>
-            <div id="l86"
-               class="code sev- "><tt><i>86</i>     <span class="k">def</span> <span class="nf">worst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span></tt>
-            </div>
-            <div id="l87"
-               class="code sev- "><tt><i>87</i>         <span class="sd">&quot;&quot;&quot;</span></tt>
-            </div>
-            <div id="l88"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -323,25 +278,127 @@
                      </span>
                      Line too long (82 > 79 characters)</li>
                
-               </ul><tt><i>88</i> <span class="sd">        Given a list/numpy array/Tensor of metrics, computes the worst-case metric</span></tt>
+               </ul><tt><i>67</i> <span class="sd">        Given a list/numpy array/Tensor of metrics, computes the worst-case metric</span></tt>
+            </div>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i> <span class="sd">        Args:</span></tt>
+            </div>
+            <div id="l69"
+               class="code sev- "><tt><i>69</i> <span class="sd">            - metrics (Tensor, numpy array, or list): Metrics</span></tt>
+            </div>
+            <div id="l70"
+               class="code sev- "><tt><i>70</i> <span class="sd">        Output:</span></tt>
+            </div>
+            <div id="l71"
+               class="code sev- "><tt><i>71</i> <span class="sd">            - worst_metric (float): Worst-case metric</span></tt>
+            </div>
+            <div id="l72"
+               class="code sev- "><tt><i>72</i> <span class="sd">        &quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l73"
+               class="code sev- "><tt><i>73</i>         <span class="k">return</span> <span class="n">maximum</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span></tt>
+            </div>
+            <div id="l74"
+               class="code sev- "><tt><i>74</i> &nbsp;</tt>
+            </div>
+            <div id="l75"
+               class="code sev- "><tt><i>75</i> &nbsp;</tt>
+            </div>
+            <div id="l76"
+               class="code sev- "><tt><i>76</i> <span class="k">class</span> <span class="nc">MultiTaskLoss</span><span class="p">(</span><span class="n">MultiTaskMetric</span><span class="p">):</span></tt>
+            </div>
+            <div id="l77"
+               class="code sev- "><tt><i>77</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+            </div>
+            <div id="l78"
+               class="code sev- "><tt><i>78</i>         <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">loss_fn</span>  <span class="c1"># should be elementwise</span></tt>
+            </div>
+            <div id="l79"
+               class="code sev- "><tt><i>79</i>         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l80"
+               class="code sev- "><tt><i>80</i>             <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;loss&#39;</span></tt>
+            </div>
+            <div id="l81"
+               class="code sev- "><tt><i>81</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></tt>
+            </div>
+            <div id="l82"
+               class="code sev- "><tt><i>82</i> &nbsp;</tt>
+            </div>
+            <div id="l83"
+               class="code sev- "><tt><i>83</i>     <span class="k">def</span> <span class="nf">_compute_flattened</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flattened_y_pred</span><span class="p">,</span> <span class="n">flattened_y_true</span><span class="p">):</span></tt>
+            </div>
+            <div id="l84"
+               class="code sev- "><tt><i>84</i>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">):</span></tt>
+            </div>
+            <div id="l85"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>85</i>            </tt>
+            </div>
+            <div id="l86"
+               class="code sev- "><tt><i>86</i>             <span class="n">flattened_y_pred</span> <span class="o">=</span> <span class="n">flattened_y_pred</span><span class="o">.</span><span class="n">float</span><span class="p">()</span></tt>
+            </div>
+            <div id="l87"
+               class="code sev- "><tt><i>87</i>             <span class="n">flattened_y_true</span> <span class="o">=</span> <span class="n">flattened_y_true</span><span class="o">.</span><span class="n">float</span><span class="p">()</span></tt>
+            </div>
+            <div id="l88"
+               class="code sev- "><tt><i>88</i>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">):</span></tt>
             </div>
             <div id="l89"
-               class="code sev- "><tt><i>89</i> <span class="sd">        Args:</span></tt>
+               class="code sev- "><tt><i>89</i>             <span class="n">flattened_y_true</span> <span class="o">=</span> <span class="n">flattened_y_true</span><span class="o">.</span><span class="n">long</span><span class="p">()</span></tt>
             </div>
             <div id="l90"
-               class="code sev- "><tt><i>90</i> <span class="sd">            - metrics (Tensor, numpy array, or list): Metrics</span></tt>
+               class="code sev- "><tt><i>90</i>         <span class="n">flattened_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">flattened_y_pred</span><span class="p">,</span> <span class="n">flattened_y_true</span><span class="p">)</span></tt>
             </div>
             <div id="l91"
-               class="code sev- "><tt><i>91</i> <span class="sd">        Output:</span></tt>
+               class="code sev- "><tt><i>91</i>         <span class="k">return</span> <span class="n">flattened_loss</span></tt>
             </div>
             <div id="l92"
-               class="code sev- "><tt><i>92</i> <span class="sd">            - worst_metric (float): Worst-case metric</span></tt>
+               class="code sev- "><tt><i>92</i> &nbsp;</tt>
             </div>
             <div id="l93"
-               class="code sev- "><tt><i>93</i> <span class="sd">        &quot;&quot;&quot;</span></tt>
+               class="code sev- "><tt><i>93</i>     <span class="k">def</span> <span class="nf">worst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span></tt>
             </div>
             <div id="l94"
-               class="code sev- "><tt><i>94</i>         <span class="k">return</span> <span class="n">maximum</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>94</i>         <span class="sd">&quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l95"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (82 > 79 characters)</li>
+               
+               </ul><tt><i>95</i> <span class="sd">        Given a list/numpy array/Tensor of metrics, computes the worst-case metric</span></tt>
+            </div>
+            <div id="l96"
+               class="code sev- "><tt><i>96</i> <span class="sd">        Args:</span></tt>
+            </div>
+            <div id="l97"
+               class="code sev- "><tt><i>97</i> <span class="sd">            - metrics (Tensor, numpy array, or list): Metrics</span></tt>
+            </div>
+            <div id="l98"
+               class="code sev- "><tt><i>98</i> <span class="sd">        Output:</span></tt>
+            </div>
+            <div id="l99"
+               class="code sev- "><tt><i>99</i> <span class="sd">            - worst_metric (float): Worst-case metric</span></tt>
+            </div>
+            <div id="l100"
+               class="code sev- "><tt><i>100</i> <span class="sd">        &quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l101"
+               class="code sev- "><tt><i>101</i>         <span class="k">return</span> <span class="n">maximum</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span></tt>
             </div>
             
          </div>

@@ -818,19 +818,25 @@
                class="code sev- "><tt><i>210</i>         <span class="n">batch_size</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span></tt>
             </div>
             <div id="l211"
+               class="code sev- "><tt><i>211</i> &nbsp;</tt>
+            </div>
+            <div id="l212"
                class="code sev-2  le">
                <ul class="violations">
                
                   <li>
                      <span class="count sev-2">
+                        E225
+                     </span>
+                     Missing whitespace around operator (in 2 places)</li>
+               
+                  <li>
+                     <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (93 > 79 characters)</li>
+                     Line too long (89 > 79 characters)</li>
                
-               </ul><tt><i>211</i>         <span class="k">assert</span> <span class="n">element_wise_metrics</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">element_wise_metrics</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="n">batch_size</span></tt>
-            </div>
-            <div id="l212"
-               class="code sev- "><tt><i>212</i> &nbsp;</tt>
+               </ul><tt><i>212</i>         <span class="k">assert</span> <span class="n">element_wise_metrics</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">element_wise_metrics</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span><span class="o">==</span><span class="n">batch_size</span></tt>
             </div>
             <div id="l213"
                class="code sev- "><tt><i>213</i>         <span class="k">if</span> <span class="n">return_dict</span><span class="p">:</span></tt>

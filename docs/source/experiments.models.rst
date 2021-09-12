@@ -4,10 +4,10 @@ experiments.models package
 Submodules
 ----------
 
-experiments.models.gnn\_mnist module
-------------------------------------
+experiments.models.gnn module
+-----------------------------
 
-.. automodule:: experiments.models.gnn_mnist
+.. automodule:: experiments.models.gnn
    :members:
    :undoc-members:
    :show-inheritance:
@@ -16,14 +16,6 @@ experiments.models.gnn\_mol module
 ----------------------------------
 
 .. automodule:: experiments.models.gnn_mol
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-experiments.models.gnn\_ppa module
-----------------------------------
-
-.. automodule:: experiments.models.gnn_ppa
    :members:
    :undoc-members:
    :show-inheritance:

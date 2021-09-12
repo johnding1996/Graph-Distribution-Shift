@@ -102,6 +102,13 @@
 <span id="L92" class="lineno"><a class="lineno" href="#L92">92</a></span>
 <span id="L93" class="lineno"><a class="lineno" href="#L93">93</a></span>
 <span id="L94" class="lineno"><a class="lineno" href="#L94">94</a></span>
+<span id="L95" class="lineno"><a class="lineno" href="#L95">95</a></span>
+<span id="L96" class="lineno"><a class="lineno" href="#L96">96</a></span>
+<span id="L97" class="lineno"><a class="lineno" href="#L97">97</a></span>
+<span id="L98" class="lineno"><a class="lineno" href="#L98">98</a></span>
+<span id="L99" class="lineno"><a class="lineno" href="#L99">99</a></span>
+<span id="L100" class="lineno"><a class="lineno" href="#L100">100</a></span>
+<span id="L101" class="lineno"><a class="lineno" href="#L101">101</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -166,15 +173,24 @@ Unannotated (x2)">        super().__init__(name=name)</span>
 <span class="line-empty" title="No Anys on this line!">            - element_wise_metrics (Tensor): tensor of size (batch_size, )</span>
 <span class="line-empty" title="No Anys on this line!">            </span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
+<span class="line-empty" title="No Anys on this line!">       </span>
+<span class="line-empty" title="No Anys on this line!">        # import pdb;pdb.set_trace()</span>
+<span class="line-empty" title="No Anys on this line!"> </span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Explicit (x1)
 Unimported (x1)">        if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">            return self.loss_fn(y_pred.float(), y_true.float())</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
+Unannotated (x11)">            return self.loss_fn(y_pred.float(), y_true.float()).squeeze(dim=-1)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Explicit (x1)
+Unimported (x1)">        elif isinstance(self.loss_fn, torch.nn.CrossEntropyLoss):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            return self.loss_fn(y_pred, y_true)</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-precise" title="No Anys on this line!">            raise NotImplementedError</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def worst(self, metrics):</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
@@ -204,6 +220,7 @@ Unannotated (x2)">        super().__init__(name=name)</span>
 Unannotated (x4)
 Explicit (x1)
 Unimported (x1)">        if isinstance(self.loss_fn, torch.nn.BCEWithLogitsLoss):</span>
+<span class="line-empty" title="No Anys on this line!">           </span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            flattened_y_pred = flattened_y_pred.float()</span>
 <span class="line-any" title="Any Types on this line: 

@@ -266,28 +266,6 @@
 <span id="L256" class="lineno"><a class="lineno" href="#L256">256</a></span>
 <span id="L257" class="lineno"><a class="lineno" href="#L257">257</a></span>
 <span id="L258" class="lineno"><a class="lineno" href="#L258">258</a></span>
-<span id="L259" class="lineno"><a class="lineno" href="#L259">259</a></span>
-<span id="L260" class="lineno"><a class="lineno" href="#L260">260</a></span>
-<span id="L261" class="lineno"><a class="lineno" href="#L261">261</a></span>
-<span id="L262" class="lineno"><a class="lineno" href="#L262">262</a></span>
-<span id="L263" class="lineno"><a class="lineno" href="#L263">263</a></span>
-<span id="L264" class="lineno"><a class="lineno" href="#L264">264</a></span>
-<span id="L265" class="lineno"><a class="lineno" href="#L265">265</a></span>
-<span id="L266" class="lineno"><a class="lineno" href="#L266">266</a></span>
-<span id="L267" class="lineno"><a class="lineno" href="#L267">267</a></span>
-<span id="L268" class="lineno"><a class="lineno" href="#L268">268</a></span>
-<span id="L269" class="lineno"><a class="lineno" href="#L269">269</a></span>
-<span id="L270" class="lineno"><a class="lineno" href="#L270">270</a></span>
-<span id="L271" class="lineno"><a class="lineno" href="#L271">271</a></span>
-<span id="L272" class="lineno"><a class="lineno" href="#L272">272</a></span>
-<span id="L273" class="lineno"><a class="lineno" href="#L273">273</a></span>
-<span id="L274" class="lineno"><a class="lineno" href="#L274">274</a></span>
-<span id="L275" class="lineno"><a class="lineno" href="#L275">275</a></span>
-<span id="L276" class="lineno"><a class="lineno" href="#L276">276</a></span>
-<span id="L277" class="lineno"><a class="lineno" href="#L277">277</a></span>
-<span id="L278" class="lineno"><a class="lineno" href="#L278">278</a></span>
-<span id="L279" class="lineno"><a class="lineno" href="#L279">279</a></span>
-<span id="L280" class="lineno"><a class="lineno" href="#L280">280</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import json</span>
@@ -382,29 +360,7 @@ Explicit (x4)">        json.dump(all_results, f, indent=4)</span>
 <span class="line-precise" title="No Anys on this line!">            f"Could not find CSV or pth prediction file that starts with {run_id}."</span>
 <span class="line-empty" title="No Anys on this line!">        )</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    def get_metrics(dataset_name: str) -&gt; List[str]:</span>
-<span class="line-precise" title="No Anys on this line!">        if "amazon" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["10th_percentile_acc", "acc_avg"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "camelyon17" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["acc_avg"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "civilcomments" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["acc_wg", "acc_avg"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "fmow" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["acc_worst_region", "acc_avg"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "iwildcam" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["F1-macro_all", "acc_avg"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "ogb-molpcba" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["ap"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "poverty" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["r_wg", "r_all"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "py150" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["acc", "Acc (Overall)"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "globalwheat" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["detection_acc_avg_dom"]</span>
-<span class="line-precise" title="No Anys on this line!">        elif "rxrx1" == dataset_name:</span>
-<span class="line-precise" title="No Anys on this line!">            return ["acc_avg"]</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-precise" title="No Anys on this line!">            raise ValueError(f"Invalid dataset: {dataset_name}")</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Dataset will only be downloaded if it does not exist</span>
 <span class="line-any" title="Any Types on this line: 
@@ -418,7 +374,8 @@ Unannotated (x3)">    splits: List[str] = list(wilds_dataset.split_dict.keys())<
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">    replicates_results: Dict[str, Dict[str, List[float]]] = dict()</span>
 <span class="line-precise" title="No Anys on this line!">    replicates: List[str] = get_replicates(dataset_name)</span>
-<span class="line-precise" title="No Anys on this line!">    metrics: List[str] = get_metrics(dataset_name)</span>
+<span class="line-any" title="Any Types on this line: 
+Error (x2)">    metrics: List[str] = get_metrics(dataset_name)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Store the results for each replicate</span>
 <span class="line-precise" title="No Anys on this line!">    for split in splits:</span>

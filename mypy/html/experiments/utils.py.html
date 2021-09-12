@@ -301,6 +301,10 @@
 <span id="L291" class="lineno"><a class="lineno" href="#L291">291</a></span>
 <span id="L292" class="lineno"><a class="lineno" href="#L292">292</a></span>
 <span id="L293" class="lineno"><a class="lineno" href="#L293">293</a></span>
+<span id="L294" class="lineno"><a class="lineno" href="#L294">294</a></span>
+<span id="L295" class="lineno"><a class="lineno" href="#L295">295</a></span>
+<span id="L296" class="lineno"><a class="lineno" href="#L296">296</a></span>
+<span id="L297" class="lineno"><a class="lineno" href="#L297">297</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -669,9 +673,10 @@ Unannotated (x4)">    dataset_name = dataset['dataset'].dataset_name</span>
 Unannotated (x3)">    split = dataset['split']</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">    replicate_str = get_replicate_str(dataset, config)</span>
+<span class="line-empty" title="No Anys on this line!">    # prefix = Path(config.log_dir) / f"{dataset_name}_split-{split}_{replicate_str}_"</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x16)
-Explicit (x1)">    prefix = Path(config.log_dir) / f"{dataset_name}_split-{split}_{replicate_str}_"</span>
+Unannotated (x23)">    prefix = os.path.join(config.log_dir, f"{dataset_name}_{config.algorithm}_{config.model}_{replicate_str}_split:{split}_")</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    return prefix</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -681,9 +686,10 @@ Unannotated (x1)">    return prefix</span>
 Unannotated (x4)">    dataset_name = dataset['dataset'].dataset_name</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">    replicate_str = get_replicate_str(dataset, config)</span>
+<span class="line-empty" title="No Anys on this line!">    # prefix = Path(config.log_dir) / f"{dataset_name}_{replicate_str}_"</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x13)
-Explicit (x1)">    prefix = Path(config.log_dir) / f"{dataset_name}_{replicate_str}_"</span>
+Unannotated (x20)">    prefix = os.path.join(config.log_dir, f"{dataset_name}_{config.algorithm}_{config.model}_{replicate_str}_")</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    return prefix</span>
 <span class="line-empty" title="No Anys on this line!"></span>

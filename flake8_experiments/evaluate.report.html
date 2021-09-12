@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
    </head>
    <body>
-      <div id="masthead" class="sev-2"></div>
+      <div id="masthead" class="sev-1"></div>
       <div id="page">
          <p id="srclink">
             <a title="View full annotated source"
@@ -48,6 +48,24 @@ window.addEventListener('DOMContentLoaded', function () {
          </h1>
 
          <ul id="index">
+         
+         <li>
+            <a data-code="F821">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F821:</strong> undefined name 'get_metrics'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="evaluate.source.html#l103">
+                  <tt><i>103</i>     <span class="n">metrics</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
          
          <li>
             <a data-code="E501">
@@ -127,92 +145,110 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (106 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l138">
-                  <tt><i>138</i>                 <span class="sa">f</span><span class="s2">&quot;Processing split=</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s2">, replicate=</span><span class="si">{</span><span class="n">replicate</span><span class="si">}</span><span class="s2">, predictions_file=</span><span class="si">{</span><span class="n">predictions_file</span><span class="si">}</span><span class="s2">...&quot;</span></tt>
+               <a href="evaluate.source.html#l116">
+                  <tt><i>116</i>                 <span class="sa">f</span><span class="s2">&quot;Processing split=</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s2">, replicate=</span><span class="si">{</span><span class="n">replicate</span><span class="si">}</span><span class="s2">, predictions_file=</span><span class="si">{</span><span class="n">predictions_file</span><span class="si">}</span><span class="s2">...&quot;</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (102 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l142">
-                  <tt><i>142</i>             <span class="c1"># GlobalWheat&#39;s predictions are a list of dictionaries, so it has to be handled separately</span></tt>
+               <a href="evaluate.source.html#l120">
+                  <tt><i>120</i>             <span class="c1"># GlobalWheat&#39;s predictions are a list of dictionaries, so it has to be handled separately</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (86 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l144">
-                  <tt><i>144</i>                 <span class="n">metric_results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluate_replicate_for_globalwheat</span><span class="p">(</span></tt>
+               <a href="evaluate.source.html#l122">
+                  <tt><i>122</i>                 <span class="n">metric_results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluate_replicate_for_globalwheat</span><span class="p">(</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (80 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l153">
-                  <tt><i>153</i>                 <span class="n">replicates_results</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metric_results</span><span class="p">[</span><span class="n">metric</span><span class="p">])</span></tt>
+               <a href="evaluate.source.html#l131">
+                  <tt><i>131</i>                 <span class="n">replicates_results</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metric_results</span><span class="p">[</span><span class="n">metric</span><span class="p">])</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (85 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l161">
-                  <tt><i>161</i>             <span class="n">replicates_metric_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">replicates_results</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="n">metric</span><span class="p">]</span></tt>
+               <a href="evaluate.source.html#l139">
+                  <tt><i>139</i>             <span class="n">replicates_metric_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">replicates_results</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="n">metric</span><span class="p">]</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (81 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l165">
-                  <tt><i>165</i>             <span class="n">aggregated_results</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">replicates_metric_values</span><span class="p">)</span></tt>
+               <a href="evaluate.source.html#l143">
+                  <tt><i>143</i>             <span class="n">aggregated_results</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">replicates_metric_values</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (82 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l169">
-                  <tt><i>169</i>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">_results.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span></tt>
+               <a href="evaluate.source.html#l147">
+                  <tt><i>147</i>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">_results.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (88 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l187">
-                  <tt><i>187</i> <span class="sd">        Metrics as a dictionary with metrics as the keys and metric values as the values</span></tt>
+               <a href="evaluate.source.html#l165">
+                  <tt><i>165</i> <span class="sd">        Metrics as a dictionary with metrics as the keys and metric values as the values</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (81 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l213">
-                  <tt><i>213</i> <span class="sd">        path (str): Path to the file that has the predicted labels. Can be a URL.</span></tt>
+               <a href="evaluate.source.html#l191">
+                  <tt><i>191</i> <span class="sd">        path (str): Path to the file that has the predicted labels. Can be a URL.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (86 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l225">
-                  <tt><i>225</i>     <span class="n">predicted_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()]</span></tt>
+               <a href="evaluate.source.html#l203">
+                  <tt><i>203</i>     <span class="n">predicted_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()]</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (82 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l246">
-                  <tt><i>246</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A dataset was not specified. Evaluating for all WILDS datasets...&quot;</span><span class="p">)</span></tt>
+               <a href="evaluate.source.html#l224">
+                  <tt><i>224</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A dataset was not specified. Evaluating for all WILDS datasets...&quot;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (85 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l247">
-                  <tt><i>247</i>         <span class="n">evaluate_all_benchmarks</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">predictions_dir</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">root_dir</span><span class="p">)</span></tt>
+               <a href="evaluate.source.html#l225">
+                  <tt><i>225</i>         <span class="n">evaluate_all_benchmarks</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">predictions_dir</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">root_dir</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (113 > 79 characters):</p>
                
-               <a href="evaluate.source.html#l275">
-                  <tt><i>275</i>         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The directory where the datasets can be found (or should be downloaded to, if they do not exist).&quot;</span><span class="p">,</span></tt>
+               <a href="evaluate.source.html#l253">
+                  <tt><i>253</i>         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The directory where the datasets can be found (or should be downloaded to, if they do not exist).&quot;</span><span class="p">,</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E303:</strong> too many blank lines (3)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="evaluate.source.html#l93">
+                  <tt><i>93</i>     <span class="c1"># Dataset will only be downloaded if it does not exist</span></tt>
                </a>
             </li>
             </ul>
@@ -229,8 +265,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="evaluate.source.html#l236">
-                  <tt><i>236</i>     <span class="k">except</span><span class="p">:</span></tt>
+               <a href="evaluate.source.html#l214">
+                  <tt><i>214</i>     <span class="k">except</span><span class="p">:</span></tt>
                </a>
             </li>
             </ul>

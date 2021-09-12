@@ -6,7 +6,7 @@
       <link rel="stylesheet" href="styles.css">
    </head>
    <body>
-      <div id="masthead" class="sev-2"></div>
+      <div id="masthead" class="sev-1"></div>
       <div id="page">
          <h1>
             <a href="configs.supported.report.html">
@@ -35,7 +35,16 @@
                class="code sev- "><tt><i>3</i> &nbsp;</tt>
             </div>
             <div id="l4"
-               class="code sev- "><tt><i>4</i> <span class="kn">from</span> <span class="nn">experiments.configs.model</span> <span class="kn">import</span> <span class="n">model_defaults</span></tt>
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     'experiments.configs.model.model_defaults' imported but unused</li>
+               
+               </ul><tt><i>4</i> <span class="kn">from</span> <span class="nn">experiments.configs.model</span> <span class="kn">import</span> <span class="n">model_defaults</span></tt>
             </div>
             <div id="l5"
                class="code sev- "><tt><i>5</i> <span class="kn">from</span> <span class="nn">experiments.configs.algorithm</span> <span class="kn">import</span> <span class="n">algorithm_defaults</span></tt>
@@ -161,7 +170,7 @@
                class="code sev- "><tt><i>33</i> <span class="c1"># See models/initializer.py</span></tt>
             </div>
             <div id="l34"
-               class="code sev- "><tt><i>34</i> <span class="n">models</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model_defaults</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></tt>
+               class="code sev- "><tt><i>34</i> <span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="s1">&#39;gcn&#39;</span><span class="p">,</span> <span class="s1">&#39;gin_virtual&#39;</span><span class="p">,</span> <span class="s1">&#39;gcn_virtual&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l35"
                class="code sev- "><tt><i>35</i> &nbsp;</tt>
