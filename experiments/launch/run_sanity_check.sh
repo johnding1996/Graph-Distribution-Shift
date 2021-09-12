@@ -29,6 +29,7 @@ log_path=${root_dir}/sanity_check_logs/${dataset}-${algorithm}-${model}.log
 python run_expt.py --n_epochs 1 --device ${device} --dataset ${dataset}  --algorithm ${algorithm} --model ${model}  --root_dir ${root_dir} > ${log_path} 2>&1
 }
 
+# ppa too large, skip for now
 #device=0
 #datasets=( ogb-molpcba ogb-molhiv ogbg-ppa RotatedMNIST )
 #algorithms=( ERM deepCORAL groupDRO IRM )
