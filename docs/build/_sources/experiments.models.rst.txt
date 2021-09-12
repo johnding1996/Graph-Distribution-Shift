@@ -12,14 +12,6 @@ experiments.models.gnn module
    :undoc-members:
    :show-inheritance:
 
-experiments.models.gnn\_mol module
-----------------------------------
-
-.. automodule:: experiments.models.gnn_mol
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 experiments.models.initializer module
 -------------------------------------
 
