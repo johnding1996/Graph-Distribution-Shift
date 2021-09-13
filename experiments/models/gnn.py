@@ -55,8 +55,8 @@ class GNN(torch.nn.Module):
         else:
             self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)
 
-    def forward(self, batched_data):
-        h_node = self.gnn_node(batched_data)
+    def forward(self, batched_data, perturb=None):
+        h_node = self.gnn_node(batched_data, perturb)
         h_graph = self.pool(h_node, batched_data.batch)
 
         if self.graph_pred_linear is None:
@@ -129,11 +129,11 @@ class GNN_node(torch.nn.Module):
 
             self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))
 
-    def forward(self, batched_data):
+    def forward(self, batched_data, perturb):
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
-        ### computing input node embedding
-        h_list = [self.node_encoder(x)]
+        # FLAG injects perturbation
+        h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]
 
         for layer in range(self.num_layer):
 
@@ -239,7 +239,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
                                     torch.nn.Linear(2 * emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim),
                                     torch.nn.ReLU()))
 
-    def forward(self, batched_data):
+    def forward(self, batched_data, perturb):
 
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
@@ -247,7 +247,8 @@ class GNN_node_Virtualnode(torch.nn.Module):
         virtualnode_embedding = self.virtualnode_embedding(
             torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))
 
-        h_list = [self.node_encoder(x)]
+        # FLAG injects perturbation
+        h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]
 
         for layer in range(self.num_layer):
             ### add message from virtual nodes to graph nodes
