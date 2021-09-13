@@ -2,7 +2,7 @@ language: python
 python:
   - 3.7
 install:
-  - pip install -r requirements.travis.txt
+  - pip install -r ./.travis/requirements.txt
 script:
   - pytest . --html=./pages/pytest/index.html
 after_success:

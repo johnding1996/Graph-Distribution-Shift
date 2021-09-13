@@ -1,14 +1,16 @@
 # pytorch
-torch==1.9.0
-torchvision==0.10.0
+--find-links https://download.pytorch.org/whl/lts/1.8/torch_lts.html
+torch==1.8.2+cu102
+--find-links https://download.pytorch.org/whl/lts/1.8/torch_lts.html
+torchvision==0.9.2+cu102
 # pytorch_geometric
---find-links https://data.pyg.org/whl/torch-1.9.0+cu102.html
+--find-links https://data.pyg.org/whl/torch-1.8.0+cu102.html
 torch-scatter==2.0.8
---find-links https://data.pyg.org/whl/torch-1.9.0+cu102.html
+--find-links https://data.pyg.org/whl/torch-1.8.0+cu102.html
 torch-sparse==0.6.12
---find-links https://data.pyg.org/whl/torch-1.9.0+cu102.html
+--find-links https://data.pyg.org/whl/torch-1.8.0+cu102.html
 torch-cluster==1.5.9
---find-links https://data.pyg.org/whl/torch-1.9.0+cu102.html
+--find-links https://data.pyg.org/whl/torch-1.8.0+cu102.html
 torch-spline-conv==1.2.1
 torch-geometric==1.7.2
 # other pub dependencies
