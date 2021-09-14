@@ -12,6 +12,14 @@ experiments.algorithms.ERM module
    :undoc-members:
    :show-inheritance:
 
+experiments.algorithms.FLAG module
+----------------------------------
+
+.. automodule:: experiments.algorithms.FLAG
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 experiments.algorithms.IRM module
 ---------------------------------
 

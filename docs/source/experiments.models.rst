@@ -4,6 +4,14 @@ experiments.models package
 Submodules
 ----------
 
+experiments.models.conv module
+------------------------------
+
+.. automodule:: experiments.models.conv
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 experiments.models.gnn module
 -----------------------------
 

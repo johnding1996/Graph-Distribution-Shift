@@ -44,13 +44,22 @@
                </ul><tt><i>6</i> <span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">,</span> <span class="n">download_url</span><span class="p">,</span> <span class="n">extract_zip</span><span class="p">,</span> <span class="n">Data</span><span class="p">)</span></tt>
             </div>
             <div id="l7"
-               class="code sev- "><tt><i>7</i> &nbsp;</tt>
+               class="code sev- "><tt><i>7</i> <span class="kn">import</span> <span class="nn">pdb</span></tt>
             </div>
             <div id="l8"
                class="code sev- "><tt><i>8</i> &nbsp;</tt>
             </div>
             <div id="l9"
-               class="code sev- "><tt><i>9</i> <span class="k">class</span> <span class="nc">PyGSuperPixelDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E302
+                     </span>
+                     Expected 2 blank lines, found 1</li>
+               
+               </ul><tt><i>9</i> <span class="k">class</span> <span class="nc">PyGSuperPixelDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span></tt>
             </div>
             <div id="l10"
                class="code sev- "><tt><i>10</i>     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A variety of artificially and semi-artificially generated graph</span></tt>
@@ -410,82 +419,28 @@
                class="code sev- "><tt><i>102</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l103"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (80 > 79 characters)</li>
-               
-               </ul><tt><i>103</i>     <span class="n">root</span> <span class="o">=</span> <span class="s1">&#39;/home/ubuntu/Graph-Distribution-Shift/preprocessing/superpixel/data&#39;</span></tt>
+               class="code sev- "><tt><i>103</i>     <span class="n">root</span> <span class="o">=</span> <span class="s1">&#39;/cmlscratch/kong/datasets/graph_domain&#39;</span></tt>
             </div>
             <div id="l104"
                class="code sev- "><tt><i>104</i>     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;RotatedMNIST&#39;</span></tt>
             </div>
             <div id="l105"
-               class="code sev-1  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-1">
-                        F821
-                     </span>
-                     Undefined name 'OurDataset'</li>
-               
-               </ul><tt><i>105</i>     <span class="n">dataset</span> <span class="o">=</span> <span class="n">OurDataset</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>105</i>     <span class="n">dataset</span> <span class="o">=</span> <span class="n">PyGSuperPixelDataset</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></tt>
             </div>
             <div id="l106"
                class="code sev- "><tt><i>106</i> &nbsp;</tt>
             </div>
             <div id="l107"
-               class="code sev- "><tt><i>107</i>     <span class="c1"># pdb.set_trace()</span></tt>
-            </div>
-            <div id="l108"
-               class="code sev- "><tt><i>108</i> &nbsp;</tt>
-            </div>
-            <div id="l109"
-               class="code sev-1  le">
+               class="code sev-2  le">
                <ul class="violations">
                
                   <li>
-                     <span class="count sev-1">
-                        F821
+                     <span class="count sev-2">
+                        W292
                      </span>
-                     Undefined name 'self'</li>
+                     No newline at end of file</li>
                
-               </ul><tt><i>109</i>     <span class="bp">self</span><span class="o">.</span><span class="n">_y_size</span> <span class="o">=</span> <span class="mi">1</span></tt>
-            </div>
-            <div id="l110"
-               class="code sev-1  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-1">
-                        F821
-                     </span>
-                     Undefined name 'self'</li>
-               
-               </ul><tt><i>110</i>     <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">=</span> <span class="mi">10</span></tt>
-            </div>
-            <div id="l111"
-               class="code sev-1  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-1">
-                        F821
-                     </span>
-                     Undefined name 'self'</li>
-               
-                  <li>
-                     <span class="count sev-1">
-                        F821
-                     </span>
-                     Undefined name 'Evaluator'</li>
-               
-               </ul><tt><i>111</i>     <span class="bp">self</span><span class="o">.</span><span class="n">_metric</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span><span class="s1">&#39;ogbg-ppa&#39;</span><span class="p">)</span></tt>
+               </ul><tt><i>107</i>     <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
             </div>
             
          </div>

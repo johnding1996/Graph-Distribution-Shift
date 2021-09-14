@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: models/conv.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="models.conv.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               models/conv.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  2
+               </span>
+               <strong>F401:</strong> 'torch_geometric.nn.inits.zeros' imported but unused
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>'torch_geometric.nn.inits.zeros' imported but unused:</p>
+               
+               <a href="models.conv.source.html#l11">
+                  <tt><i>11</i> <span class="kn">from</span> <span class="nn">torch_geometric.nn.inits</span> <span class="kn">import</span> <span class="n">zeros</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'pdb' imported but unused:</p>
+               
+               <a href="models.conv.source.html#l16">
+                  <tt><i>16</i> <span class="kn">import</span> <span class="nn">pdb</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  10
+               </span>
+               <strong>E501:</strong> line too long (89 > 79 characters)
+               
+                  (and 8 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l13">
+                  <tt><i>13</i> <span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">remove_self_loops</span><span class="p">,</span> <span class="n">add_self_loops</span><span class="p">,</span> <span class="n">segregate_self_loops</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (112 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l27">
+                  <tt><i>27</i>         <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l28">
+                  <tt><i>28</i>                                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l39">
+                  <tt><i>39</i>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l69">
+                  <tt><i>69</i>         <span class="c1"># edge_weight = torch.ones((edge_index.size(1), ), device=edge_index.device)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l76">
+                  <tt><i>76</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l154">
+                  <tt><i>154</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l155">
+                  <tt><i>155</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">loop_edge_index</span><span class="p">,</span> <span class="n">loop_norm</span> <span class="o">=</span> <span class="n">segregate_self_loops</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l164">
+                  <tt><i>164</i>             <span class="n">Tx_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">+</span>\</tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (103 > 79 characters):</p>
+               
+               <a href="models.conv.source.html#l169">
+                  <tt><i>169</i>             <span class="n">Tx_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">Tx_1</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">+</span>\</tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E251">
+               <span class="count sev-2">
+                  8
+               </span>
+               <strong>E251:</strong> unexpected spaces around keyword / parameter equals
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.conv.source.html#l25">
+                  <tt><i>25</i>         <span class="nb">super</span><span class="p">(</span><span class="n">GINConvNew</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">aggr</span> <span class="o">=</span> <span class="s2">&quot;add&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.conv.source.html#l32">
+                  <tt><i>32</i>             <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span> <span class="o">=</span> <span class="n">BondEncoder</span><span class="p">(</span><span class="n">emb_dim</span> <span class="o">=</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.conv.source.html#l59">
+                  <tt><i>59</i>             <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span> <span class="o">=</span> <span class="n">BondEncoder</span><span class="p">(</span><span class="n">emb_dim</span> <span class="o">=</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.conv.source.html#l97">
+                  <tt><i>97</i>             <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span> <span class="o">=</span> <span class="n">BondEncoder</span><span class="p">(</span><span class="n">emb_dim</span> <span class="o">=</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E203">
+               <span class="count sev-2">
+                  6
+               </span>
+               <strong>E203:</strong> whitespace before ':'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.conv.source.html#l31">
+                  <tt><i>31</i>         <span class="k">if</span> <span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l33">
+                  <tt><i>33</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l58">
+                  <tt><i>58</i>         <span class="k">if</span> <span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l60">
+                  <tt><i>60</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l96">
+                  <tt><i>96</i>         <span class="k">if</span> <span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l98">
+                  <tt><i>98</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E225">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>E225:</strong> missing whitespace around operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.conv.source.html#l39">
+                  <tt><i>39</i>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l164">
+                  <tt><i>164</i>             <span class="n">Tx_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">+</span>\</tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l169">
+                  <tt><i>169</i>             <span class="n">Tx_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">Tx_1</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">+</span>\</tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E231:</strong> missing whitespace after ','
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.conv.source.html#l165">
+                  <tt><i>165</i>                    <span class="n">loop_norm</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l170">
+                  <tt><i>170</i>                    <span class="n">loop_norm</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">Tx_1</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E266">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E266:</strong> too many leading '#' for block comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.conv.source.html#l18">
+                  <tt><i>18</i> <span class="c1">### GIN convolution along the graph structure</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.conv.source.html#l50">
+                  <tt><i>50</i> <span class="c1">### GCN convolution along the graph structure</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.conv.source.html#l19">
+                  <tt><i>19</i> <span class="k">class</span> <span class="nc">GINConvNew</span><span class="p">(</span><span class="n">MessagePassing</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.conv.source.html#l162">
+                  <tt><i>162</i>         <span class="c1"># propagate_type: (x: Tensor, norm: Tensor)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

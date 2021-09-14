@@ -4,9 +4,9 @@
 <link rel="stylesheet" type="text/css" href="../../../mypy-html.css">
 </head>
 <body>
-<h2>experiments.algorithms.initializer</h2>
+<h2>experiments.algorithms.FLAG</h2>
 <table>
-<caption>experiments/algorithms/initializer.py</caption>
+<caption>experiments/algorithms/FLAG.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -86,181 +86,140 @@
 <span id="L76" class="lineno"><a class="lineno" href="#L76">76</a></span>
 <span id="L77" class="lineno"><a class="lineno" href="#L77">77</a></span>
 <span id="L78" class="lineno"><a class="lineno" href="#L78">78</a></span>
-<span id="L79" class="lineno"><a class="lineno" href="#L79">79</a></span>
-<span id="L80" class="lineno"><a class="lineno" href="#L80">80</a></span>
-<span id="L81" class="lineno"><a class="lineno" href="#L81">81</a></span>
-<span id="L82" class="lineno"><a class="lineno" href="#L82">82</a></span>
-<span id="L83" class="lineno"><a class="lineno" href="#L83">83</a></span>
-<span id="L84" class="lineno"><a class="lineno" href="#L84">84</a></span>
-<span id="L85" class="lineno"><a class="lineno" href="#L85">85</a></span>
-<span id="L86" class="lineno"><a class="lineno" href="#L86">86</a></span>
-<span id="L87" class="lineno"><a class="lineno" href="#L87">87</a></span>
-<span id="L88" class="lineno"><a class="lineno" href="#L88">88</a></span>
-<span id="L89" class="lineno"><a class="lineno" href="#L89">89</a></span>
-<span id="L90" class="lineno"><a class="lineno" href="#L90">90</a></span>
-<span id="L91" class="lineno"><a class="lineno" href="#L91">91</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from algorithms.ERM import ERM</span>
-<span class="line-any" title="No Anys on this line!">from algorithms.IRM import IRM</span>
-<span class="line-any" title="No Anys on this line!">from algorithms.deepCORAL import DeepCORAL</span>
-<span class="line-any" title="No Anys on this line!">from algorithms.groupDRO import GroupDRO</span>
-<span class="line-any" title="No Anys on this line!">from algorithms.FLAG import FLAG</span>
-<span class="line-any" title="No Anys on this line!">from configs.supported import algo_log_metrics</span>
-<span class="line-any" title="No Anys on this line!">from losses import initialize_loss</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from algorithms.single_model_algorithm import SingleModelAlgorithm</span>
+<span class="line-any" title="No Anys on this line!">from models.initializer import initialize_model</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">from torch.nn.utils import clip_grad_norm_</span>
+<span class="line-any" title="No Anys on this line!">from utils import move_to</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">from gds.common.utils import get_counts</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def initialize_algorithm(config, datasets, train_grouper):</span>
+<span class="line-precise" title="No Anys on this line!">class FLAG(SingleModelAlgorithm):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, config, d_out, grouper, loss,</span>
+<span class="line-empty" title="No Anys on this line!">                 metric, n_train_steps):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">    train_dataset = datasets['train']['dataset']</span>
+Unannotated (x8)
+Unimported (x1)">        model = initialize_model(config, d_out).to(config.device)</span>
+<span class="line-empty" title="No Anys on this line!">        # initialize module</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">    train_loader = datasets['train']['loader']</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # Configure the final layer of the networks used</span>
-<span class="line-empty" title="No Anys on this line!">    # The code below are defaults. Edit this if you need special config for your model.</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">    if train_dataset.is_classification:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        if train_dataset.y_size == 1:</span>
-<span class="line-empty" title="No Anys on this line!">            # For single-task classification, we have one output per class</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            d_out = train_dataset.n_classes</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif train_dataset.y_size is None:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            d_out = train_dataset.n_classes</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        elif (train_dataset.y_size &gt; 1) and (train_dataset.n_classes == 2):</span>
-<span class="line-empty" title="No Anys on this line!">            # For multi-task binary classification (each output is the logit for each binary class)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            d_out = train_dataset.y_size</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            raise RuntimeError('d_out not defined.')</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">    elif train_dataset.is_detection:</span>
-<span class="line-empty" title="No Anys on this line!">        # For detection, d_out is the number of classes</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        d_out = train_dataset.n_classes</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if config.algorithm in ['deepCORAL', 'IRM']:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            raise ValueError(f'{config.algorithm} is not currently supported for detection datasets.')</span>
-<span class="line-empty" title="No Anys on this line!">    else:</span>
-<span class="line-empty" title="No Anys on this line!">        # For regression, we have one output per target dimension</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        d_out = train_dataset.y_size</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # Other config</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">    n_train_steps = len(train_loader) * config.n_epochs</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">    loss = initialize_loss(config, d_out)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">    metric = algo_log_metrics[config.algo_log_metric]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    if config.algorithm == 'ERM':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        algorithm = ERM(</span>
+Unannotated (x1)">        super().__init__(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            config=config,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            d_out=d_out,</span>
+Unannotated (x1)">            model=model,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            grouper=train_grouper,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            loss=loss,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            metric=metric,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            n_train_steps=n_train_steps)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    elif config.algorithm == 'groupDRO':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        train_g = train_grouper.metadata_to_group(train_dataset.metadata_array)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        is_group_in_train = get_counts(train_g, train_grouper.n_groups) &gt; 0</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        algorithm = GroupDRO(</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            config=config,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            d_out=d_out,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            grouper=train_grouper,</span>
+Unannotated (x1)">            grouper=grouper,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            loss=loss,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            metric=metric,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            n_train_steps=n_train_steps,</span>
+<span class="line-empty" title="No Anys on this line!">        )</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def update(self, batch):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            is_group_in_train=is_group_in_train)</span>
+Unannotated (x1)">        step_size = 1e-3</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    elif config.algorithm == 'deepCORAL':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        algorithm = DeepCORAL(</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            config=config,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            d_out=d_out,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            grouper=train_grouper,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            loss=loss,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            metric=metric,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            n_train_steps=n_train_steps)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    elif config.algorithm == 'IRM':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        algorithm = IRM(</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            config=config,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            d_out=d_out,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            grouper=train_grouper,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            loss=loss,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            metric=metric,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            n_train_steps=n_train_steps)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    elif config.algorithm == 'FLAG':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        algorithm = FLAG(</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            config=config,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            d_out=d_out,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            grouper=train_grouper,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            loss=loss,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            metric=metric,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            n_train_steps=n_train_steps)</span>
-<span class="line-empty" title="No Anys on this line!">    else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        raise ValueError(f"Algorithm {config.algorithm} not recognized")</span>
+Unannotated (x1)">        m = 3</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">    return algorithm</span>
+Unannotated (x1)">        assert self.is_training</span>
+<span class="line-empty" title="No Anys on this line!">        # process batch</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        x, y_true, metadata = batch</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        x = move_to(x, self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        y_true = move_to(y_true, self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        g = move_to(self.grouper.metadata_to_group(metadata), self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        results = {</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'g': g,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'y_true': y_true,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'metadata': metadata,</span>
+<span class="line-empty" title="No Anys on this line!">        }</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">        perturb_shape = (x.x.shape[0], self.model.emb_dim)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)
+Unimported (x1)">        perturb = torch.FloatTensor(*perturb_shape).uniform_(-step_size, step_size)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        perturb = move_to(perturb, self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        perturb.requires_grad_()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.optimizer.zero_grad()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        outputs = self.model(x, perturb)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        results['y_pred'] = outputs</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        objective = self.objective(results)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        objective /= m</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        for _ in range(m - 1):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            objective.backward()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x13)
+Unimported (x1)">            perturb_data = perturb.detach() + step_size*torch.sign(perturb.grad.detach())</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            perturb.data = perturb_data.data</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            perturb.grad[:] = 0</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">            outputs = self.model(x, perturb)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            results['y_pred'] = outputs</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            objective = self.objective(results)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            objective /= m</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        objective.backward()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if self.max_grad_norm:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            clip_grad_norm_(self.model.parameters(), self.max_grad_norm)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.optimizer.step()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">        results['objective'] = objective.item() * m</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.step_schedulers(</span>
+<span class="line-any" title="No Anys on this line!">            is_epoch=False,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            metrics=results,</span>
+<span class="line-any" title="No Anys on this line!">            log_access=False)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # log results</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.update_log(results)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        return self.sanitize_dict(results)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def objective(self, results):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">        return self.loss.compute(results['y_pred'], results['y_true'], return_dict=False)</span>
 </pre></td>
 </tr></tbody>
 </table>
