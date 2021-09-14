@@ -8,6 +8,7 @@ from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
 from .pyg_superpixel_dataset import PyGSuperPixelDataset
 import pdb
+from torch_geometric.utils import to_dense_adj
 
 class SuperPixelDataset(GDSDataset):
     """
@@ -112,6 +113,7 @@ class SuperPixelDataset(GDSDataset):
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:
             self._collate = PyGCollater(follow_batch=[])
+        # self._collate = self.collate_dense
 
         self._metric = Evaluator('ogbg-ppa')
 
@@ -140,6 +142,38 @@ class SuperPixelDataset(GDSDataset):
         results = self._metric.eval(input_dict)
 
         return results, f"Accuracy: {results['acc']:.3f}\n"
+
+    # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
+    def collate_dense(self, samples):
+        # The input samples is a list of pairs (graph, label).
+
+        graph_list, y_list, metadata_list = map(list, zip(*samples))
+        y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
+
+        x_node_feat = []
+        for graph in graph_list :
+            adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+            zero_adj = torch.zeros_like(adj)
+            in_dim = graph.x.shape[1]
+
+            # use node feats to prepare adj
+            adj_node_feat = torch.stack([zero_adj for _ in range(in_dim)])
+            adj_node_feat = torch.cat([adj.unsqueeze(0), adj_node_feat], dim=0)
+
+            for node, node_feat in enumerate(graph.x):
+                adj_node_feat[1:, node, node] = node_feat
+
+            x_node_feat.append(adj_node_feat)
+
+        x_node_feat = torch.stack(x_node_feat)
+
+        return x_node_feat, y, metadata
+
+    def _sym_normalize_adj(self, adj):
+        deg = torch.sum(adj, dim=0)  # .squeeze()
+        deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
+        deg_inv = torch.diag(deg_inv)
+        return torch.mm(deg_inv, torch.mm(adj, deg_inv))
 
 
 if __name__ == '__main__':

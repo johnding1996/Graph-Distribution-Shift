@@ -111,19 +111,22 @@ class GNN_node(torch.nn.Module):
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
                                                    torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
                                                    torch.nn.Linear(2 * emb_dim, emb_dim))
-                    self.convs.append(GINConv(mlp, train_eps=True))
+                    self.convs.append(torch.nn.Sequential(GINConv(mlp, train_eps=True),
+                                                          torch.nn.ReLU()))
                 else :
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
                 if self.dataset_group == 'RotatedMNIST' :
-                    self.convs.append(GCNConv(emb_dim, emb_dim))
+                    self.convs.append(torch.nn.Sequential(GCNConv(emb_dim, emb_dim),
+                                                          torch.nn.ReLU()))
                 else :
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'cheb' :
                 if self.dataset_group == 'RotatedMNIST' :
-                    self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))
+                    self.convs.append(torch.nn.Sequential(ChebConv(emb_dim, emb_dim, Cheb_K),
+                                                          torch.nn.ReLU()))
                 else :
-                    self.convs.append(ChebConvNew(emb_dim, self.dataset_group))
+                    self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
             else:
                 raise ValueError('Undefined GNN type called {}'.format(gnn_type))
 
@@ -214,19 +217,22 @@ class GNN_node_Virtualnode(torch.nn.Module):
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
                                                    torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
                                                    torch.nn.Linear(2 * emb_dim, emb_dim))
-                    self.convs.append(GINConv(mlp, train_eps=True))
+                    self.convs.append(torch.nn.Sequential(GINConv(mlp, train_eps=True),
+                                                          torch.nn.ReLU()))
                 else :
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
                 if self.dataset_group == 'RotatedMNIST' :
-                    self.convs.append(GCNConv(emb_dim, emb_dim))
+                    self.convs.append(torch.nn.Sequential(GCNConv(emb_dim, emb_dim),
+                                                          torch.nn.ReLU()))
                 else :
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'cheb' :
                 if self.dataset_group == 'RotatedMNIST' :
-                    self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))
+                    self.convs.append(torch.nn.Sequential(ChebConv(emb_dim, emb_dim, Cheb_K),
+                                                          torch.nn.ReLU()))
                 else :
-                    self.convs.append(ChebConvNew(emb_dim, self.dataset_group))
+                    self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
             else:
                 raise ValueError('Undefined GNN type called {}'.format(gnn_type))
 
@@ -256,7 +262,6 @@ class GNN_node_Virtualnode(torch.nn.Module):
 
             ### Message passing among graph nodes
             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
-
             h = self.batch_norms[layer](h)
             if layer == self.num_layer - 1:
                 #remove relu for the last layer

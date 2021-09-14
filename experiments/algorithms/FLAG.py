@@ -24,6 +24,7 @@ class FLAG(SingleModelAlgorithm):
 
         assert self.is_training
         # process batch
+
         x, y_true, metadata = batch
         x = move_to(x, self.device)
         y_true = move_to(y_true, self.device)
