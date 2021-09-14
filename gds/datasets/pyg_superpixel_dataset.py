@@ -4,7 +4,7 @@ from typing import Optional, Callable, List
 
 import torch
 from torch_geometric.data import (InMemoryDataset, download_url, extract_zip, Data)
-
+import pdb
 
 class PyGSuperPixelDataset(InMemoryDataset):
     r"""A variety of artificially and semi-artificially generated graph
@@ -100,12 +100,8 @@ class PyGSuperPixelDataset(InMemoryDataset):
 
 
 if __name__ == '__main__':
-    root = '/home/ubuntu/Graph-Distribution-Shift/preprocessing/superpixel/data'
+    root = '/cmlscratch/kong/datasets/graph_domain'
     name = 'RotatedMNIST'
-    dataset = OurDataset(root=root, name=name)
+    dataset = PyGSuperPixelDataset(root=root, name=name)
 
-    # pdb.set_trace()
-
-    self._y_size = 1
-    self._n_classes = 10
-    self._metric = Evaluator('ogbg-ppa')
+    pdb.set_trace()

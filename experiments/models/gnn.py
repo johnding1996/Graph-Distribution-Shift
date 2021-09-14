@@ -1,10 +1,11 @@
 import torch
-from torch_geometric.nn import MessagePassing
-from torch_geometric.nn import global_mean_pool, global_add_pool, GCNConv, GINConv
 import torch.nn.functional as F
+from torch_geometric.nn import global_mean_pool, global_add_pool, GCNConv, GINConv, ChebConv
+from ogb.graphproppred.mol_encoder import AtomEncoder
 
-from ogb.graphproppred.mol_encoder import AtomEncoder,BondEncoder
-from torch_geometric.utils import degree
+from models.conv import GCNConvNew, GINConvNew, ChebConvNew
+
+Cheb_K = 3
 
 # mol
 class GNN(torch.nn.Module):
@@ -42,17 +43,10 @@ class GNN(torch.nn.Module):
         if self.num_layers < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
 
-        # GNN to generate node embeddings
-        if self.gnn_type == 'gin_virtual':
-            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type='gin', drop_ratio=dropout)
-        elif self.gnn_type == 'gcn_virtual' :
-            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type='gcn', drop_ratio=dropout)
-        elif self.gnn_type == 'gin' :
-            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type='gin', drop_ratio=dropout)
-        elif self.gnn_type == 'gcn' :
-            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type='gcn', drop_ratio=dropout)
+        if self.gnn_type.endswith('virtual') :
+            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], drop_ratio=dropout)
         else :
-            raise NotImplementedError
+            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], drop_ratio=dropout)
 
         # Pooling function to generate whole-graph embeddings
         self.pool = global_mean_pool
@@ -61,82 +55,14 @@ class GNN(torch.nn.Module):
         else:
             self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)
 
-    def forward(self, batched_data):
-        h_node = self.gnn_node(batched_data)
+    def forward(self, batched_data, perturb=None):
+        h_node = self.gnn_node(batched_data, perturb)
         h_graph = self.pool(h_node, batched_data.batch)
 
         if self.graph_pred_linear is None:
             return h_graph
         else:
             return self.graph_pred_linear(h_graph)
-
-
-### GIN convolution along the graph structure
-class GINConvNew(MessagePassing):
-    def __init__(self, emb_dim, dataset_group):
-        '''
-            emb_dim (int): node embedding dimensionality
-        '''
-
-        super(GINConvNew, self).__init__(aggr = "add")
-
-        self.mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim), torch.nn.BatchNorm1d(2 * emb_dim),
-                                       torch.nn.ReLU(), torch.nn.Linear(2 * emb_dim, emb_dim))
-        self.eps = torch.nn.Parameter(torch.Tensor([0]))
-
-        if dataset_group == 'mol' :
-            self.edge_encoder = BondEncoder(emb_dim = emb_dim)
-        else :
-            self.edge_encoder = torch.nn.Linear(7, emb_dim)
-
-    def forward(self, x, edge_index, edge_attr):
-        edge_embedding = self.edge_encoder(edge_attr)
-
-        out = self.mlp((1 + self.eps) *x + self.propagate(edge_index, x=x, edge_attr=edge_embedding))
-
-        return out
-
-    def message(self, x_j, edge_attr):
-        return F.relu(x_j + edge_attr)
-
-    def update(self, aggr_out):
-        return aggr_out
-
-
-### GCN convolution along the graph structure
-class GCNConvNew(MessagePassing):
-    def __init__(self, emb_dim, dataset_group):
-        super(GCNConvNew, self).__init__(aggr='add')
-
-        self.linear = torch.nn.Linear(emb_dim, emb_dim)
-        self.root_emb = torch.nn.Embedding(1, emb_dim)
-
-        if dataset_group == 'mol' :
-            self.edge_encoder = BondEncoder(emb_dim = emb_dim)
-        else :
-            self.edge_encoder = torch.nn.Linear(7, emb_dim)
-
-    def forward(self, x, edge_index, edge_attr):
-        x = self.linear(x)
-        edge_embedding = self.edge_encoder(edge_attr)
-
-        row, col = edge_index
-
-        # edge_weight = torch.ones((edge_index.size(1), ), device=edge_index.device)
-        deg = degree(row, x.size(0), dtype=x.dtype) + 1
-        deg_inv_sqrt = deg.pow(-0.5)
-        deg_inv_sqrt[deg_inv_sqrt == float('inf')] = 0
-
-        norm = deg_inv_sqrt[row] * deg_inv_sqrt[col]
-
-        return self.propagate(edge_index, x=x, edge_attr=edge_embedding, norm=norm) + F.relu(
-            x + self.root_emb.weight) * 1. / deg.view(-1, 1)
-
-    def message(self, x_j, edge_attr, norm):
-        return norm.view(-1, 1) * F.relu(x_j + edge_attr)
-
-    def update(self, aggr_out):
-        return aggr_out
 
 
 ### GNN to generate node embedding
@@ -185,24 +111,32 @@ class GNN_node(torch.nn.Module):
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
                                                    torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
                                                    torch.nn.Linear(2 * emb_dim, emb_dim))
-                    self.convs.append(GINConv(mlp, train_eps=True))
+                    self.convs.append(torch.nn.Sequential(GINConv(mlp, train_eps=True),
+                                                          torch.nn.ReLU()))
                 else :
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
                 if self.dataset_group == 'RotatedMNIST' :
-                    self.convs.append(GCNConv(emb_dim, emb_dim))
+                    self.convs.append(torch.nn.Sequential(GCNConv(emb_dim, emb_dim),
+                                                          torch.nn.ReLU()))
                 else :
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
+            elif gnn_type == 'cheb' :
+                if self.dataset_group == 'RotatedMNIST' :
+                    self.convs.append(torch.nn.Sequential(ChebConv(emb_dim, emb_dim, Cheb_K),
+                                                          torch.nn.ReLU()))
+                else :
+                    self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
             else:
                 raise ValueError('Undefined GNN type called {}'.format(gnn_type))
 
             self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))
 
-    def forward(self, batched_data):
+    def forward(self, batched_data, perturb):
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
-        ### computing input node embedding
-        h_list = [self.node_encoder(x)]
+        # FLAG injects perturbation
+        h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]
 
         for layer in range(self.num_layer):
 
@@ -283,14 +217,22 @@ class GNN_node_Virtualnode(torch.nn.Module):
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
                                                    torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
                                                    torch.nn.Linear(2 * emb_dim, emb_dim))
-                    self.convs.append(GINConv(mlp, train_eps=True))
+                    self.convs.append(torch.nn.Sequential(GINConv(mlp, train_eps=True),
+                                                          torch.nn.ReLU()))
                 else :
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
                 if self.dataset_group == 'RotatedMNIST' :
-                    self.convs.append(GCNConv(emb_dim, emb_dim))
+                    self.convs.append(torch.nn.Sequential(GCNConv(emb_dim, emb_dim),
+                                                          torch.nn.ReLU()))
                 else :
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
+            elif gnn_type == 'cheb' :
+                if self.dataset_group == 'RotatedMNIST' :
+                    self.convs.append(torch.nn.Sequential(ChebConv(emb_dim, emb_dim, Cheb_K),
+                                                          torch.nn.ReLU()))
+                else :
+                    self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
             else:
                 raise ValueError('Undefined GNN type called {}'.format(gnn_type))
 
@@ -303,7 +245,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
                                     torch.nn.Linear(2 * emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim),
                                     torch.nn.ReLU()))
 
-    def forward(self, batched_data):
+    def forward(self, batched_data, perturb):
 
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
@@ -311,7 +253,8 @@ class GNN_node_Virtualnode(torch.nn.Module):
         virtualnode_embedding = self.virtualnode_embedding(
             torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))
 
-        h_list = [self.node_encoder(x)]
+        # FLAG injects perturbation
+        h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]
 
         for layer in range(self.num_layer):
             ### add message from virtual nodes to graph nodes
@@ -319,7 +262,6 @@ class GNN_node_Virtualnode(torch.nn.Module):
 
             ### Message passing among graph nodes
             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
-
             h = self.batch_norms[layer](h)
             if layer == self.num_layer - 1:
                 #remove relu for the last layer
