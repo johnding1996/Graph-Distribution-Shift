@@ -17,7 +17,7 @@ from .utils_data_prep import separate_data, separate_data_given_split
 from ogb.graphproppred import Evaluator, PygGraphPropPredDataset
 from .utils_ids import subgraph_counts2ids
 from .utils_graph_processing import subgraph_isomorphism_edge_counts, subgraph_isomorphism_vertex_counts, induced_edge_automorphism_orbits, edge_automorphism_orbits, automorphism_orbits
-
+from .utils_encoding import encode
 
 
 class GSN():
@@ -87,12 +87,12 @@ class GSN():
         
         
         # binning and minmax encoding parameters. NB: not used in our experimental evaluation
-        # parser.add_argument('--id_bins', type=parse.str2list2int, default=None)
-        # parser.add_argument('--degree_bins', type=parse.str2list2int, default=None)
-        # parser.add_argument('--id_strategy', type=str, default='uniform')
-        # parser.add_argument('--degree_strategy', type=str, default='uniform')
-        # parser.add_argument('--id_range', type=parse.str2list2int, default=None)
-        # parser.add_argument('--degree_range', type=parse.str2list2int, default=None)
+        self.id_bins = None
+        self.degree_bins = None
+        self.id_strategy = 'uniform'
+        self.degree_strategy = 'uniform'
+        self.id_range = None
+        self.degree_range = None
         
         
         # parser.add_argument('--id_embedding', type=str, default='one_hot_encoder')
@@ -314,11 +314,59 @@ class GSN():
                                                                         self.multiprocessing,
                                                                         self.num_processes,
                                                                         **subgraph_params)
-        import pdb;pdb.set_trace()                                                            
-        return graphs_ptg                                                          
-    
+                                                         
+       
+
+
+
+        ## node and edge feature dimensions
+        if graphs_ptg[0].x.dim()==1:
+            num_features = 1
+        else:
+            num_features = graphs_ptg[0].num_features
+            
+        if hasattr(graphs_ptg[0], 'edge_features'):
+            if graphs_ptg[0].edge_features.dim()==1:
+                num_edge_features = 1
+            else:
+                num_edge_features  = graphs_ptg[0].edge_features.shape[1]
+        else:
+            num_edge_features = None
+
+        if self.dataset == 'chemical' and self.dataset_name == 'ZINC':
+            d_in_node_encoder, d_in_edge_encoder = torch.load(os.path.join(path, 'processed', 'num_feature_types.pt'))
+            d_in_node_encoder, d_in_edge_encoder = [d_in_node_encoder], [d_in_edge_encoder]
+        else:
+            d_in_node_encoder = [num_features]
+            d_in_edge_encoder = [num_edge_features]
+            
         
-    
+        ## ----------------------------------- encode ids and degrees (and possibly edge features)
+
+        degree_encoding = self.degree_encoding if self.degree_as_tag else None
+        id_encoding = self.id_encoding if self.id_encoding != 'None' else None
+        encoding_parameters = {
+            'ids': {
+                'bins': self.id_bins,
+                'strategy': self.id_strategy,
+                'range': self.id_range,
+            },
+            'degree': {
+                'bins': self.degree_bins,
+                'strategy': self.degree_strategy,
+                'range': self.degree_range}}
+        
+        print("Encoding substructure counts and degree features... ", end='')
+        graphs_ptg, encoder_ids, d_id, encoder_degrees, d_degree = encode(graphs_ptg, 
+                                                                        id_encoding,
+                                                                        degree_encoding,
+                                                                        **encoding_parameters)
+        
+        return graphs_ptg                                                                
+                                                     
+        
+            
+        
 
 
 
