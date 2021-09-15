@@ -4,7 +4,7 @@ import numpy as np
 import torch
 
 from gds.common.utils import get_counts
-from gds.datasets.wilds_dataset import GDSSubset
+from gds.datasets.gds_dataset import GDSSubset
 
 
 class Grouper:
