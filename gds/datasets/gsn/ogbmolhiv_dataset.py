@@ -7,8 +7,12 @@ from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 from collections import namedtuple
+from gds.datasets.utils import _prepare
 import tqdm
 from gds.datasets.gds_dataset import GDSDataset
+from gds.datasets.gsn.gsn import GSN
+
+
 
 
 class OGBHIVDataset(GDSDataset):
@@ -62,7 +66,7 @@ class OGBHIVDataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', gsn=False, id_type='cycle_graph', k=6):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official'):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.')
@@ -102,19 +106,16 @@ class OGBHIVDataset(GDSDataset):
 
         self._metric = Evaluator('ogbg-molhiv')
 
+        # if gsn:
 
-        # GSN
-        self.gsn = gsn
-        self.id_type = id_type
-        self.k = k
-        if self.gsn:
-            from gds.datasets.gsn.gsn_data_prep import GSN
-            gsn = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
-            graphs_ptg = gsn.preprocess()
-            import pdb;pdb.set_trace()
+        from gds.datasets.gsn.gsn import GSN
+        gsn = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', id_type='cycle_graph', induced=True, k=6)
+        graphs_ptg = gsn.preprocess
 
-        
 
+
+
+       
 
         super().__init__(root_dir, download, split_scheme)
 

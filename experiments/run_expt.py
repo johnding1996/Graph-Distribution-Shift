@@ -110,6 +110,11 @@ def main():
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
+    # GSN
+    parser.add_argument('--gsn', type=parse_bool, default=False)
+    parser.add_argument('--id_type', type=str, default='cycle_graph')
+    parser.add_argument('--k', type=int, default=6)
+
     config = parser.parse_args()
     config = populate_defaults(config)
 
@@ -151,6 +156,9 @@ def main():
         root_dir=config.root_dir,
         download=config.download,
         split_scheme=config.split_scheme,
+        gsn=config.gsn,
+        id_type=config.id_type,
+        k=config.k,
         **config.dataset_kwargs)
 
     train_grouper = CombinatorialGrouper(
