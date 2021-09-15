@@ -279,7 +279,7 @@
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">from gds import benchmark_datasets</span>
 <span class="line-precise" title="No Anys on this line!">from gds import get_dataset</span>
-<span class="line-precise" title="No Anys on this line!">from gds.datasets.wilds_dataset import GDSDataset, GDSSubset</span>
+<span class="line-any" title="No Anys on this line!">from gds.datasets.wilds_dataset import GDSDataset, GDSSubset</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">"""</span>
 <span class="line-empty" title="No Anys on this line!">Evaluate predictions for WILDS datasets.</span>
@@ -364,11 +364,12 @@ Explicit (x4)">        json.dump(all_results, f, indent=4)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Dataset will only be downloaded if it does not exist</span>
 <span class="line-any" title="Any Types on this line: 
+Unimported (x2)
 Unannotated (x5)">    wilds_dataset: GDSDataset = get_dataset(</span>
 <span class="line-precise" title="No Anys on this line!">        dataset=dataset_name, root_dir=root_dir, download=True</span>
 <span class="line-empty" title="No Anys on this line!">    )</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    splits: List[str] = list(wilds_dataset.split_dict.keys())</span>
+Unimported (x4)">    splits: List[str] = list(wilds_dataset.split_dict.keys())</span>
 <span class="line-precise" title="No Anys on this line!">    if "train" in splits:</span>
 <span class="line-precise" title="No Anys on this line!">        splits.remove("train")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -394,16 +395,18 @@ Error (x2)">    metrics: List[str] = get_metrics(dataset_name)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # GlobalWheat's predictions are a list of dictionaries, so it has to be handled separately</span>
 <span class="line-precise" title="No Anys on this line!">            if dataset_name == "globalwheat":</span>
-<span class="line-precise" title="No Anys on this line!">                metric_results: Dict[str, float] = evaluate_replicate_for_globalwheat(</span>
-<span class="line-precise" title="No Anys on this line!">                    wilds_dataset, split, full_path</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)">                metric_results: Dict[str, float] = evaluate_replicate_for_globalwheat(</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)">                    wilds_dataset, split, full_path</span>
 <span class="line-empty" title="No Anys on this line!">                )</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x4)">                predicted_labels: torch.Tensor = get_predictions(full_path)</span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x1)">                metric_results = evaluate_replicate(</span>
+Unimported (x2)">                metric_results = evaluate_replicate(</span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x1)">                    wilds_dataset, split, predicted_labels</span>
+Unimported (x2)">                    wilds_dataset, split, predicted_labels</span>
 <span class="line-empty" title="No Anys on this line!">                )</span>
 <span class="line-precise" title="No Anys on this line!">            for metric in metrics:</span>
 <span class="line-precise" title="No Anys on this line!">                replicates_results[split][metric].append(metric_results[metric])</span>
@@ -433,7 +436,7 @@ Explicit (x4)">        json.dump(aggregated_results, f, indent=4)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x1)">def evaluate_replicate(</span>
+Unimported (x2)">def evaluate_replicate(</span>
 <span class="line-empty" title="No Anys on this line!">        dataset: GDSDataset, split: str, predicted_labels: torch.Tensor</span>
 <span class="line-empty" title="No Anys on this line!">) -&gt; Dict[str, float]:</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
@@ -449,37 +452,33 @@ Unimported (x1)">def evaluate_replicate(</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!">    # Dataset will only be downloaded if it does not exist</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">    subset: GDSSubset = dataset.get_subset(split)</span>
+Unimported (x5)">    subset: GDSSubset = dataset.get_subset(split)</span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x2)
-Unannotated (x1)">    metadata: torch.Tensor = subset.metadata_array</span>
+Unimported (x4)">    metadata: torch.Tensor = subset.metadata_array</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">    true_labels = subset.y_array</span>
+Unimported (x3)">    true_labels = subset.y_array</span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x3)
-Unannotated (x2)">    if predicted_labels.shape != true_labels.shape:</span>
+Unimported (x5)">    if predicted_labels.shape != true_labels.shape:</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x3)">        predicted_labels.unsqueeze_(-1)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x2)">    return dataset.eval(predicted_labels, true_labels, metadata)[0]</span>
+Unimported (x7)">    return dataset.eval(predicted_labels, true_labels, metadata)[0]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">def evaluate_replicate_for_globalwheat(</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)">def evaluate_replicate_for_globalwheat(</span>
 <span class="line-empty" title="No Anys on this line!">        dataset: GDSDataset, split: str, path_to_predictions: str</span>
 <span class="line-empty" title="No Anys on this line!">) -&gt; Dict[str, float]:</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x4)">    predicted_labels = torch.load(path_to_predictions)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">    subset: GDSSubset = dataset.get_subset(split)</span>
+Unimported (x5)">    subset: GDSSubset = dataset.get_subset(split)</span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x2)
-Unannotated (x1)">    metadata: torch.Tensor = subset.metadata_array</span>
+Unimported (x4)">    metadata: torch.Tensor = subset.metadata_array</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">    true_labels = [subset.dataset.y_array[idx] for idx in subset.indices]</span>
+Unimported (x9)">    true_labels = [subset.dataset.y_array[idx] for idx in subset.indices]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x2)">    return dataset.eval(predicted_labels, true_labels, metadata)[0]</span>
+Unimported (x7)">    return dataset.eval(predicted_labels, true_labels, metadata)[0]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 

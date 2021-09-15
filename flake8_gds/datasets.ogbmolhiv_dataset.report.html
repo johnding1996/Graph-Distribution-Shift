@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
    </head>
    <body>
-      <div id="masthead" class="sev-2"></div>
+      <div id="masthead" class="sev-1"></div>
       <div id="page">
          <p id="srclink">
             <a title="View full annotated source"
@@ -50,13 +50,78 @@ window.addEventListener('DOMContentLoaded', function () {
          <ul id="index">
          
          <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  2
+               </span>
+               <strong>F401:</strong> 'collections.namedtuple' imported but unused
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>'collections.namedtuple' imported but unused:</p>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l9">
+                  <tt><i>9</i> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'tqdm' imported but unused:</p>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l10">
+                  <tt><i>10</i> <span class="kn">import</span> <span class="nn">tqdm</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F811">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F811:</strong> redefinition of unused 'namedtuple' from line 2
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l9">
+                  <tt><i>9</i> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F841">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F841:</strong> local variable 'graphs_ptg' is assigned to but never used
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l113">
+                  <tt><i>113</i>             <span class="n">graphs_ptg</span> <span class="o">=</span> <span class="n">gsn</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  16
+                  17
                </span>
                <strong>E501:</strong> line too long (102 > 79 characters)
                
-                  (and 13 similar)
+                  (and 14 similar)
                
             </a>
             <ul class="details">
@@ -64,113 +129,203 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (102 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l16">
-                  <tt><i>16</i> <span class="sd">    This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l17">
+                  <tt><i>17</i> <span class="sd">    This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (93 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l29">
-                  <tt><i>29</i> <span class="sd">            Each molecule is annotated with the scaffold ID that the molecule is assigned to.</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l30">
+                  <tt><i>30</i> <span class="sd">            Each molecule is annotated with the scaffold ID that the molecule is assigned to.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (82 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l36">
-                  <tt><i>36</i> <span class="sd">            title={Open Graph Benchmark: Datasets for Machine Learning on Graphs},</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l37">
+                  <tt><i>37</i> <span class="sd">            title={Open Graph Benchmark: Datasets for Machine Learning on Graphs},</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (112 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l37">
-                  <tt><i>37</i> <span class="sd">            author={W. {Hu}, M. {Fey}, M. {Zitnik}, Y. {Dong}, H. {Ren}, B. {Liu}, M. {Catasta}, J. {Leskovec}},</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l38">
+                  <tt><i>38</i> <span class="sd">            author={W. {Hu}, M. {Fey}, M. {Zitnik}, Y. {Dong}, H. {Ren}, B. {Liu}, M. {Catasta}, J. {Leskovec}},</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (129 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l44">
-                  <tt><i>44</i> <span class="sd">            author={Z. {Wu}, B. {Ramsundar}, E. V {Feinberg}, J. {Gomes}, C. {Geniesse}, A. S {Pappu}, K. {Leswing}, V. {Pande}},</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l45">
+                  <tt><i>45</i> <span class="sd">            author={Z. {Wu}, B. {Ramsundar}, E. V {Feinberg}, J. {Gomes}, C. {Geniesse}, A. S {Pappu}, K. {Leswing}, V. {Pande}},</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (95 > 79 characters):</p>
+               <p>Line too long (134 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l64">
-                  <tt><i>64</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root_dir</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">split_scheme</span><span class="o">=</span><span class="s1">&#39;official&#39;</span><span class="p">):</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l65">
+                  <tt><i>65</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root_dir</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">split_scheme</span><span class="o">=</span><span class="s1">&#39;official&#39;</span><span class="p">,</span> <span class="n">gsn</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="s1">&#39;cycle_graph&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (118 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l67">
-                  <tt><i>67</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.&#39;</span><span class="p">)</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l68">
+                  <tt><i>68</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (85 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l69">
-                  <tt><i>69</i>         <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span> <span class="o">=</span> <span class="n">PygGraphPropPredDataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ogbg-molhiv&#39;</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root_dir</span><span class="p">)</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l70">
+                  <tt><i>70</i>         <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span> <span class="o">=</span> <span class="n">PygGraphPropPredDataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ogbg-molhiv&#39;</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root_dir</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (138 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l76">
-                  <tt><i>76</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_y_type</span> <span class="o">=</span> <span class="s1">&#39;float&#39;</span>  <span class="c1"># although the task is binary classification, the prediction target contains nan value, thus we need float</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l77">
+                  <tt><i>77</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_y_type</span> <span class="o">=</span> <span class="s1">&#39;float&#39;</span>  <span class="c1"># although the task is binary classification, the prediction target contains nan value, thus we need float</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (93 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l90">
-                  <tt><i>90</i>         <span class="n">metadata_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">,</span> <span class="s1">&#39;scaffold_group.npy&#39;</span><span class="p">)</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l91">
+                  <tt><i>91</i>         <span class="n">metadata_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">,</span> <span class="s1">&#39;scaffold_group.npy&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (93 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l92">
-                  <tt><i>92</i>             <span class="n">download_url</span><span class="p">(</span><span class="s1">&#39;https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1&#39;</span><span class="p">,</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l93">
+                  <tt><i>93</i>             <span class="n">download_url</span><span class="p">(</span><span class="s1">&#39;https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1&#39;</span><span class="p">,</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (103 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l94">
-                  <tt><i>94</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array_wo_y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">metadata_file_path</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l95">
+                  <tt><i>95</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array_wo_y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">metadata_file_path</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (97 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l95">
-                  <tt><i>95</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array_wo_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l96">
+                  <tt><i>96</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array_wo_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (116 > 79 characters):</p>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l112">
+                  <tt><i>112</i>             <span class="n">gsn</span> <span class="o">=</span> <span class="n">GSN</span><span class="p">(</span><span class="n">dataset_name</span><span class="o">=</span><span class="s1">&#39;ogbg-molhiv&#39;</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;ogb&#39;</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id_type</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (91 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l116">
-                  <tt><i>116</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l131">
+                  <tt><i>131</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (106 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l117">
-                  <tt><i>117</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l132">
+                  <tt><i>132</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (120 > 79 characters):</p>
                
-               <a href="datasets.ogbmolhiv_dataset.source.html#l122">
-                  <tt><i>122</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+               <a href="datasets.ogbmolhiv_dataset.source.html#l137">
+                  <tt><i>137</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l106">
+                  <tt><i>106</i>         <span class="c1"># GSN</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (4):</p>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l119">
+                  <tt><i>119</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">download</span><span class="p">,</span> <span class="n">split_scheme</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E231:</strong> missing whitespace after ';'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l114">
+                  <tt><i>114</i>             <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E702">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E702:</strong> multiple statements on one line (semicolon)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l114">
+                  <tt><i>114</i>             <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.ogbmolhiv_dataset.source.html#l116">
+                  <tt><i>116</i>         </tt>
                </a>
             </li>
             </ul>

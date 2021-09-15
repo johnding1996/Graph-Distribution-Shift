@@ -294,6 +294,14 @@
 <span id="L284" class="lineno"><a class="lineno" href="#L284">284</a></span>
 <span id="L285" class="lineno"><a class="lineno" href="#L285">285</a></span>
 <span id="L286" class="lineno"><a class="lineno" href="#L286">286</a></span>
+<span id="L287" class="lineno"><a class="lineno" href="#L287">287</a></span>
+<span id="L288" class="lineno"><a class="lineno" href="#L288">288</a></span>
+<span id="L289" class="lineno"><a class="lineno" href="#L289">289</a></span>
+<span id="L290" class="lineno"><a class="lineno" href="#L290">290</a></span>
+<span id="L291" class="lineno"><a class="lineno" href="#L291">291</a></span>
+<span id="L292" class="lineno"><a class="lineno" href="#L292">292</a></span>
+<span id="L293" class="lineno"><a class="lineno" href="#L293">293</a></span>
+<span id="L294" class="lineno"><a class="lineno" href="#L294">294</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -313,7 +321,7 @@
 <span class="line-any" title="No Anys on this line!">from algorithms.initializer import initialize_algorithm</span>
 <span class="line-any" title="No Anys on this line!">from configs.utils import populate_defaults</span>
 <span class="line-any" title="No Anys on this line!">from train import train, evaluate</span>
-<span class="line-any" title="No Anys on this line!">from utils import set_seed, Logger, BatchLogger, log_config, initialize_wandb, close_wandb, ParseKwargs, load, \</span>
+<span class="line-precise" title="No Anys on this line!">from utils import set_seed, Logger, BatchLogger, log_config, initialize_wandb, close_wandb, ParseKwargs, load, \</span>
 <span class="line-empty" title="No Anys on this line!">    log_group_data, parse_bool, get_model_prefix</span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.data_loaders import get_train_loader, get_eval_loader</span>
 <span class="line-precise" title="No Anys on this line!">from gds.common.grouper import CombinatorialGrouper</span>
@@ -488,6 +496,15 @@ Unimported (x1)">    parser.add_argument('--progress_bar', type=parse_bool, cons
 Unannotated (x3)
 Unimported (x1)">    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # GSN</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">    parser.add_argument('--gsn', type=parse_bool, default=False)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--id_type', type=str, default='cycle_graph')</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--k', type=int, default=6)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    config = parser.parse_args()</span>
 <span class="line-any" title="Any Types on this line: 
@@ -559,6 +576,12 @@ Unannotated (x2)">        root_dir=config.root_dir,</span>
 Unannotated (x2)">        download=config.download,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        split_scheme=config.split_scheme,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        gsn=config.gsn,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        id_type=config.id_type,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        k=config.k,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        **config.dataset_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>

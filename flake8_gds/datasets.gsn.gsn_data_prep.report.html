@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: datasets/gsn/gsn_data_prep.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="datasets.gsn.gsn_data_prep.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               datasets/gsn/gsn_data_prep.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  7
+               </span>
+               <strong>F401:</strong> 'argparse' imported but unused
+               
+                  (and 6 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>'argparse' imported but unused:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l1">
+                  <tt><i>1</i> <span class="kn">import</span> <span class="nn">argparse</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'copy' imported but unused:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l6">
+                  <tt><i>6</i> <span class="kn">import</span> <span class="nn">copy</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'json' imported but unused:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l7">
+                  <tt><i>7</i> <span class="kn">import</span> <span class="nn">json</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'torch_geometric.data.DataLoader' imported but unused:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l12">
+                  <tt><i>12</i> <span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">DataLoader</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'torch_geometric.data.Data' imported but unused:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l13">
+                  <tt><i>13</i> <span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">Data</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'.utils_data_prep.separate_data' imported but unused:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l16">
+                  <tt><i>16</i> <span class="kn">from</span> <span class="nn">.utils_data_prep</span> <span class="kn">import</span> <span class="n">separate_data</span><span class="p">,</span> <span class="n">separate_data_given_split</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'.utils_data_prep.separate_data_given_split' imported but unused:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l16">
+                  <tt><i>16</i> <span class="kn">from</span> <span class="nn">.utils_data_prep</span> <span class="kn">import</span> <span class="n">separate_data</span><span class="p">,</span> <span class="n">separate_data_given_split</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F841">
+               <span class="count sev-1">
+                  2
+               </span>
+               <strong>F841:</strong> local variable 'evaluator' is assigned to but never used
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Local variable 'evaluator' is assigned to but never used:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l279">
+                  <tt><i>279</i>         <span class="n">evaluator</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">)</span>        </tt>
+               </a>
+            </li><li>
+               
+               <p>Local variable 'device' is assigned to but never used:</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l293">
+                  <tt><i>293</i>         <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_idx</span><span class="p">)</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  62
+               </span>
+               <strong>E501:</strong> line too long (185 > 79 characters)
+               
+                  (and 33 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (185 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l19">
+                  <tt><i>19</i> <span class="kn">from</span> <span class="nn">.utils_graph_processing</span> <span class="kn">import</span> <span class="n">subgraph_isomorphism_edge_counts</span><span class="p">,</span> <span class="n">subgraph_isomorphism_vertex_counts</span><span class="p">,</span> <span class="n">induced_edge_automorphism_orbits</span><span class="p">,</span> <span class="n">edge_automorphism_orbits</span><span class="p">,</span> <span class="n">automorphism_orbits</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l34">
+                  <tt><i>34</i>         <span class="c1"># set multiprocessing to true in order to do the precomputation in parallel</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l64">
+                  <tt><i>64</i>         <span class="c1"># parser.add_argument(&#39;--input_vn_encoder&#39;, type=str, default=&#39;one_hot_encoder&#39;)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (147 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l71">
+                  <tt><i>71</i>         <span class="c1"># - edge_automorphism: induced edge automorphism or line graph edge automorphism (slightly larger group than the induced edge automorphism)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l89">
+                  <tt><i>89</i>         <span class="c1"># binning and minmax encoding parameters. NB: not used in our experimental evaluation</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l90">
+                  <tt><i>90</i>         <span class="c1"># parser.add_argument(&#39;--id_bins&#39;, type=parse.str2list2int, default=None)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l91">
+                  <tt><i>91</i>         <span class="c1"># parser.add_argument(&#39;--degree_bins&#39;, type=parse.str2list2int, default=None)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l94">
+                  <tt><i>94</i>         <span class="c1"># parser.add_argument(&#39;--id_range&#39;, type=parse.str2list2int, default=None)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (86 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l95">
+                  <tt><i>95</i>         <span class="c1"># parser.add_argument(&#39;--degree_range&#39;, type=parse.str2list2int, default=None)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l98">
+                  <tt><i>98</i>         <span class="c1"># parser.add_argument(&#39;--id_embedding&#39;, type=str, default=&#39;one_hot_encoder&#39;)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l100">
+                  <tt><i>100</i>         <span class="c1"># parser.add_argument(&#39;--degree_embedding&#39;, type=str, default=&#39;one_hot_encoder&#39;)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l101">
+                  <tt><i>101</i>         <span class="c1"># parser.add_argument(&#39;--d_out_degree_embedding&#39;, type=int, default=None)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (107 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l116">
+                  <tt><i>116</i>         <span class="c1"># - jk_mlp: set it to True to use an MLP after each jk layer, otherwise a linear layer will be used</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l119">
+                  <tt><i>119</i>         <span class="c1"># parser.add_argument(&#39;--random_features&#39;,  type=parse.str2bool, default=False)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l132">
+                  <tt><i>132</i>         <span class="c1"># parser.add_argument(&#39;--train_eps&#39;, type=parse.str2bool, default=False)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l136">
+                  <tt><i>136</i>         <span class="c1"># parser.add_argument(&#39;--final_projection&#39;, type=parse.str2list2bool, default=[True])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l145">
+                  <tt><i>145</i>         <span class="c1">#             general (general formulation with MLPs - eq 3,4 of the main paper)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l146">
+                  <tt><i>146</i>         <span class="c1">#             ogb (extends the architecture used in ogb with structural identifiers)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l147">
+                  <tt><i>147</i>         <span class="c1"># - inject*: passes the relevant variable to deeper layers akin to skip connections.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l148">
+                  <tt><i>148</i>         <span class="c1">#            If set to False, then the variable is used only as input to the first layer</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l159">
+                  <tt><i>159</i>         <span class="c1"># args, extract_ids_fn, count_fn, automorphism_fn = process_arguments(args)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l163">
+                  <tt><i>163</i>         <span class="c1">###### choose the function that computes the automorphism group and the orbits #######</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (121 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l165">
+                  <tt><i>165</i>             <span class="bp">self</span><span class="o">.</span><span class="n">automorphism_fn</span> <span class="o">=</span> <span class="n">induced_edge_automorphism_orbits</span> <span class="k">if</span>  <span class="bp">self</span><span class="o">.</span><span class="n">id_scope</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span> <span class="k">else</span> <span class="n">automorphism_orbits</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (113 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l167">
+                  <tt><i>167</i>             <span class="bp">self</span><span class="o">.</span><span class="n">automorphism_fn</span> <span class="o">=</span> <span class="n">edge_automorphism_orbits</span> <span class="k">if</span>  <span class="bp">self</span><span class="o">.</span><span class="n">id_scope</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span> <span class="k">else</span> <span class="n">automorphism_orbits</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l171">
+                  <tt><i>171</i>         <span class="c1">###### choose the function that computes the subgraph isomorphisms #######</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (123 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l172">
+                  <tt><i>172</i>         <span class="bp">self</span><span class="o">.</span><span class="n">count_fn</span> <span class="o">=</span> <span class="n">subgraph_isomorphism_edge_counts</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_scope</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="k">else</span> <span class="n">subgraph_isomorphism_vertex_counts</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l176">
+                  <tt><i>176</i>         <span class="c1">###### except for &#39;all_simple_graphs&#39; where they need to be precomputed,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l187">
+                  <tt><i>187</i>             <span class="bp">self</span><span class="o">.</span><span class="n">custom_edge_list</span> <span class="o">=</span> <span class="n">get_custom_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k_min</span><span class="p">,</span> <span class="n">k_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)),</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_type</span><span class="p">)</span>      </tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l196">
+                  <tt><i>196</i>         <span class="c1">#     self.custom_edge_list = get_custom_edge_list(self.k, self.id_type.replace(&#39;_chosen_k&#39;,&#39;&#39;))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (111 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l203">
+                  <tt><i>203</i>         <span class="c1">#     args[&#39;custom_edge_list&#39;] = get_custom_edge_list(list(range(k_min, k_max + 1)), filename=filename)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l207">
+                  <tt><i>207</i>         <span class="c1">#     args[&#39;custom_edge_list&#39;] = get_custom_edge_list(args[&#39;k&#39;], filename=filename)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l215">
+                  <tt><i>215</i>         <span class="c1">#     assert args[&#39;custom_edge_list&#39;] is not None, &quot;Custom edge list must be provided.&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (110 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l218">
+                  <tt><i>218</i>         <span class="c1">#     raise NotImplementedError(&quot;Identifiers {} are not currently supported.&quot;.format(args[&#39;id_type&#39;]))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (111 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l222">
+                  <tt><i>222</i>         <span class="c1"># define if degree is going to be used as a feature and when (for each layer or only at initialization)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l224">
+                  <tt><i>224</i>             <span class="bp">self</span><span class="o">.</span><span class="n">degree_as_tag</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">degree_as_tag</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span><span class="p">)]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (97 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l226">
+                  <tt><i>226</i>             <span class="bp">self</span><span class="o">.</span><span class="n">degree_as_tag</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">degree_as_tag</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="kc">False</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (99 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l228">
+                  <tt><i>228</i>         <span class="c1"># define if existing features are going to be retained when the degree is used as a feature</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l229">
+                  <tt><i>229</i>         <span class="bp">self</span><span class="o">.</span><span class="n">retain_features</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">retain_features</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="kc">True</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (117 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l232">
+                  <tt><i>232</i>         <span class="c1"># replicate d_out dimensions if the rest are not defined (msg function, mlp hidden dimension, encoders, etc.)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l237">
+                  <tt><i>237</i>         <span class="c1">#     args[&#39;d_msg&#39;] = [args[&#39;d_out&#39;] for _ in range(args[&#39;num_layers&#39;])]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l239">
+                  <tt><i>239</i>         <span class="c1">#     args[&#39;d_msg&#39;] = [args[&#39;d_msg&#39;] for _ in range(args[&#39;num_layers&#39;])]    </span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (111 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l242">
+                  <tt><i>242</i>         <span class="c1">#     args[&#39;d_h&#39;] = [[args[&#39;d_out&#39;]] * (args[&#39;num_mlp_layers&#39;] - 1) for _ in range(args[&#39;num_layers&#39;])]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l244">
+                  <tt><i>244</i>         <span class="c1">#     args[&#39;d_h&#39;] = [[args[&#39;d_h&#39;]] * (args[&#39;num_mlp_layers&#39;] - 1) for _ in range(args[&#39;num_layers&#39;])]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l247">
+                  <tt><i>247</i>         <span class="c1">#     args[&#39;d_out_edge_encoder&#39;] = [args[&#39;d_out&#39;] for _ in range(args[&#39;num_layers&#39;])]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (106 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l249">
+                  <tt><i>249</i>         <span class="c1">#     args[&#39;d_out_edge_encoder&#39;] = [args[&#39;d_out_edge_encoder&#39;] for _ in range(args[&#39;num_layers&#39;])]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l270">
+                  <tt><i>270</i>         <span class="c1"># args[&#39;train_eps&#39;] = [args[&#39;train_eps&#39;] for _ in range(args[&#39;num_layers&#39;])]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (114 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l273">
+                  <tt><i>273</i>         <span class="c1">#     args[&#39;final_projection&#39;] = [args[&#39;final_projection&#39;][0] for _ in range(args[&#39;num_layers&#39;])] + [True]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (127 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l276">
+                  <tt><i>276</i>         <span class="c1"># args[&#39;dropout_features&#39;] = [args[&#39;dropout_features&#39;] for _ in range(args[&#39;num_layers&#39;])] + [args[&#39;dropout_features&#39;]]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (99 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l293">
+                  <tt><i>293</i>         <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_idx</span><span class="p">)</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (111 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l296">
+                  <tt><i>296</i>         <span class="c1">## ----------------------------------- datasets: prepare and preprocess (count or load subgraph counts)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l299">
+                  <tt><i>299</i>         <span class="n">ogb_dataset</span> <span class="o">=</span> <span class="n">PygGraphPropPredDataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s1">&#39;./data&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l306">
+                  <tt><i>306</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l307">
+                  <tt><i>307</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (86 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l308">
+                  <tt><i>308</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">id_scope</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l309">
+                  <tt><i>309</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">id_type</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l311">
+                  <tt><i>311</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">extract_id_fn</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (86 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l312">
+                  <tt><i>312</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">count_fn</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l313">
+                  <tt><i>313</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">automorphism_fn</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l314">
+                  <tt><i>314</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">multiprocessing</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l315">
+                  <tt><i>315</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">num_processes</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l316">
+                  <tt><i>316</i>                                                                         <span class="o">**</span><span class="n">subgraph_params</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l331">
+                  <tt><i>331</i>     <span class="n">GSN</span><span class="p">(</span><span class="n">dataset_name</span><span class="o">=</span><span class="s1">&#39;ogbg-molhiv&#39;</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;ogb&#39;</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="s1">&#39;cycle_graph&#39;</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  44
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l41">
+                  <tt><i>41</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l42">
+                  <tt><i>42</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l49">
+                  <tt><i>49</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l50">
+                  <tt><i>50</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l60">
+                  <tt><i>60</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l61">
+                  <tt><i>61</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l67">
+                  <tt><i>67</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l83">
+                  <tt><i>83</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l87">
+                  <tt><i>87</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l88">
+                  <tt><i>88</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l96">
+                  <tt><i>96</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l97">
+                  <tt><i>97</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l107">
+                  <tt><i>107</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l108">
+                  <tt><i>108</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l117">
+                  <tt><i>117</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l124">
+                  <tt><i>124</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l135">
+                  <tt><i>135</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l139">
+                  <tt><i>139</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l141">
+                  <tt><i>141</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l154">
+                  <tt><i>154</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l156">
+                  <tt><i>156</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l157">
+                  <tt><i>157</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l188">
+                  <tt><i>188</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l197">
+                  <tt><i>197</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l204">
+                  <tt><i>204</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l208">
+                  <tt><i>208</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l227">
+                  <tt><i>227</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l240">
+                  <tt><i>240</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l245">
+                  <tt><i>245</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l250">
+                  <tt><i>250</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l255">
+                  <tt><i>255</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l260">
+                  <tt><i>260</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l265">
+                  <tt><i>265</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l269">
+                  <tt><i>269</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l271">
+                  <tt><i>271</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l274">
+                  <tt><i>274</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l277">
+                  <tt><i>277</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l291">
+                  <tt><i>291</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l295">
+                  <tt><i>295</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l297">
+                  <tt><i>297</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l319">
+                  <tt><i>319</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l320">
+                  <tt><i>320</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l321">
+                  <tt><i>321</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l328">
+                  <tt><i>328</i>         </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  17
+               </span>
+               <strong>E303:</strong> too many blank lines (3)
+               
+                  (and 2 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l23">
+                  <tt><i>23</i> <span class="k">class</span> <span class="nc">GSN</span><span class="p">():</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l43">
+                  <tt><i>43</i>         <span class="c1">###### these are to select the dataset:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l51">
+                  <tt><i>51</i>         <span class="c1">######  set degree_as_tag to True to use the degree as node features;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l57">
+                  <tt><i>57</i>         <span class="c1">###### used only for ogb to reproduce the different configurations, </span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l62">
+                  <tt><i>62</i>         <span class="c1"># denotes the aggregation used by the virtual node</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l89">
+                  <tt><i>89</i>         <span class="c1"># binning and minmax encoding parameters. NB: not used in our experimental evaluation</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l98">
+                  <tt><i>98</i>         <span class="c1"># parser.add_argument(&#39;--id_embedding&#39;, type=str, default=&#39;one_hot_encoder&#39;)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l109">
+                  <tt><i>109</i>         <span class="c1">###### model to be used and architecture parameters, in particular</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l143">
+                  <tt><i>143</i>         <span class="c1">###### architecture variations:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l158">
+                  <tt><i>158</i>         <span class="c1">## ----------------------------------- argument processing</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l175">
+                  <tt><i>175</i>         <span class="c1">###### choose the substructures: usually loaded from networkx,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l190">
+                  <tt><i>190</i>         <span class="c1"># elif self.id_type in [&#39;cycle_graph_chosen_k&#39;,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l222">
+                  <tt><i>222</i>         <span class="c1"># define if degree is going to be used as a feature and when (for each layer or only at initialization)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l232">
+                  <tt><i>232</i>         <span class="c1"># replicate d_out dimensions if the rest are not defined (msg function, mlp hidden dimension, encoders, etc.)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l267">
+                  <tt><i>267</i>         <span class="c1"># # repeat hyperparams for every layer</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l296">
+                  <tt><i>296</i>         <span class="c1">## ----------------------------------- datasets: prepare and preprocess (count or load subgraph counts)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (11):</p>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l330">
+                  <tt><i>330</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E266">
+               <span class="count sev-2">
+                  16
+               </span>
+               <strong>E266:</strong> too many leading '#' for block comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l38">
+                  <tt><i>38</i>         <span class="c1">###### data loader parameters</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l43">
+                  <tt><i>43</i>         <span class="c1">###### these are to select the dataset:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l51">
+                  <tt><i>51</i>         <span class="c1">######  set degree_as_tag to True to use the degree as node features;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l57">
+                  <tt><i>57</i>         <span class="c1">###### used only for ogb to reproduce the different configurations, </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l68">
+                  <tt><i>68</i>         <span class="c1">###### substructure-related parameters:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l84">
+                  <tt><i>84</i>         <span class="c1">###### encoding args: different ways to encode discrete data</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l109">
+                  <tt><i>109</i>         <span class="c1">###### model to be used and architecture parameters, in particular</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l143">
+                  <tt><i>143</i>         <span class="c1">###### architecture variations:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l158">
+                  <tt><i>158</i>         <span class="c1">## ----------------------------------- argument processing</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l163">
+                  <tt><i>163</i>         <span class="c1">###### choose the function that computes the automorphism group and the orbits #######</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l171">
+                  <tt><i>171</i>         <span class="c1">###### choose the function that computes the subgraph isomorphisms #######</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l175">
+                  <tt><i>175</i>         <span class="c1">###### choose the substructures: usually loaded from networkx,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l176">
+                  <tt><i>176</i>         <span class="c1">###### except for &#39;all_simple_graphs&#39; where they need to be precomputed,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l177">
+                  <tt><i>177</i>         <span class="c1">###### or when a custom edge list is provided in the input by the user</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l280">
+                  <tt><i>280</i>         <span class="c1">## ----------------------------------- infrastructure</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l296">
+                  <tt><i>296</i>         <span class="c1">## ----------------------------------- datasets: prepare and preprocess (count or load subgraph counts)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  16
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l30">
+                  <tt><i>30</i>         <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span>    </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l57">
+                  <tt><i>57</i>         <span class="c1">###### used only for ogb to reproduce the different configurations, </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l144">
+                  <tt><i>144</i>         <span class="c1"># - msg_kind: gin (extends gin with structural identifiers), </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l187">
+                  <tt><i>187</i>             <span class="bp">self</span><span class="o">.</span><span class="n">custom_edge_list</span> <span class="o">=</span> <span class="n">get_custom_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k_min</span><span class="p">,</span> <span class="n">k_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)),</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_type</span><span class="p">)</span>      </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l191">
+                  <tt><i>191</i>         <span class="c1">#                          &#39;path_graph_chosen_k&#39;, </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l239">
+                  <tt><i>239</i>         <span class="c1">#     args[&#39;d_msg&#39;] = [args[&#39;d_msg&#39;] for _ in range(args[&#39;num_layers&#39;])]    </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l278">
+                  <tt><i>278</i>         <span class="c1"># begin here </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l279">
+                  <tt><i>279</i>         <span class="n">evaluator</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">)</span>        </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l301">
+                  <tt><i>301</i>         <span class="n">subgraph_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;induced&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">induced</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l305">
+                  <tt><i>305</i>         <span class="n">graphs_ptg</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">orbit_partition_sizes</span> <span class="o">=</span> <span class="n">prepare_dataset</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l307">
+                  <tt><i>307</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l308">
+                  <tt><i>308</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">id_scope</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l309">
+                  <tt><i>309</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">id_type</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l310">
+                  <tt><i>310</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l317">
+                  <tt><i>317</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>                                                            </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l318">
+                  <tt><i>318</i>         <span class="k">return</span> <span class="n">graphs_ptg</span>                                                          </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E128">
+               <span class="count sev-2">
+                  14
+               </span>
+               <strong>E128:</strong> continuation line under-indented for visual indent
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l302">
+                  <tt><i>302</i>                         <span class="s1">&#39;edge_list&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">custom_edge_list</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l303">
+                  <tt><i>303</i>                         <span class="s1">&#39;directed&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">directed</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l304">
+                  <tt><i>304</i>                         <span class="s1">&#39;directed_orbits&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">directed_orbits</span><span class="p">}</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l306">
+                  <tt><i>306</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l307">
+                  <tt><i>307</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l308">
+                  <tt><i>308</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">id_scope</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l309">
+                  <tt><i>309</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">id_type</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l310">
+                  <tt><i>310</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l311">
+                  <tt><i>311</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">extract_id_fn</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l312">
+                  <tt><i>312</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">count_fn</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l313">
+                  <tt><i>313</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">automorphism_fn</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l314">
+                  <tt><i>314</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">multiprocessing</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l315">
+                  <tt><i>315</i>                                                                         <span class="bp">self</span><span class="o">.</span><span class="n">num_processes</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l316">
+                  <tt><i>316</i>                                                                         <span class="o">**</span><span class="n">subgraph_params</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E271">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E271:</strong> multiple spaces after keyword
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l165">
+                  <tt><i>165</i>             <span class="bp">self</span><span class="o">.</span><span class="n">automorphism_fn</span> <span class="o">=</span> <span class="n">induced_edge_automorphism_orbits</span> <span class="k">if</span>  <span class="bp">self</span><span class="o">.</span><span class="n">id_scope</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span> <span class="k">else</span> <span class="n">automorphism_orbits</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l167">
+                  <tt><i>167</i>             <span class="bp">self</span><span class="o">.</span><span class="n">automorphism_fn</span> <span class="o">=</span> <span class="n">edge_automorphism_orbits</span> <span class="k">if</span>  <span class="bp">self</span><span class="o">.</span><span class="n">id_scope</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span> <span class="k">else</span> <span class="n">automorphism_orbits</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E231:</strong> missing whitespace after ';'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l317">
+                  <tt><i>317</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>                                                            </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E301">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E301:</strong> expected 1 blank line, found 0
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l298">
+                  <tt><i>298</i>     <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E702">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E702:</strong> multiple statements on one line (semicolon)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l317">
+                  <tt><i>317</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>                                                            </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W391">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W391:</strong> blank line at end of file
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.gsn_data_prep.source.html#l340">
+                  <tt><i>340</i> &nbsp;</tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

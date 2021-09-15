@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: datasets/gsn/utils_graph_processing.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="datasets.gsn.utils_graph_processing.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               datasets/gsn/utils_graph_processing.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'torch_geometric.utils.remove_self_loops' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">remove_self_loops</span><span class="p">,</span> <span class="n">to_undirected</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  42
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l11">
+                  <tt><i>11</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l15">
+                  <tt><i>15</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l27">
+                  <tt><i>27</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l33">
+                  <tt><i>33</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l48">
+                  <tt><i>48</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l50">
+                  <tt><i>50</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l60">
+                  <tt><i>60</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l62">
+                  <tt><i>62</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l74">
+                  <tt><i>74</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l101">
+                  <tt><i>101</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l106">
+                  <tt><i>106</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l108">
+                  <tt><i>108</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l111">
+                  <tt><i>111</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l116">
+                  <tt><i>116</i>        </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l119">
+                  <tt><i>119</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l123">
+                  <tt><i>123</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l130">
+                  <tt><i>130</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l132">
+                  <tt><i>132</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l137">
+                  <tt><i>137</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l139">
+                  <tt><i>139</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l142">
+                  <tt><i>142</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l147">
+                  <tt><i>147</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l151">
+                  <tt><i>151</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l156">
+                  <tt><i>156</i>        </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l159">
+                  <tt><i>159</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l160">
+                  <tt><i>160</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l162">
+                  <tt><i>162</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l167">
+                  <tt><i>167</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l172">
+                  <tt><i>172</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l176">
+                  <tt><i>176</i>          </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l177">
+                  <tt><i>177</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l179">
+                  <tt><i>179</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l181">
+                  <tt><i>181</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l184">
+                  <tt><i>184</i>  </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l185">
+                  <tt><i>185</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l186">
+                  <tt><i>186</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l187">
+                  <tt><i>187</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l189">
+                  <tt><i>189</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l193">
+                  <tt><i>193</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l195">
+                  <tt><i>195</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l205">
+                  <tt><i>205</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l253">
+                  <tt><i>253</i>     </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  29
+               </span>
+               <strong>E501:</strong> line too long (109 > 79 characters)
+               
+                  (and 22 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l22">
+                  <tt><i>22</i>     <span class="n">aut_group</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l28">
+                  <tt><i>28</i>     <span class="c1"># whenever two nodes can be mapped via some automorphism, they are assigned the same orbit</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l40">
+                  <tt><i>40</i>     <span class="n">_</span><span class="p">,</span> <span class="n">contiguous_orbit_membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">return_inverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (115 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l42">
+                  <tt><i>42</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{</span><span class="n">vertex</span><span class="p">:</span> <span class="n">contiguous_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (110 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l47">
+                  <tt><i>47</i>         <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="k">if</span> <span class="n">orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orbit_partition</span> <span class="k">else</span> <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l52">
+                  <tt><i>52</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l61">
+                  <tt><i>61</i>     <span class="c1">##### induced edge automorphism orbits (according to the vertex automorphism group) #####</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l64">
+                  <tt><i>64</i>     <span class="n">directed_orbits</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed_orbits&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed_orbits&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l66">
+                  <tt><i>66</i>     <span class="n">graph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span> <span class="o">=</span> <span class="n">automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="o">=</span><span class="n">edge_list</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l67">
+                  <tt><i>67</i>                                                                               <span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l68">
+                  <tt><i>68</i>                                                                               <span class="n">print_msgs</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (105 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l76">
+                  <tt><i>76</i>         <span class="n">edge_list</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l83">
+                  <tt><i>83</i>             <span class="n">edge_orbit</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">([</span><span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l98">
+                  <tt><i>98</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Edge orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">edge_orbit_partition</span><span class="p">))</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (103 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l109">
+                  <tt><i>109</i>     <span class="n">subgraph_dict</span><span class="p">,</span> <span class="n">induced</span><span class="p">,</span> <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;subgraph_dict&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;induced&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;num_nodes&#39;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (127 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l118">
+                  <tt><i>118</i>     <span class="n">sub_iso</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">],</span> <span class="n">G_gt</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="n">induced</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (139 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l149">
+                  <tt><i>149</i>         <span class="n">subgraph_edges</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (127 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l158">
+                  <tt><i>158</i>     <span class="n">sub_iso</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">],</span> <span class="n">G_gt</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="n">induced</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l161">
+                  <tt><i>161</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_partition&#39;</span><span class="p">])))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l168">
+                  <tt><i>168</i>             <span class="c1"># for every edge in the graph H, find the edge in the subgraph G_S to which it is mapped</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l170">
+                  <tt><i>170</i>             <span class="c1"># Then, increase the count of the matched edge w.r.t. the corresponding orbit</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l203">
+                  <tt><i>203</i>     <span class="n">aut_group</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (125 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l219">
+                  <tt><i>219</i>     <span class="n">aut_group_edges</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">line_graph</span><span class="p">,</span> <span class="n">line_graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l235">
+                  <tt><i>235</i>     <span class="n">_</span><span class="p">,</span> <span class="n">contiguous_orbit_membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">return_inverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (115 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l237">
+                  <tt><i>237</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{</span><span class="n">vertex</span><span class="p">:</span> <span class="n">contiguous_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (144 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l241">
+                  <tt><i>241</i>         <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">inverse_mapping</span><span class="p">[</span><span class="n">vertex</span><span class="p">]]</span> <span class="k">if</span> <span class="n">orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orbit_partition</span> <span class="k">else</span> <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">inverse_mapping</span><span class="p">[</span><span class="n">vertex</span><span class="p">]]</span>    </tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l243">
+                  <tt><i>243</i>     <span class="c1">##### transfer line graph vertex automorphism orbits to original edges #####</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (107 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l247">
+                  <tt><i>247</i>         <span class="n">mapped_edge</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> <span class="k">if</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span> <span class="ow">in</span> <span class="n">mapping</span> <span class="k">else</span> <span class="n">mapping</span><span class="p">[</span><span class="nb">tuple</span><span class="p">([</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]])]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l250">
+                  <tt><i>250</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Edge orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span> </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  18
+               </span>
+               <strong>E231:</strong> missing whitespace after ','
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l34">
+                  <tt><i>34</i>     <span class="n">orbit_membership_list</span> <span class="o">=</span> <span class="p">[[],[]]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l42">
+                  <tt><i>42</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{</span><span class="n">vertex</span><span class="p">:</span> <span class="n">contiguous_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ';':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l53">
+                  <tt><i>53</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',' (in 2 places):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l76">
+                  <tt><i>76</i>         <span class="n">edge_list</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l79">
+                  <tt><i>79</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edge_list</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l113">
+                  <tt><i>113</i>     <span class="n">G_gt</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l126">
+                  <tt><i>126</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sub_iso_curr</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l143">
+                  <tt><i>143</i>     <span class="n">edge_index</span> <span class="o">=</span> <span class="n">edge_index</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',' (in 2 places):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l149">
+                  <tt><i>149</i>         <span class="n">subgraph_edges</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l166">
+                  <tt><i>166</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subgraph_edges</span><span class="p">):</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l209">
+                  <tt><i>209</i>     <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="o">.</span><span class="n">nodes</span><span class="p">)}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l210">
+                  <tt><i>210</i>     <span class="n">inverse_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">node</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="o">.</span><span class="n">nodes</span><span class="p">)}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l230">
+                  <tt><i>230</i>     <span class="n">orbit_membership_list</span> <span class="o">=</span> <span class="p">[[],[]]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l237">
+                  <tt><i>237</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{</span><span class="n">vertex</span><span class="p">:</span> <span class="n">contiguous_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l246">
+                  <tt><i>246</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()):</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l247">
+                  <tt><i>247</i>         <span class="n">mapped_edge</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> <span class="k">if</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span> <span class="ow">in</span> <span class="n">mapping</span> <span class="k">else</span> <span class="n">mapping</span><span class="p">[</span><span class="nb">tuple</span><span class="p">([</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]])]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  14
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l12">
+                  <tt><i>12</i>     <span class="c1">##### vertex automorphism orbits ##### </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l52">
+                  <tt><i>52</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l94">
+                  <tt><i>94</i>             <span class="n">edge_orbit_partition</span><span class="p">[</span><span class="n">ind_edge_orbit</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l98">
+                  <tt><i>98</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Edge orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">edge_orbit_partition</span><span class="p">))</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l115">
+                  <tt><i>115</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span>  </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l120">
+                  <tt><i>120</i>     <span class="c1">## num_nodes should be explicitly set for the following edge case: </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l145">
+                  <tt><i>145</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">):</span>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l155">
+                  <tt><i>155</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span>  </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l166">
+                  <tt><i>166</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subgraph_edges</span><span class="p">):</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l169">
+                  <tt><i>169</i>             <span class="c1"># (by finding where its endpoints are matched). </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l217">
+                  <tt><i>217</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">line_graph</span><span class="p">)</span>  </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l241">
+                  <tt><i>241</i>         <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">inverse_mapping</span><span class="p">[</span><span class="n">vertex</span><span class="p">]]</span> <span class="k">if</span> <span class="n">orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orbit_partition</span> <span class="k">else</span> <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">inverse_mapping</span><span class="p">[</span><span class="n">vertex</span><span class="p">]]</span>    </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l246">
+                  <tt><i>246</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()):</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l250">
+                  <tt><i>250</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Edge orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span> </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E266">
+               <span class="count sev-2">
+                  10
+               </span>
+               <strong>E266:</strong> too many leading '#' for block comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l12">
+                  <tt><i>12</i>     <span class="c1">##### vertex automorphism orbits ##### </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l61">
+                  <tt><i>61</i>     <span class="c1">##### induced edge automorphism orbits (according to the vertex automorphism group) #####</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l107">
+                  <tt><i>107</i>     <span class="c1">##### vertex structural identifiers #####</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l120">
+                  <tt><i>120</i>     <span class="c1">## num_nodes should be explicitly set for the following edge case: </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l121">
+                  <tt><i>121</i>     <span class="c1">## when there is an isolated vertex whose index is larger</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l122">
+                  <tt><i>122</i>     <span class="c1">## than the maximum available index in the edge_index</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l138">
+                  <tt><i>138</i>     <span class="c1">##### edge structural identifiers #####</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l194">
+                  <tt><i>194</i>     <span class="c1">##### edge automorphism orbits according to the line graph #####</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l206">
+                  <tt><i>206</i>     <span class="c1">##### compute line graph vertex automorphism orbits #####</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l243">
+                  <tt><i>243</i>     <span class="c1">##### transfer line graph vertex automorphism orbits to original edges #####</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  7
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+                  (and 2 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l45">
+                  <tt><i>45</i>     <span class="n">orbit_partition</span> <span class="o">=</span> <span class="p">{}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l75">
+                  <tt><i>75</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">directed</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l152">
+                  <tt><i>152</i>     <span class="n">G_gt</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l161">
+                  <tt><i>161</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_partition&#39;</span><span class="p">])))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l178">
+                  <tt><i>178</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">/</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;aut_count&#39;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (5):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l188">
+                  <tt><i>188</i> <span class="c1">#----------------------- line graph edge automorphism: deprecated</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l192">
+                  <tt><i>192</i> <span class="k">def</span> <span class="nf">edge_automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E225">
+               <span class="count sev-2">
+                  6
+               </span>
+               <strong>E225:</strong> missing whitespace around operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l14">
+                  <tt><i>14</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l63">
+                  <tt><i>63</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l64">
+                  <tt><i>64</i>     <span class="n">directed_orbits</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed_orbits&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed_orbits&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l128">
+                  <tt><i>128</i>             <span class="n">counts</span><span class="p">[</span><span class="n">node</span><span class="p">,</span> <span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_membership&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span><span class="mi">1</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l196">
+                  <tt><i>196</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l239">
+                  <tt><i>239</i>     <span class="n">orbit_partition</span><span class="o">=</span> <span class="p">{}</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E251">
+               <span class="count sev-2">
+                  4
+               </span>
+               <strong>E251:</strong> unexpected spaces around keyword / parameter equals
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l40">
+                  <tt><i>40</i>     <span class="n">_</span><span class="p">,</span> <span class="n">contiguous_orbit_membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">return_inverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l235">
+                  <tt><i>235</i>     <span class="n">_</span><span class="p">,</span> <span class="n">contiguous_orbit_membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">return_inverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E265">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E265:</strong> block comment should start with '# '
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l188">
+                  <tt><i>188</i> <span class="c1">#----------------------- line graph edge automorphism: deprecated</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l59">
+                  <tt><i>59</i> <span class="k">def</span> <span class="nf">induced_edge_automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E702">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E702:</strong> multiple statements on one line (semicolon)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_graph_processing.source.html#l53">
+                  <tt><i>53</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

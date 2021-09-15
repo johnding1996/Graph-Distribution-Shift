@@ -12,6 +12,14 @@ gds.datasets.download\_utils module
    :undoc-members:
    :show-inheritance:
 
+gds.datasets.gds\_dataset module
+--------------------------------
+
+.. automodule:: gds.datasets.gds_dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gds.datasets.ogbgppa\_dataset module
 ------------------------------------
 
@@ -72,14 +80,6 @@ gds.datasets.superpixel\_dataset module
 ---------------------------------------
 
 .. automodule:: gds.datasets.superpixel_dataset
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-gds.datasets.wilds\_dataset module
-----------------------------------
-
-.. automodule:: gds.datasets.wilds_dataset
    :members:
    :undoc-members:
    :show-inheritance:

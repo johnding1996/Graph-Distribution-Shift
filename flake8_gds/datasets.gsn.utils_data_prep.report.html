@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: datasets/gsn/utils_data_prep.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="datasets.gsn.utils_data_prep.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               datasets/gsn/utils_data_prep.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F841">
+               <span class="count sev-1">
+                  2
+               </span>
+               <strong>F841:</strong> local variable 'node_feature_flag' is assigned to but never used
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Local variable 'node_feature_flag' is assigned to but never used:</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l88">
+                  <tt><i>88</i>                 <span class="n">node_feature_flag</span> <span class="o">=</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Local variable 'deg_list' is assigned to but never used:</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l111">
+                  <tt><i>111</i>         <span class="n">deg_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">g</span><span class="p">))))</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'random' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l7">
+                  <tt><i>7</i> <span class="kn">import</span> <span class="nn">random</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  23
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l17">
+                  <tt><i>17</i> <span class="sd">            </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l38">
+                  <tt><i>38</i> <span class="sd">    </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l140">
+                  <tt><i>140</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l142">
+                  <tt><i>142</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l145">
+                  <tt><i>145</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l147">
+                  <tt><i>147</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l149">
+                  <tt><i>149</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l154">
+                  <tt><i>154</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l164">
+                  <tt><i>164</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l168">
+                  <tt><i>168</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l170">
+                  <tt><i>170</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l178">
+                  <tt><i>178</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l180">
+                  <tt><i>180</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l184">
+                  <tt><i>184</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l198">
+                  <tt><i>198</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l211">
+                  <tt><i>211</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l216">
+                  <tt><i>216</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l218">
+                  <tt><i>218</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l228">
+                  <tt><i>228</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l240">
+                  <tt><i>240</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l242">
+                  <tt><i>242</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l250">
+                  <tt><i>250</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l254">
+                  <tt><i>254</i>     </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  21
+               </span>
+               <strong>E501:</strong> line too long (119 > 79 characters)
+               
+                  (and 15 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (119 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l21">
+                  <tt><i>21</i> <span class="sd">            node_features: a torch float tensor, one-hot representation of the tag that is used as input to neural nets</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l22">
+                  <tt><i>22</i> <span class="sd">            edge_mat: a torch long tensor, contain edge list, will be used to create torch sparse tensor</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l70">
+                  <tt><i>70</i>                     <span class="n">row</span><span class="p">,</span> <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[:</span><span class="n">tmp</span><span class="p">]],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="n">tmp</span><span class="p">:]])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l128">
+                  <tt><i>128</i>         <span class="n">g</span><span class="o">.</span><span class="n">node_features</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">node_tags</span><span class="p">)),</span> <span class="p">[</span><span class="n">tag2index</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">node_tags</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l139">
+                  <tt><i>139</i> <span class="k">def</span> <span class="nf">load_zinc_data</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">degree_as_tag</span><span class="p">,</span> <span class="n">num_atom_type</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span> <span class="n">num_bond_type</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (148 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l141">
+                  <tt><i>141</i>      <span class="c1">### splits and preprocessing according to https://github.com/graphdeeplearning/benchmarking-gnns/blob/master/main_molecules_graph_regression.py</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l144">
+                  <tt><i>144</i>     <span class="n">Graph</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Graph&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;node_features&#39;</span><span class="p">,</span> <span class="s1">&#39;edge_mat&#39;</span><span class="p">,</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l156">
+                  <tt><i>156</i>         <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">node_features</span><span class="p">,</span> <span class="n">edge_list</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">edge_features</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l162">
+                  <tt><i>162</i>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;molecules&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.pickle&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">split_name</span><span class="p">)),</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l166">
+                  <tt><i>166</i>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;indices&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.index&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">split_name</span><span class="p">)),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l179">
+                  <tt><i>179</i>      <span class="c1">### splits and preprocessing according to https://github.com/snap-stanford/ogb</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l187">
+                  <tt><i>187</i>     <span class="n">dataset</span> <span class="o">=</span> <span class="n">PygGraphPropPredDataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l188">
+                  <tt><i>188</i>     <span class="n">Graph</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Graph&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;node_features&#39;</span><span class="p">,</span> <span class="s1">&#39;edge_mat&#39;</span><span class="p">,</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l193">
+                  <tt><i>193</i>     <span class="n">num_classes</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">num_classes</span> <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ogbg-ppa&#39;</span> <span class="k">else</span> <span class="n">dataset</span><span class="o">.</span><span class="n">num_tasks</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (106 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l199">
+                  <tt><i>199</i>      <span class="c1">### code used to load SR graphs obtained from here http://users.cecs.anu.edu.au/~bdm/data/graphs.html</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (130 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l200">
+                  <tt><i>200</i>      <span class="c1">### we don&#39;t split the data, because no training is performed (the network is used with random weights for the SR experiment)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l207">
+                  <tt><i>207</i>         <span class="n">edge_index</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">datum</span><span class="o">.</span><span class="n">edges</span><span class="p">()))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (143 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l243">
+                  <tt><i>243</i>     <span class="k">assert</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">fold_idx</span> <span class="ow">and</span> <span class="n">fold_idx</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;Parameter fold_idx must be from -1 to 9, with -1 referring to the special model selection split.&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l245">
+                  <tt><i>245</i>     <span class="n">train_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;10fold_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;train_idx-</span><span class="si">{}</span><span class="s1">.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fold_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l246">
+                  <tt><i>246</i>     <span class="n">test_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;10fold_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;test_idx-</span><span class="si">{}</span><span class="s1">.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fold_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l247">
+                  <tt><i>247</i>     <span class="n">val_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;10fold_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;val_idx-</span><span class="si">{}</span><span class="s1">.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fold_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  8
+               </span>
+               <strong>E231:</strong> missing whitespace after ','
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l112">
+                  <tt><i>112</i>         <span class="n">g</span><span class="o">.</span><span class="n">edge_mat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l124">
+                  <tt><i>124</i>     <span class="n">tag2index</span> <span class="o">=</span> <span class="p">{</span><span class="n">tagset</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tagset</span><span class="p">))}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',' (in 2 places):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l162">
+                  <tt><i>162</i>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;molecules&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.pickle&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">split_name</span><span class="p">)),</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l203">
+                  <tt><i>203</i>     <span class="n">Graph</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Graph&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;node_features&#39;</span><span class="p">,</span> <span class="s1">&#39;edge_mat&#39;</span><span class="p">,</span><span class="s1">&#39;label&#39;</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l205">
+                  <tt><i>205</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">datum</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l206">
+                  <tt><i>206</i>         <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">datum</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l207">
+                  <tt><i>207</i>         <span class="n">edge_index</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">datum</span><span class="o">.</span><span class="n">edges</span><span class="p">()))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E266">
+               <span class="count sev-2">
+                  6
+               </span>
+               <strong>E266:</strong> too many leading '#' for block comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l141">
+                  <tt><i>141</i>      <span class="c1">### splits and preprocessing according to https://github.com/graphdeeplearning/benchmarking-gnns/blob/master/main_molecules_graph_regression.py</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l179">
+                  <tt><i>179</i>      <span class="c1">### splits and preprocessing according to https://github.com/snap-stanford/ogb</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l199">
+                  <tt><i>199</i>      <span class="c1">### code used to load SR graphs obtained from here http://users.cecs.anu.edu.au/~bdm/data/graphs.html</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l200">
+                  <tt><i>200</i>      <span class="c1">### we don&#39;t split the data, because no training is performed (the network is used with random weights for the SR experiment)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l217">
+                  <tt><i>217</i>     <span class="c1">### Code obtained from here: https://github.com/weihua916/powerful-gnns</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l241">
+                  <tt><i>241</i>     <span class="c1">### Splits data based on pre-computed splits</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E114">
+               <span class="count sev-2">
+                  4
+               </span>
+               <strong>E114:</strong> indentation is not a multiple of 4 (comment)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l141">
+                  <tt><i>141</i>      <span class="c1">### splits and preprocessing according to https://github.com/graphdeeplearning/benchmarking-gnns/blob/master/main_molecules_graph_regression.py</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l179">
+                  <tt><i>179</i>      <span class="c1">### splits and preprocessing according to https://github.com/snap-stanford/ogb</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l199">
+                  <tt><i>199</i>      <span class="c1">### code used to load SR graphs obtained from here http://users.cecs.anu.edu.au/~bdm/data/graphs.html</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l200">
+                  <tt><i>200</i>      <span class="c1">### we don&#39;t split the data, because no training is performed (the network is used with random weights for the SR experiment)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E117">
+               <span class="count sev-2">
+                  4
+               </span>
+               <strong>E117:</strong> over-indented (comment)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l141">
+                  <tt><i>141</i>      <span class="c1">### splits and preprocessing according to https://github.com/graphdeeplearning/benchmarking-gnns/blob/master/main_molecules_graph_regression.py</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l179">
+                  <tt><i>179</i>      <span class="c1">### splits and preprocessing according to https://github.com/snap-stanford/ogb</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l199">
+                  <tt><i>199</i>      <span class="c1">### code used to load SR graphs obtained from here http://users.cecs.anu.edu.au/~bdm/data/graphs.html</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l200">
+                  <tt><i>200</i>      <span class="c1">### we don&#39;t split the data, because no training is performed (the network is used with random weights for the SR experiment)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E251">
+               <span class="count sev-2">
+                  4
+               </span>
+               <strong>E251:</strong> unexpected spaces around keyword / parameter equals
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 4 places):</p>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l220">
+                  <tt><i>220</i>     <span class="n">skf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="n">seed</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l94">
+                  <tt><i>94</i>     <span class="c1">#add labels and edge_mat       </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l118">
+                  <tt><i>118</i>     <span class="c1">#Extracting unique tag labels   </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l253">
+                  <tt><i>253</i>     <span class="n">val_graph_list</span> <span class="o">=</span> <span class="kc">None</span>                           </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E265">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E265:</strong> block comment should start with '# '
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l94">
+                  <tt><i>94</i>     <span class="c1">#add labels and edge_mat       </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l118">
+                  <tt><i>118</i>     <span class="c1">#Extracting unique tag labels   </span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l13">
+                  <tt><i>13</i> <span class="k">class</span> <span class="nc">S2VGraph</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l239">
+                  <tt><i>239</i> <span class="k">def</span> <span class="nf">separate_data_given_split</span><span class="p">(</span><span class="n">graph_list</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fold_idx</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E201">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E201:</strong> whitespace after '['
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l169">
+                  <tt><i>169</i>         <span class="n">split_data</span> <span class="o">=</span> <span class="p">[</span> <span class="n">split_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E202">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E202:</strong> whitespace before ']'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l169">
+                  <tt><i>169</i>         <span class="n">split_data</span> <span class="o">=</span> <span class="p">[</span> <span class="n">split_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l131">
+                  <tt><i>131</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# classes: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">label_dict</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E713">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E713:</strong> test for membership should be 'not in'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l54">
+                  <tt><i>54</i>             <span class="k">if</span> <span class="ow">not</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">label_dict</span><span class="p">:</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E741">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E741:</strong> ambiguous variable name 'l'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_data_prep.source.html#l53">
+                  <tt><i>53</i>             <span class="n">n</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>
