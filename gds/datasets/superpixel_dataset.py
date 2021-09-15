@@ -10,6 +10,7 @@ from .pyg_superpixel_dataset import PyGSuperPixelDataset
 import pdb
 from torch_geometric.utils import to_dense_adj
 
+
 class SuperPixelDataset(GDSDataset):
     """
     The OGB-molpcba dataset.
@@ -108,12 +109,12 @@ class SuperPixelDataset(GDSDataset):
         self._split_array[val_split_idx] = 1
         self._split_array[test_split_idx] = 2
 
-
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
         else:
             self._collate = PyGCollater(follow_batch=[])
-        # self._collate = self.collate_dense
+
+        self._collate = self.collate_dense
 
         self._metric = Evaluator('ogbg-ppa')
 

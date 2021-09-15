@@ -1,5 +1,8 @@
 import torch.nn as nn
 
+from .gnn import GNN
+from .three_wl import ThreeWLGNNNet
+
 
 def initialize_model(config, d_out, is_featurizer=False):
     """
@@ -17,15 +20,17 @@ def initialize_model(config, d_out, is_featurizer=False):
             - model: a model that is equivalent to nn.Sequential(featurizer, classifier)
     """
 
+    if config.model == "3wlgnn":
+        Model = ThreeWLGNNNet
+    else:
+        Model = GNN
 
-    from models.gnn import GNN
     if is_featurizer:
-        featurizer = GNN(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
+        featurizer = Model(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
         classifier = nn.Linear(featurizer.d_out, d_out)
         model = (featurizer, classifier)
     else:
-        model = GNN(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
-
+        model = Model(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
 
     # The `needs_y` attribute specifies whether the model's forward function
     # needs to take in both (x, y).

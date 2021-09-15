@@ -3,9 +3,10 @@ import torch.nn.functional as F
 from torch_geometric.nn import global_mean_pool, global_add_pool, GCNConv, GINConv, ChebConv
 from ogb.graphproppred.mol_encoder import AtomEncoder
 
-from models.conv import GCNConvNew, GINConvNew, ChebConvNew
+from .conv import GCNConvNew, GINConvNew, ChebConvNew
 
 Cheb_K = 3
+
 
 # mol
 class GNN(torch.nn.Module):

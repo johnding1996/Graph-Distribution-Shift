@@ -10,22 +10,17 @@ import torch.nn.functional as F
     CODE adapted from https://github.com/hadarser/ProvablyPowerfulGraphNetworks_torch/
 """
 
+
 class ThreeWLGNNNet(nn.Module):
-    def __init__(self, net_params):
-        super().__init__()
-        self.in_dim_node = net_params['in_dim']
-        depth_of_mlp = net_params['depth_of_mlp']
-        hidden_dim = net_params['hidden_dim']
-        n_classes = net_params['n_classes']
-        dropout = net_params['dropout']
-        n_layers = net_params['L']
-        self.layer_norm = net_params['layer_norm']
-        self.residual = net_params['residual']
-        self.device = net_params['device']
+    def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=3, hidden_dim=128,
+                 residual=False, **model_kwargs):
+        assert gnn_type == '3wlgnn'
+        super(ThreeWLGNNNet, self).__init__()
+        self.in_dim_node = feature_dim
+        self.residual = residual
         self.diag_pool_readout = True  # if True, uses the new_suffix readout from original code
 
         block_features = [hidden_dim] * n_layers  # L here is the block number
-
         original_features_num = self.in_dim_node + 1  # Number of features of the input
 
         # sequential mlp blocks
@@ -40,14 +35,15 @@ class ThreeWLGNNNet(nn.Module):
             self.fc_layers = nn.ModuleList()
             for output_features in block_features:
                 # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected
-                fc = FullyConnected(2 * output_features, n_classes, activation_fn=None)
+                fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)
                 self.fc_layers.append(fc)
         else:
-            self.mlp_prediction = MLPReadout(sum(block_features) + original_features_num, n_classes)
+            self.mlp_prediction = MLPReadout(sum(block_features) + original_features_num, num_tasks)
 
     def forward(self, x):
+        print(x)
         if self.diag_pool_readout:
-            scores = torch.tensor(0, device=self.device, dtype=x.dtype)
+            scores = torch.tensor(0, device=x.device, dtype=x.dtype)
         else:
             x_list = [x]
 

@@ -21,7 +21,7 @@ dataset_defaults = {
     },
     'ogb-molhiv': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'mol'}, # include pretrained
+        'model_kwargs': {'dataset_group': 'mol', 'feature_dim': 2, 'dropout': 0.5}, # include pretrained
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['scaffold', ],
         'val_metric': 'rocauc',
