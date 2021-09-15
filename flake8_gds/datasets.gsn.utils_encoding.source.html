@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>datasets/gsn/utils_encoding.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <h1>
+            <a href="datasets.gsn.utils_encoding.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               datasets/gsn/utils_encoding.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="kn">import</span> <span class="nn">torch</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> <span class="kn">import</span> <span class="nn">sys</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     'sklearn.preprocessing.KBinsDiscretizer' imported but unused</li>
+               
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     'sklearn.preprocessing.OneHotEncoder' imported but unused</li>
+               
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     'sklearn.preprocessing.MinMaxScaler' imported but unused</li>
+               
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     'sklearn.preprocessing.StandardScaler' imported but unused</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (95 > 79 characters)</li>
+               
+               </ul><tt><i>3</i> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span></tt>
+            </div>
+            <div id="l4"
+               class="code sev- "><tt><i>4</i> &nbsp;</tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span></tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i> &nbsp;</tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i> &nbsp;</tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i> <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">id_encoding</span><span class="p">,</span> <span class="n">degree_encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i>     <span class="sd">&#39;&#39;&#39;</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (89 > 79 characters)</li>
+               
+               </ul><tt><i>10</i> <span class="sd">        Encodes categorical variables such as structural identifiers and degree features.</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev- "><tt><i>11</i> <span class="sd">    &#39;&#39;&#39;</span></tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i>     <span class="n">encoder_ids</span><span class="p">,</span> <span class="n">d_id</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">graphs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">identifiers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i>     <span class="k">if</span> <span class="n">id_encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l14"
+               class="code sev- "><tt><i>14</i>         <span class="n">id_encoding_fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="n">id_encoding</span><span class="p">)</span></tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i>         <span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">identifiers</span> <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graphs</span><span class="p">]</span></tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i>         <span class="n">encoder_ids</span> <span class="o">=</span> <span class="n">id_encoding_fn</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="o">**</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">]))</span></tt>
+            </div>
+            <div id="l17"
+               class="code sev- "><tt><i>17</i>         <span class="n">encoded_ids</span> <span class="o">=</span> <span class="n">encoder_ids</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span></tt>
+            </div>
+            <div id="l18"
+               class="code sev- "><tt><i>18</i>         <span class="n">d_id</span> <span class="o">=</span> <span class="n">encoder_ids</span><span class="o">.</span><span class="n">d</span></tt>
+            </div>
+            <div id="l19"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>19</i>     </tt>
+            </div>
+            <div id="l20"
+               class="code sev- "><tt><i>20</i>     <span class="n">encoder_degrees</span><span class="p">,</span> <span class="n">d_degree</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span></tt>
+            </div>
+            <div id="l21"
+               class="code sev- "><tt><i>21</i>     <span class="k">if</span> <span class="n">degree_encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l22"
+               class="code sev- "><tt><i>22</i>         <span class="n">degree_encoding_fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="n">degree_encoding</span><span class="p">)</span></tt>
+            </div>
+            <div id="l23"
+               class="code sev- "><tt><i>23</i>         <span class="n">degrees</span> <span class="o">=</span> <span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">degrees</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graphs</span><span class="p">]</span></tt>
+            </div>
+            <div id="l24"
+               class="code sev- "><tt><i>24</i>         <span class="n">encoder_degrees</span> <span class="o">=</span> <span class="n">degree_encoding_fn</span><span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="o">**</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">]))</span></tt>
+            </div>
+            <div id="l25"
+               class="code sev- "><tt><i>25</i>         <span class="n">encoded_degrees</span> <span class="o">=</span> <span class="n">encoder_degrees</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">degrees</span><span class="p">)</span></tt>
+            </div>
+            <div id="l26"
+               class="code sev- "><tt><i>26</i>         <span class="n">d_degree</span> <span class="o">=</span> <span class="n">encoder_degrees</span><span class="o">.</span><span class="n">d</span></tt>
+            </div>
+            <div id="l27"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>27</i>         </tt>
+            </div>
+            <div id="l28"
+               class="code sev- "><tt><i>28</i>     <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">graph</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span></tt>
+            </div>
+            <div id="l29"
+               class="code sev- "><tt><i>29</i>         <span class="k">if</span> <span class="n">id_encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l30"
+               class="code sev- "><tt><i>30</i>             <span class="nb">setattr</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s1">&#39;identifiers&#39;</span><span class="p">,</span> <span class="n">encoded_ids</span><span class="p">[</span><span class="n">g</span><span class="p">])</span></tt>
+            </div>
+            <div id="l31"
+               class="code sev- "><tt><i>31</i>         <span class="k">if</span> <span class="n">degree_encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l32"
+               class="code sev- "><tt><i>32</i>             <span class="nb">setattr</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="n">encoded_degrees</span><span class="p">[</span><span class="n">g</span><span class="p">])</span></tt>
+            </div>
+            <div id="l33"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>33</i>                             </tt>
+            </div>
+            <div id="l34"
+               class="code sev- "><tt><i>34</i>     <span class="k">return</span> <span class="n">graphs</span><span class="p">,</span> <span class="n">encoder_ids</span><span class="p">,</span> <span class="n">d_id</span><span class="p">,</span> <span class="n">encoder_degrees</span><span class="p">,</span> <span class="n">d_degree</span></tt>
+            </div>
+            <div id="l35"
+               class="code sev- "><tt><i>35</i> &nbsp;</tt>
+            </div>
+            <div id="l36"
+               class="code sev- "><tt><i>36</i> &nbsp;</tt>
+            </div>
+            <div id="l37"
+               class="code sev- "><tt><i>37</i> <span class="k">class</span> <span class="nc">one_hot_unique</span><span class="p">:</span></tt>
+            </div>
+            <div id="l38"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>38</i>     </tt>
+            </div>
+            <div id="l39"
+               class="code sev- "><tt><i>39</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+            </div>
+            <div id="l40"
+               class="code sev- "><tt><i>40</i>         <span class="n">tensor_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></tt>
+            </div>
+            <div id="l41"
+               class="code sev- "><tt><i>41</i>         <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></tt>
+            </div>
+            <div id="l42"
+               class="code sev- "><tt><i>42</i>         <span class="bp">self</span><span class="o">.</span><span class="n">corrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></tt>
+            </div>
+            <div id="l43"
+               class="code sev- "><tt><i>43</i>         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tensor_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span></tt>
+            </div>
+            <div id="l44"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (88 > 79 characters)</li>
+               
+               </ul><tt><i>44</i>             <span class="n">uniques</span><span class="p">,</span> <span class="n">corrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">[:,</span> <span class="n">col</span><span class="p">],</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></tt>
+            </div>
+            <div id="l45"
+               class="code sev- "><tt><i>45</i>             <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">uniques</span><span class="p">))</span></tt>
+            </div>
+            <div id="l46"
+               class="code sev- "><tt><i>46</i>             <span class="bp">self</span><span class="o">.</span><span class="n">corrs</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrs</span></tt>
+            </div>
+            <div id="l47"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>47</i>         <span class="k">return</span>       </tt>
+            </div>
+            <div id="l48"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>48</i>             </tt>
+            </div>
+            <div id="l49"
+               class="code sev- "><tt><i>49</i>     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor_list</span><span class="p">):</span></tt>
+            </div>
+            <div id="l50"
+               class="code sev- "><tt><i>50</i>         <span class="n">pointer</span> <span class="o">=</span> <span class="mi">0</span></tt>
+            </div>
+            <div id="l51"
+               class="code sev- "><tt><i>51</i>         <span class="n">encoded_tensors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></tt>
+            </div>
+            <div id="l52"
+               class="code sev- "><tt><i>52</i>         <span class="k">for</span> <span class="n">tensor</span> <span class="ow">in</span> <span class="n">tensor_list</span><span class="p">:</span></tt>
+            </div>
+            <div id="l53"
+               class="code sev- "><tt><i>53</i>             <span class="n">n</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i>             <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span></tt>
+            </div>
+            <div id="l55"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (94 > 79 characters)</li>
+               
+               </ul><tt><i>55</i>                 <span class="n">translated</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corrs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="n">pointer</span><span class="p">:</span><span class="n">pointer</span><span class="o">+</span><span class="n">n</span><span class="p">])</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></tt>
+            </div>
+            <div id="l56"
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F821
+                     </span>
+                     Undefined name 'encoded'</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (88 > 79 characters)</li>
+               
+               </ul><tt><i>56</i>                 <span class="n">encoded</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">encoded</span><span class="p">,</span> <span class="n">translated</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">col</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">translated</span></tt>
+            </div>
+            <div id="l57"
+               class="code sev- "><tt><i>57</i>             <span class="n">encoded_tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span></tt>
+            </div>
+            <div id="l58"
+               class="code sev- "><tt><i>58</i>             <span class="n">pointer</span> <span class="o">+=</span> <span class="n">n</span></tt>
+            </div>
+            <div id="l59"
+               class="code sev- "><tt><i>59</i>         <span class="k">return</span> <span class="n">encoded_tensors</span></tt>
+            </div>
+            <div id="l60"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>60</i>         </tt>
+            </div>
+            <div id="l61"
+               class="code sev- "><tt><i>61</i> &nbsp;</tt>
+            </div>
+            <div id="l62"
+               class="code sev- "><tt><i>62</i> <span class="k">class</span> <span class="nc">one_hot_max</span><span class="p">:</span></tt>
+            </div>
+            <div id="l63"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>63</i>     </tt>
+            </div>
+            <div id="l64"
+               class="code sev- "><tt><i>64</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+            </div>
+            <div id="l65"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E231
+                     </span>
+                     Missing whitespace after ','</li>
+               
+               </ul><tt><i>65</i>         <span class="n">tensor_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span></tt>
+            </div>
+            <div id="l66"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E231
+                     </span>
+                     Missing whitespace after ','</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>66</i>         <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tensor_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span></tt>
+            </div>
+            <div id="l67"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>67</i>     </tt>
+            </div>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i>     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor_list</span><span class="p">):</span></tt>
+            </div>
+            <div id="l69"
+               class="code sev- "><tt><i>69</i>         <span class="k">return</span> <span class="n">tensor_list</span></tt>
+            </div>
+            <div id="l70"
+               class="code sev- "><tt><i>70</i> &nbsp;</tt>
+            </div>
+            <div id="l71"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>71</i>     </tt>
+            </div>
+            <div id="l72"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (103 > 79 characters)</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>72</i> <span class="c1"># NB: this encoding scheme has been implemented, but never tested in experiments: use at your own risk.  </span></tt>
+            </div>
+            <div id="l73"
+               class="code sev- "><tt><i>73</i> <span class="sd">&#39;&#39;&#39;</span></tt>
+            </div>
+            <div id="l74"
+               class="code sev- "><tt><i>74</i> <span class="sd">class minmax:</span></tt>
+            </div>
+            <div id="l75"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>75</i> <span class="sd">    </span></tt>
+            </div>
+            <div id="l76"
+               class="code sev- "><tt><i>76</i> <span class="sd">    def __init__(self, tensor_list, **kwargs):</span></tt>
+            </div>
+            <div id="l77"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>77</i> <span class="sd">        </span></tt>
+            </div>
+            <div id="l78"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (81 > 79 characters)</li>
+               
+               </ul><tt><i>78</i> <span class="sd">        range_scaler = [0.0, 1.0] if kwargs[&#39;range&#39;] is None else kwargs[&#39;range&#39;]</span></tt>
+            </div>
+            <div id="l79"
+               class="code sev- "><tt><i>79</i> <span class="sd">        self.encoder = MinMaxScaler(feature_range=range_scaler)</span></tt>
+            </div>
+            <div id="l80"
+               class="code sev- "><tt><i>80</i> <span class="sd">        self.d = [1 for i in range(tensor_list[0].shape[1])]</span></tt>
+            </div>
+            <div id="l81"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>81</i> <span class="sd">        </span></tt>
+            </div>
+            <div id="l82"
+               class="code sev- "><tt><i>82</i> <span class="sd">    def fit(self, tensor_list):</span></tt>
+            </div>
+            <div id="l83"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>83</i> <span class="sd">        </span></tt>
+            </div>
+            <div id="l84"
+               class="code sev- "><tt><i>84</i> <span class="sd">        catted = torch.cat(tensor_list, 0).cpu().float().numpy()</span></tt>
+            </div>
+            <div id="l85"
+               class="code sev- "><tt><i>85</i> <span class="sd">        self.encoder.fit(catted)</span></tt>
+            </div>
+            <div id="l86"
+               class="code sev- "><tt><i>86</i> <span class="sd">        translated = self.encoder.transform(catted)</span></tt>
+            </div>
+            <div id="l87"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>87</i> <span class="sd">        </span></tt>
+            </div>
+            <div id="l88"
+               class="code sev- "><tt><i>88</i> <span class="sd">        pointer = 0</span></tt>
+            </div>
+            <div id="l89"
+               class="code sev- "><tt><i>89</i> <span class="sd">        encoded_tensors = list()</span></tt>
+            </div>
+            <div id="l90"
+               class="code sev- "><tt><i>90</i> <span class="sd">        for tensor in tensor_list:</span></tt>
+            </div>
+            <div id="l91"
+               class="code sev- "><tt><i>91</i> <span class="sd">            n = tensor.shape[0]</span></tt>
+            </div>
+            <div id="l92"
+               class="code sev- "><tt><i>92</i> <span class="sd">            encoded = torch.FloatTensor(translated[pointer:pointer+n,:])</span></tt>
+            </div>
+            <div id="l93"
+               class="code sev- "><tt><i>93</i> <span class="sd">            encoded_tensors.append(encoded)</span></tt>
+            </div>
+            <div id="l94"
+               class="code sev- "><tt><i>94</i> <span class="sd">            pointer += n</span></tt>
+            </div>
+            <div id="l95"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>95</i> <span class="sd">            </span></tt>
+            </div>
+            <div id="l96"
+               class="code sev- "><tt><i>96</i> <span class="sd">        return encoded_tensors</span></tt>
+            </div>
+            <div id="l97"
+               class="code sev- "><tt><i>97</i> <span class="sd">&#39;&#39;&#39;</span></tt>
+            </div>
+            <div id="l98"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>98</i>     </tt>
+            </div>
+            <div id="l99"
+               class="code sev- "><tt><i>99</i> &nbsp;</tt>
+            </div>
+            <div id="l100"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (103 > 79 characters)</li>
+               
+               </ul><tt><i>100</i> <span class="c1"># NB: this encoding scheme has been implemented, but never tested in experiments: use at your own risk.</span></tt>
+            </div>
+            <div id="l101"
+               class="code sev- "><tt><i>101</i> <span class="sd">&#39;&#39;&#39;</span></tt>
+            </div>
+            <div id="l102"
+               class="code sev- "><tt><i>102</i> <span class="sd">class binning:</span></tt>
+            </div>
+            <div id="l103"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>103</i> <span class="sd">    </span></tt>
+            </div>
+            <div id="l104"
+               class="code sev- "><tt><i>104</i> <span class="sd">    def __init__(self, tensor_list, **kwargs):</span></tt>
+            </div>
+            <div id="l105"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>105</i> <span class="sd">    </span></tt>
+            </div>
+            <div id="l106"
+               class="code sev- "><tt><i>106</i> <span class="sd">        self.n_bins = kwargs[&#39;bins&#39;][0]</span></tt>
+            </div>
+            <div id="l107"
+               class="code sev- "><tt><i>107</i> <span class="sd">        self.strategy = kwargs[&#39;strategy&#39;]</span></tt>
+            </div>
+            <div id="l108"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>108</i> <span class="sd">    </span></tt>
+            </div>
+            <div id="l109"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>109</i> <span class="sd">    </span></tt>
+            </div>
+            <div id="l110"
+               class="code sev- "><tt><i>110</i> <span class="sd">    def fit(self, tensor_list):</span></tt>
+            </div>
+            <div id="l111"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>111</i> <span class="sd">        </span></tt>
+            </div>
+            <div id="l112"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>112</i> <span class="sd">        </span></tt>
+            </div>
+            <div id="l113"
+               class="code sev- "><tt><i>113</i> <span class="sd">        catted = torch.cat(tensor_list, 0)</span></tt>
+            </div>
+            <div id="l114"
+               class="code sev- "><tt><i>114</i> <span class="sd">        translated = None</span></tt>
+            </div>
+            <div id="l115"
+               class="code sev- "><tt><i>115</i> <span class="sd">        d = []</span></tt>
+            </div>
+            <div id="l116"
+               class="code sev- "><tt><i>116</i> <span class="sd">        for col in range(catted.shape[1]):</span></tt>
+            </div>
+            <div id="l117"
+               class="code sev- "><tt><i>117</i> <span class="sd">            tensor_column = catted[:, col].unsqueeze(1).cpu().numpy()</span></tt>
+            </div>
+            <div id="l118"
+               class="code sev- "><tt><i>118</i> <span class="sd">            print(col, np.unique(tensor_column))</span></tt>
+            </div>
+            <div id="l119"
+               class="code sev- "><tt><i>119</i> <span class="sd">#             B = min([self.n_bins[col], len(np.unique(tensor_column))])</span></tt>
+            </div>
+            <div id="l120"
+               class="code sev- "><tt><i>120</i> <span class="sd">            B = min([self.n_bins, len(np.unique(tensor_column))])</span></tt>
+            </div>
+            <div id="l121"
+               class="code sev- "><tt><i>121</i> <span class="sd">            if B == 1:</span></tt>
+            </div>
+            <div id="l122"
+               class="code sev- "><tt><i>122</i> <span class="sd">                result = torch.ones(tensor_column.shape)</span></tt>
+            </div>
+            <div id="l123"
+               class="code sev- "><tt><i>123</i> <span class="sd">            else:</span></tt>
+            </div>
+            <div id="l124"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (94 > 79 characters)</li>
+               
+               </ul><tt><i>124</i> <span class="sd">                encoder = KBinsDiscretizer(n_bins=B, encode=&#39;ordinal&#39;, strategy=self.strategy)</span></tt>
+            </div>
+            <div id="l125"
+               class="code sev- "><tt><i>125</i> <span class="sd">                d.append(encoder.n_bins)</span></tt>
+            </div>
+            <div id="l126"
+               class="code sev- "><tt><i>126</i> <span class="sd">                encoder.fit(tensor_column)</span></tt>
+            </div>
+            <div id="l127"
+               class="code sev- "><tt><i>127</i> <span class="sd">                result = encoder.transform(tensor_column)</span></tt>
+            </div>
+            <div id="l128"
+               class="code sev- "><tt><i>128</i> <span class="sd">                result = torch.LongTensor(result)</span></tt>
+            </div>
+            <div id="l129"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (83 > 79 characters)</li>
+               
+               </ul><tt><i>129</i> <span class="sd">            translated = result if col == 0 else torch.cat((translated, result), 1)</span></tt>
+            </div>
+            <div id="l130"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>130</i> <span class="sd">            </span></tt>
+            </div>
+            <div id="l131"
+               class="code sev- "><tt><i>131</i> <span class="sd">        pointer = 0</span></tt>
+            </div>
+            <div id="l132"
+               class="code sev- "><tt><i>132</i> <span class="sd">        encoded_tensors = list()</span></tt>
+            </div>
+            <div id="l133"
+               class="code sev- "><tt><i>133</i> <span class="sd">        for tensor in tensor_list:</span></tt>
+            </div>
+            <div id="l134"
+               class="code sev- "><tt><i>134</i> <span class="sd">            n = tensor.shape[0]</span></tt>
+            </div>
+            <div id="l135"
+               class="code sev- "><tt><i>135</i> <span class="sd">            encoded_tensors.append(translated[pointer:pointer+n])</span></tt>
+            </div>
+            <div id="l136"
+               class="code sev- "><tt><i>136</i> <span class="sd">            pointer += n</span></tt>
+            </div>
+            <div id="l137"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>137</i> <span class="sd">            </span></tt>
+            </div>
+            <div id="l138"
+               class="code sev- "><tt><i>138</i> <span class="sd">        self.d = d</span></tt>
+            </div>
+            <div id="l139"
+               class="code sev- "><tt><i>139</i> <span class="sd">        return encoded_tensors</span></tt>
+            </div>
+            <div id="l140"
+               class="code sev- "><tt><i>140</i> <span class="sd">&#39;&#39;&#39;</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>

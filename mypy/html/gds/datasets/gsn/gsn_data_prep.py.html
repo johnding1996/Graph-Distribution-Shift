@@ -348,6 +348,54 @@
 <span id="L338" class="lineno"><a class="lineno" href="#L338">338</a></span>
 <span id="L339" class="lineno"><a class="lineno" href="#L339">339</a></span>
 <span id="L340" class="lineno"><a class="lineno" href="#L340">340</a></span>
+<span id="L341" class="lineno"><a class="lineno" href="#L341">341</a></span>
+<span id="L342" class="lineno"><a class="lineno" href="#L342">342</a></span>
+<span id="L343" class="lineno"><a class="lineno" href="#L343">343</a></span>
+<span id="L344" class="lineno"><a class="lineno" href="#L344">344</a></span>
+<span id="L345" class="lineno"><a class="lineno" href="#L345">345</a></span>
+<span id="L346" class="lineno"><a class="lineno" href="#L346">346</a></span>
+<span id="L347" class="lineno"><a class="lineno" href="#L347">347</a></span>
+<span id="L348" class="lineno"><a class="lineno" href="#L348">348</a></span>
+<span id="L349" class="lineno"><a class="lineno" href="#L349">349</a></span>
+<span id="L350" class="lineno"><a class="lineno" href="#L350">350</a></span>
+<span id="L351" class="lineno"><a class="lineno" href="#L351">351</a></span>
+<span id="L352" class="lineno"><a class="lineno" href="#L352">352</a></span>
+<span id="L353" class="lineno"><a class="lineno" href="#L353">353</a></span>
+<span id="L354" class="lineno"><a class="lineno" href="#L354">354</a></span>
+<span id="L355" class="lineno"><a class="lineno" href="#L355">355</a></span>
+<span id="L356" class="lineno"><a class="lineno" href="#L356">356</a></span>
+<span id="L357" class="lineno"><a class="lineno" href="#L357">357</a></span>
+<span id="L358" class="lineno"><a class="lineno" href="#L358">358</a></span>
+<span id="L359" class="lineno"><a class="lineno" href="#L359">359</a></span>
+<span id="L360" class="lineno"><a class="lineno" href="#L360">360</a></span>
+<span id="L361" class="lineno"><a class="lineno" href="#L361">361</a></span>
+<span id="L362" class="lineno"><a class="lineno" href="#L362">362</a></span>
+<span id="L363" class="lineno"><a class="lineno" href="#L363">363</a></span>
+<span id="L364" class="lineno"><a class="lineno" href="#L364">364</a></span>
+<span id="L365" class="lineno"><a class="lineno" href="#L365">365</a></span>
+<span id="L366" class="lineno"><a class="lineno" href="#L366">366</a></span>
+<span id="L367" class="lineno"><a class="lineno" href="#L367">367</a></span>
+<span id="L368" class="lineno"><a class="lineno" href="#L368">368</a></span>
+<span id="L369" class="lineno"><a class="lineno" href="#L369">369</a></span>
+<span id="L370" class="lineno"><a class="lineno" href="#L370">370</a></span>
+<span id="L371" class="lineno"><a class="lineno" href="#L371">371</a></span>
+<span id="L372" class="lineno"><a class="lineno" href="#L372">372</a></span>
+<span id="L373" class="lineno"><a class="lineno" href="#L373">373</a></span>
+<span id="L374" class="lineno"><a class="lineno" href="#L374">374</a></span>
+<span id="L375" class="lineno"><a class="lineno" href="#L375">375</a></span>
+<span id="L376" class="lineno"><a class="lineno" href="#L376">376</a></span>
+<span id="L377" class="lineno"><a class="lineno" href="#L377">377</a></span>
+<span id="L378" class="lineno"><a class="lineno" href="#L378">378</a></span>
+<span id="L379" class="lineno"><a class="lineno" href="#L379">379</a></span>
+<span id="L380" class="lineno"><a class="lineno" href="#L380">380</a></span>
+<span id="L381" class="lineno"><a class="lineno" href="#L381">381</a></span>
+<span id="L382" class="lineno"><a class="lineno" href="#L382">382</a></span>
+<span id="L383" class="lineno"><a class="lineno" href="#L383">383</a></span>
+<span id="L384" class="lineno"><a class="lineno" href="#L384">384</a></span>
+<span id="L385" class="lineno"><a class="lineno" href="#L385">385</a></span>
+<span id="L386" class="lineno"><a class="lineno" href="#L386">386</a></span>
+<span id="L387" class="lineno"><a class="lineno" href="#L387">387</a></span>
+<span id="L388" class="lineno"><a class="lineno" href="#L388">388</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-empty" title="No Anys on this line!"># import utils_parsing as parse</span>
@@ -368,7 +416,7 @@
 <span class="line-any" title="No Anys on this line!">from ogb.graphproppred import Evaluator, PygGraphPropPredDataset</span>
 <span class="line-any" title="No Anys on this line!">from .utils_ids import subgraph_counts2ids</span>
 <span class="line-any" title="No Anys on this line!">from .utils_graph_processing import subgraph_isomorphism_edge_counts, subgraph_isomorphism_vertex_counts, induced_edge_automorphism_orbits, edge_automorphism_orbits, automorphism_orbits</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">from .utils_encoding import encode</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class GSN():</span>
@@ -461,12 +509,18 @@ Unannotated (x1)">        self.degree_encoding = 'one_hot_unique'</span>
 <span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!">        # binning and minmax encoding parameters. NB: not used in our experimental evaluation</span>
-<span class="line-empty" title="No Anys on this line!">        # parser.add_argument('--id_bins', type=parse.str2list2int, default=None)</span>
-<span class="line-empty" title="No Anys on this line!">        # parser.add_argument('--degree_bins', type=parse.str2list2int, default=None)</span>
-<span class="line-empty" title="No Anys on this line!">        # parser.add_argument('--id_strategy', type=str, default='uniform')</span>
-<span class="line-empty" title="No Anys on this line!">        # parser.add_argument('--degree_strategy', type=str, default='uniform')</span>
-<span class="line-empty" title="No Anys on this line!">        # parser.add_argument('--id_range', type=parse.str2list2int, default=None)</span>
-<span class="line-empty" title="No Anys on this line!">        # parser.add_argument('--degree_range', type=parse.str2list2int, default=None)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.id_bins = None</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.degree_bins = None</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.id_strategy = 'uniform'</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.degree_strategy = 'uniform'</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.id_range = None</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.degree_range = None</span>
 <span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!">        # parser.add_argument('--id_embedding', type=str, default='one_hot_encoder')</span>
@@ -755,13 +809,90 @@ Unannotated (x1)">                                                              
 Unannotated (x1)">                                                                        self.num_processes,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                                                                        **subgraph_params)</span>
+<span class="line-empty" title="No Anys on this line!">                                                         </span>
+<span class="line-empty" title="No Anys on this line!">       </span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        ## node and edge feature dimensions</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        import pdb;pdb.set_trace()                                                            </span>
+Unannotated (x6)">        if graphs_ptg[0].x.dim()==1:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        return graphs_ptg                                                          </span>
-<span class="line-empty" title="No Anys on this line!">    </span>
+Unannotated (x1)">            num_features = 1</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            num_features = graphs_ptg[0].num_features</span>
+<span class="line-empty" title="No Anys on this line!">            </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Explicit (x1)">        if hasattr(graphs_ptg[0], 'edge_features'):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            if graphs_ptg[0].edge_features.dim()==1:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                num_edge_features = 1</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                num_edge_features  = graphs_ptg[0].edge_features.shape[1]</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            num_edge_features = None</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        if self.dataset == 'chemical' and self.dataset_name == 'ZINC':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">            d_in_node_encoder, d_in_edge_encoder = torch.load(os.path.join(path, 'processed', 'num_feature_types.pt'))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            d_in_node_encoder, d_in_edge_encoder = [d_in_node_encoder], [d_in_edge_encoder]</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            d_in_node_encoder = [num_features]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            d_in_edge_encoder = [num_edge_features]</span>
+<span class="line-empty" title="No Anys on this line!">            </span>
 <span class="line-empty" title="No Anys on this line!">        </span>
-<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-empty" title="No Anys on this line!">        ## ----------------------------------- encode ids and degrees (and possibly edge features)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        degree_encoding = self.degree_encoding if self.degree_as_tag else None</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        id_encoding = self.id_encoding if self.id_encoding != 'None' else None</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        encoding_parameters = {</span>
+<span class="line-any" title="No Anys on this line!">            'ids': {</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                'bins': self.id_bins,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                'strategy': self.id_strategy,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                'range': self.id_range,</span>
+<span class="line-empty" title="No Anys on this line!">            },</span>
+<span class="line-any" title="No Anys on this line!">            'degree': {</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                'bins': self.degree_bins,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                'strategy': self.degree_strategy,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                'range': self.degree_range}}</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        print("Encoding substructure counts and degree features... ", end='')</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        graphs_ptg, encoder_ids, d_id, encoder_degrees, d_degree = encode(graphs_ptg, </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                                                                        id_encoding,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                                                                        degree_encoding,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                                                                        **encoding_parameters)</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        return graphs_ptg                                                                </span>
+<span class="line-empty" title="No Anys on this line!">                                                     </span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-empty" title="No Anys on this line!">            </span>
+<span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>

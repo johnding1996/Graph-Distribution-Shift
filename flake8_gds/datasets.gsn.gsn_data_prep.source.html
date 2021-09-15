@@ -143,7 +143,7 @@
                </ul><tt><i>19</i> <span class="kn">from</span> <span class="nn">.utils_graph_processing</span> <span class="kn">import</span> <span class="n">subgraph_isomorphism_edge_counts</span><span class="p">,</span> <span class="n">subgraph_isomorphism_vertex_counts</span><span class="p">,</span> <span class="n">induced_edge_automorphism_orbits</span><span class="p">,</span> <span class="n">edge_automorphism_orbits</span><span class="p">,</span> <span class="n">automorphism_orbits</span></tt>
             </div>
             <div id="l20"
-               class="code sev- "><tt><i>20</i> &nbsp;</tt>
+               class="code sev- "><tt><i>20</i> <span class="kn">from</span> <span class="nn">.utils_encoding</span> <span class="kn">import</span> <span class="n">encode</span></tt>
             </div>
             <div id="l21"
                class="code sev- "><tt><i>21</i> &nbsp;</tt>
@@ -152,16 +152,7 @@
                class="code sev- "><tt><i>22</i> &nbsp;</tt>
             </div>
             <div id="l23"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E303
-                     </span>
-                     Too many blank lines (3)</li>
-               
-               </ul><tt><i>23</i> <span class="k">class</span> <span class="nc">GSN</span><span class="p">():</span></tt>
+               class="code sev- "><tt><i>23</i> <span class="k">class</span> <span class="nc">GSN</span><span class="p">():</span></tt>
             </div>
             <div id="l24"
                class="code sev- "><tt><i>24</i> &nbsp;</tt>
@@ -590,58 +581,22 @@
                </ul><tt><i>89</i>         <span class="c1"># binning and minmax encoding parameters. NB: not used in our experimental evaluation</span></tt>
             </div>
             <div id="l90"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (81 > 79 characters)</li>
-               
-               </ul><tt><i>90</i>         <span class="c1"># parser.add_argument(&#39;--id_bins&#39;, type=parse.str2list2int, default=None)</span></tt>
+               class="code sev- "><tt><i>90</i>         <span class="bp">self</span><span class="o">.</span><span class="n">id_bins</span> <span class="o">=</span> <span class="kc">None</span></tt>
             </div>
             <div id="l91"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (85 > 79 characters)</li>
-               
-               </ul><tt><i>91</i>         <span class="c1"># parser.add_argument(&#39;--degree_bins&#39;, type=parse.str2list2int, default=None)</span></tt>
+               class="code sev- "><tt><i>91</i>         <span class="bp">self</span><span class="o">.</span><span class="n">degree_bins</span> <span class="o">=</span> <span class="kc">None</span></tt>
             </div>
             <div id="l92"
-               class="code sev- "><tt><i>92</i>         <span class="c1"># parser.add_argument(&#39;--id_strategy&#39;, type=str, default=&#39;uniform&#39;)</span></tt>
+               class="code sev- "><tt><i>92</i>         <span class="bp">self</span><span class="o">.</span><span class="n">id_strategy</span> <span class="o">=</span> <span class="s1">&#39;uniform&#39;</span></tt>
             </div>
             <div id="l93"
-               class="code sev- "><tt><i>93</i>         <span class="c1"># parser.add_argument(&#39;--degree_strategy&#39;, type=str, default=&#39;uniform&#39;)</span></tt>
+               class="code sev- "><tt><i>93</i>         <span class="bp">self</span><span class="o">.</span><span class="n">degree_strategy</span> <span class="o">=</span> <span class="s1">&#39;uniform&#39;</span></tt>
             </div>
             <div id="l94"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (82 > 79 characters)</li>
-               
-               </ul><tt><i>94</i>         <span class="c1"># parser.add_argument(&#39;--id_range&#39;, type=parse.str2list2int, default=None)</span></tt>
+               class="code sev- "><tt><i>94</i>         <span class="bp">self</span><span class="o">.</span><span class="n">id_range</span> <span class="o">=</span> <span class="kc">None</span></tt>
             </div>
             <div id="l95"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (86 > 79 characters)</li>
-               
-               </ul><tt><i>95</i>         <span class="c1"># parser.add_argument(&#39;--degree_range&#39;, type=parse.str2list2int, default=None)</span></tt>
+               class="code sev- "><tt><i>95</i>         <span class="bp">self</span><span class="o">.</span><span class="n">degree_range</span> <span class="o">=</span> <span class="kc">None</span></tt>
             </div>
             <div id="l96"
                class="code sev-2  le">
@@ -2413,23 +2368,11 @@
                
                   <li>
                      <span class="count sev-2">
-                        E702
+                        W293
                      </span>
-                     Multiple statements on one line (semicolon)</li>
+                     Blank line contains whitespace</li>
                
-                  <li>
-                     <span class="count sev-2">
-                        E231
-                     </span>
-                     Missing whitespace after ';'</li>
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>317</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>                                                            </tt>
+               </ul><tt><i>317</i>                                                          </tt>
             </div>
             <div id="l318"
                class="code sev-2  le">
@@ -2437,82 +2380,22 @@
                
                   <li>
                      <span class="count sev-2">
-                        W291
+                        W293
                      </span>
-                     Trailing whitespace</li>
+                     Blank line contains whitespace</li>
                
-               </ul><tt><i>318</i>         <span class="k">return</span> <span class="n">graphs_ptg</span>                                                          </tt>
+               </ul><tt><i>318</i>        </tt>
             </div>
             <div id="l319"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>319</i>     </tt>
+               class="code sev- "><tt><i>319</i> &nbsp;</tt>
             </div>
             <div id="l320"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>320</i>         </tt>
+               class="code sev- "><tt><i>320</i> &nbsp;</tt>
             </div>
             <div id="l321"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>321</i>     </tt>
+               class="code sev- "><tt><i>321</i> &nbsp;</tt>
             </div>
             <div id="l322"
-               class="code sev- "><tt><i>322</i> &nbsp;</tt>
-            </div>
-            <div id="l323"
-               class="code sev- "><tt><i>323</i> &nbsp;</tt>
-            </div>
-            <div id="l324"
-               class="code sev- "><tt><i>324</i> &nbsp;</tt>
-            </div>
-            <div id="l325"
-               class="code sev- "><tt><i>325</i> &nbsp;</tt>
-            </div>
-            <div id="l326"
-               class="code sev- "><tt><i>326</i> &nbsp;</tt>
-            </div>
-            <div id="l327"
-               class="code sev- "><tt><i>327</i> &nbsp;</tt>
-            </div>
-            <div id="l328"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>328</i>         </tt>
-            </div>
-            <div id="l329"
-               class="code sev- "><tt><i>329</i> &nbsp;</tt>
-            </div>
-            <div id="l330"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -2520,11 +2403,419 @@
                      <span class="count sev-2">
                         E303
                      </span>
-                     Too many blank lines (11)</li>
+                     Too many blank lines (5)</li>
                
-               </ul><tt><i>330</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span></tt>
+                  <li>
+                     <span class="count sev-2">
+                        E266
+                     </span>
+                     Too many leading '#' for block comment</li>
+               
+               </ul><tt><i>322</i>         <span class="c1">## node and edge feature dimensions</span></tt>
+            </div>
+            <div id="l323"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E225
+                     </span>
+                     Missing whitespace around operator</li>
+               
+               </ul><tt><i>323</i>         <span class="k">if</span> <span class="n">graphs_ptg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span></tt>
+            </div>
+            <div id="l324"
+               class="code sev- "><tt><i>324</i>             <span class="n">num_features</span> <span class="o">=</span> <span class="mi">1</span></tt>
+            </div>
+            <div id="l325"
+               class="code sev- "><tt><i>325</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l326"
+               class="code sev- "><tt><i>326</i>             <span class="n">num_features</span> <span class="o">=</span> <span class="n">graphs_ptg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">num_features</span></tt>
+            </div>
+            <div id="l327"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>327</i>             </tt>
+            </div>
+            <div id="l328"
+               class="code sev- "><tt><i>328</i>         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">graphs_ptg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">):</span></tt>
+            </div>
+            <div id="l329"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E225
+                     </span>
+                     Missing whitespace around operator</li>
+               
+               </ul><tt><i>329</i>             <span class="k">if</span> <span class="n">graphs_ptg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">edge_features</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span></tt>
+            </div>
+            <div id="l330"
+               class="code sev- "><tt><i>330</i>                 <span class="n">num_edge_features</span> <span class="o">=</span> <span class="mi">1</span></tt>
             </div>
             <div id="l331"
+               class="code sev- "><tt><i>331</i>             <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l332"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E221
+                     </span>
+                     Multiple spaces before operator</li>
+               
+               </ul><tt><i>332</i>                 <span class="n">num_edge_features</span>  <span class="o">=</span> <span class="n">graphs_ptg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">edge_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></tt>
+            </div>
+            <div id="l333"
+               class="code sev- "><tt><i>333</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l334"
+               class="code sev- "><tt><i>334</i>             <span class="n">num_edge_features</span> <span class="o">=</span> <span class="kc">None</span></tt>
+            </div>
+            <div id="l335"
+               class="code sev- "><tt><i>335</i> &nbsp;</tt>
+            </div>
+            <div id="l336"
+               class="code sev- "><tt><i>336</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;chemical&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span> <span class="o">==</span> <span class="s1">&#39;ZINC&#39;</span><span class="p">:</span></tt>
+            </div>
+            <div id="l337"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (118 > 79 characters)</li>
+               
+               </ul><tt><i>337</i>             <span class="n">d_in_node_encoder</span><span class="p">,</span> <span class="n">d_in_edge_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;processed&#39;</span><span class="p">,</span> <span class="s1">&#39;num_feature_types.pt&#39;</span><span class="p">))</span></tt>
+            </div>
+            <div id="l338"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (91 > 79 characters)</li>
+               
+               </ul><tt><i>338</i>             <span class="n">d_in_node_encoder</span><span class="p">,</span> <span class="n">d_in_edge_encoder</span> <span class="o">=</span> <span class="p">[</span><span class="n">d_in_node_encoder</span><span class="p">],</span> <span class="p">[</span><span class="n">d_in_edge_encoder</span><span class="p">]</span></tt>
+            </div>
+            <div id="l339"
+               class="code sev- "><tt><i>339</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l340"
+               class="code sev- "><tt><i>340</i>             <span class="n">d_in_node_encoder</span> <span class="o">=</span> <span class="p">[</span><span class="n">num_features</span><span class="p">]</span></tt>
+            </div>
+            <div id="l341"
+               class="code sev- "><tt><i>341</i>             <span class="n">d_in_edge_encoder</span> <span class="o">=</span> <span class="p">[</span><span class="n">num_edge_features</span><span class="p">]</span></tt>
+            </div>
+            <div id="l342"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>342</i>             </tt>
+            </div>
+            <div id="l343"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>343</i>         </tt>
+            </div>
+            <div id="l344"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (2)</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E266
+                     </span>
+                     Too many leading '#' for block comment</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (98 > 79 characters)</li>
+               
+               </ul><tt><i>344</i>         <span class="c1">## ----------------------------------- encode ids and degrees (and possibly edge features)</span></tt>
+            </div>
+            <div id="l345"
+               class="code sev- "><tt><i>345</i> &nbsp;</tt>
+            </div>
+            <div id="l346"
+               class="code sev- "><tt><i>346</i>         <span class="n">degree_encoding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree_encoding</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree_as_tag</span> <span class="k">else</span> <span class="kc">None</span></tt>
+            </div>
+            <div id="l347"
+               class="code sev- "><tt><i>347</i>         <span class="n">id_encoding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_encoding</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_encoding</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span> <span class="k">else</span> <span class="kc">None</span></tt>
+            </div>
+            <div id="l348"
+               class="code sev- "><tt><i>348</i>         <span class="n">encoding_parameters</span> <span class="o">=</span> <span class="p">{</span></tt>
+            </div>
+            <div id="l349"
+               class="code sev- "><tt><i>349</i>             <span class="s1">&#39;ids&#39;</span><span class="p">:</span> <span class="p">{</span></tt>
+            </div>
+            <div id="l350"
+               class="code sev- "><tt><i>350</i>                 <span class="s1">&#39;bins&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_bins</span><span class="p">,</span></tt>
+            </div>
+            <div id="l351"
+               class="code sev- "><tt><i>351</i>                 <span class="s1">&#39;strategy&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_strategy</span><span class="p">,</span></tt>
+            </div>
+            <div id="l352"
+               class="code sev- "><tt><i>352</i>                 <span class="s1">&#39;range&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_range</span><span class="p">,</span></tt>
+            </div>
+            <div id="l353"
+               class="code sev- "><tt><i>353</i>             <span class="p">},</span></tt>
+            </div>
+            <div id="l354"
+               class="code sev- "><tt><i>354</i>             <span class="s1">&#39;degree&#39;</span><span class="p">:</span> <span class="p">{</span></tt>
+            </div>
+            <div id="l355"
+               class="code sev- "><tt><i>355</i>                 <span class="s1">&#39;bins&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree_bins</span><span class="p">,</span></tt>
+            </div>
+            <div id="l356"
+               class="code sev- "><tt><i>356</i>                 <span class="s1">&#39;strategy&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree_strategy</span><span class="p">,</span></tt>
+            </div>
+            <div id="l357"
+               class="code sev- "><tt><i>357</i>                 <span class="s1">&#39;range&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree_range</span><span class="p">}}</span></tt>
+            </div>
+            <div id="l358"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>358</i>         </tt>
+            </div>
+            <div id="l359"
+               class="code sev- "><tt><i>359</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Encoding substructure counts and degree features... &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l360"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>360</i>         <span class="n">graphs_ptg</span><span class="p">,</span> <span class="n">encoder_ids</span><span class="p">,</span> <span class="n">d_id</span><span class="p">,</span> <span class="n">encoder_degrees</span><span class="p">,</span> <span class="n">d_degree</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">graphs_ptg</span><span class="p">,</span> </tt>
+            </div>
+            <div id="l361"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E128
+                     </span>
+                     Continuation line under-indented for visual indent</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (84 > 79 characters)</li>
+               
+               </ul><tt><i>361</i>                                                                         <span class="n">id_encoding</span><span class="p">,</span></tt>
+            </div>
+            <div id="l362"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E128
+                     </span>
+                     Continuation line under-indented for visual indent</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (88 > 79 characters)</li>
+               
+               </ul><tt><i>362</i>                                                                         <span class="n">degree_encoding</span><span class="p">,</span></tt>
+            </div>
+            <div id="l363"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E128
+                     </span>
+                     Continuation line under-indented for visual indent</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (94 > 79 characters)</li>
+               
+               </ul><tt><i>363</i>                                                                         <span class="o">**</span><span class="n">encoding_parameters</span><span class="p">)</span></tt>
+            </div>
+            <div id="l364"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>364</i>         </tt>
+            </div>
+            <div id="l365"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>365</i>         <span class="k">return</span> <span class="n">graphs_ptg</span>                                                                </tt>
+            </div>
+            <div id="l366"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>366</i>                                                      </tt>
+            </div>
+            <div id="l367"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>367</i>         </tt>
+            </div>
+            <div id="l368"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>368</i>             </tt>
+            </div>
+            <div id="l369"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>369</i>         </tt>
+            </div>
+            <div id="l370"
+               class="code sev- "><tt><i>370</i> &nbsp;</tt>
+            </div>
+            <div id="l371"
+               class="code sev- "><tt><i>371</i> &nbsp;</tt>
+            </div>
+            <div id="l372"
+               class="code sev- "><tt><i>372</i> &nbsp;</tt>
+            </div>
+            <div id="l373"
+               class="code sev- "><tt><i>373</i> &nbsp;</tt>
+            </div>
+            <div id="l374"
+               class="code sev- "><tt><i>374</i> &nbsp;</tt>
+            </div>
+            <div id="l375"
+               class="code sev- "><tt><i>375</i> &nbsp;</tt>
+            </div>
+            <div id="l376"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>376</i>         </tt>
+            </div>
+            <div id="l377"
+               class="code sev- "><tt><i>377</i> &nbsp;</tt>
+            </div>
+            <div id="l378"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (12)</li>
+               
+               </ul><tt><i>378</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span></tt>
+            </div>
+            <div id="l379"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -2534,7 +2825,7 @@
                      </span>
                      Line too long (98 > 79 characters)</li>
                
-               </ul><tt><i>331</i>     <span class="n">GSN</span><span class="p">(</span><span class="n">dataset_name</span><span class="o">=</span><span class="s1">&#39;ogbg-molhiv&#39;</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;ogb&#39;</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="s1">&#39;cycle_graph&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span></tt>
+               </ul><tt><i>379</i>     <span class="n">GSN</span><span class="p">(</span><span class="n">dataset_name</span><span class="o">=</span><span class="s1">&#39;ogbg-molhiv&#39;</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;ogb&#39;</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="s1">&#39;cycle_graph&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span></tt>
             </div>
             
          </div>

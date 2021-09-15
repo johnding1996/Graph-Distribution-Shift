@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: datasets/gsn/utils_encoding.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="datasets.gsn.utils_encoding.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               datasets/gsn/utils_encoding.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  4
+               </span>
+               <strong>F401:</strong> 'sklearn.preprocessing.KBinsDiscretizer' imported but unused
+               
+                  (and 3 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>'sklearn.preprocessing.KBinsDiscretizer' imported but unused:</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'sklearn.preprocessing.MinMaxScaler' imported but unused:</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'sklearn.preprocessing.OneHotEncoder' imported but unused:</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'sklearn.preprocessing.StandardScaler' imported but unused:</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F821">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F821:</strong> undefined name 'encoded'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l56">
+                  <tt><i>56</i>                 <span class="n">encoded</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">encoded</span><span class="p">,</span> <span class="n">translated</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">col</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">translated</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  24
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l19">
+                  <tt><i>19</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l27">
+                  <tt><i>27</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l33">
+                  <tt><i>33</i>                             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l38">
+                  <tt><i>38</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l48">
+                  <tt><i>48</i>             </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l60">
+                  <tt><i>60</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l63">
+                  <tt><i>63</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l67">
+                  <tt><i>67</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l71">
+                  <tt><i>71</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l75">
+                  <tt><i>75</i> <span class="sd">    </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l77">
+                  <tt><i>77</i> <span class="sd">        </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l81">
+                  <tt><i>81</i> <span class="sd">        </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l83">
+                  <tt><i>83</i> <span class="sd">        </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l87">
+                  <tt><i>87</i> <span class="sd">        </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l95">
+                  <tt><i>95</i> <span class="sd">            </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l98">
+                  <tt><i>98</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l103">
+                  <tt><i>103</i> <span class="sd">    </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l105">
+                  <tt><i>105</i> <span class="sd">    </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l108">
+                  <tt><i>108</i> <span class="sd">    </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l109">
+                  <tt><i>109</i> <span class="sd">    </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l111">
+                  <tt><i>111</i> <span class="sd">        </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l112">
+                  <tt><i>112</i> <span class="sd">        </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l130">
+                  <tt><i>130</i> <span class="sd">            </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l137">
+                  <tt><i>137</i> <span class="sd">            </span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  11
+               </span>
+               <strong>E501:</strong> line too long (95 > 79 characters)
+               
+                  (and 7 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l10">
+                  <tt><i>10</i> <span class="sd">        Encodes categorical variables such as structural identifiers and degree features.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l44">
+                  <tt><i>44</i>             <span class="n">uniques</span><span class="p">,</span> <span class="n">corrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">[:,</span> <span class="n">col</span><span class="p">],</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l55">
+                  <tt><i>55</i>                 <span class="n">translated</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corrs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="n">pointer</span><span class="p">:</span><span class="n">pointer</span><span class="o">+</span><span class="n">n</span><span class="p">])</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l56">
+                  <tt><i>56</i>                 <span class="n">encoded</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">encoded</span><span class="p">,</span> <span class="n">translated</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">col</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">translated</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l66">
+                  <tt><i>66</i>         <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tensor_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (103 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l72">
+                  <tt><i>72</i> <span class="c1"># NB: this encoding scheme has been implemented, but never tested in experiments: use at your own risk.  </span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l78">
+                  <tt><i>78</i> <span class="sd">        range_scaler = [0.0, 1.0] if kwargs[&#39;range&#39;] is None else kwargs[&#39;range&#39;]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (103 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l100">
+                  <tt><i>100</i> <span class="c1"># NB: this encoding scheme has been implemented, but never tested in experiments: use at your own risk.</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (94 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l124">
+                  <tt><i>124</i> <span class="sd">                encoder = KBinsDiscretizer(n_bins=B, encode=&#39;ordinal&#39;, strategy=self.strategy)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l129">
+                  <tt><i>129</i> <span class="sd">            translated = result if col == 0 else torch.cat((translated, result), 1)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E231:</strong> missing whitespace after ','
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l65">
+                  <tt><i>65</i>         <span class="n">tensor_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l66">
+                  <tt><i>66</i>         <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tensor_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l47">
+                  <tt><i>47</i>         <span class="k">return</span>       </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l72">
+                  <tt><i>72</i> <span class="c1"># NB: this encoding scheme has been implemented, but never tested in experiments: use at your own risk.  </span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W391">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W391:</strong> blank line at end of file
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.gsn.utils_encoding.source.html#l141">
+                  <tt><i>141</i> &nbsp;</tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>
