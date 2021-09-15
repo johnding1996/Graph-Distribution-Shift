@@ -328,7 +328,7 @@ class GSN():
         
 
 if __name__ == '__main__':
-    GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', id_type='cycle_graph', induced=True, k=6)
+    GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type='cycle_graph', k=6)
 
 
 
