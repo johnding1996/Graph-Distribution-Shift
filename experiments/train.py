@@ -75,7 +75,7 @@ def run_epoch(algorithm, dataset, general_logger, epoch, config, train):
     return results, epoch_y_pred
 
 
-def train(algorithm, datasets, general_logger, config, epoch_offset, best_val_metric):
+def train(algorithm, datasets, general_logger, result_logger, config, epoch_offset, best_val_metric):
     for epoch in range(epoch_offset, config.n_epochs):
         general_logger.write('\nEpoch [%d]:\n' % epoch)
 
@@ -113,7 +113,7 @@ def train(algorithm, datasets, general_logger, config, epoch_offset, best_val_me
         general_logger.write('\n')
 
 
-def evaluate(algorithm, datasets, epoch, general_logger, config, is_best):
+def evaluate(algorithm, datasets, epoch, general_logger, result_logger, config, is_best):
     algorithm.eval()
     torch.set_grad_enabled(False)
     for split, dataset in datasets.items():
