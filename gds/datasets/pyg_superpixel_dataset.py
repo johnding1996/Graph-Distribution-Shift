@@ -4,7 +4,7 @@ from typing import Optional, Callable, List
 
 import torch
 from torch_geometric.data import (InMemoryDataset, download_url, extract_zip, Data)
-import pdb
+
 
 class PyGSuperPixelDataset(InMemoryDataset):
     r"""A variety of artificially and semi-artificially generated graph
@@ -103,5 +103,3 @@ if __name__ == '__main__':
     root = '/cmlscratch/kong/datasets/graph_domain'
     name = 'RotatedMNIST'
     dataset = PyGSuperPixelDataset(root=root, name=name)
-
-    pdb.set_trace()
