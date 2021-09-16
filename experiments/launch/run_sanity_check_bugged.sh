@@ -2,7 +2,7 @@
 
 # Lines that begin with #SBATCH specify commands to be used by SLURM for scheduling
 #SBATCH --job-name=graph-dg                           # sets the job name if not set from environment
-#SBATCH --array=0-3                                   # Submit 8 array jobs, throttling to 4 at a time
+#SBATCH --array=0                                   # Submit 8 array jobs, throttling to 4 at a time
 #SBATCH --output slurm-logs/%x_%A_%a.log                # indicates a file to redirect STDOUT to; %j is the jobid, _%A_%a is array task id
 #SBATCH --error slurm-logs/%x_%A_%a.log                 # indicates a file to redirect STDERR to; %j is the jobid,_%A_%a is array task id
 #SBATCH --time=24:00:00                                 # how long you think your job will take to complete; format=hh:mm:ss
@@ -10,7 +10,7 @@
 #SBATCH --qos=scavenger                                 # set QOS, this will determine what resources can be requested
 #SBATCH --partition=scavenger
 #SBATCH --gres=gpu:rtx2080ti:1
-#SBATCH --exclude=cmlgrad02,cml12
+#SBATCH --exclude=cmlgrad02,cml12,cmlgrad05
 #SBATCH --cpus-per-task=4
 #SBATCH --mem 16gb                                      # memory required by job; if unit is not specified MB will be assumed
 #SBATCH --nice=0
@@ -33,9 +33,9 @@ python run_expt.py --device ${device} --dataset ${dataset}  --algorithm ${algori
 }
 
 device=0
-datasets=( ogb-molhiv  ogb-molhiv ogb-molpcba RotatedMNIST   ) #4
-algorithms=( deepCORAL ERM IRM deepCORAL )            #5
-models=( gcn_virtual gcn cheb_virtual gin ) #6
+datasets=( ogb-molhiv    ) #4
+algorithms=( deepCORAL )            #5
+models=( gcn_virtual  ) #6
 root_dir=/cmlscratch/kong/datasets/graph_domain
 
 id=${SLURM_ARRAY_TASK_ID}

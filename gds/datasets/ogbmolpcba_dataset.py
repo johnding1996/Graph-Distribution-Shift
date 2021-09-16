@@ -122,3 +122,11 @@ class OGBPCBADataset(GDSDataset):
         results = self._metric.eval(input_dict)
 
         return results, f"Average precision: {results['ap']:.3f}\n"
+
+
+if __name__ == '__main__':
+    root = '/cmlscratch/kong/datasets/graph_domain'
+    dataset = OGBPCBADataset(root_dir=root)
+
+    import pdb
+    pdb.set_trace()
