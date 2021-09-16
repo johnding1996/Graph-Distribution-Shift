@@ -26,7 +26,7 @@ root_dir=${5}
 
 log_path=${root_dir}/sanity_check_logs/${dataset}-${algorithm}-${model}.log
 
-python run_expt.py --n_epochs 1 --batch_size 32 --device ${device} --dataset ${dataset}  --algorithm ${algorithm} --model ${model}  --root_dir ${root_dir} 2> ${log_path}
+python run_expt.py --n_epochs 1 --device ${device} --dataset ${dataset}  --algorithm ${algorithm} --model ${model}  --root_dir ${root_dir} 2> ${log_path}
 
 #> ${log_path} 2>&1
 }
