@@ -137,5 +137,5 @@ class CDANN(AbstractDANN):
     """Conditional DANN"""
     def __init__(self, config, d_out, grouper, loss,
                  metric, n_train_steps):
-        super(DANN, self).__init__(config, d_out, grouper, loss,
+        super(CDANN, self).__init__(config, d_out, grouper, loss,
                  metric, n_train_steps, conditional=True, class_balance=True)

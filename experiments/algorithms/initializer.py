@@ -3,6 +3,7 @@ from algorithms.IRM import IRM
 from algorithms.deepCORAL import DeepCORAL
 from algorithms.groupDRO import GroupDRO
 from algorithms.FLAG import FLAG
+from algorithms.DANN import DANN, CDANN
 from configs.supported import algo_log_metrics
 from losses import initialize_loss
 
@@ -79,6 +80,22 @@ def initialize_algorithm(config, datasets, train_grouper):
             n_train_steps=n_train_steps)
     elif config.algorithm == 'FLAG':
         algorithm = FLAG(
+            config=config,
+            d_out=d_out,
+            grouper=train_grouper,
+            loss=loss,
+            metric=metric,
+            n_train_steps=n_train_steps)
+    elif config.algorithm == 'DANN':
+        algorithm = DANN(
+            config=config,
+            d_out=d_out,
+            grouper=train_grouper,
+            loss=loss,
+            metric=metric,
+            n_train_steps=n_train_steps)
+    elif config.algorithm == 'CDANN':
+        algorithm = CDANN(
             config=config,
             d_out=d_out,
             grouper=train_grouper,
