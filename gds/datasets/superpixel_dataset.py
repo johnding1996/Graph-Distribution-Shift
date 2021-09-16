@@ -10,6 +10,8 @@ from .pyg_superpixel_dataset import PyGSuperPixelDataset
 import pdb
 from torch_geometric.utils import to_dense_adj
 
+from .gds_dataset import GDSDataset
+
 
 class SuperPixelDataset(GDSDataset):
     """
