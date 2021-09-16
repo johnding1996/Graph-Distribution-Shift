@@ -5,6 +5,7 @@ import sys
 import time
 from collections import defaultdict
 
+import graph_tool
 import pandas as pd
 import torch
 import torch.multiprocessing
