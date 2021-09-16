@@ -52,11 +52,11 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="F401">
                <span class="count sev-1">
-                  6
+                  7
                </span>
                <strong>F401:</strong> 'csv' imported but unused
                
-                  (and 5 similar)
+                  (and 6 similar)
                
             </a>
             <ul class="details">
@@ -83,24 +83,31 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>'pandas as pd' imported but unused:</p>
+               <p>'graph_tool' imported but unused:</p>
                
                <a href="run_expt.source.html#l8">
-                  <tt><i>8</i> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span></tt>
+                  <tt><i>8</i> <span class="kn">import</span> <span class="nn">graph_tool</span></tt>
+               </a>
+            </li><li>
+               
+               <p>'pandas as pd' imported but unused:</p>
+               
+               <a href="run_expt.source.html#l9">
+                  <tt><i>9</i> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span></tt>
                </a>
             </li><li>
                
                <p>'torch.nn' imported but unused:</p>
                
-               <a href="run_expt.source.html#l11">
-                  <tt><i>11</i> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span></tt>
+               <a href="run_expt.source.html#l12">
+                  <tt><i>12</i> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span></tt>
                </a>
             </li><li>
                
                <p>'torchvision' imported but unused:</p>
                
-               <a href="run_expt.source.html#l12">
-                  <tt><i>12</i> <span class="kn">import</span> <span class="nn">torchvision</span></tt>
+               <a href="run_expt.source.html#l13">
+                  <tt><i>13</i> <span class="kn">import</span> <span class="nn">torchvision</span></tt>
                </a>
             </li>
             </ul>
@@ -121,302 +128,302 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (112 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l19">
-                  <tt><i>19</i> <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">set_seed</span><span class="p">,</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">BatchLogger</span><span class="p">,</span> <span class="n">log_config</span><span class="p">,</span> <span class="n">initialize_wandb</span><span class="p">,</span> <span class="n">close_wandb</span><span class="p">,</span> <span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">load</span><span class="p">,</span> \</tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (89 > 79 characters):</p>
-               
-               <a href="run_expt.source.html#l31">
-                  <tt><i>31</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--dataset&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">gds</span><span class="o">.</span><span class="n">supported_datasets</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l20">
+                  <tt><i>20</i> <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">set_seed</span><span class="p">,</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">BatchLogger</span><span class="p">,</span> <span class="n">log_config</span><span class="p">,</span> <span class="n">initialize_wandb</span><span class="p">,</span> <span class="n">close_wandb</span><span class="p">,</span> <span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">load</span><span class="p">,</span> \</tt>
                </a>
             </li><li>
                
                <p>Line too long (89 > 79 characters):</p>
                
                <a href="run_expt.source.html#l32">
-                  <tt><i>32</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--algorithm&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">supported</span><span class="o">.</span><span class="n">algorithms</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+                  <tt><i>32</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--dataset&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">gds</span><span class="o">.</span><span class="n">supported_datasets</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="run_expt.source.html#l33">
+                  <tt><i>33</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--algorithm&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">supported</span><span class="o">.</span><span class="n">algorithms</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (81 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l33">
-                  <tt><i>33</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--model&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">supported</span><span class="o">.</span><span class="n">models</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l34">
+                  <tt><i>34</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--model&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">supported</span><span class="o">.</span><span class="n">models</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (117 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l37">
-                  <tt><i>37</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Identifies how the train/val/test split is constructed. Choices are dataset-specific.&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l38">
+                  <tt><i>38</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Identifies how the train/val/test split is constructed. Choices are dataset-specific.&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (86 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l38">
-                  <tt><i>38</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dataset_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span></tt>
+               <a href="run_expt.source.html#l39">
+                  <tt><i>39</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dataset_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (92 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l39">
-                  <tt><i>39</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--download&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span></tt>
+               <a href="run_expt.source.html#l40">
+                  <tt><i>40</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--download&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (105 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l40">
-                  <tt><i>40</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;If true, tries to downloads the dataset if it does not exist in root_dir.&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l41">
+                  <tt><i>41</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;If true, tries to downloads the dataset if it does not exist in root_dir.&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (255 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l42">
-                  <tt><i>42</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Convenience parameter that scales all dataset splits down to the specified fraction, for development purposes. Note that this also scales the test set down, so the reported numbers are not comparable with the full test set.&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l43">
+                  <tt><i>43</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Convenience parameter that scales all dataset splits down to the specified fraction, for development purposes. Note that this also scales the test set down, so the reported numbers are not comparable with the full test set.&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (85 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l46">
-                  <tt><i>46</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--loader_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span></tt>
+               <a href="run_expt.source.html#l47">
+                  <tt><i>47</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--loader_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (88 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l48">
-                  <tt><i>48</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--uniform_over_groups&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l49">
+                  <tt><i>49</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--uniform_over_groups&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (84 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l49">
-                  <tt><i>49</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--distinct_groups&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l50">
+                  <tt><i>50</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--distinct_groups&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (82 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l52">
-                  <tt><i>52</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--eval_loader&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l53">
+                  <tt><i>53</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--eval_loader&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (84 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l55">
-                  <tt><i>55</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--model_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{},</span></tt>
+               <a href="run_expt.source.html#l56">
+                  <tt><i>56</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--model_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{},</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (108 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l56">
-                  <tt><i>56</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;keyword arguments for model initialization passed as key1=value1 key2=value2&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l57">
+                  <tt><i>57</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;keyword arguments for model initialization passed as key1=value1 key2=value2&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (83 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l60">
-                  <tt><i>60</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--loss_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{},</span></tt>
+               <a href="run_expt.source.html#l61">
+                  <tt><i>61</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--loss_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{},</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (107 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l61">
-                  <tt><i>61</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;keyword arguments for loss initialization passed as key1=value1 key2=value2&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l62">
+                  <tt><i>62</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;keyword arguments for loss initialization passed as key1=value1 key2=value2&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (90 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l73">
-                  <tt><i>73</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--val_metric_decreasing&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l74">
+                  <tt><i>74</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--val_metric_decreasing&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (88 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l81">
-                  <tt><i>81</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--optimizer_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span></tt>
+               <a href="run_expt.source.html#l82">
+                  <tt><i>82</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--optimizer_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (88 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l85">
-                  <tt><i>85</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--scheduler_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span></tt>
+               <a href="run_expt.source.html#l86">
+                  <tt><i>86</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--scheduler_kwargs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ParseKwargs</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (92 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l86">
-                  <tt><i>86</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--scheduler_metric_split&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l87">
+                  <tt><i>87</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--scheduler_metric_split&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (93 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l90">
-                  <tt><i>90</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--eval_only&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l91">
+                  <tt><i>91</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--eval_only&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (98 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l91">
-                  <tt><i>91</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--process_outputs_function&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">supported</span><span class="o">.</span><span class="n">process_outputs_functions</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l92">
+                  <tt><i>92</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--process_outputs_function&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">supported</span><span class="o">.</span><span class="n">process_outputs_functions</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (102 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l92">
-                  <tt><i>92</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--evaluate_all_splits&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l93">
+                  <tt><i>93</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--evaluate_all_splits&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (191 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l95">
-                  <tt><i>95</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l96">
+                  <tt><i>96</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (131 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l101">
-                  <tt><i>101</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).&#39;</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (92 > 79 characters):</p>
-               
-               <a href="run_expt.source.html#l105">
-                  <tt><i>105</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save_best&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l102">
+                  <tt><i>102</i>                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (92 > 79 characters):</p>
                
                <a href="run_expt.source.html#l106">
-                  <tt><i>106</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save_last&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+                  <tt><i>106</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save_best&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (92 > 79 characters):</p>
                
                <a href="run_expt.source.html#l107">
-                  <tt><i>107</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save_pred&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+                  <tt><i>107</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save_last&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="run_expt.source.html#l108">
+                  <tt><i>108</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save_pred&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (85 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l108">
-                  <tt><i>108</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--no_group_logging&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l109">
+                  <tt><i>109</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--no_group_logging&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (93 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l109">
-                  <tt><i>109</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--use_wandb&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l110">
+                  <tt><i>110</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--use_wandb&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (96 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l110">
-                  <tt><i>110</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--progress_bar&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l111">
+                  <tt><i>111</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--progress_bar&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (90 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l111">
-                  <tt><i>111</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--resume&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l112">
+                  <tt><i>112</i>     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--resume&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">parse_bool</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (116 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l129">
-                  <tt><i>129</i>     <span class="n">config</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">))</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l130">
+                  <tt><i>130</i>     <span class="n">config</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">))</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (166 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l209">
-                  <tt><i>209</i>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">_eval.csv&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">use_wandb</span><span class="o">=</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">use_wandb</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">))</span></tt>
+               <a href="run_expt.source.html#l210">
+                  <tt><i>210</i>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">_eval.csv&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">use_wandb</span><span class="o">=</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">use_wandb</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (166 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l211">
-                  <tt><i>211</i>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">_algo.csv&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">use_wandb</span><span class="o">=</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">use_wandb</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">))</span></tt>
+               <a href="run_expt.source.html#l212">
+                  <tt><i>212</i>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">_algo.csv&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">use_wandb</span><span class="o">=</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">use_wandb</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (128 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l215">
-                  <tt><i>215</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">no_group_logging</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">is_classification</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">y_size</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">n_classes</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span></tt>
+               <a href="run_expt.source.html#l216">
+                  <tt><i>216</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">no_group_logging</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">is_classification</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">y_size</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">n_classes</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (90 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l237">
-                  <tt><i>237</i>             <span class="n">save_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;epoch-last_model.pth&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l238">
+                  <tt><i>238</i>             <span class="n">save_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;epoch-last_model.pth&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (84 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l241">
-                  <tt><i>241</i>                     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pth&#39;</span><span class="p">)]</span></tt>
+               <a href="run_expt.source.html#l242">
+                  <tt><i>242</i>                     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pth&#39;</span><span class="p">)]</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (109 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l244">
-                  <tt><i>244</i>                     <span class="n">save_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">latest_epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l245">
+                  <tt><i>245</i>                     <span class="n">save_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">latest_epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (106 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l248">
-                  <tt><i>248</i>                 <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Resuming from epoch </span><span class="si">{</span><span class="n">epoch_offset</span><span class="si">}</span><span class="s1"> with best val metric </span><span class="si">{</span><span class="n">best_val_metric</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l249">
+                  <tt><i>249</i>                 <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Resuming from epoch </span><span class="si">{</span><span class="n">epoch_offset</span><span class="si">}</span><span class="s1"> with best val metric </span><span class="si">{</span><span class="n">best_val_metric</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (96 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l266">
-                  <tt><i>266</i>             <span class="n">eval_model_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;epoch-best_model.pth&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l267">
+                  <tt><i>267</i>             <span class="n">eval_model_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;epoch-best_model.pth&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (112 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l268">
-                  <tt><i>268</i>             <span class="n">eval_model_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">eval_epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l269">
+                  <tt><i>269</i>             <span class="n">eval_model_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">eval_epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -433,13 +440,13 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="run_expt.source.html#l225">
-                  <tt><i>225</i>     <span class="c1">## Initialize algorithm</span></tt>
+               <a href="run_expt.source.html#l226">
+                  <tt><i>226</i>     <span class="c1">## Initialize algorithm</span></tt>
                </a>
             </li><li>
                
-               <a href="run_expt.source.html#l234">
-                  <tt><i>234</i>         <span class="c1">## Load saved results if resuming</span></tt>
+               <a href="run_expt.source.html#l235">
+                  <tt><i>235</i>         <span class="c1">## Load saved results if resuming</span></tt>
                </a>
             </li>
             </ul>
@@ -460,15 +467,15 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Too many blank lines (3):</p>
                
-               <a href="run_expt.source.html#l26">
-                  <tt><i>26</i> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span></tt>
+               <a href="run_expt.source.html#l27">
+                  <tt><i>27</i> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span></tt>
                </a>
             </li><li>
                
                <p>Too many blank lines (2):</p>
                
-               <a href="run_expt.source.html#l122">
-                  <tt><i>122</i>     <span class="c1"># For the GlobalWheat detection dataset,</span></tt>
+               <a href="run_expt.source.html#l123">
+                  <tt><i>123</i>     <span class="c1"># For the GlobalWheat detection dataset,</span></tt>
                </a>
             </li>
             </ul>
@@ -485,8 +492,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="run_expt.source.html#l253">
-                  <tt><i>253</i>         <span class="k">if</span> <span class="n">resume_success</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
+               <a href="run_expt.source.html#l254">
+                  <tt><i>254</i>         <span class="k">if</span> <span class="n">resume_success</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
                </a>
             </li>
             </ul>
