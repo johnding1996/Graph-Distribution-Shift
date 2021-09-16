@@ -145,6 +145,7 @@ def main():
     if not os.path.exists(config.log_dir):
         os.makedirs(config.log_dir)
     logger = Logger(os.path.join(config.log_dir, 'log.txt'), mode)
+    result_logger = Logger(os.path.join(config.log_dir, 'result.txt'), mode)
 
     # Record config
     log_config(config, logger)
@@ -265,6 +266,7 @@ def main():
             algorithm=algorithm,
             datasets=datasets,
             general_logger=logger,
+            result_logger=logger,
             config=config,
             epoch_offset=epoch_offset,
             best_val_metric=best_val_metric)
@@ -285,6 +287,7 @@ def main():
             datasets=datasets,
             epoch=epoch,
             general_logger=logger,
+            result_logger=logger,
             config=config,
             is_best=is_best)
 
