@@ -24,7 +24,9 @@ class GNN_OGB(torch.nn.Module):
                  in_edge_features=None, 
                  d_in_node_encoder=None,
                  d_in_edge_encoder=None,
-                 d_degree=None):
+                 d_degree=None,
+                 emb_dim=300,
+                 num_layers=5):
 
         super(GNN_OGB, self).__init__()
 
@@ -38,12 +40,14 @@ class GNN_OGB(torch.nn.Module):
         self.final_projection = [False, False, False, False, False, True]
         self.residual = False
         self.inject_ids = False
-
+        self.emb_dim = emb_dim
+        self.num_layers = num_layers
+        
 
         id_scope = 'local'
-        d_msg = 300
-        d_out = [300, 300, 300, 300, 300]
-        d_h = [600]
+        d_msg = emb_dim
+        d_out = emb_dim
+        d_h = [2 * emb_dim]
         aggr = 'add'
         flow = 'source_to_target'
         msg_kind = 'ogb'
@@ -73,7 +77,8 @@ class GNN_OGB(torch.nn.Module):
         #-------------- Edge embedding (for each GNN layer)
         self.edge_encoder = []
         d_ef = []
-        for i in range(len(d_out)):
+        # for i in range(len(d_out)):
+        for i in range(self.num_layers):
             edge_encoder_layer = DiscreteEmbedding('bond_encoder', 
                                                     in_edge_features,
                                                     d_in_edge_encoder,
@@ -87,7 +92,9 @@ class GNN_OGB(torch.nn.Module):
         # -------------- Identifier embedding (for each GNN layer)
         self.id_encoder = []
         d_id = []
-        num_id_encoders = len(d_out) if self.inject_ids else 1
+        # num_id_encoders = len(d_out) if self.inject_ids else 1
+        num_id_encoders = self.num_layers if self.inject_ids else 1
+
         for i in range(num_id_encoders):
             id_encoder_layer = DiscreteEmbedding('embedding', 
                                                  len(d_in_id),
@@ -113,8 +120,8 @@ class GNN_OGB(torch.nn.Module):
         self.conv = []
         self.batch_norms = []
         self.mlp_vn = []
-        for i in range(len(d_out)):
-
+        # for i in range(len(d_out)):
+        for i in range(self.num_layers):
             # if i > 0 and self.vn:
             #     #-------------- vn msg function     
             #     mlp_vn_temp = mlp(d_in_vn, kwargs['d_out_vn'][i-1], d_h[i], seed, activation_mlp, bn_mlp)
@@ -127,7 +134,7 @@ class GNN_OGB(torch.nn.Module):
                  'degree_as_tag': degree_as_tag,
                  'retain_features': retain_features[i],
                  'd_msg': d_msg,
-                 'd_up': d_out[i],
+                 'd_up': d_out,
                  'd_h': d_h,
                  'seed': seed,
                  'activation_name': activation_mlp,
@@ -153,10 +160,10 @@ class GNN_OGB(torch.nn.Module):
                 filter_fn = MPNN_edge_sparse_ogb
             self.conv.append(filter_fn(**kwargs_filter))
 
-            bn_layer = nn.BatchNorm1d(d_out[i]) if self.bn else None
+            bn_layer = nn.BatchNorm1d(d_out) if self.bn else None
             self.batch_norms.append(bn_layer)
 
-            d_in = d_out[i]
+            d_in = d_out
 
         self.conv = nn.ModuleList(self.conv)
         self.batch_norms = nn.ModuleList(self.batch_norms)
@@ -184,7 +191,7 @@ class GNN_OGB(torch.nn.Module):
         if out_features is None:
             self.lin_proj = None
         else:
-            self.lin_proj = nn.Linear(d_out[-1], out_features)
+            self.lin_proj = nn.Linear(d_out, out_features)
 
 
         #-------------- Activation fn (same across the network)
