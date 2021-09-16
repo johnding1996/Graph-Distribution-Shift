@@ -1,5 +1,6 @@
 import os
-from .utils_graph_processing import subgraph_isomorphism_edge_counts, subgraph_isomorphism_vertex_counts, induced_edge_automorphism_orbits, edge_automorphism_orbits, automorphism_orbits
+from .utils_graph_processing import subgraph_isomorphism_edge_counts, subgraph_isomorphism_vertex_counts, \
+    induced_edge_automorphism_orbits, edge_automorphism_orbits, automorphism_orbits
 from .utils_ids import subgraph_counts2ids
 from .utils_data_gen import generate_dataset
 from .utils_graph_learning import multi_class_accuracy
@@ -13,18 +14,19 @@ import glob
 import re
 import types
 
+
 def get_custom_edge_list(ks, substructure_type=None, filename=None):
     '''
         Instantiates a list of `edge_list`s representing substructures
         of type `substructure_type` with sizes specified by `ks`.
-    ''' 
+    '''
     if substructure_type is None and filename is None:
         raise ValueError('You must specify either a type or a filename where to read substructures from.')
     edge_lists = []
     for k in ks:
         if substructure_type is not None:
             graphs_nx = getattr(nx, substructure_type)(k)
-            
+
         else:
             graphs_nx = nx.read_graph6(os.path.join(filename, 'graph{}c.g6'.format(k)))
         if isinstance(graphs_nx, list) or isinstance(graphs_nx, types.GeneratorType):
@@ -32,25 +34,21 @@ def get_custom_edge_list(ks, substructure_type=None, filename=None):
         else:
             edge_lists.append(list(graphs_nx.edges))
 
-   
     return edge_lists
 
 
-
-
-def prepare_dataset(path, 
-                    dataset, 
-                    name, 
-                    id_scope, 
+def prepare_dataset(path,
+                    dataset,
+                    name,
+                    id_scope,
                     id_type,
-                    k, 
-                    extract_ids_fn, 
+                    k,
+                    extract_ids_fn,
                     count_fn,
                     automorphism_fn,
                     multiprocessing,
                     num_processes,
                     **subgraph_params):
-
     if dataset in ['bioinformatics', 'social', 'chemical', 'ogb', 'SR_graphs']:
         data_folder = os.path.join(path, 'processed', id_scope)
         if not os.path.exists(data_folder):
@@ -88,10 +86,11 @@ def prepare_dataset(path,
                            'binomial_tree',
                            'star_graph']:
                 k_min = 2 if id_type == 'star_graph' else 3
-                succeded, graphs_ptg, num_classes, orbit_partition_sizes = try_downgrading(data_folder, 
-                                                                                           id_type, 
-                                                                                           subgraph_params['induced'], 
-                                                                                           subgraph_params['directed_orbits'] 
+                succeded, graphs_ptg, num_classes, orbit_partition_sizes = try_downgrading(data_folder,
+                                                                                           id_type,
+                                                                                           subgraph_params['induced'],
+                                                                                           subgraph_params[
+                                                                                               'directed_orbits']
                                                                                            and id_scope == 'local',
                                                                                            k, k_min)
                 if succeded:  # save the dataset
@@ -103,13 +102,13 @@ def prepare_dataset(path,
 
         graphs_ptg, num_classes, num_node_type, num_edge_type, orbit_partition_sizes = generate_dataset(path,
                                                                                                         name,
-                                                                                                        k, 
-                                                                                                        extract_ids_fn, 
+                                                                                                        k,
+                                                                                                        extract_ids_fn,
                                                                                                         count_fn,
                                                                                                         automorphism_fn,
                                                                                                         id_type,
                                                                                                         multiprocessing,
-                                                                                                        num_processes, 
+                                                                                                        num_processes,
                                                                                                         **subgraph_params)
         if data_file is not None:
             print("Saving dataset to {}".format(data_file))
@@ -171,11 +170,12 @@ def find_id_filename(data_folder, id_type, induced, directed_orbits, k):
             return name, k_found
     return None, None
 
+
 def downgrade_k(dataset, k, orbit_partition_sizes, k_min):
     '''
         Donwgrades `dataset` by keeping only the orbits of the requested substructures.
     '''
-    feature_vector_size = sum(orbit_partition_sizes[0:k-k_min+1])
+    feature_vector_size = sum(orbit_partition_sizes[0:k - k_min + 1])
     graphs_ptg = list()
     for data in dataset:
         new_data = Data()
@@ -184,6 +184,4 @@ def downgrade_k(dataset, k, orbit_partition_sizes, k_min):
             setattr(new_data, name, value)
         setattr(new_data, 'identifiers', data.identifiers[:, 0:feature_vector_size])
         graphs_ptg.append(new_data)
-    return graphs_ptg, orbit_partition_sizes[0:k-k_min+1]
-    
-    
+    return graphs_ptg, orbit_partition_sizes[0:k - k_min + 1]
