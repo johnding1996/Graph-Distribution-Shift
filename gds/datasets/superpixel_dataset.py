@@ -6,7 +6,7 @@ from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
-from pyg_superpixel_dataset import PyGSuperPixelDataset
+from .pyg_superpixel_dataset import PyGSuperPixelDataset
 import pdb
 from torch_geometric.utils import to_dense_adj
 
