@@ -9,7 +9,7 @@ from losses import initialize_loss
 from gds.common.utils import get_counts
 
 
-def initialize_algorithm(config, datasets, train_grouper):
+def initialize_algorithm(config, datasets, full_dataset, train_grouper):
     train_dataset = datasets['train']['dataset']
     train_loader = datasets['train']['loader']
 
@@ -49,7 +49,8 @@ def initialize_algorithm(config, datasets, train_grouper):
             grouper=train_grouper,
             loss=loss,
             metric=metric,
-            n_train_steps=n_train_steps)
+            n_train_steps=n_train_steps,
+            full_dataset=full_dataset)
     elif config.algorithm == 'groupDRO':
         train_g = train_grouper.metadata_to_group(train_dataset.metadata_array)
         is_group_in_train = get_counts(train_g, train_grouper.n_groups) > 0

@@ -168,6 +168,7 @@ def main():
         k=config.k,
         **config.dataset_kwargs)
 
+
     train_grouper = CombinatorialGrouper(
         dataset=full_dataset,
         groupby_fields=config.groupby_fields)
@@ -230,13 +231,16 @@ def main():
         log_grouper = train_grouper
     log_group_data(datasets, log_grouper, logger)
 
+    
     ## Initialize algorithm
     algorithm = initialize_algorithm(
         config=config,
         datasets=datasets,
+        full_dataset=full_dataset,
         train_grouper=train_grouper)
 
     model_prefix = get_model_prefix(datasets['train'], config)
+   
 
     if not config.eval_only:
         ## Load saved results if resuming

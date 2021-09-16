@@ -318,7 +318,6 @@ class GSN():
        
 
 
-
         ## node and edge feature dimensions
         if graphs_ptg[0].x.dim()==1:
             num_features = 1
@@ -362,7 +361,7 @@ class GSN():
                                                                         degree_encoding,
                                                                         **encoding_parameters)
         
-        return graphs_ptg                                                                
+        return graphs_ptg, encoder_ids, d_id, d_degree                                                                
                                                      
         
             
