@@ -25,26 +25,21 @@ class AbstractDANN(SingleModelAlgorithm):
             metric=metric,
             n_train_steps=n_train_steps,
         )
+        assert config.num_domains <= 1000 # domain space shouldn't be too large
+
         self.featurizer = featurizer
         self.classifier = classifier
         self.register_buffer('update_count', torch.tensor([0]))
 
 
 ##############################################
-        self.hparams = {
-            'lr_d': 5e-5,
-            'weight_decay_d': 0,
-            'beta1': 0.5,
-            'lr_g': 5e-5,
-            'weight_decay_g': 0,
-        }
         self.conditional = conditional
         self.class_balance = class_balance
         num_classes = d_out
         emb_dim = self.featurizer.d_out
         self.discriminator = torch.nn.Sequential(torch.nn.Linear(emb_dim, emb_dim),
                                   torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),
-                                  torch.nn.Linear(emb_dim, num_domains))
+                                  torch.nn.Linear(emb_dim, config.num_domains))
         self.class_embeddings = torch.nn.Embedding(num_classes,
             self.featurizer.d_out)
 
@@ -52,16 +47,16 @@ class AbstractDANN(SingleModelAlgorithm):
         self.disc_opt = torch.optim.Adam(
             (list(self.discriminator.parameters()) +
                 list(self.class_embeddings.parameters())),
-            lr=self.hparams["lr_d"],
-            weight_decay=self.hparams['weight_decay_d'],
-            betas=(self.hparams['beta1'], 0.9))
+            lr=config.lr,
+            weight_decay=0,
+            betas=(0.5, 0.9))
 
         self.gen_opt = torch.optim.Adam(
             (list(self.featurizer.parameters()) +
                 list(self.classifier.parameters())),
-            lr=self.hparams["lr_g"],
-            weight_decay=self.hparams['weight_decay_g'],
-            betas=(self.hparams['beta1'], 0.9))
+            lr=config.lr,
+            weight_decay=0,
+            betas=(0.5, 0.9))
 
     def update(self, batch):
 
@@ -84,7 +79,7 @@ class AbstractDANN(SingleModelAlgorithm):
         disc_out = self.discriminator(disc_input)
 
         # should be the domain label
-        disc_labels = torch.arange(len(x), device=self.device)
+        disc_labels = metadata[:,0].flatten().to(self.device)
 
         if self.class_balance:
             y_counts = F.one_hot(y_true).sum(dim=0)
