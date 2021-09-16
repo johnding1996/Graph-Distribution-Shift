@@ -21,7 +21,7 @@ dataset_defaults = {
     },
     'ogb-molhiv': {
         'split_scheme': 'official',
-        'model_kwargs': {'dataset_group': 'mol', 'feature_dim': 2, 'dropout': 0.5}, # include pretrained
+        'model_kwargs': {'dataset_group': 'mol', 'dropout': 0.5}, # include pretrained
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['scaffold', ],
         'val_metric': 'rocauc',
@@ -78,7 +78,7 @@ dataset_defaults = {
     },
     'RotatedMNIST': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained
+        'model_kwargs': {'feature_dim': 3, 'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
         'val_metric': 'acc',

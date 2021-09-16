@@ -1,7 +1,6 @@
 import os
 import torch
 import numpy as np
-from gds.datasets.wilds_dataset import GDSDataset
 from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
@@ -9,6 +8,8 @@ import torch_geometric
 from .pyg_superpixel_dataset import PyGSuperPixelDataset
 import pdb
 from torch_geometric.utils import to_dense_adj
+
+from .gds_dataset import GDSDataset
 
 
 class SuperPixelDataset(GDSDataset):
@@ -62,7 +63,7 @@ class SuperPixelDataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official'):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
@@ -109,12 +110,13 @@ class SuperPixelDataset(GDSDataset):
         self._split_array[val_split_idx] = 1
         self._split_array[test_split_idx] = 2
 
-        if torch_geometric.__version__ >= '1.7.0':
-            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+        if dataset_kwargs['model'] == '3wlgnn':
+            self._collate = self.collate_dense
         else:
-            self._collate = PyGCollater(follow_batch=[])
-
-        self._collate = self.collate_dense
+            if torch_geometric.__version__ >= '1.7.0':
+                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+            else:
+                self._collate = PyGCollater(follow_batch=[])
 
         self._metric = Evaluator('ogbg-ppa')
 
@@ -167,7 +169,6 @@ class SuperPixelDataset(GDSDataset):
             x_node_feat.append(adj_node_feat)
 
         x_node_feat = torch.stack(x_node_feat)
-
         return x_node_feat, y, metadata
 
     def _sym_normalize_adj(self, adj):

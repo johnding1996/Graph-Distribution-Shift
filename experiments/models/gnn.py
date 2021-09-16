@@ -18,7 +18,8 @@ class GNN(torch.nn.Module):
         - prediction (Tensor): float torch tensor of shape (num_graphs, num_tasks)
     """
 
-    def __init__(self, gnn_type='gin', dataset_group='mol', num_tasks=128, num_layers = 5, emb_dim = 300, dropout = 0.5):
+    def __init__(self, gnn_type='gin', dataset_group='mol', num_tasks=128, num_layers=5, emb_dim=300, dropout=0.5,
+                 **model_kwargs):
         """
         Args:
             - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)

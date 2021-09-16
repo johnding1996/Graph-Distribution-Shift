@@ -62,7 +62,8 @@ class OGBHIVDataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', gsn=False, id_type='cycle_graph', k=6):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official',
+                 gsn=False, id_type='cycle_graph', k=6, **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.')

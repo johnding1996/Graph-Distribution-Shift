@@ -59,7 +59,6 @@ class SingleModelAlgorithm(GroupAlgorithm):
             else:
                 outputs = self.model(x, None)
         else:
-       
             outputs = self.model(x)
         results = {
             'g': g,
@@ -111,9 +110,6 @@ class SingleModelAlgorithm(GroupAlgorithm):
         assert self.is_training
         # process batch
         results = self.process_batch(batch)
-
-      
-
         self._update(results)
         # import pdb;pdb.set_trace()
         # log results
@@ -128,8 +124,6 @@ class SingleModelAlgorithm(GroupAlgorithm):
         """
         # compute objective
         objective = self.objective(results)
-
-
         results['objective'] = objective.item()
         # update
         self.model.zero_grad()

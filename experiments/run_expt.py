@@ -122,11 +122,9 @@ def main():
     config = parser.parse_args()
     config = populate_defaults(config)
 
-    # For the GlobalWheat detection dataset,
-    # we need to change the multiprocessing strategy or there will be
-    # too many open file descriptors.
-    if config.dataset == 'globalwheat':
-        torch.multiprocessing.set_sharing_strategy('file_system')
+    # For the 3wlgnn model, we need to set batch_size to 1
+    if config.model == '3wlgnn':
+        config.batch_size = 1
 
     # Set device
     config.device = torch.device("cuda:" + str(config.device)) if torch.cuda.is_available() else torch.device("cpu")
@@ -159,9 +157,12 @@ def main():
         root_dir=config.root_dir,
         download=config.download,
         split_scheme=config.split_scheme,
+        # need to be refactored
         gsn=config.gsn,
         id_type=config.id_type,
         k=config.k,
+        algorithm=config.algorithm,
+        model=config.model,
         **config.dataset_kwargs)
 
     train_grouper = CombinatorialGrouper(

@@ -12,13 +12,12 @@ import torch.nn.functional as F
 
 
 class ThreeWLGNNNet(nn.Module):
-    def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=3, hidden_dim=128,
+    def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,
                  residual=False, **model_kwargs):
         assert gnn_type == '3wlgnn'
         super(ThreeWLGNNNet, self).__init__()
         self.in_dim_node = feature_dim
         self.residual = residual
-        self.diag_pool_readout = True  # if True, uses the new_suffix readout from original code
 
         block_features = [hidden_dim] * n_layers  # L here is the block number
         original_features_num = self.in_dim_node + 1  # Number of features of the input
@@ -31,44 +30,18 @@ class ThreeWLGNNNet(nn.Module):
             self.reg_blocks.append(mlp_block)
             last_layer_features = next_layer_features
 
-        if self.diag_pool_readout:
-            self.fc_layers = nn.ModuleList()
-            for output_features in block_features:
-                # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected
-                fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)
-                self.fc_layers.append(fc)
-        else:
-            self.mlp_prediction = MLPReadout(sum(block_features) + original_features_num, num_tasks)
+        self.fc_layers = nn.ModuleList()
+        for output_features in block_features:
+            # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected
+            fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)
+            self.fc_layers.append(fc)
 
     def forward(self, x):
-        print(x)
-        if self.diag_pool_readout:
-            scores = torch.tensor(0, device=x.device, dtype=x.dtype)
-        else:
-            x_list = [x]
-
+        scores = torch.tensor(0, device=x.device, dtype=x.dtype)
         for i, block in enumerate(self.reg_blocks):
-
             x = block(x)
-            if self.diag_pool_readout:
-                scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores
-            else:
-                x_list.append(x)
-
-        if self.diag_pool_readout:
-            return scores
-        else:
-            # readout like RingGNN
-            x_list = [torch.sum(torch.sum(x, dim=3), dim=2) for x in x_list]
-            x_list = torch.cat(x_list, dim=1)
-
-            x_out = self.mlp_prediction(x_list)
-            return x_out
-
-    def loss(self, pred, label):
-        criterion = nn.CrossEntropyLoss()
-        loss = criterion(pred, label)
-        return loss
+            scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores
+        return scores
 
 
 class MLPReadout(nn.Module):
