@@ -63,7 +63,7 @@ class OGBHIVDataset(GDSDataset):
             'compressed_size': None}}
 
     def __init__(self, version=None, root_dir='data', download=False, split_scheme='official',
-                 gsn=False, id_type='cycle_graph', k=6, **dataset_kwargs):
+                 subgraph=False, id_type='cycle_graph', k=6, **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.')
@@ -105,13 +105,13 @@ class OGBHIVDataset(GDSDataset):
 
 
         # GSN
-        self.gsn = gsn
+        self.gsn = subgraph
         self.id_type = id_type
         self.k = k
         if self.gsn:
             from gds.datasets.gsn.gsn_data_prep import GSN
-            gsn = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
-            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = gsn.preprocess()
+            subgraph = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
+            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess()
 
             if self.graphs_ptg[0].x.dim()==1:
                 self.num_features = 1

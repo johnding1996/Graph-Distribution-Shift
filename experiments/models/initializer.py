@@ -1,7 +1,10 @@
 import torch.nn as nn
 
+from models.gnn import GNN
+from models.gsn.gnn import GNN_GSN
 
-def initialize_model(config, d_out, full_dataset=None, is_featurizer=False):
+
+def initialize_model(config, d_out, is_featurizer=False, full_dataset=None):
     """
     Initializes models according to the config
         Args:
@@ -12,45 +15,39 @@ def initialize_model(config, d_out, full_dataset=None, is_featurizer=False):
             If is_featurizer=True:
             - featurizer: a model that outputs feature Tensors of shape (batch_size, ..., feature dimensionality)
             - classifier: a model that takes in feature Tensors and outputs predictions. In most cases, this is a linear layer.
-
             If is_featurizer=False:
             - model: a model that is equivalent to nn.Sequential(featurizer, classifier)
     """
-    if full_dataset == None:
-        from models.gnn import GNN
+    if full_dataset is None:
         if is_featurizer:
             featurizer = GNN(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
             classifier = nn.Linear(featurizer.d_out, d_out)
             model = (featurizer, classifier)
         else:
             model = GNN(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
+    # We use the full dataset only for GSN
+    # Need to be refactored
     else:
-        from models.gsn.gnn import GNN_OGB
         if is_featurizer:
-            
-            featurizer = GNN_OGB(in_features=full_dataset.num_features,
-                 out_features=None, 
-                 encoder_ids=full_dataset.encoder_ids,
-                 d_in_id=full_dataset.d_id,
-                 in_edge_features=full_dataset.num_edge_features, 
-                 d_in_node_encoder=full_dataset.d_in_node_encoder,
-                 d_in_edge_encoder=full_dataset.d_in_edge_encoder,
-                 d_degree=full_dataset.d_degree)
+            featurizer = GNN_GSN(in_features=full_dataset.num_features,
+                                 out_features=None,
+                                 encoder_ids=full_dataset.encoder_ids,
+                                 d_in_id=full_dataset.d_id,
+                                 in_edge_features=full_dataset.num_edge_features,
+                                 d_in_node_encoder=full_dataset.d_in_node_encoder,
+                                 d_in_edge_encoder=full_dataset.d_in_edge_encoder,
+                                 d_degree=full_dataset.d_degree)
             classifier = nn.Linear(featurizer.d_out, d_out)
             model = (featurizer, classifier)
         else:
-          
-            model = GNN_OGB(in_features=full_dataset.num_features,
-                 out_features=d_out, 
-                 encoder_ids=full_dataset.encoder_ids,
-                 d_in_id=full_dataset.d_id,
-                 in_edge_features=full_dataset.num_edge_features, 
-                 d_in_node_encoder=full_dataset.d_in_node_encoder,
-                 d_in_edge_encoder=full_dataset.d_in_edge_encoder,
-                 d_degree=full_dataset.d_degree)
-
-
-
+            model = GNN_GSN(in_features=full_dataset.num_features,
+                            out_features=d_out,
+                            encoder_ids=full_dataset.encoder_ids,
+                            d_in_id=full_dataset.d_id,
+                            in_edge_features=full_dataset.num_edge_features,
+                            d_in_node_encoder=full_dataset.d_in_node_encoder,
+                            d_in_edge_encoder=full_dataset.d_in_edge_encoder,
+                            d_degree=full_dataset.d_degree)
 
     # The `needs_y` attribute specifies whether the model's forward function
     # needs to take in both (x, y).
