@@ -322,7 +322,7 @@ Unannotated (x4)">        general_logger.write(results_str)</span>
 Unannotated (x2)">    return results, epoch_y_pred</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def train(algorithm, datasets, general_logger, config, epoch_offset, best_val_metric):</span>
+<span class="line-any" title="No Anys on this line!">def train(algorithm, datasets, general_logger, result_logger, config, epoch_offset, best_val_metric):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    for epoch in range(epoch_offset, config.n_epochs):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -383,7 +383,7 @@ Unannotated (x15)">            save_pred_if_needed(y_pred, datasets[split], epoc
 Unannotated (x3)">        general_logger.write('\n')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def evaluate(algorithm, datasets, epoch, general_logger, config, is_best):</span>
+<span class="line-any" title="No Anys on this line!">def evaluate(algorithm, datasets, epoch, general_logger, result_logger, config, is_best):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    algorithm.eval()</span>
 <span class="line-any" title="Any Types on this line: 
