@@ -4,9 +4,9 @@
 <link rel="stylesheet" type="text/css" href="../../../mypy-html.css">
 </head>
 <body>
-<h2>gds.datasets.ogbmolhiv_dataset</h2>
+<h2>experiments.algorithms.DANN</h2>
 <table>
-<caption>gds/datasets/ogbmolhiv_dataset.py</caption>
+<caption>experiments/algorithms/DANN.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -149,218 +149,247 @@
 <span id="L139" class="lineno"><a class="lineno" href="#L139">139</a></span>
 <span id="L140" class="lineno"><a class="lineno" href="#L140">140</a></span>
 <span id="L141" class="lineno"><a class="lineno" href="#L141">141</a></span>
-<span id="L142" class="lineno"><a class="lineno" href="#L142">142</a></span>
-<span id="L143" class="lineno"><a class="lineno" href="#L143">143</a></span>
-<span id="L144" class="lineno"><a class="lineno" href="#L144">144</a></span>
-<span id="L145" class="lineno"><a class="lineno" href="#L145">145</a></span>
-<span id="L146" class="lineno"><a class="lineno" href="#L146">146</a></span>
-<span id="L147" class="lineno"><a class="lineno" href="#L147">147</a></span>
-<span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
-<span id="L149" class="lineno"><a class="lineno" href="#L149">149</a></span>
-<span id="L150" class="lineno"><a class="lineno" href="#L150">150</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
-<span class="line-precise" title="No Anys on this line!">from collections import namedtuple</span>
-<span class="line-any" title="No Anys on this line!">import numpy as np</span>
-<span class="line-any" title="No Anys on this line!">import torch</span>
-<span class="line-any" title="No Anys on this line!">import torch_geometric</span>
-<span class="line-any" title="No Anys on this line!">from ogb.graphproppred import PygGraphPropPredDataset, Evaluator</span>
-<span class="line-any" title="No Anys on this line!">from ogb.utils.url import download_url</span>
-<span class="line-any" title="No Anys on this line!">from torch_geometric.data.dataloader import Collater as PyGCollater</span>
-<span class="line-precise" title="No Anys on this line!">from collections import namedtuple</span>
-<span class="line-any" title="No Anys on this line!">import tqdm</span>
-<span class="line-precise" title="No Anys on this line!">from gds.datasets.gds_dataset import GDSDataset</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import torch.functional as F</span>
+<span class="line-any" title="No Anys on this line!">from algorithms.single_model_algorithm import SingleModelAlgorithm</span>
+<span class="line-any" title="No Anys on this line!">from models.initializer import initialize_model</span>
+<span class="line-precise" title="No Anys on this line!">from utils import move_to</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-precise" title="No Anys on this line!">class AbstractDANN(SingleModelAlgorithm):</span>
+<span class="line-empty" title="No Anys on this line!">    """Domain-Adversarial Neural Networks (abstract class)"""</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">class OGBHIVDataset(GDSDataset):</span>
-<span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-empty" title="No Anys on this line!">    The OGB-molhiv dataset.</span>
-<span class="line-empty" title="No Anys on this line!">    This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Supported `split_scheme`:</span>
-<span class="line-empty" title="No Anys on this line!">        - 'official' or 'scaffold', which are equivalent</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Input (x):</span>
-<span class="line-empty" title="No Anys on this line!">        Molecular graphs represented as Pytorch Geometric data objects</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Label (y):</span>
-<span class="line-empty" title="No Anys on this line!">        y represents 128-class binary labels.</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Metadata:</span>
-<span class="line-empty" title="No Anys on this line!">        - scaffold</span>
-<span class="line-empty" title="No Anys on this line!">            Each molecule is annotated with the scaffold ID that the molecule is assigned to.</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Website:</span>
-<span class="line-empty" title="No Anys on this line!">        https://ogb.stanford.edu/docs/graphprop/#ogbg-mol</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Original publication:</span>
-<span class="line-empty" title="No Anys on this line!">        @article{hu2020ogb,</span>
-<span class="line-empty" title="No Anys on this line!">            title={Open Graph Benchmark: Datasets for Machine Learning on Graphs},</span>
-<span class="line-empty" title="No Anys on this line!">            author={W. {Hu}, M. {Fey}, M. {Zitnik}, Y. {Dong}, H. {Ren}, B. {Liu}, M. {Catasta}, J. {Leskovec}},</span>
-<span class="line-empty" title="No Anys on this line!">            journal={arXiv preprint arXiv:2005.00687},</span>
-<span class="line-empty" title="No Anys on this line!">            year={2020}</span>
-<span class="line-empty" title="No Anys on this line!">        }</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        @article{wu2018moleculenet,</span>
-<span class="line-empty" title="No Anys on this line!">            title={MoleculeNet: a benchmark for molecular machine learning},</span>
-<span class="line-empty" title="No Anys on this line!">            author={Z. {Wu}, B. {Ramsundar}, E. V {Feinberg}, J. {Gomes}, C. {Geniesse}, A. S {Pappu}, K. {Leswing}, V. {Pande}},</span>
-<span class="line-empty" title="No Anys on this line!">            journal={Chemical science},</span>
-<span class="line-empty" title="No Anys on this line!">            volume={9},</span>
-<span class="line-empty" title="No Anys on this line!">            number={2},</span>
-<span class="line-empty" title="No Anys on this line!">            pages={513--530},</span>
-<span class="line-empty" title="No Anys on this line!">            year={2018},</span>
-<span class="line-empty" title="No Anys on this line!">            publisher={Royal Society of Chemistry}</span>
-<span class="line-empty" title="No Anys on this line!">        }</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    License:</span>
-<span class="line-empty" title="No Anys on this line!">        This dataset is distributed under the MIT license.</span>
-<span class="line-empty" title="No Anys on this line!">        https://github.com/snap-stanford/ogb/blob/master/LICENSE</span>
-<span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    _dataset_name = 'ogb-molhiv'</span>
-<span class="line-precise" title="No Anys on this line!">    _versions_dict = {</span>
-<span class="line-precise" title="No Anys on this line!">        '1.0': {</span>
-<span class="line-precise" title="No Anys on this line!">            'download_url': None,</span>
-<span class="line-precise" title="No Anys on this line!">            'compressed_size': None}}</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official',</span>
-<span class="line-any" title="No Anys on this line!">                 gsn=False, id_type='cycle_graph', k=6, **dataset_kwargs):</span>
+<span class="line-empty" title="No Anys on this line!">    # def __init__(self, input_shape, num_classes, num_domains,</span>
+<span class="line-empty" title="No Anys on this line!">    #              hparams, conditional, class_balance):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, config, d_out, grouper, loss,</span>
+<span class="line-empty" title="No Anys on this line!">                 metric, n_train_steps, conditional, class_balance):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self._version = version</span>
+Unannotated (x5)
+Unimported (x1)">        featurizer, classifier = initialize_model(config, d_out=d_out, is_featurizer=True)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if version is not None:</span>
+Unannotated (x6)">        featurizer = featurizer.to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            raise ValueError('Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.')</span>
-<span class="line-empty" title="No Anys on this line!">        # internally call ogb package</span>
+Unannotated (x6)">        classifier = classifier.to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">        self.ogb_dataset = PygGraphPropPredDataset(name='ogbg-molhiv', root=root_dir)</span>
+Unannotated (x10)
+Unimported (x1)">        model = torch.nn.Sequential(featurizer, classifier).to(config.device)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        # set variables</span>
+<span class="line-empty" title="No Anys on this line!">        # initialize module</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._data_dir = self.ogb_dataset.root</span>
+Unannotated (x1)">        super().__init__(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if split_scheme == 'official':</span>
+Unannotated (x1)">            config=config,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            split_scheme = 'scaffold'</span>
+Unannotated (x1)">            model=model,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self._split_scheme = split_scheme</span>
+Unannotated (x1)">            grouper=grouper,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float</span>
+Unannotated (x1)">            loss=loss,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._y_size = self.ogb_dataset.num_tasks</span>
-<span class="line-empty" title="No Anys on this line!">        # self._n_classes = self.ogb_dataset.__num_classes__</span>
+Unannotated (x1)">            metric=metric,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        self._n_classes = 1</span>
+Unannotated (x1)">            n_train_steps=n_train_steps,</span>
+<span class="line-empty" title="No Anys on this line!">        )</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        assert config.num_domains &lt;= 1000 # domain space shouldn't be too large</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">        self._split_array = torch.zeros(len(self.ogb_dataset)).long()</span>
+Unannotated (x2)">        self.featurizer = featurizer</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        split_idx = self.ogb_dataset.get_idx_split()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['train']] = 0</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['valid']] = 1</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['test']] = 2</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        self._y_array = self.ogb_dataset.data.y</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        self._metadata_fields = ['scaffold', 'y']</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if not os.path.exists(metadata_file_path):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Unimported (x1)">            download_url('https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1',</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">                         os.path.join(self.ogb_dataset.root, 'raw'))</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x11)
-Unimported (x2)">        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">        self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        if torch_geometric.__version__ &gt;= '1.7.0':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">            self._collate = PyGCollater(follow_batch=[])</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        self._metric = Evaluator('ogbg-molhiv')</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        # GSN</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.gsn = gsn</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.id_type = id_type</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.k = k</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.gsn:</span>
-<span class="line-any" title="No Anys on this line!">            from gds.datasets.gsn.gsn_data_prep import GSN</span>
+Unannotated (x2)">        self.classifier = classifier</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Unimported (x1)">            gsn = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            graphs_ptg = gsn.preprocess()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            import pdb;pdb.set_trace()</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        </span>
+Unimported (x1)">        self.register_buffer('update_count', torch.tensor([0]))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">##############################################</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
+Unannotated (x2)">        self.conditional = conditional</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.class_balance = class_balance</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        num_classes = d_out</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        emb_dim = self.featurizer.d_out</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)
+Unimported (x2)">        self.discriminator = torch.nn.Sequential(torch.nn.Linear(emb_dim, emb_dim),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x2)">                                  torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">                                  torch.nn.Linear(emb_dim, config.num_domains))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">        self.class_embeddings = torch.nn.Embedding(num_classes,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            self.featurizer.d_out)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def get_input(self, idx):</span>
+<span class="line-empty" title="No Anys on this line!">        # Optimizers</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def eval(self, y_pred, y_true, metadata, prediction_fn=None):</span>
-<span class="line-empty" title="No Anys on this line!">        """</span>
-<span class="line-empty" title="No Anys on this line!">        Computes all evaluation metrics.</span>
-<span class="line-empty" title="No Anys on this line!">        Args:</span>
-<span class="line-empty" title="No Anys on this line!">            - y_pred (FloatTensor): Binary logits from a model</span>
-<span class="line-empty" title="No Anys on this line!">            - y_true (LongTensor): Ground-truth labels</span>
-<span class="line-empty" title="No Anys on this line!">            - metadata (Tensor): Metadata</span>
-<span class="line-empty" title="No Anys on this line!">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span>
-<span class="line-empty" title="No Anys on this line!">                                        Only None is supported because OGB Evaluators accept binary logits</span>
-<span class="line-empty" title="No Anys on this line!">        Output:</span>
-<span class="line-empty" title="No Anys on this line!">            - results (dictionary): Dictionary of evaluation metrics</span>
-<span class="line-empty" title="No Anys on this line!">            - results_str (str): String summarizing the evaluation metrics</span>
-<span class="line-empty" title="No Anys on this line!">        """</span>
+Unannotated (x4)
+Unimported (x1)">        self.disc_opt = torch.optim.Adam(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"</span>
+Unannotated (x5)">            (list(self.discriminator.parameters()) +</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
+Unannotated (x4)">                list(self.class_embeddings.parameters())),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            lr=config.lr,</span>
+<span class="line-any" title="No Anys on this line!">            weight_decay=0,</span>
+<span class="line-any" title="No Anys on this line!">            betas=(0.5, 0.9))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        results = self._metric.eval(input_dict)</span>
+Unannotated (x4)
+Unimported (x1)">        self.gen_opt = torch.optim.Adam(</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">            (list(self.featurizer.parameters()) +</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">                list(self.classifier.parameters())),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            lr=config.lr,</span>
+<span class="line-any" title="No Anys on this line!">            weight_decay=0,</span>
+<span class="line-any" title="No Anys on this line!">            betas=(0.5, 0.9))</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def update(self, batch):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        return results, f"ROCAUC: {results['rocauc']:.3f}\n"</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">if __name__ == '__main__':</span>
-<span class="line-precise" title="No Anys on this line!">    root = '/cmlscratch/kong/datasets/graph_domain'</span>
+Unannotated (x4)">        x, y_true, metadata = batch</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">    dataset = OGBHIVDataset(root_dir=root)</span>
+Unannotated (x4)
+Unimported (x1)">        x = move_to(x, self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        y_true = move_to(y_true, self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        g = move_to(self.grouper.metadata_to_group(metadata), self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        results = {</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'g': g,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'y_true': y_true,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'metadata': metadata,</span>
+<span class="line-empty" title="No Anys on this line!">        }</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    import pdb</span>
-<span class="line-precise" title="No Anys on this line!">    pdb.set_trace()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.update_count += 1</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        z = self.featurizer(x)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if self.conditional:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            disc_input = z + self.class_embeddings(y_true)</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            disc_input = z</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        disc_out = self.discriminator(disc_input)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # should be the domain label</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)">        disc_labels = metadata[:,0].flatten().to(self.device)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if self.class_balance:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">            y_counts = F.one_hot(y_true).sum(dim=0)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x11)">            weights = 1. / (y_counts[y_true] * y_counts.shape[0]).float()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            disc_loss = F.cross_entropy(disc_out, disc_labels, reduction='none')</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            disc_loss = (weights * disc_loss).sum()</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            disc_loss = F.cross_entropy(disc_out, disc_labels)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        disc_softmax = F.softmax(disc_out, dim=1)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x10)
+Unimported (x1)">        input_grad = torch.autograd.grad(disc_softmax[:, disc_labels].sum(),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            [disc_input], create_graph=True)[0]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">        grad_penalty = (input_grad**2).sum(dim=1).mean(dim=0)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        disc_loss += self.hparams['grad_penalty'] * grad_penalty</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        d_steps_per_g = self.hparams['d_steps_per_g_step']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        all_preds = self.classifier(z)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        results['y_pred'] = all_preds</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        classifier_loss = self.objective(results)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)">        if (self.update_count.item() % (1+d_steps_per_g) &lt; d_steps_per_g):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.disc_opt.zero_grad()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            disc_loss.backward()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.disc_opt.step()</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            gen_loss = (classifier_loss +</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">                        (self.hparams['lambda'] * -disc_loss))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.disc_opt.zero_grad()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.gen_opt.zero_grad()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            gen_loss.backward()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.gen_opt.step()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        results['objective'] = classifier_loss.item()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.step_schedulers(</span>
+<span class="line-any" title="No Anys on this line!">            is_epoch=False,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            metrics=results,</span>
+<span class="line-any" title="No Anys on this line!">            log_access=False)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # log results</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.update_log(results)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        return self.sanitize_dict(results)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def objective(self, results):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">        return self.loss.compute(results['y_pred'], results['y_true'], return_dict=False)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-precise" title="No Anys on this line!">class DANN(AbstractDANN):</span>
+<span class="line-empty" title="No Anys on this line!">    """Unconditional DANN"""</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, config, d_out, grouper, loss,</span>
+<span class="line-empty" title="No Anys on this line!">                 metric, n_train_steps):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        super(DANN, self).__init__(config, d_out, grouper, loss,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                 metric, n_train_steps, conditional=False, class_balance=False)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-precise" title="No Anys on this line!">class CDANN(AbstractDANN):</span>
+<span class="line-empty" title="No Anys on this line!">    """Conditional DANN"""</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, config, d_out, grouper, loss,</span>
+<span class="line-empty" title="No Anys on this line!">                 metric, n_train_steps):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        super(CDANN, self).__init__(config, d_out, grouper, loss,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                 metric, n_train_steps, conditional=True, class_balance=True)</span>
 </pre></td>
 </tr></tbody>
 </table>

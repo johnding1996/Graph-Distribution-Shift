@@ -4,6 +4,14 @@ experiments.algorithms package
 Submodules
 ----------
 
+experiments.algorithms.DANN module
+----------------------------------
+
+.. automodule:: experiments.algorithms.DANN
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 experiments.algorithms.ERM module
 ---------------------------------
 
@@ -24,6 +32,14 @@ experiments.algorithms.IRM module
 ---------------------------------
 
 .. automodule:: experiments.algorithms.IRM
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+experiments.algorithms.MLDG module
+----------------------------------
+
+.. automodule:: experiments.algorithms.MLDG
    :members:
    :undoc-members:
    :show-inheritance:
