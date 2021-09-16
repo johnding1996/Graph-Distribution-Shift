@@ -33,15 +33,19 @@ class GNN_OGB(torch.nn.Module):
         seed = 0
 
         #-------------- Initializations
+        self.emb_dim = emb_dim
+        self.num_layers = num_layers
         self.model_name = 'GSN_edge_sparse_ogb'
         self.readout = 'mean'
         self.dropout_features = 0.5
         self.bn = True
-        self.final_projection = [False, False, False, False, False, True]
+        
+        self.final_projection = [False for _ in range(self.num_layers)]
+        self.final_projection.append(True)            # self.final_projection = [False, False, False, False, False, True]
+        
         self.residual = False
         self.inject_ids = False
-        self.emb_dim = emb_dim
-        self.num_layers = num_layers
+
         
 
         id_scope = 'local'
@@ -56,9 +60,11 @@ class GNN_OGB(torch.nn.Module):
         bn_mlp = True
         jk_mlp = False            
         degree_embedding = None
-        retain_features = [False, True, True, True, True]
+        
+        retain_features = [True for _ in range(self.num_layers)]
+        retain_features[0] = False         # retain_features = [False, True, True, True, True]
+        
         degree_as_tag = False
-
         encoders_kwargs = {'seed':seed,
                            'activation_mlp': activation_mlp,
                            'bn_mlp': bn_mlp, 
@@ -69,7 +75,7 @@ class GNN_OGB(torch.nn.Module):
         self.input_node_encoder = DiscreteEmbedding('atom_encoder', 
                                                            in_features,
                                                            d_in_node_encoder,
-                                                           300,
+                                                           emb_dim,
                                                            **encoders_kwargs)
         d_in = self.input_node_encoder.d_out
 
@@ -77,12 +83,11 @@ class GNN_OGB(torch.nn.Module):
         #-------------- Edge embedding (for each GNN layer)
         self.edge_encoder = []
         d_ef = []
-        # for i in range(len(d_out)):
         for i in range(self.num_layers):
             edge_encoder_layer = DiscreteEmbedding('bond_encoder', 
                                                     in_edge_features,
                                                     d_in_edge_encoder,
-                                                    300,
+                                                    emb_dim,
                                                     **encoders_kwargs)
             self.edge_encoder.append(edge_encoder_layer)
             d_ef.append(edge_encoder_layer.d_out)
@@ -92,14 +97,13 @@ class GNN_OGB(torch.nn.Module):
         # -------------- Identifier embedding (for each GNN layer)
         self.id_encoder = []
         d_id = []
-        # num_id_encoders = len(d_out) if self.inject_ids else 1
         num_id_encoders = self.num_layers if self.inject_ids else 1
 
         for i in range(num_id_encoders):
             id_encoder_layer = DiscreteEmbedding('embedding', 
                                                  len(d_in_id),
                                                  d_in_id,
-                                                 300,
+                                                 emb_dim,
                                                  **encoders_kwargs)
             self.id_encoder.append(id_encoder_layer)
             d_id.append(id_encoder_layer.d_out)
@@ -111,7 +115,7 @@ class GNN_OGB(torch.nn.Module):
         self.degree_encoder = DiscreteEmbedding('None', 
                                                 1,
                                                 1,
-                                                300,
+                                                emb_dim,
                                                 **encoders_kwargs)
         d_degree = self.degree_encoder.d_out
     
@@ -120,7 +124,6 @@ class GNN_OGB(torch.nn.Module):
         self.conv = []
         self.batch_norms = []
         self.mlp_vn = []
-        # for i in range(len(d_out)):
         for i in range(self.num_layers):
             # if i > 0 and self.vn:
             #     #-------------- vn msg function     
