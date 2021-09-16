@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
 # Lines that begin with #SBATCH specify commands to be used by SLURM for scheduling
-<<<<<<< HEAD:experiments/launch/run_sanity_check_modified_kezhi.sh
-#SBATCH --job-name=graph-dg                           # sets the job name if not set from environment
-=======
 #SBATCH --job-name=gds_test                             # sets the job name if not set from environment
->>>>>>> de6c851eee21f22ee39bd9d785ee3aad1a026c03:experiments/launch/run_sanity_check_modified.sh
 #SBATCH --array=0-119                                   # Submit 8 array jobs, throttling to 4 at a time
 #SBATCH --output slurm-logs/%x_%A_%a.log                # indicates a file to redirect STDOUT to; %j is the jobid, _%A_%a is array task id
 #SBATCH --error slurm-logs/%x_%A_%a.log                 # indicates a file to redirect STDERR to; %j is the jobid,_%A_%a is array task id
