@@ -42,8 +42,10 @@ def main():
     parser.add_argument('--dataset_kwargs', nargs='*', action=ParseKwargs, default={})
     parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',
                         help='If true, tries to downloads the dataset if it does not exist in root_dir.')
-    parser.add_argument('--frac', type=float, default=1.0,
-                        help='Convenience parameter that scales all dataset splits down to the specified fraction, for development purposes. Note that this also scales the test set down, so the reported numbers are not comparable with the full test set.')
+    parser.add_argument('--use_frac', type=bool, default=True,
+                        help='Convenience parameter that scales all dataset splits down to the specified fraction, '
+                             'for development purposes. Note that this also scales the test set down, so the reported '
+                             'numbers are not comparable with the full test set.')
     parser.add_argument('--version', default=None, type=str)
 
     # Loaders
@@ -181,9 +183,10 @@ def main():
             verbose = False
 
         # Get subset
-        datasets[split]['dataset'] = full_dataset.get_subset(
-            split,
-            frac=config.frac)
+        if config.use_frac:
+            datasets[split]['dataset'] = full_dataset.get_subset(split, frac=config.default_frac)
+        else:
+            datasets[split]['dataset'] = full_dataset.get_subset(split, frac=1.0)
 
         if split == 'train':
             datasets[split]['loader'] = get_train_loader(
