@@ -24,7 +24,7 @@ algorithm=${3}
 model=${4}
 root_dir=${5}
 
-log_path=${root_dir}/sanity_check_logs/error.log
+log_path=${root_dir}/logs/error.txt
 
 (echo ${dataset} && echo ${algorithm} && echo ${model} && python run_expt.py --n_epochs 1 --device ${device} --dataset ${dataset}  --algorithm ${algorithm} --model ${model}  --root_dir ${root_dir}) 2> ${log_path}
 
@@ -36,7 +36,7 @@ device=0
 datasets=( ogb-molpcba ogb-molhiv ogbg-ppa RotatedMNIST ) #4
 algorithms=( ERM deepCORAL groupDRO IRM FLAG )            #5
 models=( gin gin_virtual gcn gcn_virtual cheb cheb_virtual ) #6
-root_dir=/cmlscratch/kong/datasets/graph_domain
+root_dir=$(builtin cd ..; pwd)
 
 dataset_idx=$(( ${SLURM_ARRAY_TASK_ID} % 4 ))
 algorithm_idx=$(( ${SLURM_ARRAY_TASK_ID} / 4 % 5 ))
