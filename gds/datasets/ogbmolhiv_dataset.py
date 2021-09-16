@@ -103,15 +103,14 @@ class OGBHIVDataset(GDSDataset):
 
         self._metric = Evaluator('ogbg-molhiv')
 
-
         # GSN
-        self.gsn = subgraph
+        self.subgraph = subgraph
         self.id_type = id_type
         self.k = k
-        if self.gsn:
+        if self.subgraph:
             from gds.datasets.gsn.gsn_data_prep import GSN
             subgraph = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
-            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess()
+            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset)
 
             if self.graphs_ptg[0].x.dim()==1:
                 self.num_features = 1
@@ -126,19 +125,13 @@ class OGBHIVDataset(GDSDataset):
             else:
                 self.num_edge_features = None
 
-
             self.d_in_node_encoder = [self.num_features]
             self.d_in_edge_encoder = [self.num_edge_features]
-           
-                
-
-        
-
 
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):
-        if self.gsn:
+        if self.subgraph:
             return self.graphs_ptg[int(idx)]
         else:
             return self.ogb_dataset[int(idx)]
