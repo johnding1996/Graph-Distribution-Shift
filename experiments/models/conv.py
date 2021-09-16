@@ -93,6 +93,7 @@ class ChebConvNew(MessagePassing):
         assert K > 0
         assert normalization in [None, 'sym', 'rw'], 'Invalid normalization'
 
+        self.root_emb = torch.nn.Embedding(1, emb_dim)
         if dataset_group == 'mol' :
             self.edge_encoder = BondEncoder(emb_dim = emb_dim)
         else :
@@ -162,12 +163,12 @@ class ChebConvNew(MessagePassing):
         # propagate_type: (x: Tensor, norm: Tensor)
         if len(self.lins) > 1:
             Tx_1 = self.propagate(edge_index, x=x, edge_attr=edge_embedding, norm=norm, size=None)+\
-                   loop_norm.view(-1,1)*F.relu(x)
+                   loop_norm.view(-1,1)*F.relu(x + self.root_emb.weight)
             out = out + self.lins[1](Tx_1)
 
         for lin in self.lins[2:]:
             Tx_2 = self.propagate(edge_index, x=Tx_1, edge_attr=edge_embedding, norm=norm, size=None)+\
-                   loop_norm.view(-1,1)*F.relu(Tx_1)
+                   loop_norm.view(-1,1)*F.relu(Tx_1 + self.root_emb.weight)
             Tx_2 = 2. * Tx_2 - Tx_0
             out = out + lin.forward(Tx_2)
             Tx_0, Tx_1 = Tx_1, Tx_2
