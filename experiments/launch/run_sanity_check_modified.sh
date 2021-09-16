@@ -15,6 +15,7 @@
 #SBATCH --nice=0
 #SBATCH --mail-type=None                                # Valid type values are NONE, BEGIN, END, FAIL, REQUEUE,
 
+function echoerr() { echo "$@" 1>&2; }
 
 function runexp {
 
@@ -26,7 +27,7 @@ root_dir=${5}
 
 log_path=${root_dir}/logs/error.txt
 
-(echo ${dataset} && echo ${algorithm} && echo ${model} && python run_expt.py --n_epochs 1 --device ${device} --dataset ${dataset}  --algorithm ${algorithm} --model ${model}  --root_dir ${root_dir}) 2> ${log_path}
+(echoerr "Dataset: ${dataset}, Algorithm: ${algorithm}, Model: ${model}" && python run_expt.py --n_epochs 1 --device ${device} --dataset ${dataset}  --algorithm ${algorithm} --model ${model}  --root_dir ${root_dir}) 2> ${log_path}
 
 #> ${log_path} 2>&1
 }
