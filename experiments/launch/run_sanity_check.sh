@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Lines that begin with #SBATCH specify commands to be used by SLURM for scheduling
-#SBATCH --job-name=mle_single                           # sets the job name if not set from environment
+#SBATCH --job-name=graph-dg                           # sets the job name if not set from environment
 #SBATCH --array=0-119                                   # Submit 8 array jobs, throttling to 4 at a time
 #SBATCH --output slurm-logs/%x_%A_%a.log                # indicates a file to redirect STDOUT to; %j is the jobid, _%A_%a is array task id
 #SBATCH --error slurm-logs/%x_%A_%a.log                 # indicates a file to redirect STDERR to; %j is the jobid,_%A_%a is array task id
@@ -9,7 +9,7 @@
 #SBATCH --account=scavenger                             # set QOS, this will determine what resources can be requested
 #SBATCH --qos=scavenger                                 # set QOS, this will determine what resources can be requested
 #SBATCH --partition=scavenger
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:rtx2080ti:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem 32gb                                      # memory required by job; if unit is not specified MB will be assumed
 #SBATCH --nice=0
