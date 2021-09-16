@@ -61,7 +61,7 @@ dataset_defaults = {
     },
     'RotatedMNIST': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained
+        'model_kwargs': {'feature_dim':3, 'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],

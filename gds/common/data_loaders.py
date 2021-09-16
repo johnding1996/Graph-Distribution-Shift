@@ -28,9 +28,6 @@ def get_train_loader(loader, dataset, batch_size,
     Output:
         - data loader (DataLoader): Data loader.
     """
-
-    print(dataset.collate)
-
     if loader == 'standard':
         if uniform_over_groups is None or not uniform_over_groups:
             return DataLoader(
