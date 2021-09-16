@@ -5,7 +5,7 @@ from ogb.nodeproppred import Evaluator
 from ogb.nodeproppred.dataset_pyg import PygNodePropPredDataset
 from torch_geometric.data.dataloader import Collater as PyGCollater
 
-from gds.datasets.wilds_dataset import GDSDataset
+from gds.datasets.gds_dataset import GDSDataset
 
 
 class OGBPROTEINSDataset(GDSDataset):

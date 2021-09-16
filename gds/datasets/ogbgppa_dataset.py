@@ -6,7 +6,7 @@ import torch_geometric
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 from torch_geometric.data.dataloader import Collater as PyGCollater
 
-from gds.datasets.wilds_dataset import GDSDataset
+from gds.datasets.gds_dataset import GDSDataset
 
 
 def add_zeros(data):

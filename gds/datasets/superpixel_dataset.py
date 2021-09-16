@@ -1,6 +1,7 @@
 import os
 import torch
 import numpy as np
+from gds.datasets.gds_dataset import GDSDataset
 from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
