@@ -50,7 +50,7 @@ class OGBPROTEINSDataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official'):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-Proteins is handled through the OGB package. Please set version=none.')
