@@ -302,8 +302,6 @@
 <span id="L292" class="lineno"><a class="lineno" href="#L292">292</a></span>
 <span id="L293" class="lineno"><a class="lineno" href="#L293">293</a></span>
 <span id="L294" class="lineno"><a class="lineno" href="#L294">294</a></span>
-<span id="L295" class="lineno"><a class="lineno" href="#L295">295</a></span>
-<span id="L296" class="lineno"><a class="lineno" href="#L296">296</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -476,11 +474,8 @@ Unimported (x2)">                                                   torch.nn.Bat
 Unannotated (x6)
 Unimported (x1)">                                                   torch.nn.Linear(2 * emb_dim, emb_dim))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x2)">                    self.convs.append(torch.nn.Sequential(GINConv(mlp, train_eps=True),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">                                                          torch.nn.ReLU()))</span>
+Unannotated (x5)
+Unimported (x1)">                    self.convs.append(GINConv(mlp, train_eps=True))</span>
 <span class="line-empty" title="No Anys on this line!">                else :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
@@ -490,11 +485,8 @@ Unannotated (x2)">            elif gnn_type == 'gcn':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                if self.dataset_group == 'RotatedMNIST' :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
-Unimported (x2)">                    self.convs.append(torch.nn.Sequential(GCNConv(emb_dim, emb_dim),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">                                                          torch.nn.ReLU()))</span>
+Unannotated (x6)
+Unimported (x1)">                    self.convs.append(GCNConv(emb_dim, emb_dim))</span>
 <span class="line-empty" title="No Anys on this line!">                else :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
@@ -504,11 +496,8 @@ Unannotated (x2)">            elif gnn_type == 'cheb' :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                if self.dataset_group == 'RotatedMNIST' :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
-Unimported (x2)">                    self.convs.append(torch.nn.Sequential(ChebConv(emb_dim, emb_dim, Cheb_K),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">                                                          torch.nn.ReLU()))</span>
+Unannotated (x6)
+Unimported (x1)">                    self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))</span>
 <span class="line-empty" title="No Anys on this line!">                else :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
@@ -534,6 +523,11 @@ Unannotated (x3)">        for layer in range(self.num_layer):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)">            h = self.convs[layer](h_list[layer], edge_index, edge_attr)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            if self.dataset_group == 'RotatedMNIST':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">                h = F.relu(h)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -664,11 +658,8 @@ Unimported (x2)">                                                   torch.nn.Bat
 Unannotated (x6)
 Unimported (x1)">                                                   torch.nn.Linear(2 * emb_dim, emb_dim))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x2)">                    self.convs.append(torch.nn.Sequential(GINConv(mlp, train_eps=True),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">                                                          torch.nn.ReLU()))</span>
+Unannotated (x5)
+Unimported (x1)">                    self.convs.append(GINConv(mlp, train_eps=True))</span>
 <span class="line-empty" title="No Anys on this line!">                else :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
@@ -678,11 +669,8 @@ Unannotated (x2)">            elif gnn_type == 'gcn':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                if self.dataset_group == 'RotatedMNIST' :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
-Unimported (x2)">                    self.convs.append(torch.nn.Sequential(GCNConv(emb_dim, emb_dim),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">                                                          torch.nn.ReLU()))</span>
+Unannotated (x6)
+Unimported (x1)">                    self.convs.append(GCNConv(emb_dim, emb_dim))</span>
 <span class="line-empty" title="No Anys on this line!">                else :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
@@ -692,11 +680,8 @@ Unannotated (x2)">            elif gnn_type == 'cheb' :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                if self.dataset_group == 'RotatedMNIST' :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
-Unimported (x2)">                    self.convs.append(torch.nn.Sequential(ChebConv(emb_dim, emb_dim, Cheb_K),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">                                                          torch.nn.ReLU()))</span>
+Unannotated (x6)
+Unimported (x1)">                    self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))</span>
 <span class="line-empty" title="No Anys on this line!">                else :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
@@ -751,6 +736,11 @@ Unannotated (x9)">            h_list[layer] = h_list[layer] + virtualnode_embedd
 <span class="line-empty" title="No Anys on this line!">            ### Message passing among graph nodes</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)">            h = self.convs[layer](h_list[layer], edge_index, edge_attr)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            if self.dataset_group == 'RotatedMNIST':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">                h = F.relu(h)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 <span class="line-any" title="Any Types on this line: 

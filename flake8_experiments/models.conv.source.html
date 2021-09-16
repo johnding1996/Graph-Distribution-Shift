@@ -470,6 +470,9 @@
                class="code sev- "><tt><i>95</i> &nbsp;</tt>
             </div>
             <div id="l96"
+               class="code sev- "><tt><i>96</i>         <span class="bp">self</span><span class="o">.</span><span class="n">root_emb</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+            </div>
+            <div id="l97"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -479,9 +482,9 @@
                      </span>
                      Whitespace before ':'</li>
                
-               </ul><tt><i>96</i>         <span class="k">if</span> <span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
+               </ul><tt><i>97</i>         <span class="k">if</span> <span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
             </div>
-            <div id="l97"
+            <div id="l98"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -491,9 +494,9 @@
                      </span>
                      Unexpected spaces around keyword / parameter equals (in 2 places)</li>
                
-               </ul><tt><i>97</i>             <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span> <span class="o">=</span> <span class="n">BondEncoder</span><span class="p">(</span><span class="n">emb_dim</span> <span class="o">=</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               </ul><tt><i>98</i>             <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span> <span class="o">=</span> <span class="n">BondEncoder</span><span class="p">(</span><span class="n">emb_dim</span> <span class="o">=</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
             </div>
-            <div id="l98"
+            <div id="l99"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -503,184 +506,172 @@
                      </span>
                      Whitespace before ':'</li>
                
-               </ul><tt><i>98</i>         <span class="k">else</span> <span class="p">:</span></tt>
-            </div>
-            <div id="l99"
-               class="code sev- "><tt><i>99</i>             <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               </ul><tt><i>99</i>         <span class="k">else</span> <span class="p">:</span></tt>
             </div>
             <div id="l100"
-               class="code sev- "><tt><i>100</i> &nbsp;</tt>
+               class="code sev- "><tt><i>100</i>             <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
             </div>
             <div id="l101"
-               class="code sev- "><tt><i>101</i>         <span class="bp">self</span><span class="o">.</span><span class="n">emb_dim</span> <span class="o">=</span> <span class="n">emb_dim</span></tt>
+               class="code sev- "><tt><i>101</i> &nbsp;</tt>
             </div>
             <div id="l102"
-               class="code sev- "><tt><i>102</i>         <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span> <span class="o">=</span> <span class="n">normalization</span></tt>
+               class="code sev- "><tt><i>102</i>         <span class="bp">self</span><span class="o">.</span><span class="n">emb_dim</span> <span class="o">=</span> <span class="n">emb_dim</span></tt>
             </div>
             <div id="l103"
-               class="code sev- "><tt><i>103</i>         <span class="bp">self</span><span class="o">.</span><span class="n">lins</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span></tt>
+               class="code sev- "><tt><i>103</i>         <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span> <span class="o">=</span> <span class="n">normalization</span></tt>
             </div>
             <div id="l104"
-               class="code sev- "><tt><i>104</i>             <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>104</i>         <span class="bp">self</span><span class="o">.</span><span class="n">lins</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span></tt>
             </div>
             <div id="l105"
-               class="code sev- "><tt><i>105</i>         <span class="p">])</span></tt>
+               class="code sev- "><tt><i>105</i>             <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">)</span></tt>
             </div>
             <div id="l106"
-               class="code sev- "><tt><i>106</i> &nbsp;</tt>
+               class="code sev- "><tt><i>106</i>         <span class="p">])</span></tt>
             </div>
             <div id="l107"
-               class="code sev- "><tt><i>107</i>         <span class="k">if</span> <span class="n">bias</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>107</i> &nbsp;</tt>
             </div>
             <div id="l108"
-               class="code sev- "><tt><i>108</i>             <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">))</span></tt>
+               class="code sev- "><tt><i>108</i>         <span class="k">if</span> <span class="n">bias</span><span class="p">:</span></tt>
             </div>
             <div id="l109"
-               class="code sev- "><tt><i>109</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>109</i>             <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">))</span></tt>
             </div>
             <div id="l110"
-               class="code sev- "><tt><i>110</i>             <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;bias&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>110</i>         <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l111"
-               class="code sev- "><tt><i>111</i> &nbsp;</tt>
+               class="code sev- "><tt><i>111</i>             <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;bias&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></tt>
             </div>
             <div id="l112"
-               class="code sev- "><tt><i>112</i>     <span class="k">def</span> <span class="nf">__norm__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span></tt>
+               class="code sev- "><tt><i>112</i> &nbsp;</tt>
             </div>
             <div id="l113"
-               class="code sev- "><tt><i>113</i>                  <span class="n">edge_weight</span><span class="p">:</span> <span class="n">OptTensor</span><span class="p">,</span> <span class="n">normalization</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span></tt>
+               class="code sev- "><tt><i>113</i>     <span class="k">def</span> <span class="nf">__norm__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span></tt>
             </div>
             <div id="l114"
-               class="code sev- "><tt><i>114</i>                  <span class="n">lambda_max</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>114</i>                  <span class="n">edge_weight</span><span class="p">:</span> <span class="n">OptTensor</span><span class="p">,</span> <span class="n">normalization</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span></tt>
             </div>
             <div id="l115"
-               class="code sev- "><tt><i>115</i>                  <span class="n">batch</span><span class="p">:</span> <span class="n">OptTensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>115</i>                  <span class="n">lambda_max</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
             </div>
             <div id="l116"
-               class="code sev- "><tt><i>116</i> &nbsp;</tt>
+               class="code sev- "><tt><i>116</i>                  <span class="n">batch</span><span class="p">:</span> <span class="n">OptTensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span></tt>
             </div>
             <div id="l117"
-               class="code sev- "><tt><i>117</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span> <span class="o">=</span> <span class="n">remove_self_loops</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>117</i> &nbsp;</tt>
             </div>
             <div id="l118"
-               class="code sev- "><tt><i>118</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span> <span class="o">=</span> <span class="n">get_laplacian</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>118</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span> <span class="o">=</span> <span class="n">remove_self_loops</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span><span class="p">)</span></tt>
             </div>
             <div id="l119"
-               class="code sev- "><tt><i>119</i>                                                 <span class="n">normalization</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>119</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span> <span class="o">=</span> <span class="n">get_laplacian</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span><span class="p">,</span></tt>
             </div>
             <div id="l120"
-               class="code sev- "><tt><i>120</i>                                                 <span class="n">num_nodes</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>120</i>                                                 <span class="n">normalization</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span></tt>
             </div>
             <div id="l121"
-               class="code sev- "><tt><i>121</i> &nbsp;</tt>
+               class="code sev- "><tt><i>121</i>                                                 <span class="n">num_nodes</span><span class="p">)</span></tt>
             </div>
             <div id="l122"
-               class="code sev- "><tt><i>122</i>         <span class="k">if</span> <span class="n">batch</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">lambda_max</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>122</i> &nbsp;</tt>
             </div>
             <div id="l123"
-               class="code sev- "><tt><i>123</i>             <span class="n">lambda_max</span> <span class="o">=</span> <span class="n">lambda_max</span><span class="p">[</span><span class="n">batch</span><span class="p">[</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span></tt>
+               class="code sev- "><tt><i>123</i>         <span class="k">if</span> <span class="n">batch</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">lambda_max</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span></tt>
             </div>
             <div id="l124"
-               class="code sev- "><tt><i>124</i> &nbsp;</tt>
+               class="code sev- "><tt><i>124</i>             <span class="n">lambda_max</span> <span class="o">=</span> <span class="n">lambda_max</span><span class="p">[</span><span class="n">batch</span><span class="p">[</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span></tt>
             </div>
             <div id="l125"
-               class="code sev- "><tt><i>125</i>         <span class="n">edge_weight</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">edge_weight</span><span class="p">)</span> <span class="o">/</span> <span class="n">lambda_max</span></tt>
+               class="code sev- "><tt><i>125</i> &nbsp;</tt>
             </div>
             <div id="l126"
-               class="code sev- "><tt><i>126</i>         <span class="n">edge_weight</span><span class="o">.</span><span class="n">masked_fill_</span><span class="p">(</span><span class="n">edge_weight</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>126</i>         <span class="n">edge_weight</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">edge_weight</span><span class="p">)</span> <span class="o">/</span> <span class="n">lambda_max</span></tt>
             </div>
             <div id="l127"
-               class="code sev- "><tt><i>127</i> &nbsp;</tt>
+               class="code sev- "><tt><i>127</i>         <span class="n">edge_weight</span><span class="o">.</span><span class="n">masked_fill_</span><span class="p">(</span><span class="n">edge_weight</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span></tt>
             </div>
             <div id="l128"
-               class="code sev- "><tt><i>128</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span> <span class="o">=</span> <span class="n">add_self_loops</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>128</i> &nbsp;</tt>
             </div>
             <div id="l129"
-               class="code sev- "><tt><i>129</i>                                                  <span class="n">fill_value</span><span class="o">=-</span><span class="mf">1.</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>129</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span> <span class="o">=</span> <span class="n">add_self_loops</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span><span class="p">,</span></tt>
             </div>
             <div id="l130"
-               class="code sev- "><tt><i>130</i>                                                  <span class="n">num_nodes</span><span class="o">=</span><span class="n">num_nodes</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>130</i>                                                  <span class="n">fill_value</span><span class="o">=-</span><span class="mf">1.</span><span class="p">,</span></tt>
             </div>
             <div id="l131"
-               class="code sev- "><tt><i>131</i>         <span class="k">assert</span> <span class="n">edge_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></tt>
+               class="code sev- "><tt><i>131</i>                                                  <span class="n">num_nodes</span><span class="o">=</span><span class="n">num_nodes</span><span class="p">)</span></tt>
             </div>
             <div id="l132"
-               class="code sev- "><tt><i>132</i>         <span class="k">return</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span></tt>
+               class="code sev- "><tt><i>132</i>         <span class="k">assert</span> <span class="n">edge_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></tt>
             </div>
             <div id="l133"
-               class="code sev- "><tt><i>133</i> &nbsp;</tt>
+               class="code sev- "><tt><i>133</i>         <span class="k">return</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_weight</span></tt>
             </div>
             <div id="l134"
-               class="code sev- "><tt><i>134</i>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">:</span> <span class="n">OptTensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>134</i> &nbsp;</tt>
             </div>
             <div id="l135"
-               class="code sev- "><tt><i>135</i>                 <span class="n">batch</span><span class="p">:</span> <span class="n">OptTensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">lambda_max</span><span class="p">:</span> <span class="n">OptTensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>135</i>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">:</span> <span class="n">OptTensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
             </div>
             <div id="l136"
-               class="code sev- "><tt><i>136</i>         <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span></tt>
+               class="code sev- "><tt><i>136</i>                 <span class="n">batch</span><span class="p">:</span> <span class="n">OptTensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">lambda_max</span><span class="p">:</span> <span class="n">OptTensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span></tt>
             </div>
             <div id="l137"
-               class="code sev- "><tt><i>137</i>         <span class="n">edge_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span><span class="p">(</span><span class="n">edge_attr</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>137</i>         <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span></tt>
             </div>
             <div id="l138"
-               class="code sev- "><tt><i>138</i> &nbsp;</tt>
+               class="code sev- "><tt><i>138</i>         <span class="n">edge_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span><span class="p">(</span><span class="n">edge_attr</span><span class="p">)</span></tt>
             </div>
             <div id="l139"
-               class="code sev- "><tt><i>139</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span> <span class="o">!=</span> <span class="s1">&#39;sym&#39;</span> <span class="ow">and</span> <span class="n">lambda_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>139</i> &nbsp;</tt>
             </div>
             <div id="l140"
-               class="code sev- "><tt><i>140</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;You need to pass `lambda_max` to `forward() in`&#39;</span></tt>
+               class="code sev- "><tt><i>140</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span> <span class="o">!=</span> <span class="s1">&#39;sym&#39;</span> <span class="ow">and</span> <span class="n">lambda_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l141"
-               class="code sev- "><tt><i>141</i>                              <span class="s1">&#39;case the normalization is non-symmetric.&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>141</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;You need to pass `lambda_max` to `forward() in`&#39;</span></tt>
             </div>
             <div id="l142"
-               class="code sev- "><tt><i>142</i> &nbsp;</tt>
+               class="code sev- "><tt><i>142</i>                              <span class="s1">&#39;case the normalization is non-symmetric.&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l143"
-               class="code sev- "><tt><i>143</i>         <span class="k">if</span> <span class="n">lambda_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>143</i> &nbsp;</tt>
             </div>
             <div id="l144"
-               class="code sev- "><tt><i>144</i>             <span class="n">lambda_max</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>144</i>         <span class="k">if</span> <span class="n">lambda_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l145"
-               class="code sev- "><tt><i>145</i>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lambda_max</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>145</i>             <span class="n">lambda_max</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
             <div id="l146"
-               class="code sev- "><tt><i>146</i>             <span class="n">lambda_max</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">lambda_max</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>146</i>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lambda_max</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span></tt>
             </div>
             <div id="l147"
-               class="code sev- "><tt><i>147</i>                                       <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>147</i>             <span class="n">lambda_max</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">lambda_max</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span></tt>
             </div>
             <div id="l148"
-               class="code sev- "><tt><i>148</i>         <span class="k">assert</span> <span class="n">lambda_max</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></tt>
+               class="code sev- "><tt><i>148</i>                                       <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
             <div id="l149"
-               class="code sev- "><tt><i>149</i> &nbsp;</tt>
+               class="code sev- "><tt><i>149</i>         <span class="k">assert</span> <span class="n">lambda_max</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></tt>
             </div>
             <div id="l150"
-               class="code sev- "><tt><i>150</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__norm__</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_dim</span><span class="p">),</span></tt>
+               class="code sev- "><tt><i>150</i> &nbsp;</tt>
             </div>
             <div id="l151"
-               class="code sev- "><tt><i>151</i>                                          <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>151</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__norm__</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_dim</span><span class="p">),</span></tt>
             </div>
             <div id="l152"
-               class="code sev- "><tt><i>152</i>                                          <span class="n">lambda_max</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>152</i>                                          <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span><span class="p">,</span></tt>
             </div>
             <div id="l153"
-               class="code sev- "><tt><i>153</i>                                          <span class="n">batch</span><span class="o">=</span><span class="n">batch</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>153</i>                                          <span class="n">lambda_max</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span></tt>
             </div>
             <div id="l154"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (81 > 79 characters)</li>
-               
-               </ul><tt><i>154</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>154</i>                                          <span class="n">batch</span><span class="o">=</span><span class="n">batch</span><span class="p">)</span></tt>
             </div>
             <div id="l155"
                class="code sev-2  le">
@@ -690,29 +681,41 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (93 > 79 characters)</li>
+                     Line too long (81 > 79 characters)</li>
                
-               </ul><tt><i>155</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">loop_edge_index</span><span class="p">,</span> <span class="n">loop_norm</span> <span class="o">=</span> <span class="n">segregate_self_loops</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">)</span></tt>
+               </ul><tt><i>155</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
             </div>
             <div id="l156"
-               class="code sev- "><tt><i>156</i> &nbsp;</tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (93 > 79 characters)</li>
+               
+               </ul><tt><i>156</i>         <span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">loop_edge_index</span><span class="p">,</span> <span class="n">loop_norm</span> <span class="o">=</span> <span class="n">segregate_self_loops</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">norm</span><span class="p">)</span></tt>
             </div>
             <div id="l157"
-               class="code sev- "><tt><i>157</i>         <span class="n">Tx_0</span> <span class="o">=</span> <span class="n">x</span></tt>
+               class="code sev- "><tt><i>157</i> &nbsp;</tt>
             </div>
             <div id="l158"
-               class="code sev- "><tt><i>158</i>         <span class="n">Tx_1</span> <span class="o">=</span> <span class="n">x</span>  <span class="c1"># Dummy.</span></tt>
+               class="code sev- "><tt><i>158</i>         <span class="n">Tx_0</span> <span class="o">=</span> <span class="n">x</span></tt>
             </div>
             <div id="l159"
-               class="code sev- "><tt><i>159</i>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lins</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">Tx_0</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>159</i>         <span class="n">Tx_1</span> <span class="o">=</span> <span class="n">x</span>  <span class="c1"># Dummy.</span></tt>
             </div>
             <div id="l160"
-               class="code sev- "><tt><i>160</i> &nbsp;</tt>
+               class="code sev- "><tt><i>160</i>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lins</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">Tx_0</span><span class="p">)</span></tt>
             </div>
             <div id="l161"
                class="code sev- "><tt><i>161</i> &nbsp;</tt>
             </div>
             <div id="l162"
+               class="code sev- "><tt><i>162</i> &nbsp;</tt>
+            </div>
+            <div id="l163"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -722,12 +725,12 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>162</i>         <span class="c1"># propagate_type: (x: Tensor, norm: Tensor)</span></tt>
-            </div>
-            <div id="l163"
-               class="code sev- "><tt><i>163</i>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lins</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span></tt>
+               </ul><tt><i>163</i>         <span class="c1"># propagate_type: (x: Tensor, norm: Tensor)</span></tt>
             </div>
             <div id="l164"
+               class="code sev- "><tt><i>164</i>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lins</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span></tt>
+            </div>
+            <div id="l165"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -743,9 +746,9 @@
                      </span>
                      Missing whitespace around operator</li>
                
-               </ul><tt><i>164</i>             <span class="n">Tx_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">+</span>\</tt>
+               </ul><tt><i>165</i>             <span class="n">Tx_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">+</span>\</tt>
             </div>
-            <div id="l165"
+            <div id="l166"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -755,18 +758,18 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>165</i>                    <span class="n">loop_norm</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
-            </div>
-            <div id="l166"
-               class="code sev- "><tt><i>166</i>             <span class="n">out</span> <span class="o">=</span> <span class="n">out</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lins</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">Tx_1</span><span class="p">)</span></tt>
+               </ul><tt><i>166</i>                    <span class="n">loop_norm</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_emb</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span></tt>
             </div>
             <div id="l167"
-               class="code sev- "><tt><i>167</i> &nbsp;</tt>
+               class="code sev- "><tt><i>167</i>             <span class="n">out</span> <span class="o">=</span> <span class="n">out</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lins</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">Tx_1</span><span class="p">)</span></tt>
             </div>
             <div id="l168"
-               class="code sev- "><tt><i>168</i>         <span class="k">for</span> <span class="n">lin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lins</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span></tt>
+               class="code sev- "><tt><i>168</i> &nbsp;</tt>
             </div>
             <div id="l169"
+               class="code sev- "><tt><i>169</i>         <span class="k">for</span> <span class="n">lin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lins</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span></tt>
+            </div>
+            <div id="l170"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -782,9 +785,9 @@
                      </span>
                      Missing whitespace around operator</li>
                
-               </ul><tt><i>169</i>             <span class="n">Tx_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">Tx_1</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">+</span>\</tt>
+               </ul><tt><i>170</i>             <span class="n">Tx_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">Tx_1</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="n">edge_embedding</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">+</span>\</tt>
             </div>
-            <div id="l170"
+            <div id="l171"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -794,40 +797,40 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>170</i>                    <span class="n">loop_norm</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">Tx_1</span><span class="p">)</span></tt>
-            </div>
-            <div id="l171"
-               class="code sev- "><tt><i>171</i>             <span class="n">Tx_2</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">Tx_2</span> <span class="o">-</span> <span class="n">Tx_0</span></tt>
+               </ul><tt><i>171</i>                    <span class="n">loop_norm</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">Tx_1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_emb</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span></tt>
             </div>
             <div id="l172"
-               class="code sev- "><tt><i>172</i>             <span class="n">out</span> <span class="o">=</span> <span class="n">out</span> <span class="o">+</span> <span class="n">lin</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">Tx_2</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>172</i>             <span class="n">Tx_2</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">Tx_2</span> <span class="o">-</span> <span class="n">Tx_0</span></tt>
             </div>
             <div id="l173"
-               class="code sev- "><tt><i>173</i>             <span class="n">Tx_0</span><span class="p">,</span> <span class="n">Tx_1</span> <span class="o">=</span> <span class="n">Tx_1</span><span class="p">,</span> <span class="n">Tx_2</span></tt>
+               class="code sev- "><tt><i>173</i>             <span class="n">out</span> <span class="o">=</span> <span class="n">out</span> <span class="o">+</span> <span class="n">lin</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">Tx_2</span><span class="p">)</span></tt>
             </div>
             <div id="l174"
-               class="code sev- "><tt><i>174</i> &nbsp;</tt>
+               class="code sev- "><tt><i>174</i>             <span class="n">Tx_0</span><span class="p">,</span> <span class="n">Tx_1</span> <span class="o">=</span> <span class="n">Tx_1</span><span class="p">,</span> <span class="n">Tx_2</span></tt>
             </div>
             <div id="l175"
-               class="code sev- "><tt><i>175</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>175</i> &nbsp;</tt>
             </div>
             <div id="l176"
-               class="code sev- "><tt><i>176</i>             <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span></tt>
+               class="code sev- "><tt><i>176</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l177"
-               class="code sev- "><tt><i>177</i> &nbsp;</tt>
+               class="code sev- "><tt><i>177</i>             <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span></tt>
             </div>
             <div id="l178"
-               class="code sev- "><tt><i>178</i>         <span class="k">return</span> <span class="n">out</span></tt>
+               class="code sev- "><tt><i>178</i> &nbsp;</tt>
             </div>
             <div id="l179"
-               class="code sev- "><tt><i>179</i> &nbsp;</tt>
+               class="code sev- "><tt><i>179</i>         <span class="k">return</span> <span class="n">out</span></tt>
             </div>
             <div id="l180"
-               class="code sev- "><tt><i>180</i>     <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_j</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">norm</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>180</i> &nbsp;</tt>
             </div>
             <div id="l181"
-               class="code sev- "><tt><i>181</i>         <span class="k">return</span> <span class="n">norm</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x_j</span><span class="o">+</span><span class="n">edge_attr</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>181</i>     <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_j</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">norm</span><span class="p">):</span></tt>
+            </div>
+            <div id="l182"
+               class="code sev- "><tt><i>182</i>         <span class="k">return</span> <span class="n">norm</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x_j</span><span class="o">+</span><span class="n">edge_attr</span><span class="p">)</span></tt>
             </div>
             
          </div>

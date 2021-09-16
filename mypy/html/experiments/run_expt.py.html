@@ -306,6 +306,12 @@
 <span id="L296" class="lineno"><a class="lineno" href="#L296">296</a></span>
 <span id="L297" class="lineno"><a class="lineno" href="#L297">297</a></span>
 <span id="L298" class="lineno"><a class="lineno" href="#L298">298</a></span>
+<span id="L299" class="lineno"><a class="lineno" href="#L299">299</a></span>
+<span id="L300" class="lineno"><a class="lineno" href="#L300">300</a></span>
+<span id="L301" class="lineno"><a class="lineno" href="#L301">301</a></span>
+<span id="L302" class="lineno"><a class="lineno" href="#L302">302</a></span>
+<span id="L303" class="lineno"><a class="lineno" href="#L303">303</a></span>
+<span id="L304" class="lineno"><a class="lineno" href="#L304">304</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -364,8 +370,10 @@ Unannotated (x3)
 Unimported (x1)">    parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',</span>
 <span class="line-any" title="No Anys on this line!">                        help='If true, tries to downloads the dataset if it does not exist in root_dir.')</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    parser.add_argument('--frac', type=float, default=1.0,</span>
-<span class="line-any" title="No Anys on this line!">                        help='Convenience parameter that scales all dataset splits down to the specified fraction, for development purposes. Note that this also scales the test set down, so the reported numbers are not comparable with the full test set.')</span>
+Unannotated (x3)">    parser.add_argument('--use_frac', type=bool, default=True,</span>
+<span class="line-any" title="No Anys on this line!">                        help='Convenience parameter that scales all dataset splits down to the specified fraction, '</span>
+<span class="line-empty" title="No Anys on this line!">                             'for development purposes. Note that this also scales the test set down, so the reported '</span>
+<span class="line-empty" title="No Anys on this line!">                             'numbers are not comparable with the full test set.')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('--version', default=None, type=str)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -560,6 +568,9 @@ Unannotated (x3)">        os.makedirs(config.log_dir)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">    logger = Logger(os.path.join(config.log_dir, 'log.txt'), mode)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">    result_logger = Logger(os.path.join(config.log_dir, 'result.txt'), mode)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Record config</span>
 <span class="line-any" title="Any Types on this line: 
@@ -623,11 +634,12 @@ Unannotated (x1)">            verbose = False</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Get subset</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        datasets[split]['dataset'] = full_dataset.get_subset(</span>
+Unannotated (x2)">        if config.use_frac:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            split,</span>
+Unannotated (x9)">            datasets[split]['dataset'] = full_dataset.get_subset(split, frac=config.default_frac)</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            frac=config.frac)</span>
+Unannotated (x7)">            datasets[split]['dataset'] = full_dataset.get_subset(split, frac=1.0)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if split == 'train':</span>
@@ -771,6 +783,8 @@ Unannotated (x1)">            datasets=datasets,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            general_logger=logger,</span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            result_logger=logger,</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            config=config,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            epoch_offset=epoch_offset,</span>
@@ -809,6 +823,8 @@ Unannotated (x1)">            datasets=datasets,</span>
 Unannotated (x1)">            epoch=epoch,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            general_logger=logger,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            result_logger=logger,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            config=config,</span>
 <span class="line-any" title="Any Types on this line: 
