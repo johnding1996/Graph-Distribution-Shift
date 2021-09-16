@@ -10,6 +10,7 @@ from .pyg_superpixel_dataset import PyGSuperPixelDataset
 import pdb
 from torch_geometric.utils import to_dense_adj
 
+
 class SuperPixelDataset(GDSDataset):
     """
     The OGB-molpcba dataset.
