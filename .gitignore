@@ -155,6 +155,9 @@ Pipfile.lock
 # logs
 logs/
 
+# slurm-logs
+slurm-logs/
+
 # wandb
 wandb/
 
