@@ -21,8 +21,8 @@ def generate_dataset(data_path,
                      count_fn,
                      automorphism_fn, 
                      id_type,  
-                     multiprocessing=False,
-                     num_processes=1,
+                     multiprocessing=True,
+                     num_processes=4,
                      **subgraph_params):
 
     ### compute the orbits of earch substructure in the list, as well as the vertex automorphism count
@@ -63,6 +63,7 @@ def generate_dataset(data_path,
         graphs_ptg = Parallel(n_jobs=num_processes, verbose=10)(delayed(_prepare)(graph,
                                                                                   subgraph_dicts, 
                                                                                   subgraph_params,
+                                                                                  orbit_partition_sizes,
                                                                                   dataset_name,
                                                                                   extract_ids_fn,
                                                                                   count_fn) for graph in graphs)
@@ -72,7 +73,7 @@ def generate_dataset(data_path,
     else:
         graphs_ptg = list()
         for i, data in tqdm(enumerate(graphs)):
-            new_data = _prepare(data, subgraph_dicts, subgraph_params, dataset_name, extract_ids_fn, count_fn)
+            new_data = _prepare(data, subgraph_dicts, subgraph_params, orbit_partition_sizes, dataset_name, extract_ids_fn, count_fn)
            
             graphs_ptg.append(new_data)
          
@@ -82,7 +83,7 @@ def generate_dataset(data_path,
 
 # ------------------------------------------------------------------------
         
-def _prepare(data, subgraph_dicts, subgraph_params, dataset_name, ex_fn, cnt_fn):
+def _prepare(data, subgraph_dicts, subgraph_params, orbit_partition_sizes, dataset_name, ex_fn, cnt_fn):
 
     new_data = Data()
     setattr(new_data, 'edge_index', data.edge_mat)
@@ -104,7 +105,7 @@ def _prepare(data, subgraph_dicts, subgraph_params, dataset_name, ex_fn, cnt_fn)
         setattr(new_data, 'identifiers', torch.zeros((0, sum(orbit_partition_sizes))).long())
     else:
         new_data = ex_fn(cnt_fn, new_data, subgraph_dicts, subgraph_params)
-   
+ 
 
     return new_data
 

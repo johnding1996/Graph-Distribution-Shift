@@ -60,6 +60,7 @@ class IRM(SingleModelAlgorithm):
     def irm_penalty(self, losses):
         grad_1 = autograd.grad(losses[0::2].mean(), [self.scale], create_graph=True)[0]
         grad_2 = autograd.grad(losses[1::2].mean(), [self.scale], create_graph=True)[0]
+      
         result = torch.sum(grad_1 * grad_2)
         return result
 
@@ -80,6 +81,8 @@ class IRM(SingleModelAlgorithm):
                 return_dict=False)
             if group_losses.numel() > 0:
                 avg_loss += group_losses.mean()
+    
+                
             if self.is_training:  # Penalties only make sense when training
                 penalty += self.irm_penalty(group_losses)
         avg_loss /= n_groups_per_batch

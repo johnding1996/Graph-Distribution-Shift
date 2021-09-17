@@ -1,0 +1,15079 @@
+Dataset: ogb-molhiv
+Algorithm: ERM
+Model: gin
+Split scheme: official
+Dataset kwargs: {}
+Download: False
+Use frac: True
+Version: None
+Loader kwargs: {'num_workers': 4, 'pin_memory': False}
+Train loader: standard
+Uniform over groups: False
+Distinct groups: None
+N groups per batch: 4
+Batch size: 32
+Eval loader: standard
+Model kwargs: {'dropout': 0.5, 'dataset_group': 'mol'}
+Loss function: BCEWithLogitsLoss
+Loss kwargs: {}
+Groupby fields: ['scaffold']
+Group dro step size: None
+Coral penalty weight: 0.1
+Irm lambda: 1.0
+Irm penalty anneal iters: None
+Algo log metric: binary_accuracy
+Val metric: rocauc
+Val metric decreasing: False
+N epochs: 150
+Optimizer: Adam
+Lr: 0.001
+Weight decay: 0.0
+Max grad norm: None
+Optimizer kwargs: {}
+Scheduler: None
+Scheduler kwargs: {}
+Scheduler metric split: val
+Scheduler metric name: None
+Eval only: False
+Process outputs function: None
+Evaluate all splits: True
+Eval splits: []
+Eval epoch: None
+Device: cuda:0
+Seed: 0
+Root dir: data
+Log dir: ./logs
+Log every: 50
+Save step: None
+Save best: True
+Save last: True
+Save pred: True
+No group logging: True
+Use wandb: False
+Progress bar: False
+Resume: False
+Gsn: True
+Id type: cycle_graph
+K: 6
+Default frac: 1.0
+
+[info] Setting all random seeds 0
+Loading dataset from data/ogbg_molhiv/processed/local/cycle_graph_induced_6.pt
+Encoding substructure counts and degree features... Train data...
+    y = 0: n = 31669
+    y = 1: n = 1232
+Validation data...
+    y = 0: n = 4032
+    y = 1: n = 81
+Test data...
+    y = 0: n = 3983
+    y = 1: n = 130
+
+Epoch [0]:
+
+Train:
+objective: 0.606
+loss_avg: 0.606
+acc_avg: 0.754
+
+objective: 0.369
+loss_avg: 0.369
+acc_avg: 0.952
+
+objective: 0.208
+loss_avg: 0.208
+acc_avg: 0.961
+
+objective: 0.159
+loss_avg: 0.159
+acc_avg: 0.964
+
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.965
+
+objective: 0.150
+loss_avg: 0.150
+acc_avg: 0.965
+
+objective: 0.174
+loss_avg: 0.174
+acc_avg: 0.957
+
+objective: 0.160
+loss_avg: 0.160
+acc_avg: 0.963
+
+objective: 0.156
+loss_avg: 0.156
+acc_avg: 0.962
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.967
+
+objective: 0.178
+loss_avg: 0.178
+acc_avg: 0.955
+
+objective: 0.165
+loss_avg: 0.165
+acc_avg: 0.958
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.971
+
+objective: 0.148
+loss_avg: 0.148
+acc_avg: 0.966
+
+objective: 0.162
+loss_avg: 0.162
+acc_avg: 0.961
+
+objective: 0.177
+loss_avg: 0.177
+acc_avg: 0.957
+
+objective: 0.154
+loss_avg: 0.154
+acc_avg: 0.960
+
+objective: 0.160
+loss_avg: 0.160
+acc_avg: 0.962
+
+objective: 0.152
+loss_avg: 0.152
+acc_avg: 0.964
+
+objective: 0.157
+loss_avg: 0.157
+acc_avg: 0.962
+
+objective: 0.179
+loss_avg: 0.179
+acc_avg: 0.953
+
+Epoch eval:
+ROCAUC: 0.597
+
+Validation:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.717
+Validation rocauc: 0.717
+Epoch 0 has the best validation performance so far.
+
+
+Epoch [1]:
+
+Train:
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.963
+
+objective: 0.159
+loss_avg: 0.159
+acc_avg: 0.954
+
+objective: 0.162
+loss_avg: 0.162
+acc_avg: 0.957
+
+objective: 0.150
+loss_avg: 0.150
+acc_avg: 0.964
+
+objective: 0.161
+loss_avg: 0.161
+acc_avg: 0.961
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.971
+
+objective: 0.143
+loss_avg: 0.143
+acc_avg: 0.964
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.977
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.966
+
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.957
+
+objective: 0.163
+loss_avg: 0.163
+acc_avg: 0.962
+
+objective: 0.161
+loss_avg: 0.161
+acc_avg: 0.959
+
+objective: 0.143
+loss_avg: 0.143
+acc_avg: 0.967
+
+objective: 0.168
+loss_avg: 0.168
+acc_avg: 0.958
+
+objective: 0.154
+loss_avg: 0.154
+acc_avg: 0.964
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.967
+
+objective: 0.170
+loss_avg: 0.170
+acc_avg: 0.955
+
+objective: 0.168
+loss_avg: 0.168
+acc_avg: 0.957
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.963
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.960
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.963
+
+Epoch eval:
+ROCAUC: 0.689
+
+Validation:
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.700
+Validation rocauc: 0.700
+
+
+Epoch [2]:
+
+Train:
+objective: 0.155
+loss_avg: 0.155
+acc_avg: 0.960
+
+objective: 0.144
+loss_avg: 0.144
+acc_avg: 0.962
+
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.960
+
+objective: 0.176
+loss_avg: 0.176
+acc_avg: 0.953
+
+objective: 0.156
+loss_avg: 0.156
+acc_avg: 0.961
+
+objective: 0.169
+loss_avg: 0.169
+acc_avg: 0.954
+
+objective: 0.168
+loss_avg: 0.168
+acc_avg: 0.957
+
+objective: 0.150
+loss_avg: 0.150
+acc_avg: 0.963
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.963
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.969
+
+objective: 0.165
+loss_avg: 0.165
+acc_avg: 0.955
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.971
+
+objective: 0.143
+loss_avg: 0.143
+acc_avg: 0.964
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.959
+
+objective: 0.153
+loss_avg: 0.153
+acc_avg: 0.960
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.964
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.964
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.961
+
+objective: 0.150
+loss_avg: 0.150
+acc_avg: 0.962
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.974
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.720
+
+Validation:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.683
+Validation rocauc: 0.683
+
+
+Epoch [3]:
+
+Train:
+objective: 0.165
+loss_avg: 0.165
+acc_avg: 0.958
+
+objective: 0.157
+loss_avg: 0.157
+acc_avg: 0.958
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.962
+
+objective: 0.149
+loss_avg: 0.149
+acc_avg: 0.964
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.971
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.963
+
+objective: 0.148
+loss_avg: 0.148
+acc_avg: 0.959
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.965
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.961
+
+objective: 0.165
+loss_avg: 0.165
+acc_avg: 0.955
+
+objective: 0.153
+loss_avg: 0.153
+acc_avg: 0.960
+
+objective: 0.145
+loss_avg: 0.145
+acc_avg: 0.961
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.964
+
+objective: 0.144
+loss_avg: 0.144
+acc_avg: 0.960
+
+objective: 0.149
+loss_avg: 0.149
+acc_avg: 0.961
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.964
+
+objective: 0.155
+loss_avg: 0.155
+acc_avg: 0.959
+
+objective: 0.149
+loss_avg: 0.149
+acc_avg: 0.962
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.957
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.967
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.730
+
+Validation:
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.716
+Validation rocauc: 0.716
+
+
+Epoch [4]:
+
+Train:
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.970
+
+objective: 0.178
+loss_avg: 0.178
+acc_avg: 0.950
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.965
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.967
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.965
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.958
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.968
+
+objective: 0.152
+loss_avg: 0.152
+acc_avg: 0.959
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.966
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.969
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.971
+
+objective: 0.153
+loss_avg: 0.153
+acc_avg: 0.955
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.963
+
+objective: 0.178
+loss_avg: 0.178
+acc_avg: 0.951
+
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.958
+
+objective: 0.149
+loss_avg: 0.149
+acc_avg: 0.957
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.958
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.966
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.967
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.963
+
+objective: 0.150
+loss_avg: 0.150
+acc_avg: 0.954
+
+Epoch eval:
+ROCAUC: 0.742
+
+Validation:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.740
+Validation rocauc: 0.740
+Epoch 4 has the best validation performance so far.
+
+
+Epoch [5]:
+
+Train:
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.957
+
+objective: 0.160
+loss_avg: 0.160
+acc_avg: 0.958
+
+objective: 0.148
+loss_avg: 0.148
+acc_avg: 0.956
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.965
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.965
+
+objective: 0.143
+loss_avg: 0.143
+acc_avg: 0.957
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.970
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.961
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.973
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.959
+
+objective: 0.167
+loss_avg: 0.167
+acc_avg: 0.951
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.966
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.959
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.963
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.963
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.966
+
+objective: 0.156
+loss_avg: 0.156
+acc_avg: 0.960
+
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.961
+
+objective: 0.154
+loss_avg: 0.154
+acc_avg: 0.958
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.966
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.750
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.781
+Validation rocauc: 0.781
+Epoch 5 has the best validation performance so far.
+
+
+Epoch [6]:
+
+Train:
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.967
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.966
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.963
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.958
+
+objective: 0.155
+loss_avg: 0.155
+acc_avg: 0.959
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.957
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.959
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.962
+
+objective: 0.160
+loss_avg: 0.160
+acc_avg: 0.956
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.968
+
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.958
+
+objective: 0.150
+loss_avg: 0.150
+acc_avg: 0.960
+
+objective: 0.152
+loss_avg: 0.152
+acc_avg: 0.958
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.962
+
+objective: 0.152
+loss_avg: 0.152
+acc_avg: 0.959
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.964
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.965
+
+objective: 0.155
+loss_avg: 0.155
+acc_avg: 0.952
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.969
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.964
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.756
+
+Validation:
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.779
+Validation rocauc: 0.779
+
+
+Epoch [7]:
+
+Train:
+objective: 0.161
+loss_avg: 0.161
+acc_avg: 0.953
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.964
+
+objective: 0.148
+loss_avg: 0.148
+acc_avg: 0.956
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.967
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.969
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.963
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.964
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.958
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.970
+
+objective: 0.165
+loss_avg: 0.165
+acc_avg: 0.953
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.963
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.965
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.961
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.962
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.962
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.969
+
+objective: 0.152
+loss_avg: 0.152
+acc_avg: 0.953
+
+objective: 0.162
+loss_avg: 0.162
+acc_avg: 0.954
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.968
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.964
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.760
+
+Validation:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.785
+Validation rocauc: 0.785
+Epoch 7 has the best validation performance so far.
+
+
+Epoch [8]:
+
+Train:
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.967
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.966
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.966
+
+objective: 0.145
+loss_avg: 0.145
+acc_avg: 0.961
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.964
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.963
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.963
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.967
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.968
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.966
+
+objective: 0.165
+loss_avg: 0.165
+acc_avg: 0.950
+
+objective: 0.155
+loss_avg: 0.155
+acc_avg: 0.956
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.958
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.959
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.962
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.967
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.963
+
+objective: 0.143
+loss_avg: 0.143
+acc_avg: 0.957
+
+objective: 0.164
+loss_avg: 0.164
+acc_avg: 0.949
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.775
+
+Validation:
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.975
+
+Epoch eval:
+ROCAUC: 0.794
+Validation rocauc: 0.794
+Epoch 8 has the best validation performance so far.
+
+
+Epoch [9]:
+
+Train:
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.965
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.959
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.957
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.954
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.958
+
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.958
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.961
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.967
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.963
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.964
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.962
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.961
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.962
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.964
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.966
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.961
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.964
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.959
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.969
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.961
+
+objective: 0.154
+loss_avg: 0.154
+acc_avg: 0.956
+
+Epoch eval:
+ROCAUC: 0.774
+
+Validation:
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.754
+Validation rocauc: 0.754
+
+
+Epoch [10]:
+
+Train:
+objective: 0.143
+loss_avg: 0.143
+acc_avg: 0.960
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.964
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.965
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.961
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.953
+
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.956
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.966
+
+objective: 0.150
+loss_avg: 0.150
+acc_avg: 0.956
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.966
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.964
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.958
+
+objective: 0.150
+loss_avg: 0.150
+acc_avg: 0.959
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.966
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.958
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.970
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.965
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.961
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.964
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.966
+
+objective: 0.144
+loss_avg: 0.144
+acc_avg: 0.960
+
+Epoch eval:
+ROCAUC: 0.777
+
+Validation:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.811
+Validation rocauc: 0.811
+Epoch 10 has the best validation performance so far.
+
+
+Epoch [11]:
+
+Train:
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.966
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.959
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.966
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.965
+
+objective: 0.153
+loss_avg: 0.153
+acc_avg: 0.957
+
+objective: 0.165
+loss_avg: 0.165
+acc_avg: 0.954
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.963
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.966
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.961
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.966
+
+objective: 0.153
+loss_avg: 0.153
+acc_avg: 0.960
+
+objective: 0.162
+loss_avg: 0.162
+acc_avg: 0.948
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.965
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.957
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.964
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.966
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.966
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.966
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.968
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.966
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.783
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.804
+Validation rocauc: 0.804
+
+
+Epoch [12]:
+
+Train:
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.960
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.966
+
+objective: 0.149
+loss_avg: 0.149
+acc_avg: 0.961
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.960
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.961
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.963
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.961
+
+objective: 0.164
+loss_avg: 0.164
+acc_avg: 0.946
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.966
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.964
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.959
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.966
+
+objective: 0.154
+loss_avg: 0.154
+acc_avg: 0.957
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.967
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.964
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.961
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.964
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.966
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.969
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.783
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.803
+Validation rocauc: 0.803
+
+
+Epoch [13]:
+
+Train:
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.963
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.961
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.962
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.957
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.963
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.961
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.966
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.960
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.957
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.964
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.964
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.961
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.961
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.962
+
+objective: 0.164
+loss_avg: 0.164
+acc_avg: 0.955
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.959
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.968
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.975
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.795
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.810
+Validation rocauc: 0.810
+
+
+Epoch [14]:
+
+Train:
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.966
+
+objective: 0.144
+loss_avg: 0.144
+acc_avg: 0.954
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.964
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.962
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.963
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.965
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.963
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.959
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.964
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.967
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.963
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.974
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.959
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.967
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.964
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.969
+
+objective: 0.154
+loss_avg: 0.154
+acc_avg: 0.957
+
+objective: 0.159
+loss_avg: 0.159
+acc_avg: 0.956
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.960
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.949
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.797
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.805
+Validation rocauc: 0.805
+
+
+Epoch [15]:
+
+Train:
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.966
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.958
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.967
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.969
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.969
+
+objective: 0.144
+loss_avg: 0.144
+acc_avg: 0.951
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.964
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.961
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.969
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.962
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.967
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.958
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.959
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.961
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.963
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.967
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.955
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.966
+
+objective: 0.155
+loss_avg: 0.155
+acc_avg: 0.957
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.797
+
+Validation:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.799
+Validation rocauc: 0.799
+
+
+Epoch [16]:
+
+Train:
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.959
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.971
+
+objective: 0.165
+loss_avg: 0.165
+acc_avg: 0.953
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.963
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.955
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.966
+
+objective: 0.160
+loss_avg: 0.160
+acc_avg: 0.950
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.959
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.964
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.966
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.965
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.963
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.964
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.960
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.968
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.959
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.958
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.971
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.961
+
+Epoch eval:
+ROCAUC: 0.802
+
+Validation:
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.794
+Validation rocauc: 0.794
+
+
+Epoch [17]:
+
+Train:
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.964
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.961
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.968
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.966
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.958
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.969
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.959
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.970
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.961
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.960
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.973
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.973
+
+objective: 0.145
+loss_avg: 0.145
+acc_avg: 0.956
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.966
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.968
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.958
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.964
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.962
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.954
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.963
+
+objective: 0.152
+loss_avg: 0.152
+acc_avg: 0.957
+
+Epoch eval:
+ROCAUC: 0.803
+
+Validation:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.795
+Validation rocauc: 0.795
+
+
+Epoch [18]:
+
+Train:
+objective: 0.151
+loss_avg: 0.151
+acc_avg: 0.961
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.961
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.963
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.963
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.967
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.957
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.961
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.974
+
+objective: 0.160
+loss_avg: 0.160
+acc_avg: 0.949
+
+objective: 0.149
+loss_avg: 0.149
+acc_avg: 0.959
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.970
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.962
+
+objective: 0.164
+loss_avg: 0.164
+acc_avg: 0.951
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.963
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.965
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.972
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.969
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.809
+
+Validation:
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.804
+Validation rocauc: 0.804
+
+
+Epoch [19]:
+
+Train:
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.968
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.963
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.968
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.964
+
+objective: 0.145
+loss_avg: 0.145
+acc_avg: 0.957
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.961
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.966
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.964
+
+objective: 0.162
+loss_avg: 0.162
+acc_avg: 0.952
+
+objective: 0.153
+loss_avg: 0.153
+acc_avg: 0.954
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.970
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.963
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.969
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.968
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.961
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.966
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.973
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.154
+loss_avg: 0.154
+acc_avg: 0.955
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.969
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.806
+
+Validation:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.805
+Validation rocauc: 0.805
+
+
+Epoch [20]:
+
+Train:
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.966
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.966
+
+objective: 0.145
+loss_avg: 0.145
+acc_avg: 0.956
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.963
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.963
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.968
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.967
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.967
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.968
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.971
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.961
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.966
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.967
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.958
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.966
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.962
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.958
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.957
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.968
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.963
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.962
+
+Epoch eval:
+ROCAUC: 0.809
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.821
+Validation rocauc: 0.821
+Epoch 20 has the best validation performance so far.
+
+
+Epoch [21]:
+
+Train:
+objective: 0.143
+loss_avg: 0.143
+acc_avg: 0.957
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.957
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.963
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.968
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.969
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.964
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.960
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.971
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.960
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.962
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.961
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.964
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.958
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.974
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.964
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.964
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.954
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.155
+loss_avg: 0.155
+acc_avg: 0.954
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.817
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.813
+Validation rocauc: 0.813
+
+
+Epoch [22]:
+
+Train:
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.963
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.963
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.971
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.967
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.967
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.960
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.963
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.963
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.962
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.959
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.960
+
+objective: 0.144
+loss_avg: 0.144
+acc_avg: 0.958
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.964
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.957
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.957
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.971
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.970
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.964
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.970
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.962
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.973
+
+Epoch eval:
+ROCAUC: 0.817
+
+Validation:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.817
+Validation rocauc: 0.817
+
+
+Epoch [23]:
+
+Train:
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.961
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.960
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.966
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.960
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.960
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.969
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.964
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.964
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.967
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.969
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.969
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.966
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.959
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.964
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.963
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.961
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.964
+
+objective: 0.158
+loss_avg: 0.158
+acc_avg: 0.957
+
+Epoch eval:
+ROCAUC: 0.821
+
+Validation:
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.799
+Validation rocauc: 0.799
+
+
+Epoch [24]:
+
+Train:
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.964
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.969
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.968
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.967
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.969
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.961
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.955
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.973
+
+objective: 0.164
+loss_avg: 0.164
+acc_avg: 0.951
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.960
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.973
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.965
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.964
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.960
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.967
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.965
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.966
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.961
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.956
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.961
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.823
+
+Validation:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.785
+Validation rocauc: 0.785
+
+
+Epoch [25]:
+
+Train:
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.963
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.961
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.965
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.962
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.965
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.973
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.963
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.965
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.966
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.972
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.968
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.963
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.968
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.964
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.968
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.964
+
+objective: 0.148
+loss_avg: 0.148
+acc_avg: 0.957
+
+objective: 0.148
+loss_avg: 0.148
+acc_avg: 0.959
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.961
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.829
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.806
+Validation rocauc: 0.806
+
+
+Epoch [26]:
+
+Train:
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.964
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.963
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.975
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.963
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.963
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.961
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.974
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.960
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.966
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.966
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.961
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.961
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.960
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.966
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.959
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.971
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.962
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.964
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.964
+
+Epoch eval:
+ROCAUC: 0.830
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.804
+Validation rocauc: 0.804
+
+
+Epoch [27]:
+
+Train:
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.961
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.964
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.968
+
+objective: 0.146
+loss_avg: 0.146
+acc_avg: 0.958
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.968
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.964
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.969
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.959
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.963
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.962
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.963
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.966
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.967
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.966
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.966
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.965
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.966
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.964
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.957
+
+Epoch eval:
+ROCAUC: 0.828
+
+Validation:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.983
+
+Epoch eval:
+ROCAUC: 0.832
+Validation rocauc: 0.832
+Epoch 27 has the best validation performance so far.
+
+
+Epoch [28]:
+
+Train:
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.963
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.959
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.967
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.960
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.973
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.962
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.962
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.968
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.965
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.964
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.958
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.962
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.959
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.968
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.967
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.960
+
+Epoch eval:
+ROCAUC: 0.833
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.825
+Validation rocauc: 0.825
+
+
+Epoch [29]:
+
+Train:
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.969
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.961
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.961
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.967
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.964
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.971
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.964
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.963
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.960
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.965
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.961
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.967
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.961
+
+objective: 0.145
+loss_avg: 0.145
+acc_avg: 0.959
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.971
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.969
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.968
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.964
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.970
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.962
+
+Epoch eval:
+ROCAUC: 0.835
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.827
+Validation rocauc: 0.827
+
+
+Epoch [30]:
+
+Train:
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.973
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.965
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.963
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.965
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.963
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.963
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.959
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.959
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.964
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.968
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.968
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.970
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.964
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.964
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.962
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.969
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.970
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.964
+
+Epoch eval:
+ROCAUC: 0.832
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.801
+Validation rocauc: 0.801
+
+
+Epoch [31]:
+
+Train:
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.969
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.966
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.963
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.965
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.966
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.968
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.963
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.964
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.963
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.968
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.966
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.960
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.959
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.961
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.968
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.973
+
+Epoch eval:
+ROCAUC: 0.841
+
+Validation:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.794
+Validation rocauc: 0.794
+
+
+Epoch [32]:
+
+Train:
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.966
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.967
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.966
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.971
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.964
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.963
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.970
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.965
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.967
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.144
+loss_avg: 0.144
+acc_avg: 0.956
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.968
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.964
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.971
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.962
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.964
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.837
+
+Validation:
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.840
+Validation rocauc: 0.840
+Epoch 32 has the best validation performance so far.
+
+
+Epoch [33]:
+
+Train:
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.964
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.967
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.971
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.965
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.967
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.964
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.964
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.960
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.958
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.973
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.965
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.965
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.965
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.964
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.963
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.963
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.962
+
+Epoch eval:
+ROCAUC: 0.844
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.826
+Validation rocauc: 0.826
+
+
+Epoch [34]:
+
+Train:
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.961
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.960
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.962
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.973
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.968
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.963
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.968
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.965
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.974
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.965
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.967
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.962
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.967
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.964
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.968
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.967
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.964
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.963
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.963
+
+Epoch eval:
+ROCAUC: 0.840
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.801
+Validation rocauc: 0.801
+
+
+Epoch [35]:
+
+Train:
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.962
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.964
+
+objective: 0.142
+loss_avg: 0.142
+acc_avg: 0.956
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.970
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.966
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.965
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.975
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.969
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.964
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.968
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.960
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.976
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.964
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.974
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.960
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.959
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.961
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.963
+
+Epoch eval:
+ROCAUC: 0.850
+
+Validation:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.983
+
+Epoch eval:
+ROCAUC: 0.822
+Validation rocauc: 0.822
+
+
+Epoch [36]:
+
+Train:
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.975
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.965
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.968
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.969
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.964
+
+objective: 0.143
+loss_avg: 0.143
+acc_avg: 0.956
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.970
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.971
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.961
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.975
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.965
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.964
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.962
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.968
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.965
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.960
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.966
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.964
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.848
+
+Validation:
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.792
+Validation rocauc: 0.792
+
+
+Epoch [37]:
+
+Train:
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.966
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.964
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.966
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.974
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.977
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.966
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.959
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.963
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.962
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.966
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.972
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.964
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.963
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.967
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.962
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.964
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.857
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.807
+Validation rocauc: 0.807
+
+
+Epoch [38]:
+
+Train:
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.966
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.963
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.972
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.964
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.971
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.959
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.966
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.971
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.968
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.966
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.969
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.963
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.965
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.957
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.140
+loss_avg: 0.140
+acc_avg: 0.962
+
+objective: 0.139
+loss_avg: 0.139
+acc_avg: 0.961
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.971
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.852
+
+Validation:
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.809
+Validation rocauc: 0.809
+
+
+Epoch [39]:
+
+Train:
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.960
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.967
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.957
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.968
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.962
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.966
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.972
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.973
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.966
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.973
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.963
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.967
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.974
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.966
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.959
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.964
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.974
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.859
+
+Validation:
+objective: 0.285
+loss_avg: 0.285
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.801
+Validation rocauc: 0.801
+
+
+Epoch [40]:
+
+Train:
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.971
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.964
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.974
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.967
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.972
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.957
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.965
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.962
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.966
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.961
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.968
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.964
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.964
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.968
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.856
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.809
+Validation rocauc: 0.809
+
+
+Epoch [41]:
+
+Train:
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.976
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.966
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.964
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.970
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.962
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.966
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.965
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.961
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.967
+
+objective: 0.147
+loss_avg: 0.147
+acc_avg: 0.959
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.966
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.977
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.968
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.968
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.966
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.967
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.964
+
+Epoch eval:
+ROCAUC: 0.863
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.813
+Validation rocauc: 0.813
+
+
+Epoch [42]:
+
+Train:
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.968
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.131
+loss_avg: 0.131
+acc_avg: 0.965
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.966
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.964
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.138
+loss_avg: 0.138
+acc_avg: 0.961
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.966
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.966
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.968
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.969
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.971
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.963
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.966
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.966
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.976
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.963
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.857
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.827
+Validation rocauc: 0.827
+
+
+Epoch [43]:
+
+Train:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.969
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.974
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.959
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.957
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.966
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.969
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.968
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.961
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.965
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.968
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.972
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.966
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.961
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.964
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.972
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.964
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.971
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.960
+
+Epoch eval:
+ROCAUC: 0.867
+
+Validation:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.797
+Validation rocauc: 0.797
+
+
+Epoch [44]:
+
+Train:
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.970
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.972
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.966
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.974
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.969
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.972
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.966
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.964
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.961
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.974
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.964
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.965
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.969
+
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.963
+
+objective: 0.137
+loss_avg: 0.137
+acc_avg: 0.963
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.967
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.867
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.800
+Validation rocauc: 0.800
+
+
+Epoch [45]:
+
+Train:
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.966
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.970
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.963
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.958
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.975
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.969
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.963
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.972
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.961
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.965
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.969
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.963
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.973
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.869
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.813
+Validation rocauc: 0.813
+
+
+Epoch [46]:
+
+Train:
+objective: 0.133
+loss_avg: 0.133
+acc_avg: 0.961
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.963
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.965
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.962
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.970
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.976
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.970
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.968
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.973
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.964
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.962
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.962
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.967
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.870
+
+Validation:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.813
+Validation rocauc: 0.813
+
+
+Epoch [47]:
+
+Train:
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.974
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.963
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.968
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.978
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.966
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.969
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.973
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.969
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.966
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.960
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.962
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.964
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.965
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.972
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.964
+
+Epoch eval:
+ROCAUC: 0.869
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.824
+Validation rocauc: 0.824
+
+
+Epoch [48]:
+
+Train:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.970
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.968
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.971
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.965
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.965
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.967
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.972
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.980
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.961
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.961
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.972
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.966
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.968
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.976
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.870
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.809
+Validation rocauc: 0.809
+
+
+Epoch [49]:
+
+Train:
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.969
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.972
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.959
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.961
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.968
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.968
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.973
+
+objective: 0.141
+loss_avg: 0.141
+acc_avg: 0.953
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.969
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.974
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.968
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.971
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.966
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.970
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.875
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.821
+Validation rocauc: 0.821
+
+
+Epoch [50]:
+
+Train:
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.968
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.967
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.966
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.967
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.964
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.968
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.973
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.978
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.970
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.971
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.966
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.976
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.969
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.964
+
+objective: 0.136
+loss_avg: 0.136
+acc_avg: 0.962
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.965
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.972
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.966
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.969
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.875
+
+Validation:
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.814
+Validation rocauc: 0.814
+
+
+Epoch [51]:
+
+Train:
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.973
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.976
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.963
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.967
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.964
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.965
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.971
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.961
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.975
+
+objective: 0.126
+loss_avg: 0.126
+acc_avg: 0.961
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.964
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.969
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.972
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.972
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.970
+
+Epoch eval:
+ROCAUC: 0.880
+
+Validation:
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.792
+Validation rocauc: 0.792
+
+
+Epoch [52]:
+
+Train:
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.975
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.969
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.971
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.969
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.970
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.967
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.967
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.964
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.973
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.968
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.969
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.966
+
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.957
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.880
+
+Validation:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.823
+Validation rocauc: 0.823
+
+
+Epoch [53]:
+
+Train:
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.969
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.978
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.961
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.969
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.967
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.966
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.980
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.967
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.966
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.966
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.968
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.960
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.960
+
+Epoch eval:
+ROCAUC: 0.885
+
+Validation:
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.812
+Validation rocauc: 0.812
+
+
+Epoch [54]:
+
+Train:
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.973
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.963
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.965
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.965
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.974
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.966
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.964
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.964
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.967
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.969
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.970
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.963
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.964
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.971
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.886
+
+Validation:
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.818
+Validation rocauc: 0.818
+
+
+Epoch [55]:
+
+Train:
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.967
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.965
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.969
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.966
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.965
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.974
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.965
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.968
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.970
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.964
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.962
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.969
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.970
+
+Epoch eval:
+ROCAUC: 0.882
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.828
+Validation rocauc: 0.828
+
+
+Epoch [56]:
+
+Train:
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.965
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.973
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.968
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.971
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.975
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.965
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.976
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.974
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.971
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.968
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.972
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.971
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.961
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.972
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.965
+
+objective: 0.125
+loss_avg: 0.125
+acc_avg: 0.962
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.956
+
+Epoch eval:
+ROCAUC: 0.882
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.815
+Validation rocauc: 0.815
+
+
+Epoch [57]:
+
+Train:
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.959
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.964
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.977
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.130
+loss_avg: 0.130
+acc_avg: 0.962
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.976
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.975
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.964
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.971
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.975
+
+objective: 0.135
+loss_avg: 0.135
+acc_avg: 0.959
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.967
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.981
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.964
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.974
+
+objective: 0.134
+loss_avg: 0.134
+acc_avg: 0.958
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.973
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.967
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.885
+
+Validation:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.802
+Validation rocauc: 0.802
+
+
+Epoch [58]:
+
+Train:
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.967
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.967
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.968
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.976
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.972
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.966
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.970
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.974
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.968
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.966
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.966
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.969
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.888
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.804
+Validation rocauc: 0.804
+
+
+Epoch [59]:
+
+Train:
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.966
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.978
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.971
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.961
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.968
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.971
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.968
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.976
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.973
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.967
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.970
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.972
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.970
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.886
+
+Validation:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.825
+Validation rocauc: 0.825
+
+
+Epoch [60]:
+
+Train:
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.970
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.967
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.973
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.967
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.975
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.969
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.973
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.974
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.963
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.967
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.977
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.975
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.887
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.824
+Validation rocauc: 0.824
+
+
+Epoch [61]:
+
+Train:
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.970
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.974
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.973
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.976
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.964
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.970
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.973
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.967
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.974
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.961
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.967
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.966
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.967
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.968
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.975
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.890
+
+Validation:
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.811
+Validation rocauc: 0.811
+
+
+Epoch [62]:
+
+Train:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.976
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.964
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.967
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.972
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.974
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.963
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.967
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.963
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.965
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.967
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.963
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.974
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.893
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.802
+Validation rocauc: 0.802
+
+
+Epoch [63]:
+
+Train:
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.968
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.965
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.970
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.963
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.967
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.974
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.967
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.965
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.970
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.969
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.974
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.972
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.893
+
+Validation:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.813
+Validation rocauc: 0.813
+
+
+Epoch [64]:
+
+Train:
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.965
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.971
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.977
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.979
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.972
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.964
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.976
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.968
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.973
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.959
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.966
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+Epoch eval:
+ROCAUC: 0.897
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.811
+Validation rocauc: 0.811
+
+
+Epoch [65]:
+
+Train:
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.966
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.966
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.968
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.974
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.962
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.967
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.967
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.969
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.966
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.970
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.977
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.973
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.976
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.896
+
+Validation:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.810
+Validation rocauc: 0.810
+
+
+Epoch [66]:
+
+Train:
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.973
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.968
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.968
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.970
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.968
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.975
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.970
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.968
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.974
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.898
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.819
+Validation rocauc: 0.819
+
+
+Epoch [67]:
+
+Train:
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.961
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.976
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.969
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.972
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.977
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.979
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.968
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.964
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.969
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.968
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.970
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.968
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.973
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.965
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.970
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.965
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.963
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.974
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.897
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.810
+Validation rocauc: 0.810
+
+
+Epoch [68]:
+
+Train:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.973
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.966
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.963
+
+objective: 0.127
+loss_avg: 0.127
+acc_avg: 0.961
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.972
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.968
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.970
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.971
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.965
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.975
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.976
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.969
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.974
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.966
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.971
+
+Epoch eval:
+ROCAUC: 0.898
+
+Validation:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.798
+Validation rocauc: 0.798
+
+
+Epoch [69]:
+
+Train:
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.960
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.974
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.973
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.966
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.962
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.969
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.968
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.970
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.972
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.968
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.965
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.976
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.969
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.974
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.976
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.970
+
+Epoch eval:
+ROCAUC: 0.902
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.802
+Validation rocauc: 0.802
+
+
+Epoch [70]:
+
+Train:
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.971
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.977
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.966
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.976
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.967
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.972
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.971
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.966
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.966
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.973
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.972
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.960
+
+Epoch eval:
+ROCAUC: 0.899
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.816
+Validation rocauc: 0.816
+
+
+Epoch [71]:
+
+Train:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.986
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.964
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.974
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.962
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.967
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.976
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.969
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.904
+
+Validation:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.835
+Validation rocauc: 0.835
+
+
+Epoch [72]:
+
+Train:
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.962
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.969
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.978
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.969
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.963
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.968
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.970
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.974
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.973
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.968
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.902
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.805
+Validation rocauc: 0.805
+
+
+Epoch [73]:
+
+Train:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.971
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.973
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.966
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.975
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.966
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.967
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.974
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.965
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.967
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.968
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.901
+
+Validation:
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.803
+Validation rocauc: 0.803
+
+
+Epoch [74]:
+
+Train:
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.968
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.973
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.970
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.973
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.973
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.967
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.969
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.969
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.121
+loss_avg: 0.121
+acc_avg: 0.964
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.970
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.905
+
+Validation:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.825
+Validation rocauc: 0.825
+
+
+Epoch [75]:
+
+Train:
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.977
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.969
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.977
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.977
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.971
+
+objective: 0.129
+loss_avg: 0.129
+acc_avg: 0.958
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.977
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.963
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.968
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.966
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.963
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.968
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.905
+
+Validation:
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.819
+Validation rocauc: 0.819
+
+
+Epoch [76]:
+
+Train:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.967
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.967
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.973
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.968
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.958
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.975
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.976
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.966
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.972
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.974
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.906
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.816
+Validation rocauc: 0.816
+
+
+Epoch [77]:
+
+Train:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.978
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.978
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.975
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.968
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.967
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.970
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.972
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.972
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.970
+
+objective: 0.124
+loss_avg: 0.124
+acc_avg: 0.966
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.968
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.966
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.974
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.973
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.967
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.905
+
+Validation:
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.830
+Validation rocauc: 0.830
+
+
+Epoch [78]:
+
+Train:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.968
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.969
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.963
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.975
+
+objective: 0.128
+loss_avg: 0.128
+acc_avg: 0.963
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.969
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.971
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.974
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.968
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.969
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.978
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.973
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.967
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.964
+
+Epoch eval:
+ROCAUC: 0.905
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.808
+Validation rocauc: 0.808
+
+
+Epoch [79]:
+
+Train:
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.973
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.974
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.972
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.968
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.972
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.976
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.969
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.964
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.974
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.968
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.975
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.975
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.968
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.967
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.911
+
+Validation:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.810
+Validation rocauc: 0.810
+
+
+Epoch [80]:
+
+Train:
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.972
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.974
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.977
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.970
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.973
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.967
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.968
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.965
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.975
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.975
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.975
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.970
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.968
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.970
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.973
+
+Epoch eval:
+ROCAUC: 0.910
+
+Validation:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.804
+Validation rocauc: 0.804
+
+
+Epoch [81]:
+
+Train:
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.970
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.971
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.964
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.973
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.972
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.975
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.979
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.964
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.962
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.964
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.979
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.977
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.914
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.817
+Validation rocauc: 0.817
+
+
+Epoch [82]:
+
+Train:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.975
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.970
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.971
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.974
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.970
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.969
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.966
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.963
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.975
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.974
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.967
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.973
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.973
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.968
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+Epoch eval:
+ROCAUC: 0.915
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.811
+Validation rocauc: 0.811
+
+
+Epoch [83]:
+
+Train:
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.972
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.971
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.977
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.970
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.967
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.976
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.967
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.915
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.819
+Validation rocauc: 0.819
+
+
+Epoch [84]:
+
+Train:
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.962
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.973
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.978
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.968
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.978
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.971
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.973
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.965
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.978
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.912
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.809
+Validation rocauc: 0.809
+
+
+Epoch [85]:
+
+Train:
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.980
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.961
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.966
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.973
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.967
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.976
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.968
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.973
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.970
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.966
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.981
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.974
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.971
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.969
+
+objective: 0.123
+loss_avg: 0.123
+acc_avg: 0.960
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.976
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.917
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.824
+Validation rocauc: 0.824
+
+
+Epoch [86]:
+
+Train:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.975
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.977
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.976
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.969
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.968
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.969
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.967
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.976
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.964
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.971
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.978
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.921
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.809
+Validation rocauc: 0.809
+
+
+Epoch [87]:
+
+Train:
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.974
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.966
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.960
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.967
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.974
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.968
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.976
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.966
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.975
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.976
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.973
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.974
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.968
+
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.966
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.975
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.917
+
+Validation:
+objective: 0.120
+loss_avg: 0.120
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.828
+Validation rocauc: 0.828
+
+
+Epoch [88]:
+
+Train:
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.973
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.967
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.972
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.973
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.969
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.970
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.963
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.973
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.973
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.972
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.972
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.976
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+Epoch eval:
+ROCAUC: 0.920
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.830
+Validation rocauc: 0.830
+
+
+Epoch [89]:
+
+Train:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.980
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.972
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.977
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.964
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.972
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.973
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.958
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.964
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.977
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.967
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.966
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.973
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.926
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.816
+Validation rocauc: 0.816
+
+
+Epoch [90]:
+
+Train:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.968
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.970
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.968
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.968
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.975
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.980
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.978
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.924
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.833
+Validation rocauc: 0.833
+
+
+Epoch [91]:
+
+Train:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.975
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.975
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.968
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.973
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.981
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.970
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.971
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.975
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.961
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.968
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.967
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.975
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.918
+
+Validation:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.798
+Validation rocauc: 0.798
+
+
+Epoch [92]:
+
+Train:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.980
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.974
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.973
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.978
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.976
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.972
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.971
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.974
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.969
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.967
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.966
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.966
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.964
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.970
+
+objective: 0.117
+loss_avg: 0.117
+acc_avg: 0.962
+
+Epoch eval:
+ROCAUC: 0.921
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.830
+Validation rocauc: 0.830
+
+
+Epoch [93]:
+
+Train:
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.968
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.977
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.970
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.971
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.970
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.973
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.975
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.964
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.967
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.964
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.973
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.059
+loss_avg: 0.059
+acc_avg: 0.986
+
+Epoch eval:
+ROCAUC: 0.925
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.983
+
+Epoch eval:
+ROCAUC: 0.824
+Validation rocauc: 0.824
+
+
+Epoch [94]:
+
+Train:
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.976
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.975
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.974
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.971
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.966
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.966
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.970
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.972
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.974
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.963
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.973
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.970
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.963
+
+Epoch eval:
+ROCAUC: 0.928
+
+Validation:
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.818
+Validation rocauc: 0.818
+
+
+Epoch [95]:
+
+Train:
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.966
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.973
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.969
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.968
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.978
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.976
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.972
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.980
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.968
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.962
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.119
+loss_avg: 0.119
+acc_avg: 0.958
+
+Epoch eval:
+ROCAUC: 0.928
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.818
+Validation rocauc: 0.818
+
+
+Epoch [96]:
+
+Train:
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.975
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.973
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.970
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.973
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.978
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.966
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.973
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.980
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.970
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.970
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.971
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.975
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.963
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.976
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.964
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.969
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.929
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.817
+Validation rocauc: 0.817
+
+
+Epoch [97]:
+
+Train:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.977
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.970
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.977
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.972
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.974
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.977
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.970
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.976
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.978
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.968
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.964
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.967
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.974
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.973
+
+Epoch eval:
+ROCAUC: 0.927
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.810
+Validation rocauc: 0.810
+
+
+Epoch [98]:
+
+Train:
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.973
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.978
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.970
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.975
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.970
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.968
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.965
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.975
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.975
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.969
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.925
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.821
+Validation rocauc: 0.821
+
+
+Epoch [99]:
+
+Train:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.964
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.973
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.972
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.977
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.975
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.974
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.969
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.971
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.977
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.976
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.972
+
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.969
+
+objective: 0.114
+loss_avg: 0.114
+acc_avg: 0.962
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.973
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.928
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.833
+Validation rocauc: 0.833
+
+
+Epoch [100]:
+
+Train:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.975
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.974
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.978
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.978
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.963
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.967
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.979
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.968
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.970
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.981
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.929
+
+Validation:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.811
+Validation rocauc: 0.811
+
+
+Epoch [101]:
+
+Train:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.968
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.970
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.978
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.968
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.981
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.967
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.965
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.972
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.983
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.979
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.972
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.974
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.975
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.971
+
+objective: 0.118
+loss_avg: 0.118
+acc_avg: 0.959
+
+Epoch eval:
+ROCAUC: 0.929
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.818
+Validation rocauc: 0.818
+
+
+Epoch [102]:
+
+Train:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.975
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.978
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.970
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.977
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.970
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.976
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.969
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.970
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.969
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.967
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.975
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+Epoch eval:
+ROCAUC: 0.928
+
+Validation:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.818
+Validation rocauc: 0.818
+
+
+Epoch [103]:
+
+Train:
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.964
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.968
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.976
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.973
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.981
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.969
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.966
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.973
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.979
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.973
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.968
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.973
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.973
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.974
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.972
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.969
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.932
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.807
+Validation rocauc: 0.807
+
+
+Epoch [104]:
+
+Train:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.970
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.981
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.968
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.966
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.977
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.966
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.976
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.976
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.968
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.970
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.977
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.930
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.837
+Validation rocauc: 0.837
+
+
+Epoch [105]:
+
+Train:
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.970
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.974
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.974
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.977
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.969
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.970
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.979
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.981
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.963
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.981
+
+objective: 0.122
+loss_avg: 0.122
+acc_avg: 0.963
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+Epoch eval:
+ROCAUC: 0.933
+
+Validation:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.831
+Validation rocauc: 0.831
+
+
+Epoch [106]:
+
+Train:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.966
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.979
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.972
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.979
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.967
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.967
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.968
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.974
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.969
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.981
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.971
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.968
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.978
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.979
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.968
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.935
+
+Validation:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.827
+Validation rocauc: 0.827
+
+
+Epoch [107]:
+
+Train:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.977
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.974
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.974
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.968
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.969
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.966
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.976
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.107
+loss_avg: 0.107
+acc_avg: 0.970
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.975
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.973
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.966
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.932
+
+Validation:
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.818
+Validation rocauc: 0.818
+
+
+Epoch [108]:
+
+Train:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.978
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.966
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.978
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.980
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.971
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.970
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.977
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.973
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.973
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.978
+
+objective: 0.110
+loss_avg: 0.110
+acc_avg: 0.965
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.969
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.966
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.933
+
+Validation:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.812
+Validation rocauc: 0.812
+
+
+Epoch [109]:
+
+Train:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.970
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.972
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.975
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.970
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.968
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.974
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.975
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.969
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.976
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.971
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.968
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.935
+
+Validation:
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.816
+Validation rocauc: 0.816
+
+
+Epoch [110]:
+
+Train:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.977
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.968
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.970
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.973
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.968
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.974
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.970
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.978
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.975
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.973
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.979
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.965
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.978
+
+objective: 0.116
+loss_avg: 0.116
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.935
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.809
+Validation rocauc: 0.809
+
+
+Epoch [111]:
+
+Train:
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.969
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.970
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.978
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.981
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.975
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.967
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.965
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.973
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.979
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.973
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.972
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.969
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.970
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.973
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.967
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+Epoch eval:
+ROCAUC: 0.937
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.833
+Validation rocauc: 0.833
+
+
+Epoch [112]:
+
+Train:
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.979
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.977
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.968
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.978
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.975
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.109
+loss_avg: 0.109
+acc_avg: 0.964
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.977
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.975
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.975
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.968
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+Epoch eval:
+ROCAUC: 0.940
+
+Validation:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.817
+Validation rocauc: 0.817
+
+
+Epoch [113]:
+
+Train:
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.972
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.973
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.978
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.968
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.969
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.969
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.969
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.978
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.978
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.938
+
+Validation:
+objective: 0.112
+loss_avg: 0.112
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.825
+Validation rocauc: 0.825
+
+
+Epoch [114]:
+
+Train:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.975
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.970
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.973
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.970
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.973
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.972
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.974
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.970
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.977
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.969
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.973
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.974
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.981
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.967
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.970
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.969
+
+objective: 0.106
+loss_avg: 0.106
+acc_avg: 0.961
+
+Epoch eval:
+ROCAUC: 0.941
+
+Validation:
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.791
+Validation rocauc: 0.791
+
+
+Epoch [115]:
+
+Train:
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.967
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.971
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.978
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.974
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.982
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.978
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.972
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.977
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.973
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.973
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.969
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.971
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.937
+
+Validation:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.820
+Validation rocauc: 0.820
+
+
+Epoch [116]:
+
+Train:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.969
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.975
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.974
+
+objective: 0.061
+loss_avg: 0.061
+acc_avg: 0.980
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.963
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.969
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.981
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.975
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.944
+
+Validation:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.837
+Validation rocauc: 0.837
+
+
+Epoch [117]:
+
+Train:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.974
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.968
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.976
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.971
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.973
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.103
+loss_avg: 0.103
+acc_avg: 0.968
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.981
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.979
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.975
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.978
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.971
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.976
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.970
+
+Epoch eval:
+ROCAUC: 0.941
+
+Validation:
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.804
+Validation rocauc: 0.804
+
+
+Epoch [118]:
+
+Train:
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.966
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.974
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.981
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.976
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.978
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.976
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.973
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.974
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.972
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.975
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.973
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.964
+
+Epoch eval:
+ROCAUC: 0.942
+
+Validation:
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.827
+Validation rocauc: 0.827
+
+
+Epoch [119]:
+
+Train:
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.974
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.964
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.974
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.976
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.972
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.978
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.971
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.971
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.969
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.971
+
+objective: 0.048
+loss_avg: 0.048
+acc_avg: 0.987
+
+Epoch eval:
+ROCAUC: 0.943
+
+Validation:
+objective: 0.132
+loss_avg: 0.132
+acc_avg: 0.975
+
+Epoch eval:
+ROCAUC: 0.830
+Validation rocauc: 0.830
+
+
+Epoch [120]:
+
+Train:
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.972
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.976
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.973
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.973
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.967
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.977
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.968
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.978
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.977
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.972
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.979
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.975
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.940
+
+Validation:
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.814
+Validation rocauc: 0.814
+
+
+Epoch [121]:
+
+Train:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.979
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.975
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.978
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.975
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.971
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.968
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.974
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.974
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.976
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.980
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.979
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.971
+
+objective: 0.105
+loss_avg: 0.105
+acc_avg: 0.962
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.971
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.977
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.938
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.832
+Validation rocauc: 0.832
+
+
+Epoch [122]:
+
+Train:
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.969
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.974
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.969
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.974
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.975
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.978
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.972
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.973
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.977
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.977
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.970
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.973
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.967
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.944
+
+Validation:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.839
+Validation rocauc: 0.839
+
+
+Epoch [123]:
+
+Train:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.976
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.972
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.979
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.967
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.976
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.972
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.971
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.978
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.974
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.967
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.977
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.975
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.978
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.945
+
+Validation:
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.806
+Validation rocauc: 0.806
+
+
+Epoch [124]:
+
+Train:
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.971
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.977
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.976
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.973
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.973
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.968
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.975
+
+objective: 0.061
+loss_avg: 0.061
+acc_avg: 0.983
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.972
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.973
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.979
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.943
+
+Validation:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.794
+Validation rocauc: 0.794
+
+
+Epoch [125]:
+
+Train:
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.978
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.969
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.973
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.973
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.979
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.971
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.976
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.971
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.975
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.969
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.978
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.978
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.979
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.969
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.973
+
+Epoch eval:
+ROCAUC: 0.946
+
+Validation:
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.799
+Validation rocauc: 0.799
+
+
+Epoch [126]:
+
+Train:
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.976
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.971
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.973
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.979
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.974
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.972
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.972
+
+objective: 0.060
+loss_avg: 0.060
+acc_avg: 0.981
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.979
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.977
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.973
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.973
+
+objective: 0.115
+loss_avg: 0.115
+acc_avg: 0.961
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.976
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.978
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.969
+
+objective: 0.102
+loss_avg: 0.102
+acc_avg: 0.966
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.947
+
+Validation:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.793
+Validation rocauc: 0.793
+
+
+Epoch [127]:
+
+Train:
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.981
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.969
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.976
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.967
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.977
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.973
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.969
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.980
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.972
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.974
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.978
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.969
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.969
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.977
+
+objective: 0.060
+loss_avg: 0.060
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.945
+
+Validation:
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.800
+Validation rocauc: 0.800
+
+
+Epoch [128]:
+
+Train:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.978
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.974
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.974
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.974
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.975
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.972
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.977
+
+objective: 0.058
+loss_avg: 0.058
+acc_avg: 0.983
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.972
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.977
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.978
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.973
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.113
+loss_avg: 0.113
+acc_avg: 0.964
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.948
+
+Validation:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.812
+Validation rocauc: 0.812
+
+
+Epoch [129]:
+
+Train:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.971
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.976
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.976
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.973
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.978
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.970
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.973
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.963
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.979
+
+objective: 0.057
+loss_avg: 0.057
+acc_avg: 0.981
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.111
+loss_avg: 0.111
+acc_avg: 0.960
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.977
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.977
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.974
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.977
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.949
+
+Validation:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.821
+Validation rocauc: 0.821
+
+
+Epoch [130]:
+
+Train:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.972
+
+objective: 0.057
+loss_avg: 0.057
+acc_avg: 0.982
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.976
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.970
+
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.972
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.971
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.970
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.981
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.970
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.978
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.975
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.968
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.977
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.974
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.948
+
+Validation:
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.805
+Validation rocauc: 0.805
+
+
+Epoch [131]:
+
+Train:
+objective: 0.095
+loss_avg: 0.095
+acc_avg: 0.968
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.975
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.975
+
+objective: 0.060
+loss_avg: 0.060
+acc_avg: 0.982
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.976
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.979
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.970
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.965
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.973
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.977
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.973
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.973
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.977
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.978
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.971
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.974
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.948
+
+Validation:
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.818
+Validation rocauc: 0.818
+
+
+Epoch [132]:
+
+Train:
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.975
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.978
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.976
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.970
+
+objective: 0.056
+loss_avg: 0.056
+acc_avg: 0.981
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.978
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.975
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.967
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.969
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.982
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.979
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.978
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.971
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.969
+
+Epoch eval:
+ROCAUC: 0.948
+
+Validation:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.809
+Validation rocauc: 0.809
+
+
+Epoch [133]:
+
+Train:
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.975
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.984
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.978
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.978
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.969
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.977
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.971
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.978
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.968
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.973
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.979
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.970
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.975
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.974
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.973
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.974
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.100
+loss_avg: 0.100
+acc_avg: 0.966
+
+Epoch eval:
+ROCAUC: 0.951
+
+Validation:
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.795
+Validation rocauc: 0.795
+
+
+Epoch [134]:
+
+Train:
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.981
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.967
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.976
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.971
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.978
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.981
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.973
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.981
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.971
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.972
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.968
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.976
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.972
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.978
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.973
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.970
+
+Epoch eval:
+ROCAUC: 0.951
+
+Validation:
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.791
+Validation rocauc: 0.791
+
+
+Epoch [135]:
+
+Train:
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.979
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.971
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.974
+
+objective: 0.059
+loss_avg: 0.059
+acc_avg: 0.979
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.975
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.979
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.968
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.972
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.969
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.970
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.967
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.977
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.969
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.977
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.951
+
+Validation:
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.817
+Validation rocauc: 0.817
+
+
+Epoch [136]:
+
+Train:
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.977
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.968
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.974
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.976
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.969
+
+objective: 0.061
+loss_avg: 0.061
+acc_avg: 0.978
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.982
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.976
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.966
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.971
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.973
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.972
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.975
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.977
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.979
+
+objective: 0.108
+loss_avg: 0.108
+acc_avg: 0.966
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.967
+
+Epoch eval:
+ROCAUC: 0.952
+
+Validation:
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.817
+Validation rocauc: 0.817
+
+
+Epoch [137]:
+
+Train:
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.977
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.977
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.972
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.970
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.978
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.969
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.979
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.975
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.972
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.966
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.970
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.974
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.974
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.969
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.974
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.977
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.952
+
+Validation:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.816
+Validation rocauc: 0.816
+
+
+Epoch [138]:
+
+Train:
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.974
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.975
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.983
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.975
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.974
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.978
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.973
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.975
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.979
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.973
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.966
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.968
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.971
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.968
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.973
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.980
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.974
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.971
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.977
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.976
+
+Epoch eval:
+ROCAUC: 0.951
+
+Validation:
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.820
+Validation rocauc: 0.820
+
+
+Epoch [139]:
+
+Train:
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.975
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.978
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.974
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.980
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.974
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.966
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.976
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.974
+
+objective: 0.104
+loss_avg: 0.104
+acc_avg: 0.968
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.970
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.974
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.970
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.979
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.980
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.977
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.952
+
+Validation:
+objective: 0.096
+loss_avg: 0.096
+acc_avg: 0.979
+
+Epoch eval:
+ROCAUC: 0.812
+Validation rocauc: 0.812
+
+
+Epoch [140]:
+
+Train:
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.979
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.969
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.976
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.969
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.975
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.969
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.972
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.972
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.969
+
+objective: 0.053
+loss_avg: 0.053
+acc_avg: 0.980
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.967
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.973
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.981
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.971
+
+objective: 0.067
+loss_avg: 0.067
+acc_avg: 0.977
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.976
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.971
+
+Epoch eval:
+ROCAUC: 0.953
+
+Validation:
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.804
+Validation rocauc: 0.804
+
+
+Epoch [141]:
+
+Train:
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.979
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.977
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.978
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.974
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.971
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.969
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.978
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.973
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.979
+
+objective: 0.057
+loss_avg: 0.057
+acc_avg: 0.980
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.969
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.976
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.981
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.969
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.977
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.970
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.969
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.970
+
+Epoch eval:
+ROCAUC: 0.952
+
+Validation:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.800
+Validation rocauc: 0.800
+
+
+Epoch [142]:
+
+Train:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.973
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.971
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.979
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.975
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.976
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.975
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.981
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.969
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.969
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.971
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.969
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.980
+
+objective: 0.059
+loss_avg: 0.059
+acc_avg: 0.986
+
+objective: 0.098
+loss_avg: 0.098
+acc_avg: 0.969
+
+objective: 0.062
+loss_avg: 0.062
+acc_avg: 0.976
+
+objective: 0.053
+loss_avg: 0.053
+acc_avg: 0.981
+
+objective: 0.094
+loss_avg: 0.094
+acc_avg: 0.968
+
+Epoch eval:
+ROCAUC: 0.952
+
+Validation:
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.812
+Validation rocauc: 0.812
+
+
+Epoch [143]:
+
+Train:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.977
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.966
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.972
+
+objective: 0.057
+loss_avg: 0.057
+acc_avg: 0.982
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.974
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.969
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.972
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.972
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.974
+
+objective: 0.097
+loss_avg: 0.097
+acc_avg: 0.970
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.974
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.972
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.979
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.977
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.971
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.977
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.979
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.956
+
+Validation:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.822
+Validation rocauc: 0.822
+
+
+Epoch [144]:
+
+Train:
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.974
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.967
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.972
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.971
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.962
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.976
+
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.972
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.974
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.975
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.974
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.983
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.971
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.979
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.969
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.973
+
+objective: 0.061
+loss_avg: 0.061
+acc_avg: 0.981
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.978
+
+Epoch eval:
+ROCAUC: 0.955
+
+Validation:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.829
+Validation rocauc: 0.829
+
+
+Epoch [145]:
+
+Train:
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.973
+
+objective: 0.063
+loss_avg: 0.063
+acc_avg: 0.976
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.969
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.973
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.972
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.975
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.975
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.973
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.971
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.973
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.977
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.976
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.976
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.978
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.975
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.980
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.976
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.956
+
+Validation:
+objective: 0.086
+loss_avg: 0.086
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.801
+Validation rocauc: 0.801
+
+
+Epoch [146]:
+
+Train:
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.973
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.977
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.977
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.976
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.976
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.977
+
+objective: 0.059
+loss_avg: 0.059
+acc_avg: 0.982
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.972
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.974
+
+objective: 0.080
+loss_avg: 0.080
+acc_avg: 0.977
+
+objective: 0.061
+loss_avg: 0.061
+acc_avg: 0.978
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.972
+
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.967
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.977
+
+objective: 0.093
+loss_avg: 0.093
+acc_avg: 0.969
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.977
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.976
+
+objective: 0.101
+loss_avg: 0.101
+acc_avg: 0.971
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.981
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.974
+
+Epoch eval:
+ROCAUC: 0.953
+
+Validation:
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.981
+
+Epoch eval:
+ROCAUC: 0.795
+Validation rocauc: 0.795
+
+
+Epoch [147]:
+
+Train:
+objective: 0.060
+loss_avg: 0.060
+acc_avg: 0.982
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.974
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.977
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.972
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.974
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.974
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.976
+
+objective: 0.072
+loss_avg: 0.072
+acc_avg: 0.978
+
+objective: 0.060
+loss_avg: 0.060
+acc_avg: 0.977
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.979
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.967
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.971
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.975
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.978
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.969
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.971
+
+Epoch eval:
+ROCAUC: 0.957
+
+Validation:
+objective: 0.084
+loss_avg: 0.084
+acc_avg: 0.982
+
+Epoch eval:
+ROCAUC: 0.821
+Validation rocauc: 0.821
+
+
+Epoch [148]:
+
+Train:
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.977
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.975
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.976
+
+objective: 0.089
+loss_avg: 0.089
+acc_avg: 0.969
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.976
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.968
+
+objective: 0.073
+loss_avg: 0.073
+acc_avg: 0.976
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.974
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.973
+
+objective: 0.085
+loss_avg: 0.085
+acc_avg: 0.972
+
+objective: 0.078
+loss_avg: 0.078
+acc_avg: 0.976
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.978
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.976
+
+objective: 0.070
+loss_avg: 0.070
+acc_avg: 0.979
+
+objective: 0.075
+loss_avg: 0.075
+acc_avg: 0.972
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.971
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.975
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.976
+
+objective: 0.056
+loss_avg: 0.056
+acc_avg: 0.983
+
+objective: 0.083
+loss_avg: 0.083
+acc_avg: 0.966
+
+objective: 0.087
+loss_avg: 0.087
+acc_avg: 0.972
+
+Epoch eval:
+ROCAUC: 0.956
+
+Validation:
+objective: 0.090
+loss_avg: 0.090
+acc_avg: 0.977
+
+Epoch eval:
+ROCAUC: 0.822
+Validation rocauc: 0.822
+
+
+Epoch [149]:
+
+Train:
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.972
+
+objective: 0.064
+loss_avg: 0.064
+acc_avg: 0.979
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.976
+
+objective: 0.079
+loss_avg: 0.079
+acc_avg: 0.975
+
+objective: 0.068
+loss_avg: 0.068
+acc_avg: 0.975
+
+objective: 0.076
+loss_avg: 0.076
+acc_avg: 0.974
+
+objective: 0.066
+loss_avg: 0.066
+acc_avg: 0.976
+
+objective: 0.074
+loss_avg: 0.074
+acc_avg: 0.976
+
+objective: 0.069
+loss_avg: 0.069
+acc_avg: 0.973
+
+objective: 0.099
+loss_avg: 0.099
+acc_avg: 0.965
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.092
+loss_avg: 0.092
+acc_avg: 0.972
+
+objective: 0.091
+loss_avg: 0.091
+acc_avg: 0.970
+
+objective: 0.065
+loss_avg: 0.065
+acc_avg: 0.979
+
+objective: 0.077
+loss_avg: 0.077
+acc_avg: 0.972
+
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.973
+
+objective: 0.071
+loss_avg: 0.071
+acc_avg: 0.979
+
+objective: 0.060
+loss_avg: 0.060
+acc_avg: 0.979
+
+objective: 0.082
+loss_avg: 0.082
+acc_avg: 0.972
+
+objective: 0.081
+loss_avg: 0.081
+acc_avg: 0.975
+
+objective: 0.061
+loss_avg: 0.061
+acc_avg: 0.983
+
+Epoch eval:
+ROCAUC: 0.954
+
+Validation:
+objective: 0.088
+loss_avg: 0.088
+acc_avg: 0.980
+
+Epoch eval:
+ROCAUC: 0.806
+Validation rocauc: 0.806
+

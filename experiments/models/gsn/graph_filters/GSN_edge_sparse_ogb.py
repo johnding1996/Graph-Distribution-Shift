@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 from torch_geometric.utils import degree
-from .models_misc import mlp
-from .utils_graph_learning import central_encoder
+from gds.datasets.gsn.models_misc import mlp
+from gds.datasets.gsn.utils_graph_learning import central_encoder
 
 import torch.nn.functional as F
 

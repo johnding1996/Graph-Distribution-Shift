@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 from torch_geometric.utils import degree, is_undirected
 
-from models_misc import mlp
-from utils_graph_learning import central_encoder
+from gds.datasets.gsn.models_misc import mlp
+from gds.datasets.gsn.utils_graph_learning import central_encoder
 
 class GSN_sparse(nn.Module):
     

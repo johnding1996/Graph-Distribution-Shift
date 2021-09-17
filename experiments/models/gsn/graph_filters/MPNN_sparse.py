@@ -2,7 +2,8 @@ import torch
 import torch.nn as nn
 from torch_geometric.utils import degree
 
-from models_misc import mlp
+from gds.datasets.gsn.models_misc import mlp
+
 
 class MPNN_sparse(nn.Module):
     

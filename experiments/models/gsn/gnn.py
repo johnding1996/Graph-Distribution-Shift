@@ -7,8 +7,8 @@ import torch.nn.functional as F
 from .graph_filters.GSN_edge_sparse_ogb import GSN_edge_sparse_ogb
 from .graph_filters.MPNN_edge_sparse_ogb import MPNN_edge_sparse_ogb
 
-from .models_misc import mlp, choose_activation
-from .utils_graph_learning import global_add_pool_sparse, global_mean_pool_sparse, DiscreteEmbedding
+from gds.datasets.gsn.models_misc import mlp, choose_activation
+from gds.datasets.gsn.utils_graph_learning import global_add_pool_sparse, global_mean_pool_sparse, DiscreteEmbedding
 
 from ogb.graphproppred.mol_encoder import AtomEncoder, BondEncoder
 
@@ -208,7 +208,7 @@ class GNN_OGB(torch.nn.Module):
 
         #-------------- Code adopted from https://github.com/snap-stanford/ogb/tree/master/examples/graphproppred/mol.
         #-------------- Modified accordingly to allow for the existence of structural identifiers
-
+       
         kwargs = {}
         kwargs['degrees'] = self.degree_encoder(data.degrees)
 

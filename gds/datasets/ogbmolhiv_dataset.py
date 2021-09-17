@@ -112,6 +112,7 @@ class OGBHIVDataset(GDSDataset):
             from gds.datasets.gsn.gsn_data_prep import GSN
             gsn = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
             self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = gsn.preprocess()
+           
 
             if self.graphs_ptg[0].x.dim()==1:
                 self.num_features = 1
