@@ -160,10 +160,7 @@ def main():
         root_dir=config.root_dir,
         download=config.download,
         split_scheme=config.split_scheme,
-        # need to be refactored
-        gsn=config.gsn,
-        id_type=config.id_type,
-        k=config.k,
+        subgraph=True if config.algorithm == 'GSN' else False,
         algorithm=config.algorithm,
         model=config.model,
         **config.dataset_kwargs)
@@ -230,13 +227,16 @@ def main():
         log_grouper = train_grouper
     log_group_data(datasets, log_grouper, logger)
 
+    
     ## Initialize algorithm
     algorithm = initialize_algorithm(
         config=config,
         datasets=datasets,
+        full_dataset=full_dataset,
         train_grouper=train_grouper)
 
     model_prefix = get_model_prefix(datasets['train'], config)
+   
 
     if not config.eval_only:
         ## Load saved results if resuming

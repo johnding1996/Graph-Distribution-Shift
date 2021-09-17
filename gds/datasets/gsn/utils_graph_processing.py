@@ -3,8 +3,11 @@ import numpy as np
 from torch_geometric.utils import remove_self_loops, to_undirected
 import networkx as nx
 
-import graph_tool as gt
-import graph_tool.topology as gt_topology
+try:
+    import graph_tool as gt
+    import graph_tool.topology as gt_topology
+except Exception as e:
+    pass
 
 
 def automorphism_orbits(edge_list, print_msgs=True, **kwargs):

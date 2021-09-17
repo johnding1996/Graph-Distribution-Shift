@@ -1,7 +1,7 @@
 dataset_defaults = {
     'ogb-molpcba': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout': 0.5, 'dataset_group':'mol'},  # include pretrained
+        'model_kwargs': {'dropout': 0.5, 'dataset_group':'mol'},
         'default_frac': 0.10,
         'loss_function': 'multitask_bce',
         'groupby_fields': ['scaffold', ],
@@ -21,14 +21,14 @@ dataset_defaults = {
     },
     'ogb-molhiv': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'mol'}, # include pretrained
+        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'mol', 'id_type': 'cycle_graph', 'k': 6},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['scaffold', ],
         'val_metric': 'rocauc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
-        'batch_size': 128,
+        'batch_size': 64,
         'lr': 1e-03,
         'weight_decay': 0.,
         'n_epochs': 150,
@@ -41,7 +41,7 @@ dataset_defaults = {
     },
     'ogbg-ppa': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'ppa'}, # include pretrained
+        'model_kwargs': {'dropout':0.5, 'dataset_group':'ppa'},
         'default_frac': 0.10,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['species', ],
@@ -61,7 +61,7 @@ dataset_defaults = {
     },
     'RotatedMNIST': {
         'split_scheme': 'official',
-        'model_kwargs': {'feature_dim':3, 'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained
+        'model_kwargs': {'feature_dim':3, 'dropout':0.5, 'dataset_group':'RotatedMNIST'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
@@ -82,7 +82,7 @@ dataset_defaults = {
     'SBM1': {
         'split_scheme': 'official',
         'model': 'gin_virtual_mnist',
-        'model_kwargs': {'dropout':0.5}, # include pretrained
+        'model_kwargs': {'dropout':0.5},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],
