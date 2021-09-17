@@ -109,12 +109,13 @@ class SuperPixelDataset(GDSDataset):
         self._split_array[val_split_idx] = 1
         self._split_array[test_split_idx] = 2
 
-
-        if torch_geometric.__version__ >= '1.7.0':
-            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+        if dataset_kwargs['model'] == '3wlgnn':
+            self._collate = self.collate_dense
         else:
-            self._collate = PyGCollater(follow_batch=[])
-        # self._collate = self.collate_dense
+            if torch_geometric.__version__ >= '1.7.0':
+                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+            else:
+                self._collate = PyGCollater(follow_batch=[])
 
         self._metric = Evaluator('ogbg-ppa')
 
@@ -167,7 +168,6 @@ class SuperPixelDataset(GDSDataset):
             x_node_feat.append(adj_node_feat)
 
         x_node_feat = torch.stack(x_node_feat)
-
         return x_node_feat, y, metadata
 
     def _sym_normalize_adj(self, adj):

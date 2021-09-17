@@ -1,6 +1,7 @@
 import torch.nn as nn
 
 from models.gnn import GNN
+from models.three_wl import ThreeWLGNNNet
 from models.gsn.gnn import GNN_GSN
 
 
@@ -19,12 +20,16 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None):
             - model: a model that is equivalent to nn.Sequential(featurizer, classifier)
     """
     if full_dataset is None:
+        if config.model == "3wlgnn":
+            Model = ThreeWLGNNNet
+        else:
+            Model = GNN
         if is_featurizer:
-            featurizer = GNN(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
+            featurizer = Model(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
             classifier = nn.Linear(featurizer.d_out, d_out)
             model = (featurizer, classifier)
         else:
-            model = GNN(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
+            model = Model(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
     # We use the full dataset only for GSN
     # Need to be refactored
     else:

@@ -28,7 +28,7 @@ dataset_defaults = {
         'val_metric': 'rocauc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
-        'batch_size': 32,
+        'batch_size': 128,
         'lr': 1e-03,
         'weight_decay': 0.,
         'n_epochs': 150,
@@ -61,7 +61,7 @@ dataset_defaults = {
     },
     'RotatedMNIST': {
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'},
+        'model_kwargs': {'feature_dim':3, 'dropout':0.5, 'dataset_group':'RotatedMNIST'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['scaffold',],

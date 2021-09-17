@@ -26,7 +26,6 @@ def get_custom_edge_list(ks, substructure_type=None, filename=None):
     for k in ks:
         if substructure_type is not None:
             graphs_nx = getattr(nx, substructure_type)(k)
-
         else:
             graphs_nx = nx.read_graph6(os.path.join(filename, 'graph{}c.g6'.format(k)))
         if isinstance(graphs_nx, list) or isinstance(graphs_nx, types.GeneratorType):
@@ -169,7 +168,6 @@ def find_id_filename(data_folder, id_type, induced, directed_orbits, k):
         if k_found >= k:
             return name, k_found
     return None, None
-
 
 def downgrade_k(dataset, k, orbit_partition_sizes, k_min):
     '''

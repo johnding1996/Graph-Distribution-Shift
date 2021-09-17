@@ -39,7 +39,6 @@ class GSN():
         ###### data loader parameters
         self.num_workers = 0
         self.num_threads = 1
-
         ###### these are to select the dataset:
         # - dataset can be bionformatics or social and states the class;
         # - name is for the specific problem itself
@@ -60,7 +59,6 @@ class GSN():
         # parser.add_argument('--input_vn_encoder', type=str, default='one_hot_encoder')
         # parser.add_argument('--d_out_vn_encoder', type=int, default=None)
         # parser.add_argument('--d_out_vn', type=int, default=None)
-
         ###### substructure-related parameters:
         # - id_type: substructure family
         # - induced: graphlets vs motifs
@@ -88,7 +86,6 @@ class GSN():
         self.degree_strategy = 'uniform'
         self.id_range = None
         self.degree_range = None
-
         # parser.add_argument('--id_embedding', type=str, default='one_hot_encoder')
         # parser.add_argument('--d_out_id_embedding', type=int, default=None)
         # parser.add_argument('--degree_embedding', type=str, default='one_hot_encoder')
@@ -98,7 +95,6 @@ class GSN():
         # parser.add_argument('--d_out_node_encoder', type=int, default=None)
         # parser.add_argument('--edge_encoder', type=str, default='None')
         # parser.add_argument('--d_out_edge_encoder', type=int, default=None)
-
         ###### model to be used and architecture parameters, in particular
         # - d_h: is the dimension for internal mlps, set to None to
         #   make it equal to d_out
@@ -107,14 +103,12 @@ class GSN():
         #   the list has only one element, that that value gets applied
         #   to all the layers
         # - jk_mlp: set it to True to use an MLP after each jk layer, otherwise a linear layer will be used
-
         # parser.add_argument('--model_name', type=str, default='GSN_sparse')
         # parser.add_argument('--random_features',  type=parse.str2bool, default=False)
         # parser.add_argument('--num_mlp_layers', type=int, default=2)
         # parser.add_argument('--d_h', type=int, default=None)
         # parser.add_argument('--activation_mlp', type=str, default='relu')
         # parser.add_argument('--bn_mlp', type=parse.str2bool, default=True)
-
         # parser.add_argument('--num_layers', type=int, default=2)
         self.num_layers = 2
         # parser.add_argument('--d_msg', type=int, default=None)
@@ -183,7 +177,6 @@ class GSN():
         #                          'star_graph_chosen_k',
         #                          'nonisomorphic_trees_chosen_k']:
         #     self.custom_edge_list = get_custom_edge_list(self.k, self.id_type.replace('_chosen_k',''))
-
         # elif args['id_type'] in ['all_simple_graphs']:
         #     args['k'] = args['k'][0]
         #     k_max = args['k']
@@ -223,27 +216,22 @@ class GSN():
         #     args['d_msg'] = [args['d_out'] for _ in range(args['num_layers'])]
         # else:
         #     args['d_msg'] = [args['d_msg'] for _ in range(args['num_layers'])]    
-
         # if args['d_h'] is None:
         #     args['d_h'] = [[args['d_out']] * (args['num_mlp_layers'] - 1) for _ in range(args['num_layers'])]
         # else:
         #     args['d_h'] = [[args['d_h']] * (args['num_mlp_layers'] - 1) for _ in range(args['num_layers'])]
-
         # if args['d_out_edge_encoder'] is None:
         #     args['d_out_edge_encoder'] = [args['d_out'] for _ in range(args['num_layers'])]
         # else:
         #     args['d_out_edge_encoder'] = [args['d_out_edge_encoder'] for _ in range(args['num_layers'])]
-
         # if args['d_out_node_encoder'] is None:
         #     args['d_out_node_encoder'] = args['d_out']
         # else:
         #     pass
-
         # if args['d_out_id_embedding'] is None:
         #     args['d_out_id_embedding'] = args['d_out']
         # else:
         #     pass
-
         # if args['d_out_degree_embedding'] is None:
         #     args['d_out_degree_embedding'] = args['d_out']
         # else:
@@ -318,7 +306,6 @@ class GSN():
         else:
             d_in_node_encoder = [num_features]
             d_in_edge_encoder = [num_edge_features]
-
         ## ----------------------------------- encode ids and degrees (and possibly edge features)
 
         degree_encoding = self.degree_encoding if self.degree_as_tag else None

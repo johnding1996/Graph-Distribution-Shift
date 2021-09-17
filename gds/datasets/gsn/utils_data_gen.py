@@ -10,7 +10,6 @@ import multiprocessing as mp
 import time
 
 from .utils_misc import isnotebook
-
 if isnotebook():
     from tqdm import tqdm_notebook as tqdm
 else:
@@ -63,7 +62,6 @@ def generate_dataset(data_path,
                                                                                   extract_ids_fn,
                                                                                   count_fn) for graph in graphs)
         print('Done ({:.2f} secs).'.format(time.time() - start))
-
     ### single-threaded computation of subgraph isomoprhisms & creation of data structure
     else:
         graphs_ptg = list()
@@ -100,5 +98,3 @@ def _prepare(data, subgraph_dicts, subgraph_params, dataset_name, ex_fn, cnt_fn)
         new_data = ex_fn(cnt_fn, new_data, subgraph_dicts, subgraph_params)
 
     return new_data
-
-# --------------------------------------------------------------------------------------
