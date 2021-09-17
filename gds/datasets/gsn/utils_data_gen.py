@@ -47,7 +47,7 @@ def generate_dataset(data_path,
     if dataset_name == 'ZINC':
         graphs, num_classes, num_node_type, num_edge_type = load_zinc_data(data_path, dataset_name, False)
     else:
-        graphs, num_classes = load_data(data_path, dataset_name, False)
+        graphs, num_classes = load_ogb_data(data_path, dataset_name, False)
         num_node_type, num_edge_type = None, None
 
     ### parallel computation of subgraph isomoprhisms & creation of data structure
