@@ -298,6 +298,8 @@ class GSN():
     def preprocess(self):
         ogb_dataset = PygGraphPropPredDataset(name=self.dataset_name, root='./data')
         path = os.path.join(ogb_dataset.root)
+    
+       
         subgraph_params = {'induced': self.induced, 
                         'edge_list': self.custom_edge_list,
                         'directed': self.directed,

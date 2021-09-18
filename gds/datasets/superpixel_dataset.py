@@ -118,6 +118,34 @@ class SuperPixelDataset(GDSDataset):
 
         self._metric = Evaluator('ogbg-ppa')
 
+        # GSN
+        self.gsn = gsn
+        self.id_type = id_type
+        self.k = k
+        if self.gsn:
+            from gds.datasets.gsn.gsn_data_prep import GSN
+            gsn = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
+            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = gsn.preprocess()
+           
+
+            if self.graphs_ptg[0].x.dim()==1:
+                self.num_features = 1
+            else:
+                self.num_features = self.graphs_ptg[0].num_features
+                
+            if hasattr(self.graphs_ptg[0], 'edge_features'):
+                if self.graphs_ptg[0].edge_features.dim()==1:
+                    self.num_edge_features = 1
+                else:
+                    self.num_edge_features  = self.graphs_ptg[0].edge_features.shape[1]
+            else:
+                self.num_edge_features = None
+
+
+            self.d_in_node_encoder = [self.num_features]
+            self.d_in_edge_encoder = [self.num_edge_features]
+
+
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):

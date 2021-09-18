@@ -132,7 +132,7 @@ class OGBPCBADataset(GDSDataset):
 
 
 
-
+        exit()
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):
