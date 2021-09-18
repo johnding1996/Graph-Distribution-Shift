@@ -1,5 +1,6 @@
 dataset_defaults = {
     'ogb-molpcba': {
+        'num_domains': 120084,
         'split_scheme': 'official',
         'model_kwargs': {'dropout': 0.5, 'dataset_group':'mol'},  # include pretrained
         'default_frac': 0.10,
@@ -20,6 +21,7 @@ dataset_defaults = {
         'algo_log_metric': 'multitask_binary_accuracy',
     },
     'ogb-molhiv': {
+        'num_domains': 19089,
         'split_scheme': 'official',
         'model_kwargs': {'dropout':0.5, 'dataset_group':'mol'}, # include pretrained
         'default_frac': 1.0,
@@ -40,6 +42,7 @@ dataset_defaults = {
         'algo_log_metric': 'binary_accuracy',
     },
     'ogbg-ppa': {
+        'num_domains': 100000000000,
         'split_scheme': 'official',
         'model_kwargs': {'dropout':0.5, 'dataset_group':'ppa'}, # include pretrained
         'default_frac': 0.1,
@@ -60,6 +63,7 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
     },
     'RotatedMNIST': {
+        'num_domains': 6,
         'split_scheme': 'official',
         'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained
         'default_frac': 1.0,

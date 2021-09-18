@@ -57,4 +57,3 @@ model_idx=$(( ${SLURM_ARRAY_TASK_ID} / 20 % 6 ))
 
 #runexp   device          dataset                   algorithm                       model            root_dir
 runexp  ${device}   ${datasets[$dataset_idx]}   ${algorithms[$algorithm_idx]}  ${models[$model_idx]}  ${root_dir}
-

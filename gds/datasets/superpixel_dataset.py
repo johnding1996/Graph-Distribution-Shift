@@ -206,8 +206,7 @@ class SuperPixelDataset(GDSDataset):
 
 
 if __name__ == '__main__':
-    root = '/cmlscratch/kong/projects/Domain-Transfer-Graph/preprocessing/superpixel/data'
-    name = 'RotatedMNIST'
+    root = '/cmlscratch/kong/datasets/graph_domain'
     dataset = SuperPixelDataset(root_dir=root)
 
     pdb.set_trace()
