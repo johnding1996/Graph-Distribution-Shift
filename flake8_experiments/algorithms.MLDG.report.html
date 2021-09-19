@@ -52,56 +52,89 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="F401">
                <span class="count sev-1">
-                  2
+                  1
                </span>
-               <strong>F401:</strong> 'models.initializer.initialize_model' imported but unused
-               
-                  (and 1 similar)
+               <strong>F401:</strong> 'torch.nn.functional as F' imported but unused
                
             </a>
             <ul class="details">
             <li>
                
-               <p>'models.initializer.initialize_model' imported but unused:</p>
-               
-               <a href="algorithms.MLDG.source.html#l4">
-                  <tt><i>4</i> <span class="kn">from</span> <span class="nn">models.initializer</span> <span class="kn">import</span> <span class="n">initialize_model</span></tt>
-               </a>
-            </li><li>
-               
-               <p>'utils.move_to' imported but unused:</p>
-               
-               <a href="algorithms.MLDG.source.html#l5">
-                  <tt><i>5</i> <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">move_to</span></tt>
+               <a href="algorithms.MLDG.source.html#l2">
+                  <tt><i>2</i> <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span></tt>
                </a>
             </li>
             </ul>
          </li>
          
          <li>
-            <a data-code="F821">
-               <span class="count sev-1">
-                  2
+            <a data-code="E501">
+               <span class="count sev-2">
+                  5
                </span>
-               <strong>F821:</strong> undefined name 'random_pairs_of_minibatches'
+               <strong>E501:</strong> line too long (92 > 79 characters)
                
-                  (and 1 similar)
+                  (and 4 similar)
                
             </a>
             <ul class="details">
             <li>
                
-               <p>Undefined name 'random_pairs_of_minibatches':</p>
+               <p>Line too long (92 > 79 characters):</p>
                
-               <a href="algorithms.MLDG.source.html#l38">
-                  <tt><i>38</i>         <span class="k">for</span> <span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">),</span> <span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">yj</span><span class="p">)</span> <span class="ow">in</span> <span class="n">random_pairs_of_minibatches</span><span class="p">(</span><span class="n">minibatches</span><span class="p">):</span></tt>
+               <a href="algorithms.MLDG.source.html#l17">
+                  <tt><i>17</i>         <span class="n">model</span> <span class="o">=</span> <span class="n">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
-               <p>Undefined name 'copy':</p>
+               <p>Line too long (80 > 79 characters):</p>
                
-               <a href="algorithms.MLDG.source.html#l40">
-                  <tt><i>40</i>             <span class="n">inner_net</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">)</span></tt>
+               <a href="algorithms.MLDG.source.html#l56">
+                  <tt><i>56</i>             <span class="n">group_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">group_indices</span><span class="p">[</span><span class="n">group_i</span><span class="p">],</span> <span class="n">group_indices</span><span class="p">[</span><span class="n">group_j</span><span class="p">]))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="algorithms.MLDG.source.html#l92">
+                  <tt><i>92</i>             <span class="n">grad_inner_j</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">loss_inner_j</span><span class="p">,</span> <span class="n">inner_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="algorithms.MLDG.source.html#l101">
+                  <tt><i>101</i>                     <span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">hparams_mldg_beta</span> <span class="o">*</span> <span class="n">g_j</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="n">n_groups_per_batch</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="algorithms.MLDG.source.html#l122">
+                  <tt><i>122</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.MLDG.source.html#l31">
+                  <tt><i>31</i>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.MLDG.source.html#l99">
+                  <tt><i>99</i>             <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">g_j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">grad_inner_j</span><span class="p">):</span></tt>
                </a>
             </li>
             </ul>
@@ -118,8 +151,26 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="algorithms.MLDG.source.html#l67">
-                  <tt><i>67</i>                 <span class="n">allow_unused</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               <a href="algorithms.MLDG.source.html#l93">
+                  <tt><i>93</i>                 <span class="n">allow_unused</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E203">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E203:</strong> whitespace before ':'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.MLDG.source.html#l53">
+                  <tt><i>53</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rand_group_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">:</span></tt>
                </a>
             </li>
             </ul>
@@ -136,44 +187,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="algorithms.MLDG.source.html#l7">
-                  <tt><i>7</i> <span class="k">class</span> <span class="nc">MLDG</span><span class="p">(</span><span class="n">SingleModelAlgorithm</span><span class="p">):</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E501">
-               <span class="count sev-2">
-                  1
-               </span>
-               <strong>E501:</strong> line too long (84 > 79 characters)
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="algorithms.MLDG.source.html#l66">
-                  <tt><i>66</i>             <span class="n">grad_inner_j</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">loss_inner_j</span><span class="p">,</span> <span class="n">inner_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="W292">
-               <span class="count sev-2">
-                  1
-               </span>
-               <strong>W292:</strong> no newline at end of file
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="algorithms.MLDG.source.html#l84">
-                  <tt><i>84</i>         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">objective</span><span class="p">}</span></tt>
+               <a href="algorithms.MLDG.source.html#l10">
+                  <tt><i>10</i> <span class="k">class</span> <span class="nc">MLDG</span><span class="p">(</span><span class="n">SingleModelAlgorithm</span><span class="p">):</span></tt>
                </a>
             </li>
             </ul>

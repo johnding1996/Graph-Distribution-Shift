@@ -149,9 +149,33 @@
 <span id="L139" class="lineno"><a class="lineno" href="#L139">139</a></span>
 <span id="L140" class="lineno"><a class="lineno" href="#L140">140</a></span>
 <span id="L141" class="lineno"><a class="lineno" href="#L141">141</a></span>
+<span id="L142" class="lineno"><a class="lineno" href="#L142">142</a></span>
+<span id="L143" class="lineno"><a class="lineno" href="#L143">143</a></span>
+<span id="L144" class="lineno"><a class="lineno" href="#L144">144</a></span>
+<span id="L145" class="lineno"><a class="lineno" href="#L145">145</a></span>
+<span id="L146" class="lineno"><a class="lineno" href="#L146">146</a></span>
+<span id="L147" class="lineno"><a class="lineno" href="#L147">147</a></span>
+<span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
+<span id="L149" class="lineno"><a class="lineno" href="#L149">149</a></span>
+<span id="L150" class="lineno"><a class="lineno" href="#L150">150</a></span>
+<span id="L151" class="lineno"><a class="lineno" href="#L151">151</a></span>
+<span id="L152" class="lineno"><a class="lineno" href="#L152">152</a></span>
+<span id="L153" class="lineno"><a class="lineno" href="#L153">153</a></span>
+<span id="L154" class="lineno"><a class="lineno" href="#L154">154</a></span>
+<span id="L155" class="lineno"><a class="lineno" href="#L155">155</a></span>
+<span id="L156" class="lineno"><a class="lineno" href="#L156">156</a></span>
+<span id="L157" class="lineno"><a class="lineno" href="#L157">157</a></span>
+<span id="L158" class="lineno"><a class="lineno" href="#L158">158</a></span>
+<span id="L159" class="lineno"><a class="lineno" href="#L159">159</a></span>
+<span id="L160" class="lineno"><a class="lineno" href="#L160">160</a></span>
+<span id="L161" class="lineno"><a class="lineno" href="#L161">161</a></span>
+<span id="L162" class="lineno"><a class="lineno" href="#L162">162</a></span>
+<span id="L163" class="lineno"><a class="lineno" href="#L163">163</a></span>
+<span id="L164" class="lineno"><a class="lineno" href="#L164">164</a></span>
+<span id="L165" class="lineno"><a class="lineno" href="#L165">165</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
-<span class="line-any" title="No Anys on this line!">import torch.functional as F</span>
+<span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.single_model_algorithm import SingleModelAlgorithm</span>
 <span class="line-any" title="No Anys on this line!">from models.initializer import initialize_model</span>
 <span class="line-precise" title="No Anys on this line!">from utils import move_to</span>
@@ -212,19 +236,19 @@ Unannotated (x2)">        num_classes = d_out</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        emb_dim = self.featurizer.d_out</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
+Unannotated (x11)
 Unimported (x2)">        self.discriminator = torch.nn.Sequential(torch.nn.Linear(emb_dim, emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
 Unimported (x2)">                                  torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                                  torch.nn.Linear(emb_dim, config.num_domains))</span>
+Unannotated (x8)
+Unimported (x1)">                                  torch.nn.Linear(emb_dim, config.num_domains)).to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
+Unannotated (x7)
 Unimported (x1)">        self.class_embeddings = torch.nn.Embedding(num_classes,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            self.featurizer.d_out)</span>
+Unannotated (x4)">            self.featurizer.d_out).to(config.device)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Optimizers</span>
 <span class="line-any" title="Any Types on this line: 
@@ -250,6 +274,41 @@ Unannotated (x4)">                list(self.classifier.parameters())),</span>
 Unannotated (x2)">            lr=config.lr,</span>
 <span class="line-any" title="No Anys on this line!">            weight_decay=0,</span>
 <span class="line-any" title="No Anys on this line!">            betas=(0.5, 0.9))</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def process_batch(self, batch):</span>
+<span class="line-empty" title="No Anys on this line!">        """</span>
+<span class="line-empty" title="No Anys on this line!">        Override</span>
+<span class="line-empty" title="No Anys on this line!">        """</span>
+<span class="line-empty" title="No Anys on this line!">        # forward pass</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        x, y_true, metadata = batch</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        x = x.to(self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        y_true = y_true.to(self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)">        g = self.grouper.metadata_to_group(metadata).to(self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        features = self.featurizer(x)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        outputs = self.classifier(features)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # package the results</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        results = {</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'g': g,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'y_true': y_true,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'y_pred': outputs,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'metadata': metadata,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'features': features,</span>
+<span class="line-empty" title="No Anys on this line!">        }</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        return results</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def update(self, batch):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -290,7 +349,8 @@ Unannotated (x4)">        disc_out = self.discriminator(disc_input)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # should be the domain label</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        disc_labels = metadata[:,0].flatten().to(self.device)</span>
+Unannotated (x7)
+Unimported (x1)">        disc_labels = move_to(metadata[:,0].flatten(), self.device)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if self.class_balance:</span>
@@ -320,10 +380,12 @@ Unannotated (x1)">            [disc_input], create_graph=True)[0]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">        grad_penalty = (input_grad**2).sum(dim=1).mean(dim=0)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        disc_loss += self.hparams['grad_penalty'] * grad_penalty</span>
+Unannotated (x1)">        hparams_gra_penalty = 0</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        disc_loss += hparams_gra_penalty * grad_penalty</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        d_steps_per_g = self.hparams['d_steps_per_g_step']</span>
+Unannotated (x2)">        d_steps_per_g = hparam_d_steps_per_g_step = 1</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        all_preds = self.classifier(z)</span>
 <span class="line-any" title="Any Types on this line: 
@@ -341,9 +403,11 @@ Unannotated (x3)">            disc_loss.backward()</span>
 Unannotated (x3)">            self.disc_opt.step()</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            hparams_lambda = 1.0</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            gen_loss = (classifier_loss +</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                        (self.hparams['lambda'] * -disc_loss))</span>
+Unannotated (x4)">                        (hparams_lambda * -disc_loss))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            self.disc_opt.zero_grad()</span>
 <span class="line-any" title="Any Types on this line: 

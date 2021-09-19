@@ -116,6 +116,15 @@
 <span id="L106" class="lineno"><a class="lineno" href="#L106">106</a></span>
 <span id="L107" class="lineno"><a class="lineno" href="#L107">107</a></span>
 <span id="L108" class="lineno"><a class="lineno" href="#L108">108</a></span>
+<span id="L109" class="lineno"><a class="lineno" href="#L109">109</a></span>
+<span id="L110" class="lineno"><a class="lineno" href="#L110">110</a></span>
+<span id="L111" class="lineno"><a class="lineno" href="#L111">111</a></span>
+<span id="L112" class="lineno"><a class="lineno" href="#L112">112</a></span>
+<span id="L113" class="lineno"><a class="lineno" href="#L113">113</a></span>
+<span id="L114" class="lineno"><a class="lineno" href="#L114">114</a></span>
+<span id="L115" class="lineno"><a class="lineno" href="#L115">115</a></span>
+<span id="L116" class="lineno"><a class="lineno" href="#L116">116</a></span>
+<span id="L117" class="lineno"><a class="lineno" href="#L117">117</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from algorithms.ERM import ERM</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.IRM import IRM</span>
@@ -123,6 +132,7 @@
 <span class="line-any" title="No Anys on this line!">from algorithms.groupDRO import GroupDRO</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.FLAG import FLAG</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.DANN import DANN, CDANN</span>
+<span class="line-any" title="No Anys on this line!">from algorithms.MLDG import MLDG</span>
 <span class="line-any" title="No Anys on this line!">from configs.supported import algo_log_metrics</span>
 <span class="line-any" title="No Anys on this line!">from losses import initialize_loss</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -295,6 +305,23 @@ Unannotated (x3)">    elif config.algorithm == 'CDANN':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Unimported (x1)">        algorithm = CDANN(</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            config=config,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            d_out=d_out,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            grouper=train_grouper,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            loss=loss,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            metric=metric,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            n_train_steps=n_train_steps)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    elif config.algorithm == 'MLDG':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        algorithm = MLDG(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            config=config,</span>
 <span class="line-any" title="Any Types on this line: 

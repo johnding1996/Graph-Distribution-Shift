@@ -92,47 +92,113 @@
 <span id="L82" class="lineno"><a class="lineno" href="#L82">82</a></span>
 <span id="L83" class="lineno"><a class="lineno" href="#L83">83</a></span>
 <span id="L84" class="lineno"><a class="lineno" href="#L84">84</a></span>
+<span id="L85" class="lineno"><a class="lineno" href="#L85">85</a></span>
+<span id="L86" class="lineno"><a class="lineno" href="#L86">86</a></span>
+<span id="L87" class="lineno"><a class="lineno" href="#L87">87</a></span>
+<span id="L88" class="lineno"><a class="lineno" href="#L88">88</a></span>
+<span id="L89" class="lineno"><a class="lineno" href="#L89">89</a></span>
+<span id="L90" class="lineno"><a class="lineno" href="#L90">90</a></span>
+<span id="L91" class="lineno"><a class="lineno" href="#L91">91</a></span>
+<span id="L92" class="lineno"><a class="lineno" href="#L92">92</a></span>
+<span id="L93" class="lineno"><a class="lineno" href="#L93">93</a></span>
+<span id="L94" class="lineno"><a class="lineno" href="#L94">94</a></span>
+<span id="L95" class="lineno"><a class="lineno" href="#L95">95</a></span>
+<span id="L96" class="lineno"><a class="lineno" href="#L96">96</a></span>
+<span id="L97" class="lineno"><a class="lineno" href="#L97">97</a></span>
+<span id="L98" class="lineno"><a class="lineno" href="#L98">98</a></span>
+<span id="L99" class="lineno"><a class="lineno" href="#L99">99</a></span>
+<span id="L100" class="lineno"><a class="lineno" href="#L100">100</a></span>
+<span id="L101" class="lineno"><a class="lineno" href="#L101">101</a></span>
+<span id="L102" class="lineno"><a class="lineno" href="#L102">102</a></span>
+<span id="L103" class="lineno"><a class="lineno" href="#L103">103</a></span>
+<span id="L104" class="lineno"><a class="lineno" href="#L104">104</a></span>
+<span id="L105" class="lineno"><a class="lineno" href="#L105">105</a></span>
+<span id="L106" class="lineno"><a class="lineno" href="#L106">106</a></span>
+<span id="L107" class="lineno"><a class="lineno" href="#L107">107</a></span>
+<span id="L108" class="lineno"><a class="lineno" href="#L108">108</a></span>
+<span id="L109" class="lineno"><a class="lineno" href="#L109">109</a></span>
+<span id="L110" class="lineno"><a class="lineno" href="#L110">110</a></span>
+<span id="L111" class="lineno"><a class="lineno" href="#L111">111</a></span>
+<span id="L112" class="lineno"><a class="lineno" href="#L112">112</a></span>
+<span id="L113" class="lineno"><a class="lineno" href="#L113">113</a></span>
+<span id="L114" class="lineno"><a class="lineno" href="#L114">114</a></span>
+<span id="L115" class="lineno"><a class="lineno" href="#L115">115</a></span>
+<span id="L116" class="lineno"><a class="lineno" href="#L116">116</a></span>
+<span id="L117" class="lineno"><a class="lineno" href="#L117">117</a></span>
+<span id="L118" class="lineno"><a class="lineno" href="#L118">118</a></span>
+<span id="L119" class="lineno"><a class="lineno" href="#L119">119</a></span>
+<span id="L120" class="lineno"><a class="lineno" href="#L120">120</a></span>
+<span id="L121" class="lineno"><a class="lineno" href="#L121">121</a></span>
+<span id="L122" class="lineno"><a class="lineno" href="#L122">122</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
-<span class="line-any" title="No Anys on this line!">import torch.functional as F</span>
+<span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.single_model_algorithm import SingleModelAlgorithm</span>
 <span class="line-any" title="No Anys on this line!">from models.initializer import initialize_model</span>
 <span class="line-precise" title="No Anys on this line!">from utils import move_to</span>
+<span class="line-precise" title="No Anys on this line!">import copy</span>
+<span class="line-precise" title="No Anys on this line!">from gds.common.utils import split_into_groups</span>
+<span class="line-any" title="No Anys on this line!">from torch_geometric.data import Batch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class MLDG(SingleModelAlgorithm):</span>
-<span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-empty" title="No Anys on this line!">    Model-Agnostic Meta-Learning</span>
-<span class="line-empty" title="No Anys on this line!">    Algorithm 1 / Equation (3) from: https://arxiv.org/pdf/1710.03463.pdf</span>
-<span class="line-empty" title="No Anys on this line!">    Related: https://arxiv.org/pdf/1703.03400.pdf</span>
-<span class="line-empty" title="No Anys on this line!">    Related: https://arxiv.org/pdf/1910.13580.pdf</span>
-<span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, input_shape, num_classes, num_domains, hparams):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        super(MLDG, self).__init__(input_shape, num_classes, num_domains,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                                   hparams)</span>
+<span class="line-empty" title="No Anys on this line!">    """Domain-Adversarial Neural Networks (abstract class)"""</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def update(self, minibatches, unlabeled=None):</span>
-<span class="line-empty" title="No Anys on this line!">        """</span>
-<span class="line-empty" title="No Anys on this line!">        Terms being computed:</span>
-<span class="line-empty" title="No Anys on this line!">            * Li = Loss(xi, yi, params)</span>
-<span class="line-empty" title="No Anys on this line!">            * Gi = Grad(Li, params)</span>
-<span class="line-empty" title="No Anys on this line!">            * Lj = Loss(xj, yj, Optimizer(params, grad(Li, params)))</span>
-<span class="line-empty" title="No Anys on this line!">            * Gj = Grad(Lj, params)</span>
-<span class="line-empty" title="No Anys on this line!">            * params = Optimizer(params, Grad(Li + beta * Lj, params))</span>
-<span class="line-empty" title="No Anys on this line!">            *        = Optimizer(params, Gi + beta * Gj)</span>
-<span class="line-empty" title="No Anys on this line!">        That is, when calling .step(), we want grads to be Gi + beta * Gj</span>
-<span class="line-empty" title="No Anys on this line!">        For computational efficiency, we do not compute second derivatives.</span>
-<span class="line-empty" title="No Anys on this line!">        """</span>
+<span class="line-empty" title="No Anys on this line!">    # def __init__(self, input_shape, num_classes, num_domains,</span>
+<span class="line-empty" title="No Anys on this line!">    #              hparams, conditional, class_balance):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, config, d_out, grouper, loss,</span>
+<span class="line-empty" title="No Anys on this line!">                 metric, n_train_steps):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        num_mb = len(minibatches)</span>
+Unannotated (x8)
+Unimported (x1)">        model = initialize_model(config, d_out=d_out, is_featurizer=False).to(config.device)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # initialize module</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        objective = 0</span>
+Unannotated (x1)">        super().__init__(</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            config=config,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            model=model,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            grouper=grouper,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            loss=loss,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            metric=metric,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            n_train_steps=n_train_steps,</span>
+<span class="line-empty" title="No Anys on this line!">        )</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.config = config</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def update(self, batch):</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        x, y_true, metadata = batch</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        x = move_to(x, self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        y_true = move_to(y_true, self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        g = move_to(self.grouper.metadata_to_group(metadata), self.device)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        results = {</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'g': g,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'y_true': y_true,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            'metadata': metadata,</span>
+<span class="line-empty" title="No Anys on this line!">        }</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        self.optimizer.zero_grad()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        for p in self.network.parameters():</span>
+Unannotated (x4)">        for p in self.model.parameters():</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            if p.grad is None:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -140,12 +206,31 @@ Unannotated (x5)
 Unimported (x1)">                p.grad = torch.zeros_like(p)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Error (x1)">        for (xi, yi), (xj, yj) in random_pairs_of_minibatches(minibatches):</span>
-<span class="line-empty" title="No Anys on this line!">            # fine tune clone-network on task "i"</span>
+Unannotated (x7)">        unique_groups, group_indices, _ = split_into_groups(results['g'])</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        n_groups_per_batch = unique_groups.numel()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Error (x1)">            inner_net = copy.deepcopy(self.network)</span>
+Unimported (x1)">        rand_group_index = torch.randperm(n_groups_per_batch)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        group_pairs = []</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        for i in range(rand_group_index.shape[0]) :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            j = i + 1 if i &lt; rand_group_index.shape[0]-1 else 0</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)">            group_i, group_j = rand_group_index[i], rand_group_index[j]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            group_pairs.append((group_indices[group_i], group_indices[group_j]))</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        objective = 0</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        for (group_indices_i, group_indices_j) in group_pairs:</span>
+<span class="line-empty" title="No Anys on this line!">            # fine tune clone-network on task "i"</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Explicit (x2)">            inner_net = copy.deepcopy(self.model)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
@@ -153,14 +238,18 @@ Unimported (x1)">            inner_opt = torch.optim.Adam(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                inner_net.parameters(),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                lr=self.hparams["lr"],</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                weight_decay=self.hparams['weight_decay']</span>
+Unannotated (x2)">                lr=self.config.lr,</span>
+<span class="line-any" title="No Anys on this line!">                weight_decay=0</span>
 <span class="line-empty" title="No Anys on this line!">            )</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            inner_obj = self.objective({</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
-Unimported (x1)">            inner_obj = F.cross_entropy(inner_net(xi), yi)</span>
+Unimported (x1)">                'y_pred': inner_net(Batch.from_data_list(x[group_indices_i])),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                'y_true': y_true[group_indices_i]</span>
+<span class="line-empty" title="No Anys on this line!">            })</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            inner_opt.zero_grad()</span>
@@ -173,52 +262,74 @@ Unannotated (x3)">            inner_opt.step()</span>
 <span class="line-empty" title="No Anys on this line!">            # The clone-network has now parameters P - lr * Gi</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
-Explicit (x8)">            for p_tgt, p_src in zip(self.network.parameters(),</span>
+Explicit (x8)">            for p_tgt, p_src in zip(self.model.parameters(),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                                    inner_net.parameters()):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                if p_src.grad is not None:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">                    p_tgt.grad.data.add_(p_src.grad.data / num_mb)</span>
+Unannotated (x10)">                    p_tgt.grad.data.add_(p_src.grad.data / n_groups_per_batch)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">            # `objective` is populated for reporting purposes</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            objective += inner_obj.item()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # this computes Gj on the clone-network</span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            loss_inner_j = self.objective({</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
-Unimported (x1)">            loss_inner_j = F.cross_entropy(inner_net(xj), yj)</span>
+Unimported (x1)">                'y_pred': inner_net(Batch.from_data_list(x[group_indices_j])),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                'y_true': y_true[group_indices_j]</span>
+<span class="line-empty" title="No Anys on this line!">            })</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
 Unimported (x1)">            grad_inner_j = torch.autograd.grad(loss_inner_j, inner_net.parameters(),</span>
 <span class="line-any" title="No Anys on this line!">                allow_unused=True)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # `objective` is populated for reporting purposes</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            objective += (self.hparams['mldg_beta'] * loss_inner_j).item()</span>
+Unannotated (x1)">            hparams_mldg_beta = 1</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            objective += (hparams_mldg_beta * loss_inner_j).item()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
-Explicit (x8)">            for p, g_j in zip(self.network.parameters(), grad_inner_j):</span>
+Explicit (x8)">            for p, g_j in zip(self.model.parameters(), grad_inner_j):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                if g_j is not None:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                    p.grad.data.add_(</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">                        self.hparams['mldg_beta'] * g_j.data / num_mb)</span>
+Unannotated (x11)">                    p.grad.data.add_(hparams_mldg_beta * g_j.data / n_groups_per_batch)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # The network has now accumulated gradients Gi + beta * Gj</span>
 <span class="line-empty" title="No Anys on this line!">            # Repeat for all train-test splits, do .step()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        objective /= len(minibatches)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        self.optimizer.step()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        objective /= n_groups_per_batch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        return {'loss': objective}</span>
+Unannotated (x2)">        results['objective'] = objective</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.step_schedulers(</span>
+<span class="line-any" title="No Anys on this line!">            is_epoch=False,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            metrics=results,</span>
+<span class="line-any" title="No Anys on this line!">            log_access=False)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # log results</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        results['y_pred'] = self.model(x)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.update_log(results)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        return self.sanitize_dict(results)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def objective(self, results):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">        return self.loss.compute(results['y_pred'], results['y_true'], return_dict=False)</span>
 </pre></td>
 </tr></tbody>
 </table>
