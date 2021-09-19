@@ -33,12 +33,20 @@ algorithm_defaults = {
     },
     'DANN': {
         'train_loader': 'standard',
-        'uniform_over_groups': False,
+        'uniform_over_groups': True,
+        'distinct_groups': True,
         'eval_loader': 'standard',
     },
     'CDANN': {
         'train_loader': 'standard',
-        'uniform_over_groups': False,
+        'uniform_over_groups': True,
+        'distinct_groups': True,
+        'eval_loader': 'standard',
+    },
+    'MLDG': {
+        'train_loader': 'standard',
+        'uniform_over_groups': True,
+        'distinct_groups': True,
         'eval_loader': 'standard',
     },
 }

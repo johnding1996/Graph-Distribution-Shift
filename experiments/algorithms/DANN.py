@@ -1,5 +1,5 @@
 import torch
-import torch.functional as F
+import torch.nn.functional as F
 from algorithms.single_model_algorithm import SingleModelAlgorithm
 from models.initializer import initialize_model
 from utils import move_to
@@ -39,9 +39,9 @@ class AbstractDANN(SingleModelAlgorithm):
         emb_dim = self.featurizer.d_out
         self.discriminator = torch.nn.Sequential(torch.nn.Linear(emb_dim, emb_dim),
                                   torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),
-                                  torch.nn.Linear(emb_dim, config.num_domains))
+                                  torch.nn.Linear(emb_dim, config.num_domains)).to(config.device)
         self.class_embeddings = torch.nn.Embedding(num_classes,
-            self.featurizer.d_out)
+            self.featurizer.d_out).to(config.device)
 
         # Optimizers
         self.disc_opt = torch.optim.Adam(
@@ -57,6 +57,28 @@ class AbstractDANN(SingleModelAlgorithm):
             lr=config.lr,
             weight_decay=0,
             betas=(0.5, 0.9))
+
+    def process_batch(self, batch):
+        """
+        Override
+        """
+        # forward pass
+        x, y_true, metadata = batch
+        x = x.to(self.device)
+        y_true = y_true.to(self.device)
+        g = self.grouper.metadata_to_group(metadata).to(self.device)
+        features = self.featurizer(x)
+        outputs = self.classifier(features)
+
+        # package the results
+        results = {
+            'g': g,
+            'y_true': y_true,
+            'y_pred': outputs,
+            'metadata': metadata,
+            'features': features,
+        }
+        return results
 
     def update(self, batch):
 
@@ -79,7 +101,7 @@ class AbstractDANN(SingleModelAlgorithm):
         disc_out = self.discriminator(disc_input)
 
         # should be the domain label
-        disc_labels = metadata[:,0].flatten().to(self.device)
+        disc_labels = move_to(metadata[:,0].flatten(), self.device)
 
         if self.class_balance:
             y_counts = F.one_hot(y_true).sum(dim=0)
@@ -93,9 +115,10 @@ class AbstractDANN(SingleModelAlgorithm):
         input_grad = torch.autograd.grad(disc_softmax[:, disc_labels].sum(),
             [disc_input], create_graph=True)[0]
         grad_penalty = (input_grad**2).sum(dim=1).mean(dim=0)
-        disc_loss += self.hparams['grad_penalty'] * grad_penalty
+        hparams_gra_penalty = 0
+        disc_loss += hparams_gra_penalty * grad_penalty
 
-        d_steps_per_g = self.hparams['d_steps_per_g_step']
+        d_steps_per_g = hparam_d_steps_per_g_step = 1
         all_preds = self.classifier(z)
         results['y_pred'] = all_preds
         classifier_loss = self.objective(results)
@@ -105,8 +128,9 @@ class AbstractDANN(SingleModelAlgorithm):
             disc_loss.backward()
             self.disc_opt.step()
         else:
+            hparams_lambda = 1.0
             gen_loss = (classifier_loss +
-                        (self.hparams['lambda'] * -disc_loss))
+                        (hparams_lambda * -disc_loss))
             self.disc_opt.zero_grad()
             self.gen_opt.zero_grad()
             gen_loss.backward()
