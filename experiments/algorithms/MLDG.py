@@ -25,7 +25,6 @@ class MLDG(SingleModelAlgorithm):
             metric=metric,
             n_train_steps=n_train_steps,
         )
-        assert config.num_domains <= 1000 # domain space shouldn't be too large
         self.config = config
 
 
