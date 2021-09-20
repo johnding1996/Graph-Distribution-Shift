@@ -32,7 +32,7 @@
                class="code sev- "><tt><i>5</i> <span class="kn">from</span> <span class="nn">algorithms.FLAG</span> <span class="kn">import</span> <span class="n">FLAG</span></tt>
             </div>
             <div id="l6"
-               class="code sev- "><tt><i>6</i> <span class="kn">from</span> <span class="nn">algorithms.DANN</span> <span class="kn">import</span> <span class="n">DANN</span><span class="p">,</span> <span class="n">CDANN</span></tt>
+               class="code sev- "><tt><i>6</i> <span class="kn">from</span> <span class="nn">algorithms.DANN</span> <span class="kn">import</span> <span class="n">DANN</span><span class="p">,</span> <span class="n">CDANN</span><span class="p">,</span> <span class="n">OurDANN</span></tt>
             </div>
             <div id="l7"
                class="code sev- "><tt><i>7</i> <span class="kn">from</span> <span class="nn">algorithms.MLDG</span> <span class="kn">import</span> <span class="n">MLDG</span></tt>
@@ -368,10 +368,10 @@
                class="code sev- "><tt><i>105</i>             <span class="n">n_train_steps</span><span class="o">=</span><span class="n">n_train_steps</span><span class="p">)</span></tt>
             </div>
             <div id="l106"
-               class="code sev- "><tt><i>106</i>     <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;MLDG&#39;</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>106</i>     <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;OurDANN&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l107"
-               class="code sev- "><tt><i>107</i>         <span class="n">algorithm</span> <span class="o">=</span> <span class="n">MLDG</span><span class="p">(</span></tt>
+               class="code sev- "><tt><i>107</i>         <span class="n">algorithm</span> <span class="o">=</span> <span class="n">OurDANN</span><span class="p">(</span></tt>
             </div>
             <div id="l108"
                class="code sev- "><tt><i>108</i>             <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span></tt>
@@ -392,16 +392,40 @@
                class="code sev- "><tt><i>113</i>             <span class="n">n_train_steps</span><span class="o">=</span><span class="n">n_train_steps</span><span class="p">)</span></tt>
             </div>
             <div id="l114"
-               class="code sev- "><tt><i>114</i>     <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>114</i>     <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;MLDG&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l115"
-               class="code sev- "><tt><i>115</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s2"> not recognized&quot;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>115</i>         <span class="n">algorithm</span> <span class="o">=</span> <span class="n">MLDG</span><span class="p">(</span></tt>
             </div>
             <div id="l116"
-               class="code sev- "><tt><i>116</i> &nbsp;</tt>
+               class="code sev- "><tt><i>116</i>             <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span></tt>
             </div>
             <div id="l117"
-               class="code sev- "><tt><i>117</i>     <span class="k">return</span> <span class="n">algorithm</span></tt>
+               class="code sev- "><tt><i>117</i>             <span class="n">d_out</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span></tt>
+            </div>
+            <div id="l118"
+               class="code sev- "><tt><i>118</i>             <span class="n">grouper</span><span class="o">=</span><span class="n">train_grouper</span><span class="p">,</span></tt>
+            </div>
+            <div id="l119"
+               class="code sev- "><tt><i>119</i>             <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span></tt>
+            </div>
+            <div id="l120"
+               class="code sev- "><tt><i>120</i>             <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span></tt>
+            </div>
+            <div id="l121"
+               class="code sev- "><tt><i>121</i>             <span class="n">n_train_steps</span><span class="o">=</span><span class="n">n_train_steps</span><span class="p">)</span></tt>
+            </div>
+            <div id="l122"
+               class="code sev- "><tt><i>122</i>     <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l123"
+               class="code sev- "><tt><i>123</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s2"> not recognized&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l124"
+               class="code sev- "><tt><i>124</i> &nbsp;</tt>
+            </div>
+            <div id="l125"
+               class="code sev- "><tt><i>125</i>     <span class="k">return</span> <span class="n">algorithm</span></tt>
             </div>
             
          </div>

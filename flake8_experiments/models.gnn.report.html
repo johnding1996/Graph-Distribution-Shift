@@ -60,84 +60,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.gnn.source.html#l133">
-                  <tt><i>133</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E251">
-               <span class="count sev-2">
-                  34
-               </span>
-               <strong>E251:</strong> unexpected spaces around keyword / parameter equals
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 6 places):</p>
-               
-               <a href="models.gnn.source.html#l20">
-                  <tt><i>20</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gnn_type</span><span class="o">=</span><span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">emb_dim</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 8 places):</p>
-               
-               <a href="models.gnn.source.html#l74">
-                  <tt><i>74</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">drop_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
-               
-               <a href="models.gnn.source.html#l147">
-                  <tt><i>147</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
-               
-               <a href="models.gnn.source.html#l149">
-                  <tt><i>149</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 8 places):</p>
-               
-               <a href="models.gnn.source.html#l173">
-                  <tt><i>173</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">drop_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
-               
-               <a href="models.gnn.source.html#l266">
-                  <tt><i>266</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
-               
-               <a href="models.gnn.source.html#l268">
-                  <tt><i>268</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
-               
-               <a href="models.gnn.source.html#l282">
-                  <tt><i>282</i>                     <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">virtualnode_embedding</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
-               
-               <a href="models.gnn.source.html#l284">
-                  <tt><i>284</i>                     <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               <a href="models.gnn.source.html#l140">
+                  <tt><i>140</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
                </a>
             </li>
             </ul>
@@ -146,7 +70,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  34
+                  35
                </span>
                <strong>E501:</strong> line too long (92 > 79 characters)
                
@@ -177,10 +101,10 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>Line too long (121 > 79 characters):</p>
+               <p>Line too long (137 > 79 characters):</p>
                
                <a href="models.gnn.source.html#l20">
-                  <tt><i>20</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gnn_type</span><span class="o">=</span><span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">emb_dim</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span></tt>
+                  <tt><i>20</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gnn_type</span><span class="o">=</span><span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">emb_dim</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></tt>
                </a>
             </li><li>
                
@@ -193,204 +117,287 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (161 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l47">
-                  <tt><i>47</i>             <span class="bp">self</span><span class="o">.</span><span class="n">gnn_node</span> <span class="o">=</span> <span class="n">GNN_node_Virtualnode</span><span class="p">(</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">,</span> <span class="n">gnn_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gnn_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">drop_ratio</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span></tt>
+               <a href="models.gnn.source.html#l48">
+                  <tt><i>48</i>             <span class="bp">self</span><span class="o">.</span><span class="n">gnn_node</span> <span class="o">=</span> <span class="n">GNN_node_Virtualnode</span><span class="p">(</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">,</span> <span class="n">gnn_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gnn_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">drop_ratio</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (149 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l49">
-                  <tt><i>49</i>             <span class="bp">self</span><span class="o">.</span><span class="n">gnn_node</span> <span class="o">=</span> <span class="n">GNN_node</span><span class="p">(</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">,</span> <span class="n">gnn_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gnn_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">drop_ratio</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span></tt>
+               <a href="models.gnn.source.html#l50">
+                  <tt><i>50</i>             <span class="bp">self</span><span class="o">.</span><span class="n">gnn_node</span> <span class="o">=</span> <span class="n">GNN_node</span><span class="p">(</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">,</span> <span class="n">gnn_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gnn_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">drop_ratio</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (82 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l56">
-                  <tt><i>56</i>             <span class="bp">self</span><span class="o">.</span><span class="n">graph_pred_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emb_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_tasks</span><span class="p">)</span></tt>
+               <a href="models.gnn.source.html#l61">
+                  <tt><i>61</i>             <span class="bp">self</span><span class="o">.</span><span class="n">graph_pred_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emb_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_tasks</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="models.gnn.source.html#l72">
+                  <tt><i>72</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_pred_linear</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">h_node</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span><span class="p">)</span> <span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (131 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l74">
-                  <tt><i>74</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">drop_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span></tt>
+               <a href="models.gnn.source.html#l81">
+                  <tt><i>81</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">drop_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (93 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l97">
-                  <tt><i>97</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span> <span class="c1"># uniform input node embedding</span></tt>
+               <a href="models.gnn.source.html#l104">
+                  <tt><i>104</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span> <span class="c1"># uniform input node embedding</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (84 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l111">
-                  <tt><i>111</i>                     <span class="n">mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
+               <a href="models.gnn.source.html#l118">
+                  <tt><i>118</i>                     <span class="n">mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (102 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l112">
-                  <tt><i>112</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
+               <a href="models.gnn.source.html#l119">
+                  <tt><i>119</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (89 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l113">
-                  <tt><i>113</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l120">
+                  <tt><i>120</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (87 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l126">
-                  <tt><i>126</i>                     <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ChebConvNew</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">Cheb_K</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l133">
+                  <tt><i>133</i>                     <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ChebConvNew</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">Cheb_K</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (81 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l128">
-                  <tt><i>128</i>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Undefined GNN type called </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gnn_type</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l135">
+                  <tt><i>135</i>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Undefined GNN type called </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gnn_type</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (125 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l133">
-                  <tt><i>133</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
+               <a href="models.gnn.source.html#l140">
+                  <tt><i>140</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (98 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l136">
-                  <tt><i>136</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
+               <a href="models.gnn.source.html#l143">
+                  <tt><i>143</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (83 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l149">
-                  <tt><i>149</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               <a href="models.gnn.source.html#l156">
+                  <tt><i>156</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (131 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l173">
-                  <tt><i>173</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">drop_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span></tt>
+               <a href="models.gnn.source.html#l180">
+                  <tt><i>180</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">drop_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (93 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l195">
-                  <tt><i>195</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span> <span class="c1"># uniform input node embedding</span></tt>
+               <a href="models.gnn.source.html#l202">
+                  <tt><i>202</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span> <span class="c1"># uniform input node embedding</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (84 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l216">
-                  <tt><i>216</i>                     <span class="n">mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
+               <a href="models.gnn.source.html#l223">
+                  <tt><i>223</i>                     <span class="n">mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (102 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l217">
-                  <tt><i>217</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
+               <a href="models.gnn.source.html#l224">
+                  <tt><i>224</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (89 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l218">
-                  <tt><i>218</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l225">
+                  <tt><i>225</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (87 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l231">
-                  <tt><i>231</i>                     <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ChebConvNew</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">Cheb_K</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l238">
+                  <tt><i>238</i>                     <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ChebConvNew</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">Cheb_K</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (81 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l233">
-                  <tt><i>233</i>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Undefined GNN type called </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gnn_type</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l240">
+                  <tt><i>240</i>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Undefined GNN type called </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gnn_type</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (109 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l239">
-                  <tt><i>239</i>                 <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
+               <a href="models.gnn.source.html#l246">
+                  <tt><i>246</i>                 <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (105 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l241">
-                  <tt><i>241</i>                                     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span></tt>
+               <a href="models.gnn.source.html#l248">
+                  <tt><i>248</i>                                     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (125 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l246">
-                  <tt><i>246</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
+               <a href="models.gnn.source.html#l253">
+                  <tt><i>253</i>         <span class="n">x</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">edge_attr</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (89 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l250">
-                  <tt><i>250</i>             <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">device</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l257">
+                  <tt><i>257</i>             <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">device</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (98 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l253">
-                  <tt><i>253</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
+               <a href="models.gnn.source.html#l260">
+                  <tt><i>260</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (83 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l268">
-                  <tt><i>268</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               <a href="models.gnn.source.html#l275">
+                  <tt><i>275</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (106 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l278">
-                  <tt><i>278</i>                 <span class="n">virtualnode_embedding_temp</span> <span class="o">=</span> <span class="n">global_add_pool</span><span class="p">(</span><span class="n">h_list</span><span class="p">[</span><span class="n">layer</span><span class="p">],</span> <span class="n">batch</span><span class="p">)</span> <span class="o">+</span> <span class="n">virtualnode_embedding</span></tt>
+               <a href="models.gnn.source.html#l285">
+                  <tt><i>285</i>                 <span class="n">virtualnode_embedding_temp</span> <span class="o">=</span> <span class="n">global_add_pool</span><span class="p">(</span><span class="n">h_list</span><span class="p">[</span><span class="n">layer</span><span class="p">],</span> <span class="n">batch</span><span class="p">)</span> <span class="o">+</span> <span class="n">virtualnode_embedding</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (182 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l282">
-                  <tt><i>282</i>                     <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">virtualnode_embedding</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               <a href="models.gnn.source.html#l289">
+                  <tt><i>289</i>                     <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">virtualnode_embedding</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (158 > 79 characters):</p>
                
-               <a href="models.gnn.source.html#l284">
-                  <tt><i>284</i>                     <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               <a href="models.gnn.source.html#l291">
+                  <tt><i>291</i>                     <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E251">
+               <span class="count sev-2">
+                  34
+               </span>
+               <strong>E251:</strong> unexpected spaces around keyword / parameter equals
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 6 places):</p>
+               
+               <a href="models.gnn.source.html#l20">
+                  <tt><i>20</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gnn_type</span><span class="o">=</span><span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">emb_dim</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 8 places):</p>
+               
+               <a href="models.gnn.source.html#l81">
+                  <tt><i>81</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">drop_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.gnn.source.html#l154">
+                  <tt><i>154</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.gnn.source.html#l156">
+                  <tt><i>156</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 8 places):</p>
+               
+               <a href="models.gnn.source.html#l180">
+                  <tt><i>180</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layer</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">dataset_group</span><span class="o">=</span><span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="n">gnn_type</span> <span class="o">=</span> <span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="n">drop_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">JK</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">residual</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.gnn.source.html#l273">
+                  <tt><i>273</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.gnn.source.html#l275">
+                  <tt><i>275</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.gnn.source.html#l289">
+                  <tt><i>289</i>                     <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">virtualnode_embedding</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Unexpected spaces around keyword / parameter equals (in 2 places):</p>
+               
+               <a href="models.gnn.source.html#l291">
+                  <tt><i>291</i>                     <span class="n">virtualnode_embedding</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mlp_virtualnode_list</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">virtualnode_embedding_temp</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_ratio</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -399,7 +406,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E203">
                <span class="count sev-2">
-                  24
+                  28
                </span>
                <strong>E203:</strong> whitespace before ':'
                
@@ -407,123 +414,143 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.gnn.source.html#l46">
-                  <tt><i>46</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gnn_type</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;virtual&#39;</span><span class="p">)</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l47">
+                  <tt><i>47</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gnn_type</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;virtual&#39;</span><span class="p">)</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l48">
-                  <tt><i>48</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l49">
+                  <tt><i>49</i>         <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l94">
-                  <tt><i>94</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l53">
+                  <tt><i>53</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_pooled</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l96">
-                  <tt><i>96</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;ppa&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l55">
+                  <tt><i>55</i>         <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l98">
-                  <tt><i>98</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l67">
+                  <tt><i>67</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="ow">is</span> <span class="kc">None</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l100">
-                  <tt><i>100</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l69">
+                  <tt><i>69</i>             <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l110">
-                  <tt><i>110</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l101">
+                  <tt><i>101</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l115">
-                  <tt><i>115</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l103">
+                  <tt><i>103</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;ppa&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l118">
-                  <tt><i>118</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l105">
+                  <tt><i>105</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l120">
-                  <tt><i>120</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l107">
+                  <tt><i>107</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn.source.html#l117">
+                  <tt><i>117</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
                <a href="models.gnn.source.html#l122">
-                  <tt><i>122</i>             <span class="k">elif</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;cheb&#39;</span> <span class="p">:</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.gnn.source.html#l123">
-                  <tt><i>123</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+                  <tt><i>122</i>                 <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
                <a href="models.gnn.source.html#l125">
-                  <tt><i>125</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+                  <tt><i>125</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l192">
-                  <tt><i>192</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l127">
+                  <tt><i>127</i>                 <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l194">
-                  <tt><i>194</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;ppa&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l129">
+                  <tt><i>129</i>             <span class="k">elif</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;cheb&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l196">
-                  <tt><i>196</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l130">
+                  <tt><i>130</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l198">
-                  <tt><i>198</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l132">
+                  <tt><i>132</i>                 <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l215">
-                  <tt><i>215</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l199">
+                  <tt><i>199</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l220">
-                  <tt><i>220</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l201">
+                  <tt><i>201</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;ppa&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l223">
-                  <tt><i>223</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l203">
+                  <tt><i>203</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l225">
-                  <tt><i>225</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+               <a href="models.gnn.source.html#l205">
+                  <tt><i>205</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn.source.html#l222">
+                  <tt><i>222</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
                <a href="models.gnn.source.html#l227">
-                  <tt><i>227</i>             <span class="k">elif</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;cheb&#39;</span> <span class="p">:</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.gnn.source.html#l228">
-                  <tt><i>228</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+                  <tt><i>227</i>                 <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
                <a href="models.gnn.source.html#l230">
-                  <tt><i>230</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+                  <tt><i>230</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn.source.html#l232">
+                  <tt><i>232</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn.source.html#l234">
+                  <tt><i>234</i>             <span class="k">elif</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;cheb&#39;</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn.source.html#l235">
+                  <tt><i>235</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn.source.html#l237">
+                  <tt><i>237</i>                 <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li>
             </ul>
@@ -540,83 +567,83 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.gnn.source.html#l68">
-                  <tt><i>68</i> <span class="c1">### GNN to generate node embedding</span></tt>
+               <a href="models.gnn.source.html#l75">
+                  <tt><i>75</i> <span class="c1">### GNN to generate node embedding</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l88">
-                  <tt><i>88</i>         <span class="c1">### add residual connection or not</span></tt>
+               <a href="models.gnn.source.html#l95">
+                  <tt><i>95</i>         <span class="c1">### add residual connection or not</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l156">
-                  <tt><i>156</i>         <span class="c1">### Different implementations of Jk-concat</span></tt>
+               <a href="models.gnn.source.html#l163">
+                  <tt><i>163</i>         <span class="c1">### Different implementations of Jk-concat</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l167">
-                  <tt><i>167</i> <span class="c1">### Virtual GNN to generate node embedding</span></tt>
+               <a href="models.gnn.source.html#l174">
+                  <tt><i>174</i> <span class="c1">### Virtual GNN to generate node embedding</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l186">
-                  <tt><i>186</i>         <span class="c1">### add residual connection or not</span></tt>
+               <a href="models.gnn.source.html#l193">
+                  <tt><i>193</i>         <span class="c1">### add residual connection or not</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l201">
-                  <tt><i>201</i>         <span class="c1">### set the initial virtual node embedding to 0.</span></tt>
+               <a href="models.gnn.source.html#l208">
+                  <tt><i>208</i>         <span class="c1">### set the initial virtual node embedding to 0.</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l205">
-                  <tt><i>205</i>         <span class="c1">### List of GNNs</span></tt>
+               <a href="models.gnn.source.html#l212">
+                  <tt><i>212</i>         <span class="c1">### List of GNNs</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l207">
-                  <tt><i>207</i>         <span class="c1">### batch norms applied to node embeddings</span></tt>
+               <a href="models.gnn.source.html#l214">
+                  <tt><i>214</i>         <span class="c1">### batch norms applied to node embeddings</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l210">
-                  <tt><i>210</i>         <span class="c1">### List of MLPs to transform virtual node at every layer</span></tt>
+               <a href="models.gnn.source.html#l217">
+                  <tt><i>217</i>         <span class="c1">### List of MLPs to transform virtual node at every layer</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l248">
-                  <tt><i>248</i>         <span class="c1">### virtual node embeddings for graphs</span></tt>
+               <a href="models.gnn.source.html#l255">
+                  <tt><i>255</i>         <span class="c1">### virtual node embeddings for graphs</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l256">
-                  <tt><i>256</i>             <span class="c1">### add message from virtual nodes to graph nodes</span></tt>
+               <a href="models.gnn.source.html#l263">
+                  <tt><i>263</i>             <span class="c1">### add message from virtual nodes to graph nodes</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l259">
-                  <tt><i>259</i>             <span class="c1">### Message passing among graph nodes</span></tt>
+               <a href="models.gnn.source.html#l266">
+                  <tt><i>266</i>             <span class="c1">### Message passing among graph nodes</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l275">
-                  <tt><i>275</i>             <span class="c1">### update the virtual nodes</span></tt>
+               <a href="models.gnn.source.html#l282">
+                  <tt><i>282</i>             <span class="c1">### update the virtual nodes</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l277">
-                  <tt><i>277</i>                 <span class="c1">### add message from graph nodes to virtual nodes</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.gnn.source.html#l279">
-                  <tt><i>279</i>                 <span class="c1">### transform virtual nodes using MLP</span></tt>
+               <a href="models.gnn.source.html#l284">
+                  <tt><i>284</i>                 <span class="c1">### add message from graph nodes to virtual nodes</span></tt>
                </a>
             </li><li>
                
                <a href="models.gnn.source.html#l286">
-                  <tt><i>286</i>         <span class="c1">### Different implementations of Jk-concat</span></tt>
+                  <tt><i>286</i>                 <span class="c1">### transform virtual nodes using MLP</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.gnn.source.html#l293">
+                  <tt><i>293</i>         <span class="c1">### Different implementations of Jk-concat</span></tt>
                </a>
             </li>
             </ul>
@@ -633,23 +660,95 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.gnn.source.html#l112">
-                  <tt><i>112</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
+               <a href="models.gnn.source.html#l119">
+                  <tt><i>119</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l113">
-                  <tt><i>113</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l120">
+                  <tt><i>120</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l217">
-                  <tt><i>217</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
+               <a href="models.gnn.source.html#l224">
+                  <tt><i>224</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l218">
-                  <tt><i>218</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
+               <a href="models.gnn.source.html#l225">
+                  <tt><i>225</i>                                                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E201">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>E201:</strong> whitespace after '('
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Whitespace after '(':</p>
+               
+               <a href="models.gnn.source.html#l72">
+                  <tt><i>72</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_pred_linear</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">h_node</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span><span class="p">)</span> <span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Whitespace after '[':</p>
+               
+               <a href="models.gnn.source.html#l143">
+                  <tt><i>143</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Whitespace after '[':</p>
+               
+               <a href="models.gnn.source.html#l260">
+                  <tt><i>260</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E202">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>E202:</strong> whitespace before ')'
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Whitespace before ')':</p>
+               
+               <a href="models.gnn.source.html#l72">
+                  <tt><i>72</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_pred_linear</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">h_node</span><span class="p">,</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">batch</span><span class="p">)</span> <span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Whitespace before ']':</p>
+               
+               <a href="models.gnn.source.html#l143">
+                  <tt><i>143</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Whitespace before ']':</p>
+               
+               <a href="models.gnn.source.html#l260">
+                  <tt><i>260</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
                </a>
             </li>
             </ul>
@@ -666,64 +765,18 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.gnn.source.html#l104">
-                  <tt><i>104</i>         <span class="c1">###List of GNNs</span></tt>
+               <a href="models.gnn.source.html#l111">
+                  <tt><i>111</i>         <span class="c1">###List of GNNs</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l146">
-                  <tt><i>146</i>                 <span class="c1">#remove relu for the last layer</span></tt>
+               <a href="models.gnn.source.html#l153">
+                  <tt><i>153</i>                 <span class="c1">#remove relu for the last layer</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l265">
-                  <tt><i>265</i>                 <span class="c1">#remove relu for the last layer</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E201">
-               <span class="count sev-2">
-                  2
-               </span>
-               <strong>E201:</strong> whitespace after '['
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="models.gnn.source.html#l136">
-                  <tt><i>136</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.gnn.source.html#l253">
-                  <tt><i>253</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E202">
-               <span class="count sev-2">
-                  2
-               </span>
-               <strong>E202:</strong> whitespace before ']'
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="models.gnn.source.html#l136">
-                  <tt><i>136</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.gnn.source.html#l253">
-                  <tt><i>253</i>         <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">]</span></tt>
+               <a href="models.gnn.source.html#l272">
+                  <tt><i>272</i>                 <span class="c1">#remove relu for the last layer</span></tt>
                </a>
             </li>
             </ul>
@@ -740,13 +793,13 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.gnn.source.html#l97">
-                  <tt><i>97</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span> <span class="c1"># uniform input node embedding</span></tt>
+               <a href="models.gnn.source.html#l104">
+                  <tt><i>104</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span> <span class="c1"># uniform input node embedding</span></tt>
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l195">
-                  <tt><i>195</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span> <span class="c1"># uniform input node embedding</span></tt>
+               <a href="models.gnn.source.html#l202">
+                  <tt><i>202</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span> <span class="c1"># uniform input node embedding</span></tt>
                </a>
             </li>
             </ul>
@@ -781,8 +834,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.gnn.source.html#l104">
-                  <tt><i>104</i>         <span class="c1">###List of GNNs</span></tt>
+               <a href="models.gnn.source.html#l111">
+                  <tt><i>111</i>         <span class="c1">###List of GNNs</span></tt>
                </a>
             </li>
             </ul>
@@ -799,8 +852,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.gnn.source.html#l240">
-                  <tt><i>240</i>                                     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> \</tt>
+               <a href="models.gnn.source.html#l247">
+                  <tt><i>247</i>                                     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> \</tt>
                </a>
             </li>
             </ul>

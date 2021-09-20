@@ -302,6 +302,13 @@
 <span id="L292" class="lineno"><a class="lineno" href="#L292">292</a></span>
 <span id="L293" class="lineno"><a class="lineno" href="#L293">293</a></span>
 <span id="L294" class="lineno"><a class="lineno" href="#L294">294</a></span>
+<span id="L295" class="lineno"><a class="lineno" href="#L295">295</a></span>
+<span id="L296" class="lineno"><a class="lineno" href="#L296">296</a></span>
+<span id="L297" class="lineno"><a class="lineno" href="#L297">297</a></span>
+<span id="L298" class="lineno"><a class="lineno" href="#L298">298</a></span>
+<span id="L299" class="lineno"><a class="lineno" href="#L299">299</a></span>
+<span id="L300" class="lineno"><a class="lineno" href="#L300">300</a></span>
+<span id="L301" class="lineno"><a class="lineno" href="#L301">301</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -322,7 +329,7 @@
 <span class="line-empty" title="No Anys on this line!">        - prediction (Tensor): float torch tensor of shape (num_graphs, num_tasks)</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, gnn_type='gin', dataset_group='mol', num_tasks=128, num_layers = 5, emb_dim = 300, dropout = 0.5):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, gnn_type='gin', dataset_group='mol', num_tasks=128, num_layers = 5, emb_dim = 300, dropout = 0.5, is_pooled=True):</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
 <span class="line-empty" title="No Anys on this line!">        Args:</span>
 <span class="line-empty" title="No Anys on this line!">            - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)</span>
@@ -330,7 +337,6 @@
 <span class="line-empty" title="No Anys on this line!">            - emb_dim (int): dimensionality of hidden channels</span>
 <span class="line-empty" title="No Anys on this line!">            - dropout (float): dropout ratio applied to hidden channels</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.gnn_type = gnn_type</span>
 <span class="line-any" title="Any Types on this line: 
@@ -347,6 +353,9 @@ Unannotated (x2)">        self.dropout = dropout</span>
 Unannotated (x2)">        self.emb_dim = emb_dim</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.num_tasks = num_tasks</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.is_pooled = is_pooled</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if num_tasks is None:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -370,13 +379,20 @@ Unannotated (x17)">            self.gnn_node = GNN_node(num_layers, emb_dim, dat
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Pooling function to generate whole-graph embeddings</span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if self.is_pooled :</span>
+<span class="line-any" title="Any Types on this line: 
 Unimported (x1)
-Unannotated (x1)">        self.pool = global_mean_pool</span>
+Unannotated (x1)">            self.pool = global_mean_pool</span>
+<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            self.pool = None</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if num_tasks is None:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            self.graph_pred_linear = None</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            assert self.pool is not None</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">            self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)</span>
@@ -384,16 +400,19 @@ Unimported (x1)">            self.graph_pred_linear = torch.nn.Linear(self.emb_d
 <span class="line-any" title="No Anys on this line!">    def forward(self, batched_data, perturb=None):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        h_node = self.gnn_node(batched_data, perturb)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        h_graph = self.pool(h_node, batched_data.batch)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if self.graph_pred_linear is None:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            return h_graph</span>
+Unannotated (x1)">            if self.pool is None :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                return h_node, batched_data.batch</span>
+<span class="line-empty" title="No Anys on this line!">            else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">                return self.pool(h_node, batched_data.batch)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            return self.graph_pred_linear(h_graph)</span>
+Unannotated (x7)">            return self.graph_pred_linear( self.pool(h_node, batched_data.batch) )</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">### GNN to generate node embedding</span>
@@ -510,7 +529,7 @@ Unannotated (x4)">                raise ValueError('Undefined GNN type called {}
 Unannotated (x7)
 Unimported (x1)">            self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def forward(self, batched_data, perturb):</span>
+<span class="line-any" title="No Anys on this line!">    def forward(self, batched_data, perturb=None):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x12)">        x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -711,7 +730,7 @@ Unimported (x2)">                                    torch.nn.Linear(2 * emb_dim
 Unannotated (x3)
 Unimported (x1)">                                    torch.nn.ReLU()))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def forward(self, batched_data, perturb):</span>
+<span class="line-any" title="No Anys on this line!">    def forward(self, batched_data, perturb=None):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x12)">        x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch</span>

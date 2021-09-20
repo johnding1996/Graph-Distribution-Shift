@@ -51,11 +51,17 @@
 <span id="L41" class="lineno"><a class="lineno" href="#L41">41</a></span>
 <span id="L42" class="lineno"><a class="lineno" href="#L42">42</a></span>
 <span id="L43" class="lineno"><a class="lineno" href="#L43">43</a></span>
+<span id="L44" class="lineno"><a class="lineno" href="#L44">44</a></span>
+<span id="L45" class="lineno"><a class="lineno" href="#L45">45</a></span>
+<span id="L46" class="lineno"><a class="lineno" href="#L46">46</a></span>
+<span id="L47" class="lineno"><a class="lineno" href="#L47">47</a></span>
+<span id="L48" class="lineno"><a class="lineno" href="#L48">48</a></span>
+<span id="L49" class="lineno"><a class="lineno" href="#L49">49</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch.nn as nn</span>
+<span class="line-any" title="No Anys on this line!">from torch_geometric.nn import global_mean_pool</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def initialize_model(config, d_out, is_featurizer=False):</span>
+<span class="line-any" title="No Anys on this line!">def initialize_model(config, d_out, is_featurizer=False, is_pooled=True):</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!">    Initializes models according to the config</span>
 <span class="line-empty" title="No Anys on this line!">        Args:</span>
@@ -76,17 +82,31 @@
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    if is_featurizer:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">        featurizer = GNN(gnn_type=config.model, num_tasks=None, **config.model_kwargs)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">        classifier = nn.Linear(featurizer.d_out, d_out)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        model = (featurizer, classifier)</span>
-<span class="line-empty" title="No Anys on this line!">    else:</span>
+Unannotated (x1)">        if is_pooled :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
-Unimported (x1)">        model = GNN(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)</span>
+Unimported (x1)">            featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            model = (featurizer, classifier)</span>
+<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">            featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)
+Unannotated (x1)">            pooler = global_mean_pool</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            model = (featurizer, pooler, classifier)</span>
+<span class="line-empty" title="No Anys on this line!">    else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)
+Unimported (x1)">        model = GNN(gnn_type=config.model, num_tasks=d_out, is_pooled=is_pooled, **config.model_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # The `needs_y` attribute specifies whether the model's forward function</span>

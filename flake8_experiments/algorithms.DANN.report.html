@@ -52,59 +52,34 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="F841">
                <span class="count sev-1">
-                  1
+                  3
                </span>
                <strong>F841:</strong> local variable 'hparam_d_steps_per_g_step' is assigned to but never used
                
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="algorithms.DANN.source.html#l121">
-                  <tt><i>121</i>         <span class="n">d_steps_per_g</span> <span class="o">=</span> <span class="n">hparam_d_steps_per_g_step</span> <span class="o">=</span> <span class="mi">1</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E128">
-               <span class="count sev-2">
-                  6
-               </span>
-               <strong>E128:</strong> continuation line under-indented for visual indent
+                  (and 1 similar)
                
             </a>
             <ul class="details">
             <li>
                
-               <a href="algorithms.DANN.source.html#l41">
-                  <tt><i>41</i>                                   <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
+               <p>Local variable 'hparam_d_steps_per_g_step' is assigned to but never used:</p>
+               
+               <a href="algorithms.DANN.source.html#l125">
+                  <tt><i>125</i>         <span class="n">d_steps_per_g</span> <span class="o">=</span> <span class="n">hparam_d_steps_per_g_step</span> <span class="o">=</span> <span class="mi">1</span></tt>
                </a>
             </li><li>
                
-               <a href="algorithms.DANN.source.html#l42">
-                  <tt><i>42</i>                                   <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               <p>Local variable 'num_classes' is assigned to but never used:</p>
+               
+               <a href="algorithms.DANN.source.html#l187">
+                  <tt><i>187</i>         <span class="n">num_classes</span> <span class="o">=</span> <span class="n">d_out</span></tt>
                </a>
             </li><li>
                
-               <a href="algorithms.DANN.source.html#l44">
-                  <tt><i>44</i>             <span class="bp">self</span><span class="o">.</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
+               <p>Local variable 'hparam_d_steps_per_g_step' is assigned to but never used:</p>
                
-               <a href="algorithms.DANN.source.html#l116">
-                  <tt><i>116</i>             <span class="p">[</span><span class="n">disc_input</span><span class="p">],</span> <span class="n">create_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="algorithms.DANN.source.html#l157">
-                  <tt><i>157</i>                  <span class="n">metric</span><span class="p">,</span> <span class="n">n_train_steps</span><span class="p">,</span> <span class="n">conditional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">class_balance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="algorithms.DANN.source.html#l165">
-                  <tt><i>165</i>                  <span class="n">metric</span><span class="p">,</span> <span class="n">n_train_steps</span><span class="p">,</span> <span class="n">conditional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">class_balance</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               <a href="algorithms.DANN.source.html#l266">
+                  <tt><i>266</i>         <span class="n">d_steps_per_g</span> <span class="o">=</span> <span class="n">hparam_d_steps_per_g_step</span> <span class="o">=</span> <span class="mi">1</span></tt>
                </a>
             </li>
             </ul>
@@ -113,11 +88,11 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  6
+                  12
                </span>
                <strong>E501:</strong> line too long (90 > 79 characters)
                
-                  (and 5 similar)
+                  (and 8 similar)
                
             </a>
             <ul class="details">
@@ -125,43 +100,138 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (90 > 79 characters):</p>
                
-               <a href="algorithms.DANN.source.html#l14">
-                  <tt><i>14</i>         <span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span> <span class="o">=</span> <span class="n">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               <a href="algorithms.DANN.source.html#l18">
+                  <tt><i>18</i>         <span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span> <span class="o">=</span> <span class="n">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (83 > 79 characters):</p>
                
-               <a href="algorithms.DANN.source.html#l40">
-                  <tt><i>40</i>         <span class="bp">self</span><span class="o">.</span><span class="n">discriminator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
+               <a href="algorithms.DANN.source.html#l44">
+                  <tt><i>44</i>         <span class="bp">self</span><span class="o">.</span><span class="n">discriminator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">),</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (81 > 79 characters):</p>
                
-               <a href="algorithms.DANN.source.html#l41">
-                  <tt><i>41</i>                                   <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
+               <a href="algorithms.DANN.source.html#l45">
+                  <tt><i>45</i>                                   <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (97 > 79 characters):</p>
                
-               <a href="algorithms.DANN.source.html#l42">
-                  <tt><i>42</i>                                   <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               <a href="algorithms.DANN.source.html#l46">
+                  <tt><i>46</i>                                   <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (80 > 79 characters):</p>
                
-               <a href="algorithms.DANN.source.html#l109">
-                  <tt><i>109</i>             <span class="n">disc_loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">disc_out</span><span class="p">,</span> <span class="n">disc_labels</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span></tt>
+               <a href="algorithms.DANN.source.html#l113">
+                  <tt><i>113</i>             <span class="n">disc_loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">disc_out</span><span class="p">,</span> <span class="n">disc_labels</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (89 > 79 characters):</p>
                
-               <a href="algorithms.DANN.source.html#l150">
-                  <tt><i>150</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               <a href="algorithms.DANN.source.html#l154">
+                  <tt><i>154</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (115 > 79 characters):</p>
+               
+               <a href="algorithms.DANN.source.html#l163">
+                  <tt><i>163</i>         <span class="n">featurizer</span><span class="p">,</span> <span class="n">pooler</span><span class="p">,</span> <span class="n">classifier</span> <span class="o">=</span> <span class="n">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="algorithms.DANN.source.html#l167">
+                  <tt><i>167</i>         <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">pooler</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (112 > 79 characters):</p>
+               
+               <a href="algorithms.DANN.source.html#l190">
+                  <tt><i>190</i>         <span class="bp">self</span><span class="o">.</span><span class="n">discriminator_gnn</span> <span class="o">=</span> <span class="n">GNN_node</span><span class="p">(</span><span class="n">num_layer</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">emb_dim</span><span class="o">=</span><span class="n">emb_dim</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="algorithms.DANN.source.html#l194">
+                  <tt><i>194</i>                                     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="algorithms.DANN.source.html#l195">
+                  <tt><i>195</i>                                     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="algorithms.DANN.source.html#l295">
+                  <tt><i>295</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E128">
+               <span class="count sev-2">
+                  8
+               </span>
+               <strong>E128:</strong> continuation line under-indented for visual indent
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.DANN.source.html#l45">
+                  <tt><i>45</i>                                   <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l46">
+                  <tt><i>46</i>                                   <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l48">
+                  <tt><i>48</i>             <span class="bp">self</span><span class="o">.</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l120">
+                  <tt><i>120</i>             <span class="p">[</span><span class="n">disc_input</span><span class="p">],</span> <span class="n">create_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l261">
+                  <tt><i>261</i>             <span class="p">[</span><span class="n">disc_input</span><span class="p">],</span> <span class="n">create_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l302">
+                  <tt><i>302</i>                  <span class="n">metric</span><span class="p">,</span> <span class="n">n_train_steps</span><span class="p">,</span> <span class="n">conditional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">class_balance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l310">
+                  <tt><i>310</i>                  <span class="n">metric</span><span class="p">,</span> <span class="n">n_train_steps</span><span class="p">,</span> <span class="n">conditional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">class_balance</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l317">
+                  <tt><i>317</i>                  <span class="n">metric</span><span class="p">,</span> <span class="n">n_train_steps</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -170,7 +240,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E302">
                <span class="count sev-2">
-                  2
+                  4
                </span>
                <strong>E302:</strong> expected 2 blank lines, found 1
                
@@ -178,13 +248,23 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="algorithms.DANN.source.html#l7">
-                  <tt><i>7</i> <span class="k">class</span> <span class="nc">AbstractDANN</span><span class="p">(</span><span class="n">SingleModelAlgorithm</span><span class="p">):</span></tt>
+               <a href="algorithms.DANN.source.html#l11">
+                  <tt><i>11</i> <span class="k">class</span> <span class="nc">AbstractDANN</span><span class="p">(</span><span class="n">SingleModelAlgorithm</span><span class="p">):</span></tt>
                </a>
             </li><li>
                
-               <a href="algorithms.DANN.source.html#l152">
-                  <tt><i>152</i> <span class="k">class</span> <span class="nc">DANN</span><span class="p">(</span><span class="n">AbstractDANN</span><span class="p">):</span></tt>
+               <a href="algorithms.DANN.source.html#l156">
+                  <tt><i>156</i> <span class="k">class</span> <span class="nc">OurAbstractDANN</span><span class="p">(</span><span class="n">SingleModelAlgorithm</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l297">
+                  <tt><i>297</i> <span class="k">class</span> <span class="nc">DANN</span><span class="p">(</span><span class="n">AbstractDANN</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l312">
+                  <tt><i>312</i> <span class="k">class</span> <span class="nc">OurDANN</span><span class="p">(</span><span class="n">OurAbstractDANN</span><span class="p">):</span></tt>
                </a>
             </li>
             </ul>
@@ -193,7 +273,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E231">
                <span class="count sev-2">
-                  1
+                  2
                </span>
                <strong>E231:</strong> missing whitespace after ','
                
@@ -201,8 +281,13 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="algorithms.DANN.source.html#l104">
-                  <tt><i>104</i>         <span class="n">disc_labels</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">metadata</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               <a href="algorithms.DANN.source.html#l108">
+                  <tt><i>108</i>         <span class="n">disc_labels</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">metadata</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l256">
+                  <tt><i>256</i>         <span class="n">disc_labels</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">metadata</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -211,7 +296,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E261">
                <span class="count sev-2">
-                  1
+                  2
                </span>
                <strong>E261:</strong> at least two spaces before inline comment
                
@@ -219,8 +304,13 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="algorithms.DANN.source.html#l28">
-                  <tt><i>28</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
+               <a href="algorithms.DANN.source.html#l32">
+                  <tt><i>32</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.DANN.source.html#l178">
+                  <tt><i>178</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
                </a>
             </li>
             </ul>
@@ -237,8 +327,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="algorithms.DANN.source.html#l165">
-                  <tt><i>165</i>                  <span class="n">metric</span><span class="p">,</span> <span class="n">n_train_steps</span><span class="p">,</span> <span class="n">conditional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">class_balance</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               <a href="algorithms.DANN.source.html#l317">
+                  <tt><i>317</i>                  <span class="n">metric</span><span class="p">,</span> <span class="n">n_train_steps</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>

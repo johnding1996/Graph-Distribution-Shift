@@ -125,13 +125,21 @@
 <span id="L115" class="lineno"><a class="lineno" href="#L115">115</a></span>
 <span id="L116" class="lineno"><a class="lineno" href="#L116">116</a></span>
 <span id="L117" class="lineno"><a class="lineno" href="#L117">117</a></span>
+<span id="L118" class="lineno"><a class="lineno" href="#L118">118</a></span>
+<span id="L119" class="lineno"><a class="lineno" href="#L119">119</a></span>
+<span id="L120" class="lineno"><a class="lineno" href="#L120">120</a></span>
+<span id="L121" class="lineno"><a class="lineno" href="#L121">121</a></span>
+<span id="L122" class="lineno"><a class="lineno" href="#L122">122</a></span>
+<span id="L123" class="lineno"><a class="lineno" href="#L123">123</a></span>
+<span id="L124" class="lineno"><a class="lineno" href="#L124">124</a></span>
+<span id="L125" class="lineno"><a class="lineno" href="#L125">125</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from algorithms.ERM import ERM</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.IRM import IRM</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.deepCORAL import DeepCORAL</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.groupDRO import GroupDRO</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.FLAG import FLAG</span>
-<span class="line-any" title="No Anys on this line!">from algorithms.DANN import DANN, CDANN</span>
+<span class="line-any" title="No Anys on this line!">from algorithms.DANN import DANN, CDANN, OurDANN</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.MLDG import MLDG</span>
 <span class="line-any" title="No Anys on this line!">from configs.supported import algo_log_metrics</span>
 <span class="line-any" title="No Anys on this line!">from losses import initialize_loss</span>
@@ -305,6 +313,23 @@ Unannotated (x3)">    elif config.algorithm == 'CDANN':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Unimported (x1)">        algorithm = CDANN(</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            config=config,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            d_out=d_out,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            grouper=train_grouper,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            loss=loss,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            metric=metric,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            n_train_steps=n_train_steps)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    elif config.algorithm == 'OurDANN':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        algorithm = OurDANN(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            config=config,</span>
 <span class="line-any" title="Any Types on this line: 

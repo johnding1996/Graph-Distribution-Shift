@@ -68,6 +68,14 @@ gds.datasets.pyg\_superpixel\_dataset module
    :undoc-members:
    :show-inheritance:
 
+gds.datasets.pyg\_upfd\_dataset module
+--------------------------------------
+
+.. automodule:: gds.datasets.pyg_upfd_dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gds.datasets.sbm\_1\_dataset module
 -----------------------------------
 
