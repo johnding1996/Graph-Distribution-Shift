@@ -43,6 +43,12 @@ algorithm_defaults = {
         'distinct_groups': True,
         'eval_loader': 'standard',
     },
+    'OurDANN': {
+        'train_loader': 'standard',
+        'uniform_over_groups': True,
+        'distinct_groups': True,
+        'eval_loader': 'standard',
+    },
     'MLDG': {
         'train_loader': 'standard',
         'uniform_over_groups': True,

@@ -17,7 +17,7 @@ class GNN(torch.nn.Module):
         - prediction (Tensor): float torch tensor of shape (num_graphs, num_tasks)
     """
 
-    def __init__(self, gnn_type='gin', dataset_group='mol', num_tasks=128, num_layers = 5, emb_dim = 300, dropout = 0.5):
+    def __init__(self, gnn_type='gin', dataset_group='mol', num_tasks=128, num_layers = 5, emb_dim = 300, dropout = 0.5, is_pooled=True):
         """
         Args:
             - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)
@@ -25,7 +25,6 @@ class GNN(torch.nn.Module):
             - emb_dim (int): dimensionality of hidden channels
             - dropout (float): dropout ratio applied to hidden channels
         """
-
         self.gnn_type = gnn_type
         self.dataset_group = dataset_group
 
@@ -35,6 +34,8 @@ class GNN(torch.nn.Module):
         self.dropout = dropout
         self.emb_dim = emb_dim
         self.num_tasks = num_tasks
+        self.is_pooled = is_pooled
+
         if num_tasks is None:
             self.d_out = self.emb_dim
         else:
@@ -49,20 +50,26 @@ class GNN(torch.nn.Module):
             self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], drop_ratio=dropout)
 
         # Pooling function to generate whole-graph embeddings
-        self.pool = global_mean_pool
+        if self.is_pooled :
+            self.pool = global_mean_pool
+        else :
+            self.pool = None
         if num_tasks is None:
             self.graph_pred_linear = None
         else:
+            assert self.pool is not None
             self.graph_pred_linear = torch.nn.Linear(self.emb_dim, self.num_tasks)
 
     def forward(self, batched_data, perturb=None):
         h_node = self.gnn_node(batched_data, perturb)
-        h_graph = self.pool(h_node, batched_data.batch)
 
         if self.graph_pred_linear is None:
-            return h_graph
+            if self.pool is None :
+                return h_node, batched_data.batch
+            else :
+                return self.pool(h_node, batched_data.batch)
         else:
-            return self.graph_pred_linear(h_graph)
+            return self.graph_pred_linear( self.pool(h_node, batched_data.batch) )
 
 
 ### GNN to generate node embedding
@@ -129,7 +136,7 @@ class GNN_node(torch.nn.Module):
 
             self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))
 
-    def forward(self, batched_data, perturb):
+    def forward(self, batched_data, perturb=None):
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
         # FLAG injects perturbation
@@ -241,7 +248,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
                                     torch.nn.Linear(2 * emb_dim, emb_dim), torch.nn.BatchNorm1d(emb_dim),
                                     torch.nn.ReLU()))
 
-    def forward(self, batched_data, perturb):
+    def forward(self, batched_data, perturb=None):
 
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
