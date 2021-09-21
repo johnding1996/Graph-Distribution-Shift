@@ -164,7 +164,7 @@ class OurAbstractDANN(SingleModelAlgorithm):
         featurizer = featurizer.to(config.device)
         classifier = classifier.to(config.device)
 
-        model = torch.nn.Sequential(featurizer, pooler, classifier).to(config.device)
+        model = classifier # fake, useless
 
         # initialize module
         super().__init__(
@@ -188,7 +188,8 @@ class OurAbstractDANN(SingleModelAlgorithm):
         emb_dim = self.featurizer.d_out
 
         self.discriminator_gnn = GNN_node(num_layer=2, emb_dim=emb_dim, **config.model_kwargs).to(config.device)
-        self.discriminator_pool = global_mean_pool.to(config.device)
+        self.discriminator_gnn.destroy_node_encoder()
+        self.discriminator_pool = global_mean_pool
         self.discriminator_mlp = torch.nn.Sequential(
                                     torch.nn.Linear(emb_dim, emb_dim),
                                     torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),
@@ -219,7 +220,7 @@ class OurAbstractDANN(SingleModelAlgorithm):
         x = x.to(self.device)
         y_true = y_true.to(self.device)
         g = self.grouper.metadata_to_group(metadata).to(self.device)
-        features = self.pooler(self.featurizer(x))
+        features = self.pooler(*self.featurizer(x))
         outputs = self.classifier(features)
 
         # package the results
@@ -248,7 +249,7 @@ class OurAbstractDANN(SingleModelAlgorithm):
         disc_input = z = self.featurizer(x)
         disc_x = copy.deepcopy(x)
         disc_x.x = disc_input[0]
-        disc_out = self.discriminator_gnn(disc_input)
+        disc_out = self.discriminator_gnn(disc_x)
         disc_out = self.discriminator_pool(disc_out, disc_input[1])
         disc_out = self.discriminator_mlp(disc_out)
 
@@ -256,15 +257,8 @@ class OurAbstractDANN(SingleModelAlgorithm):
         disc_labels = move_to(metadata[:,0].flatten(), self.device)
         disc_loss = F.cross_entropy(disc_out, disc_labels)
 
-        disc_softmax = F.softmax(disc_out, dim=1)
-        input_grad = torch.autograd.grad(disc_softmax[:, disc_labels].sum(),
-            [disc_input], create_graph=True)[0]
-        grad_penalty = (input_grad**2).sum(dim=1).mean(dim=0)
-        hparams_gra_penalty = 0
-        disc_loss += hparams_gra_penalty * grad_penalty
-
         d_steps_per_g = hparam_d_steps_per_g_step = 1
-        all_preds = self.classifier(self.pooler(z))
+        all_preds = self.classifier(self.pooler(*z))
         results['y_pred'] = all_preds
         classifier_loss = self.objective(results)
 
