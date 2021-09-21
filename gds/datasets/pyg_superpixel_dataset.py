@@ -103,3 +103,6 @@ if __name__ == '__main__':
     root = '/cmlscratch/kong/datasets/graph_domain'
     name = 'RotatedMNIST'
     dataset = PyGSuperPixelDataset(root=root, name=name)
+
+    import pdb
+    pdb.set_trace()

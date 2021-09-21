@@ -103,5 +103,26 @@ dataset_defaults = {
         'no_group_logging': True,
         'process_outputs_function': None,
         'algo_log_metric': 'multiclass_accuracy',
-    }
+    },
+    'UPFD': {
+        'num_domains': 10,
+        'split_scheme': 'official',
+        'model_kwargs': {'dropout':0.5, 'dataset_group':'mol'}, # include pretrained
+        'default_frac': 1.0,
+        'loss_function': 'BCEWithLogitsLoss',
+        'groupby_fields': ['scaffold',],
+        'val_metric': 'acc',
+        'val_metric_decreasing': False,
+        'optimizer': 'Adam',
+        'batch_size': 128,
+        'lr': 1e-03,
+        'weight_decay': 0.,
+        'n_epochs': 150,
+        'n_groups_per_batch': 4,
+        'irm_lambda': 1.,
+        'coral_penalty_weight': 0.1,
+        'no_group_logging': True,
+        'process_outputs_function': None,
+        'algo_log_metric': 'binary_accuracy',
+    },
 }

@@ -41,3 +41,7 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
     elif dataset == 'SBM1':
         from gds.datasets.sbm_1_dataset import SBM1Dataset
         return SBM1Dataset(version=version, **dataset_kwargs)
+
+    elif dataset == 'UPFD':
+        from gds.datasets.upfd_dataset import UpfdDataset
+        return UpfdDataset(version=version, **dataset_kwargs)

@@ -1,7 +1,12 @@
 import torch.nn as nn
+from torch_geometric.nn import global_mean_pool
 
+<<<<<<< HEAD
 
 def initialize_model(config, d_out, full_dataset=None, is_featurizer=False):
+=======
+def initialize_model(config, d_out, is_featurizer=False, is_pooled=True):
+>>>>>>> master
     """
     Initializes models according to the config
         Args:
@@ -17,6 +22,7 @@ def initialize_model(config, d_out, full_dataset=None, is_featurizer=False):
             - model: a model that is equivalent to nn.Sequential(featurizer, classifier)
     """
 
+<<<<<<< HEAD
     if config.gsn == True:
         from models.gsn.gnn import GNN_OGB
         model = GNN_OGB(in_features=full_dataset.num_features,
@@ -37,6 +43,22 @@ def initialize_model(config, d_out, full_dataset=None, is_featurizer=False):
             model = GNN(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
 
 
+=======
+
+    from models.gnn import GNN
+    if is_featurizer:
+        if is_pooled :
+            featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)
+            classifier = nn.Linear(featurizer.d_out, d_out)
+            model = (featurizer, classifier)
+        else :
+            featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)
+            classifier = nn.Linear(featurizer.d_out, d_out)
+            pooler = global_mean_pool
+            model = (featurizer, pooler, classifier)
+    else:
+        model = GNN(gnn_type=config.model, num_tasks=d_out, is_pooled=is_pooled, **config.model_kwargs)
+>>>>>>> master
 
 
     # The `needs_y` attribute specifies whether the model's forward function
