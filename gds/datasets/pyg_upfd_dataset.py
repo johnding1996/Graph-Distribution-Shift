@@ -89,7 +89,7 @@ class PyGUPFDDataset(InMemoryDataset):
         self.name = name
         self.feature = feature
         self.num_tasks = 1
-        self.__num_classes__ = 2
+        self.__num_classes__ = 1
         super(PyGUPFDDataset, self).__init__(root, transform, pre_transform, pre_filter)
 
         path = self.processed_paths[0]

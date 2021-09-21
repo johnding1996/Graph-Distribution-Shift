@@ -89,6 +89,8 @@ class OGBHIVDataset(GDSDataset):
         self._y_array = self.ogb_dataset.data.y
         self._metadata_fields = ['scaffold', 'y']
 
+        
+
         metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
         if not os.path.exists(metadata_file_path):
             download_url('https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1',

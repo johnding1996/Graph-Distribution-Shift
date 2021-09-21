@@ -68,6 +68,7 @@ class SuperPixelDataset(GDSDataset):
             raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
         self.ogb_dataset = PyGSuperPixelDataset(name='RotatedMNIST', root=root_dir)
+      
 
         # set variables
         self._data_dir = self.ogb_dataset.root

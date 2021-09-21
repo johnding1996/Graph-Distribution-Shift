@@ -107,7 +107,7 @@ dataset_defaults = {
     'UPFD': {
         'num_domains': 10,
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'mol'}, # include pretrained
+        'model_kwargs': {'dropout':0.5, 'dataset_group':'UPFD'}, # include pretrained
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['scaffold',],
