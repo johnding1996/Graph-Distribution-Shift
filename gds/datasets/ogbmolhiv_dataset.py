@@ -155,3 +155,11 @@ class OGBHIVDataset(GDSDataset):
         results = self._metric.eval(input_dict)
 
         return results, f"ROCAUC: {results['rocauc']:.3f}\n"
+
+
+if __name__ == '__main__':
+    root = '/cmlscratch/kong/datasets/graph_domain'
+    dataset = OGBHIVDataset(root_dir=root)
+
+    import pdb
+    pdb.set_trace()
