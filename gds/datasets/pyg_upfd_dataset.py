@@ -5,10 +5,19 @@ import torch
 import numpy as np
 import scipy.sparse as sp
 from google_drive_downloader import GoogleDriveDownloader as gdd
+import torch.nn.functional as F
+
 
 from torch_sparse import coalesce
 from torch_geometric.io import read_txt_array
 from torch_geometric.data import Data, InMemoryDataset
+
+
+
+from torch_geometric.data import DataLoader
+from torch_geometric.transforms import ToUndirected
+from torch_geometric.nn import GCNConv, SAGEConv, GATConv, global_max_pool
+from torch.nn import Linear
 
 class PyGUPFDDataset(InMemoryDataset):
     r"""The tree-structured fake news propagation graph classification dataset
@@ -79,6 +88,8 @@ class PyGUPFDDataset(InMemoryDataset):
         self.root = root
         self.name = name
         self.feature = feature
+        self.num_tasks = 1
+        self.__num_classes__ = 2
         super(PyGUPFDDataset, self).__init__(root, transform, pre_transform, pre_filter)
 
         path = self.processed_paths[0]
@@ -153,13 +164,139 @@ class PyGUPFDDataset(InMemoryDataset):
         return (f'{self.__class__.__name__}({len(self)}, name={self.name}, '
                 f'feature={self.feature})')
 
+
+
+
+
+########################################################################
+class Net(torch.nn.Module):
+    def __init__(self, model, in_channels, hidden_channels, out_channels,
+                 concat=False):
+        super(Net, self).__init__()
+        self.concat = concat
+
+        if model == 'GCN':
+            self.conv1 = GCNConv(in_channels, hidden_channels)
+        elif model == 'SAGE':
+            self.conv1 = SAGEConv(in_channels, hidden_channels)
+        elif model == 'GAT':
+            self.conv1 = GATConv(in_channels, hidden_channels)
+
+        if self.concat:
+            self.lin0 = Linear(in_channels, hidden_channels)
+            self.lin1 = Linear(2 * hidden_channels, hidden_channels)
+
+        self.lin2 = Linear(hidden_channels, out_channels)
+
+    def forward(self, x, edge_index, batch):
+        h = self.conv1(x, edge_index).relu()
+        h = global_max_pool(h, batch)
+
+        if self.concat:
+            # Get the root node (tweet) features of each graph:
+            root = (batch[1:] - batch[:-1]).nonzero(as_tuple=False).view(-1)
+            root = torch.cat([root.new_zeros(1), root + 1], dim=0)
+            news = x[root]
+
+            news = self.lin0(news).relu()
+            h = self.lin1(torch.cat([news, h], dim=-1)).relu()
+
+        h = self.lin2(h)
+        return h.log_softmax(dim=-1)
+
+
+
+
+
+def train():
+    model.train()
+
+    total_loss = 0
+    for data in train_loader:
+        data = data.to(device)
+        optimizer.zero_grad()
+        out = model(data.x, data.edge_index, data.batch)
+        loss = F.nll_loss(out, data.y)
+        loss.backward()
+        optimizer.step()
+        total_loss += float(loss) * data.num_graphs
+
+    return total_loss / len(train_loader.dataset)
+
+
+@torch.no_grad()
+def test(loader):
+    model.eval()
+
+    total_correct = total_examples = 0
+    for data in loader:
+        data = data.to(device)
+        pred = model(data.x, data.edge_index, data.batch).argmax(dim=-1)
+        total_correct += int((pred == data.y).sum())
+        total_examples += data.num_graphs
+
+    return total_correct / total_examples
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
-    root = '/cmlscratch/kong/datasets/graph_domain'
+    root = '/home/ubuntu/data/UPFD'
     # train_dataset = UPFD(root=root, name='gossipcop', feature='profile', split='train')
     # val_dataset = UPFD(root=root, name='gossipcop', feature='profile', split='val')
     # test_dataset = UPFD(root=root, name='gossipcop', feature='profile', split='test')
 
     dataset = PyGUPFDDataset(root, 'gossipcop', 'profile')
+    size = len(dataset)
+    graph_size = np.array([dataset[i].x.shape[0] for i in range(size)])
+    sort_index = np.argsort(graph_size)
+
+    domain_index = [[sort_index[i], int(i*10/size)] for i in range(size)]
+    domain_index = sorted(domain_index, key=lambda x : x[0])
+    domain_index = [domain_index[i][-1] for i in range(size)]
+    np.save('domain_group', np.array(domain_index))
+
+
+    train_index = sort_index[:int(0.8 * size)]
+    val_index = np.random.choice(train_index, int(0.2 * size), replace=False)
+    train_index = np.setdiff1d(train_index, val_index)
+    test_index = sort_index[int(0.8 * size):]
 
     import pdb
+
     pdb.set_trace()
+
+
+
+
+    train_dataset = dataset[train_index]
+    val_dataset = dataset[val_index]
+    test_dataset = dataset[test_index]
+
+    train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=128, shuffle=False)
+    test_loader = DataLoader(test_dataset, batch_size=128, shuffle=False)
+
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model = Net('GCN', train_dataset.num_features, 128,
+            train_dataset.num_classes, concat=True).to(device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.01)
+
+
+    for epoch in range(1, 61):
+        loss = train()
+        train_acc = test(train_loader)
+        val_acc = test(val_loader)
+        test_acc = test(test_loader)
+        print(f'Epoch: {epoch:02d}, Loss: {loss:.4f}, Train: {train_acc:.4f}, '
+                f'Val: {val_acc:.4f}, Test: {test_acc:.4f}')
+

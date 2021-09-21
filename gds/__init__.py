@@ -6,7 +6,8 @@ benchmark_datasets = [
     'ogb-molhiv',
     'ogbg-ppa',
     'RotatedMNIST',
-    'SBM1'
+    'SBM1',
+    'UPFD'
 ]
 
 supported_datasets = benchmark_datasets
