@@ -44,6 +44,43 @@ class ThreeWLGNNNet(nn.Module):
         return scores
 
 
+class ThreeWLGNNEdgeNet(nn.Module):
+    def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,
+                 residual=False, **model_kwargs):
+
+        assert gnn_type == '3wlgnn-edge'
+        super(ThreeWLGNNEdgeNet, self).__init__()
+
+        self.in_dim_node = feature_dim
+        self.residual = residual
+
+        block_features = [hidden_dim] * n_layers  # L here is the block number
+        original_features_num = self.in_dim_node + self.num_bond_type + 1  # Number of features of the input
+
+        # sequential mlp blocks
+        last_layer_features = original_features_num
+        self.reg_blocks = nn.ModuleList()
+        for layer, next_layer_features in enumerate(block_features):
+            mlp_block = RegularBlock(depth_of_mlp, last_layer_features, next_layer_features, self.residual)
+            self.reg_blocks.append(mlp_block)
+            last_layer_features = next_layer_features
+
+        self.fc_layers = nn.ModuleList()
+        for output_features in block_features:
+            # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected
+            fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)
+            self.fc_layers.append(fc)
+
+    def forward(self, x_no_edge_feat, x_with_edge_feat):
+        x = x_with_edge_feat
+
+        scores = torch.tensor(0, device=x.device, dtype=x.dtype)
+        for i, block in enumerate(self.reg_blocks):
+            x = block(x)
+            scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores
+        return scores
+
+
 class MLPReadout(nn.Module):
 
     def __init__(self, input_dim, output_dim, L=2):  # L=nb_hidden_layers
