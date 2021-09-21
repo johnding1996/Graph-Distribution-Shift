@@ -313,6 +313,18 @@
 <span id="L303" class="lineno"><a class="lineno" href="#L303">303</a></span>
 <span id="L304" class="lineno"><a class="lineno" href="#L304">304</a></span>
 <span id="L305" class="lineno"><a class="lineno" href="#L305">305</a></span>
+<span id="L306" class="lineno"><a class="lineno" href="#L306">306</a></span>
+<span id="L307" class="lineno"><a class="lineno" href="#L307">307</a></span>
+<span id="L308" class="lineno"><a class="lineno" href="#L308">308</a></span>
+<span id="L309" class="lineno"><a class="lineno" href="#L309">309</a></span>
+<span id="L310" class="lineno"><a class="lineno" href="#L310">310</a></span>
+<span id="L311" class="lineno"><a class="lineno" href="#L311">311</a></span>
+<span id="L312" class="lineno"><a class="lineno" href="#L312">312</a></span>
+<span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
+<span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
+<span id="L315" class="lineno"><a class="lineno" href="#L315">315</a></span>
+<span id="L316" class="lineno"><a class="lineno" href="#L316">316</a></span>
+<span id="L317" class="lineno"><a class="lineno" href="#L317">317</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -376,10 +388,10 @@ Unannotated (x1)">            raise ValueError("Number of GNN layers must be gre
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        if self.gnn_type.endswith('virtual') :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x17)">            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], drop_ratio=dropout)</span>
+Unannotated (x17)">            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], dropout=dropout)</span>
 <span class="line-empty" title="No Anys on this line!">        else :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x17)">            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], drop_ratio=dropout)</span>
+Unannotated (x17)">            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], dropout=dropout)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Pooling function to generate whole-graph embeddings</span>
 <span class="line-any" title="Any Types on this line: 
@@ -425,7 +437,7 @@ Unannotated (x7)">            return self.graph_pred_linear( self.pool(h_node, b
 <span class="line-empty" title="No Anys on this line!">    Output:</span>
 <span class="line-empty" title="No Anys on this line!">        node representations</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type = 'gin', drop_ratio = 0.5, JK = "last", residual = False):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type = 'gin', dropout = 0.5, JK = "last", residual = False):</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
 <span class="line-empty" title="No Anys on this line!">            emb_dim (int): node embedding dimensionality</span>
 <span class="line-empty" title="No Anys on this line!">            num_layer (int): number of GNN message passing layers</span>
@@ -442,7 +454,7 @@ Unannotated (x2)">        self.gnn_type = gnn_type</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.num_layer = num_layer</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.drop_ratio = drop_ratio</span>
+Unannotated (x2)">        self.drop_ratio = dropout</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.JK = JK</span>
 <span class="line-empty" title="No Anys on this line!">        ### add residual connection or not</span>
@@ -538,13 +550,22 @@ Unannotated (x4)">                raise ValueError('Undefined GNN type called {}
 Unannotated (x7)
 Unimported (x1)">            self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def destroy_node_encoder(self):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.node_encoder = None</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, batched_data, perturb=None):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x12)">        x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # FLAG injects perturbation</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">        h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]</span>
+Unannotated (x1)">        if self.node_encoder is None :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            h_list = [x]</span>
+<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x10)">            h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(self.num_layer):</span>
@@ -602,7 +623,7 @@ Unannotated (x1)">        return node_representation</span>
 <span class="line-empty" title="No Anys on this line!">    Output:</span>
 <span class="line-empty" title="No Anys on this line!">        node representations</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type = 'gin', drop_ratio = 0.5, JK = "last", residual = False):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type = 'gin', dropout = 0.5, JK = "last", residual = False):</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
 <span class="line-empty" title="No Anys on this line!">            emb_dim (int): node embedding dimensionality</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
@@ -618,7 +639,7 @@ Unannotated (x2)">        self.gnn_type = gnn_type</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.num_layer = num_layer</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.drop_ratio = drop_ratio</span>
+Unannotated (x2)">        self.drop_ratio = dropout</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.JK = JK</span>
 <span class="line-empty" title="No Anys on this line!">        ### add residual connection or not</span>
@@ -744,6 +765,10 @@ Unimported (x2)">                                    torch.nn.Linear(2 * emb_dim
 Unannotated (x3)
 Unimported (x1)">                                    torch.nn.ReLU()))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def destroy_node_encoder(self):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.node_encoder = None</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, batched_data, perturb=None):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
@@ -758,7 +783,12 @@ Unimported (x1)">            torch.zeros(batch[-1].item() + 1).to(edge_index.dty
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # FLAG injects perturbation</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">        h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]</span>
+Unannotated (x1)">        if self.node_encoder is None :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            h_list = [x]</span>
+<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x10)">            h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(self.num_layer):</span>

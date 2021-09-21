@@ -319,12 +319,6 @@
 <span id="L309" class="lineno"><a class="lineno" href="#L309">309</a></span>
 <span id="L310" class="lineno"><a class="lineno" href="#L310">310</a></span>
 <span id="L311" class="lineno"><a class="lineno" href="#L311">311</a></span>
-<span id="L312" class="lineno"><a class="lineno" href="#L312">312</a></span>
-<span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
-<span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
-<span id="L315" class="lineno"><a class="lineno" href="#L315">315</a></span>
-<span id="L316" class="lineno"><a class="lineno" href="#L316">316</a></span>
-<span id="L317" class="lineno"><a class="lineno" href="#L317">317</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import copy</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -608,8 +602,7 @@ Unannotated (x6)">        featurizer = featurizer.to(config.device)</span>
 Unannotated (x6)">        classifier = classifier.to(config.device)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x11)
-Unimported (x1)">        model = torch.nn.Sequential(featurizer, pooler, classifier).to(config.device)</span>
+Unannotated (x2)">        model = classifier # fake, useless</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # initialize module</span>
 <span class="line-any" title="Any Types on this line: 
@@ -651,8 +644,10 @@ Unannotated (x3)">        emb_dim = self.featurizer.d_out</span>
 Unannotated (x9)
 Unimported (x1)">        self.discriminator_gnn = GNN_node(num_layer=2, emb_dim=emb_dim, **config.model_kwargs).to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Unimported (x1)">        self.discriminator_pool = global_mean_pool.to(config.device)</span>
+Unannotated (x3)">        self.discriminator_gnn.destroy_node_encoder()</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)
+Unannotated (x1)">        self.discriminator_pool = global_mean_pool</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">        self.discriminator_mlp = torch.nn.Sequential(</span>
@@ -707,7 +702,7 @@ Unannotated (x5)">        y_true = y_true.to(self.device)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)">        g = self.grouper.metadata_to_group(metadata).to(self.device)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        features = self.pooler(self.featurizer(x))</span>
+Unannotated (x6)">        features = self.pooler(*self.featurizer(x))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        outputs = self.classifier(features)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -761,7 +756,7 @@ Explicit (x2)">        disc_x = copy.deepcopy(x)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        disc_x.x = disc_input[0]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        disc_out = self.discriminator_gnn(disc_input)</span>
+Unannotated (x4)">        disc_out = self.discriminator_gnn(disc_x)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        disc_out = self.discriminator_pool(disc_out, disc_input[1])</span>
 <span class="line-any" title="Any Types on this line: 
@@ -776,24 +771,9 @@ Unannotated (x5)
 Unimported (x1)">        disc_loss = F.cross_entropy(disc_out, disc_labels)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">        disc_softmax = F.softmax(disc_out, dim=1)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x10)
-Unimported (x1)">        input_grad = torch.autograd.grad(disc_softmax[:, disc_labels].sum(),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            [disc_input], create_graph=True)[0]</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        grad_penalty = (input_grad**2).sum(dim=1).mean(dim=0)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        hparams_gra_penalty = 0</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        disc_loss += hparams_gra_penalty * grad_penalty</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        d_steps_per_g = hparam_d_steps_per_g_step = 1</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        all_preds = self.classifier(self.pooler(z))</span>
+Unannotated (x6)">        all_preds = self.classifier(self.pooler(*z))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        results['y_pred'] = all_preds</span>
 <span class="line-any" title="Any Types on this line: 
