@@ -92,6 +92,14 @@ gds.datasets.superpixel\_dataset module
    :undoc-members:
    :show-inheritance:
 
+gds.datasets.upfd\_dataset module
+---------------------------------
+
+.. automodule:: gds.datasets.upfd_dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

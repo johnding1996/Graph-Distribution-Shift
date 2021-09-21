@@ -115,6 +115,27 @@
 <span id="L105" class="lineno"><a class="lineno" href="#L105">105</a></span>
 <span id="L106" class="lineno"><a class="lineno" href="#L106">106</a></span>
 <span id="L107" class="lineno"><a class="lineno" href="#L107">107</a></span>
+<span id="L108" class="lineno"><a class="lineno" href="#L108">108</a></span>
+<span id="L109" class="lineno"><a class="lineno" href="#L109">109</a></span>
+<span id="L110" class="lineno"><a class="lineno" href="#L110">110</a></span>
+<span id="L111" class="lineno"><a class="lineno" href="#L111">111</a></span>
+<span id="L112" class="lineno"><a class="lineno" href="#L112">112</a></span>
+<span id="L113" class="lineno"><a class="lineno" href="#L113">113</a></span>
+<span id="L114" class="lineno"><a class="lineno" href="#L114">114</a></span>
+<span id="L115" class="lineno"><a class="lineno" href="#L115">115</a></span>
+<span id="L116" class="lineno"><a class="lineno" href="#L116">116</a></span>
+<span id="L117" class="lineno"><a class="lineno" href="#L117">117</a></span>
+<span id="L118" class="lineno"><a class="lineno" href="#L118">118</a></span>
+<span id="L119" class="lineno"><a class="lineno" href="#L119">119</a></span>
+<span id="L120" class="lineno"><a class="lineno" href="#L120">120</a></span>
+<span id="L121" class="lineno"><a class="lineno" href="#L121">121</a></span>
+<span id="L122" class="lineno"><a class="lineno" href="#L122">122</a></span>
+<span id="L123" class="lineno"><a class="lineno" href="#L123">123</a></span>
+<span id="L124" class="lineno"><a class="lineno" href="#L124">124</a></span>
+<span id="L125" class="lineno"><a class="lineno" href="#L125">125</a></span>
+<span id="L126" class="lineno"><a class="lineno" href="#L126">126</a></span>
+<span id="L127" class="lineno"><a class="lineno" href="#L127">127</a></span>
+<span id="L128" class="lineno"><a class="lineno" href="#L128">128</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">dataset_defaults = {</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molpcba': {</span>
@@ -221,7 +242,28 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
-<span class="line-empty" title="No Anys on this line!">    }</span>
+<span class="line-empty" title="No Anys on this line!">    },</span>
+<span class="line-precise" title="No Anys on this line!">    'UPFD': {</span>
+<span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
+<span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout':0.5, 'dataset_group':'mol'}, # include pretrained</span>
+<span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
+<span class="line-precise" title="No Anys on this line!">        'loss_function': 'BCEWithLogitsLoss',</span>
+<span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['scaffold',],</span>
+<span class="line-precise" title="No Anys on this line!">        'val_metric': 'acc',</span>
+<span class="line-precise" title="No Anys on this line!">        'val_metric_decreasing': False,</span>
+<span class="line-precise" title="No Anys on this line!">        'optimizer': 'Adam',</span>
+<span class="line-precise" title="No Anys on this line!">        'batch_size': 128,</span>
+<span class="line-precise" title="No Anys on this line!">        'lr': 1e-03,</span>
+<span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
+<span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
+<span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 4,</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
+<span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
+<span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
+<span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
+<span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-empty" title="No Anys on this line!">}</span>
 </pre></td>
 </tr></tbody>

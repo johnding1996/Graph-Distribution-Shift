@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
    </head>
    <body>
-      <div id="masthead" class="sev-2"></div>
+      <div id="masthead" class="sev-1"></div>
       <div id="page">
          <p id="srclink">
             <a title="View full annotated source"
@@ -50,13 +50,102 @@ window.addEventListener('DOMContentLoaded', function () {
          <ul id="index">
          
          <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'torch_geometric.transforms.ToUndirected' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l18">
+                  <tt><i>18</i> <span class="kn">from</span> <span class="nn">torch_geometric.transforms</span> <span class="kn">import</span> <span class="n">ToUndirected</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  8
+               </span>
+               <strong>E303:</strong> too many blank lines (3)
+               
+                  (and 4 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l17">
+                  <tt><i>17</i> <span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">DataLoader</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (5):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l171">
+                  <tt><i>171</i> <span class="c1">########################################################################</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (5):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l211">
+                  <tt><i>211</i> <span class="k">def</span> <span class="nf">train</span><span class="p">():</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (12):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l251">
+                  <tt><i>251</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l268">
+                  <tt><i>268</i>     <span class="n">train_index</span> <span class="o">=</span> <span class="n">sort_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">size</span><span class="p">)]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (4):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l280">
+                  <tt><i>280</i>     <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l289">
+                  <tt><i>289</i>     <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l295">
+                  <tt><i>295</i>     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">61</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  4
+                  5
                </span>
                <strong>E501:</strong> line too long (88 > 79 characters)
                
-                  (and 3 similar)
+                  (and 4 similar)
                
             </a>
             <ul class="details">
@@ -64,29 +153,36 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (88 > 79 characters):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l82">
-                  <tt><i>82</i>         <span class="nb">super</span><span class="p">(</span><span class="n">PyGUPFDDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l93">
+                  <tt><i>93</i>         <span class="nb">super</span><span class="p">(</span><span class="n">PyGUPFDDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (89 > 79 characters):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l158">
-                  <tt><i>158</i>     <span class="c1"># train_dataset = UPFD(root=root, name=&#39;gossipcop&#39;, feature=&#39;profile&#39;, split=&#39;train&#39;)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l253">
+                  <tt><i>253</i>     <span class="c1"># train_dataset = UPFD(root=root, name=&#39;gossipcop&#39;, feature=&#39;profile&#39;, split=&#39;train&#39;)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (85 > 79 characters):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l159">
-                  <tt><i>159</i>     <span class="c1"># val_dataset = UPFD(root=root, name=&#39;gossipcop&#39;, feature=&#39;profile&#39;, split=&#39;val&#39;)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l254">
+                  <tt><i>254</i>     <span class="c1"># val_dataset = UPFD(root=root, name=&#39;gossipcop&#39;, feature=&#39;profile&#39;, split=&#39;val&#39;)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (87 > 79 characters):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l160">
-                  <tt><i>160</i>     <span class="c1"># test_dataset = UPFD(root=root, name=&#39;gossipcop&#39;, feature=&#39;profile&#39;, split=&#39;test&#39;)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l255">
+                  <tt><i>255</i>     <span class="c1"># test_dataset = UPFD(root=root, name=&#39;gossipcop&#39;, feature=&#39;profile&#39;, split=&#39;test&#39;)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l292">
+                  <tt><i>292</i>     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -95,7 +191,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E203">
                <span class="count sev-2">
-                  1
+                  2
                </span>
                <strong>E203:</strong> whitespace before ':'
                
@@ -103,8 +199,13 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l143">
-                  <tt><i>143</i>         <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]</span> <span class="p">:</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l154">
+                  <tt><i>154</i>         <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l263">
+                  <tt><i>263</i>     <span class="n">domain_index</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">domain_index</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
                </a>
             </li>
             </ul>
@@ -113,52 +214,81 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E302">
                <span class="count sev-2">
-                  1
+                  2
                </span>
                <strong>E302:</strong> expected 2 blank lines, found 1
                
+                  (and 1 similar)
+               
             </a>
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l13">
-                  <tt><i>13</i> <span class="k">class</span> <span class="nc">PyGUPFDDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span></tt>
+               <p>Expected 2 blank lines, found 1:</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l22">
+                  <tt><i>22</i> <span class="k">class</span> <span class="nc">PyGUPFDDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Expected 2 blank lines, found 5:</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l172">
+                  <tt><i>172</i> <span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span></tt>
                </a>
             </li>
             </ul>
          </li>
          
          <li>
-            <a data-code="E305">
+            <a data-code="E127">
                <span class="count sev-2">
                   1
                </span>
-               <strong>E305:</strong> expected 2 blank lines after class or function definition, found 1
+               <strong>E127:</strong> continuation line over-indented for visual indent
                
             </a>
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l156">
-                  <tt><i>156</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l301">
+                  <tt><i>301</i>                 <span class="sa">f</span><span class="s1">&#39;Val: </span><span class="si">{</span><span class="n">val_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, Test: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
          </li>
          
          <li>
-            <a data-code="W292">
+            <a data-code="E128">
                <span class="count sev-2">
                   1
                </span>
-               <strong>W292:</strong> no newline at end of file
+               <strong>E128:</strong> continuation line under-indented for visual indent
                
             </a>
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l165">
-                  <tt><i>165</i>     <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l291">
+                  <tt><i>291</i>             <span class="n">train_dataset</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">concat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W391">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W391:</strong> blank line at end of file
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l302">
+                  <tt><i>302</i> &nbsp;</tt>
                </a>
             </li>
             </ul>

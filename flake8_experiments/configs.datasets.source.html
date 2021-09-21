@@ -443,10 +443,103 @@
                class="code sev- "><tt><i>105</i>         <span class="s1">&#39;algo_log_metric&#39;</span><span class="p">:</span> <span class="s1">&#39;multiclass_accuracy&#39;</span><span class="p">,</span></tt>
             </div>
             <div id="l106"
-               class="code sev- "><tt><i>106</i>     <span class="p">}</span></tt>
+               class="code sev- "><tt><i>106</i>     <span class="p">},</span></tt>
             </div>
             <div id="l107"
-               class="code sev- "><tt><i>107</i> <span class="p">}</span></tt>
+               class="code sev- "><tt><i>107</i>     <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span> <span class="p">{</span></tt>
+            </div>
+            <div id="l108"
+               class="code sev- "><tt><i>108</i>         <span class="s1">&#39;num_domains&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span></tt>
+            </div>
+            <div id="l109"
+               class="code sev- "><tt><i>109</i>         <span class="s1">&#39;split_scheme&#39;</span><span class="p">:</span> <span class="s1">&#39;official&#39;</span><span class="p">,</span></tt>
+            </div>
+            <div id="l110"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E231
+                     </span>
+                     Missing whitespace after ':' (in 2 places)</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E261
+                     </span>
+                     At least two spaces before inline comment</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (84 > 79 characters)</li>
+               
+               </ul><tt><i>110</i>         <span class="s1">&#39;model_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;dropout&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;dataset_group&#39;</span><span class="p">:</span><span class="s1">&#39;mol&#39;</span><span class="p">},</span> <span class="c1"># include pretrained</span></tt>
+            </div>
+            <div id="l111"
+               class="code sev- "><tt><i>111</i>         <span class="s1">&#39;default_frac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span></tt>
+            </div>
+            <div id="l112"
+               class="code sev- "><tt><i>112</i>         <span class="s1">&#39;loss_function&#39;</span><span class="p">:</span> <span class="s1">&#39;BCEWithLogitsLoss&#39;</span><span class="p">,</span></tt>
+            </div>
+            <div id="l113"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E231
+                     </span>
+                     Missing whitespace after ','</li>
+               
+               </ul><tt><i>113</i>         <span class="s1">&#39;groupby_fields&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;scaffold&#39;</span><span class="p">,],</span></tt>
+            </div>
+            <div id="l114"
+               class="code sev- "><tt><i>114</i>         <span class="s1">&#39;val_metric&#39;</span><span class="p">:</span> <span class="s1">&#39;acc&#39;</span><span class="p">,</span></tt>
+            </div>
+            <div id="l115"
+               class="code sev- "><tt><i>115</i>         <span class="s1">&#39;val_metric_decreasing&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span></tt>
+            </div>
+            <div id="l116"
+               class="code sev- "><tt><i>116</i>         <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="s1">&#39;Adam&#39;</span><span class="p">,</span></tt>
+            </div>
+            <div id="l117"
+               class="code sev- "><tt><i>117</i>         <span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span></tt>
+            </div>
+            <div id="l118"
+               class="code sev- "><tt><i>118</i>         <span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="mf">1e-03</span><span class="p">,</span></tt>
+            </div>
+            <div id="l119"
+               class="code sev- "><tt><i>119</i>         <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span></tt>
+            </div>
+            <div id="l120"
+               class="code sev- "><tt><i>120</i>         <span class="s1">&#39;n_epochs&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span></tt>
+            </div>
+            <div id="l121"
+               class="code sev- "><tt><i>121</i>         <span class="s1">&#39;n_groups_per_batch&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span></tt>
+            </div>
+            <div id="l122"
+               class="code sev- "><tt><i>122</i>         <span class="s1">&#39;irm_lambda&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span></tt>
+            </div>
+            <div id="l123"
+               class="code sev- "><tt><i>123</i>         <span class="s1">&#39;coral_penalty_weight&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span></tt>
+            </div>
+            <div id="l124"
+               class="code sev- "><tt><i>124</i>         <span class="s1">&#39;no_group_logging&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span></tt>
+            </div>
+            <div id="l125"
+               class="code sev- "><tt><i>125</i>         <span class="s1">&#39;process_outputs_function&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span></tt>
+            </div>
+            <div id="l126"
+               class="code sev- "><tt><i>126</i>         <span class="s1">&#39;algo_log_metric&#39;</span><span class="p">:</span> <span class="s1">&#39;binary_accuracy&#39;</span><span class="p">,</span></tt>
+            </div>
+            <div id="l127"
+               class="code sev- "><tt><i>127</i>     <span class="p">},</span></tt>
+            </div>
+            <div id="l128"
+               class="code sev- "><tt><i>128</i> <span class="p">}</span></tt>
             </div>
             
          </div>
