@@ -353,7 +353,7 @@
                class="code sev- "><tt><i>82</i> &nbsp;</tt>
             </div>
             <div id="l83"
-               class="code sev- "><tt><i>83</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_y_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">y</span></tt>
+               class="code sev- "><tt><i>83</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_y_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span></tt>
             </div>
             <div id="l84"
                class="code sev- "><tt><i>84</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scaffold&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]</span></tt>
