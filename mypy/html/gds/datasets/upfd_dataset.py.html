@@ -192,6 +192,17 @@
 <span id="L182" class="lineno"><a class="lineno" href="#L182">182</a></span>
 <span id="L183" class="lineno"><a class="lineno" href="#L183">183</a></span>
 <span id="L184" class="lineno"><a class="lineno" href="#L184">184</a></span>
+<span id="L185" class="lineno"><a class="lineno" href="#L185">185</a></span>
+<span id="L186" class="lineno"><a class="lineno" href="#L186">186</a></span>
+<span id="L187" class="lineno"><a class="lineno" href="#L187">187</a></span>
+<span id="L188" class="lineno"><a class="lineno" href="#L188">188</a></span>
+<span id="L189" class="lineno"><a class="lineno" href="#L189">189</a></span>
+<span id="L190" class="lineno"><a class="lineno" href="#L190">190</a></span>
+<span id="L191" class="lineno"><a class="lineno" href="#L191">191</a></span>
+<span id="L192" class="lineno"><a class="lineno" href="#L192">192</a></span>
+<span id="L193" class="lineno"><a class="lineno" href="#L193">193</a></span>
+<span id="L194" class="lineno"><a class="lineno" href="#L194">194</a></span>
+<span id="L195" class="lineno"><a class="lineno" href="#L195">195</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -201,7 +212,7 @@
 <span class="line-any" title="No Anys on this line!">from ogb.utils.url import download_url</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.data.dataloader import Collater as PyGCollater</span>
 <span class="line-any" title="No Anys on this line!">import torch_geometric</span>
-<span class="line-precise" title="No Anys on this line!">from .pyg_upfd_dataset import PyGUPFDDataset</span>
+<span class="line-any" title="No Anys on this line!">from pyg_upfd_dataset import PyGUPFDDataset</span>
 <span class="line-precise" title="No Anys on this line!">import pdb</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.utils import to_dense_adj</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -257,7 +268,7 @@
 <span class="line-precise" title="No Anys on this line!">            'download_url': None,</span>
 <span class="line-precise" title="No Anys on this line!">            'compressed_size': None}}</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', dataset='gossipcop', feature='profile', download=False, split_scheme='official', **dataset_kwargs):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', dataset='gossipcop', feature='profile', download=False, split_scheme='official', random_split=False, **dataset_kwargs):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._version = version</span>
 <span class="line-any" title="Any Types on this line: 
@@ -266,7 +277,8 @@ Unannotated (x1)">        if version is not None:</span>
 Unannotated (x1)">            raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')</span>
 <span class="line-empty" title="No Anys on this line!">        # internally call ogb package</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        self.ogb_dataset  = PyGUPFDDataset(root_dir, 'gossipcop', 'profile')</span>
+Unannotated (x3)
+Unimported (x1)">        self.ogb_dataset  = PyGUPFDDataset(root_dir, 'gossipcop', 'profile')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # set variables</span>
 <span class="line-any" title="Any Types on this line: 
@@ -311,32 +323,51 @@ Unimported (x1)">        self._metadata_array = torch.cat((self._metadata_array_
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">                                          torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)</span>
-<span class="line-empty" title="No Anys on this line!">        # pdb.set_trace()</span>
-<span class="line-empty" title="No Anys on this line!">        # use the group info split data</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        train_group_idx, val_group_idx, test_group_idx = [0,1,2,3,4,5], [6,7], [8,9]</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        train_group_idx, val_group_idx, test_group_idx = \</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
-Unimported (x3)">            torch.tensor(train_group_idx), torch.tensor(val_group_idx), torch.tensor(test_group_idx)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">        def split_idx(group_idx) :</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        size = len(dataset)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        if random_split == True:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            random_index = np.random.permutation(size)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            train_split_idx = random_index[:int(0.6 * size)]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            val_split_idx = random_index[int(0.6 * size):int(0.8 * size)]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            test_split_idx = random_index[int(0.8 * size):]</span>
+<span class="line-empty" title="No Anys on this line!">        else:        </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x12)
+Unimported (x1)">            graph_size = np.array([self.ogb_dataset[i].x.shape[0] for i in range(size)])</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">            sort_index = np.argsort(graph_size)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x12)">            domain_index = [[sort_index[i], int(i*10/size)] for i in range(size)]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            domain_index = sorted(domain_index, key=lambda x : x[0])</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            domain_index = [domain_index[i][-1] for i in range(size)]</span>
+<span class="line-empty" title="No Anys on this line!">            # np.save('domain_group', np.array(domain_index))</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            train_split_idx = sort_index[:int(0.8 * size)]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
-Unimported (x3)">            split_idx = torch.zeros(len(torch.squeeze(self._metadata_array_wo_y)), dtype=torch.bool)</span>
+Unimported (x1)">            val_split_idx = np.random.choice(train_split_idx, int(0.2 * size), replace=False)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            for idx in group_idx :</span>
+Unannotated (x5)
+Unimported (x1)">            train_split_idx = np.setdiff1d(train_split_idx, val_split_idx)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                split_idx += (torch.squeeze(self._metadata_array_wo_y) == idx)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            return split_idx</span>
+Unannotated (x6)">            test_split_idx = sort_index[int(0.8 * size):]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        train_split_idx, val_split_idx, test_split_idx = \</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">            split_idx(train_group_idx), split_idx(val_group_idx), split_idx(test_group_idx)</span>
+<span class="line-empty" title="No Anys on this line!">       </span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._split_array[train_split_idx] = 0</span>
@@ -462,7 +493,7 @@ Unimported (x2)">        return torch.mm(deg_inv, torch.mm(adj, deg_inv))</span>
 <span class="line-precise" title="No Anys on this line!">if __name__ == '__main__':</span>
 <span class="line-precise" title="No Anys on this line!">    root = '/home/ubuntu/data/UPFD'</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">    dataset = UpfdDataset(root_dir=root, dataset='gossipcop', feature='profile')</span>
+Unannotated (x8)">    dataset = UpfdDataset(root_dir=root, dataset='gossipcop', feature='profile')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">   </span>
 </pre></td>

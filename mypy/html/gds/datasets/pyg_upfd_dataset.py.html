@@ -310,6 +310,11 @@
 <span id="L300" class="lineno"><a class="lineno" href="#L300">300</a></span>
 <span id="L301" class="lineno"><a class="lineno" href="#L301">301</a></span>
 <span id="L302" class="lineno"><a class="lineno" href="#L302">302</a></span>
+<span id="L303" class="lineno"><a class="lineno" href="#L303">303</a></span>
+<span id="L304" class="lineno"><a class="lineno" href="#L304">304</a></span>
+<span id="L305" class="lineno"><a class="lineno" href="#L305">305</a></span>
+<span id="L306" class="lineno"><a class="lineno" href="#L306">306</a></span>
+<span id="L307" class="lineno"><a class="lineno" href="#L307">307</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-precise" title="No Anys on this line!">import os.path as osp</span>
@@ -698,22 +703,25 @@ Unimported (x3)">    domain_index = [[sort_index[i], int(i*10/size)] for i in ra
 Unimported (x5)">    domain_index = sorted(domain_index, key=lambda x : x[0])</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x4)">    domain_index = [domain_index[i][-1] for i in range(size)]</span>
-<span class="line-any" title="Any Types on this line: 
-Unimported (x7)">    np.save('domain_group', np.array(domain_index))</span>
+<span class="line-empty" title="No Anys on this line!">    # np.save('domain_group', np.array(domain_index))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # train_index = sort_index[:int(0.8 * size)]</span>
+<span class="line-empty" title="No Anys on this line!">    # val_index = np.random.choice(train_index, int(0.2 * size), replace=False)</span>
+<span class="line-empty" title="No Anys on this line!">    # train_index = np.setdiff1d(train_index, val_index)</span>
+<span class="line-empty" title="No Anys on this line!">    # test_index = sort_index[int(0.8 * size):]</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x3)">    train_index = sort_index[:int(0.8 * size)]</span>
+Unimported (x3)">    train_index = sort_index[:int(0.6 * size)]</span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x6)">    val_index = np.random.choice(train_index, int(0.2 * size), replace=False)</span>
-<span class="line-any" title="Any Types on this line: 
-Unimported (x6)">    train_index = np.setdiff1d(train_index, val_index)</span>
+Unimported (x3)">    val_index = sort_index[int(0.6 * size):int(0.8 * size)]</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x3)">    test_index = sort_index[int(0.8 * size):]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    import pdb</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    pdb.set_trace()</span>
+<span class="line-empty" title="No Anys on this line!">    # import pdb</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # pdb.set_trace()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>

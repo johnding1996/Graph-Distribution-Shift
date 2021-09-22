@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E303">
                <span class="count sev-2">
-                  8
+                  9
                </span>
                <strong>E303:</strong> too many blank lines (3)
                
@@ -111,28 +111,35 @@ window.addEventListener('DOMContentLoaded', function () {
                <p>Too many blank lines (2):</p>
                
                <a href="datasets.pyg_upfd_dataset.source.html#l268">
-                  <tt><i>268</i>     <span class="n">train_index</span> <span class="o">=</span> <span class="n">sort_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">size</span><span class="p">)]</span></tt>
+                  <tt><i>268</i>     <span class="c1"># train_index = sort_index[:int(0.8 * size)]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l278">
+                  <tt><i>278</i>     <span class="c1"># import pdb</span></tt>
                </a>
             </li><li>
                
                <p>Too many blank lines (4):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l280">
-                  <tt><i>280</i>     <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l285">
+                  <tt><i>285</i>     <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span></tt>
                </a>
             </li><li>
                
                <p>Too many blank lines (2):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l289">
-                  <tt><i>289</i>     <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l294">
+                  <tt><i>294</i>     <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Too many blank lines (2):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l295">
-                  <tt><i>295</i>     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">61</span><span class="p">):</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l300">
+                  <tt><i>300</i>     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">61</span><span class="p">):</span></tt>
                </a>
             </li>
             </ul>
@@ -181,8 +188,8 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (81 > 79 characters):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l292">
-                  <tt><i>292</i>     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l297">
+                  <tt><i>297</i>     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -251,8 +258,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l301">
-                  <tt><i>301</i>                 <span class="sa">f</span><span class="s1">&#39;Val: </span><span class="si">{</span><span class="n">val_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, Test: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l306">
+                  <tt><i>306</i>                 <span class="sa">f</span><span class="s1">&#39;Val: </span><span class="si">{</span><span class="n">val_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, Test: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -269,8 +276,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l291">
-                  <tt><i>291</i>             <span class="n">train_dataset</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">concat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l296">
+                  <tt><i>296</i>             <span class="n">train_dataset</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">concat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -287,8 +294,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l302">
-                  <tt><i>302</i> &nbsp;</tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l307">
+                  <tt><i>307</i> &nbsp;</tt>
                </a>
             </li>
             </ul>

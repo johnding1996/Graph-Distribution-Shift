@@ -926,7 +926,7 @@
                class="code sev- "><tt><i>264</i>     <span class="n">domain_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">domain_index</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span></tt>
             </div>
             <div id="l265"
-               class="code sev- "><tt><i>265</i>     <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;domain_group&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">domain_index</span><span class="p">))</span></tt>
+               class="code sev- "><tt><i>265</i>     <span class="c1"># np.save(&#39;domain_group&#39;, np.array(domain_index))</span></tt>
             </div>
             <div id="l266"
                class="code sev- "><tt><i>266</i> &nbsp;</tt>
@@ -944,28 +944,28 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>268</i>     <span class="n">train_index</span> <span class="o">=</span> <span class="n">sort_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">size</span><span class="p">)]</span></tt>
+               </ul><tt><i>268</i>     <span class="c1"># train_index = sort_index[:int(0.8 * size)]</span></tt>
             </div>
             <div id="l269"
-               class="code sev- "><tt><i>269</i>     <span class="n">val_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.2</span> <span class="o">*</span> <span class="n">size</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>269</i>     <span class="c1"># val_index = np.random.choice(train_index, int(0.2 * size), replace=False)</span></tt>
             </div>
             <div id="l270"
-               class="code sev- "><tt><i>270</i>     <span class="n">train_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">val_index</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>270</i>     <span class="c1"># train_index = np.setdiff1d(train_index, val_index)</span></tt>
             </div>
             <div id="l271"
-               class="code sev- "><tt><i>271</i>     <span class="n">test_index</span> <span class="o">=</span> <span class="n">sort_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">size</span><span class="p">):]</span></tt>
+               class="code sev- "><tt><i>271</i>     <span class="c1"># test_index = sort_index[int(0.8 * size):]</span></tt>
             </div>
             <div id="l272"
                class="code sev- "><tt><i>272</i> &nbsp;</tt>
             </div>
             <div id="l273"
-               class="code sev- "><tt><i>273</i>     <span class="kn">import</span> <span class="nn">pdb</span></tt>
+               class="code sev- "><tt><i>273</i>     <span class="n">train_index</span> <span class="o">=</span> <span class="n">sort_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.6</span> <span class="o">*</span> <span class="n">size</span><span class="p">)]</span></tt>
             </div>
             <div id="l274"
-               class="code sev- "><tt><i>274</i> &nbsp;</tt>
+               class="code sev- "><tt><i>274</i>     <span class="n">val_index</span> <span class="o">=</span> <span class="n">sort_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.6</span> <span class="o">*</span> <span class="n">size</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">size</span><span class="p">)]</span></tt>
             </div>
             <div id="l275"
-               class="code sev- "><tt><i>275</i>     <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>275</i>     <span class="n">test_index</span> <span class="o">=</span> <span class="n">sort_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">size</span><span class="p">):]</span></tt>
             </div>
             <div id="l276"
                class="code sev- "><tt><i>276</i> &nbsp;</tt>
@@ -974,12 +974,36 @@
                class="code sev- "><tt><i>277</i> &nbsp;</tt>
             </div>
             <div id="l278"
-               class="code sev- "><tt><i>278</i> &nbsp;</tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (2)</li>
+               
+               </ul><tt><i>278</i>     <span class="c1"># import pdb</span></tt>
             </div>
             <div id="l279"
                class="code sev- "><tt><i>279</i> &nbsp;</tt>
             </div>
             <div id="l280"
+               class="code sev- "><tt><i>280</i>     <span class="c1"># pdb.set_trace()</span></tt>
+            </div>
+            <div id="l281"
+               class="code sev- "><tt><i>281</i> &nbsp;</tt>
+            </div>
+            <div id="l282"
+               class="code sev- "><tt><i>282</i> &nbsp;</tt>
+            </div>
+            <div id="l283"
+               class="code sev- "><tt><i>283</i> &nbsp;</tt>
+            </div>
+            <div id="l284"
+               class="code sev- "><tt><i>284</i> &nbsp;</tt>
+            </div>
+            <div id="l285"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -989,33 +1013,33 @@
                      </span>
                      Too many blank lines (4)</li>
                
-               </ul><tt><i>280</i>     <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span></tt>
-            </div>
-            <div id="l281"
-               class="code sev- "><tt><i>281</i>     <span class="n">val_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">val_index</span><span class="p">]</span></tt>
-            </div>
-            <div id="l282"
-               class="code sev- "><tt><i>282</i>     <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span></tt>
-            </div>
-            <div id="l283"
-               class="code sev- "><tt><i>283</i> &nbsp;</tt>
-            </div>
-            <div id="l284"
-               class="code sev- "><tt><i>284</i>     <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
-            </div>
-            <div id="l285"
-               class="code sev- "><tt><i>285</i>     <span class="n">val_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">val_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </ul><tt><i>285</i>     <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span></tt>
             </div>
             <div id="l286"
-               class="code sev- "><tt><i>286</i>     <span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>286</i>     <span class="n">val_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">val_index</span><span class="p">]</span></tt>
             </div>
             <div id="l287"
-               class="code sev- "><tt><i>287</i> &nbsp;</tt>
+               class="code sev- "><tt><i>287</i>     <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span></tt>
             </div>
             <div id="l288"
                class="code sev- "><tt><i>288</i> &nbsp;</tt>
             </div>
             <div id="l289"
+               class="code sev- "><tt><i>289</i>     <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+            </div>
+            <div id="l290"
+               class="code sev- "><tt><i>290</i>     <span class="n">val_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">val_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+            </div>
+            <div id="l291"
+               class="code sev- "><tt><i>291</i>     <span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+            </div>
+            <div id="l292"
+               class="code sev- "><tt><i>292</i> &nbsp;</tt>
+            </div>
+            <div id="l293"
+               class="code sev- "><tt><i>293</i> &nbsp;</tt>
+            </div>
+            <div id="l294"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1025,12 +1049,12 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>289</i>     <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span></tt>
+               </ul><tt><i>294</i>     <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span></tt>
             </div>
-            <div id="l290"
-               class="code sev- "><tt><i>290</i>     <span class="n">model</span> <span class="o">=</span> <span class="n">Net</span><span class="p">(</span><span class="s1">&#39;GCN&#39;</span><span class="p">,</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span></tt>
+            <div id="l295"
+               class="code sev- "><tt><i>295</i>     <span class="n">model</span> <span class="o">=</span> <span class="n">Net</span><span class="p">(</span><span class="s1">&#39;GCN&#39;</span><span class="p">,</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span></tt>
             </div>
-            <div id="l291"
+            <div id="l296"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1040,9 +1064,9 @@
                      </span>
                      Continuation line under-indented for visual indent</li>
                
-               </ul><tt><i>291</i>             <span class="n">train_dataset</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">concat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span></tt>
+               </ul><tt><i>296</i>             <span class="n">train_dataset</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">concat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
-            <div id="l292"
+            <div id="l297"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1052,15 +1076,15 @@
                      </span>
                      Line too long (81 > 79 characters)</li>
                
-               </ul><tt><i>292</i>     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></tt>
+               </ul><tt><i>297</i>     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></tt>
             </div>
-            <div id="l293"
-               class="code sev- "><tt><i>293</i> &nbsp;</tt>
+            <div id="l298"
+               class="code sev- "><tt><i>298</i> &nbsp;</tt>
             </div>
-            <div id="l294"
-               class="code sev- "><tt><i>294</i> &nbsp;</tt>
+            <div id="l299"
+               class="code sev- "><tt><i>299</i> &nbsp;</tt>
             </div>
-            <div id="l295"
+            <div id="l300"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1070,24 +1094,24 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>295</i>     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">61</span><span class="p">):</span></tt>
-            </div>
-            <div id="l296"
-               class="code sev- "><tt><i>296</i>         <span class="n">loss</span> <span class="o">=</span> <span class="n">train</span><span class="p">()</span></tt>
-            </div>
-            <div id="l297"
-               class="code sev- "><tt><i>297</i>         <span class="n">train_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span></tt>
-            </div>
-            <div id="l298"
-               class="code sev- "><tt><i>298</i>         <span class="n">val_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">val_loader</span><span class="p">)</span></tt>
-            </div>
-            <div id="l299"
-               class="code sev- "><tt><i>299</i>         <span class="n">test_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">test_loader</span><span class="p">)</span></tt>
-            </div>
-            <div id="l300"
-               class="code sev- "><tt><i>300</i>         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, Train: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, &#39;</span></tt>
+               </ul><tt><i>300</i>     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">61</span><span class="p">):</span></tt>
             </div>
             <div id="l301"
+               class="code sev- "><tt><i>301</i>         <span class="n">loss</span> <span class="o">=</span> <span class="n">train</span><span class="p">()</span></tt>
+            </div>
+            <div id="l302"
+               class="code sev- "><tt><i>302</i>         <span class="n">train_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span></tt>
+            </div>
+            <div id="l303"
+               class="code sev- "><tt><i>303</i>         <span class="n">val_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">val_loader</span><span class="p">)</span></tt>
+            </div>
+            <div id="l304"
+               class="code sev- "><tt><i>304</i>         <span class="n">test_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">test_loader</span><span class="p">)</span></tt>
+            </div>
+            <div id="l305"
+               class="code sev- "><tt><i>305</i>         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, Train: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, &#39;</span></tt>
+            </div>
+            <div id="l306"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1097,7 +1121,7 @@
                      </span>
                      Continuation line over-indented for visual indent</li>
                
-               </ul><tt><i>301</i>                 <span class="sa">f</span><span class="s1">&#39;Val: </span><span class="si">{</span><span class="n">val_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, Test: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               </ul><tt><i>306</i>                 <span class="sa">f</span><span class="s1">&#39;Val: </span><span class="si">{</span><span class="n">val_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, Test: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
             </div>
             
          </div>
