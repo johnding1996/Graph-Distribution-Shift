@@ -6,7 +6,7 @@ from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
-from .pyg_upfd_dataset import PyGUPFDDataset
+from pyg_upfd_dataset import PyGUPFDDataset
 import pdb
 from torch_geometric.utils import to_dense_adj
 
@@ -62,7 +62,7 @@ class UpfdDataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', dataset='gossipcop', feature='profile', download=False, split_scheme='official', **dataset_kwargs):
+    def __init__(self, version=None, root_dir='data', dataset='gossipcop', feature='profile', download=False, split_scheme='official', random_split=False, **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
@@ -90,20 +90,31 @@ class UpfdDataset(GDSDataset):
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y,
                                           torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)
-        # pdb.set_trace()
-        # use the group info split data
-        train_group_idx, val_group_idx, test_group_idx = [0,1,2,3,4,5], [6,7], [8,9]
-        train_group_idx, val_group_idx, test_group_idx = \
-            torch.tensor(train_group_idx), torch.tensor(val_group_idx), torch.tensor(test_group_idx)
 
-        def split_idx(group_idx) :
-            split_idx = torch.zeros(len(torch.squeeze(self._metadata_array_wo_y)), dtype=torch.bool)
-            for idx in group_idx :
-                split_idx += (torch.squeeze(self._metadata_array_wo_y) == idx)
-            return split_idx
 
-        train_split_idx, val_split_idx, test_split_idx = \
-            split_idx(train_group_idx), split_idx(val_group_idx), split_idx(test_group_idx)
+        size = len(dataset)
+        if random_split == True:
+            random_index = np.random.permutation(size)
+            train_split_idx = random_index[:int(0.6 * size)]
+            val_split_idx = random_index[int(0.6 * size):int(0.8 * size)]
+            test_split_idx = random_index[int(0.8 * size):]
+        else:        
+            graph_size = np.array([self.ogb_dataset[i].x.shape[0] for i in range(size)])
+            sort_index = np.argsort(graph_size)
+
+            domain_index = [[sort_index[i], int(i*10/size)] for i in range(size)]
+            domain_index = sorted(domain_index, key=lambda x : x[0])
+            domain_index = [domain_index[i][-1] for i in range(size)]
+            # np.save('domain_group', np.array(domain_index))
+
+            train_split_idx = sort_index[:int(0.8 * size)]
+            val_split_idx = np.random.choice(train_split_idx, int(0.2 * size), replace=False)
+            train_split_idx = np.setdiff1d(train_split_idx, val_split_idx)
+            test_split_idx = sort_index[int(0.8 * size):]
+
+       
+
+
 
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1

@@ -262,17 +262,22 @@ if __name__ == '__main__':
     domain_index = [[sort_index[i], int(i*10/size)] for i in range(size)]
     domain_index = sorted(domain_index, key=lambda x : x[0])
     domain_index = [domain_index[i][-1] for i in range(size)]
-    np.save('domain_group', np.array(domain_index))
+    # np.save('domain_group', np.array(domain_index))
 
 
-    train_index = sort_index[:int(0.8 * size)]
-    val_index = np.random.choice(train_index, int(0.2 * size), replace=False)
-    train_index = np.setdiff1d(train_index, val_index)
+    # train_index = sort_index[:int(0.8 * size)]
+    # val_index = np.random.choice(train_index, int(0.2 * size), replace=False)
+    # train_index = np.setdiff1d(train_index, val_index)
+    # test_index = sort_index[int(0.8 * size):]
+
+    train_index = sort_index[:int(0.6 * size)]
+    val_index = sort_index[int(0.6 * size):int(0.8 * size)]
     test_index = sort_index[int(0.8 * size):]
 
-    import pdb
 
-    pdb.set_trace()
+    # import pdb
+
+    # pdb.set_trace()
 
 
 
