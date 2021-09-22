@@ -202,7 +202,6 @@
 <span id="L192" class="lineno"><a class="lineno" href="#L192">192</a></span>
 <span id="L193" class="lineno"><a class="lineno" href="#L193">193</a></span>
 <span id="L194" class="lineno"><a class="lineno" href="#L194">194</a></span>
-<span id="L195" class="lineno"><a class="lineno" href="#L195">195</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -324,9 +323,11 @@ Unimported (x1)">        self._metadata_array = torch.cat((self._metadata_array_
 Unannotated (x5)
 Unimported (x1)">                                          torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        size = len(dataset)</span>
+Unannotated (x3)
+Unimported (x1)">        np.random.seed(0)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        size = len(self.ogb_dataset)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if random_split == True:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -364,7 +365,6 @@ Unannotated (x5)
 Unimported (x1)">            train_split_idx = np.setdiff1d(train_split_idx, val_split_idx)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            test_split_idx = sort_index[int(0.8 * size):]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">       </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
