@@ -5,6 +5,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from .graph_filters.GSN_edge_sparse_ogb import GSN_edge_sparse_ogb
+from .graph_filters.GSN_sparse import GSN_sparse
+
 from .graph_filters.MPNN_edge_sparse_ogb import MPNN_edge_sparse_ogb
 
 from .models_misc import mlp, choose_activation
@@ -25,13 +27,15 @@ class GNN_GSN(torch.nn.Module):
                  d_in_edge_encoder=None,
                  d_degree=None,
                  emb_dim=300,
-                 num_layers=5):
+                 num_layers=5,
+                 dataset_group='mol'):
 
         super(GNN_GSN, self).__init__()
 
         seed = 0
 
         # -------------- Initializations
+        self.dataset_group = dataset_group
         self.emb_dim = emb_dim
         self.num_layers = num_layers
         self.model_name = 'GSN_edge_sparse_ogb'
@@ -68,24 +72,41 @@ class GNN_GSN(torch.nn.Module):
                            'aggr': 'sum',
                            'features_scope': 'full'}
 
-        self.input_node_encoder = DiscreteEmbedding('atom_encoder',
-                                                    in_features,
-                                                    d_in_node_encoder,
-                                                    emb_dim,
-                                                    **encoders_kwargs)
-        d_in = self.input_node_encoder.d_out
+        if self.dataset_group == 'mol' :
+            self.input_node_encoder = DiscreteEmbedding('atom_encoder',
+                                                        in_features,
+                                                        d_in_node_encoder,
+                                                        emb_dim,
+                                                        **encoders_kwargs)
+            d_in = self.input_node_encoder.d_out
+        elif self.dataset_group == 'ppa' :
+            self.input_node_encoder = torch.nn.Embedding(1, emb_dim)
+            d_in = emb_dim
+        elif self.dataset_group == 'RotatedMNIST':
+            self.node_encoder = torch.nn.Linear(3, emb_dim)
+            d_in = emb_dim
+        else :
+            raise NotImplementedError
 
         # -------------- Edge embedding (for each GNN layer)
         self.edge_encoder = []
         d_ef = []
-        for i in range(self.num_layers):
-            edge_encoder_layer = DiscreteEmbedding('bond_encoder',
-                                                   in_edge_features,
-                                                   d_in_edge_encoder,
-                                                   emb_dim,
-                                                   **encoders_kwargs)
-            self.edge_encoder.append(edge_encoder_layer)
-            d_ef.append(edge_encoder_layer.d_out)
+        if self.dataset_group == 'mol' :
+            for i in range(self.num_layers):
+                edge_encoder_layer = DiscreteEmbedding('bond_encoder',
+                                                       in_edge_features,
+                                                       d_in_edge_encoder,
+                                                       emb_dim,
+                                                       **encoders_kwargs)
+                self.edge_encoder.append(edge_encoder_layer)
+                d_ef.append(edge_encoder_layer.d_out)
+        elif self.dataset_group == 'ppa' :
+            for i in range(self.num_layers):
+                edge_encoder_layer = torch.nn.Linear(7, emb_dim)
+                self.edge_encoder.append(edge_encoder_layer)
+                d_ef.append(emb_dim)
+        else :
+            pass
 
         self.edge_encoder = nn.ModuleList(self.edge_encoder)
 
@@ -143,12 +164,17 @@ class GNN_GSN(torch.nn.Module):
                 'd_ef': d_ef[i],
                 'edge_embedding': 'bond_encoder',
                 'id_embedding': 'embedding',
-                'extend_dims': True}
+                'extend_dims': True
+            }
 
             use_ids = ((i > 0 and self.inject_ids) or (i == 0)) and (self.model_name == 'GSN_edge_sparse_ogb')
 
             if use_ids:
-                filter_fn = GSN_edge_sparse_ogb
+                if self.dataset_group != 'mol' and self.dataset_group != 'ppa' :
+                    filter_fn = GSN_edge_sparse_ogb
+                else :
+                    filter_fn = GSN_sparse
+
                 kwargs_filter['d_id'] = d_id[i] if self.inject_ids else d_id[0]
                 kwargs_filter['id_scope'] = id_scope
             else:

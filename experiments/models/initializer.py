@@ -41,7 +41,8 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None):
                                  in_edge_features=full_dataset.num_edge_features,
                                  d_in_node_encoder=full_dataset.d_in_node_encoder,
                                  d_in_edge_encoder=full_dataset.d_in_edge_encoder,
-                                 d_degree=full_dataset.d_degree)
+                                 d_degree=full_dataset.d_degree,
+                                 dataset_group=config.model_kwargs.dataset_group)
             classifier = nn.Linear(featurizer.d_out, d_out)
             model = (featurizer, classifier)
         else:
@@ -52,7 +53,8 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None):
                             in_edge_features=full_dataset.num_edge_features,
                             d_in_node_encoder=full_dataset.d_in_node_encoder,
                             d_in_edge_encoder=full_dataset.d_in_edge_encoder,
-                            d_degree=full_dataset.d_degree)
+                            d_degree=full_dataset.d_degree,
+                            dataset_group=config.model_kwargs.dataset_group)
 
     # The `needs_y` attribute specifies whether the model's forward function
     # needs to take in both (x, y).
