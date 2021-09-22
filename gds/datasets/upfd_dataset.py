@@ -91,8 +91,8 @@ class UpfdDataset(GDSDataset):
         self._metadata_array = torch.cat((self._metadata_array_wo_y,
                                           torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)
 
-
-        size = len(dataset)
+        np.random.seed(0)
+        size = len(self.ogb_dataset)
         if random_split == True:
             random_index = np.random.permutation(size)
             train_split_idx = random_index[:int(0.6 * size)]
@@ -111,7 +111,6 @@ class UpfdDataset(GDSDataset):
             val_split_idx = np.random.choice(train_split_idx, int(0.2 * size), replace=False)
             train_split_idx = np.setdiff1d(train_split_idx, val_split_idx)
             test_split_idx = sort_index[int(0.8 * size):]
-
        
 
 
