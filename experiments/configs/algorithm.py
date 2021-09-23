@@ -50,7 +50,7 @@ algorithm_defaults = {
         'eval_loader': 'standard',
     },
     'MLDG': {
-        'train_loader': 'standard',
+        'train_loader': 'group',
         'uniform_over_groups': True,
         'distinct_groups': True,
         'eval_loader': 'standard',
