@@ -78,11 +78,13 @@ class RotatedMNISTDataset(GDSDataset):
         self._split_array[val_split_idx] = 1
         self._split_array[test_split_idx] = 2
 
-        if torch_geometric.__version__ >= '1.7.0':
-            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+        if dataset_kwargs['model'] == '3wlgnn':
+            self._collate = self.collate_dense
         else:
-            self._collate = PyGCollater(follow_batch=[])
-        # self._collate = self.collate_dense
+            if torch_geometric.__version__ >= '1.7.0':
+                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+            else:
+                self._collate = PyGCollater(follow_batch=[])
 
         self._metric = Evaluator('ogbg-ppa')
 
@@ -114,14 +116,19 @@ class RotatedMNISTDataset(GDSDataset):
 
     # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
     def collate_dense(self, samples):
-        # The input samples is a list of pairs (graph, label).
+        def _sym_normalize_adj(adjacency):
+            deg = torch.sum(adjacency, dim=0)  # .squeeze()
+            deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
+            deg_inv = torch.diag(deg_inv)
+            return torch.mm(deg_inv, torch.mm(adjacency, deg_inv))
 
+        # The input samples is a list of pairs (graph, label).
         graph_list, y_list, metadata_list = map(list, zip(*samples))
         y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
 
         x_node_feat = []
         for graph in graph_list:
-            adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = graph.x.shape[1]
 
@@ -135,11 +142,4 @@ class RotatedMNISTDataset(GDSDataset):
             x_node_feat.append(adj_node_feat)
 
         x_node_feat = torch.stack(x_node_feat)
-
         return x_node_feat, y, metadata
-
-    def _sym_normalize_adj(self, adj):
-        deg = torch.sum(adj, dim=0)  # .squeeze()
-        deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
-        deg_inv = torch.diag(deg_inv)
-        return torch.mm(deg_inv, torch.mm(adj, deg_inv))

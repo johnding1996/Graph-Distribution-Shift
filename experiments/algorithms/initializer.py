@@ -3,6 +3,7 @@ from algorithms.IRM import IRM
 from algorithms.deepCORAL import DeepCORAL
 from algorithms.groupDRO import GroupDRO
 from algorithms.FLAG import FLAG
+from algorithms.GSN import GSN
 from algorithms.DANN import DANN, CDANN, DANNG
 from algorithms.MLDG import MLDG
 from configs.supported import algo_log_metrics
@@ -11,7 +12,7 @@ from losses import initialize_loss
 from gds.common.utils import get_counts
 
 
-def initialize_algorithm(config, datasets, train_grouper):
+def initialize_algorithm(config, datasets, full_dataset, train_grouper):
     train_dataset = datasets['train']['dataset']
     train_loader = datasets['train']['loader']
 
@@ -21,8 +22,6 @@ def initialize_algorithm(config, datasets, train_grouper):
         if train_dataset.y_size == 1:
             # For single-task classification, we have one output per class
             d_out = train_dataset.n_classes
-
-
         elif train_dataset.y_size is None:
             d_out = train_dataset.n_classes
         elif (train_dataset.y_size > 1) and (train_dataset.n_classes == 2):
@@ -87,6 +86,15 @@ def initialize_algorithm(config, datasets, train_grouper):
             loss=loss,
             metric=metric,
             n_train_steps=n_train_steps)
+    elif config.algorithm == 'GSN':
+        algorithm = GSN(
+            config=config,
+            d_out=d_out,
+            grouper=train_grouper,
+            loss=loss,
+            metric=metric,
+            n_train_steps=n_train_steps,
+            full_dataset=full_dataset)
     elif config.algorithm == 'DANN':
         algorithm = DANN(
             config=config,

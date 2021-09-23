@@ -4,5 +4,6 @@ model_defaults = {
     'gin_virtual':{},
     'gcn_virtual':{},
     'cheb':{},
-    'cheb_virtual':{}
+    'cheb_virtual':{},
+    '3wlgnn':{}
 }

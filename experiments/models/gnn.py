@@ -3,9 +3,10 @@ import torch.nn.functional as F
 from torch_geometric.nn import global_mean_pool, global_add_pool, GCNConv, GINConv, ChebConv
 from ogb.graphproppred.mol_encoder import AtomEncoder
 
-from models.conv import GCNConvNew, GINConvNew, ChebConvNew
+from .conv import GCNConvNew, GINConvNew, ChebConvNew
 
 Cheb_K = 3
+
 
 # mol
 class GNN(torch.nn.Module):
@@ -17,7 +18,8 @@ class GNN(torch.nn.Module):
         - prediction (Tensor): float torch tensor of shape (num_graphs, num_tasks)
     """
 
-    def __init__(self, gnn_type, dataset_group, num_tasks=128, num_layers = 5, emb_dim = 300, dropout = 0.5, is_pooled=True):
+    def __init__(self, gnn_type, dataset_group, num_tasks=128, num_layers=5, emb_dim=300, dropout=0.5, is_pooled=True,
+                 **model_kwargs):
         """
         Args:
             - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)
@@ -44,15 +46,17 @@ class GNN(torch.nn.Module):
         if self.num_layers < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
 
-        if self.gnn_type.endswith('virtual') :
-            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], dropout=dropout)
-        else :
-            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], dropout=dropout)
+        if self.gnn_type.endswith('virtual'):
+            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group,
+                                                 gnn_type=self.gnn_type.split('_')[0], dropout=dropout)
+        else:
+            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group,
+                                     gnn_type=self.gnn_type.split('_')[0], dropout=dropout)
 
         # Pooling function to generate whole-graph embeddings
-        if self.is_pooled :
+        if self.is_pooled:
             self.pool = global_mean_pool
-        else :
+        else:
             self.pool = None
         if num_tasks is None:
             self.graph_pred_linear = None
@@ -64,12 +68,12 @@ class GNN(torch.nn.Module):
         h_node = self.gnn_node(batched_data, perturb)
 
         if self.graph_pred_linear is None:
-            if self.pool is None :
+            if self.pool is None:
                 return h_node, batched_data.batch
-            else :
+            else:
                 return self.pool(h_node, batched_data.batch)
         else:
-            return self.graph_pred_linear( self.pool(h_node, batched_data.batch) )
+            return self.graph_pred_linear(self.pool(h_node, batched_data.batch))
 
 
 ### GNN to generate node embedding
@@ -78,7 +82,8 @@ class GNN_node(torch.nn.Module):
     Output:
         node representations
     """
-    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type = 'gin', dropout = 0.5, JK = "last", residual = False):
+
+    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last", residual=False):
         '''
             emb_dim (int): node embedding dimensionality
             num_layer (int): number of GNN message passing layers
@@ -98,19 +103,18 @@ class GNN_node(torch.nn.Module):
         if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
 
-        if self.dataset_group == 'mol' :
+        if self.dataset_group == 'mol':
             self.node_encoder = AtomEncoder(emb_dim)
-        elif self.dataset_group == 'ppa' :
+        elif self.dataset_group == 'ppa':
             self.node_encoder = torch.nn.Embedding(1, emb_dim) # uniform input node embedding
-        elif self.dataset_group == 'RotatedMNIST' :
+        elif self.dataset_group == 'RotatedMNIST':
             self.node_encoder = torch.nn.Linear(1, emb_dim)
-        elif self.dataset_group == 'SBM' :
+        elif self.dataset_group == 'SBM':
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
-        elif self.dataset_group == 'UPFD' :
+        elif self.dataset_group == 'UPFD':
             self.node_encoder = torch.nn.Linear(10, emb_dim)
-        else :
+        else:
             raise NotImplementedError
-
 
         ###List of GNNs
         self.convs = torch.nn.ModuleList()
@@ -118,22 +122,22 @@ class GNN_node(torch.nn.Module):
 
         for layer in range(num_layer):
             if gnn_type == 'gin':
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
-                                                   torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
-                                                   torch.nn.Linear(2 * emb_dim, emb_dim))
+                                              torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
+                                              torch.nn.Linear(2 * emb_dim, emb_dim))
                     self.convs.append(GINConv(mlp, train_eps=True))
-                else :
+                else:
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:
                     self.convs.append(GCNConv(emb_dim, emb_dim))
-                else :
+                else:
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
-            elif gnn_type == 'cheb' :
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+            elif gnn_type == 'cheb':
+                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:
                     self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))
-                else :
+                else:
                     self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
             else:
                 raise ValueError('Undefined GNN type called {}'.format(gnn_type))
@@ -147,10 +151,10 @@ class GNN_node(torch.nn.Module):
         x, edge_index, edge_attr, batch = batched_data.x, batched_data.edge_index, batched_data.edge_attr, batched_data.batch
 
         # FLAG injects perturbation
-        if self.node_encoder is None :
+        if self.node_encoder is None:
             h_list = [x]
-        else :
-            h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]
+        else:
+            h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]
 
         for layer in range(self.num_layer):
 
@@ -158,10 +162,10 @@ class GNN_node(torch.nn.Module):
             h = self.batch_norms[layer](h)
 
             if layer == self.num_layer - 1:
-                #remove relu for the last layer
-                h = F.dropout(h, self.drop_ratio, training = self.training)
+                # remove relu for the last layer
+                h = F.dropout(h, self.drop_ratio, training=self.training)
             else:
-                h = F.dropout(F.relu(h), self.drop_ratio, training = self.training)
+                h = F.dropout(F.relu(h), self.drop_ratio, training=self.training)
 
             if self.residual:
                 h += h_list[layer]
@@ -185,7 +189,8 @@ class GNN_node_Virtualnode(torch.nn.Module):
     Output:
         node representations
     """
-    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type = 'gin', dropout = 0.5, JK = "last", residual = False):
+
+    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last", residual=False):
         '''
             emb_dim (int): node embedding dimensionality
         '''
@@ -204,17 +209,17 @@ class GNN_node_Virtualnode(torch.nn.Module):
         if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
 
-        if self.dataset_group == 'mol' :
+        if self.dataset_group == 'mol':
             self.node_encoder = AtomEncoder(emb_dim)
-        elif self.dataset_group == 'ppa' :
+        elif self.dataset_group == 'ppa':
             self.node_encoder = torch.nn.Embedding(1, emb_dim) # uniform input node embedding
-        elif self.dataset_group == 'RotatedMNIST' :
+        elif self.dataset_group == 'RotatedMNIST':
             self.node_encoder = torch.nn.Linear(1, emb_dim)
-        elif self.dataset_group == 'SBM' :
+        elif self.dataset_group == 'SBM':
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
-        elif self.dataset_group == 'UPFD' :
+        elif self.dataset_group == 'UPFD':
             self.node_encoder = torch.nn.Linear(10, emb_dim)
-        else :
+        else:
             raise NotImplementedError
 
         ### set the initial virtual node embedding to 0.
@@ -231,22 +236,22 @@ class GNN_node_Virtualnode(torch.nn.Module):
 
         for layer in range(num_layer):
             if gnn_type == 'gin':
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
-                                                   torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
-                                                   torch.nn.Linear(2 * emb_dim, emb_dim))
+                                              torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
+                                              torch.nn.Linear(2 * emb_dim, emb_dim))
                     self.convs.append(GINConv(mlp, train_eps=True))
-                else :
+                else:
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:
                     self.convs.append(GCNConv(emb_dim, emb_dim))
-                else :
+                else:
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
-            elif gnn_type == 'cheb' :
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+            elif gnn_type == 'cheb':
+                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:
                     self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))
-                else :
+                else:
                     self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
             else:
                 raise ValueError('Undefined GNN type called {}'.format(gnn_type))
@@ -272,10 +277,10 @@ class GNN_node_Virtualnode(torch.nn.Module):
             torch.zeros(batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))
 
         # FLAG injects perturbation
-        if self.node_encoder is None :
+        if self.node_encoder is None:
             h_list = [x]
-        else :
-            h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]
+        else:
+            h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]
 
         for layer in range(self.num_layer):
             ### add message from virtual nodes to graph nodes
@@ -285,10 +290,10 @@ class GNN_node_Virtualnode(torch.nn.Module):
             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
             h = self.batch_norms[layer](h)
             if layer == self.num_layer - 1:
-                #remove relu for the last layer
-                h = F.dropout(h, self.drop_ratio, training = self.training)
+                # remove relu for the last layer
+                h = F.dropout(h, self.drop_ratio, training=self.training)
             else:
-                h = F.dropout(F.relu(h), self.drop_ratio, training = self.training)
+                h = F.dropout(F.relu(h), self.drop_ratio, training=self.training)
 
             if self.residual:
                 h = h + h_list[layer]
@@ -302,9 +307,12 @@ class GNN_node_Virtualnode(torch.nn.Module):
                 ### transform virtual nodes using MLP
 
                 if self.residual:
-                    virtualnode_embedding = virtualnode_embedding + F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.drop_ratio, training = self.training)
+                    virtualnode_embedding = virtualnode_embedding + F.dropout(
+                        self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.drop_ratio,
+                        training=self.training)
                 else:
-                    virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.drop_ratio, training = self.training)
+                    virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp),
+                                                      self.drop_ratio, training=self.training)
 
         ### Different implementations of Jk-concat
         if self.JK == "last":
