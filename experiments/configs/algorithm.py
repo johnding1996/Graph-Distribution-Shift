@@ -43,7 +43,7 @@ algorithm_defaults = {
         'distinct_groups': True,
         'eval_loader': 'standard',
     },
-    'OurDANN': {
+    'DANN-G': {
         'train_loader': 'standard',
         'uniform_over_groups': True,
         'distinct_groups': True,

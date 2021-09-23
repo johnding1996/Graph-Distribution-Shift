@@ -303,9 +303,9 @@ class CDANN(AbstractDANN):
         super(CDANN, self).__init__(config, d_out, grouper, loss,
                  metric, n_train_steps, conditional=True, class_balance=True)
 
-class OurDANN(OurAbstractDANN):
+class DANNG(OurAbstractDANN):
     """Conditional DANN"""
     def __init__(self, config, d_out, grouper, loss,
                  metric, n_train_steps):
-        super(OurDANN, self).__init__(config, d_out, grouper, loss,
+        super(DANNG, self).__init__(config, d_out, grouper, loss,
                  metric, n_train_steps)
