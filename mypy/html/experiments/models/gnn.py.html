@@ -321,10 +321,6 @@
 <span id="L311" class="lineno"><a class="lineno" href="#L311">311</a></span>
 <span id="L312" class="lineno"><a class="lineno" href="#L312">312</a></span>
 <span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
-<span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
-<span id="L315" class="lineno"><a class="lineno" href="#L315">315</a></span>
-<span id="L316" class="lineno"><a class="lineno" href="#L316">316</a></span>
-<span id="L317" class="lineno"><a class="lineno" href="#L317">317</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -573,11 +569,6 @@ Unannotated (x3)">        for layer in range(self.num_layer):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)">            h = self.convs[layer](h_list[layer], edge_index, edge_attr)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            if self.dataset_group in  ['RotatedMNIST', 'UPFD']:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">                h = F.relu(h)</span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
@@ -799,11 +790,6 @@ Unannotated (x9)">            h_list[layer] = h_list[layer] + virtualnode_embedd
 <span class="line-empty" title="No Anys on this line!">            ### Message passing among graph nodes</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)">            h = self.convs[layer](h_list[layer], edge_index, edge_attr)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            if self.dataset_group in  ['RotatedMNIST', 'UPFD']:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">                h = F.relu(h)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 <span class="line-any" title="Any Types on this line: 
