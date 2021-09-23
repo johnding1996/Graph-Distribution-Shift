@@ -6,12 +6,12 @@ from ogb.graphproppred import Evaluator
 from torch_geometric.data import download_url, extract_zip
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
-from .pyg_upfd_dataset import PyGUPFDDataset
+from .pyg_rotated_mnist_dataset import PyGRotatedMNISTDataset
 from torch_geometric.utils import to_dense_adj
 
 
-class UPFDDataset(GDSDataset):
-    _dataset_name = 'UPFD'
+class RotatedMNISTDataset(GDSDataset):
+    _dataset_name = 'RotatedMNIST'
     _versions_dict = {
         '1.0': {
             'download_url': None,
@@ -21,12 +21,12 @@ class UPFDDataset(GDSDataset):
                  **dataset_kwargs):
         self._version = version
         # internally call ogb package
-        self.ogb_dataset = PyGUPFDDataset(root_dir, 'UPFD', 'profile')
+        self.ogb_dataset = PyGRotatedMNISTDataset(name='RotatedMNIST', root=root_dir)
 
         # set variables
         self._data_dir = self.ogb_dataset.root
         if split_scheme == 'official':
-            split_scheme = 'size'
+            split_scheme = 'angle'
         self._split_scheme = split_scheme
         self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
@@ -34,15 +34,16 @@ class UPFDDataset(GDSDataset):
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
 
-        self._y_array = self.ogb_dataset.data.y.unsqueeze(dim=-1)
-        self._metadata_fields = ['size', 'y']
+        self._y_array = self.ogb_dataset.data.y
+        self._metadata_fields = ['angle', 'y']
 
-        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'UPFD_group.npy')
+        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'RotatedMNIST_group.npy')
         if not os.path.exists(metadata_file_path):
             metadata_zip_file_path = download_url(
-                'https://www.dropbox.com/s/bs5u83x2vjf7t0f/UPFD_group.zip?dl=1', self.ogb_dataset.raw_dir)
+                'https://www.dropbox.com/s/zulrcyh846w9maw/RotatedMNIST_group.zip?dl=1', self.ogb_dataset.raw_dir)
             extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)
             os.unlink(metadata_zip_file_path)
+
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y,
                                           torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)
@@ -51,12 +52,12 @@ class UPFDDataset(GDSDataset):
         dataset_size = len(self.ogb_dataset)
         if random_split:
             random_index = np.random.permutation(dataset_size)
-            train_split_idx = random_index[:int(6 / 10 * dataset_size)]
-            val_split_idx = random_index[int(6 / 10 * dataset_size):int(8 / 10 * dataset_size)]
-            test_split_idx = random_index[int(8 / 10 * dataset_size):]
+            train_split_idx = random_index[:int(4 / 6 * dataset_size)]
+            val_split_idx = random_index[int(4 / 6 * dataset_size):int(5 / 6 * dataset_size)]
+            test_split_idx = random_index[int(5 / 6 * dataset_size):]
         else:
             # use the group info split data
-            train_val_group_idx, test_group_idx = range(0, 8), range(8, 10)
+            train_val_group_idx, test_group_idx = range(0, 5), range(5, 6)
             train_val_group_idx, test_group_idx = torch.tensor(train_val_group_idx), torch.tensor(test_group_idx)
 
             def split_idx(group_idx):
@@ -70,8 +71,8 @@ class UPFDDataset(GDSDataset):
             train_val_split_idx = torch.arange(dataset_size, dtype=torch.int64)[train_val_split_idx]
             train_val_sets_size = len(train_val_split_idx)
             random_index = np.random.permutation(train_val_sets_size)
-            train_split_idx = train_val_split_idx[random_index[:int(6 / 8 * train_val_sets_size)]]
-            val_split_idx = train_val_split_idx[random_index[int(6 / 8 * train_val_sets_size):]]
+            train_split_idx = train_val_split_idx[random_index[:int(4 / 5 * train_val_sets_size)]]
+            val_split_idx = train_val_split_idx[random_index[int(4 / 5 * train_val_sets_size):]]
 
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1
