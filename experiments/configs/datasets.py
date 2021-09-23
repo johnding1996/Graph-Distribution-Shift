@@ -106,7 +106,7 @@ dataset_defaults = {
         'lr': 1e-03,
         'weight_decay': 0.,
         'n_epochs': 150,
-        'n_groups_per_batch': 4,
+        'n_groups_per_batch': 2,
         'irm_lambda': 1.,
         'coral_penalty_weight': 0.1,
         'no_group_logging': True,

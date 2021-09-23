@@ -41,7 +41,7 @@ class PyGRotatedMNISTDataset(InMemoryDataset):
 
     @property
     def processed_file_names(self) -> List[str]:
-        return [f'{self.name}_processed.pt']
+        return [f'{self.name}_processed_mean_px_feat.pt']
 
     def download(self):
         path = download_url(self.urls[self.name], self.raw_dir)
@@ -50,8 +50,12 @@ class PyGRotatedMNISTDataset(InMemoryDataset):
 
     def process(self):
         inputs = torch.load(self.raw_paths[0])
+        # data_list = [Data(**data_dict) for data_dict in inputs]
 
-        data_list = [Data(**data_dict) for data_dict in inputs]
+        data_list = []
+        for data_dict in inputs :
+            data_dict['x'] = data_dict['x'][:, :1]
+            data_list.append(Data(**data_dict))
 
         if self.pre_filter is not None:
             data_list = [d for d in data_list if self.pre_filter(d)]
