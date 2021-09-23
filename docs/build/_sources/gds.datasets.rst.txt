@@ -44,26 +44,26 @@ gds.datasets.ogbmolpcba\_dataset module
    :undoc-members:
    :show-inheritance:
 
-gds.datasets.ogbproteins\_dataset module
-----------------------------------------
+gds.datasets.pyg\_rotated\_mnist\_dataset module
+------------------------------------------------
 
-.. automodule:: gds.datasets.ogbproteins_dataset
+.. automodule:: gds.datasets.pyg_rotated_mnist_dataset
    :members:
    :undoc-members:
    :show-inheritance:
 
-gds.datasets.pyg\_sbm\_1\_dataset module
-----------------------------------------
+gds.datasets.pyg\_sbm\_environment\_dataset module
+--------------------------------------------------
 
-.. automodule:: gds.datasets.pyg_sbm_1_dataset
+.. automodule:: gds.datasets.pyg_sbm_environment_dataset
    :members:
    :undoc-members:
    :show-inheritance:
 
-gds.datasets.pyg\_superpixel\_dataset module
---------------------------------------------
+gds.datasets.pyg\_sbm\_isolation\_dataset module
+------------------------------------------------
 
-.. automodule:: gds.datasets.pyg_superpixel_dataset
+.. automodule:: gds.datasets.pyg_sbm_isolation_dataset
    :members:
    :undoc-members:
    :show-inheritance:
@@ -76,18 +76,26 @@ gds.datasets.pyg\_upfd\_dataset module
    :undoc-members:
    :show-inheritance:
 
-gds.datasets.sbm\_1\_dataset module
------------------------------------
+gds.datasets.rotated\_mnist\_dataset module
+-------------------------------------------
 
-.. automodule:: gds.datasets.sbm_1_dataset
+.. automodule:: gds.datasets.rotated_mnist_dataset
    :members:
    :undoc-members:
    :show-inheritance:
 
-gds.datasets.superpixel\_dataset module
----------------------------------------
+gds.datasets.sbm\_environment\_dataset module
+---------------------------------------------
 
-.. automodule:: gds.datasets.superpixel_dataset
+.. automodule:: gds.datasets.sbm_environment_dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gds.datasets.sbm\_isolation\_dataset module
+-------------------------------------------
+
+.. automodule:: gds.datasets.sbm_isolation_dataset
    :members:
    :undoc-members:
    :show-inheritance:

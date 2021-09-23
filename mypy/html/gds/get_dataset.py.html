@@ -55,6 +55,9 @@
 <span id="L45" class="lineno"><a class="lineno" href="#L45">45</a></span>
 <span id="L46" class="lineno"><a class="lineno" href="#L46">46</a></span>
 <span id="L47" class="lineno"><a class="lineno" href="#L47">47</a></span>
+<span id="L48" class="lineno"><a class="lineno" href="#L48">48</a></span>
+<span id="L49" class="lineno"><a class="lineno" href="#L49">49</a></span>
+<span id="L50" class="lineno"><a class="lineno" href="#L50">50</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import gds</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -84,43 +87,46 @@ Unannotated (x8)">        raise ValueError(f'The dataset {dataset} is not recogn
 Unannotated (x2)">    if dataset == 'ogb-molpcba':</span>
 <span class="line-precise" title="No Anys on this line!">        from gds.datasets.ogbmolpcba_dataset import OGBPCBADataset</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        return OGBPCBADataset(version=version, **dataset_kwargs)</span>
+Unannotated (x9)">        return OGBPCBADataset(version=version, **dataset_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    elif dataset == 'ogb-molhiv':</span>
 <span class="line-precise" title="No Anys on this line!">        from gds.datasets.ogbmolhiv_dataset import OGBHIVDataset</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x11)">        return OGBHIVDataset(version=version, **dataset_kwargs)</span>
+Unannotated (x12)">        return OGBHIVDataset(version=version, **dataset_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    elif dataset == 'ogbg-ppa':</span>
 <span class="line-precise" title="No Anys on this line!">        from gds.datasets.ogbgppa_dataset import OGBGPPADataset</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        return OGBGPPADataset(version=version, **dataset_kwargs)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">    elif dataset == 'ogb-proteins':</span>
-<span class="line-precise" title="No Anys on this line!">        from gds.datasets.ogbproteins_dataset import OGBPROTEINSDataset</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        return OGBPROTEINSDataset(version=version, **dataset_kwargs)</span>
+Unannotated (x9)">        return OGBGPPADataset(version=version, **dataset_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    elif dataset == 'RotatedMNIST':</span>
-<span class="line-precise" title="No Anys on this line!">        from gds.datasets.superpixel_dataset import SuperPixelDataset</span>
+<span class="line-precise" title="No Anys on this line!">        from gds.datasets.rotated_mnist_dataset import RotatedMNISTDataset</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        return SuperPixelDataset(version=version, **dataset_kwargs)</span>
+Unannotated (x9)">        return RotatedMNISTDataset(version=version, **dataset_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">    elif dataset == 'SBM1':</span>
-<span class="line-precise" title="No Anys on this line!">        from gds.datasets.sbm_1_dataset import SBM1Dataset</span>
+Unannotated (x2)">    elif dataset == 'SBM-Environment':</span>
+<span class="line-precise" title="No Anys on this line!">        from gds.datasets.sbm_environment_dataset import SBMEnvironmentDataset</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        return SBM1Dataset(version=version, **dataset_kwargs)</span>
+Unannotated (x9)">        return SBMEnvironmentDataset(version=version, **dataset_kwargs)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">    elif dataset == 'SBM-Isolation':</span>
+<span class="line-precise" title="No Anys on this line!">        from gds.datasets.sbm_isolation_dataset import SBMIsolationDataset</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">        return SBMIsolationDataset(version=version, **dataset_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    elif dataset == 'UPFD':</span>
-<span class="line-precise" title="No Anys on this line!">        from gds.datasets.upfd_dataset import UpfdDataset</span>
+<span class="line-precise" title="No Anys on this line!">        from gds.datasets.upfd_dataset import UPFDDataset</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x11)">        return UpfdDataset(version=version, **dataset_kwargs)</span>
+Unannotated (x9)">        return UPFDDataset(version=version, **dataset_kwargs)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    else:</span>
+<span class="line-precise" title="No Anys on this line!">        raise NotImplementedError</span>
 </pre></td>
 </tr></tbody>
 </table>

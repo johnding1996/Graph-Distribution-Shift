@@ -4,9 +4,9 @@
 <link rel="stylesheet" type="text/css" href="../../../mypy-html.css">
 </head>
 <body>
-<h2>gds.datasets.ogbproteins_dataset</h2>
+<h2>gds.datasets.sbm_environment_dataset</h2>
 <table>
-<caption>gds/datasets/ogbproteins_dataset.py</caption>
+<caption>gds/datasets/sbm_environment_dataset.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -119,74 +119,34 @@
 <span id="L109" class="lineno"><a class="lineno" href="#L109">109</a></span>
 <span id="L110" class="lineno"><a class="lineno" href="#L110">110</a></span>
 <span id="L111" class="lineno"><a class="lineno" href="#L111">111</a></span>
-<span id="L112" class="lineno"><a class="lineno" href="#L112">112</a></span>
-<span id="L113" class="lineno"><a class="lineno" href="#L113">113</a></span>
-<span id="L114" class="lineno"><a class="lineno" href="#L114">114</a></span>
-<span id="L115" class="lineno"><a class="lineno" href="#L115">115</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
-<span class="line-any" title="No Anys on this line!">import torch_geometric</span>
-<span class="line-any" title="No Anys on this line!">import torch_geometric.transforms as T</span>
-<span class="line-any" title="No Anys on this line!">from ogb.nodeproppred import Evaluator</span>
-<span class="line-any" title="No Anys on this line!">from ogb.nodeproppred.dataset_pyg import PygNodePropPredDataset</span>
-<span class="line-any" title="No Anys on this line!">from torch_geometric.data.dataloader import Collater as PyGCollater</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-precise" title="No Anys on this line!">from gds.datasets.gds_dataset import GDSDataset</span>
+<span class="line-any" title="No Anys on this line!">from ogb.graphproppred import Evaluator</span>
+<span class="line-any" title="No Anys on this line!">from torch_geometric.data import download_url, extract_zip</span>
+<span class="line-any" title="No Anys on this line!">from torch_geometric.data.dataloader import Collater as PyGCollater</span>
+<span class="line-any" title="No Anys on this line!">import torch_geometric</span>
+<span class="line-precise" title="No Anys on this line!">from .pyg_sbm_environment_dataset import PyGSBMEnvironmentDataset</span>
+<span class="line-any" title="No Anys on this line!">from torch_geometric.utils import to_dense_adj</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">class OGBPROTEINSDataset(GDSDataset):</span>
-<span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-empty" title="No Anys on this line!">    The OGB-Proteins dataset.</span>
-<span class="line-empty" title="No Anys on this line!">    This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Supported `split_scheme`:</span>
-<span class="line-empty" title="No Anys on this line!">        - 'species',</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Website:</span>
-<span class="line-empty" title="No Anys on this line!">        https://ogb.stanford.edu/docs/graphprop/#ogbg-mol</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Original publication:</span>
-<span class="line-empty" title="No Anys on this line!">        @article{hu2020ogb,</span>
-<span class="line-empty" title="No Anys on this line!">            title={Open Graph Benchmark: Datasets for Machine Learning on Graphs},</span>
-<span class="line-empty" title="No Anys on this line!">            author={W. {Hu}, M. {Fey}, M. {Zitnik}, Y. {Dong}, H. {Ren}, B. {Liu}, M. {Catasta}, J. {Leskovec}},</span>
-<span class="line-empty" title="No Anys on this line!">            journal={arXiv preprint arXiv:2005.00687},</span>
-<span class="line-empty" title="No Anys on this line!">            year={2020}</span>
-<span class="line-empty" title="No Anys on this line!">        }</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        @article{wu2018moleculenet,</span>
-<span class="line-empty" title="No Anys on this line!">            title={MoleculeNet: a benchmark for molecular machine learning},</span>
-<span class="line-empty" title="No Anys on this line!">            author={Z. {Wu}, B. {Ramsundar}, E. V {Feinberg}, J. {Gomes}, C. {Geniesse}, A. S {Pappu}, K. {Leswing}, V. {Pande}},</span>
-<span class="line-empty" title="No Anys on this line!">            journal={Chemical science},</span>
-<span class="line-empty" title="No Anys on this line!">            volume={9},</span>
-<span class="line-empty" title="No Anys on this line!">            number={2},</span>
-<span class="line-empty" title="No Anys on this line!">            pages={513--530},</span>
-<span class="line-empty" title="No Anys on this line!">            year={2018},</span>
-<span class="line-empty" title="No Anys on this line!">            publisher={Royal Society of Chemistry}</span>
-<span class="line-empty" title="No Anys on this line!">        }</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    License:</span>
-<span class="line-empty" title="No Anys on this line!">        This dataset is distributed under the MIT license.</span>
-<span class="line-empty" title="No Anys on this line!">        https://github.com/snap-stanford/ogb/blob/master/LICENSE</span>
-<span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    _dataset_name = 'ogb-proteins'</span>
+<span class="line-precise" title="No Anys on this line!">class SBMEnvironmentDataset(GDSDataset):</span>
+<span class="line-precise" title="No Anys on this line!">    _dataset_name = 'SBM-Environment'</span>
 <span class="line-precise" title="No Anys on this line!">    _versions_dict = {</span>
 <span class="line-precise" title="No Anys on this line!">        '1.0': {</span>
 <span class="line-precise" title="No Anys on this line!">            'download_url': None,</span>
 <span class="line-precise" title="No Anys on this line!">            'compressed_size': None}}</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', **dataset_kwargs):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,</span>
+<span class="line-empty" title="No Anys on this line!">                 **dataset_kwargs):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._version = version</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if version is not None:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            raise ValueError('Versioning for OGB-Proteins is handled through the OGB package. Please set version=none.')</span>
 <span class="line-empty" title="No Anys on this line!">        # internally call ogb package</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Unimported (x2)">        self.ogb_dataset = PygNodePropPredDataset(name='ogbn-proteins', root=root_dir, transform=T.ToSparseTensor())</span>
+Unannotated (x3)
+Omitted Generics (x9)">        self.ogb_dataset = PyGSBMEnvironmentDataset(name='SBM-Environment', root=root_dir)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # set variables</span>
 <span class="line-any" title="Any Types on this line: 
@@ -194,7 +154,7 @@ Unannotated (x3)">        self._data_dir = self.ogb_dataset.root</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if split_scheme == 'official':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            split_scheme = 'species'</span>
+Unannotated (x1)">            split_scheme = 'composition'</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._split_scheme = split_scheme</span>
 <span class="line-any" title="Any Types on this line: 
@@ -205,32 +165,96 @@ Unannotated (x3)">        self._y_size = self.ogb_dataset.num_tasks</span>
 Unannotated (x3)">        self._n_classes = self.ogb_dataset.__num_classes__</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        self._split_array = torch.zeros(len(self.ogb_dataset)).long()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        self._y_array = self.ogb_dataset.data.y</span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self._metadata_fields = ['composition', 'y']</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'SBM-Environment_group.npy')</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        if not os.path.exists(metadata_file_path):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">            metadata_zip_file_path = download_url(</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                'https://www.dropbox.com/s/5xjd13f2qfiyku5/SBM-Environment_group.zip?dl=1', self.ogb_dataset.raw_dir)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">            extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            os.unlink(metadata_zip_file_path)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x11)
+Unimported (x2)">        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        self._metadata_array = torch.cat((self._metadata_array_wo_y,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">                                          torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">        np.random.seed(0)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        dataset_size = len(self.ogb_dataset)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if random_split:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            random_index = np.random.permutation(dataset_size)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">            train_split_idx = random_index[:int(2 / 4 * dataset_size)]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x11)">            val_split_idx = random_index[int(2 / 4 * dataset_size):int(3 / 4 * dataset_size)]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">            test_split_idx = random_index[int(3 / 4 * dataset_size):]</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-empty" title="No Anys on this line!">            # use the group info split data</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            train_val_group_idx, test_group_idx = range(0, 3), range(3, 4)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)
+Unimported (x2)">            train_val_group_idx, test_group_idx = torch.tensor(train_val_group_idx), torch.tensor(test_group_idx)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">            def split_idx(group_idx):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)
+Unimported (x3)">                split_idx = torch.zeros(len(torch.squeeze(self._metadata_array_wo_y)), dtype=torch.bool)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                for idx in group_idx:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">                    split_idx += (torch.squeeze(self._metadata_array_wo_y) == idx)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                return split_idx</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x10)">            train_val_split_idx, test_split_idx = split_idx(train_val_group_idx), split_idx(test_group_idx)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
-Unimported (x1)">        self._split_array = torch.zeros(len(self._y_array)).long()</span>
+Unimported (x2)">            train_val_split_idx = torch.arange(dataset_size, dtype=torch.int64)[train_val_split_idx]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        split_idx = self.ogb_dataset.get_idx_split()</span>
+Unannotated (x3)">            train_val_sets_size = len(train_val_split_idx)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            random_index = np.random.permutation(train_val_sets_size)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            train_split_idx = train_val_split_idx[random_index[:int(2 / 3 * train_val_sets_size)]]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            val_split_idx = train_val_split_idx[random_index[int(2 / 3 * train_val_sets_size):]]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['train']] = 0</span>
+Unannotated (x2)">        self._split_array[train_split_idx] = 0</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['valid']] = 1</span>
+Unannotated (x2)">        self._split_array[val_split_idx] = 1</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['test']] = 2</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        # Move edge features to node features.</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        data = self.ogb_dataset[0]</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        data.x = data.adj_t.mean(dim=1)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        data.adj_t.set_value_(None)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        self._metadata_fields = ['species']</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        self._metadata_array = self.ogb_dataset.data.node_species.reshape(-1, 1).long()</span>
+Unannotated (x2)">        self._split_array[test_split_idx] = 2</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
@@ -245,7 +269,7 @@ Unimported (x1)">            self._collate = PyGCollater(follow_batch=[])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
-Unimported (x1)">        self._metric = Evaluator('ogbn-proteins')</span>
+Unimported (x1)">        self._metric = Evaluator('ogbg-ppa')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
@@ -268,15 +292,19 @@ Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
 <span class="line-empty" title="No Anys on this line!">            - results_str (str): String summarizing the evaluation metrics</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"</span>
+Unannotated (x1)">        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        y_true = y_true.view(-1, 1)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)
+Unimported (x1)">        y_pred = torch.argmax(y_pred.detach(), dim=1).view(-1, 1)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        results = self._metric.eval(input_dict)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        return results, f"ROCAUC: {results['rocauc']:.3f}\n"</span>
+Unannotated (x7)">        return results, f"Accuracy: {results['acc']:.3f}\n"</span>
 </pre></td>
 </tr></tbody>
 </table>

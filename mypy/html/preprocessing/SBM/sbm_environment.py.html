@@ -4,9 +4,9 @@
 <link rel="stylesheet" type="text/css" href="../../../mypy-html.css">
 </head>
 <body>
-<h2>gds.datasets.superpixel_dataset</h2>
+<h2>preprocessing.SBM.sbm_environment</h2>
 <table>
-<caption>gds/datasets/superpixel_dataset.py</caption>
+<caption>preprocessing/SBM/sbm_environment.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -200,319 +200,352 @@
 <span id="L190" class="lineno"><a class="lineno" href="#L190">190</a></span>
 <span id="L191" class="lineno"><a class="lineno" href="#L191">191</a></span>
 <span id="L192" class="lineno"><a class="lineno" href="#L192">192</a></span>
-<span id="L193" class="lineno"><a class="lineno" href="#L193">193</a></span>
-<span id="L194" class="lineno"><a class="lineno" href="#L194">194</a></span>
-<span id="L195" class="lineno"><a class="lineno" href="#L195">195</a></span>
-<span id="L196" class="lineno"><a class="lineno" href="#L196">196</a></span>
-<span id="L197" class="lineno"><a class="lineno" href="#L197">197</a></span>
-<span id="L198" class="lineno"><a class="lineno" href="#L198">198</a></span>
-<span id="L199" class="lineno"><a class="lineno" href="#L199">199</a></span>
-<span id="L200" class="lineno"><a class="lineno" href="#L200">200</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
+<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
-<span class="line-any" title="No Anys on this line!">import numpy as np</span>
-<span class="line-precise" title="No Anys on this line!">from gds.datasets.gds_dataset import GDSDataset</span>
-<span class="line-any" title="No Anys on this line!">from ogb.graphproppred import Evaluator</span>
-<span class="line-any" title="No Anys on this line!">from ogb.utils.url import download_url</span>
-<span class="line-any" title="No Anys on this line!">from torch_geometric.data.dataloader import Collater as PyGCollater</span>
-<span class="line-any" title="No Anys on this line!">import torch_geometric</span>
-<span class="line-precise" title="No Anys on this line!">from .pyg_superpixel_dataset import PyGSuperPixelDataset</span>
-<span class="line-precise" title="No Anys on this line!">import pdb</span>
-<span class="line-any" title="No Anys on this line!">from torch_geometric.utils import to_dense_adj</span>
+<span class="line-precise" title="No Anys on this line!">import pickle</span>
+<span class="line-precise" title="No Anys on this line!">import time</span>
+<span class="line-precise" title="No Anys on this line!">from itertools import combinations</span>
+<span class="line-any" title="No Anys on this line!">from scipy.special import comb</span>
+<span class="line-precise" title="No Anys on this line!">from multiprocessing import Pool</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">class SuperPixelDataset(GDSDataset):</span>
-<span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-empty" title="No Anys on this line!">    The OGB-molpcba dataset.</span>
-<span class="line-empty" title="No Anys on this line!">    This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Supported `split_scheme`:</span>
-<span class="line-empty" title="No Anys on this line!">        - 'official' or 'scaffold', which are equivalent</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Input (x):</span>
-<span class="line-empty" title="No Anys on this line!">        Molecular graphs represented as Pytorch Geometric data objects</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Label (y):</span>
-<span class="line-empty" title="No Anys on this line!">        y represents 128-class binary labels.</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Metadata:</span>
-<span class="line-empty" title="No Anys on this line!">        - scaffold</span>
-<span class="line-empty" title="No Anys on this line!">            Each molecule is annotated with the scaffold ID that the molecule is assigned to.</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Website:</span>
-<span class="line-empty" title="No Anys on this line!">        https://ogb.stanford.edu/docs/graphprop/#ogbg-mol</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    Original publication:</span>
-<span class="line-empty" title="No Anys on this line!">        @article{hu2020ogb,</span>
-<span class="line-empty" title="No Anys on this line!">            title={Open Graph Benchmark: Datasets for Machine Learning on Graphs},</span>
-<span class="line-empty" title="No Anys on this line!">            author={W. {Hu}, M. {Fey}, M. {Zitnik}, Y. {Dong}, H. {Ren}, B. {Liu}, M. {Catasta}, J. {Leskovec}},</span>
-<span class="line-empty" title="No Anys on this line!">            journal={arXiv preprint arXiv:2005.00687},</span>
-<span class="line-empty" title="No Anys on this line!">            year={2020}</span>
-<span class="line-empty" title="No Anys on this line!">        }</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        @article{wu2018moleculenet,</span>
-<span class="line-empty" title="No Anys on this line!">            title={MoleculeNet: a benchmark for molecular machine learning},</span>
-<span class="line-empty" title="No Anys on this line!">            author={Z. {Wu}, B. {Ramsundar}, E. V {Feinberg}, J. {Gomes}, C. {Geniesse}, A. S {Pappu}, K. {Leswing}, V. {Pande}},</span>
-<span class="line-empty" title="No Anys on this line!">            journal={Chemical science},</span>
-<span class="line-empty" title="No Anys on this line!">            volume={9},</span>
-<span class="line-empty" title="No Anys on this line!">            number={2},</span>
-<span class="line-empty" title="No Anys on this line!">            pages={513--530},</span>
-<span class="line-empty" title="No Anys on this line!">            year={2018},</span>
-<span class="line-empty" title="No Anys on this line!">            publisher={Royal Society of Chemistry}</span>
-<span class="line-empty" title="No Anys on this line!">        }</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    License:</span>
-<span class="line-empty" title="No Anys on this line!">        This dataset is distributed under the MIT license.</span>
-<span class="line-empty" title="No Anys on this line!">        https://github.com/snap-stanford/ogb/blob/master/LICENSE</span>
-<span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    _dataset_name = 'RotatedMNIST'</span>
-<span class="line-precise" title="No Anys on this line!">    _versions_dict = {</span>
-<span class="line-precise" title="No Anys on this line!">        '1.0': {</span>
-<span class="line-precise" title="No Anys on this line!">            'download_url': None,</span>
-<span class="line-precise" title="No Anys on this line!">            'compressed_size': None}}</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=True, **dataset_kwargs):</span>
+<span class="line-any" title="No Anys on this line!">def schuffle(W, x):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self._version = version</span>
+Unannotated (x4)">    n = W.shape[0]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if version is not None:</span>
+Unannotated (x5)
+Unimported (x1)">    idx=np.random.permutation(n)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')</span>
-<span class="line-empty" title="No Anys on this line!">        # internally call ogb package</span>
+Unannotated (x6)">    W_new=W[idx,:][:,idx]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">    x_new=x[idx]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">    return W_new , x_new</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">def block_model_adj(com, p_r, q):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    n=len(com)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x2)">    W=np.zeros((n, n), dtype=np.int64)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    for i in range(n):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        for j in range(i+1,n):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">            if com[i] == com[j]:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                prob = p_r[com[i]]</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                prob = q</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            if np.random.binomial(1, prob) == 1:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                W[i,j] = 1</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                W[j,i] = 1     </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">    return W</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">def block_model(sel_r, clust_size_min, clust_size_max, p_r, q):  </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">    com = []</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">    for r in sel_r:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        clust_size = np.random.randint(clust_size_min, clust_size_max, size=1)[0]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        com.append(np.repeat(r, clust_size, axis=0))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">    com = np.concatenate(com)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">    W = block_model_adj(com, p_r, q)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">    return W, com</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">def adj_to_edge_list(W):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">    n = W.shape[0]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">    e = int(np.sum(W))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x2)">    edge_index = np.zeros((2, e), dtype=np.int64)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">    counter = 0</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    for i in range(n):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        for j in range(n):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">            if W[i,j] == 1:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                edge_index[0, counter] = i</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                edge_index[1, counter] = j</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                counter += 1</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    assert counter == e</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">    return edge_index</span>
+<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-imprecise" title="Any Types on this line: 
+Unimported (x1)">SMB_ENVIRONMENT_CONFIG = {</span>
+<span class="line-precise" title="No Anys on this line!">    'r1': 4,</span>
+<span class="line-precise" title="No Anys on this line!">    'r2': 3,</span>
+<span class="line-precise" title="No Anys on this line!">    's1': 3,</span>
+<span class="line-precise" title="No Anys on this line!">    's2': 2,</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x3)">    'p_r': np.array([0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3]),</span>
+<span class="line-precise" title="No Anys on this line!">    'size_min': 20,</span>
+<span class="line-precise" title="No Anys on this line!">    'size_max': 40,</span>
+<span class="line-precise" title="No Anys on this line!">    'q': 0.1,</span>
+<span class="line-precise" title="No Anys on this line!">    'ntypes': 8,</span>
+<span class="line-empty" title="No Anys on this line!">}</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Explicit (x8)
+Unimported (x10)">DOMAIN_SELECTION_DICT = dict(zip([frozenset(sel_r1) for sel_r1 in combinations(range(SMB_ENVIRONMENT_CONFIG['r1']), SMB_ENVIRONMENT_CONFIG['s1'])], range(comb(SMB_ENVIRONMENT_CONFIG['r1'], SMB_ENVIRONMENT_CONFIG['s1'], exact=True))))</span>
+<span class="line-any" title="Any Types on this line: 
+Explicit (x8)
+Unimported (x10)">CLASS_SELECTION_DICT = dict(zip([frozenset(sel_r2) for sel_r2 in combinations(range(SMB_ENVIRONMENT_CONFIG['r2']), SMB_ENVIRONMENT_CONFIG['s2'])], range(comb(SMB_ENVIRONMENT_CONFIG['r2'], SMB_ENVIRONMENT_CONFIG['s2'], exact=True))))</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">def encode_domain_selection(sel_r1):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    return DOMAIN_SELECTION_DICT[frozenset(sel_r1)]</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">def encode_class_selection(sel_r2):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    return CLASS_SELECTION_DICT[frozenset(sel_r2)]</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-precise" title="No Anys on this line!">class SBMEnvironmentGraph():</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)">    def __init__(self, config=SMB_ENVIRONMENT_CONFIG):</span>
+<span class="line-empty" title="No Anys on this line!">        # parameters</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.r1  = SMB_ENVIRONMENT_CONFIG['r1']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.r2  = SMB_ENVIRONMENT_CONFIG['r2']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.s1  = SMB_ENVIRONMENT_CONFIG['s1']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.s2  = SMB_ENVIRONMENT_CONFIG['s2']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">        assert self.s1 &gt; 0 and self.s1 &lt; self.r1</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">        assert self.s2 &gt; 0 and self.s2 &lt; self.r2</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.p_r = SMB_ENVIRONMENT_CONFIG['p_r']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.p_r1 = self.p_r[0::2]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.p_r2 = self.p_r[1::2]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        assert len(self.p_r1) == self.r1</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        assert len(self.p_r2) == self.r2</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.size_min = SMB_ENVIRONMENT_CONFIG['size_min']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.size_max = SMB_ENVIRONMENT_CONFIG['size_max']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.q = SMB_ENVIRONMENT_CONFIG['q']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self.ntypes = SMB_ENVIRONMENT_CONFIG['ntypes']</span>
+<span class="line-empty" title="No Anys on this line!">        # data</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.x = None</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.y = None</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.edge_index = None</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        self.domain_id = None</span>
+<span class="line-empty" title="No Anys on this line!">        # generate</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.generate()</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-any" title="No Anys on this line!">    def validate(self):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
-Omitted Generics (x9)">        self.ogb_dataset = PyGSuperPixelDataset(name='RotatedMNIST', root=root_dir)</span>
-<span class="line-empty" title="No Anys on this line!">      </span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        # set variables</span>
+Explicit (x1)
+Unimported (x1)">        assert isinstance(self.x, torch.Tensor)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._data_dir = self.ogb_dataset.root</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">        assert isinstance(self.y, torch.Tensor)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if split_scheme == 'official':</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">        assert isinstance(self.edge_index, torch.Tensor)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            split_scheme = 'scaffold'</span>
+Unannotated (x3)
+Explicit (x1)
+Unimported (x1)">        assert isinstance(self.domain_id, np.ndarray)</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self._split_scheme = split_scheme</span>
+Unannotated (x3)">        assert self.x.ndim == 1</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float</span>
+Unannotated (x3)">        assert self.y.ndim == 0</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._y_size = self.ogb_dataset.num_tasks</span>
+Unannotated (x8)">        assert self.edge_index.ndim == 2 and self.edge_index.size(0) == 2</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._n_classes = self.ogb_dataset.__num_classes__</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">        self._split_array = torch.zeros(len(self.ogb_dataset)).long()</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        self._y_array = self.ogb_dataset.data.y</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        self._metadata_fields = ['scaffold', 'y']</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'RotatedMNIST_group.npy')</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if not os.path.exists(metadata_file_path):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Unimported (x1)">            download_url('https://www.dropbox.com/s/2e7alhvw6fvxtt2/RotatedMNIST_group.npy?dl=1',</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                         self.ogb_dataset.raw_dir)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x11)
-Unimported (x2)">        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()</span>
+Unannotated (x3)">        assert self.domain_id.ndim == 0</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Unimported (x1)">        self._metadata_array = torch.cat((self._metadata_array_wo_y,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Unimported (x1)">                                          torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        torch.manual_seed(0)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Unimported (x1)">        num_data = len(torch.squeeze(self._metadata_array_wo_y))</span>
-<span class="line-empty" title="No Anys on this line!">        # random split</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if random_split == True:</span>
+Unimported (x1)">        assert self.x.dtype == torch.int64</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Unimported (x1)">            random_index = torch.randperm(num_data)</span>
+Unimported (x1)">        assert self.y.dtype == torch.int64</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            train_split_idx = random_index[:int(0.67*num_data)]</span>
+Unannotated (x4)
+Unimported (x1)">        assert self.edge_index.dtype == torch.int64</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">            val_split_idx = random_index[int(0.67*num_data):int(0.83*num_data)]</span>
+Unannotated (x4)
+Unimported (x1)">        assert self.domain_id.dtype == np.int64        </span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-any" title="No Anys on this line!">    def get(self):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            test_split_idx = random_index[int(0.83*num_data):]</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-empty" title="No Anys on this line!">            # use the group info split data</span>
+Unannotated (x2)">        self.validate()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            train_group_idx, test_group_idx = [0,1,2,3,4], [5]</span>
+Unannotated (x1)">        graph_data = {</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x2)">            train_group_idx, test_group_idx = torch.tensor(train_group_idx), torch.tensor(test_group_idx)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">            def split_idx(group_idx) :</span>
+Unannotated (x1)">            'x': self.x,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Unimported (x2)">                split_idx = torch.zeros(num_data, dtype=torch.bool)</span>
-<span class="line-empty" title="No Anys on this line!">            </span>
+Unannotated (x1)">            'y': self.y,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                for idx in group_idx :</span>
+Unannotated (x1)">            'edge_index': self.edge_index,</span>
+<span class="line-empty" title="No Anys on this line!">        }</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        return graph_data, self.domain_id</span>
+<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-any" title="No Anys on this line!">    def stat(self):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.validate()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        stat = {</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            '# of nodes': self.x.size(0),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            '# of edges': self.edge_index.size(1)//2,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)">            'avg degree': self.edge_index.size(1)/self.x.size(0)/2,</span>
+<span class="line-empty" title="No Anys on this line!">        }</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        return stat</span>
+<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-any" title="No Anys on this line!">    def generate(self):</span>
+<span class="line-empty" title="No Anys on this line!">        # select environment (domain defining) communities</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
-Unimported (x1)">                    split_idx += (torch.squeeze(self._metadata_array_wo_y) == idx)</span>
+Unimported (x1)">        sel_r1 = np.random.choice(self.r1, self.s1, replace=False)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                return split_idx</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">            </span>
+Unannotated (x5)">        domain_id = encode_domain_selection(sel_r1)</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-empty" title="No Anys on this line!">        # select the target (class defining) communities</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">            train_split_idx, test_split_idx = split_idx(train_group_idx), split_idx(test_group_idx)</span>
+Unannotated (x6)
+Unimported (x1)">        sel_r2 = np.random.choice(self.r2, self.s2, replace=False)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        y = encode_class_selection(sel_r2)</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-empty" title="No Anys on this line!">        # combine the sel and edge prob lists</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        sel_r2 = sel_r2 + self.r1</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
-Unimported (x2)">            val_split_idx = torch.zeros(num_data, dtype=torch.bool)</span>
+Unimported (x1)">        sel_r = np.concatenate([sel_r1, sel_r2])</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            num_train_idx = sum(train_split_idx)</span>
+Unannotated (x5)
+Unimported (x1)">        p_r = np.concatenate([self.p_r1, self.p_r2])</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-empty" title="No Anys on this line!">        # generate adj and com list</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">            random_index = torch.randint(num_train_idx, (int(0.2*num_train_idx),))</span>
+Unannotated (x14)">        W, com = block_model(sel_r, self.size_min, self.size_max, self.p_r, self.q)</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-empty" title="No Anys on this line!">        # generate iid random node features </span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            val_split_idx[random_index] = True</span>
+Unannotated (x8)
+Unimported (x1)">        x = np.random.randint(self.ntypes, size=W.shape[0])</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-empty" title="No Anys on this line!">        # shuffle</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            train_split_idx = train_split_idx ^ val_split_idx</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
+Unannotated (x8)">        W, x = schuffle(W, x)</span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-empty" title="No Anys on this line!">        # conversion</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self._split_array[train_split_idx] = 0</span>
+Unannotated (x6)
+Unimported (x1)">        self.x = torch.from_numpy(x).long()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self._split_array[val_split_idx] = 1</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self._split_array[test_split_idx] = 2</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        if torch_geometric.__version__ &gt;= '1.7.0':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">            self._collate = PyGCollater(follow_batch=[])</span>
-<span class="line-empty" title="No Anys on this line!">        # self._collate = self.collate_dense</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        self._metric = Evaluator('ogbg-ppa')</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def get_input(self, idx):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def eval(self, y_pred, y_true, metadata, prediction_fn=None):</span>
-<span class="line-empty" title="No Anys on this line!">        """</span>
-<span class="line-empty" title="No Anys on this line!">        Computes all evaluation metrics.</span>
-<span class="line-empty" title="No Anys on this line!">        Args:</span>
-<span class="line-empty" title="No Anys on this line!">            - y_pred (FloatTensor): Binary logits from a model</span>
-<span class="line-empty" title="No Anys on this line!">            - y_true (LongTensor): Ground-truth labels</span>
-<span class="line-empty" title="No Anys on this line!">            - metadata (Tensor): Metadata</span>
-<span class="line-empty" title="No Anys on this line!">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span>
-<span class="line-empty" title="No Anys on this line!">                                        Only None is supported because OGB Evaluators accept binary logits</span>
-<span class="line-empty" title="No Anys on this line!">        Output:</span>
-<span class="line-empty" title="No Anys on this line!">            - results (dictionary): Dictionary of evaluation metrics</span>
-<span class="line-empty" title="No Anys on this line!">            - results_str (str): String summarizing the evaluation metrics</span>
-<span class="line-empty" title="No Anys on this line!">        """</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        y_true = y_true.view(-1,1)</span>
+Unannotated (x6)
+Unimported (x1)">        self.y = torch.tensor(y).long()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x9)
-Unimported (x1)">        y_pred = torch.argmax(y_pred.detach(), dim = 1).view(-1,1)</span>
+Unimported (x1)">        self.edge_index = torch.from_numpy(adj_to_edge_list(W)).long()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
+Unannotated (x5)
+Unimported (x2)">        self.domain_id = np.array(domain_id, dtype=np.int64)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-any" title="No Anys on this line!">def generate_func(i):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        results = self._metric.eval(input_dict)</span>
+Unannotated (x2)">    return SBMEnvironmentGraph()</span>
+<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-any" title="No Anys on this line!">def generate_sbm_graph_list(n_samples, n_processes=1):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">    np.random.seed(0)</span>
+<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">    start_time = time.time()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        return results, f"Accuracy: {results['acc']:.3f}\n"</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN</span>
-<span class="line-any" title="No Anys on this line!">    def collate_dense(self, samples):</span>
-<span class="line-empty" title="No Anys on this line!">        # The input samples is a list of pairs (graph, label).</span>
+Unannotated (x1)">    sbm_graph_list = []</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Explicit (x17)">        graph_list, y_list, metadata_list = map(list, zip(*samples))</span>
+Unannotated (x3)
+Explicit (x4)">    with Pool(processes=n_processes) as pool:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x2)">        y, metadata = torch.tensor(y_list), torch.stack(metadata_list)</span>
+Unannotated (x10)">        for i, sbmg in enumerate(pool.imap_unordered(generate_func, range(n_samples))):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            sbm_graph_list.append(sbmg)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            print(f'Progress: {i/n_samples*100:.2f}%', end='\r', flush=True)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">    print(' '*50, end='\r')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        x_node_feat = []</span>
+Unannotated (x8)">    print(f'Total generation time: {time.time() - start_time:.2f} secs.')</span>
+<span class="line-empty" title="No Anys on this line!">    </span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        for graph in graph_list :</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x1)">            adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">            zero_adj = torch.zeros_like(adj)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            in_dim = graph.x.shape[1]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">            # use node feats to prepare adj</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">            adj_node_feat = torch.stack([zero_adj for _ in range(in_dim)])</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">            adj_node_feat = torch.cat([adj.unsqueeze(0), adj_node_feat], dim=0)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            for node, node_feat in enumerate(graph.x):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                adj_node_feat[1:, node, node] = node_feat</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            x_node_feat.append(adj_node_feat)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">        x_node_feat = torch.stack(x_node_feat)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        return x_node_feat, y, metadata</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def _sym_normalize_adj(self, adj):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">        deg = torch.sum(adj, dim=0)  # .squeeze()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x14)
-Unimported (x3)">        deg_inv = torch.where(deg &gt; 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">        deg_inv = torch.diag(deg_inv)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x2)">        return torch.mm(deg_inv, torch.mm(adj, deg_inv))</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">if __name__ == '__main__':</span>
-<span class="line-precise" title="No Anys on this line!">    root = '/cmlscratch/kong/datasets/graph_domain'</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">    dataset = SuperPixelDataset(root_dir=root)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">    pdb.set_trace()</span>
+Unannotated (x1)">    return sbm_graph_list</span>
 </pre></td>
 </tr></tbody>
 </table>

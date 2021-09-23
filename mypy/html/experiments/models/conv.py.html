@@ -189,7 +189,6 @@
 <span id="L179" class="lineno"><a class="lineno" href="#L179">179</a></span>
 <span id="L180" class="lineno"><a class="lineno" href="#L180">180</a></span>
 <span id="L181" class="lineno"><a class="lineno" href="#L181">181</a></span>
-<span id="L182" class="lineno"><a class="lineno" href="#L182">182</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import MessagePassing</span>
@@ -208,7 +207,7 @@
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">import pdb</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">### GIN convolution along the graph structure</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class GINConvNew(MessagePassing):</span>
 <span class="line-any" title="No Anys on this line!">    def __init__(self, emb_dim, dataset_group):</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
@@ -258,7 +257,6 @@ Unimported (x1)">        return F.relu(x_j + edge_attr)</span>
 Unannotated (x1)">        return aggr_out</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">### GCN convolution along the graph structure</span>
 <span class="line-precise" title="No Anys on this line!">class GCNConvNew(MessagePassing):</span>
 <span class="line-any" title="No Anys on this line!">    def __init__(self, emb_dim, dataset_group):</span>
 <span class="line-any" title="Any Types on this line: 

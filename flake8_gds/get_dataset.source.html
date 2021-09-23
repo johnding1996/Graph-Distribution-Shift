@@ -131,37 +131,37 @@
                class="code sev- "><tt><i>32</i> &nbsp;</tt>
             </div>
             <div id="l33"
-               class="code sev- "><tt><i>33</i>     <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;ogb-proteins&#39;</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>33</i>     <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l34"
-               class="code sev- "><tt><i>34</i>         <span class="kn">from</span> <span class="nn">gds.datasets.ogbproteins_dataset</span> <span class="kn">import</span> <span class="n">OGBPROTEINSDataset</span></tt>
+               class="code sev- "><tt><i>34</i>         <span class="kn">from</span> <span class="nn">gds.datasets.rotated_mnist_dataset</span> <span class="kn">import</span> <span class="n">RotatedMNISTDataset</span></tt>
             </div>
             <div id="l35"
-               class="code sev- "><tt><i>35</i>         <span class="k">return</span> <span class="n">OGBPROTEINSDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>35</i>         <span class="k">return</span> <span class="n">RotatedMNISTDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span></tt>
             </div>
             <div id="l36"
                class="code sev- "><tt><i>36</i> &nbsp;</tt>
             </div>
             <div id="l37"
-               class="code sev- "><tt><i>37</i>     <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>37</i>     <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;SBM-Environment&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l38"
-               class="code sev- "><tt><i>38</i>         <span class="kn">from</span> <span class="nn">gds.datasets.superpixel_dataset</span> <span class="kn">import</span> <span class="n">SuperPixelDataset</span></tt>
+               class="code sev- "><tt><i>38</i>         <span class="kn">from</span> <span class="nn">gds.datasets.sbm_environment_dataset</span> <span class="kn">import</span> <span class="n">SBMEnvironmentDataset</span></tt>
             </div>
             <div id="l39"
-               class="code sev- "><tt><i>39</i>         <span class="k">return</span> <span class="n">SuperPixelDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>39</i>         <span class="k">return</span> <span class="n">SBMEnvironmentDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span></tt>
             </div>
             <div id="l40"
                class="code sev- "><tt><i>40</i> &nbsp;</tt>
             </div>
             <div id="l41"
-               class="code sev- "><tt><i>41</i>     <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;SBM1&#39;</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>41</i>     <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;SBM-Isolation&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l42"
-               class="code sev- "><tt><i>42</i>         <span class="kn">from</span> <span class="nn">gds.datasets.sbm_1_dataset</span> <span class="kn">import</span> <span class="n">SBM1Dataset</span></tt>
+               class="code sev- "><tt><i>42</i>         <span class="kn">from</span> <span class="nn">gds.datasets.sbm_isolation_dataset</span> <span class="kn">import</span> <span class="n">SBMIsolationDataset</span></tt>
             </div>
             <div id="l43"
-               class="code sev- "><tt><i>43</i>         <span class="k">return</span> <span class="n">SBM1Dataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>43</i>         <span class="k">return</span> <span class="n">SBMIsolationDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span></tt>
             </div>
             <div id="l44"
                class="code sev- "><tt><i>44</i> &nbsp;</tt>
@@ -170,10 +170,19 @@
                class="code sev- "><tt><i>45</i>     <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l46"
-               class="code sev- "><tt><i>46</i>         <span class="kn">from</span> <span class="nn">gds.datasets.upfd_dataset</span> <span class="kn">import</span> <span class="n">UpfdDataset</span></tt>
+               class="code sev- "><tt><i>46</i>         <span class="kn">from</span> <span class="nn">gds.datasets.upfd_dataset</span> <span class="kn">import</span> <span class="n">UPFDDataset</span></tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i>         <span class="k">return</span> <span class="n">UpfdDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>47</i>         <span class="k">return</span> <span class="n">UPFDDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span></tt>
+            </div>
+            <div id="l48"
+               class="code sev- "><tt><i>48</i> &nbsp;</tt>
+            </div>
+            <div id="l49"
+               class="code sev- "><tt><i>49</i>     <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l50"
+               class="code sev- "><tt><i>50</i>         <span class="k">raise</span> <span class="ne">NotImplementedError</span></tt>
             </div>
             
          </div>

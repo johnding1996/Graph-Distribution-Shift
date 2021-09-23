@@ -312,6 +312,10 @@
 <span id="L302" class="lineno"><a class="lineno" href="#L302">302</a></span>
 <span id="L303" class="lineno"><a class="lineno" href="#L303">303</a></span>
 <span id="L304" class="lineno"><a class="lineno" href="#L304">304</a></span>
+<span id="L305" class="lineno"><a class="lineno" href="#L305">305</a></span>
+<span id="L306" class="lineno"><a class="lineno" href="#L306">306</a></span>
+<span id="L307" class="lineno"><a class="lineno" href="#L307">307</a></span>
+<span id="L308" class="lineno"><a class="lineno" href="#L308">308</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -476,6 +480,11 @@ Unannotated (x3)">    parser.add_argument('--eval_splits', nargs='+', default=[]
 Unannotated (x3)">    parser.add_argument('--eval_epoch', default=None, type=int,</span>
 <span class="line-any" title="No Anys on this line!">                        help='If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # Ablation</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">    parser.add_argument('--random_split', type=parse_bool, const=True, nargs='?', default=False)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Misc</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('--device', type=int, default=0)</span>
@@ -595,6 +604,8 @@ Unannotated (x2)">        root_dir=config.root_dir,</span>
 Unannotated (x2)">        download=config.download,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        split_scheme=config.split_scheme,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        random_split=config.random_split,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        gsn=config.gsn,</span>
 <span class="line-any" title="Any Types on this line: 

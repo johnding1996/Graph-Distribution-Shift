@@ -160,6 +160,11 @@
 <span id="L150" class="lineno"><a class="lineno" href="#L150">150</a></span>
 <span id="L151" class="lineno"><a class="lineno" href="#L151">151</a></span>
 <span id="L152" class="lineno"><a class="lineno" href="#L152">152</a></span>
+<span id="L153" class="lineno"><a class="lineno" href="#L153">153</a></span>
+<span id="L154" class="lineno"><a class="lineno" href="#L154">154</a></span>
+<span id="L155" class="lineno"><a class="lineno" href="#L155">155</a></span>
+<span id="L156" class="lineno"><a class="lineno" href="#L156">156</a></span>
+<span id="L157" class="lineno"><a class="lineno" href="#L157">157</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-precise" title="No Anys on this line!">from collections import namedtuple</span>
@@ -167,7 +172,7 @@
 <span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch_geometric</span>
 <span class="line-any" title="No Anys on this line!">from ogb.graphproppred import PygGraphPropPredDataset, Evaluator</span>
-<span class="line-any" title="No Anys on this line!">from ogb.utils.url import download_url</span>
+<span class="line-any" title="No Anys on this line!">from torch_geometric.data import download_url, extract_zip</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.data.dataloader import Collater as PyGCollater</span>
 <span class="line-precise" title="No Anys on this line!">from collections import namedtuple</span>
 <span class="line-any" title="No Anys on this line!">import tqdm</span>
@@ -225,7 +230,7 @@
 <span class="line-precise" title="No Anys on this line!">            'download_url': None,</span>
 <span class="line-precise" title="No Anys on this line!">            'compressed_size': None}}</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official',</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,</span>
 <span class="line-any" title="No Anys on this line!">                 gsn=False, id_type='cycle_graph', k=6, **dataset_kwargs):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._version = version</span>
@@ -256,6 +261,10 @@ Unannotated (x3)">        self._y_size = self.ogb_dataset.num_tasks</span>
 Unannotated (x1)">        self._n_classes = 1</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if random_split:</span>
+<span class="line-precise" title="No Anys on this line!">            raise NotImplementedError</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
 Unimported (x1)">        self._split_array = torch.zeros(len(self.ogb_dataset)).long()</span>
 <span class="line-any" title="Any Types on this line: 
@@ -275,14 +284,19 @@ Unannotated (x1)">        self._metadata_fields = ['scaffold', 'y']</span>
 <span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')</span>
+Unannotated (x4)">        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'OGB-MolHIV_group.npy')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if not os.path.exists(metadata_file_path):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)
-Unimported (x1)">            download_url('https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1',</span>
+Unannotated (x2)
+Unimported (x1)">            metadata_zip_file_path = download_url(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">                         os.path.join(self.ogb_dataset.root, 'raw'))</span>
+Unannotated (x2)">                'https://www.dropbox.com/s/i5z388zxbut0quo/OGB-MolHIV_group.zip?dl=1', self.ogb_dataset.raw_dir)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">            extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            os.unlink(metadata_zip_file_path)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x11)
 Unimported (x2)">        self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()</span>
@@ -361,7 +375,7 @@ Unannotated (x7)">        return results, f"ROCAUC: {results['rocauc']:.3f}\n"</
 <span class="line-precise" title="No Anys on this line!">if __name__ == '__main__':</span>
 <span class="line-precise" title="No Anys on this line!">    root = '/cmlscratch/kong/datasets/graph_domain'</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">    dataset = OGBHIVDataset(root_dir=root)</span>
+Unannotated (x9)">    dataset = OGBHIVDataset(root_dir=root)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">    import pdb</span>
 <span class="line-precise" title="No Anys on this line!">    pdb.set_trace()</span>
