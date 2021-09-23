@@ -97,9 +97,9 @@ class SuperPixelDataset(GDSDataset):
         # random split
         if random_split == True:
             random_index = torch.randperm(num_data)
-            train_split_idx = random_index[:int(0.6*num_data)]
-            val_split_idx = random_index[int(0.6*num_data):int(0.8*num_data)]
-            test_split_idx = random_index[int(0.8*num_data):]
+            train_split_idx = random_index[:int(0.67*num_data)]
+            val_split_idx = random_index[int(0.67*num_data):int(0.83*num_data)]
+            test_split_idx = random_index[int(0.83*num_data):]
         else:
             # use the group info split data
             train_group_idx, test_group_idx = [0,1,2,3,4], [5]
