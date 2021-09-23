@@ -3,77 +3,30 @@ import torch
 import numpy as np
 from gds.datasets.gds_dataset import GDSDataset
 from ogb.graphproppred import Evaluator
-from ogb.utils.url import download_url
+from torch_geometric.data import download_url, extract_zip
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
-from .pyg_superpixel_dataset import PyGSuperPixelDataset
-import pdb
+from .pyg_rotated_mnist_dataset import PyGRotatedMNISTDataset
 from torch_geometric.utils import to_dense_adj
 
 
-class SuperPixelDataset(GDSDataset):
-    """
-    The OGB-molpcba dataset.
-    This dataset is directly adopted from Open Graph Benchmark, and originally curated by MoleculeNet.
-
-    Supported `split_scheme`:
-        - 'official' or 'scaffold', which are equivalent
-
-    Input (x):
-        Molecular graphs represented as Pytorch Geometric data objects
-
-    Label (y):
-        y represents 128-class binary labels.
-
-    Metadata:
-        - scaffold
-            Each molecule is annotated with the scaffold ID that the molecule is assigned to.
-
-    Website:
-        https://ogb.stanford.edu/docs/graphprop/#ogbg-mol
-
-    Original publication:
-        @article{hu2020ogb,
-            title={Open Graph Benchmark: Datasets for Machine Learning on Graphs},
-            author={W. {Hu}, M. {Fey}, M. {Zitnik}, Y. {Dong}, H. {Ren}, B. {Liu}, M. {Catasta}, J. {Leskovec}},
-            journal={arXiv preprint arXiv:2005.00687},
-            year={2020}
-        }
-
-        @article{wu2018moleculenet,
-            title={MoleculeNet: a benchmark for molecular machine learning},
-            author={Z. {Wu}, B. {Ramsundar}, E. V {Feinberg}, J. {Gomes}, C. {Geniesse}, A. S {Pappu}, K. {Leswing}, V. {Pande}},
-            journal={Chemical science},
-            volume={9},
-            number={2},
-            pages={513--530},
-            year={2018},
-            publisher={Royal Society of Chemistry}
-        }
-
-    License:
-        This dataset is distributed under the MIT license.
-        https://github.com/snap-stanford/ogb/blob/master/LICENSE
-    """
-
+class RotatedMNISTDataset(GDSDataset):
     _dataset_name = 'RotatedMNIST'
     _versions_dict = {
         '1.0': {
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=True, **dataset_kwargs):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,
+                 **dataset_kwargs):
         self._version = version
-        if version is not None:
-            raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
         # internally call ogb package
-        self.ogb_dataset = PyGSuperPixelDataset(name='RotatedMNIST', root=root_dir)
-      
+        self.ogb_dataset = PyGRotatedMNISTDataset(name='RotatedMNIST', root=root_dir)
 
         # set variables
         self._data_dir = self.ogb_dataset.root
         if split_scheme == 'official':
-            split_scheme = 'scaffold'
+            split_scheme = 'angle'
         self._split_scheme = split_scheme
         self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
@@ -82,49 +35,48 @@ class SuperPixelDataset(GDSDataset):
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
 
         self._y_array = self.ogb_dataset.data.y
-        self._metadata_fields = ['scaffold', 'y']
+        self._metadata_fields = ['angle', 'y']
 
         metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'RotatedMNIST_group.npy')
         if not os.path.exists(metadata_file_path):
-            download_url('https://www.dropbox.com/s/2e7alhvw6fvxtt2/RotatedMNIST_group.npy?dl=1',
-                         self.ogb_dataset.raw_dir)
+            metadata_zip_file_path = download_url(
+                'https://www.dropbox.com/s/zulrcyh846w9maw/RotatedMNIST_group.zip?dl=1', self.ogb_dataset.raw_dir)
+            extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)
+            os.unlink(metadata_zip_file_path)
+
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y,
                                           torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)
 
-        torch.manual_seed(0)
-        num_data = len(torch.squeeze(self._metadata_array_wo_y))
-        # random split
-        if random_split == True:
-            random_index = torch.randperm(num_data)
-            train_split_idx = random_index[:int(0.67*num_data)]
-            val_split_idx = random_index[int(0.67*num_data):int(0.83*num_data)]
-            test_split_idx = random_index[int(0.83*num_data):]
+        np.random.seed(0)
+        dataset_size = len(self.ogb_dataset)
+        if random_split:
+            random_index = np.random.permutation(dataset_size)
+            train_split_idx = random_index[:int(4 / 6 * dataset_size)]
+            val_split_idx = random_index[int(4 / 6 * dataset_size):int(5 / 6 * dataset_size)]
+            test_split_idx = random_index[int(5 / 6 * dataset_size):]
         else:
             # use the group info split data
-            train_group_idx, test_group_idx = [0,1,2,3,4], [5]
-            train_group_idx, test_group_idx = torch.tensor(train_group_idx), torch.tensor(test_group_idx)
+            train_val_group_idx, test_group_idx = range(0, 5), range(5, 6)
+            train_val_group_idx, test_group_idx = torch.tensor(train_val_group_idx), torch.tensor(test_group_idx)
 
-            def split_idx(group_idx) :
-                split_idx = torch.zeros(num_data, dtype=torch.bool)
-            
-                for idx in group_idx :
+            def split_idx(group_idx):
+                split_idx = torch.zeros(len(torch.squeeze(self._metadata_array_wo_y)), dtype=torch.bool)
+                for idx in group_idx:
                     split_idx += (torch.squeeze(self._metadata_array_wo_y) == idx)
                 return split_idx
 
-            
-            train_split_idx, test_split_idx = split_idx(train_group_idx), split_idx(test_group_idx)
-            val_split_idx = torch.zeros(num_data, dtype=torch.bool)
-            num_train_idx = sum(train_split_idx)
-            random_index = torch.randint(num_train_idx, (int(0.2*num_train_idx),))
-            val_split_idx[random_index] = True
-            train_split_idx = train_split_idx ^ val_split_idx
+            train_val_split_idx, test_split_idx = split_idx(train_val_group_idx), split_idx(test_group_idx)
 
+            train_val_split_idx = torch.arange(dataset_size, dtype=torch.int64)[train_val_split_idx]
+            train_val_sets_size = len(train_val_split_idx)
+            random_index = np.random.permutation(train_val_sets_size)
+            train_split_idx = train_val_split_idx[random_index[:int(4 / 5 * train_val_sets_size)]]
+            val_split_idx = train_val_split_idx[random_index[int(4 / 5 * train_val_sets_size):]]
 
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1
         self._split_array[test_split_idx] = 2
-
 
         if torch_geometric.__version__ >= '1.7.0':
             self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
@@ -153,8 +105,8 @@ class SuperPixelDataset(GDSDataset):
             - results_str (str): String summarizing the evaluation metrics
         """
         assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"
-        y_true = y_true.view(-1,1)
-        y_pred = torch.argmax(y_pred.detach(), dim = 1).view(-1,1)
+        y_true = y_true.view(-1, 1)
+        y_pred = torch.argmax(y_pred.detach(), dim=1).view(-1, 1)
         input_dict = {"y_true": y_true, "y_pred": y_pred}
         results = self._metric.eval(input_dict)
 
@@ -168,7 +120,7 @@ class SuperPixelDataset(GDSDataset):
         y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
 
         x_node_feat = []
-        for graph in graph_list :
+        for graph in graph_list:
             adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = graph.x.shape[1]
@@ -191,10 +143,3 @@ class SuperPixelDataset(GDSDataset):
         deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
         deg_inv = torch.diag(deg_inv)
         return torch.mm(deg_inv, torch.mm(adj, deg_inv))
-
-
-if __name__ == '__main__':
-    root = '/cmlscratch/kong/datasets/graph_domain'
-    dataset = SuperPixelDataset(root_dir=root)
-
-    pdb.set_trace()

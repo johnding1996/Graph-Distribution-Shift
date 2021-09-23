@@ -4,7 +4,7 @@ import numpy as np
 import torch
 import torch_geometric
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
-from ogb.utils.url import download_url
+from torch_geometric.data import download_url, extract_zip
 from torch_geometric.data.dataloader import Collater as PyGCollater
 
 from gds.datasets.gds_dataset import GDSDataset
@@ -61,7 +61,8 @@ class OGBPCBADataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', **dataset_kwargs):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,
+                 **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolPCBA is handled through the OGB package. Please set version=none.')
@@ -77,6 +78,9 @@ class OGBPCBADataset(GDSDataset):
         self._y_size = self.ogb_dataset.num_tasks
         self._n_classes = self.ogb_dataset.__num_classes__
 
+        if random_split:
+            raise NotImplementedError
+
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0
@@ -86,10 +90,12 @@ class OGBPCBADataset(GDSDataset):
         self._y_array = self.ogb_dataset.data.y
         self._metadata_fields = ['scaffold']
 
-        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
+        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'OGB-MolPCBA_group.npy')
         if not os.path.exists(metadata_file_path):
-            download_url('https://snap.stanford.edu/ogb/data/misc/ogbg_molpcba/scaffold_group.npy',
-                         os.path.join(self.ogb_dataset.root, 'raw'))
+            metadata_zip_file_path = download_url(
+                'https://www.dropbox.com/s/jjpr6tw34llxbpw/OGB-MolPCBA_group.zip?dl=1', self.ogb_dataset.raw_dir)
+            extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)
+            os.unlink(metadata_zip_file_path)
         self._metadata_array = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
 
         if torch_geometric.__version__ >= '1.7.0':

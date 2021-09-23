@@ -100,6 +100,9 @@ def main():
     parser.add_argument('--eval_epoch', default=None, type=int,
                         help='If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.')
 
+    # Ablation
+    parser.add_argument('--random_split', type=parse_bool, const=True, nargs='?', default=False)
+
     # Misc
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--seed', type=int, default=0)
@@ -163,6 +166,7 @@ def main():
         root_dir=config.root_dir,
         download=config.download,
         split_scheme=config.split_scheme,
+        random_split=config.random_split,
         gsn=config.gsn,
         id_type=config.id_type,
         k=config.k,
