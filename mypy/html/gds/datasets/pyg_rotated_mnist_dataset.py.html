@@ -70,6 +70,10 @@
 <span id="L60" class="lineno"><a class="lineno" href="#L60">60</a></span>
 <span id="L61" class="lineno"><a class="lineno" href="#L61">61</a></span>
 <span id="L62" class="lineno"><a class="lineno" href="#L62">62</a></span>
+<span id="L63" class="lineno"><a class="lineno" href="#L63">63</a></span>
+<span id="L64" class="lineno"><a class="lineno" href="#L64">64</a></span>
+<span id="L65" class="lineno"><a class="lineno" href="#L65">65</a></span>
+<span id="L66" class="lineno"><a class="lineno" href="#L66">66</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-precise" title="No Anys on this line!">import os.path as osp</span>
@@ -117,7 +121,7 @@ Unimported (x5)">        self.data, self.slices = torch.load(self.processed_path
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    @property</span>
 <span class="line-precise" title="No Anys on this line!">    def processed_file_names(self) -&gt; List[str]:</span>
-<span class="line-precise" title="No Anys on this line!">        return [f'{self.name}_processed.pt']</span>
+<span class="line-precise" title="No Anys on this line!">        return [f'{self.name}_processed_mean_px_feat.pt']</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def download(self):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -133,10 +137,17 @@ Unannotated (x2)">        os.unlink(path)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">        inputs = torch.load(self.raw_paths[0])</span>
+<span class="line-empty" title="No Anys on this line!">        # data_list = [Data(**data_dict) for data_dict in inputs]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        data_list = []</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        for data_dict in inputs :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            data_dict['x'] = data_dict['x'][:, :1]</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
-Unimported (x1)">        data_list = [Data(**data_dict) for data_dict in inputs]</span>
+Unimported (x1)">            data_list.append(Data(**data_dict))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if self.pre_filter is not None:</span>
