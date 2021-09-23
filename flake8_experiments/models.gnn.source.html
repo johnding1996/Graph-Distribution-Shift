@@ -641,7 +641,16 @@
                class="code sev- "><tt><i>118</i>             <span class="k">if</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;gin&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l119"
-               class="code sev- "><tt><i>119</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="ow">or</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E271
+                     </span>
+                     Multiple spaces after keyword</li>
+               
+               </ul><tt><i>119</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="ow">in</span>  <span class="p">[</span><span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l120"
                class="code sev-2  le">
@@ -713,7 +722,16 @@
                class="code sev- "><tt><i>126</i>             <span class="k">elif</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;gcn&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l127"
-               class="code sev- "><tt><i>127</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="ow">or</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E271
+                     </span>
+                     Multiple spaces after keyword</li>
+               
+               </ul><tt><i>127</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="ow">in</span>  <span class="p">[</span><span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l128"
                class="code sev- "><tt><i>128</i>                     <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GCNConv</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
@@ -746,7 +764,16 @@
                </ul><tt><i>131</i>             <span class="k">elif</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;cheb&#39;</span> <span class="p">:</span></tt>
             </div>
             <div id="l132"
-               class="code sev- "><tt><i>132</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="ow">or</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E271
+                     </span>
+                     Multiple spaces after keyword</li>
+               
+               </ul><tt><i>132</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="ow">in</span>  <span class="p">[</span><span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l133"
                class="code sev- "><tt><i>133</i>                     <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ChebConv</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">Cheb_K</span><span class="p">))</span></tt>
@@ -899,7 +926,16 @@
                class="code sev- "><tt><i>155</i>             <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">h_list</span><span class="p">[</span><span class="n">layer</span><span class="p">],</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">)</span></tt>
             </div>
             <div id="l156"
-               class="code sev- "><tt><i>156</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="ow">or</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E271
+                     </span>
+                     Multiple spaces after keyword</li>
+               
+               </ul><tt><i>156</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="ow">in</span>  <span class="p">[</span><span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l157"
                class="code sev- "><tt><i>157</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">)</span></tt>
@@ -1303,11 +1339,11 @@
                
                   <li>
                      <span class="count sev-2">
-                        E203
+                        E271
                      </span>
-                     Whitespace before ':'</li>
+                     Multiple spaces after keyword</li>
                
-               </ul><tt><i>232</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="ow">or</span> <span class="s1">&#39;UPFD&#39;</span> <span class="p">:</span></tt>
+               </ul><tt><i>232</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="ow">in</span>  <span class="p">[</span><span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l233"
                class="code sev-2  le">
@@ -1384,11 +1420,11 @@
                
                   <li>
                      <span class="count sev-2">
-                        E203
+                        E271
                      </span>
-                     Whitespace before ':'</li>
+                     Multiple spaces after keyword</li>
                
-               </ul><tt><i>240</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="ow">or</span> <span class="s1">&#39;UPFD&#39;</span> <span class="p">:</span></tt>
+               </ul><tt><i>240</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="ow">in</span>  <span class="p">[</span><span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l241"
                class="code sev- "><tt><i>241</i>                     <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GCNConv</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">))</span></tt>
@@ -1421,7 +1457,16 @@
                </ul><tt><i>244</i>             <span class="k">elif</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;cheb&#39;</span> <span class="p">:</span></tt>
             </div>
             <div id="l245"
-               class="code sev- "><tt><i>245</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="ow">or</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E271
+                     </span>
+                     Multiple spaces after keyword</li>
+               
+               </ul><tt><i>245</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="ow">in</span>  <span class="p">[</span><span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l246"
                class="code sev- "><tt><i>246</i>                     <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ChebConv</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">,</span> <span class="n">Cheb_K</span><span class="p">))</span></tt>
@@ -1676,7 +1721,16 @@
                class="code sev- "><tt><i>283</i>             <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convs</span><span class="p">[</span><span class="n">layer</span><span class="p">](</span><span class="n">h_list</span><span class="p">[</span><span class="n">layer</span><span class="p">],</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge_attr</span><span class="p">)</span></tt>
             </div>
             <div id="l284"
-               class="code sev- "><tt><i>284</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;RotatedMNIST&#39;</span> <span class="ow">or</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E271
+                     </span>
+                     Multiple spaces after keyword</li>
+               
+               </ul><tt><i>284</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="ow">in</span>  <span class="p">[</span><span class="s1">&#39;RotatedMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l285"
                class="code sev- "><tt><i>285</i>                 <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h</span><span class="p">)</span></tt>
