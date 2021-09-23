@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: models/gsn/graph_filters/GSN_sparse.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="models.gsn.graph_filters.GSN_sparse.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               models/gsn/graph_filters/GSN_sparse.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'torch_geometric.utils.is_undirected' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">degree</span><span class="p">,</span> <span class="n">is_undirected</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F821">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F821:</strong> undefined name 'aggr_index'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l147">
+                  <tt><i>147</i>             <span class="n">message</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">aggr_index</span><span class="p">)</span><span class="o">.</span><span class="n">to_dense</span><span class="p">()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  17
+               </span>
+               <strong>E501:</strong> line too long (99 > 79 characters)
+               
+                  (and 11 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (99 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l45">
+                  <tt><i>45</i>         <span class="c1"># different GSN variants: extended gin and general formulation (see supplementary material)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l50">
+                  <tt><i>50</i>                 <span class="bp">self</span><span class="o">.</span><span class="n">central_node_id_encoder</span> <span class="o">=</span> <span class="n">central_encoder</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;id_embedding&#39;</span><span class="p">],</span> <span class="n">d_id</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l51">
+                  <tt><i>51</i>                                                                <span class="n">extend</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;extend_dims&#39;</span><span class="p">])</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l68">
+                  <tt><i>68</i>             <span class="n">msg_input_dim</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">d_in</span> <span class="o">+</span> <span class="n">d_id</span> <span class="k">if</span> <span class="n">id_scope</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span> <span class="k">else</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">d_in</span> <span class="o">+</span> <span class="n">d_id</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (97 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l81">
+                  <tt><i>81</i>             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;msg kind </span><span class="si">{}</span><span class="s1"> is not currently supported.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg_kind</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (80 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l100">
+                  <tt><i>100</i>             <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">degrees</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retain_features</span> <span class="k">else</span> <span class="n">degrees</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l107">
+                  <tt><i>107</i>                 <span class="n">identifiers_ii</span><span class="p">,</span> <span class="n">identifiers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">central_node_id_encoder</span><span class="p">(</span><span class="n">identifiers</span><span class="p">,</span> <span class="n">n_nodes</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l111">
+                  <tt><i>111</i>                                  <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="o">=</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">identifiers</span><span class="o">=</span><span class="n">identifiers</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l115">
+                  <tt><i>115</i>                 <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">edge_index</span><span class="o">=</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">identifiers</span><span class="o">=</span><span class="n">identifiers</span><span class="p">)),</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (106 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l118">
+                  <tt><i>118</i>             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Message kind </span><span class="si">{}</span><span class="s2"> is not currently supported.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msg_kind</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l127">
+                  <tt><i>127</i>         <span class="n">edge_index_i</span><span class="p">,</span> <span class="n">edge_index_j</span> <span class="o">=</span> <span class="n">edge_index</span><span class="p">[</span><span class="n">select</span><span class="p">,</span> <span class="p">:],</span> <span class="n">edge_index</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">select</span><span class="p">,</span> <span class="p">:]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (101 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l135">
+                  <tt><i>135</i>             <span class="n">identifiers_i</span><span class="p">,</span> <span class="n">identifiers_j</span> <span class="o">=</span> <span class="n">identifiers</span><span class="p">[</span><span class="n">edge_index_i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">identifiers</span><span class="p">[</span><span class="n">edge_index_j</span><span class="p">,</span> <span class="p">:]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l138">
+                  <tt><i>138</i>         <span class="n">msgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">x_j</span><span class="p">,</span> <span class="n">identifiers_i</span><span class="p">,</span> <span class="n">identifiers_j</span><span class="p">,</span> <span class="n">identifiers_ij</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l139">
+                  <tt><i>139</i>         <span class="n">msgs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">msgs</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">n_nodes</span><span class="p">,</span> <span class="n">msgs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (106 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l151">
+                  <tt><i>151</i>             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Aggregation kind </span><span class="si">{}</span><span class="s2"> is not currently supported.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aggr</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (106 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l171">
+                  <tt><i>171</i>             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Message kind </span><span class="si">{}</span><span class="s2"> is not currently supported.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msg_kind</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (109 > 79 characters):</p>
+               
+               <a href="models.gsn.graph_filters.GSN_sparse.source.html#l176">
+                  <tt><i>176</i>         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">(msg_fn = </span><span class="si">{}</span><span class="s1">, update_fn = </span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg_fn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_fn</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

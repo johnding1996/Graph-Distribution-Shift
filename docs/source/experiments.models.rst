@@ -1,16 +1,16 @@
 experiments.models package
 ==========================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   experiments.models.gsn
+
 Submodules
 ----------
-
-experiments.models.3wl\_gnn module
-----------------------------------
-
-.. automodule:: experiments.models.3wl_gnn
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 experiments.models.conv module
 ------------------------------
@@ -40,6 +40,14 @@ experiments.models.layers module
 --------------------------------
 
 .. automodule:: experiments.models.layers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+experiments.models.three\_wl module
+-----------------------------------
+
+.. automodule:: experiments.models.three_wl
    :members:
    :undoc-members:
    :show-inheritance:

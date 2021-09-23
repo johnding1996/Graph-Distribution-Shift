@@ -325,15 +325,24 @@
 <span id="L315" class="lineno"><a class="lineno" href="#L315">315</a></span>
 <span id="L316" class="lineno"><a class="lineno" href="#L316">316</a></span>
 <span id="L317" class="lineno"><a class="lineno" href="#L317">317</a></span>
+<span id="L318" class="lineno"><a class="lineno" href="#L318">318</a></span>
+<span id="L319" class="lineno"><a class="lineno" href="#L319">319</a></span>
+<span id="L320" class="lineno"><a class="lineno" href="#L320">320</a></span>
+<span id="L321" class="lineno"><a class="lineno" href="#L321">321</a></span>
+<span id="L322" class="lineno"><a class="lineno" href="#L322">322</a></span>
+<span id="L323" class="lineno"><a class="lineno" href="#L323">323</a></span>
+<span id="L324" class="lineno"><a class="lineno" href="#L324">324</a></span>
+<span id="L325" class="lineno"><a class="lineno" href="#L325">325</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import global_mean_pool, global_add_pool, GCNConv, GINConv, ChebConv</span>
 <span class="line-any" title="No Anys on this line!">from ogb.graphproppred.mol_encoder import AtomEncoder</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">from models.conv import GCNConvNew, GINConvNew, ChebConvNew</span>
+<span class="line-precise" title="No Anys on this line!">from .conv import GCNConvNew, GINConvNew, ChebConvNew</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">Cheb_K = 3</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"># mol</span>
 <span class="line-precise" title="No Anys on this line!">class GNN(torch.nn.Module):</span>
@@ -345,7 +354,8 @@
 <span class="line-empty" title="No Anys on this line!">        - prediction (Tensor): float torch tensor of shape (num_graphs, num_tasks)</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, gnn_type, dataset_group, num_tasks=128, num_layers = 5, emb_dim = 300, dropout = 0.5, is_pooled=True):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, gnn_type, dataset_group, num_tasks=128, num_layers=5, emb_dim=300, dropout=0.5, is_pooled=True,</span>
+<span class="line-empty" title="No Anys on this line!">                 **model_kwargs):</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
 <span class="line-empty" title="No Anys on this line!">        Args:</span>
 <span class="line-empty" title="No Anys on this line!">            - num_tasks (int): number of binary label tasks. default to 128 (number of tasks of ogbg-molpcba)</span>
@@ -386,20 +396,24 @@ Unannotated (x2)">        if self.num_layers &lt; 2:</span>
 Unannotated (x1)">            raise ValueError("Number of GNN layers must be greater than 1.")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        if self.gnn_type.endswith('virtual') :</span>
+Unannotated (x3)">        if self.gnn_type.endswith('virtual'):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x17)">            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], dropout=dropout)</span>
-<span class="line-empty" title="No Anys on this line!">        else :</span>
+Unannotated (x12)">            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x17)">            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group, gnn_type=self.gnn_type.split('_')[0], dropout=dropout)</span>
+Unannotated (x5)">                                                 gnn_type=self.gnn_type.split('_')[0], dropout=dropout)</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x12)">            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">                                     gnn_type=self.gnn_type.split('_')[0], dropout=dropout)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Pooling function to generate whole-graph embeddings</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.is_pooled :</span>
+Unannotated (x1)">        if self.is_pooled:</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x1)
 Unannotated (x1)">            self.pool = global_mean_pool</span>
-<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            self.pool = None</span>
 <span class="line-any" title="Any Types on this line: 
@@ -420,15 +434,15 @@ Unannotated (x5)">        h_node = self.gnn_node(batched_data, perturb)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if self.graph_pred_linear is None:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            if self.pool is None :</span>
+Unannotated (x1)">            if self.pool is None:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                return h_node, batched_data.batch</span>
-<span class="line-empty" title="No Anys on this line!">            else :</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">                return self.pool(h_node, batched_data.batch)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            return self.graph_pred_linear( self.pool(h_node, batched_data.batch) )</span>
+Unannotated (x7)">            return self.graph_pred_linear(self.pool(h_node, batched_data.batch))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">### GNN to generate node embedding</span>
@@ -437,7 +451,8 @@ Unannotated (x7)">            return self.graph_pred_linear( self.pool(h_node, b
 <span class="line-empty" title="No Anys on this line!">    Output:</span>
 <span class="line-empty" title="No Anys on this line!">        node representations</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type = 'gin', dropout = 0.5, JK = "last", residual = False):</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last", residual=False):</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
 <span class="line-empty" title="No Anys on this line!">            emb_dim (int): node embedding dimensionality</span>
 <span class="line-empty" title="No Anys on this line!">            num_layer (int): number of GNN message passing layers</span>
@@ -467,33 +482,32 @@ Unannotated (x2)">        if self.num_layer &lt; 2:</span>
 Unannotated (x1)">            raise ValueError("Number of GNN layers must be greater than 1.")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if self.dataset_group == 'mol' :</span>
+Unannotated (x2)">        if self.dataset_group == 'mol':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
 Unimported (x1)">            self.node_encoder = AtomEncoder(emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'ppa' :</span>
+Unannotated (x2)">        elif self.dataset_group == 'ppa':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Embedding(1, emb_dim) # uniform input node embedding</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'RotatedMNIST' :</span>
+Unannotated (x2)">        elif self.dataset_group == 'RotatedMNIST':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Linear(1, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'SBM' :</span>
+Unannotated (x2)">        elif self.dataset_group == 'SBM':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Embedding(8, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'UPFD' :</span>
+Unannotated (x2)">        elif self.dataset_group == 'UPFD':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Linear(10, emb_dim)</span>
-<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-precise" title="No Anys on this line!">            raise NotImplementedError</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        ###List of GNNs</span>
 <span class="line-any" title="Any Types on this line: 
@@ -508,45 +522,42 @@ Unannotated (x3)">        for layer in range(num_layer):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            if gnn_type == 'gin':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)
 Unimported (x2)">                    mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
-Unimported (x2)">                                                   torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),</span>
+Unimported (x2)">                                              torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
-Unimported (x1)">                                                   torch.nn.Linear(2 * emb_dim, emb_dim))</span>
+Unimported (x1)">                                              torch.nn.Linear(2 * emb_dim, emb_dim))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">                    self.convs.append(GINConv(mlp, train_eps=True))</span>
-<span class="line-empty" title="No Anys on this line!">                else :</span>
+<span class="line-empty" title="No Anys on this line!">                else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                    self.convs.append(GINConvNew(emb_dim, self.dataset_group))</span>
+Unannotated (x8)">                    self.convs.append(GINConvNew(emb_dim, self.dataset_group))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            elif gnn_type == 'gcn':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">                    self.convs.append(GCNConv(emb_dim, emb_dim))</span>
-<span class="line-empty" title="No Anys on this line!">                else :</span>
+<span class="line-empty" title="No Anys on this line!">                else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                    self.convs.append(GCNConvNew(emb_dim, self.dataset_group))</span>
+Unannotated (x8)">                    self.convs.append(GCNConvNew(emb_dim, self.dataset_group))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            elif gnn_type == 'cheb' :</span>
+Unannotated (x2)">            elif gnn_type == 'cheb':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">                    self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))</span>
-<span class="line-empty" title="No Anys on this line!">                else :</span>
+<span class="line-empty" title="No Anys on this line!">                else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                    self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))</span>
+Unannotated (x7)">                    self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">                raise ValueError('Undefined GNN type called {}'.format(gnn_type))</span>
@@ -565,12 +576,12 @@ Unannotated (x12)">        x, edge_index, edge_attr, batch = batched_data.x, bat
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # FLAG injects perturbation</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.node_encoder is None :</span>
+Unannotated (x1)">        if self.node_encoder is None:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            h_list = [x]</span>
-<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">            h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]</span>
+Unannotated (x10)">            h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(self.num_layer):</span>
@@ -582,14 +593,14 @@ Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            if layer == self.num_layer - 1:</span>
-<span class="line-empty" title="No Anys on this line!">                #remove relu for the last layer</span>
+<span class="line-empty" title="No Anys on this line!">                # remove relu for the last layer</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
-Unimported (x1)">                h = F.dropout(h, self.drop_ratio, training = self.training)</span>
+Unimported (x1)">                h = F.dropout(h, self.drop_ratio, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
-Unimported (x2)">                h = F.dropout(F.relu(h), self.drop_ratio, training = self.training)</span>
+Unimported (x2)">                h = F.dropout(F.relu(h), self.drop_ratio, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            if self.residual:</span>
@@ -623,7 +634,8 @@ Unannotated (x1)">        return node_representation</span>
 <span class="line-empty" title="No Anys on this line!">    Output:</span>
 <span class="line-empty" title="No Anys on this line!">        node representations</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type = 'gin', dropout = 0.5, JK = "last", residual = False):</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last", residual=False):</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
 <span class="line-empty" title="No Anys on this line!">            emb_dim (int): node embedding dimensionality</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
@@ -652,31 +664,31 @@ Unannotated (x2)">        if self.num_layer &lt; 2:</span>
 Unannotated (x1)">            raise ValueError("Number of GNN layers must be greater than 1.")</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if self.dataset_group == 'mol' :</span>
+Unannotated (x2)">        if self.dataset_group == 'mol':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
 Unimported (x1)">            self.node_encoder = AtomEncoder(emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'ppa' :</span>
+Unannotated (x2)">        elif self.dataset_group == 'ppa':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Embedding(1, emb_dim) # uniform input node embedding</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'RotatedMNIST' :</span>
+Unannotated (x2)">        elif self.dataset_group == 'RotatedMNIST':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Linear(1, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'SBM' :</span>
+Unannotated (x2)">        elif self.dataset_group == 'SBM':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Embedding(8, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'UPFD' :</span>
+Unannotated (x2)">        elif self.dataset_group == 'UPFD':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Linear(10, emb_dim)</span>
-<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-precise" title="No Anys on this line!">            raise NotImplementedError</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        ### set the initial virtual node embedding to 0.</span>
@@ -706,45 +718,42 @@ Unannotated (x3)">        for layer in range(num_layer):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            if gnn_type == 'gin':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)
 Unimported (x2)">                    mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
-Unimported (x2)">                                                   torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),</span>
+Unimported (x2)">                                              torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
-Unimported (x1)">                                                   torch.nn.Linear(2 * emb_dim, emb_dim))</span>
+Unimported (x1)">                                              torch.nn.Linear(2 * emb_dim, emb_dim))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">                    self.convs.append(GINConv(mlp, train_eps=True))</span>
-<span class="line-empty" title="No Anys on this line!">                else :</span>
+<span class="line-empty" title="No Anys on this line!">                else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                    self.convs.append(GINConvNew(emb_dim, self.dataset_group))</span>
+Unannotated (x8)">                    self.convs.append(GINConvNew(emb_dim, self.dataset_group))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            elif gnn_type == 'gcn':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">                    self.convs.append(GCNConv(emb_dim, emb_dim))</span>
-<span class="line-empty" title="No Anys on this line!">                else :</span>
+<span class="line-empty" title="No Anys on this line!">                else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                    self.convs.append(GCNConvNew(emb_dim, self.dataset_group))</span>
+Unannotated (x8)">                    self.convs.append(GCNConvNew(emb_dim, self.dataset_group))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            elif gnn_type == 'cheb' :</span>
+Unannotated (x2)">            elif gnn_type == 'cheb':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">                    self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))</span>
-<span class="line-empty" title="No Anys on this line!">                else :</span>
+<span class="line-empty" title="No Anys on this line!">                else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                    self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))</span>
+Unannotated (x7)">                    self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">                raise ValueError('Undefined GNN type called {}'.format(gnn_type))</span>
@@ -788,12 +797,12 @@ Unimported (x1)">            torch.zeros(batch[-1].item() + 1).to(edge_index.dty
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # FLAG injects perturbation</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.node_encoder is None :</span>
+Unannotated (x1)">        if self.node_encoder is None:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            h_list = [x]</span>
-<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">            h_list = [ self.node_encoder(x)+perturb if perturb is not None else self.node_encoder(x) ]</span>
+Unannotated (x10)">            h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(self.num_layer):</span>
@@ -808,14 +817,14 @@ Unannotated (x10)">            h = self.convs[layer](h_list[layer], edge_index, 
 Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            if layer == self.num_layer - 1:</span>
-<span class="line-empty" title="No Anys on this line!">                #remove relu for the last layer</span>
+<span class="line-empty" title="No Anys on this line!">                # remove relu for the last layer</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
-Unimported (x1)">                h = F.dropout(h, self.drop_ratio, training = self.training)</span>
+Unimported (x1)">                h = F.dropout(h, self.drop_ratio, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
-Unimported (x2)">                h = F.dropout(F.relu(h), self.drop_ratio, training = self.training)</span>
+Unimported (x2)">                h = F.dropout(F.relu(h), self.drop_ratio, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            if self.residual:</span>
@@ -837,12 +846,18 @@ Unimported (x1)">                virtualnode_embedding_temp = global_add_pool(h_
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                if self.residual:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)
-Unimported (x1)">                    virtualnode_embedding = virtualnode_embedding + F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.drop_ratio, training = self.training)</span>
+Unannotated (x5)
+Unimported (x1)">                    virtualnode_embedding = virtualnode_embedding + F.dropout(</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                        self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.drop_ratio,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                        training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!">                else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)
-Unimported (x1)">                    virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp), self.drop_ratio, training = self.training)</span>
+Unannotated (x8)
+Unimported (x1)">                    virtualnode_embedding = F.dropout(self.mlp_virtualnode_list[layer](virtualnode_embedding_temp),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                                                      self.drop_ratio, training=self.training)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        ### Different implementations of Jk-concat</span>
 <span class="line-any" title="Any Types on this line: 

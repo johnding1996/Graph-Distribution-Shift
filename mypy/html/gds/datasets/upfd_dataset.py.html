@@ -152,6 +152,10 @@
 <span id="L142" class="lineno"><a class="lineno" href="#L142">142</a></span>
 <span id="L143" class="lineno"><a class="lineno" href="#L143">143</a></span>
 <span id="L144" class="lineno"><a class="lineno" href="#L144">144</a></span>
+<span id="L145" class="lineno"><a class="lineno" href="#L145">145</a></span>
+<span id="L146" class="lineno"><a class="lineno" href="#L146">146</a></span>
+<span id="L147" class="lineno"><a class="lineno" href="#L147">147</a></span>
+<span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -289,16 +293,20 @@ Unannotated (x2)">        self._split_array[val_split_idx] = 1</span>
 Unannotated (x2)">        self._split_array[test_split_idx] = 2</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        if torch_geometric.__version__ &gt;= '1.7.0':</span>
+Unannotated (x3)">        if dataset_kwargs['model'] == '3wlgnn':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])</span>
+Unannotated (x2)">            self._collate = self.collate_dense</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
-Unimported (x1)">            self._collate = PyGCollater(follow_batch=[])</span>
-<span class="line-empty" title="No Anys on this line!">        # self._collate = self.collate_dense</span>
+Unimported (x1)">            if torch_geometric.__version__ &gt;= '1.7.0':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">                self._collate = PyGCollater(follow_batch=[])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
@@ -341,8 +349,21 @@ Unannotated (x7)">        return results, f"Accuracy: {results['acc']:.3f}\n"</s
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN</span>
 <span class="line-any" title="No Anys on this line!">    def collate_dense(self, samples):</span>
-<span class="line-empty" title="No Anys on this line!">        # The input samples is a list of pairs (graph, label).</span>
+<span class="line-any" title="No Anys on this line!">        def _sym_normalize_adj(adjacency):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">            deg = torch.sum(adjacency, dim=0)  # .squeeze()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x14)
+Unimported (x3)">            deg_inv = torch.where(deg &gt; 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">            deg_inv = torch.diag(deg_inv)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x2)">            return torch.mm(deg_inv, torch.mm(adjacency, deg_inv))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # The input samples is a list of pairs (graph, label).</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Explicit (x17)">        graph_list, y_list, metadata_list = map(list, zip(*samples))</span>
@@ -350,13 +371,17 @@ Explicit (x17)">        graph_list, y_list, metadata_list = map(list, zip(*sampl
 Unannotated (x8)
 Unimported (x2)">        y, metadata = torch.tensor(y_list), torch.stack(metadata_list)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # insert size one at dim 0 because this dataset's y is 1d</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        y = y.unsqueeze(0)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        x_node_feat = []</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        for graph in graph_list:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x1)">            adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())</span>
+Unannotated (x13)
+Unimported (x1)">            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Unimported (x1)">            zero_adj = torch.zeros_like(adj)</span>
@@ -385,20 +410,6 @@ Unimported (x1)">        x_node_feat = torch.stack(x_node_feat)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        return x_node_feat, y, metadata</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def _sym_normalize_adj(self, adj):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">        deg = torch.sum(adj, dim=0)  # .squeeze()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x14)
-Unimported (x3)">        deg_inv = torch.where(deg &gt; 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">        deg_inv = torch.diag(deg_inv)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x2)">        return torch.mm(deg_inv, torch.mm(adj, deg_inv))</span>
 </pre></td>
 </tr></tbody>
 </table>

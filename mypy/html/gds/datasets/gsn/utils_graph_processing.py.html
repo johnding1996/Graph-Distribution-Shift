@@ -262,14 +262,20 @@
 <span id="L252" class="lineno"><a class="lineno" href="#L252">252</a></span>
 <span id="L253" class="lineno"><a class="lineno" href="#L253">253</a></span>
 <span id="L254" class="lineno"><a class="lineno" href="#L254">254</a></span>
+<span id="L255" class="lineno"><a class="lineno" href="#L255">255</a></span>
+<span id="L256" class="lineno"><a class="lineno" href="#L256">256</a></span>
+<span id="L257" class="lineno"><a class="lineno" href="#L257">257</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.utils import remove_self_loops, to_undirected</span>
 <span class="line-any" title="No Anys on this line!">import networkx as nx</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">import graph_tool as gt</span>
-<span class="line-any" title="No Anys on this line!">import graph_tool.topology as gt_topology</span>
+<span class="line-empty" title="No Anys on this line!">try:</span>
+<span class="line-any" title="No Anys on this line!">    import graph_tool as gt</span>
+<span class="line-any" title="No Anys on this line!">    import graph_tool.topology as gt_topology</span>
+<span class="line-precise" title="No Anys on this line!">except Exception as e:</span>
+<span class="line-precise" title="No Anys on this line!">    pass</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def automorphism_orbits(edge_list, print_msgs=True, **kwargs):</span>

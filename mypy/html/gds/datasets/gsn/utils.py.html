@@ -193,13 +193,10 @@
 <span id="L183" class="lineno"><a class="lineno" href="#L183">183</a></span>
 <span id="L184" class="lineno"><a class="lineno" href="#L184">184</a></span>
 <span id="L185" class="lineno"><a class="lineno" href="#L185">185</a></span>
-<span id="L186" class="lineno"><a class="lineno" href="#L186">186</a></span>
-<span id="L187" class="lineno"><a class="lineno" href="#L187">187</a></span>
-<span id="L188" class="lineno"><a class="lineno" href="#L188">188</a></span>
-<span id="L189" class="lineno"><a class="lineno" href="#L189">189</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
-<span class="line-any" title="No Anys on this line!">from .utils_graph_processing import subgraph_isomorphism_edge_counts, subgraph_isomorphism_vertex_counts, induced_edge_automorphism_orbits, edge_automorphism_orbits, automorphism_orbits</span>
+<span class="line-any" title="No Anys on this line!">from .utils_graph_processing import subgraph_isomorphism_edge_counts, subgraph_isomorphism_vertex_counts, \</span>
+<span class="line-empty" title="No Anys on this line!">    induced_edge_automorphism_orbits, edge_automorphism_orbits, automorphism_orbits</span>
 <span class="line-any" title="No Anys on this line!">from .utils_ids import subgraph_counts2ids</span>
 <span class="line-any" title="No Anys on this line!">from .utils_data_gen import generate_dataset</span>
 <span class="line-any" title="No Anys on this line!">from .utils_graph_learning import multi_class_accuracy</span>
@@ -213,11 +210,12 @@
 <span class="line-precise" title="No Anys on this line!">import re</span>
 <span class="line-precise" title="No Anys on this line!">import types</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def get_custom_edge_list(ks, substructure_type=None, filename=None):</span>
 <span class="line-empty" title="No Anys on this line!">    '''</span>
 <span class="line-empty" title="No Anys on this line!">        Instantiates a list of `edge_list`s representing substructures</span>
 <span class="line-empty" title="No Anys on this line!">        of type `substructure_type` with sizes specified by `ks`.</span>
-<span class="line-empty" title="No Anys on this line!">    ''' </span>
+<span class="line-empty" title="No Anys on this line!">    '''</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    if substructure_type is None and filename is None:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -232,7 +230,6 @@ Unannotated (x1)">        if substructure_type is not None:</span>
 Unannotated (x5)
 Explicit (x3)
 Unimported (x1)">            graphs_nx = getattr(nx, substructure_type)(k)</span>
-<span class="line-empty" title="No Anys on this line!">            </span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
@@ -246,26 +243,22 @@ Unannotated (x5)">            edge_lists += [list(graph_nx.edges) for graph_nx i
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">            edge_lists.append(list(graphs_nx.edges))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">   </span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    return edge_lists</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def prepare_dataset(path, </span>
-<span class="line-empty" title="No Anys on this line!">                    dataset, </span>
-<span class="line-empty" title="No Anys on this line!">                    name, </span>
-<span class="line-empty" title="No Anys on this line!">                    id_scope, </span>
+<span class="line-any" title="No Anys on this line!">def prepare_dataset(path,</span>
+<span class="line-empty" title="No Anys on this line!">                    dataset,</span>
+<span class="line-empty" title="No Anys on this line!">                    name,</span>
+<span class="line-empty" title="No Anys on this line!">                    id_scope,</span>
 <span class="line-empty" title="No Anys on this line!">                    id_type,</span>
-<span class="line-empty" title="No Anys on this line!">                    k, </span>
-<span class="line-empty" title="No Anys on this line!">                    extract_ids_fn, </span>
+<span class="line-empty" title="No Anys on this line!">                    k,</span>
+<span class="line-empty" title="No Anys on this line!">                    extract_ids_fn,</span>
 <span class="line-empty" title="No Anys on this line!">                    count_fn,</span>
 <span class="line-empty" title="No Anys on this line!">                    automorphism_fn,</span>
 <span class="line-empty" title="No Anys on this line!">                    multiprocessing,</span>
 <span class="line-empty" title="No Anys on this line!">                    num_processes,</span>
 <span class="line-empty" title="No Anys on this line!">                    **subgraph_params):</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    if dataset in ['bioinformatics', 'social', 'chemical', 'ogb', 'SR_graphs']:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -327,13 +320,14 @@ Unannotated (x1)">            if id_type in ['cycle_graph',</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                k_min = 2 if id_type == 'star_graph' else 3</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x13)">                succeded, graphs_ptg, num_classes, orbit_partition_sizes = try_downgrading(data_folder, </span>
+Unannotated (x13)">                succeded, graphs_ptg, num_classes, orbit_partition_sizes = try_downgrading(data_folder,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                                                                                           id_type, </span>
+Unannotated (x1)">                                                                                           id_type,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                                                                                           subgraph_params['induced'], </span>
+Unannotated (x2)">                                                                                           subgraph_params['induced'],</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">                                                                                           subgraph_params['directed_orbits'] </span>
+Unannotated (x3)">                                                                                           subgraph_params[</span>
+<span class="line-any" title="No Anys on this line!">                                                                                               'directed_orbits']</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                                                                                           and id_scope == 'local',</span>
 <span class="line-any" title="Any Types on this line: 
@@ -357,9 +351,9 @@ Unimported (x1)">        graphs_ptg, num_classes, num_node_type, num_edge_type, 
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                                                                                                        name,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                                                                                                        k, </span>
+Unannotated (x1)">                                                                                                        k,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                                                                                                        extract_ids_fn, </span>
+Unannotated (x1)">                                                                                                        extract_ids_fn,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                                                                                                        count_fn,</span>
 <span class="line-any" title="Any Types on this line: 
@@ -369,7 +363,7 @@ Unannotated (x1)">                                                              
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                                                                                                        multiprocessing,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                                                                                                        num_processes, </span>
+Unannotated (x1)">                                                                                                        num_processes,</span>
 <span class="line-imprecise" title="Any Types on this line: 
 Unannotated (x1)">                                                                                                        **subgraph_params)</span>
 <span class="line-any" title="Any Types on this line: 
@@ -471,7 +465,7 @@ Unannotated (x2)">            return name, k_found</span>
 <span class="line-empty" title="No Anys on this line!">        Donwgrades `dataset` by keeping only the orbits of the requested substructures.</span>
 <span class="line-empty" title="No Anys on this line!">    '''</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">    feature_vector_size = sum(orbit_partition_sizes[0:k-k_min+1])</span>
+Unannotated (x8)">    feature_vector_size = sum(orbit_partition_sizes[0:k - k_min + 1])</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    graphs_ptg = list()</span>
 <span class="line-any" title="Any Types on this line: 
@@ -492,9 +486,7 @@ Explicit (x2)">        setattr(new_data, 'identifiers', data.identifiers[:, 0:fe
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        graphs_ptg.append(new_data)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">    return graphs_ptg, orbit_partition_sizes[0:k-k_min+1]</span>
-<span class="line-empty" title="No Anys on this line!">    </span>
-<span class="line-empty" title="No Anys on this line!">    </span>
+Unannotated (x7)">    return graphs_ptg, orbit_partition_sizes[0:k - k_min + 1]</span>
 </pre></td>
 </tr></tbody>
 </table>

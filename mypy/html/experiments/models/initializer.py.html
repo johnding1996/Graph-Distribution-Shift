@@ -57,11 +57,51 @@
 <span id="L47" class="lineno"><a class="lineno" href="#L47">47</a></span>
 <span id="L48" class="lineno"><a class="lineno" href="#L48">48</a></span>
 <span id="L49" class="lineno"><a class="lineno" href="#L49">49</a></span>
+<span id="L50" class="lineno"><a class="lineno" href="#L50">50</a></span>
+<span id="L51" class="lineno"><a class="lineno" href="#L51">51</a></span>
+<span id="L52" class="lineno"><a class="lineno" href="#L52">52</a></span>
+<span id="L53" class="lineno"><a class="lineno" href="#L53">53</a></span>
+<span id="L54" class="lineno"><a class="lineno" href="#L54">54</a></span>
+<span id="L55" class="lineno"><a class="lineno" href="#L55">55</a></span>
+<span id="L56" class="lineno"><a class="lineno" href="#L56">56</a></span>
+<span id="L57" class="lineno"><a class="lineno" href="#L57">57</a></span>
+<span id="L58" class="lineno"><a class="lineno" href="#L58">58</a></span>
+<span id="L59" class="lineno"><a class="lineno" href="#L59">59</a></span>
+<span id="L60" class="lineno"><a class="lineno" href="#L60">60</a></span>
+<span id="L61" class="lineno"><a class="lineno" href="#L61">61</a></span>
+<span id="L62" class="lineno"><a class="lineno" href="#L62">62</a></span>
+<span id="L63" class="lineno"><a class="lineno" href="#L63">63</a></span>
+<span id="L64" class="lineno"><a class="lineno" href="#L64">64</a></span>
+<span id="L65" class="lineno"><a class="lineno" href="#L65">65</a></span>
+<span id="L66" class="lineno"><a class="lineno" href="#L66">66</a></span>
+<span id="L67" class="lineno"><a class="lineno" href="#L67">67</a></span>
+<span id="L68" class="lineno"><a class="lineno" href="#L68">68</a></span>
+<span id="L69" class="lineno"><a class="lineno" href="#L69">69</a></span>
+<span id="L70" class="lineno"><a class="lineno" href="#L70">70</a></span>
+<span id="L71" class="lineno"><a class="lineno" href="#L71">71</a></span>
+<span id="L72" class="lineno"><a class="lineno" href="#L72">72</a></span>
+<span id="L73" class="lineno"><a class="lineno" href="#L73">73</a></span>
+<span id="L74" class="lineno"><a class="lineno" href="#L74">74</a></span>
+<span id="L75" class="lineno"><a class="lineno" href="#L75">75</a></span>
+<span id="L76" class="lineno"><a class="lineno" href="#L76">76</a></span>
+<span id="L77" class="lineno"><a class="lineno" href="#L77">77</a></span>
+<span id="L78" class="lineno"><a class="lineno" href="#L78">78</a></span>
+<span id="L79" class="lineno"><a class="lineno" href="#L79">79</a></span>
+<span id="L80" class="lineno"><a class="lineno" href="#L80">80</a></span>
+<span id="L81" class="lineno"><a class="lineno" href="#L81">81</a></span>
+<span id="L82" class="lineno"><a class="lineno" href="#L82">82</a></span>
+<span id="L83" class="lineno"><a class="lineno" href="#L83">83</a></span>
+<span id="L84" class="lineno"><a class="lineno" href="#L84">84</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch.nn as nn</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import global_mean_pool</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def initialize_model(config, d_out, is_featurizer=False, is_pooled=True):</span>
+<span class="line-any" title="No Anys on this line!">from models.gnn import GNN</span>
+<span class="line-any" title="No Anys on this line!">from models.three_wl import ThreeWLGNNNet</span>
+<span class="line-any" title="No Anys on this line!">from models.gsn.gnn import GNN_GSN</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_pooled=True):</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!">    Initializes models according to the config</span>
 <span class="line-empty" title="No Anys on this line!">        Args:</span>
@@ -72,42 +112,105 @@
 <span class="line-empty" title="No Anys on this line!">            If is_featurizer=True:</span>
 <span class="line-empty" title="No Anys on this line!">            - featurizer: a model that outputs feature Tensors of shape (batch_size, ..., feature dimensionality)</span>
 <span class="line-empty" title="No Anys on this line!">            - classifier: a model that takes in feature Tensors and outputs predictions. In most cases, this is a linear layer.</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            If is_featurizer=False:</span>
 <span class="line-empty" title="No Anys on this line!">            - model: a model that is equivalent to nn.Sequential(featurizer, classifier)</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    from models.gnn import GNN</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">    if is_featurizer:</span>
+Unannotated (x1)">    if full_dataset is None:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if is_pooled :</span>
+Unannotated (x3)">        if config.model == "3wlgnn":</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            if is_featurizer:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">                featurizer = ThreeWLGNNNet(gnn_type=config.model, num_tasks=None, **config.model_kwargs)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">                classifier = nn.Linear(featurizer.d_out, d_out)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                model = (featurizer, classifier)</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
-Unimported (x1)">            featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)</span>
+Unimported (x1)">                model = ThreeWLGNNNet(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            if is_featurizer:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                if is_pooled :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">                    featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">                    classifier = nn.Linear(featurizer.d_out, d_out)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                    model = (featurizer, classifier)</span>
+<span class="line-empty" title="No Anys on this line!">                else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">                    featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">                    classifier = nn.Linear(featurizer.d_out, d_out)</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x1)
+Unannotated (x1)">                    pooler = global_mean_pool</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">                    model = (featurizer, pooler, classifier)</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)
+Unimported (x1)">                model = GNN(gnn_type=config.model, num_tasks=d_out, is_pooled=is_pooled, **config.model_kwargs)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # We use the full dataset only for GSN</span>
+<span class="line-empty" title="No Anys on this line!">    # Need to be refactored</span>
+<span class="line-empty" title="No Anys on this line!">    else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if is_featurizer:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">            featurizer = GNN_GSN(in_features=full_dataset.num_features,</span>
+<span class="line-any" title="No Anys on this line!">                                 out_features=None,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                                 encoder_ids=full_dataset.encoder_ids,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                                 d_in_id=full_dataset.d_id,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                                 in_edge_features=full_dataset.num_edge_features,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                                 d_in_node_encoder=full_dataset.d_in_node_encoder,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                                 d_in_edge_encoder=full_dataset.d_in_edge_encoder,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                                 d_degree=full_dataset.d_degree,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                                 dataset_group=config.model_kwargs.dataset_group)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            model = (featurizer, classifier)</span>
-<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">            featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)</span>
+Unannotated (x4)
+Unimported (x1)">            model = GNN_GSN(in_features=full_dataset.num_features,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">            classifier = nn.Linear(featurizer.d_out, d_out)</span>
+Unannotated (x1)">                            out_features=d_out,</span>
 <span class="line-any" title="Any Types on this line: 
-Unimported (x1)
-Unannotated (x1)">            pooler = global_mean_pool</span>
+Unannotated (x2)">                            encoder_ids=full_dataset.encoder_ids,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            model = (featurizer, pooler, classifier)</span>
-<span class="line-empty" title="No Anys on this line!">    else:</span>
+Unannotated (x2)">                            d_in_id=full_dataset.d_id,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x1)">        model = GNN(gnn_type=config.model, num_tasks=d_out, is_pooled=is_pooled, **config.model_kwargs)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+Unannotated (x2)">                            in_edge_features=full_dataset.num_edge_features,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                            d_in_node_encoder=full_dataset.d_in_node_encoder,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                            d_in_edge_encoder=full_dataset.d_in_edge_encoder,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">                            d_degree=full_dataset.d_degree,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                            dataset_group=config.model_kwargs.dataset_group)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # The `needs_y` attribute specifies whether the model's forward function</span>
 <span class="line-empty" title="No Anys on this line!">    # needs to take in both (x, y).</span>

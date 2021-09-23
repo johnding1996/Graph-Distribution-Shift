@@ -133,12 +133,21 @@
 <span id="L123" class="lineno"><a class="lineno" href="#L123">123</a></span>
 <span id="L124" class="lineno"><a class="lineno" href="#L124">124</a></span>
 <span id="L125" class="lineno"><a class="lineno" href="#L125">125</a></span>
+<span id="L126" class="lineno"><a class="lineno" href="#L126">126</a></span>
+<span id="L127" class="lineno"><a class="lineno" href="#L127">127</a></span>
+<span id="L128" class="lineno"><a class="lineno" href="#L128">128</a></span>
+<span id="L129" class="lineno"><a class="lineno" href="#L129">129</a></span>
+<span id="L130" class="lineno"><a class="lineno" href="#L130">130</a></span>
+<span id="L131" class="lineno"><a class="lineno" href="#L131">131</a></span>
+<span id="L132" class="lineno"><a class="lineno" href="#L132">132</a></span>
+<span id="L133" class="lineno"><a class="lineno" href="#L133">133</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from algorithms.ERM import ERM</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.IRM import IRM</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.deepCORAL import DeepCORAL</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.groupDRO import GroupDRO</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.FLAG import FLAG</span>
+<span class="line-any" title="No Anys on this line!">from algorithms.GSN import GSN</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.DANN import DANN, CDANN, DANNG</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.MLDG import MLDG</span>
 <span class="line-any" title="No Anys on this line!">from configs.supported import algo_log_metrics</span>
@@ -147,7 +156,7 @@
 <span class="line-precise" title="No Anys on this line!">from gds.common.utils import get_counts</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def initialize_algorithm(config, datasets, train_grouper):</span>
+<span class="line-any" title="No Anys on this line!">def initialize_algorithm(config, datasets, full_dataset, train_grouper):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    train_dataset = datasets['train']['dataset']</span>
 <span class="line-any" title="Any Types on this line: 
@@ -162,8 +171,6 @@ Unannotated (x3)">        if train_dataset.y_size == 1:</span>
 <span class="line-empty" title="No Anys on this line!">            # For single-task classification, we have one output per class</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            d_out = train_dataset.n_classes</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        elif train_dataset.y_size is None:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -291,6 +298,25 @@ Unannotated (x1)">            loss=loss,</span>
 Unannotated (x1)">            metric=metric,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            n_train_steps=n_train_steps)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    elif config.algorithm == 'GSN':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        algorithm = GSN(</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            config=config,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            d_out=d_out,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            grouper=train_grouper,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            loss=loss,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            metric=metric,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            n_train_steps=n_train_steps,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            full_dataset=full_dataset)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    elif config.algorithm == 'DANN':</span>
 <span class="line-any" title="Any Types on this line: 

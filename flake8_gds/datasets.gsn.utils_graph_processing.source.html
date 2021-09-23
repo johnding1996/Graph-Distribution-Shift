@@ -41,21 +41,39 @@
                class="code sev- "><tt><i>5</i> &nbsp;</tt>
             </div>
             <div id="l6"
-               class="code sev- "><tt><i>6</i> <span class="kn">import</span> <span class="nn">graph_tool</span> <span class="k">as</span> <span class="nn">gt</span></tt>
+               class="code sev- "><tt><i>6</i> <span class="k">try</span><span class="p">:</span></tt>
             </div>
             <div id="l7"
-               class="code sev- "><tt><i>7</i> <span class="kn">import</span> <span class="nn">graph_tool.topology</span> <span class="k">as</span> <span class="nn">gt_topology</span></tt>
+               class="code sev- "><tt><i>7</i>     <span class="kn">import</span> <span class="nn">graph_tool</span> <span class="k">as</span> <span class="nn">gt</span></tt>
             </div>
             <div id="l8"
-               class="code sev- "><tt><i>8</i> &nbsp;</tt>
+               class="code sev- "><tt><i>8</i>     <span class="kn">import</span> <span class="nn">graph_tool.topology</span> <span class="k">as</span> <span class="nn">gt_topology</span></tt>
             </div>
             <div id="l9"
-               class="code sev- "><tt><i>9</i> &nbsp;</tt>
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F841
+                     </span>
+                     Local variable 'e' is assigned to but never used</li>
+               
+               </ul><tt><i>9</i> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span></tt>
             </div>
             <div id="l10"
-               class="code sev- "><tt><i>10</i> <span class="k">def</span> <span class="nf">automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="n">print_msgs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>10</i>     <span class="k">pass</span></tt>
             </div>
             <div id="l11"
+               class="code sev- "><tt><i>11</i> &nbsp;</tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i> &nbsp;</tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i> <span class="k">def</span> <span class="nf">automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="n">print_msgs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+            </div>
+            <div id="l14"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -65,9 +83,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>11</i>     </tt>
+               </ul><tt><i>14</i>     </tt>
             </div>
-            <div id="l12"
+            <div id="l15"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -83,12 +101,12 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>12</i>     <span class="c1">##### vertex automorphism orbits ##### </span></tt>
+               </ul><tt><i>15</i>     <span class="c1">##### vertex automorphism orbits ##### </span></tt>
             </div>
-            <div id="l13"
-               class="code sev- "><tt><i>13</i> &nbsp;</tt>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i> &nbsp;</tt>
             </div>
-            <div id="l14"
+            <div id="l17"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -98,9 +116,9 @@
                      </span>
                      Missing whitespace around operator</li>
                
-               </ul><tt><i>14</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </ul><tt><i>17</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
             </div>
-            <div id="l15"
+            <div id="l18"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -110,27 +128,27 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>15</i>     </tt>
-            </div>
-            <div id="l16"
-               class="code sev- "><tt><i>16</i>     <span class="n">graph</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
-            </div>
-            <div id="l17"
-               class="code sev- "><tt><i>17</i>     <span class="n">graph</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="n">edge_list</span><span class="p">)</span></tt>
-            </div>
-            <div id="l18"
-               class="code sev- "><tt><i>18</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></tt>
+               </ul><tt><i>18</i>     </tt>
             </div>
             <div id="l19"
-               class="code sev- "><tt><i>19</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>19</i>     <span class="n">graph</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
             </div>
             <div id="l20"
-               class="code sev- "><tt><i>20</i> &nbsp;</tt>
+               class="code sev- "><tt><i>20</i>     <span class="n">graph</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="n">edge_list</span><span class="p">)</span></tt>
             </div>
             <div id="l21"
-               class="code sev- "><tt><i>21</i>     <span class="c1"># compute the vertex automorphism group</span></tt>
+               class="code sev- "><tt><i>21</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></tt>
             </div>
             <div id="l22"
+               class="code sev- "><tt><i>22</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></tt>
+            </div>
+            <div id="l23"
+               class="code sev- "><tt><i>23</i> &nbsp;</tt>
+            </div>
+            <div id="l24"
+               class="code sev- "><tt><i>24</i>     <span class="c1"># compute the vertex automorphism group</span></tt>
+            </div>
+            <div id="l25"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -140,21 +158,21 @@
                      </span>
                      Line too long (109 > 79 characters)</li>
                
-               </ul><tt><i>22</i>     <span class="n">aut_group</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
-            </div>
-            <div id="l23"
-               class="code sev- "><tt><i>23</i> &nbsp;</tt>
-            </div>
-            <div id="l24"
-               class="code sev- "><tt><i>24</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{}</span></tt>
-            </div>
-            <div id="l25"
-               class="code sev- "><tt><i>25</i>     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">():</span></tt>
+               </ul><tt><i>25</i>     <span class="n">aut_group</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
             <div id="l26"
-               class="code sev- "><tt><i>26</i>         <span class="n">orbit_membership</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span></tt>
+               class="code sev- "><tt><i>26</i> &nbsp;</tt>
             </div>
             <div id="l27"
+               class="code sev- "><tt><i>27</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{}</span></tt>
+            </div>
+            <div id="l28"
+               class="code sev- "><tt><i>28</i>     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">():</span></tt>
+            </div>
+            <div id="l29"
+               class="code sev- "><tt><i>29</i>         <span class="n">orbit_membership</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span></tt>
+            </div>
+            <div id="l30"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -164,9 +182,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>27</i>     </tt>
+               </ul><tt><i>30</i>     </tt>
             </div>
-            <div id="l28"
+            <div id="l31"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -176,21 +194,21 @@
                      </span>
                      Line too long (94 > 79 characters)</li>
                
-               </ul><tt><i>28</i>     <span class="c1"># whenever two nodes can be mapped via some automorphism, they are assigned the same orbit</span></tt>
-            </div>
-            <div id="l29"
-               class="code sev- "><tt><i>29</i>     <span class="k">for</span> <span class="n">aut</span> <span class="ow">in</span> <span class="n">aut_group</span><span class="p">:</span></tt>
-            </div>
-            <div id="l30"
-               class="code sev- "><tt><i>30</i>         <span class="k">for</span> <span class="n">original</span><span class="p">,</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">aut</span><span class="p">):</span></tt>
-            </div>
-            <div id="l31"
-               class="code sev- "><tt><i>31</i>             <span class="n">role</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">vertex</span><span class="p">])</span></tt>
+               </ul><tt><i>31</i>     <span class="c1"># whenever two nodes can be mapped via some automorphism, they are assigned the same orbit</span></tt>
             </div>
             <div id="l32"
-               class="code sev- "><tt><i>32</i>             <span class="n">orbit_membership</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="n">role</span></tt>
+               class="code sev- "><tt><i>32</i>     <span class="k">for</span> <span class="n">aut</span> <span class="ow">in</span> <span class="n">aut_group</span><span class="p">:</span></tt>
             </div>
             <div id="l33"
+               class="code sev- "><tt><i>33</i>         <span class="k">for</span> <span class="n">original</span><span class="p">,</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">aut</span><span class="p">):</span></tt>
+            </div>
+            <div id="l34"
+               class="code sev- "><tt><i>34</i>             <span class="n">role</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">vertex</span><span class="p">])</span></tt>
+            </div>
+            <div id="l35"
+               class="code sev- "><tt><i>35</i>             <span class="n">orbit_membership</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="n">role</span></tt>
+            </div>
+            <div id="l36"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -200,9 +218,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>33</i>         </tt>
+               </ul><tt><i>36</i>         </tt>
             </div>
-            <div id="l34"
+            <div id="l37"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -212,24 +230,24 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>34</i>     <span class="n">orbit_membership_list</span> <span class="o">=</span> <span class="p">[[],[]]</span></tt>
-            </div>
-            <div id="l35"
-               class="code sev- "><tt><i>35</i>     <span class="k">for</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">om_curr</span> <span class="ow">in</span> <span class="n">orbit_membership</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
-            </div>
-            <div id="l36"
-               class="code sev- "><tt><i>36</i>         <span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span></tt>
-            </div>
-            <div id="l37"
-               class="code sev- "><tt><i>37</i>         <span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">om_curr</span><span class="p">)</span></tt>
+               </ul><tt><i>37</i>     <span class="n">orbit_membership_list</span> <span class="o">=</span> <span class="p">[[],[]]</span></tt>
             </div>
             <div id="l38"
-               class="code sev- "><tt><i>38</i> &nbsp;</tt>
+               class="code sev- "><tt><i>38</i>     <span class="k">for</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">om_curr</span> <span class="ow">in</span> <span class="n">orbit_membership</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
             </div>
             <div id="l39"
-               class="code sev- "><tt><i>39</i>     <span class="c1"># make orbit list contiguous (i.e. 0,1,2,...O)</span></tt>
+               class="code sev- "><tt><i>39</i>         <span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span></tt>
             </div>
             <div id="l40"
+               class="code sev- "><tt><i>40</i>         <span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">om_curr</span><span class="p">)</span></tt>
+            </div>
+            <div id="l41"
+               class="code sev- "><tt><i>41</i> &nbsp;</tt>
+            </div>
+            <div id="l42"
+               class="code sev- "><tt><i>42</i>     <span class="c1"># make orbit list contiguous (i.e. 0,1,2,...O)</span></tt>
+            </div>
+            <div id="l43"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -245,12 +263,12 @@
                      </span>
                      Unexpected spaces around keyword / parameter equals (in 2 places)</li>
                
-               </ul><tt><i>40</i>     <span class="n">_</span><span class="p">,</span> <span class="n">contiguous_orbit_membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">return_inverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span></tt>
+               </ul><tt><i>43</i>     <span class="n">_</span><span class="p">,</span> <span class="n">contiguous_orbit_membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">return_inverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span></tt>
             </div>
-            <div id="l41"
-               class="code sev- "><tt><i>41</i> &nbsp;</tt>
+            <div id="l44"
+               class="code sev- "><tt><i>44</i> &nbsp;</tt>
             </div>
-            <div id="l42"
+            <div id="l45"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -266,15 +284,15 @@
                      </span>
                      Line too long (115 > 79 characters)</li>
                
-               </ul><tt><i>42</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{</span><span class="n">vertex</span><span class="p">:</span> <span class="n">contiguous_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span></tt>
+               </ul><tt><i>45</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{</span><span class="n">vertex</span><span class="p">:</span> <span class="n">contiguous_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span></tt>
             </div>
-            <div id="l43"
-               class="code sev- "><tt><i>43</i> &nbsp;</tt>
+            <div id="l46"
+               class="code sev- "><tt><i>46</i> &nbsp;</tt>
             </div>
-            <div id="l44"
-               class="code sev- "><tt><i>44</i> &nbsp;</tt>
+            <div id="l47"
+               class="code sev- "><tt><i>47</i> &nbsp;</tt>
             </div>
-            <div id="l45"
+            <div id="l48"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -284,12 +302,12 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>45</i>     <span class="n">orbit_partition</span> <span class="o">=</span> <span class="p">{}</span></tt>
+               </ul><tt><i>48</i>     <span class="n">orbit_partition</span> <span class="o">=</span> <span class="p">{}</span></tt>
             </div>
-            <div id="l46"
-               class="code sev- "><tt><i>46</i>     <span class="k">for</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">orbit</span> <span class="ow">in</span> <span class="n">orbit_membership</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
+            <div id="l49"
+               class="code sev- "><tt><i>49</i>     <span class="k">for</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">orbit</span> <span class="ow">in</span> <span class="n">orbit_membership</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
             </div>
-            <div id="l47"
+            <div id="l50"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -299,39 +317,39 @@
                      </span>
                      Line too long (110 > 79 characters)</li>
                
-               </ul><tt><i>47</i>         <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="k">if</span> <span class="n">orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orbit_partition</span> <span class="k">else</span> <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span></tt>
-            </div>
-            <div id="l48"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>48</i>     </tt>
-            </div>
-            <div id="l49"
-               class="code sev- "><tt><i>49</i>     <span class="n">aut_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">aut_group</span><span class="p">)</span></tt>
-            </div>
-            <div id="l50"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>50</i>     </tt>
+               </ul><tt><i>50</i>         <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="k">if</span> <span class="n">orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orbit_partition</span> <span class="k">else</span> <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i>     <span class="k">if</span> <span class="n">print_msgs</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>51</i>     </tt>
             </div>
             <div id="l52"
+               class="code sev- "><tt><i>52</i>     <span class="n">aut_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">aut_group</span><span class="p">)</span></tt>
+            </div>
+            <div id="l53"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>53</i>     </tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i>     <span class="k">if</span> <span class="n">print_msgs</span><span class="p">:</span></tt>
+            </div>
+            <div id="l55"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -347,9 +365,9 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>52</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span> </tt>
+               </ul><tt><i>55</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span> </tt>
             </div>
-            <div id="l53"
+            <div id="l56"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -365,24 +383,24 @@
                      </span>
                      Missing whitespace after ';'</li>
                
-               </ul><tt><i>53</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
-            </div>
-            <div id="l54"
-               class="code sev- "><tt><i>54</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of orbits: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">)))</span></tt>
-            </div>
-            <div id="l55"
-               class="code sev- "><tt><i>55</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Automorphism count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aut_count</span><span class="p">))</span></tt>
-            </div>
-            <div id="l56"
-               class="code sev- "><tt><i>56</i> &nbsp;</tt>
+               </ul><tt><i>56</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
             </div>
             <div id="l57"
-               class="code sev- "><tt><i>57</i>     <span class="k">return</span> <span class="n">graph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span></tt>
+               class="code sev- "><tt><i>57</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of orbits: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">)))</span></tt>
             </div>
             <div id="l58"
-               class="code sev- "><tt><i>58</i> &nbsp;</tt>
+               class="code sev- "><tt><i>58</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Automorphism count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aut_count</span><span class="p">))</span></tt>
             </div>
             <div id="l59"
+               class="code sev- "><tt><i>59</i> &nbsp;</tt>
+            </div>
+            <div id="l60"
+               class="code sev- "><tt><i>60</i>     <span class="k">return</span> <span class="n">graph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span></tt>
+            </div>
+            <div id="l61"
+               class="code sev- "><tt><i>61</i> &nbsp;</tt>
+            </div>
+            <div id="l62"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -392,9 +410,9 @@
                      </span>
                      Expected 2 blank lines, found 1</li>
                
-               </ul><tt><i>59</i> <span class="k">def</span> <span class="nf">induced_edge_automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+               </ul><tt><i>62</i> <span class="k">def</span> <span class="nf">induced_edge_automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
             </div>
-            <div id="l60"
+            <div id="l63"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -404,9 +422,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>60</i>     </tt>
+               </ul><tt><i>63</i>     </tt>
             </div>
-            <div id="l61"
+            <div id="l64"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -422,9 +440,9 @@
                      </span>
                      Line too long (93 > 79 characters)</li>
                
-               </ul><tt><i>61</i>     <span class="c1">##### induced edge automorphism orbits (according to the vertex automorphism group) #####</span></tt>
+               </ul><tt><i>64</i>     <span class="c1">##### induced edge automorphism orbits (according to the vertex automorphism group) #####</span></tt>
             </div>
-            <div id="l62"
+            <div id="l65"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -434,9 +452,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>62</i>     </tt>
+               </ul><tt><i>65</i>     </tt>
             </div>
-            <div id="l63"
+            <div id="l66"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -446,9 +464,9 @@
                      </span>
                      Missing whitespace around operator</li>
                
-               </ul><tt><i>63</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </ul><tt><i>66</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
             </div>
-            <div id="l64"
+            <div id="l67"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -464,12 +482,12 @@
                      </span>
                      Line too long (87 > 79 characters)</li>
                
-               </ul><tt><i>64</i>     <span class="n">directed_orbits</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed_orbits&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed_orbits&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </ul><tt><i>67</i>     <span class="n">directed_orbits</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed_orbits&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed_orbits&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
             </div>
-            <div id="l65"
-               class="code sev- "><tt><i>65</i> &nbsp;</tt>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i> &nbsp;</tt>
             </div>
-            <div id="l66"
+            <div id="l69"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -479,9 +497,9 @@
                      </span>
                      Line too long (98 > 79 characters)</li>
                
-               </ul><tt><i>66</i>     <span class="n">graph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span> <span class="o">=</span> <span class="n">automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="o">=</span><span class="n">edge_list</span><span class="p">,</span></tt>
+               </ul><tt><i>69</i>     <span class="n">graph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span> <span class="o">=</span> <span class="n">automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="o">=</span><span class="n">edge_list</span><span class="p">,</span></tt>
             </div>
-            <div id="l67"
+            <div id="l70"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -491,9 +509,9 @@
                      </span>
                      Line too long (96 > 79 characters)</li>
                
-               </ul><tt><i>67</i>                                                                               <span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">,</span></tt>
+               </ul><tt><i>70</i>                                                                               <span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">,</span></tt>
             </div>
-            <div id="l68"
+            <div id="l71"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -503,24 +521,24 @@
                      </span>
                      Line too long (95 > 79 characters)</li>
                
-               </ul><tt><i>68</i>                                                                               <span class="n">print_msgs</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
-            </div>
-            <div id="l69"
-               class="code sev- "><tt><i>69</i>     <span class="n">edge_orbit_partition</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></tt>
-            </div>
-            <div id="l70"
-               class="code sev- "><tt><i>70</i>     <span class="n">edge_orbit_membership</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></tt>
-            </div>
-            <div id="l71"
-               class="code sev- "><tt><i>71</i>     <span class="n">edge_orbits2inds</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></tt>
+               </ul><tt><i>71</i>                                                                               <span class="n">print_msgs</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
             <div id="l72"
-               class="code sev- "><tt><i>72</i>     <span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span></tt>
+               class="code sev- "><tt><i>72</i>     <span class="n">edge_orbit_partition</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></tt>
             </div>
             <div id="l73"
-               class="code sev- "><tt><i>73</i> &nbsp;</tt>
+               class="code sev- "><tt><i>73</i>     <span class="n">edge_orbit_membership</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></tt>
             </div>
             <div id="l74"
+               class="code sev- "><tt><i>74</i>     <span class="n">edge_orbits2inds</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span></tt>
+            </div>
+            <div id="l75"
+               class="code sev- "><tt><i>75</i>     <span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span></tt>
+            </div>
+            <div id="l76"
+               class="code sev- "><tt><i>76</i> &nbsp;</tt>
+            </div>
+            <div id="l77"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -530,9 +548,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>74</i>     </tt>
+               </ul><tt><i>77</i>     </tt>
             </div>
-            <div id="l75"
+            <div id="l78"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -542,9 +560,9 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>75</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">directed</span><span class="p">:</span></tt>
+               </ul><tt><i>78</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">directed</span><span class="p">:</span></tt>
             </div>
-            <div id="l76"
+            <div id="l79"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -560,15 +578,15 @@
                      </span>
                      Line too long (105 > 79 characters)</li>
                
-               </ul><tt><i>76</i>         <span class="n">edge_list</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></tt>
+               </ul><tt><i>79</i>         <span class="n">edge_list</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></tt>
             </div>
-            <div id="l77"
-               class="code sev- "><tt><i>77</i> &nbsp;</tt>
+            <div id="l80"
+               class="code sev- "><tt><i>80</i> &nbsp;</tt>
             </div>
-            <div id="l78"
-               class="code sev- "><tt><i>78</i>     <span class="c1"># infer edge automorphisms from the vertex automorphisms</span></tt>
+            <div id="l81"
+               class="code sev- "><tt><i>81</i>     <span class="c1"># infer edge automorphisms from the vertex automorphisms</span></tt>
             </div>
-            <div id="l79"
+            <div id="l82"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -578,18 +596,18 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>79</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edge_list</span><span class="p">):</span></tt>
-            </div>
-            <div id="l80"
-               class="code sev- "><tt><i>80</i>         <span class="k">if</span> <span class="n">directed_orbits</span><span class="p">:</span></tt>
-            </div>
-            <div id="l81"
-               class="code sev- "><tt><i>81</i>             <span class="n">edge_orbit</span> <span class="o">=</span> <span class="p">(</span><span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span></tt>
-            </div>
-            <div id="l82"
-               class="code sev- "><tt><i>82</i>         <span class="k">else</span><span class="p">:</span></tt>
+               </ul><tt><i>82</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edge_list</span><span class="p">):</span></tt>
             </div>
             <div id="l83"
+               class="code sev- "><tt><i>83</i>         <span class="k">if</span> <span class="n">directed_orbits</span><span class="p">:</span></tt>
+            </div>
+            <div id="l84"
+               class="code sev- "><tt><i>84</i>             <span class="n">edge_orbit</span> <span class="o">=</span> <span class="p">(</span><span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span></tt>
+            </div>
+            <div id="l85"
+               class="code sev- "><tt><i>85</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l86"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -599,39 +617,39 @@
                      </span>
                      Line too long (90 > 79 characters)</li>
                
-               </ul><tt><i>83</i>             <span class="n">edge_orbit</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">([</span><span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span></tt>
-            </div>
-            <div id="l84"
-               class="code sev- "><tt><i>84</i>         <span class="k">if</span> <span class="n">edge_orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">edge_orbits2inds</span><span class="p">:</span></tt>
-            </div>
-            <div id="l85"
-               class="code sev- "><tt><i>85</i>             <span class="n">edge_orbits2inds</span><span class="p">[</span><span class="n">edge_orbit</span><span class="p">]</span> <span class="o">=</span> <span class="n">ind</span></tt>
-            </div>
-            <div id="l86"
-               class="code sev- "><tt><i>86</i>             <span class="n">ind_edge_orbit</span> <span class="o">=</span> <span class="n">ind</span></tt>
+               </ul><tt><i>86</i>             <span class="n">edge_orbit</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">([</span><span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span></tt>
             </div>
             <div id="l87"
-               class="code sev- "><tt><i>87</i>             <span class="n">ind</span> <span class="o">+=</span> <span class="mi">1</span></tt>
+               class="code sev- "><tt><i>87</i>         <span class="k">if</span> <span class="n">edge_orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">edge_orbits2inds</span><span class="p">:</span></tt>
             </div>
             <div id="l88"
-               class="code sev- "><tt><i>88</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>88</i>             <span class="n">edge_orbits2inds</span><span class="p">[</span><span class="n">edge_orbit</span><span class="p">]</span> <span class="o">=</span> <span class="n">ind</span></tt>
             </div>
             <div id="l89"
-               class="code sev- "><tt><i>89</i>             <span class="n">ind_edge_orbit</span> <span class="o">=</span> <span class="n">edge_orbits2inds</span><span class="p">[</span><span class="n">edge_orbit</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>89</i>             <span class="n">ind_edge_orbit</span> <span class="o">=</span> <span class="n">ind</span></tt>
             </div>
             <div id="l90"
-               class="code sev- "><tt><i>90</i> &nbsp;</tt>
+               class="code sev- "><tt><i>90</i>             <span class="n">ind</span> <span class="o">+=</span> <span class="mi">1</span></tt>
             </div>
             <div id="l91"
-               class="code sev- "><tt><i>91</i>         <span class="k">if</span> <span class="n">ind_edge_orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">edge_orbit_partition</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>91</i>         <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l92"
-               class="code sev- "><tt><i>92</i>             <span class="n">edge_orbit_partition</span><span class="p">[</span><span class="n">ind_edge_orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span></tt>
+               class="code sev- "><tt><i>92</i>             <span class="n">ind_edge_orbit</span> <span class="o">=</span> <span class="n">edge_orbits2inds</span><span class="p">[</span><span class="n">edge_orbit</span><span class="p">]</span></tt>
             </div>
             <div id="l93"
-               class="code sev- "><tt><i>93</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>93</i> &nbsp;</tt>
             </div>
             <div id="l94"
+               class="code sev- "><tt><i>94</i>         <span class="k">if</span> <span class="n">ind_edge_orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">edge_orbit_partition</span><span class="p">:</span></tt>
+            </div>
+            <div id="l95"
+               class="code sev- "><tt><i>95</i>             <span class="n">edge_orbit_partition</span><span class="p">[</span><span class="n">ind_edge_orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span></tt>
+            </div>
+            <div id="l96"
+               class="code sev- "><tt><i>96</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l97"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -641,18 +659,18 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>94</i>             <span class="n">edge_orbit_partition</span><span class="p">[</span><span class="n">ind_edge_orbit</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> </tt>
-            </div>
-            <div id="l95"
-               class="code sev- "><tt><i>95</i> &nbsp;</tt>
-            </div>
-            <div id="l96"
-               class="code sev- "><tt><i>96</i>         <span class="n">edge_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ind_edge_orbit</span></tt>
-            </div>
-            <div id="l97"
-               class="code sev- "><tt><i>97</i> &nbsp;</tt>
+               </ul><tt><i>97</i>             <span class="n">edge_orbit_partition</span><span class="p">[</span><span class="n">ind_edge_orbit</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> </tt>
             </div>
             <div id="l98"
+               class="code sev- "><tt><i>98</i> &nbsp;</tt>
+            </div>
+            <div id="l99"
+               class="code sev- "><tt><i>99</i>         <span class="n">edge_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ind_edge_orbit</span></tt>
+            </div>
+            <div id="l100"
+               class="code sev- "><tt><i>100</i> &nbsp;</tt>
+            </div>
+            <div id="l101"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -668,39 +686,15 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>98</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Edge orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">edge_orbit_partition</span><span class="p">))</span> </tt>
-            </div>
-            <div id="l99"
-               class="code sev- "><tt><i>99</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of edge orbits: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">edge_orbit_partition</span><span class="p">)))</span></tt>
-            </div>
-            <div id="l100"
-               class="code sev- "><tt><i>100</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Graph (vertex) automorphism count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aut_count</span><span class="p">))</span></tt>
-            </div>
-            <div id="l101"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>101</i>     </tt>
+               </ul><tt><i>101</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Edge orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">edge_orbit_partition</span><span class="p">))</span> </tt>
             </div>
             <div id="l102"
-               class="code sev- "><tt><i>102</i>     <span class="k">return</span> <span class="n">graph</span><span class="p">,</span> <span class="n">edge_orbit_partition</span><span class="p">,</span> <span class="n">edge_orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span></tt>
+               class="code sev- "><tt><i>102</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of edge orbits: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">edge_orbit_partition</span><span class="p">)))</span></tt>
             </div>
             <div id="l103"
-               class="code sev- "><tt><i>103</i> &nbsp;</tt>
+               class="code sev- "><tt><i>103</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Graph (vertex) automorphism count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aut_count</span><span class="p">))</span></tt>
             </div>
             <div id="l104"
-               class="code sev- "><tt><i>104</i> &nbsp;</tt>
-            </div>
-            <div id="l105"
-               class="code sev- "><tt><i>105</i> <span class="k">def</span> <span class="nf">subgraph_isomorphism_vertex_counts</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
-            </div>
-            <div id="l106"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -710,9 +704,33 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>106</i>     </tt>
+               </ul><tt><i>104</i>     </tt>
+            </div>
+            <div id="l105"
+               class="code sev- "><tt><i>105</i>     <span class="k">return</span> <span class="n">graph</span><span class="p">,</span> <span class="n">edge_orbit_partition</span><span class="p">,</span> <span class="n">edge_orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span></tt>
+            </div>
+            <div id="l106"
+               class="code sev- "><tt><i>106</i> &nbsp;</tt>
             </div>
             <div id="l107"
+               class="code sev- "><tt><i>107</i> &nbsp;</tt>
+            </div>
+            <div id="l108"
+               class="code sev- "><tt><i>108</i> <span class="k">def</span> <span class="nf">subgraph_isomorphism_vertex_counts</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+            </div>
+            <div id="l109"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>109</i>     </tt>
+            </div>
+            <div id="l110"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -722,34 +740,7 @@
                      </span>
                      Too many leading '#' for block comment</li>
                
-               </ul><tt><i>107</i>     <span class="c1">##### vertex structural identifiers #####</span></tt>
-            </div>
-            <div id="l108"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>108</i>     </tt>
-            </div>
-            <div id="l109"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (103 > 79 characters)</li>
-               
-               </ul><tt><i>109</i>     <span class="n">subgraph_dict</span><span class="p">,</span> <span class="n">induced</span><span class="p">,</span> <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;subgraph_dict&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;induced&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;num_nodes&#39;</span><span class="p">]</span></tt>
-            </div>
-            <div id="l110"
-               class="code sev- "><tt><i>110</i>     <span class="n">directed</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </ul><tt><i>110</i>     <span class="c1">##### vertex structural identifiers #####</span></tt>
             </div>
             <div id="l111"
                class="code sev-2  le">
@@ -764,36 +755,21 @@
                </ul><tt><i>111</i>     </tt>
             </div>
             <div id="l112"
-               class="code sev- "><tt><i>112</i>     <span class="n">G_gt</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (103 > 79 characters)</li>
+               
+               </ul><tt><i>112</i>     <span class="n">subgraph_dict</span><span class="p">,</span> <span class="n">induced</span><span class="p">,</span> <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;subgraph_dict&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;induced&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;num_nodes&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l113"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E231
-                     </span>
-                     Missing whitespace after ','</li>
-               
-               </ul><tt><i>113</i>     <span class="n">G_gt</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span></tt>
+               class="code sev- "><tt><i>113</i>     <span class="n">directed</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
             </div>
             <div id="l114"
-               class="code sev- "><tt><i>114</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span></tt>
-            </div>
-            <div id="l115"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>115</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span>  </tt>
-            </div>
-            <div id="l116"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -803,10 +779,25 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>116</i>        </tt>
+               </ul><tt><i>114</i>     </tt>
+            </div>
+            <div id="l115"
+               class="code sev- "><tt><i>115</i>     <span class="n">G_gt</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
+            </div>
+            <div id="l116"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E231
+                     </span>
+                     Missing whitespace after ','</li>
+               
+               </ul><tt><i>116</i>     <span class="n">G_gt</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">edge_index</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span></tt>
             </div>
             <div id="l117"
-               class="code sev- "><tt><i>117</i>     <span class="c1"># compute all subgraph isomorphisms</span></tt>
+               class="code sev- "><tt><i>117</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span></tt>
             </div>
             <div id="l118"
                class="code sev-2  le">
@@ -814,11 +805,11 @@
                
                   <li>
                      <span class="count sev-2">
-                        E501
+                        W291
                      </span>
-                     Line too long (127 > 79 characters)</li>
+                     Trailing whitespace</li>
                
-               </ul><tt><i>118</i>     <span class="n">sub_iso</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">],</span> <span class="n">G_gt</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="n">induced</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </ul><tt><i>118</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span>  </tt>
             </div>
             <div id="l119"
                class="code sev-2  le">
@@ -830,9 +821,36 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>119</i>     </tt>
+               </ul><tt><i>119</i>        </tt>
             </div>
             <div id="l120"
+               class="code sev- "><tt><i>120</i>     <span class="c1"># compute all subgraph isomorphisms</span></tt>
+            </div>
+            <div id="l121"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (127 > 79 characters)</li>
+               
+               </ul><tt><i>121</i>     <span class="n">sub_iso</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">],</span> <span class="n">G_gt</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="n">induced</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+            </div>
+            <div id="l122"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>122</i>     </tt>
+            </div>
+            <div id="l123"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -848,9 +866,9 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>120</i>     <span class="c1">## num_nodes should be explicitly set for the following edge case: </span></tt>
+               </ul><tt><i>123</i>     <span class="c1">## num_nodes should be explicitly set for the following edge case: </span></tt>
             </div>
-            <div id="l121"
+            <div id="l124"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -860,9 +878,9 @@
                      </span>
                      Too many leading '#' for block comment</li>
                
-               </ul><tt><i>121</i>     <span class="c1">## when there is an isolated vertex whose index is larger</span></tt>
+               </ul><tt><i>124</i>     <span class="c1">## when there is an isolated vertex whose index is larger</span></tt>
             </div>
-            <div id="l122"
+            <div id="l125"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -872,9 +890,9 @@
                      </span>
                      Too many leading '#' for block comment</li>
                
-               </ul><tt><i>122</i>     <span class="c1">## than the maximum available index in the edge_index</span></tt>
+               </ul><tt><i>125</i>     <span class="c1">## than the maximum available index in the edge_index</span></tt>
             </div>
-            <div id="l123"
+            <div id="l126"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -884,15 +902,15 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>123</i>     </tt>
+               </ul><tt><i>126</i>     </tt>
             </div>
-            <div id="l124"
-               class="code sev- "><tt><i>124</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_nodes</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_partition&#39;</span><span class="p">])))</span></tt>
+            <div id="l127"
+               class="code sev- "><tt><i>127</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_nodes</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_partition&#39;</span><span class="p">])))</span></tt>
             </div>
-            <div id="l125"
-               class="code sev- "><tt><i>125</i>     <span class="k">for</span> <span class="n">sub_iso_curr</span> <span class="ow">in</span> <span class="n">sub_iso</span><span class="p">:</span></tt>
+            <div id="l128"
+               class="code sev- "><tt><i>128</i>     <span class="k">for</span> <span class="n">sub_iso_curr</span> <span class="ow">in</span> <span class="n">sub_iso</span><span class="p">:</span></tt>
             </div>
-            <div id="l126"
+            <div id="l129"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -902,12 +920,12 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>126</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sub_iso_curr</span><span class="p">):</span></tt>
+               </ul><tt><i>129</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sub_iso_curr</span><span class="p">):</span></tt>
             </div>
-            <div id="l127"
-               class="code sev- "><tt><i>127</i>             <span class="c1"># increase the count for each orbit</span></tt>
+            <div id="l130"
+               class="code sev- "><tt><i>130</i>             <span class="c1"># increase the count for each orbit</span></tt>
             </div>
-            <div id="l128"
+            <div id="l131"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -917,51 +935,12 @@
                      </span>
                      Missing whitespace around operator</li>
                
-               </ul><tt><i>128</i>             <span class="n">counts</span><span class="p">[</span><span class="n">node</span><span class="p">,</span> <span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_membership&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span><span class="mi">1</span></tt>
-            </div>
-            <div id="l129"
-               class="code sev- "><tt><i>129</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">/</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;aut_count&#39;</span><span class="p">]</span></tt>
-            </div>
-            <div id="l130"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>130</i>         </tt>
-            </div>
-            <div id="l131"
-               class="code sev- "><tt><i>131</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span></tt>
+               </ul><tt><i>131</i>             <span class="n">counts</span><span class="p">[</span><span class="n">node</span><span class="p">,</span> <span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_membership&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span><span class="mi">1</span></tt>
             </div>
             <div id="l132"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>132</i>     </tt>
+               class="code sev- "><tt><i>132</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">/</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;aut_count&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l133"
-               class="code sev- "><tt><i>133</i>     <span class="k">return</span> <span class="n">counts</span></tt>
-            </div>
-            <div id="l134"
-               class="code sev- "><tt><i>134</i> &nbsp;</tt>
-            </div>
-            <div id="l135"
-               class="code sev- "><tt><i>135</i> &nbsp;</tt>
-            </div>
-            <div id="l136"
-               class="code sev- "><tt><i>136</i> <span class="k">def</span> <span class="nf">subgraph_isomorphism_edge_counts</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
-            </div>
-            <div id="l137"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -971,9 +950,48 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>137</i>     </tt>
+               </ul><tt><i>133</i>         </tt>
+            </div>
+            <div id="l134"
+               class="code sev- "><tt><i>134</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span></tt>
+            </div>
+            <div id="l135"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>135</i>     </tt>
+            </div>
+            <div id="l136"
+               class="code sev- "><tt><i>136</i>     <span class="k">return</span> <span class="n">counts</span></tt>
+            </div>
+            <div id="l137"
+               class="code sev- "><tt><i>137</i> &nbsp;</tt>
             </div>
             <div id="l138"
+               class="code sev- "><tt><i>138</i> &nbsp;</tt>
+            </div>
+            <div id="l139"
+               class="code sev- "><tt><i>139</i> <span class="k">def</span> <span class="nf">subgraph_isomorphism_edge_counts</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+            </div>
+            <div id="l140"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>140</i>     </tt>
+            </div>
+            <div id="l141"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -983,25 +1001,7 @@
                      </span>
                      Too many leading '#' for block comment</li>
                
-               </ul><tt><i>138</i>     <span class="c1">##### edge structural identifiers #####</span></tt>
-            </div>
-            <div id="l139"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>139</i>     </tt>
-            </div>
-            <div id="l140"
-               class="code sev- "><tt><i>140</i>     <span class="n">subgraph_dict</span><span class="p">,</span> <span class="n">induced</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;subgraph_dict&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;induced&#39;</span><span class="p">]</span></tt>
-            </div>
-            <div id="l141"
-               class="code sev- "><tt><i>141</i>     <span class="n">directed</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </ul><tt><i>141</i>     <span class="c1">##### edge structural identifiers #####</span></tt>
             </div>
             <div id="l142"
                class="code sev-2  le">
@@ -1016,36 +1016,12 @@
                </ul><tt><i>142</i>     </tt>
             </div>
             <div id="l143"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E231
-                     </span>
-                     Missing whitespace after ','</li>
-               
-               </ul><tt><i>143</i>     <span class="n">edge_index</span> <span class="o">=</span> <span class="n">edge_index</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>143</i>     <span class="n">subgraph_dict</span><span class="p">,</span> <span class="n">induced</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;subgraph_dict&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;induced&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l144"
-               class="code sev- "><tt><i>144</i>     <span class="n">edge_dict</span> <span class="o">=</span> <span class="p">{}</span></tt>
+               class="code sev- "><tt><i>144</i>     <span class="n">directed</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
             </div>
             <div id="l145"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>145</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">):</span>         </tt>
-            </div>
-            <div id="l146"
-               class="code sev- "><tt><i>146</i>         <span class="n">edge_dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> <span class="o">=</span> <span class="n">i</span></tt>
-            </div>
-            <div id="l147"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1055,12 +1031,54 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>147</i>         </tt>
+               </ul><tt><i>145</i>     </tt>
+            </div>
+            <div id="l146"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E231
+                     </span>
+                     Missing whitespace after ','</li>
+               
+               </ul><tt><i>146</i>     <span class="n">edge_index</span> <span class="o">=</span> <span class="n">edge_index</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span></tt>
+            </div>
+            <div id="l147"
+               class="code sev- "><tt><i>147</i>     <span class="n">edge_dict</span> <span class="o">=</span> <span class="p">{}</span></tt>
             </div>
             <div id="l148"
-               class="code sev- "><tt><i>148</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">directed</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>148</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edge_index</span><span class="p">):</span>         </tt>
             </div>
             <div id="l149"
+               class="code sev- "><tt><i>149</i>         <span class="n">edge_dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> <span class="o">=</span> <span class="n">i</span></tt>
+            </div>
+            <div id="l150"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>150</i>         </tt>
+            </div>
+            <div id="l151"
+               class="code sev- "><tt><i>151</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">directed</span><span class="p">:</span></tt>
+            </div>
+            <div id="l152"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1076,12 +1094,12 @@
                      </span>
                      Missing whitespace after ',' (in 2 places)</li>
                
-               </ul><tt><i>149</i>         <span class="n">subgraph_edges</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></tt>
+               </ul><tt><i>152</i>         <span class="n">subgraph_edges</span> <span class="o">=</span> <span class="n">to_undirected</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></tt>
             </div>
-            <div id="l150"
-               class="code sev- "><tt><i>150</i> &nbsp;</tt>
+            <div id="l153"
+               class="code sev- "><tt><i>153</i> &nbsp;</tt>
             </div>
-            <div id="l151"
+            <div id="l154"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1091,9 +1109,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>151</i>     </tt>
+               </ul><tt><i>154</i>     </tt>
             </div>
-            <div id="l152"
+            <div id="l155"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1103,15 +1121,15 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>152</i>     <span class="n">G_gt</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
+               </ul><tt><i>155</i>     <span class="n">G_gt</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
             </div>
-            <div id="l153"
-               class="code sev- "><tt><i>153</i>     <span class="n">G_gt</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">edge_index</span><span class="p">))</span></tt>
+            <div id="l156"
+               class="code sev- "><tt><i>156</i>     <span class="n">G_gt</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">edge_index</span><span class="p">))</span></tt>
             </div>
-            <div id="l154"
-               class="code sev- "><tt><i>154</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span></tt>
+            <div id="l157"
+               class="code sev- "><tt><i>157</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span></tt>
             </div>
-            <div id="l155"
+            <div id="l158"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1121,34 +1139,7 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>155</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span>  </tt>
-            </div>
-            <div id="l156"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>156</i>        </tt>
-            </div>
-            <div id="l157"
-               class="code sev- "><tt><i>157</i>     <span class="c1"># compute all subgraph isomorphisms</span></tt>
-            </div>
-            <div id="l158"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (127 > 79 characters)</li>
-               
-               </ul><tt><i>158</i>     <span class="n">sub_iso</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">],</span> <span class="n">G_gt</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="n">induced</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </ul><tt><i>158</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">G_gt</span><span class="p">)</span>  </tt>
             </div>
             <div id="l159"
                class="code sev-2  le">
@@ -1160,9 +1151,24 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>159</i>     </tt>
+               </ul><tt><i>159</i>        </tt>
             </div>
             <div id="l160"
+               class="code sev- "><tt><i>160</i>     <span class="c1"># compute all subgraph isomorphisms</span></tt>
+            </div>
+            <div id="l161"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (127 > 79 characters)</li>
+               
+               </ul><tt><i>161</i>     <span class="n">sub_iso</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;subgraph&#39;</span><span class="p">],</span> <span class="n">G_gt</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="n">induced</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+            </div>
+            <div id="l162"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1172,9 +1178,21 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>160</i>             </tt>
+               </ul><tt><i>162</i>     </tt>
             </div>
-            <div id="l161"
+            <div id="l163"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>163</i>             </tt>
+            </div>
+            <div id="l164"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1190,9 +1208,9 @@
                      </span>
                      Line too long (83 > 79 characters)</li>
                
-               </ul><tt><i>161</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_partition&#39;</span><span class="p">])))</span></tt>
+               </ul><tt><i>164</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_partition&#39;</span><span class="p">])))</span></tt>
             </div>
-            <div id="l162"
+            <div id="l165"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1202,18 +1220,18 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>162</i>     </tt>
-            </div>
-            <div id="l163"
-               class="code sev- "><tt><i>163</i>     <span class="k">for</span> <span class="n">sub_iso_curr</span> <span class="ow">in</span> <span class="n">sub_iso</span><span class="p">:</span></tt>
-            </div>
-            <div id="l164"
-               class="code sev- "><tt><i>164</i>         <span class="n">mapping</span> <span class="o">=</span> <span class="n">sub_iso_curr</span><span class="o">.</span><span class="n">get_array</span><span class="p">()</span></tt>
-            </div>
-            <div id="l165"
-               class="code sev- "><tt><i>165</i> <span class="c1">#         import pdb;pdb.set_trace()</span></tt>
+               </ul><tt><i>165</i>     </tt>
             </div>
             <div id="l166"
+               class="code sev- "><tt><i>166</i>     <span class="k">for</span> <span class="n">sub_iso_curr</span> <span class="ow">in</span> <span class="n">sub_iso</span><span class="p">:</span></tt>
+            </div>
+            <div id="l167"
+               class="code sev- "><tt><i>167</i>         <span class="n">mapping</span> <span class="o">=</span> <span class="n">sub_iso_curr</span><span class="o">.</span><span class="n">get_array</span><span class="p">()</span></tt>
+            </div>
+            <div id="l168"
+               class="code sev- "><tt><i>168</i> <span class="c1">#         import pdb;pdb.set_trace()</span></tt>
+            </div>
+            <div id="l169"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1229,9 +1247,9 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>166</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subgraph_edges</span><span class="p">):</span> </tt>
+               </ul><tt><i>169</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subgraph_edges</span><span class="p">):</span> </tt>
             </div>
-            <div id="l167"
+            <div id="l170"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1241,9 +1259,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>167</i>             </tt>
+               </ul><tt><i>170</i>             </tt>
             </div>
-            <div id="l168"
+            <div id="l171"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1253,9 +1271,9 @@
                      </span>
                      Line too long (100 > 79 characters)</li>
                
-               </ul><tt><i>168</i>             <span class="c1"># for every edge in the graph H, find the edge in the subgraph G_S to which it is mapped</span></tt>
+               </ul><tt><i>171</i>             <span class="c1"># for every edge in the graph H, find the edge in the subgraph G_S to which it is mapped</span></tt>
             </div>
-            <div id="l169"
+            <div id="l172"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1265,9 +1283,9 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>169</i>             <span class="c1"># (by finding where its endpoints are matched). </span></tt>
+               </ul><tt><i>172</i>             <span class="c1"># (by finding where its endpoints are matched). </span></tt>
             </div>
-            <div id="l170"
+            <div id="l173"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1277,67 +1295,31 @@
                      </span>
                      Line too long (89 > 79 characters)</li>
                
-               </ul><tt><i>170</i>             <span class="c1"># Then, increase the count of the matched edge w.r.t. the corresponding orbit</span></tt>
-            </div>
-            <div id="l171"
-               class="code sev- "><tt><i>171</i>             <span class="c1"># Repeat for the reverse edge (the one with the opposite direction)</span></tt>
-            </div>
-            <div id="l172"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>172</i>             </tt>
-            </div>
-            <div id="l173"
-               class="code sev- "><tt><i>173</i>             <span class="n">edge_orbit</span> <span class="o">=</span> <span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_membership&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span></tt>
+               </ul><tt><i>173</i>             <span class="c1"># Then, increase the count of the matched edge w.r.t. the corresponding orbit</span></tt>
             </div>
             <div id="l174"
-               class="code sev- "><tt><i>174</i>             <span class="n">mapped_edge</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">mapping</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">mapping</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span></tt>
+               class="code sev- "><tt><i>174</i>             <span class="c1"># Repeat for the reverse edge (the one with the opposite direction)</span></tt>
             </div>
             <div id="l175"
-               class="code sev- "><tt><i>175</i>             <span class="n">counts</span><span class="p">[</span><span class="n">edge_dict</span><span class="p">[</span><span class="n">mapped_edge</span><span class="p">],</span> <span class="n">edge_orbit</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>175</i>             </tt>
             </div>
             <div id="l176"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>176</i>          </tt>
+               class="code sev- "><tt><i>176</i>             <span class="n">edge_orbit</span> <span class="o">=</span> <span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;orbit_membership&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span></tt>
             </div>
             <div id="l177"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>177</i>             </tt>
+               class="code sev- "><tt><i>177</i>             <span class="n">mapped_edge</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">mapping</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">mapping</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span></tt>
             </div>
             <div id="l178"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E303
-                     </span>
-                     Too many blank lines (2)</li>
-               
-               </ul><tt><i>178</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">/</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;aut_count&#39;</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>178</i>             <span class="n">counts</span><span class="p">[</span><span class="n">edge_dict</span><span class="p">[</span><span class="n">mapped_edge</span><span class="p">],</span> <span class="n">edge_orbit</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span></tt>
             </div>
             <div id="l179"
                class="code sev-2  le">
@@ -1349,12 +1331,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>179</i>     </tt>
+               </ul><tt><i>179</i>          </tt>
             </div>
             <div id="l180"
-               class="code sev- "><tt><i>180</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span></tt>
-            </div>
-            <div id="l181"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1364,13 +1343,34 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>181</i>     </tt>
+               </ul><tt><i>180</i>             </tt>
+            </div>
+            <div id="l181"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (2)</li>
+               
+               </ul><tt><i>181</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">/</span><span class="n">subgraph_dict</span><span class="p">[</span><span class="s1">&#39;aut_count&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l182"
-               class="code sev- "><tt><i>182</i>     <span class="k">return</span> <span class="n">counts</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>182</i>     </tt>
             </div>
             <div id="l183"
-               class="code sev- "><tt><i>183</i> &nbsp;</tt>
+               class="code sev- "><tt><i>183</i>     <span class="n">counts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span></tt>
             </div>
             <div id="l184"
                class="code sev-2  le">
@@ -1382,31 +1382,13 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>184</i>  </tt>
+               </ul><tt><i>184</i>     </tt>
             </div>
             <div id="l185"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>185</i>     </tt>
+               class="code sev- "><tt><i>185</i>     <span class="k">return</span> <span class="n">counts</span></tt>
             </div>
             <div id="l186"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>186</i>     </tt>
+               class="code sev- "><tt><i>186</i> &nbsp;</tt>
             </div>
             <div id="l187"
                class="code sev-2  le">
@@ -1418,9 +1400,45 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>187</i>     </tt>
+               </ul><tt><i>187</i>  </tt>
             </div>
             <div id="l188"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>188</i>     </tt>
+            </div>
+            <div id="l189"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>189</i>     </tt>
+            </div>
+            <div id="l190"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>190</i>     </tt>
+            </div>
+            <div id="l191"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1436,9 +1454,9 @@
                      </span>
                      Block comment should start with '# '</li>
                
-               </ul><tt><i>188</i> <span class="c1">#----------------------- line graph edge automorphism: deprecated</span></tt>
+               </ul><tt><i>191</i> <span class="c1">#----------------------- line graph edge automorphism: deprecated</span></tt>
             </div>
-            <div id="l189"
+            <div id="l192"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1448,15 +1466,15 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>189</i>     </tt>
+               </ul><tt><i>192</i>     </tt>
             </div>
-            <div id="l190"
-               class="code sev- "><tt><i>190</i> &nbsp;</tt>
+            <div id="l193"
+               class="code sev- "><tt><i>193</i> &nbsp;</tt>
             </div>
-            <div id="l191"
-               class="code sev- "><tt><i>191</i> &nbsp;</tt>
+            <div id="l194"
+               class="code sev- "><tt><i>194</i> &nbsp;</tt>
             </div>
-            <div id="l192"
+            <div id="l195"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1466,9 +1484,9 @@
                      </span>
                      Too many blank lines (3)</li>
                
-               </ul><tt><i>192</i> <span class="k">def</span> <span class="nf">edge_automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
+               </ul><tt><i>195</i> <span class="k">def</span> <span class="nf">edge_automorphism_orbits</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></tt>
             </div>
-            <div id="l193"
+            <div id="l196"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1478,9 +1496,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>193</i>     </tt>
+               </ul><tt><i>196</i>     </tt>
             </div>
-            <div id="l194"
+            <div id="l197"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1490,9 +1508,9 @@
                      </span>
                      Too many leading '#' for block comment</li>
                
-               </ul><tt><i>194</i>     <span class="c1">##### edge automorphism orbits according to the line graph #####</span></tt>
+               </ul><tt><i>197</i>     <span class="c1">##### edge automorphism orbits according to the line graph #####</span></tt>
             </div>
-            <div id="l195"
+            <div id="l198"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1502,9 +1520,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>195</i>     </tt>
+               </ul><tt><i>198</i>     </tt>
             </div>
-            <div id="l196"
+            <div id="l199"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1514,27 +1532,27 @@
                      </span>
                      Missing whitespace around operator</li>
                
-               </ul><tt><i>196</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
-            </div>
-            <div id="l197"
-               class="code sev- "><tt><i>197</i> &nbsp;</tt>
-            </div>
-            <div id="l198"
-               class="code sev- "><tt><i>198</i>     <span class="n">graph_nx</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_edgelist</span><span class="p">(</span><span class="n">edge_list</span><span class="p">)</span></tt>
-            </div>
-            <div id="l199"
-               class="code sev- "><tt><i>199</i>     <span class="n">graph</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
+               </ul><tt><i>199</i>     <span class="n">directed</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;directed&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="kc">False</span></tt>
             </div>
             <div id="l200"
-               class="code sev- "><tt><i>200</i>     <span class="n">graph</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="n">edge_list</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>200</i> &nbsp;</tt>
             </div>
             <div id="l201"
-               class="code sev- "><tt><i>201</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>201</i>     <span class="n">graph_nx</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_edgelist</span><span class="p">(</span><span class="n">edge_list</span><span class="p">)</span></tt>
             </div>
             <div id="l202"
-               class="code sev- "><tt><i>202</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>202</i>     <span class="n">graph</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
             </div>
             <div id="l203"
+               class="code sev- "><tt><i>203</i>     <span class="n">graph</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="n">edge_list</span><span class="p">)</span></tt>
+            </div>
+            <div id="l204"
+               class="code sev- "><tt><i>204</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></tt>
+            </div>
+            <div id="l205"
+               class="code sev- "><tt><i>205</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></tt>
+            </div>
+            <div id="l206"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1544,12 +1562,12 @@
                      </span>
                      Line too long (109 > 79 characters)</li>
                
-               </ul><tt><i>203</i>     <span class="n">aut_group</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </ul><tt><i>206</i>     <span class="n">aut_group</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
-            <div id="l204"
-               class="code sev- "><tt><i>204</i>     <span class="n">aut_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">aut_group</span><span class="p">)</span></tt>
+            <div id="l207"
+               class="code sev- "><tt><i>207</i>     <span class="n">aut_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">aut_group</span><span class="p">)</span></tt>
             </div>
-            <div id="l205"
+            <div id="l208"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1559,9 +1577,9 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>205</i>     </tt>
+               </ul><tt><i>208</i>     </tt>
             </div>
-            <div id="l206"
+            <div id="l209"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1571,27 +1589,15 @@
                      </span>
                      Too many leading '#' for block comment</li>
                
-               </ul><tt><i>206</i>     <span class="c1">##### compute line graph vertex automorphism orbits #####</span></tt>
-            </div>
-            <div id="l207"
-               class="code sev- "><tt><i>207</i> &nbsp;</tt>
-            </div>
-            <div id="l208"
-               class="code sev- "><tt><i>208</i>     <span class="n">graph_nx_line</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">line_graph</span><span class="p">(</span><span class="n">graph_nx</span><span class="p">)</span></tt>
-            </div>
-            <div id="l209"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E231
-                     </span>
-                     Missing whitespace after ','</li>
-               
-               </ul><tt><i>209</i>     <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="o">.</span><span class="n">nodes</span><span class="p">)}</span></tt>
+               </ul><tt><i>209</i>     <span class="c1">##### compute line graph vertex automorphism orbits #####</span></tt>
             </div>
             <div id="l210"
+               class="code sev- "><tt><i>210</i> &nbsp;</tt>
+            </div>
+            <div id="l211"
+               class="code sev- "><tt><i>211</i>     <span class="n">graph_nx_line</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">line_graph</span><span class="p">(</span><span class="n">graph_nx</span><span class="p">)</span></tt>
+            </div>
+            <div id="l212"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1601,27 +1607,39 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>210</i>     <span class="n">inverse_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">node</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="o">.</span><span class="n">nodes</span><span class="p">)}</span></tt>
-            </div>
-            <div id="l211"
-               class="code sev- "><tt><i>211</i> &nbsp;</tt>
-            </div>
-            <div id="l212"
-               class="code sev- "><tt><i>212</i>     <span class="n">graph_nx_line</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span></tt>
+               </ul><tt><i>212</i>     <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="o">.</span><span class="n">nodes</span><span class="p">)}</span></tt>
             </div>
             <div id="l213"
-               class="code sev- "><tt><i>213</i>     <span class="n">line_graph</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E231
+                     </span>
+                     Missing whitespace after ','</li>
+               
+               </ul><tt><i>213</i>     <span class="n">inverse_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">node</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="o">.</span><span class="n">nodes</span><span class="p">)}</span></tt>
             </div>
             <div id="l214"
-               class="code sev- "><tt><i>214</i>     <span class="n">line_graph</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="o">.</span><span class="n">edges</span><span class="p">))</span></tt>
+               class="code sev- "><tt><i>214</i> &nbsp;</tt>
             </div>
             <div id="l215"
-               class="code sev- "><tt><i>215</i> &nbsp;</tt>
+               class="code sev- "><tt><i>215</i>     <span class="n">graph_nx_line</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span></tt>
             </div>
             <div id="l216"
-               class="code sev- "><tt><i>216</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">line_graph</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>216</i>     <span class="n">line_graph</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="n">directed</span><span class="p">)</span></tt>
             </div>
             <div id="l217"
+               class="code sev- "><tt><i>217</i>     <span class="n">line_graph</span><span class="o">.</span><span class="n">add_edge_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">graph_nx_line</span><span class="o">.</span><span class="n">edges</span><span class="p">))</span></tt>
+            </div>
+            <div id="l218"
+               class="code sev- "><tt><i>218</i> &nbsp;</tt>
+            </div>
+            <div id="l219"
+               class="code sev- "><tt><i>219</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_self_loops</span><span class="p">(</span><span class="n">line_graph</span><span class="p">)</span></tt>
+            </div>
+            <div id="l220"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1631,12 +1649,12 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>217</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">line_graph</span><span class="p">)</span>  </tt>
+               </ul><tt><i>220</i>     <span class="n">gt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">remove_parallel_edges</span><span class="p">(</span><span class="n">line_graph</span><span class="p">)</span>  </tt>
             </div>
-            <div id="l218"
-               class="code sev- "><tt><i>218</i> &nbsp;</tt>
+            <div id="l221"
+               class="code sev- "><tt><i>221</i> &nbsp;</tt>
             </div>
-            <div id="l219"
+            <div id="l222"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1646,39 +1664,39 @@
                      </span>
                      Line too long (125 > 79 characters)</li>
                
-               </ul><tt><i>219</i>     <span class="n">aut_group_edges</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">line_graph</span><span class="p">,</span> <span class="n">line_graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
-            </div>
-            <div id="l220"
-               class="code sev- "><tt><i>220</i> &nbsp;</tt>
-            </div>
-            <div id="l221"
-               class="code sev- "><tt><i>221</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{}</span></tt>
-            </div>
-            <div id="l222"
-               class="code sev- "><tt><i>222</i>     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">line_graph</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">():</span></tt>
+               </ul><tt><i>222</i>     <span class="n">aut_group_edges</span> <span class="o">=</span> <span class="n">gt_topology</span><span class="o">.</span><span class="n">subgraph_isomorphism</span><span class="p">(</span><span class="n">line_graph</span><span class="p">,</span> <span class="n">line_graph</span><span class="p">,</span> <span class="n">induced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
             <div id="l223"
-               class="code sev- "><tt><i>223</i>         <span class="n">orbit_membership</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span></tt>
+               class="code sev- "><tt><i>223</i> &nbsp;</tt>
             </div>
             <div id="l224"
-               class="code sev- "><tt><i>224</i> &nbsp;</tt>
+               class="code sev- "><tt><i>224</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{}</span></tt>
             </div>
             <div id="l225"
-               class="code sev- "><tt><i>225</i>     <span class="k">for</span> <span class="n">aut</span> <span class="ow">in</span> <span class="n">aut_group_edges</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>225</i>     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">line_graph</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">():</span></tt>
             </div>
             <div id="l226"
-               class="code sev- "><tt><i>226</i>         <span class="k">for</span> <span class="n">original</span><span class="p">,</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">aut</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>226</i>         <span class="n">orbit_membership</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span></tt>
             </div>
             <div id="l227"
-               class="code sev- "><tt><i>227</i>             <span class="n">role</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">vertex</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>227</i> &nbsp;</tt>
             </div>
             <div id="l228"
-               class="code sev- "><tt><i>228</i>             <span class="n">orbit_membership</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="n">role</span></tt>
+               class="code sev- "><tt><i>228</i>     <span class="k">for</span> <span class="n">aut</span> <span class="ow">in</span> <span class="n">aut_group_edges</span><span class="p">:</span></tt>
             </div>
             <div id="l229"
-               class="code sev- "><tt><i>229</i> &nbsp;</tt>
+               class="code sev- "><tt><i>229</i>         <span class="k">for</span> <span class="n">original</span><span class="p">,</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">aut</span><span class="p">):</span></tt>
             </div>
             <div id="l230"
+               class="code sev- "><tt><i>230</i>             <span class="n">role</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">vertex</span><span class="p">])</span></tt>
+            </div>
+            <div id="l231"
+               class="code sev- "><tt><i>231</i>             <span class="n">orbit_membership</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span> <span class="o">=</span> <span class="n">role</span></tt>
+            </div>
+            <div id="l232"
+               class="code sev- "><tt><i>232</i> &nbsp;</tt>
+            </div>
+            <div id="l233"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1688,21 +1706,21 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>230</i>     <span class="n">orbit_membership_list</span> <span class="o">=</span> <span class="p">[[],[]]</span></tt>
-            </div>
-            <div id="l231"
-               class="code sev- "><tt><i>231</i>     <span class="k">for</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">om_curr</span> <span class="ow">in</span> <span class="n">orbit_membership</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
-            </div>
-            <div id="l232"
-               class="code sev- "><tt><i>232</i>         <span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span></tt>
-            </div>
-            <div id="l233"
-               class="code sev- "><tt><i>233</i>         <span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">om_curr</span><span class="p">)</span></tt>
+               </ul><tt><i>233</i>     <span class="n">orbit_membership_list</span> <span class="o">=</span> <span class="p">[[],[]]</span></tt>
             </div>
             <div id="l234"
-               class="code sev- "><tt><i>234</i> &nbsp;</tt>
+               class="code sev- "><tt><i>234</i>     <span class="k">for</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">om_curr</span> <span class="ow">in</span> <span class="n">orbit_membership</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
             </div>
             <div id="l235"
+               class="code sev- "><tt><i>235</i>         <span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span></tt>
+            </div>
+            <div id="l236"
+               class="code sev- "><tt><i>236</i>         <span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">om_curr</span><span class="p">)</span></tt>
+            </div>
+            <div id="l237"
+               class="code sev- "><tt><i>237</i> &nbsp;</tt>
+            </div>
+            <div id="l238"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1718,12 +1736,12 @@
                      </span>
                      Unexpected spaces around keyword / parameter equals (in 2 places)</li>
                
-               </ul><tt><i>235</i>     <span class="n">_</span><span class="p">,</span> <span class="n">contiguous_orbit_membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">return_inverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span></tt>
+               </ul><tt><i>238</i>     <span class="n">_</span><span class="p">,</span> <span class="n">contiguous_orbit_membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">return_inverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span></tt>
             </div>
-            <div id="l236"
-               class="code sev- "><tt><i>236</i> &nbsp;</tt>
+            <div id="l239"
+               class="code sev- "><tt><i>239</i> &nbsp;</tt>
             </div>
-            <div id="l237"
+            <div id="l240"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1739,12 +1757,12 @@
                      </span>
                      Line too long (115 > 79 characters)</li>
                
-               </ul><tt><i>237</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{</span><span class="n">vertex</span><span class="p">:</span> <span class="n">contiguous_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span></tt>
+               </ul><tt><i>240</i>     <span class="n">orbit_membership</span> <span class="o">=</span> <span class="p">{</span><span class="n">vertex</span><span class="p">:</span> <span class="n">contiguous_orbit_membership</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">vertex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orbit_membership_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span></tt>
             </div>
-            <div id="l238"
-               class="code sev- "><tt><i>238</i> &nbsp;</tt>
+            <div id="l241"
+               class="code sev- "><tt><i>241</i> &nbsp;</tt>
             </div>
-            <div id="l239"
+            <div id="l242"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1754,12 +1772,12 @@
                      </span>
                      Missing whitespace around operator</li>
                
-               </ul><tt><i>239</i>     <span class="n">orbit_partition</span><span class="o">=</span> <span class="p">{}</span></tt>
+               </ul><tt><i>242</i>     <span class="n">orbit_partition</span><span class="o">=</span> <span class="p">{}</span></tt>
             </div>
-            <div id="l240"
-               class="code sev- "><tt><i>240</i>     <span class="k">for</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">orbit</span> <span class="ow">in</span> <span class="n">orbit_membership</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
+            <div id="l243"
+               class="code sev- "><tt><i>243</i>     <span class="k">for</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">orbit</span> <span class="ow">in</span> <span class="n">orbit_membership</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
             </div>
-            <div id="l241"
+            <div id="l244"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1775,12 +1793,12 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>241</i>         <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">inverse_mapping</span><span class="p">[</span><span class="n">vertex</span><span class="p">]]</span> <span class="k">if</span> <span class="n">orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orbit_partition</span> <span class="k">else</span> <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">inverse_mapping</span><span class="p">[</span><span class="n">vertex</span><span class="p">]]</span>    </tt>
+               </ul><tt><i>244</i>         <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">inverse_mapping</span><span class="p">[</span><span class="n">vertex</span><span class="p">]]</span> <span class="k">if</span> <span class="n">orbit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">orbit_partition</span> <span class="k">else</span> <span class="n">orbit_partition</span><span class="p">[</span><span class="n">orbit</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">inverse_mapping</span><span class="p">[</span><span class="n">vertex</span><span class="p">]]</span>    </tt>
             </div>
-            <div id="l242"
-               class="code sev- "><tt><i>242</i> &nbsp;</tt>
+            <div id="l245"
+               class="code sev- "><tt><i>245</i> &nbsp;</tt>
             </div>
-            <div id="l243"
+            <div id="l246"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1796,15 +1814,15 @@
                      </span>
                      Line too long (80 > 79 characters)</li>
                
-               </ul><tt><i>243</i>     <span class="c1">##### transfer line graph vertex automorphism orbits to original edges #####</span></tt>
+               </ul><tt><i>246</i>     <span class="c1">##### transfer line graph vertex automorphism orbits to original edges #####</span></tt>
             </div>
-            <div id="l244"
-               class="code sev- "><tt><i>244</i> &nbsp;</tt>
+            <div id="l247"
+               class="code sev- "><tt><i>247</i> &nbsp;</tt>
             </div>
-            <div id="l245"
-               class="code sev- "><tt><i>245</i>     <span class="n">orbit_membership_new</span> <span class="o">=</span> <span class="p">{}</span></tt>
+            <div id="l248"
+               class="code sev- "><tt><i>248</i>     <span class="n">orbit_membership_new</span> <span class="o">=</span> <span class="p">{}</span></tt>
             </div>
-            <div id="l246"
+            <div id="l249"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1820,9 +1838,9 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>246</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()):</span> </tt>
+               </ul><tt><i>249</i>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()):</span> </tt>
             </div>
-            <div id="l247"
+            <div id="l250"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1838,15 +1856,15 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>247</i>         <span class="n">mapped_edge</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> <span class="k">if</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span> <span class="ow">in</span> <span class="n">mapping</span> <span class="k">else</span> <span class="n">mapping</span><span class="p">[</span><span class="nb">tuple</span><span class="p">([</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]])]</span></tt>
+               </ul><tt><i>250</i>         <span class="n">mapped_edge</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)]</span> <span class="k">if</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span> <span class="ow">in</span> <span class="n">mapping</span> <span class="k">else</span> <span class="n">mapping</span><span class="p">[</span><span class="nb">tuple</span><span class="p">([</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]])]</span></tt>
             </div>
-            <div id="l248"
-               class="code sev- "><tt><i>248</i>         <span class="n">orbit_membership_new</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">mapped_edge</span><span class="p">]</span></tt>
+            <div id="l251"
+               class="code sev- "><tt><i>251</i>         <span class="n">orbit_membership_new</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">orbit_membership</span><span class="p">[</span><span class="n">mapped_edge</span><span class="p">]</span></tt>
             </div>
-            <div id="l249"
-               class="code sev- "><tt><i>249</i> &nbsp;</tt>
+            <div id="l252"
+               class="code sev- "><tt><i>252</i> &nbsp;</tt>
             </div>
-            <div id="l250"
+            <div id="l253"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1862,15 +1880,15 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>250</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Edge orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span> </tt>
+               </ul><tt><i>253</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Edge orbit partition of given substructure: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span> </tt>
             </div>
-            <div id="l251"
-               class="code sev- "><tt><i>251</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of edge orbits: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">)))</span></tt>
+            <div id="l254"
+               class="code sev- "><tt><i>254</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of edge orbits: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">)))</span></tt>
             </div>
-            <div id="l252"
-               class="code sev- "><tt><i>252</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Graph (vertex) automorphism count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aut_count</span><span class="p">))</span></tt>
+            <div id="l255"
+               class="code sev- "><tt><i>255</i>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Graph (vertex) automorphism count: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aut_count</span><span class="p">))</span></tt>
             </div>
-            <div id="l253"
+            <div id="l256"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1880,10 +1898,10 @@
                      </span>
                      Blank line contains whitespace</li>
                
-               </ul><tt><i>253</i>     </tt>
+               </ul><tt><i>256</i>     </tt>
             </div>
-            <div id="l254"
-               class="code sev- "><tt><i>254</i>     <span class="k">return</span> <span class="n">graph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership_new</span><span class="p">,</span> <span class="n">aut_count</span></tt>
+            <div id="l257"
+               class="code sev- "><tt><i>257</i>     <span class="k">return</span> <span class="n">graph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership_new</span><span class="p">,</span> <span class="n">aut_count</span></tt>
             </div>
             
          </div>

@@ -428,6 +428,11 @@ Unannotated (x3)">    parser.add_argument('--irm_lambda', type=float)</span>
 Unannotated (x3)">    parser.add_argument('--irm_penalty_anneal_iters', type=int)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('--algo_log_metric')</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--gsn_id_type', type=str,</span>
+<span class="line-any" title="No Anys on this line!">                        choices=['cycle_graph', 'path_graph', 'complete_graph', 'binomial_tree'])</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--gsn_k', type=int)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Model selection</span>
 <span class="line-any" title="Any Types on this line: 
@@ -521,30 +526,17 @@ Unimported (x1)">    parser.add_argument('--progress_bar', type=parse_bool, cons
 Unannotated (x3)
 Unimported (x1)">    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # GSN</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">    parser.add_argument('--gsn', type=parse_bool, default=False)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    parser.add_argument('--id_type', type=str, default='cycle_graph')</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    parser.add_argument('--k', type=int, default=6)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    config = parser.parse_args()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
 Unimported (x1)">    config = populate_defaults(config)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # For the GlobalWheat detection dataset,</span>
-<span class="line-empty" title="No Anys on this line!">    # we need to change the multiprocessing strategy or there will be</span>
-<span class="line-empty" title="No Anys on this line!">    # too many open file descriptors.</span>
+<span class="line-empty" title="No Anys on this line!">    # For the 3wlgnn model, we need to set batch_size to 1</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    if config.dataset == 'globalwheat':</span>
+Unannotated (x3)">    if config.model == '3wlgnn':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">        torch.multiprocessing.set_sharing_strategy('file_system')</span>
+Unannotated (x2)">        config.batch_size = 1</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Set device</span>
 <span class="line-any" title="Any Types on this line: 
@@ -577,9 +569,6 @@ Unannotated (x3)">        os.makedirs(config.log_dir)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">    logger = Logger(os.path.join(config.log_dir, 'log.txt'), mode)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">    result_logger = Logger(os.path.join(config.log_dir, 'result.txt'), mode)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Record config</span>
 <span class="line-any" title="Any Types on this line: 
@@ -592,6 +581,12 @@ Unannotated (x3)
 Unimported (x1)">    set_seed(config.seed)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Data</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    if config.algorithm == 'GSN':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        config.dataset_kwargs['gsn_id_type'] = config.gsn_id_type</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        config.dataset_kwargs['gsn_k'] = config.gsn_k</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">    full_dataset = gds.get_dataset(</span>
 <span class="line-any" title="Any Types on this line: 
@@ -607,11 +602,11 @@ Unannotated (x2)">        split_scheme=config.split_scheme,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        random_split=config.random_split,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        gsn=config.gsn,</span>
+Unannotated (x3)">        subgraph=True if config.algorithm == 'GSN' else False,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        id_type=config.id_type,</span>
+Unannotated (x2)">        algorithm=config.algorithm,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        k=config.k,</span>
+Unannotated (x2)">        model=config.model,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        **config.dataset_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -726,6 +721,7 @@ Unannotated (x2)">        log_grouper = train_grouper</span>
 Unannotated (x4)
 Unimported (x1)">    log_group_data(datasets, log_grouper, logger)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    </span>
 <span class="line-empty" title="No Anys on this line!">    ## Initialize algorithm</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
@@ -735,11 +731,14 @@ Unannotated (x1)">        config=config,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        datasets=datasets,</span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        full_dataset=full_dataset,</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        train_grouper=train_grouper)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">    model_prefix = get_model_prefix(datasets['train'], config)</span>
+<span class="line-empty" title="No Anys on this line!">   </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    if not config.eval_only:</span>

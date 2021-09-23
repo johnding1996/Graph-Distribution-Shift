@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', function () {
                </span>
                <strong>E501:</strong> line too long (114 > 79 characters)
                
-                  (and 16 similar)
+                  (and 17 similar)
                
             </a>
             <ul class="details">
@@ -162,36 +162,36 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (91 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l100">
-                  <tt><i>100</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l102">
+                  <tt><i>102</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (106 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l101">
-                  <tt><i>101</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l103">
+                  <tt><i>103</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (121 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l106">
-                  <tt><i>106</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l108">
+                  <tt><i>108</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (83 > 79 characters):</p>
+               <p>Line too long (89 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l123">
-                  <tt><i>123</i>             <span class="n">adj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sym_normalize_adj</span><span class="p">(</span><span class="n">to_dense_adj</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_index</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l120">
+                  <tt><i>120</i>             <span class="n">deg_inv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">deg</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">deg</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (85 > 79 characters):</p>
+               <p>Line too long (109 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l142">
-                  <tt><i>142</i>         <span class="n">deg_inv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">deg</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">deg</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l133">
+                  <tt><i>133</i>             <span class="n">adj</span> <span class="o">=</span> <span class="n">_sym_normalize_adj</span><span class="p">(</span><span class="n">to_dense_adj</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">max_num_nodes</span><span class="o">=</span><span class="n">graph</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span></tt>
                </a>
             </li>
             </ul>

@@ -159,12 +159,26 @@
 <span id="L149" class="lineno"><a class="lineno" href="#L149">149</a></span>
 <span id="L150" class="lineno"><a class="lineno" href="#L150">150</a></span>
 <span id="L151" class="lineno"><a class="lineno" href="#L151">151</a></span>
+<span id="L152" class="lineno"><a class="lineno" href="#L152">152</a></span>
+<span id="L153" class="lineno"><a class="lineno" href="#L153">153</a></span>
+<span id="L154" class="lineno"><a class="lineno" href="#L154">154</a></span>
+<span id="L155" class="lineno"><a class="lineno" href="#L155">155</a></span>
+<span id="L156" class="lineno"><a class="lineno" href="#L156">156</a></span>
+<span id="L157" class="lineno"><a class="lineno" href="#L157">157</a></span>
+<span id="L158" class="lineno"><a class="lineno" href="#L158">158</a></span>
+<span id="L159" class="lineno"><a class="lineno" href="#L159">159</a></span>
+<span id="L160" class="lineno"><a class="lineno" href="#L160">160</a></span>
+<span id="L161" class="lineno"><a class="lineno" href="#L161">161</a></span>
+<span id="L162" class="lineno"><a class="lineno" href="#L162">162</a></span>
+<span id="L163" class="lineno"><a class="lineno" href="#L163">163</a></span>
+<span id="L164" class="lineno"><a class="lineno" href="#L164">164</a></span>
+<span id="L165" class="lineno"><a class="lineno" href="#L165">165</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">dataset_defaults = {</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molpcba': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 120084,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'mol'},</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 186, 'dropout': 0.5, 'dataset_group': 'mol'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 0.10,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'multitask_bce',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['scaffold', ],</span>
@@ -181,18 +195,20 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multitask_binary_accuracy',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molhiv': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 19089,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'mol'},</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 186, 'dropout': 0.5, 'dataset_group': 'mol'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'BCEWithLogitsLoss',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['scaffold', ],</span>
 <span class="line-precise" title="No Anys on this line!">        'val_metric': 'rocauc',</span>
 <span class="line-precise" title="No Anys on this line!">        'val_metric_decreasing': False,</span>
 <span class="line-precise" title="No Anys on this line!">        'optimizer': 'Adam',</span>
-<span class="line-precise" title="No Anys on this line!">        'batch_size': 128,</span>
+<span class="line-precise" title="No Anys on this line!">        'batch_size': 64,</span>
 <span class="line-precise" title="No Anys on this line!">        'lr': 1e-03,</span>
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
@@ -202,11 +218,13 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ogbg-ppa': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 1581,  # not mapped</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'ppa'},</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 7, 'dropout': 0.5, 'dataset_group': 'ppa'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 0.10,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['species', ],</span>
@@ -223,11 +241,13 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'RotatedMNIST': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 6,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 3, 'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['angle', ],</span>
@@ -244,12 +264,14 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM-Environment': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 4,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual_mnist',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'SBM'},</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['composition', ],</span>
@@ -266,12 +288,14 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM-Isolation': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual_mnist',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'SBM'},</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['composition', ],</span>
@@ -288,11 +312,13 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'UPFD': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'UPFD'},</span>
+<span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 10, 'dropout': 0.5, 'dataset_group': 'UPFD'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'BCEWithLogitsLoss',</span>
 <span class="line-precise" title="No Anys on this line!">        'groupby_fields': ['size', ],</span>
@@ -309,6 +335,8 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
+<span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-empty" title="No Anys on this line!">}</span>
 </pre></td>

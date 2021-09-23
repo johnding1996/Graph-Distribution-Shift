@@ -52,62 +52,111 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  7
+                  14
                </span>
-               <strong>E501:</strong> line too long (122 > 79 characters)
+               <strong>E501:</strong> line too long (92 > 79 characters)
                
-                  (and 5 similar)
+                  (and 10 similar)
                
             </a>
             <ul class="details">
             <li>
                
+               <p>Line too long (92 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l9">
+                  <tt><i>9</i> <span class="k">def</span> <span class="nf">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">full_dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
                <p>Line too long (122 > 79 characters):</p>
                
-               <a href="models.initializer.source.html#l10">
-                  <tt><i>10</i> <span class="sd">            - is_featurizer (bool): whether to return a model or a (featurizer, classifier) pair that constitutes a model.</span></tt>
+               <a href="models.initializer.source.html#l15">
+                  <tt><i>15</i> <span class="sd">            - is_featurizer (bool): whether to return a model or a (featurizer, classifier) pair that constitutes a model.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (113 > 79 characters):</p>
                
-               <a href="models.initializer.source.html#l13">
-                  <tt><i>13</i> <span class="sd">            - featurizer: a model that outputs feature Tensors of shape (batch_size, ..., feature dimensionality)</span></tt>
+               <a href="models.initializer.source.html#l18">
+                  <tt><i>18</i> <span class="sd">            - featurizer: a model that outputs feature Tensors of shape (batch_size, ..., feature dimensionality)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (127 > 79 characters):</p>
                
-               <a href="models.initializer.source.html#l14">
-                  <tt><i>14</i> <span class="sd">            - classifier: a model that takes in feature Tensors and outputs predictions. In most cases, this is a linear layer.</span></tt>
+               <a href="models.initializer.source.html#l19">
+                  <tt><i>19</i> <span class="sd">            - classifier: a model that takes in feature Tensors and outputs predictions. In most cases, this is a linear layer.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (88 > 79 characters):</p>
                
-               <a href="models.initializer.source.html#l17">
-                  <tt><i>17</i> <span class="sd">            - model: a model that is equivalent to nn.Sequential(featurizer, classifier)</span></tt>
+               <a href="models.initializer.source.html#l21">
+                  <tt><i>21</i> <span class="sd">            - model: a model that is equivalent to nn.Sequential(featurizer, classifier)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l26">
+                  <tt><i>26</i>                 <span class="n">featurizer</span> <span class="o">=</span> <span class="n">ThreeWLGNNNet</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (100 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l30">
+                  <tt><i>30</i>                 <span class="n">model</span> <span class="o">=</span> <span class="n">ThreeWLGNNNet</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (119 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l34">
+                  <tt><i>34</i>                     <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (119 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l38">
+                  <tt><i>38</i>                     <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (111 > 79 characters):</p>
                
-               <a href="models.initializer.source.html#l24">
-                  <tt><i>24</i>             <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               <a href="models.initializer.source.html#l43">
+                  <tt><i>43</i>                 <span class="n">model</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (111 > 79 characters):</p>
+               <p>Line too long (81 > 79 characters):</p>
                
-               <a href="models.initializer.source.html#l28">
-                  <tt><i>28</i>             <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               <a href="models.initializer.source.html#l53">
+                  <tt><i>53</i>                                  <span class="n">in_edge_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_edge_features</span><span class="p">,</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (103 > 79 characters):</p>
+               <p>Line too long (82 > 79 characters):</p>
                
-               <a href="models.initializer.source.html#l33">
-                  <tt><i>33</i>         <span class="n">model</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               <a href="models.initializer.source.html#l54">
+                  <tt><i>54</i>                                  <span class="n">d_in_node_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_node_encoder</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l55">
+                  <tt><i>55</i>                                  <span class="n">d_in_edge_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_edge_encoder</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l57">
+                  <tt><i>57</i>                                  <span class="n">dataset_group</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -124,54 +173,13 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="models.initializer.source.html#l23">
-                  <tt><i>23</i>         <span class="k">if</span> <span class="n">is_pooled</span> <span class="p">:</span></tt>
+               <a href="models.initializer.source.html#l33">
+                  <tt><i>33</i>                 <span class="k">if</span> <span class="n">is_pooled</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="models.initializer.source.html#l27">
-                  <tt><i>27</i>         <span class="k">else</span> <span class="p">:</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E303">
-               <span class="count sev-2">
-                  2
-               </span>
-               <strong>E303:</strong> too many blank lines (2)
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="models.initializer.source.html#l21">
-                  <tt><i>21</i>     <span class="kn">from</span> <span class="nn">models.gnn</span> <span class="kn">import</span> <span class="n">GNN</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.initializer.source.html#l36">
-                  <tt><i>36</i>     <span class="c1"># The `needs_y` attribute specifies whether the model&#39;s forward function</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E302">
-               <span class="count sev-2">
-                  1
-               </span>
-               <strong>E302:</strong> expected 2 blank lines, found 1
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="models.initializer.source.html#l4">
-                  <tt><i>4</i> <span class="k">def</span> <span class="nf">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></tt>
+               <a href="models.initializer.source.html#l37">
+                  <tt><i>37</i>                 <span class="k">else</span> <span class="p">:</span></tt>
                </a>
             </li>
             </ul>

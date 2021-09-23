@@ -17,12 +17,15 @@
 
          <div id="doc">
             <div id="l1"
-               class="code sev- "><tt><i>1</i> <span class="kn">import</span> <span class="nn">torch</span></tt>
+               class="code sev- "><tt><i>1</i> <span class="kn">import</span> <span class="nn">os</span></tt>
             </div>
             <div id="l2"
-               class="code sev- "><tt><i>2</i> <span class="kn">import</span> <span class="nn">torch_geometric</span> <span class="k">as</span> <span class="nn">torch_geo</span></tt>
+               class="code sev- "><tt><i>2</i> <span class="kn">import</span> <span class="nn">torch</span></tt>
             </div>
             <div id="l3"
+               class="code sev- "><tt><i>3</i> <span class="kn">import</span> <span class="nn">torch_geometric</span> <span class="k">as</span> <span class="nn">torch_geo</span></tt>
+            </div>
+            <div id="l4"
                class="code sev-1  le">
                <ul class="violations">
                
@@ -38,22 +41,10 @@
                      </span>
                      'torch_geometric.utils.remove_self_loops' imported but unused</li>
                
-               </ul><tt><i>3</i> <span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">sort_edge_index</span><span class="p">,</span> <span class="n">remove_self_loops</span></tt>
-            </div>
-            <div id="l4"
-               class="code sev- "><tt><i>4</i> <span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">Data</span></tt>
+               </ul><tt><i>4</i> <span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">sort_edge_index</span><span class="p">,</span> <span class="n">remove_self_loops</span></tt>
             </div>
             <div id="l5"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (85 > 79 characters)</li>
-               
-               </ul><tt><i>5</i> <span class="kn">from</span> <span class="nn">.utils_data_prep</span> <span class="kn">import</span> <span class="n">load_data</span><span class="p">,</span> <span class="n">load_zinc_data</span><span class="p">,</span> <span class="n">load_ogb_data</span><span class="p">,</span> <span class="n">load_g6_graphs</span></tt>
+               class="code sev- "><tt><i>5</i> <span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">Data</span></tt>
             </div>
             <div id="l6"
                class="code sev-1  le">
@@ -63,14 +54,38 @@
                      <span class="count sev-1">
                         F401
                      </span>
-                     '.utils_graph_processing.automorphism_orbits' imported but unused</li>
+                     '.utils_data_prep.load_data' imported but unused</li>
                
-               </ul><tt><i>6</i> <span class="kn">from</span> <span class="nn">.utils_graph_processing</span> <span class="kn">import</span> <span class="n">automorphism_orbits</span></tt>
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     '.utils_data_prep.load_g6_graphs' imported but unused</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>6</i> <span class="kn">from</span> <span class="nn">.utils_data_prep</span> <span class="kn">import</span> <span class="n">load_data</span><span class="p">,</span> <span class="n">load_zinc_data</span><span class="p">,</span> <span class="n">load_ogb_data</span><span class="p">,</span> <span class="n">load_g6_graphs</span></tt>
             </div>
             <div id="l7"
-               class="code sev- "><tt><i>7</i> &nbsp;</tt>
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     '.utils_graph_processing.automorphism_orbits' imported but unused</li>
+               
+               </ul><tt><i>7</i> <span class="kn">from</span> <span class="nn">.utils_graph_processing</span> <span class="kn">import</span> <span class="n">automorphism_orbits</span></tt>
             </div>
             <div id="l8"
+               class="code sev- "><tt><i>8</i> &nbsp;</tt>
+            </div>
+            <div id="l9"
                class="code sev-1  le">
                <ul class="violations">
                
@@ -80,117 +95,66 @@
                      </span>
                      'multiprocessing as mp' imported but unused</li>
                
-               </ul><tt><i>8</i> <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span></tt>
-            </div>
-            <div id="l9"
-               class="code sev- "><tt><i>9</i> <span class="kn">import</span> <span class="nn">time</span></tt>
+               </ul><tt><i>9</i> <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span></tt>
             </div>
             <div id="l10"
-               class="code sev- "><tt><i>10</i> &nbsp;</tt>
+               class="code sev- "><tt><i>10</i> <span class="kn">import</span> <span class="nn">time</span></tt>
             </div>
             <div id="l11"
-               class="code sev- "><tt><i>11</i> <span class="kn">from</span> <span class="nn">.utils_misc</span> <span class="kn">import</span> <span class="n">isnotebook</span></tt>
+               class="code sev- "><tt><i>11</i> &nbsp;</tt>
             </div>
             <div id="l12"
-               class="code sev- "><tt><i>12</i> <span class="k">if</span> <span class="n">isnotebook</span><span class="p">():</span></tt>
+               class="code sev- "><tt><i>12</i> <span class="kn">from</span> <span class="nn">.utils_misc</span> <span class="kn">import</span> <span class="n">isnotebook</span></tt>
             </div>
             <div id="l13"
-               class="code sev- "><tt><i>13</i>     <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span></tt>
+               class="code sev- "><tt><i>13</i> <span class="k">if</span> <span class="n">isnotebook</span><span class="p">():</span></tt>
             </div>
             <div id="l14"
-               class="code sev- "><tt><i>14</i> <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>14</i>     <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span></tt>
             </div>
             <div id="l15"
-               class="code sev- "><tt><i>15</i>     <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span></tt>
+               class="code sev- "><tt><i>15</i> <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l16"
-               class="code sev- "><tt><i>16</i> &nbsp;</tt>
+               class="code sev- "><tt><i>16</i>     <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span></tt>
             </div>
             <div id="l17"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E302
-                     </span>
-                     Expected 2 blank lines, found 1</li>
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>17</i> <span class="k">def</span> <span class="nf">generate_dataset</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> </tt>
+               class="code sev- "><tt><i>17</i> &nbsp;</tt>
             </div>
             <div id="l18"
-               class="code sev- "><tt><i>18</i>                      <span class="n">dataset_name</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>18</i> &nbsp;</tt>
             </div>
             <div id="l19"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>19</i>                      <span class="n">k</span><span class="p">,</span> </tt>
+               class="code sev- "><tt><i>19</i> <span class="k">def</span> <span class="nf">generate_dataset</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span></tt>
             </div>
             <div id="l20"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>20</i>                      <span class="n">extract_ids_fn</span><span class="p">,</span> </tt>
+               class="code sev- "><tt><i>20</i>                      <span class="n">dataset_name</span><span class="p">,</span></tt>
             </div>
             <div id="l21"
-               class="code sev- "><tt><i>21</i>                      <span class="n">count_fn</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>21</i>                      <span class="n">k</span><span class="p">,</span></tt>
             </div>
             <div id="l22"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>22</i>                      <span class="n">automorphism_fn</span><span class="p">,</span> </tt>
+               class="code sev- "><tt><i>22</i>                      <span class="n">extract_ids_fn</span><span class="p">,</span></tt>
             </div>
             <div id="l23"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>23</i>                      <span class="n">id_type</span><span class="p">,</span>  </tt>
+               class="code sev- "><tt><i>23</i>                      <span class="n">count_fn</span><span class="p">,</span></tt>
             </div>
             <div id="l24"
-               class="code sev- "><tt><i>24</i>                      <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>24</i>                      <span class="n">automorphism_fn</span><span class="p">,</span></tt>
             </div>
             <div id="l25"
-               class="code sev- "><tt><i>25</i>                      <span class="n">num_processes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>25</i>                      <span class="n">id_type</span><span class="p">,</span></tt>
             </div>
             <div id="l26"
-               class="code sev- "><tt><i>26</i>                      <span class="o">**</span><span class="n">subgraph_params</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>26</i>                      <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span></tt>
             </div>
             <div id="l27"
-               class="code sev- "><tt><i>27</i> &nbsp;</tt>
+               class="code sev- "><tt><i>27</i>                      <span class="n">num_processes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span></tt>
             </div>
             <div id="l28"
+               class="code sev- "><tt><i>28</i>                      <span class="o">**</span><span class="n">subgraph_params</span><span class="p">):</span></tt>
+            </div>
+            <div id="l29"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -206,109 +170,37 @@
                      </span>
                      Line too long (102 > 79 characters)</li>
                
-               </ul><tt><i>28</i>     <span class="c1">### compute the orbits of earch substructure in the list, as well as the vertex automorphism count</span></tt>
-            </div>
-            <div id="l29"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>29</i>     </tt>
+               </ul><tt><i>29</i>     <span class="c1">### compute the orbits of earch substructure in the list, as well as the vertex automorphism count</span></tt>
             </div>
             <div id="l30"
-               class="code sev- "><tt><i>30</i>     <span class="n">subgraph_dicts</span> <span class="o">=</span> <span class="p">[]</span></tt>
+               class="code sev- "><tt><i>30</i> &nbsp;</tt>
             </div>
             <div id="l31"
-               class="code sev- "><tt><i>31</i>     <span class="n">orbit_partition_sizes</span> <span class="o">=</span> <span class="p">[]</span></tt>
+               class="code sev- "><tt><i>31</i>     <span class="n">subgraph_dicts</span> <span class="o">=</span> <span class="p">[]</span></tt>
             </div>
             <div id="l32"
-               class="code sev- "><tt><i>32</i>     <span class="k">if</span> <span class="s1">&#39;edge_list&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">subgraph_params</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>32</i>     <span class="n">orbit_partition_sizes</span> <span class="o">=</span> <span class="p">[]</span></tt>
             </div>
             <div id="l33"
-               class="code sev- "><tt><i>33</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Edge list not provided.&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>33</i>     <span class="k">if</span> <span class="s1">&#39;edge_list&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">subgraph_params</span><span class="p">:</span></tt>
             </div>
             <div id="l34"
-               class="code sev- "><tt><i>34</i>     <span class="k">for</span> <span class="n">edge_list</span> <span class="ow">in</span> <span class="n">subgraph_params</span><span class="p">[</span><span class="s1">&#39;edge_list&#39;</span><span class="p">]:</span></tt>
+               class="code sev- "><tt><i>34</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Edge list not provided.&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l35"
-               class="code sev- "><tt><i>35</i>         <span class="n">subgraph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span> <span class="o">=</span> \</tt>
+               class="code sev- "><tt><i>35</i>     <span class="k">for</span> <span class="n">edge_list</span> <span class="ow">in</span> <span class="n">subgraph_params</span><span class="p">[</span><span class="s1">&#39;edge_list&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l36"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (80 > 79 characters)</li>
-               
-               </ul><tt><i>36</i>                                             <span class="n">automorphism_fn</span><span class="p">(</span><span class="n">edge_list</span><span class="o">=</span><span class="n">edge_list</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>36</i>         <span class="n">subgraph</span><span class="p">,</span> <span class="n">orbit_partition</span><span class="p">,</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="n">aut_count</span> <span class="o">=</span> \</tt>
             </div>
             <div id="l37"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E128
-                     </span>
-                     Continuation line under-indented for visual indent</li>
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (96 > 79 characters)</li>
-               
-               </ul><tt><i>37</i>                                                            <span class="n">directed</span><span class="o">=</span><span class="n">subgraph_params</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">],</span></tt>
+               class="code sev- "><tt><i>37</i>             <span class="n">automorphism_fn</span><span class="p">(</span><span class="n">edge_list</span><span class="o">=</span><span class="n">edge_list</span><span class="p">,</span></tt>
             </div>
             <div id="l38"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E128
-                     </span>
-                     Continuation line under-indented for visual indent</li>
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (110 > 79 characters)</li>
-               
-               </ul><tt><i>38</i>                                                            <span class="n">directed_orbits</span><span class="o">=</span><span class="n">subgraph_params</span><span class="p">[</span><span class="s1">&#39;directed_orbits&#39;</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>38</i>                             <span class="n">directed</span><span class="o">=</span><span class="n">subgraph_params</span><span class="p">[</span><span class="s1">&#39;directed&#39;</span><span class="p">],</span></tt>
             </div>
             <div id="l39"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E231
-                     </span>
-                     Missing whitespace after ':'</li>
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (87 > 79 characters)</li>
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>39</i>         <span class="n">subgraph_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;subgraph&#39;</span><span class="p">:</span><span class="n">subgraph</span><span class="p">,</span> <span class="s1">&#39;orbit_partition&#39;</span><span class="p">:</span> <span class="n">orbit_partition</span><span class="p">,</span> </tt>
+               class="code sev- "><tt><i>39</i>                             <span class="n">directed_orbits</span><span class="o">=</span><span class="n">subgraph_params</span><span class="p">[</span><span class="s1">&#39;directed_orbits&#39;</span><span class="p">])</span></tt>
             </div>
             <div id="l40"
                class="code sev-2  le">
@@ -318,26 +210,29 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (93 > 79 characters)</li>
+                     Line too long (88 > 79 characters)</li>
                
-               </ul><tt><i>40</i>                                <span class="s1">&#39;orbit_membership&#39;</span><span class="p">:</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="s1">&#39;aut_count&#39;</span><span class="p">:</span> <span class="n">aut_count</span><span class="p">})</span></tt>
+               </ul><tt><i>40</i>         <span class="n">subgraph_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;subgraph&#39;</span><span class="p">:</span> <span class="n">subgraph</span><span class="p">,</span> <span class="s1">&#39;orbit_partition&#39;</span><span class="p">:</span> <span class="n">orbit_partition</span><span class="p">,</span></tt>
             </div>
             <div id="l41"
-               class="code sev- "><tt><i>41</i>         <span class="n">orbit_partition_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span></tt>
-            </div>
-            <div id="l42"
                class="code sev-2  le">
                <ul class="violations">
                
                   <li>
                      <span class="count sev-2">
-                        W293
+                        E501
                      </span>
-                     Blank line contains whitespace</li>
+                     Line too long (93 > 79 characters)</li>
                
-               </ul><tt><i>42</i>  </tt>
+               </ul><tt><i>41</i>                                <span class="s1">&#39;orbit_membership&#39;</span><span class="p">:</span> <span class="n">orbit_membership</span><span class="p">,</span> <span class="s1">&#39;aut_count&#39;</span><span class="p">:</span> <span class="n">aut_count</span><span class="p">})</span></tt>
+            </div>
+            <div id="l42"
+               class="code sev- "><tt><i>42</i>         <span class="n">orbit_partition_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orbit_partition</span><span class="p">))</span></tt>
             </div>
             <div id="l43"
+               class="code sev- "><tt><i>43</i> &nbsp;</tt>
+            </div>
+            <div id="l44"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -347,33 +242,15 @@
                      </span>
                      Too many leading '#' for block comment</li>
                
-               </ul><tt><i>43</i>     <span class="c1">### load and preprocess dataset</span></tt>
-            </div>
-            <div id="l44"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>44</i>     </tt>
+               </ul><tt><i>44</i>     <span class="c1">### load and preprocess dataset</span></tt>
             </div>
             <div id="l45"
-               class="code sev- "><tt><i>45</i>     <span class="k">if</span> <span class="s1">&#39;ogb&#39;</span> <span class="ow">in</span> <span class="n">data_path</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>45</i>     <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">pardir</span><span class="p">)</span></tt>
             </div>
             <div id="l46"
-               class="code sev- "><tt><i>46</i>         <span class="n">graphs</span><span class="p">,</span> <span class="n">num_classes</span> <span class="o">=</span> <span class="n">load_ogb_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>46</i>     <span class="k">if</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s1">&#39;ZINC&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i>         <span class="n">num_node_type</span><span class="p">,</span> <span class="n">num_edge_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></tt>
-            </div>
-            <div id="l48"
-               class="code sev- "><tt><i>48</i>     <span class="k">elif</span> <span class="n">dataset_name</span> <span class="o">==</span> <span class="s1">&#39;ZINC&#39;</span><span class="p">:</span></tt>
-            </div>
-            <div id="l49"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -383,56 +260,23 @@
                      </span>
                      Line too long (106 > 79 characters)</li>
                
-               </ul><tt><i>49</i>         <span class="n">graphs</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">num_node_type</span><span class="p">,</span> <span class="n">num_edge_type</span> <span class="o">=</span> <span class="n">load_zinc_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></tt>
+               </ul><tt><i>47</i>         <span class="n">graphs</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">num_node_type</span><span class="p">,</span> <span class="n">num_edge_type</span> <span class="o">=</span> <span class="n">load_zinc_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></tt>
+            </div>
+            <div id="l48"
+               class="code sev- "><tt><i>48</i>     <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l49"
+               class="code sev- "><tt><i>49</i>         <span class="n">graphs</span><span class="p">,</span> <span class="n">num_classes</span> <span class="o">=</span> <span class="n">load_ogb_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></tt>
             </div>
             <div id="l50"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (133 > 79 characters)</li>
-               
-               </ul><tt><i>50</i>     <span class="k">elif</span> <span class="n">dataset_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;sr16622&#39;</span><span class="p">,</span> <span class="s1">&#39;sr251256&#39;</span><span class="p">,</span> <span class="s1">&#39;sr261034&#39;</span><span class="p">,</span> <span class="s1">&#39;sr281264&#39;</span><span class="p">,</span> <span class="s1">&#39;sr291467&#39;</span><span class="p">,</span> <span class="s1">&#39;sr351668&#39;</span><span class="p">,</span> <span class="s1">&#39;sr351899&#39;</span><span class="p">,</span> <span class="s1">&#39;sr361446&#39;</span><span class="p">,</span> <span class="s1">&#39;sr401224&#39;</span><span class="p">]:</span></tt>
+               class="code sev- "><tt><i>50</i>         <span class="n">num_node_type</span><span class="p">,</span> <span class="n">num_edge_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i>         <span class="n">graphs</span><span class="p">,</span> <span class="n">num_classes</span> <span class="o">=</span> <span class="n">load_g6_graphs</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>51</i> &nbsp;</tt>
             </div>
             <div id="l52"
-               class="code sev- "><tt><i>52</i>         <span class="n">num_node_type</span><span class="p">,</span> <span class="n">num_edge_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></tt>
-            </div>
-            <div id="l53"
-               class="code sev- "><tt><i>53</i>     <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l54"
-               class="code sev- "><tt><i>54</i>         <span class="n">graphs</span><span class="p">,</span> <span class="n">num_classes</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></tt>
-            </div>
-            <div id="l55"
-               class="code sev- "><tt><i>55</i>         <span class="n">num_node_type</span><span class="p">,</span> <span class="n">num_edge_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></tt>
-            </div>
-            <div id="l56"
                class="code sev-2  le">
                <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>56</i>         </tt>
-            </div>
-            <div id="l57"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E114
-                     </span>
-                     Indentation is not a multiple of 4 (comment)</li>
                
                   <li>
                      <span class="count sev-2">
@@ -444,44 +288,26 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (83 > 79 characters)</li>
+                     Line too long (82 > 79 characters)</li>
                
-               </ul><tt><i>57</i>      <span class="c1">### parallel computation of subgraph isomoprhisms &amp; creation of data structure</span></tt>
+               </ul><tt><i>52</i>     <span class="c1">### parallel computation of subgraph isomoprhisms &amp; creation of data structure</span></tt>
+            </div>
+            <div id="l53"
+               class="code sev- "><tt><i>53</i> &nbsp;</tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i>     <span class="k">if</span> <span class="n">multiprocessing</span><span class="p">:</span></tt>
+            </div>
+            <div id="l55"
+               class="code sev- "><tt><i>55</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Preparing dataset in parallel...&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l56"
+               class="code sev- "><tt><i>56</i>         <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span></tt>
+            </div>
+            <div id="l57"
+               class="code sev- "><tt><i>57</i>         <span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">delayed</span><span class="p">,</span> <span class="n">Parallel</span></tt>
             </div>
             <div id="l58"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>58</i>         </tt>
-            </div>
-            <div id="l59"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>59</i>     <span class="k">if</span> <span class="n">multiprocessing</span><span class="p">:</span>     </tt>
-            </div>
-            <div id="l60"
-               class="code sev- "><tt><i>60</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Preparing dataset in parallel...&quot;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l61"
-               class="code sev- "><tt><i>61</i>         <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span></tt>
-            </div>
-            <div id="l62"
-               class="code sev- "><tt><i>62</i>         <span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">delayed</span><span class="p">,</span> <span class="n">Parallel</span></tt>
-            </div>
-            <div id="l63"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -491,9 +317,9 @@
                      </span>
                      Line too long (88 > 79 characters)</li>
                
-               </ul><tt><i>63</i>         <span class="n">graphs_ptg</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">num_processes</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">_prepare</span><span class="p">)(</span><span class="n">graph</span><span class="p">,</span></tt>
+               </ul><tt><i>58</i>         <span class="n">graphs_ptg</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">num_processes</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">_prepare</span><span class="p">)(</span><span class="n">graph</span><span class="p">,</span></tt>
             </div>
-            <div id="l64"
+            <div id="l59"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -503,15 +329,9 @@
                      </span>
                      Line too long (97 > 79 characters)</li>
                
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>64</i>                                                                                   <span class="n">subgraph_dicts</span><span class="p">,</span> </tt>
+               </ul><tt><i>59</i>                                                                                   <span class="n">subgraph_dicts</span><span class="p">,</span></tt>
             </div>
-            <div id="l65"
+            <div id="l60"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -521,9 +341,9 @@
                      </span>
                      Line too long (98 > 79 characters)</li>
                
-               </ul><tt><i>65</i>                                                                                   <span class="n">subgraph_params</span><span class="p">,</span></tt>
+               </ul><tt><i>60</i>                                                                                   <span class="n">subgraph_params</span><span class="p">,</span></tt>
             </div>
-            <div id="l66"
+            <div id="l61"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -533,9 +353,9 @@
                      </span>
                      Line too long (95 > 79 characters)</li>
                
-               </ul><tt><i>66</i>                                                                                   <span class="n">dataset_name</span><span class="p">,</span></tt>
+               </ul><tt><i>61</i>                                                                                   <span class="n">dataset_name</span><span class="p">,</span></tt>
             </div>
-            <div id="l67"
+            <div id="l62"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -545,9 +365,9 @@
                      </span>
                      Line too long (97 > 79 characters)</li>
                
-               </ul><tt><i>67</i>                                                                                   <span class="n">extract_ids_fn</span><span class="p">,</span></tt>
+               </ul><tt><i>62</i>                                                                                   <span class="n">extract_ids_fn</span><span class="p">,</span></tt>
             </div>
-            <div id="l68"
+            <div id="l63"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -557,24 +377,12 @@
                      </span>
                      Line too long (112 > 79 characters)</li>
                
-               </ul><tt><i>68</i>                                                                                   <span class="n">count_fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graphs</span><span class="p">)</span></tt>
+               </ul><tt><i>63</i>                                                                                   <span class="n">count_fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graphs</span><span class="p">)</span></tt>
             </div>
-            <div id="l69"
-               class="code sev- "><tt><i>69</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done (</span><span class="si">{:.2f}</span><span class="s1"> secs).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span></tt>
+            <div id="l64"
+               class="code sev- "><tt><i>64</i>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done (</span><span class="si">{:.2f}</span><span class="s1"> secs).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span></tt>
             </div>
-            <div id="l70"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>70</i>         </tt>
-            </div>
-            <div id="l71"
+            <div id="l65"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -590,18 +398,18 @@
                      </span>
                      Line too long (89 > 79 characters)</li>
                
-               </ul><tt><i>71</i>     <span class="c1">### single-threaded computation of subgraph isomoprhisms &amp; creation of data structure</span></tt>
+               </ul><tt><i>65</i>     <span class="c1">### single-threaded computation of subgraph isomoprhisms &amp; creation of data structure</span></tt>
             </div>
-            <div id="l72"
-               class="code sev- "><tt><i>72</i>     <span class="k">else</span><span class="p">:</span></tt>
+            <div id="l66"
+               class="code sev- "><tt><i>66</i>     <span class="k">else</span><span class="p">:</span></tt>
             </div>
-            <div id="l73"
-               class="code sev- "><tt><i>73</i>         <span class="n">graphs_ptg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></tt>
+            <div id="l67"
+               class="code sev- "><tt><i>67</i>         <span class="n">graphs_ptg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span></tt>
             </div>
-            <div id="l74"
-               class="code sev- "><tt><i>74</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">graphs</span><span class="p">)):</span></tt>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">graphs</span><span class="p">)):</span></tt>
             </div>
-            <div id="l75"
+            <div id="l69"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -611,47 +419,20 @@
                      </span>
                      Line too long (110 > 79 characters)</li>
                
-               </ul><tt><i>75</i>             <span class="n">new_data</span> <span class="o">=</span> <span class="n">_prepare</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">subgraph_dicts</span><span class="p">,</span> <span class="n">subgraph_params</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">extract_ids_fn</span><span class="p">,</span> <span class="n">count_fn</span><span class="p">)</span></tt>
+               </ul><tt><i>69</i>             <span class="n">new_data</span> <span class="o">=</span> <span class="n">_prepare</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">subgraph_dicts</span><span class="p">,</span> <span class="n">subgraph_params</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">extract_ids_fn</span><span class="p">,</span> <span class="n">count_fn</span><span class="p">)</span></tt>
             </div>
-            <div id="l76"
+            <div id="l70"
+               class="code sev- "><tt><i>70</i> &nbsp;</tt>
+            </div>
+            <div id="l71"
+               class="code sev- "><tt><i>71</i>             <span class="n">graphs_ptg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span></tt>
+            </div>
+            <div id="l72"
+               class="code sev- "><tt><i>72</i> &nbsp;</tt>
+            </div>
+            <div id="l73"
                class="code sev-2  le">
                <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>76</i>            </tt>
-            </div>
-            <div id="l77"
-               class="code sev- "><tt><i>77</i>             <span class="n">graphs_ptg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span></tt>
-            </div>
-            <div id="l78"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>78</i>          </tt>
-            </div>
-            <div id="l79"
-               class="code sev- "><tt><i>79</i> &nbsp;</tt>
-            </div>
-            <div id="l80"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E303
-                     </span>
-                     Too many blank lines (2)</li>
                
                   <li>
                      <span class="count sev-2">
@@ -659,30 +440,21 @@
                      </span>
                      Line too long (87 > 79 characters)</li>
                
-               </ul><tt><i>80</i>     <span class="k">return</span> <span class="n">graphs_ptg</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">num_node_type</span><span class="p">,</span> <span class="n">num_edge_type</span><span class="p">,</span> <span class="n">orbit_partition_sizes</span></tt>
+               </ul><tt><i>73</i>     <span class="k">return</span> <span class="n">graphs_ptg</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">num_node_type</span><span class="p">,</span> <span class="n">num_edge_type</span><span class="p">,</span> <span class="n">orbit_partition_sizes</span></tt>
             </div>
-            <div id="l81"
-               class="code sev- "><tt><i>81</i> &nbsp;</tt>
+            <div id="l74"
+               class="code sev- "><tt><i>74</i> &nbsp;</tt>
             </div>
-            <div id="l82"
-               class="code sev- "><tt><i>82</i> &nbsp;</tt>
+            <div id="l75"
+               class="code sev- "><tt><i>75</i> &nbsp;</tt>
             </div>
-            <div id="l83"
-               class="code sev- "><tt><i>83</i> <span class="c1"># ------------------------------------------------------------------------</span></tt>
+            <div id="l76"
+               class="code sev- "><tt><i>76</i> <span class="c1"># ------------------------------------------------------------------------</span></tt>
             </div>
-            <div id="l84"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>84</i>         </tt>
+            <div id="l77"
+               class="code sev- "><tt><i>77</i> &nbsp;</tt>
             </div>
-            <div id="l85"
+            <div id="l78"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -692,33 +464,30 @@
                      </span>
                      Line too long (81 > 79 characters)</li>
                
-               </ul><tt><i>85</i> <span class="k">def</span> <span class="nf">_prepare</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">subgraph_dicts</span><span class="p">,</span> <span class="n">subgraph_params</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">ex_fn</span><span class="p">,</span> <span class="n">cnt_fn</span><span class="p">):</span></tt>
+               </ul><tt><i>78</i> <span class="k">def</span> <span class="nf">_prepare</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">subgraph_dicts</span><span class="p">,</span> <span class="n">subgraph_params</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">ex_fn</span><span class="p">,</span> <span class="n">cnt_fn</span><span class="p">):</span></tt>
+            </div>
+            <div id="l79"
+               class="code sev- "><tt><i>79</i>     <span class="n">new_data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">()</span></tt>
+            </div>
+            <div id="l80"
+               class="code sev- "><tt><i>80</i>     <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;edge_index&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_mat</span><span class="p">)</span></tt>
+            </div>
+            <div id="l81"
+               class="code sev- "><tt><i>81</i>     <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">node_features</span><span class="p">)</span></tt>
+            </div>
+            <div id="l82"
+               class="code sev- "><tt><i>82</i>     <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;graph_size&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">node_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
+            </div>
+            <div id="l83"
+               class="code sev- "><tt><i>83</i>     <span class="k">if</span> <span class="n">new_data</span><span class="o">.</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span></tt>
+            </div>
+            <div id="l84"
+               class="code sev- "><tt><i>84</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">new_data</span><span class="o">.</span><span class="n">graph_size</span><span class="p">,)))</span></tt>
+            </div>
+            <div id="l85"
+               class="code sev- "><tt><i>85</i>     <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l86"
-               class="code sev- "><tt><i>86</i> &nbsp;</tt>
-            </div>
-            <div id="l87"
-               class="code sev- "><tt><i>87</i>     <span class="n">new_data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">()</span></tt>
-            </div>
-            <div id="l88"
-               class="code sev- "><tt><i>88</i>     <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;edge_index&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_mat</span><span class="p">)</span></tt>
-            </div>
-            <div id="l89"
-               class="code sev- "><tt><i>89</i>     <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">node_features</span><span class="p">)</span></tt>
-            </div>
-            <div id="l90"
-               class="code sev- "><tt><i>90</i>     <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;graph_size&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">node_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
-            </div>
-            <div id="l91"
-               class="code sev- "><tt><i>91</i>     <span class="k">if</span> <span class="n">new_data</span><span class="o">.</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span></tt>
-            </div>
-            <div id="l92"
-               class="code sev- "><tt><i>92</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">new_data</span><span class="o">.</span><span class="n">graph_size</span><span class="p">,)))</span></tt>
-            </div>
-            <div id="l93"
-               class="code sev- "><tt><i>93</i>     <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l94"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -728,33 +497,24 @@
                      </span>
                      Line too long (84 > 79 characters)</li>
                
-               </ul><tt><i>94</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="n">torch_geo</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">new_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span></tt>
+               </ul><tt><i>86</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="n">torch_geo</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">new_data</span><span class="o">.</span><span class="n">edge_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span></tt>
             </div>
-            <div id="l95"
-               class="code sev- "><tt><i>95</i> &nbsp;</tt>
+            <div id="l87"
+               class="code sev- "><tt><i>87</i> &nbsp;</tt>
             </div>
-            <div id="l96"
-               class="code sev- "><tt><i>96</i>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">):</span></tt>
+            <div id="l88"
+               class="code sev- "><tt><i>88</i>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">):</span></tt>
             </div>
-            <div id="l97"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace</li>
-               
-               </ul><tt><i>97</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_features</span><span class="p">)</span>    </tt>
+            <div id="l89"
+               class="code sev- "><tt><i>89</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_features</span><span class="p">)</span></tt>
             </div>
-            <div id="l98"
-               class="code sev- "><tt><i>98</i> &nbsp;</tt>
+            <div id="l90"
+               class="code sev- "><tt><i>90</i> &nbsp;</tt>
             </div>
-            <div id="l99"
-               class="code sev- "><tt><i>99</i>     <span class="k">if</span> <span class="n">dataset_name</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;ogbg-molpcba&#39;</span><span class="p">,</span> <span class="s1">&#39;ogbg-molhiv&#39;</span><span class="p">,</span> <span class="s1">&#39;ZINC&#39;</span><span class="p">}:</span></tt>
+            <div id="l91"
+               class="code sev- "><tt><i>91</i>     <span class="k">if</span> <span class="n">dataset_name</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;ogbg-molpcba&#39;</span><span class="p">,</span> <span class="s1">&#39;ogbg-molhiv&#39;</span><span class="p">,</span> <span class="s1">&#39;ZINC&#39;</span><span class="p">}:</span></tt>
             </div>
-            <div id="l100"
+            <div id="l92"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -764,15 +524,15 @@
                      </span>
                      Line too long (80 > 79 characters)</li>
                
-               </ul><tt><i>100</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">())</span></tt>
+               </ul><tt><i>92</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">())</span></tt>
             </div>
-            <div id="l101"
-               class="code sev- "><tt><i>101</i>     <span class="k">else</span><span class="p">:</span></tt>
+            <div id="l93"
+               class="code sev- "><tt><i>93</i>     <span class="k">else</span><span class="p">:</span></tt>
             </div>
-            <div id="l102"
-               class="code sev- "><tt><i>102</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">())</span></tt>
+            <div id="l94"
+               class="code sev- "><tt><i>94</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">())</span></tt>
             </div>
-            <div id="l103"
+            <div id="l95"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -782,9 +542,9 @@
                      </span>
                      Line too long (99 > 79 characters)</li>
                
-               </ul><tt><i>103</i>     <span class="k">if</span> <span class="n">new_data</span><span class="o">.</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">cnt_fn</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;subgraph_isomorphism_edge_counts&#39;</span><span class="p">:</span></tt>
+               </ul><tt><i>95</i>     <span class="k">if</span> <span class="n">new_data</span><span class="o">.</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">cnt_fn</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;subgraph_isomorphism_edge_counts&#39;</span><span class="p">:</span></tt>
             </div>
-            <div id="l104"
+            <div id="l96"
                class="code sev-1  le">
                <ul class="violations">
                
@@ -800,61 +560,19 @@
                      </span>
                      Line too long (93 > 79 characters)</li>
                
-               </ul><tt><i>104</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;identifiers&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">orbit_partition_sizes</span><span class="p">)))</span><span class="o">.</span><span class="n">long</span><span class="p">())</span></tt>
+               </ul><tt><i>96</i>         <span class="nb">setattr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="s1">&#39;identifiers&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">orbit_partition_sizes</span><span class="p">)))</span><span class="o">.</span><span class="n">long</span><span class="p">())</span></tt>
             </div>
-            <div id="l105"
-               class="code sev- "><tt><i>105</i>     <span class="k">else</span><span class="p">:</span></tt>
+            <div id="l97"
+               class="code sev- "><tt><i>97</i>     <span class="k">else</span><span class="p">:</span></tt>
             </div>
-            <div id="l106"
-               class="code sev- "><tt><i>106</i>         <span class="n">new_data</span> <span class="o">=</span> <span class="n">ex_fn</span><span class="p">(</span><span class="n">cnt_fn</span><span class="p">,</span> <span class="n">new_data</span><span class="p">,</span> <span class="n">subgraph_dicts</span><span class="p">,</span> <span class="n">subgraph_params</span><span class="p">)</span></tt>
+            <div id="l98"
+               class="code sev- "><tt><i>98</i>         <span class="n">new_data</span> <span class="o">=</span> <span class="n">ex_fn</span><span class="p">(</span><span class="n">cnt_fn</span><span class="p">,</span> <span class="n">new_data</span><span class="p">,</span> <span class="n">subgraph_dicts</span><span class="p">,</span> <span class="n">subgraph_params</span><span class="p">)</span></tt>
             </div>
-            <div id="l107"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W293
-                     </span>
-                     Blank line contains whitespace</li>
-               
-               </ul><tt><i>107</i>    </tt>
+            <div id="l99"
+               class="code sev- "><tt><i>99</i> &nbsp;</tt>
             </div>
-            <div id="l108"
-               class="code sev- "><tt><i>108</i> &nbsp;</tt>
-            </div>
-            <div id="l109"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E303
-                     </span>
-                     Too many blank lines (2)</li>
-               
-               </ul><tt><i>109</i>     <span class="k">return</span> <span class="n">new_data</span></tt>
-            </div>
-            <div id="l110"
-               class="code sev- "><tt><i>110</i> &nbsp;</tt>
-            </div>
-            <div id="l111"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        W291
-                     </span>
-                     Trailing whitespace (in 3 places)</li>
-               
-                  <li>
-                     <span class="count sev-2">
-                        W292
-                     </span>
-                     No newline at end of file (in 3 places)</li>
-               
-               </ul><tt><i>111</i> <span class="c1"># --------------------------------------------------------------------------------------    </span></tt>
+            <div id="l100"
+               class="code sev- "><tt><i>100</i>     <span class="k">return</span> <span class="n">new_data</span></tt>
             </div>
             
          </div>

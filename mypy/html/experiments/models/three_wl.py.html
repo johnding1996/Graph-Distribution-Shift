@@ -4,9 +4,9 @@
 <link rel="stylesheet" type="text/css" href="../../../mypy-html.css">
 </head>
 <body>
-<h2>experiments.models.3wl_gnn</h2>
+<h2>experiments.models.three_wl</h2>
 <table>
-<caption>experiments/models/3wl_gnn.py</caption>
+<caption>experiments/models/three_wl.py</caption>
 <tbody><tr>
 <td class="table-lines"><pre><span id="L1" class="lineno"><a class="lineno" href="#L1">1</a></span>
 <span id="L2" class="lineno"><a class="lineno" href="#L2">2</a></span>
@@ -243,6 +243,16 @@
 <span id="L233" class="lineno"><a class="lineno" href="#L233">233</a></span>
 <span id="L234" class="lineno"><a class="lineno" href="#L234">234</a></span>
 <span id="L235" class="lineno"><a class="lineno" href="#L235">235</a></span>
+<span id="L236" class="lineno"><a class="lineno" href="#L236">236</a></span>
+<span id="L237" class="lineno"><a class="lineno" href="#L237">237</a></span>
+<span id="L238" class="lineno"><a class="lineno" href="#L238">238</a></span>
+<span id="L239" class="lineno"><a class="lineno" href="#L239">239</a></span>
+<span id="L240" class="lineno"><a class="lineno" href="#L240">240</a></span>
+<span id="L241" class="lineno"><a class="lineno" href="#L241">241</a></span>
+<span id="L242" class="lineno"><a class="lineno" href="#L242">242</a></span>
+<span id="L243" class="lineno"><a class="lineno" href="#L243">243</a></span>
+<span id="L244" class="lineno"><a class="lineno" href="#L244">244</a></span>
+<span id="L245" class="lineno"><a class="lineno" href="#L245">245</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn as nn</span>
@@ -256,34 +266,21 @@
 <span class="line-empty" title="No Anys on this line!">    CODE adapted from https://github.com/hadarser/ProvablyPowerfulGraphNetworks_torch/</span>
 <span class="line-empty" title="No Anys on this line!">"""</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class ThreeWLGNNNet(nn.Module):</span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, net_params):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, gnn_type, num_tasks, three_wl_in_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,</span>
+<span class="line-any" title="No Anys on this line!">                 residual=False, **model_kwargs):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        super().__init__()</span>
+Unannotated (x2)">        assert gnn_type == '3wlgnn'</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self.in_dim_node = net_params['in_dim']</span>
+Unannotated (x1)">        super(ThreeWLGNNNet, self).__init__()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        depth_of_mlp = net_params['depth_of_mlp']</span>
+Unannotated (x2)">        self.in_dim_node = three_wl_in_dim</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        hidden_dim = net_params['hidden_dim']</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        n_classes = net_params['n_classes']</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        dropout = net_params['dropout']</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        n_layers = net_params['L']</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self.layer_norm = net_params['layer_norm']</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self.residual = net_params['residual']</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self.device = net_params['device']</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        self.diag_pool_readout = True  # if True, uses the new_suffix readout from original code</span>
+Unannotated (x2)">        self.residual = residual</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        block_features = [hidden_dim] * n_layers  # L here is the block number</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        original_features_num = self.in_dim_node + 1  # Number of features of the input</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -303,70 +300,90 @@ Unannotated (x4)">            self.reg_blocks.append(mlp_block)</span>
 Unannotated (x2)">            last_layer_features = next_layer_features</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.diag_pool_readout:</span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
-Unimported (x1)">            self.fc_layers = nn.ModuleList()</span>
+Unimported (x1)">        self.fc_layers = nn.ModuleList()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            for output_features in block_features:</span>
-<span class="line-empty" title="No Anys on this line!">                # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected</span>
+Unannotated (x2)">        for output_features in block_features:</span>
+<span class="line-empty" title="No Anys on this line!">            # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">                fc = FullyConnected(2 * output_features, n_classes, activation_fn=None)</span>
+Unannotated (x8)">            fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                self.fc_layers.append(fc)</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">            self.mlp_prediction = MLPReadout(sum(block_features) + original_features_num, n_classes)</span>
+Unannotated (x4)">            self.fc_layers.append(fc)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def forward(self, x):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.diag_pool_readout:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">            scores = torch.tensor(0, device=self.device, dtype=x.dtype)</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            x_list = [x]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+Unannotated (x7)
+Unimported (x1)">        scores = torch.tensor(0, device=x.device, dtype=x.dtype)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        for i, block in enumerate(self.reg_blocks):</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            x = block(x)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            if self.diag_pool_readout:</span>
+Unannotated (x11)">            scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x11)">                scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores</span>
-<span class="line-empty" title="No Anys on this line!">            else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                x_list.append(x)</span>
+Unannotated (x1)">        return scores</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-precise" title="No Anys on this line!">class ThreeWLGNNEdgeNet(nn.Module):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,</span>
+<span class="line-any" title="No Anys on this line!">                 residual=False, **model_kwargs):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.diag_pool_readout:</span>
+Unannotated (x2)">        assert gnn_type == '3wlgnn-edge'</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            return scores</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-empty" title="No Anys on this line!">            # readout like RingGNN</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x2)">            x_list = [torch.sum(torch.sum(x, dim=3), dim=2) for x in x_list]</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">            x_list = torch.cat(x_list, dim=1)</span>
+Unannotated (x1)">        super(ThreeWLGNNEdgeNet, self).__init__()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            x_out = self.mlp_prediction(x_list)</span>
+Unannotated (x2)">        self.in_dim_node = feature_dim</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            return x_out</span>
+Unannotated (x2)">        self.residual = residual</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def loss(self, pred, label):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        block_features = [hidden_dim] * n_layers  # L here is the block number</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        original_features_num = self.in_dim_node + self.num_bond_type + 1  # Number of features of the input</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # sequential mlp blocks</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        last_layer_features = original_features_num</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
-Unimported (x1)">        criterion = nn.CrossEntropyLoss()</span>
+Unimported (x1)">        self.reg_blocks = nn.ModuleList()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        loss = criterion(pred, label)</span>
+Unannotated (x4)">        for layer, next_layer_features in enumerate(block_features):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        return loss</span>
+Unannotated (x10)">            mlp_block = RegularBlock(depth_of_mlp, last_layer_features, next_layer_features, self.residual)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            self.reg_blocks.append(mlp_block)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            last_layer_features = next_layer_features</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">        self.fc_layers = nn.ModuleList()</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        for output_features in block_features:</span>
+<span class="line-empty" title="No Anys on this line!">            # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)">            fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            self.fc_layers.append(fc)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">    def forward(self, x_no_edge_feat, x_with_edge_feat):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        x = x_with_edge_feat</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        scores = torch.tensor(0, device=x.device, dtype=x.dtype)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        for i, block in enumerate(self.reg_blocks):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            x = block(x)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x11)">            scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        return scores</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class MLPReadout(nn.Module):</span>
@@ -461,10 +478,12 @@ Unannotated (x6)">            out = out.permute(2, 1, 0).unsqueeze(0)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        return out</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class MlpBlock(nn.Module):</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!">    Block of MLP layers with activation function after each (1x1 conv layers).</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Unimported (x1)">    def __init__(self, in_features, out_features, depth_of_mlp, activation_fn=nn.functional.relu):</span>
@@ -496,6 +515,7 @@ Unannotated (x6)">            out = self.activation(conv_layer(out))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        return out</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class SkipConnection(nn.Module):</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!">    Connects the two given inputs with concatenation</span>
@@ -505,6 +525,7 @@ Unannotated (x1)">        return out</span>
 <span class="line-empty" title="No Anys on this line!">    :param out_features: output num of features</span>
 <span class="line-empty" title="No Anys on this line!">    :return: Tensor of shape N x output_depth x m x m</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def __init__(self, in_features, out_features):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        super().__init__()</span>

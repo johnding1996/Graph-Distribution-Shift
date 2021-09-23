@@ -108,19 +108,9 @@
 <span id="L98" class="lineno"><a class="lineno" href="#L98">98</a></span>
 <span id="L99" class="lineno"><a class="lineno" href="#L99">99</a></span>
 <span id="L100" class="lineno"><a class="lineno" href="#L100">100</a></span>
-<span id="L101" class="lineno"><a class="lineno" href="#L101">101</a></span>
-<span id="L102" class="lineno"><a class="lineno" href="#L102">102</a></span>
-<span id="L103" class="lineno"><a class="lineno" href="#L103">103</a></span>
-<span id="L104" class="lineno"><a class="lineno" href="#L104">104</a></span>
-<span id="L105" class="lineno"><a class="lineno" href="#L105">105</a></span>
-<span id="L106" class="lineno"><a class="lineno" href="#L106">106</a></span>
-<span id="L107" class="lineno"><a class="lineno" href="#L107">107</a></span>
-<span id="L108" class="lineno"><a class="lineno" href="#L108">108</a></span>
-<span id="L109" class="lineno"><a class="lineno" href="#L109">109</a></span>
-<span id="L110" class="lineno"><a class="lineno" href="#L110">110</a></span>
-<span id="L111" class="lineno"><a class="lineno" href="#L111">111</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch_geometric as torch_geo</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.utils import sort_edge_index, remove_self_loops</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.data import Data</span>
@@ -137,19 +127,19 @@ Unimported (x2)">if isnotebook():</span>
 <span class="line-empty" title="No Anys on this line!">else:</span>
 <span class="line-any" title="No Anys on this line!">    from tqdm import tqdm</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def generate_dataset(data_path, </span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">def generate_dataset(data_path,</span>
 <span class="line-empty" title="No Anys on this line!">                     dataset_name,</span>
-<span class="line-empty" title="No Anys on this line!">                     k, </span>
-<span class="line-empty" title="No Anys on this line!">                     extract_ids_fn, </span>
+<span class="line-empty" title="No Anys on this line!">                     k,</span>
+<span class="line-empty" title="No Anys on this line!">                     extract_ids_fn,</span>
 <span class="line-empty" title="No Anys on this line!">                     count_fn,</span>
-<span class="line-empty" title="No Anys on this line!">                     automorphism_fn, </span>
-<span class="line-empty" title="No Anys on this line!">                     id_type,  </span>
+<span class="line-empty" title="No Anys on this line!">                     automorphism_fn,</span>
+<span class="line-empty" title="No Anys on this line!">                     id_type,</span>
 <span class="line-any" title="No Anys on this line!">                     multiprocessing=False,</span>
 <span class="line-any" title="No Anys on this line!">                     num_processes=1,</span>
 <span class="line-empty" title="No Anys on this line!">                     **subgraph_params):</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    ### compute the orbits of earch substructure in the list, as well as the vertex automorphism count</span>
-<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    subgraph_dicts = []</span>
 <span class="line-any" title="Any Types on this line: 
@@ -163,50 +153,37 @@ Unannotated (x3)">    for edge_list in subgraph_params['edge_list']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        subgraph, orbit_partition, orbit_membership, aut_count = \</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">                                            automorphism_fn(edge_list=edge_list,</span>
+Unannotated (x3)">            automorphism_fn(edge_list=edge_list,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                                                           directed=subgraph_params['directed'],</span>
+Unannotated (x2)">                            directed=subgraph_params['directed'],</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                                                           directed_orbits=subgraph_params['directed_orbits'])</span>
+Unannotated (x2)">                            directed_orbits=subgraph_params['directed_orbits'])</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        subgraph_dicts.append({'subgraph':subgraph, 'orbit_partition': orbit_partition, </span>
+Unannotated (x5)">        subgraph_dicts.append({'subgraph': subgraph, 'orbit_partition': orbit_partition,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">                               'orbit_membership': orbit_membership, 'aut_count': aut_count})</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        orbit_partition_sizes.append(len(orbit_partition))</span>
-<span class="line-empty" title="No Anys on this line!"> </span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    ### load and preprocess dataset</span>
-<span class="line-empty" title="No Anys on this line!">    </span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">    if 'ogb' in data_path:</span>
+Unannotated (x3)">    data_path = os.path.join(data_path, os.pardir)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">    if dataset_name == 'ZINC':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        graphs, num_classes, num_node_type, num_edge_type = load_zinc_data(data_path, dataset_name, False)</span>
+<span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">        graphs, num_classes = load_ogb_data(data_path, dataset_name, False)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        num_node_type, num_edge_type = None, None</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    ### parallel computation of subgraph isomoprhisms &amp; creation of data structure</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">    elif dataset_name == 'ZINC':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">        graphs, num_classes, num_node_type, num_edge_type = load_zinc_data(data_path, dataset_name, False)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">    elif dataset_name in ['sr16622', 'sr251256', 'sr261034', 'sr281264', 'sr291467', 'sr351668', 'sr351899', 'sr361446', 'sr401224']:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Unimported (x1)">        graphs, num_classes = load_g6_graphs(data_path, dataset_name)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        num_node_type, num_edge_type = None, None</span>
-<span class="line-empty" title="No Anys on this line!">    else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Unimported (x1)">        graphs, num_classes = load_data(data_path, dataset_name, False)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        num_node_type, num_edge_type = None, None</span>
-<span class="line-empty" title="No Anys on this line!">        </span>
-<span class="line-empty" title="No Anys on this line!">     ### parallel computation of subgraph isomoprhisms &amp; creation of data structure</span>
-<span class="line-empty" title="No Anys on this line!">        </span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">    if multiprocessing:     </span>
+Unannotated (x1)">    if multiprocessing:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        print("Preparing dataset in parallel...")</span>
 <span class="line-any" title="Any Types on this line: 
@@ -216,7 +193,7 @@ Unannotated (x2)">        start = time.time()</span>
 Unannotated (x14)
 Unimported (x2)">        graphs_ptg = Parallel(n_jobs=num_processes, verbose=10)(delayed(_prepare)(graph,</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                                                                                  subgraph_dicts, </span>
+Unannotated (x1)">                                                                                  subgraph_dicts,</span>
 <span class="line-imprecise" title="Any Types on this line: 
 Unannotated (x1)">                                                                                  subgraph_params,</span>
 <span class="line-any" title="Any Types on this line: 
@@ -227,7 +204,6 @@ Unannotated (x1)">                                                              
 Unannotated (x3)">                                                                                  count_fn) for graph in graphs)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        print('Done ({:.2f} secs).'.format(time.time() - start))</span>
-<span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!">    ### single-threaded computation of subgraph isomoprhisms &amp; creation of data structure</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -237,19 +213,17 @@ Unannotated (x5)
 Unimported (x1)">        for i, data in tqdm(enumerate(graphs)):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x15)">            new_data = _prepare(data, subgraph_dicts, subgraph_params, dataset_name, extract_ids_fn, count_fn)</span>
-<span class="line-empty" title="No Anys on this line!">           </span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            graphs_ptg.append(new_data)</span>
-<span class="line-empty" title="No Anys on this line!">         </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    return graphs_ptg, num_classes, num_node_type, num_edge_type, orbit_partition_sizes</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"># ------------------------------------------------------------------------</span>
-<span class="line-empty" title="No Anys on this line!">        </span>
-<span class="line-any" title="No Anys on this line!">def _prepare(data, subgraph_dicts, subgraph_params, dataset_name, ex_fn, cnt_fn):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">def _prepare(data, subgraph_dicts, subgraph_params, dataset_name, ex_fn, cnt_fn):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Unimported (x1)">    new_data = Data()</span>
@@ -279,7 +253,7 @@ Unannotated (x2)
 Explicit (x1)">    if hasattr(data, 'edge_features'):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Explicit (x2)">        setattr(new_data, 'edge_features', data.edge_features)    </span>
+Explicit (x2)">        setattr(new_data, 'edge_features', data.edge_features)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    if dataset_name in {'ogbg-molpcba', 'ogbg-molhiv', 'ZINC'}:</span>
@@ -300,12 +274,9 @@ Error (x1)">        setattr(new_data, 'identifiers', torch.zeros((0, sum(orbit_p
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">        new_data = ex_fn(cnt_fn, new_data, subgraph_dicts, subgraph_params)</span>
-<span class="line-empty" title="No Anys on this line!">   </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    return new_data</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"># --------------------------------------------------------------------------------------    </span>
 </pre></td>
 </tr></tbody>
 </table>

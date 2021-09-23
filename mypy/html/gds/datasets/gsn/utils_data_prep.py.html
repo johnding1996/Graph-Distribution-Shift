@@ -267,6 +267,9 @@
 <span id="L257" class="lineno"><a class="lineno" href="#L257">257</a></span>
 <span id="L258" class="lineno"><a class="lineno" href="#L258">258</a></span>
 <span id="L259" class="lineno"><a class="lineno" href="#L259">259</a></span>
+<span id="L260" class="lineno"><a class="lineno" href="#L260">260</a></span>
+<span id="L261" class="lineno"><a class="lineno" href="#L261">261</a></span>
+<span id="L262" class="lineno"><a class="lineno" href="#L262">262</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -560,15 +563,21 @@ Unannotated (x3)">    return data, 1, num_atom_type, num_bond_type</span>
 Unannotated (x7)
 Unimported (x2)">        data.x = torch.zeros(data.num_nodes, dtype=torch.long)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        return data</span>
-<span class="line-empty" title="No Anys on this line!">    </span>
+Error (x1)">        return dats</span>
+<span class="line-empty" title="No Anys on this line!"> </span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">    transform = add_zeros if name == 'ogbg-ppa' else None</span>
+Unannotated (x2)">    if name == 'ogbg-ppa':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">    print('Applying transform {} to dataset {}.'.format(transform, name))</span>
+Unannotated (x3)">        transform = add_zeros</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">        print('Applying transform {} to dataset {}.'.format(transform, name))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
-Unimported (x1)">    dataset = PygGraphPropPredDataset(name=name, root=path, transform=transform)</span>
+Unimported (x1)">        dataset = PygGraphPropPredDataset(name=name, root=path, transform=transform)</span>
+<span class="line-empty" title="No Anys on this line!">    else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        dataset = PygGraphPropPredDataset(name=name, root=path)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'edge_features', 'label'])</span>
 <span class="line-any" title="Any Types on this line: 
