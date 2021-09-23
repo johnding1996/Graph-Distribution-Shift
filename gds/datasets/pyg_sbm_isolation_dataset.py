@@ -8,7 +8,7 @@ from typing import Optional, Callable, List
 class PyGSBMIsolationDataset(InMemoryDataset):
     names = ['SBM-Isolation']
     urls = {
-        'SBM-Isolation': 'https://www.dropbox.com/s/m7nsrezamstkhx3/SBM-Isolation.zip?dl=1'
+        'SBM-Isolation': 'https://www.dropbox.com/s/sz1auhmsoevntli/SBM-Isolation.zip?dl=1'
     }
 
     def __init__(self, root: str, name: str,
@@ -19,7 +19,7 @@ class PyGSBMIsolationDataset(InMemoryDataset):
         assert self.name in self.names
         if name == 'SBM-Isolation':
             self.num_tasks = 1
-            self.__num_classes__ = 8
+            self.__num_classes__ = 4
         else:
             raise NotImplementedError
 

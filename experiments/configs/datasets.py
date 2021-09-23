@@ -2,7 +2,7 @@ dataset_defaults = {
     'ogb-molpcba': {
         'num_domains': 120084,
         'split_scheme': 'official',
-        'model_kwargs': {'dropout': 0.5, 'dataset_group':'mol'},  # include pretrained
+        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'mol'},
         'default_frac': 0.10,
         'loss_function': 'multitask_bce',
         'groupby_fields': ['scaffold', ],
@@ -23,7 +23,7 @@ dataset_defaults = {
     'ogb-molhiv': {
         'num_domains': 19089,
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'mol'}, # include pretrained
+        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'mol'},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['scaffold', ],
@@ -42,9 +42,9 @@ dataset_defaults = {
         'algo_log_metric': 'binary_accuracy',
     },
     'ogbg-ppa': {
-        'num_domains': 1581, # not mapped
+        'num_domains': 1581,  # not mapped
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'ppa'}, # include pretrained
+        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'ppa'},
         'default_frac': 0.10,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['species', ],
@@ -65,10 +65,10 @@ dataset_defaults = {
     'RotatedMNIST': {
         'num_domains': 6,
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # include pretrained
+        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
-        'groupby_fields': ['angle',],
+        'groupby_fields': ['angle', ],
         'val_metric': 'acc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
@@ -84,13 +84,13 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
     },
     'SBM-Environment': {
-        'num_domains': 15,
+        'num_domains': 4,
         'split_scheme': 'official',
         'model': 'gin_virtual_mnist',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # TODO: !!!!!!!!!
+        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'SBM'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
-        'groupby_fields': ['composition',],
+        'groupby_fields': ['composition', ],
         'val_metric': 'acc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
@@ -106,13 +106,13 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
     },
     'SBM-Isolation': {
-        'num_domains': 36,
+        'num_domains': 10,
         'split_scheme': 'official',
         'model': 'gin_virtual_mnist',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'RotatedMNIST'}, # TODO: !!!!!!!!!
+        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'SBM'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
-        'groupby_fields': ['composition',],
+        'groupby_fields': ['composition', ],
         'val_metric': 'acc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
@@ -130,10 +130,10 @@ dataset_defaults = {
     'UPFD': {
         'num_domains': 10,
         'split_scheme': 'official',
-        'model_kwargs': {'dropout':0.5, 'dataset_group':'UPFD'}, # include pretrained
+        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'UPFD'},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
-        'groupby_fields': ['size',],
+        'groupby_fields': ['size', ],
         'val_metric': 'acc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',

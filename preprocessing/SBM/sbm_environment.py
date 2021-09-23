@@ -56,15 +56,15 @@ def adj_to_edge_list(W):
     
     
 SMB_ENVIRONMENT_CONFIG = {
-    'r1': 6,
-    'r2': 5,
-    's1': 4,
-    's2': 3,
-    'p_r': np.arange(0.9, 0.35, -0.05),
-    'size_min': 5,
-    'size_max': 15,
-    'q': 0.3,
-    'ntypes': 3,
+    'r1': 4,
+    'r2': 3,
+    's1': 3,
+    's2': 2,
+    'p_r': np.array([0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3]),
+    'size_min': 20,
+    'size_max': 40,
+    'q': 0.1,
+    'ntypes': 8,
 }
 
 
@@ -89,7 +89,6 @@ class SBMEnvironmentGraph():
         self.s2  = SMB_ENVIRONMENT_CONFIG['s2']
         assert self.s1 > 0 and self.s1 < self.r1
         assert self.s2 > 0 and self.s2 < self.r2
-        assert self.r1 == self.r2 + 1
         self.p_r = SMB_ENVIRONMENT_CONFIG['p_r']
         self.p_r1 = self.p_r[0::2]
         self.p_r2 = self.p_r[1::2]
@@ -113,7 +112,7 @@ class SBMEnvironmentGraph():
         assert isinstance(self.edge_index, torch.Tensor)
         assert isinstance(self.domain_id, np.ndarray)
         
-        assert self.x.ndim == 2 and self.x.size(1) == 1
+        assert self.x.ndim == 1
         assert self.y.ndim == 0
         assert self.edge_index.ndim == 2 and self.edge_index.size(0) == 2
         assert self.domain_id.ndim == 0
@@ -165,7 +164,7 @@ class SBMEnvironmentGraph():
         W, x = schuffle(W, x)
         
         # conversion
-        self.x = torch.from_numpy(x).view(x.shape[0], 1).long()
+        self.x = torch.from_numpy(x).long()
         self.y = torch.tensor(y).long()
         self.edge_index = torch.from_numpy(adj_to_edge_list(W)).long()
         self.domain_id = np.array(domain_id, dtype=np.int64)
@@ -176,6 +175,8 @@ def generate_func(i):
     
         
 def generate_sbm_graph_list(n_samples, n_processes=1):
+    np.random.seed(0)
+    
     start_time = time.time()
 
     sbm_graph_list = []

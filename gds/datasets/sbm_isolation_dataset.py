@@ -40,7 +40,7 @@ class SBMIsolationDataset(GDSDataset):
         metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'SBM-Isolation_group.npy')
         if not os.path.exists(metadata_file_path):
             metadata_zip_file_path = download_url(
-                'https://www.dropbox.com/s/2k90qb00xl485to/SBM-Isolation_group.zip?dl=1', self.ogb_dataset.raw_dir)
+                'https://www.dropbox.com/s/6zvzp0dhzbz5h1u/SBM-Isolation_group.zip?dl=1', self.ogb_dataset.raw_dir)
             extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)
             os.unlink(metadata_zip_file_path)
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
@@ -51,12 +51,12 @@ class SBMIsolationDataset(GDSDataset):
         dataset_size = len(self.ogb_dataset)
         if random_split:
             random_index = np.random.permutation(dataset_size)
-            train_split_idx = random_index[:int(28 / 36 * dataset_size)]
-            val_split_idx = random_index[int(28 / 36 * dataset_size):int(32 / 36 * dataset_size)]
-            test_split_idx = random_index[int(32 / 36 * dataset_size):]
+            train_split_idx = random_index[:int(6 / 10 * dataset_size)]
+            val_split_idx = random_index[int(6 / 10 * dataset_size):int(8 / 10 * dataset_size)]
+            test_split_idx = random_index[int(8 / 10 * dataset_size):]
         else:
             # use the group info split data
-            train_val_group_idx, test_group_idx = range(0, 32), range(32, 36)
+            train_val_group_idx, test_group_idx = range(0, 8), range(8, 10)
             train_val_group_idx, test_group_idx = torch.tensor(train_val_group_idx), torch.tensor(test_group_idx)
 
             def split_idx(group_idx):
@@ -70,8 +70,8 @@ class SBMIsolationDataset(GDSDataset):
             train_val_split_idx = torch.arange(dataset_size, dtype=torch.int64)[train_val_split_idx]
             train_val_sets_size = len(train_val_split_idx)
             random_index = np.random.permutation(train_val_sets_size)
-            train_split_idx = train_val_split_idx[random_index[:int(28 / 32 * train_val_sets_size)]]
-            val_split_idx = train_val_split_idx[random_index[int(28 / 32 * train_val_sets_size):]]
+            train_split_idx = train_val_split_idx[random_index[:int(6 / 8 * train_val_sets_size)]]
+            val_split_idx = train_val_split_idx[random_index[int(6 / 8 * train_val_sets_size):]]
 
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1

@@ -8,7 +8,7 @@ from typing import Optional, Callable, List
 class PyGSBMEnvironmentDataset(InMemoryDataset):
     names = ['SBM-Environment']
     urls = {
-        'SBM-Environment': 'https://www.dropbox.com/s/nnxi4f8qn2l0v8t/SBM-Environment.zip?dl=1'
+        'SBM-Environment': 'https://www.dropbox.com/s/rngulpfawv2hmlr/SBM-Environment.zip?dl=1'
     }
 
     def __init__(self, root: str, name: str,
@@ -19,7 +19,7 @@ class PyGSBMEnvironmentDataset(InMemoryDataset):
         assert self.name in self.names
         if name == 'SBM-Environment':
             self.num_tasks = 1
-            self.__num_classes__ = 10
+            self.__num_classes__ = 3
         else:
             raise NotImplementedError
 

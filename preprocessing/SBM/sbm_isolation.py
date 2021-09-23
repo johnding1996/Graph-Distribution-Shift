@@ -59,14 +59,14 @@ def adj_to_edge_list(W):
     
     
 SMB_ISOLATION_CONFIG = {
-    'r': 9,
-    's': 7,
-    'p_r': np.arange(0.9, 0.45, -0.05),
-    'size_min': 5,
-    'size_max': 35,
-    'q': 0.4,
-    'q_p': 0.3,
-    'ntypes': 3,
+    'r': 5,
+    's': 3,
+    'p_r': np.array([0.9, 0.8, 0.7, 0.6, 0.5]),
+    'size_min': 10,
+    'size_max': 30,
+    'q': 0.3,
+    'q_p': 0.1,
+    'ntypes': 8,
 }
 
 
@@ -104,7 +104,7 @@ class SBMIsolationGraph():
         assert isinstance(self.edge_index, torch.Tensor)
         assert isinstance(self.domain_id, np.ndarray)
         
-        assert self.x.ndim == 2 and self.x.size(1) == 1
+        assert self.x.ndim == 1
         assert self.y.ndim == 0
         assert self.edge_index.ndim == 2 and self.edge_index.size(0) == 2
         assert self.domain_id.ndim == 0
@@ -151,7 +151,7 @@ class SBMIsolationGraph():
         W, x = schuffle(W, x)
         
         # conversion
-        self.x = torch.from_numpy(x).view(x.shape[0], 1).long()
+        self.x = torch.from_numpy(x).long()
         self.y = torch.tensor(y).long()
         self.edge_index = torch.from_numpy(adj_to_edge_list(W)).long()
         self.domain_id = np.array(domain_id, dtype=np.int64)
@@ -162,6 +162,8 @@ def generate_func(i):
     
         
 def generate_sbm_graph_list(n_samples, n_processes=1):
+    np.random.seed(0)
+    
     start_time = time.time()
 
     sbm_graph_list = []
