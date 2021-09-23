@@ -7,7 +7,7 @@ from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
 from torch_geometric.data.dataloader import Collater as PyGCollater
 
 from gds.datasets.gds_dataset import GDSDataset
-
+from torch_geometric.utils import to_dense_adj
 
 def add_zeros(data):
     data.x = torch.zeros(data.num_nodes, dtype=torch.long)
@@ -129,3 +129,35 @@ class OGBGPPADataset(GDSDataset):
         results = self._metric.eval(input_dict)
 
         return results, f"Accuracy: {results['acc']:.3f}\n"
+
+    # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
+    def collate_dense(self, samples):
+        # The input samples is a list of pairs (graph, label).
+
+        graph_list, y_list, metadata_list = map(list, zip(*samples))
+        y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
+
+        x_edge_feat = []
+        for graph in graph_list :
+            adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+            zero_adj = torch.zeros_like(adj)
+            in_dim = graph.edge_attr.shape[1]
+
+            # use node feats to prepare adj
+            adj_edge_feat = torch.stack([zero_adj for _ in range(in_dim)])
+            adj_edge_feat = torch.cat([adj.unsqueeze(0), adj_edge_feat], dim=0)
+
+            for edge in range(graph.edge_index.shape[1]) :
+                target, source = graph.edge_index[0][edge], graph.edge_index[1][edge]
+                adj_edge_feat[1:, target, source] = graph.egde_attr
+
+            x_edge_feat.append(adj_edge_feat)
+
+        x_edge_feat = torch.stack(x_edge_feat)
+        return x_edge_feat, y, metadata
+
+    def _sym_normalize_adj(self, adj):
+        deg = torch.sum(adj, dim=0)  # .squeeze()
+        deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
+        deg_inv = torch.diag(deg_inv)
+        return torch.mm(deg_inv, torch.mm(adj, deg_inv))
