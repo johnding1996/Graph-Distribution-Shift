@@ -42,7 +42,7 @@ dataset_defaults = {
         'algo_log_metric': 'binary_accuracy',
     },
     'ogbg-ppa': {
-        'num_domains': 100000000000,
+        'num_domains': 1581, # not mapped
         'split_scheme': 'official',
         'model_kwargs': {'dropout':0.5, 'dataset_group':'ppa'}, # include pretrained
         'default_frac': 0.10,

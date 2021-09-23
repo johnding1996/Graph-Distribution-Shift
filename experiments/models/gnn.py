@@ -116,7 +116,7 @@ class GNN_node(torch.nn.Module):
 
         for layer in range(num_layer):
             if gnn_type == 'gin':
-                if self.dataset_group == 'RotatedMNIST' or 'UPFD':
+                if self.dataset_group in  ['RotatedMNIST', 'UPFD']:
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
                                                    torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
                                                    torch.nn.Linear(2 * emb_dim, emb_dim))
@@ -124,12 +124,12 @@ class GNN_node(torch.nn.Module):
                 else :
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
-                if self.dataset_group == 'RotatedMNIST' or 'UPFD':
+                if self.dataset_group in  ['RotatedMNIST', 'UPFD']:
                     self.convs.append(GCNConv(emb_dim, emb_dim))
                 else :
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'cheb' :
-                if self.dataset_group == 'RotatedMNIST' or 'UPFD':
+                if self.dataset_group in  ['RotatedMNIST', 'UPFD']:
                     self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))
                 else :
                     self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
@@ -153,8 +153,6 @@ class GNN_node(torch.nn.Module):
         for layer in range(self.num_layer):
 
             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
-            if self.dataset_group == 'RotatedMNIST' or 'UPFD':
-                h = F.relu(h)
             h = self.batch_norms[layer](h)
 
             if layer == self.num_layer - 1:
@@ -229,7 +227,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
 
         for layer in range(num_layer):
             if gnn_type == 'gin':
-                if self.dataset_group == 'RotatedMNIST' or 'UPFD' :
+                if self.dataset_group in  ['RotatedMNIST', 'UPFD']:
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
                                                    torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
                                                    torch.nn.Linear(2 * emb_dim, emb_dim))
@@ -237,12 +235,12 @@ class GNN_node_Virtualnode(torch.nn.Module):
                 else :
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
-                if self.dataset_group == 'RotatedMNIST' or 'UPFD' :
+                if self.dataset_group in  ['RotatedMNIST', 'UPFD']:
                     self.convs.append(GCNConv(emb_dim, emb_dim))
                 else :
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'cheb' :
-                if self.dataset_group == 'RotatedMNIST' or 'UPFD':
+                if self.dataset_group in  ['RotatedMNIST', 'UPFD']:
                     self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))
                 else :
                     self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
@@ -281,8 +279,6 @@ class GNN_node_Virtualnode(torch.nn.Module):
 
             ### Message passing among graph nodes
             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
-            if self.dataset_group == 'RotatedMNIST' or 'UPFD':
-                h = F.relu(h)
             h = self.batch_norms[layer](h)
             if layer == self.num_layer - 1:
                 #remove relu for the last layer
