@@ -9,6 +9,7 @@ from torch_geometric.data.dataloader import Collater as PyGCollater
 from gds.datasets.gds_dataset import GDSDataset
 from torch_geometric.utils import to_dense_adj
 
+
 def add_zeros(data):
     data.x = torch.zeros(data.num_nodes, dtype=torch.long)
     return data
@@ -100,10 +101,13 @@ class OGBGPPADataset(GDSDataset):
         self._metadata_array_wo_y = torch.from_numpy(df_np - df_np.min()).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
 
-        if torch_geometric.__version__ >= '1.7.0':
-            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+        if dataset_kwargs['model'] == '3wlgnn':
+            self._collate = self.collate_dense
         else:
-            self._collate = PyGCollater(follow_batch=[])
+            if torch_geometric.__version__ >= '1.7.0':
+                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+            else:
+                self._collate = PyGCollater(follow_batch=[])
 
         self._metric = Evaluator('ogbg-ppa')
 
@@ -136,14 +140,20 @@ class OGBGPPADataset(GDSDataset):
 
     # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
     def collate_dense(self, samples):
-        # The input samples is a list of pairs (graph, label).
+        def _sym_normalize_adj(adjacency):
+            deg = torch.sum(adjacency, dim=0)  # .squeeze()
+            deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
+            deg_inv = torch.diag(deg_inv)
+            return torch.mm(deg_inv, torch.mm(adjacency, deg_inv))
 
+        # The input samples is a list of pairs (graph, label).
         graph_list, y_list, metadata_list = map(list, zip(*samples))
         y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
 
         x_edge_feat = []
-        for graph in graph_list :
-            adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+        for graph in graph_list:
+            print(type(graph))
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = graph.edge_attr.shape[1]
 
@@ -151,17 +161,12 @@ class OGBGPPADataset(GDSDataset):
             adj_edge_feat = torch.stack([zero_adj for _ in range(in_dim)])
             adj_edge_feat = torch.cat([adj.unsqueeze(0), adj_edge_feat], dim=0)
 
-            for edge in range(graph.edge_index.shape[1]) :
+            for edge in range(graph.edge_index.shape[1]):
                 target, source = graph.edge_index[0][edge], graph.edge_index[1][edge]
                 adj_edge_feat[1:, target, source] = graph.egde_attr
 
             x_edge_feat.append(adj_edge_feat)
 
         x_edge_feat = torch.stack(x_edge_feat)
+        print(x_edge_feat.size())
         return x_edge_feat, y, metadata
-
-    def _sym_normalize_adj(self, adj):
-        deg = torch.sum(adj, dim=0)  # .squeeze()
-        deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
-        deg_inv = torch.diag(deg_inv)
-        return torch.mm(deg_inv, torch.mm(adj, deg_inv))

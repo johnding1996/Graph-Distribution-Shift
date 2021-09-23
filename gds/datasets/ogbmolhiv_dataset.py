@@ -12,6 +12,7 @@ from gds.datasets.gds_dataset import GDSDataset
 from torch_geometric.utils import to_dense_adj
 import torch.nn.functional as F
 
+
 class OGBHIVDataset(GDSDataset):
     """
     The OGB-molhiv dataset.
@@ -163,6 +164,12 @@ class OGBHIVDataset(GDSDataset):
 
     # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
     def collate_dense(self, samples):
+        def _sym_normalize_adj(adj):
+            deg = torch.sum(adj, dim=0)  # .squeeze()
+            deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
+            deg_inv = torch.diag(deg_inv)
+            return torch.mm(deg_inv, torch.mm(adj, deg_inv))
+
         # The input samples is a list of pairs (graph, label).
         node_feat_space = torch.tensor([119, 4, 12, 12, 10, 6, 6, 2, 2])
         edge_feat_space = torch.tensor([5, 6, 2])
@@ -172,7 +179,7 @@ class OGBHIVDataset(GDSDataset):
 
         feat = []
         for graph in graph_list :
-            adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = node_feat_space.sum() + edge_feat_space.sum()
 
@@ -197,9 +204,3 @@ class OGBHIVDataset(GDSDataset):
 
         feat = torch.stack(feat)
         return feat, y, metadata
-
-    def _sym_normalize_adj(self, adj):
-        deg = torch.sum(adj, dim=0)  # .squeeze()
-        deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
-        deg_inv = torch.diag(deg_inv)
-        return torch.mm(deg_inv, torch.mm(adj, deg_inv))

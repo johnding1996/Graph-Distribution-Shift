@@ -139,10 +139,12 @@ class RegularBlock(nn.Module):
 
         return out
 
+
 class MlpBlock(nn.Module):
     """
     Block of MLP layers with activation function after each (1x1 conv layers).
     """
+
     def __init__(self, in_features, out_features, depth_of_mlp, activation_fn=nn.functional.relu):
         super().__init__()
         self.activation = activation_fn
@@ -159,6 +161,7 @@ class MlpBlock(nn.Module):
 
         return out
 
+
 class SkipConnection(nn.Module):
     """
     Connects the two given inputs with concatenation
@@ -168,6 +171,7 @@ class SkipConnection(nn.Module):
     :param out_features: output num of features
     :return: Tensor of shape N x output_depth x m x m
     """
+
     def __init__(self, in_features, out_features):
         super().__init__()
         self.conv = nn.Conv2d(in_features, out_features, kernel_size=1, padding=0, bias=True)
