@@ -128,7 +128,7 @@ class RotatedMNISTDataset(GDSDataset):
 
         x_node_feat = []
         for graph in graph_list:
-            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = graph.x.shape[1]
 

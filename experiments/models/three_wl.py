@@ -12,11 +12,11 @@ import torch.nn.functional as F
 
 
 class ThreeWLGNNNet(nn.Module):
-    def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,
+    def __init__(self, gnn_type, num_tasks, three_wl_in_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,
                  residual=False, **model_kwargs):
         assert gnn_type == '3wlgnn'
         super(ThreeWLGNNNet, self).__init__()
-        self.in_dim_node = feature_dim
+        self.in_dim_node = three_wl_in_dim
         self.residual = residual
 
         block_features = [hidden_dim] * n_layers  # L here is the block number

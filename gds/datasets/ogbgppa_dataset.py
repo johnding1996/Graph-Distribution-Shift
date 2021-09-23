@@ -152,8 +152,7 @@ class OGBGPPADataset(GDSDataset):
 
         x_edge_feat = []
         for graph in graph_list:
-            print(type(graph))
-            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = graph.edge_attr.shape[1]
 
@@ -163,10 +162,9 @@ class OGBGPPADataset(GDSDataset):
 
             for edge in range(graph.edge_index.shape[1]):
                 target, source = graph.edge_index[0][edge], graph.edge_index[1][edge]
-                adj_edge_feat[1:, target, source] = graph.egde_attr
+                adj_edge_feat[1:, target, source] = graph.edge_attr[edge]
 
             x_edge_feat.append(adj_edge_feat)
 
         x_edge_feat = torch.stack(x_edge_feat)
-        print(x_edge_feat.size())
         return x_edge_feat, y, metadata

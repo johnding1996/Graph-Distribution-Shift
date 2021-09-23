@@ -2,7 +2,7 @@ dataset_defaults = {
     'ogb-molpcba': {
         'num_domains': 120084,
         'split_scheme': 'official',
-        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'mol'},
+        'model_kwargs': {'three_wl_in_dim': 186, 'dropout': 0.5, 'dataset_group': 'mol'},
         'default_frac': 0.10,
         'loss_function': 'multitask_bce',
         'groupby_fields': ['scaffold', ],
@@ -25,7 +25,7 @@ dataset_defaults = {
     'ogb-molhiv': {
         'num_domains': 19089,
         'split_scheme': 'official',
-        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'mol'},
+        'model_kwargs': {'three_wl_in_dim': 186, 'dropout': 0.5, 'dataset_group': 'mol'},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['scaffold', ],
@@ -48,7 +48,7 @@ dataset_defaults = {
     'ogbg-ppa': {
         'num_domains': 1581,  # not mapped
         'split_scheme': 'official',
-        'model_kwargs': {'feature_dim': 10, 'dropout': 0.5, 'dataset_group': 'ppa'},
+        'model_kwargs': {'three_wl_in_dim': 7, 'dropout': 0.5, 'dataset_group': 'ppa'},
         'default_frac': 0.10,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['species', ],
@@ -71,7 +71,7 @@ dataset_defaults = {
     'RotatedMNIST': {
         'num_domains': 6,
         'split_scheme': 'official',
-        'model_kwargs': {'feature_dim': 3, 'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},
+        'model_kwargs': {'three_wl_in_dim': 3, 'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['angle', ],
@@ -95,7 +95,7 @@ dataset_defaults = {
         'num_domains': 4,
         'split_scheme': 'official',
         'model': 'gin_virtual_mnist',
-        'model_kwargs': {'feature_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},
+        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['composition', ],
@@ -119,7 +119,7 @@ dataset_defaults = {
         'num_domains': 10,
         'split_scheme': 'official',
         'model': 'gin_virtual_mnist',
-        'model_kwargs': {'feature_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},
+        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['composition', ],
@@ -142,7 +142,7 @@ dataset_defaults = {
     'UPFD': {
         'num_domains': 10,
         'split_scheme': 'official',
-        'model_kwargs': {'feature_dim': 10, 'dropout': 0.5, 'dataset_group': 'UPFD'},
+        'model_kwargs': {'three_wl_in_dim': 10, 'dropout': 0.5, 'dataset_group': 'UPFD'},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['size', ],

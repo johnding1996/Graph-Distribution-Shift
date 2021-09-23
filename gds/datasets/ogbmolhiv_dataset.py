@@ -64,7 +64,8 @@ class OGBHIVDataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False, subgraph=False, **dataset_kwargs):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,
+                 subgraph=False, **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.')
@@ -76,7 +77,7 @@ class OGBHIVDataset(GDSDataset):
         if split_scheme == 'official':
             split_scheme = 'scaffold'
         self._split_scheme = split_scheme
-        self._y_type = 'float' # although the task is binary classification, the prediction target contains nan value, thus we need float
+        self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
         # self._n_classes = self.ogb_dataset.__num_classes__
         self._n_classes = 1
@@ -102,10 +103,13 @@ class OGBHIVDataset(GDSDataset):
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
 
-        if torch_geometric.__version__ >= '1.7.0':
-            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+        if dataset_kwargs['model'] == '3wlgnn':
+            self._collate = self.collate_dense
         else:
-            self._collate = PyGCollater(follow_batch=[])
+            if torch_geometric.__version__ >= '1.7.0':
+                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+            else:
+                self._collate = PyGCollater(follow_batch=[])
 
         self._metric = Evaluator('ogbg-molhiv')
 
@@ -115,19 +119,20 @@ class OGBHIVDataset(GDSDataset):
             self.id_type = dataset_kwargs['gsn_id_type']
             self.k = dataset_kwargs['gsn_k']
             from gds.datasets.gsn.gsn_data_prep import GSN
-            subgraph = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
+            subgraph = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type,
+                           k=self.k)
             self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset.root)
 
-            if self.graphs_ptg[0].x.dim()==1:
+            if self.graphs_ptg[0].x.dim() == 1:
                 self.num_features = 1
             else:
                 self.num_features = self.graphs_ptg[0].num_features
-                
+
             if hasattr(self.graphs_ptg[0], 'edge_features'):
-                if self.graphs_ptg[0].edge_features.dim()==1:
+                if self.graphs_ptg[0].edge_features.dim() == 1:
                     self.num_edge_features = 1
                 else:
-                    self.num_edge_features  = self.graphs_ptg[0].edge_features.shape[1]
+                    self.num_edge_features = self.graphs_ptg[0].edge_features.shape[1]
             else:
                 self.num_edge_features = None
 
@@ -164,11 +169,11 @@ class OGBHIVDataset(GDSDataset):
 
     # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
     def collate_dense(self, samples):
-        def _sym_normalize_adj(adj):
-            deg = torch.sum(adj, dim=0)  # .squeeze()
+        def _sym_normalize_adj(adjacency):
+            deg = torch.sum(adjacency, dim=0)  # .squeeze()
             deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
             deg_inv = torch.diag(deg_inv)
-            return torch.mm(deg_inv, torch.mm(adj, deg_inv))
+            return torch.mm(deg_inv, torch.mm(adjacency, deg_inv))
 
         # The input samples is a list of pairs (graph, label).
         node_feat_space = torch.tensor([119, 4, 12, 12, 10, 6, 6, 2, 2])
@@ -177,9 +182,12 @@ class OGBHIVDataset(GDSDataset):
         graph_list, y_list, metadata_list = map(list, zip(*samples))
         y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
 
+        # insert size one at dim 0 because this dataset's y is 1d
+        y = y.unsqueeze(0)
+
         feat = []
-        for graph in graph_list :
-            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+        for graph in graph_list:
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = node_feat_space.sum() + edge_feat_space.sum()
 
@@ -187,18 +195,18 @@ class OGBHIVDataset(GDSDataset):
             adj_feat = torch.stack([zero_adj for _ in range(in_dim)])
             adj_feat = torch.cat([adj.unsqueeze(0), adj_feat], dim=0)
 
-            def convert(feat, space) :
+            def convert(feature, space):
                 out = []
-                for i, label in enumerate(feat) :
-                    out.append(F.one_hot(torch.tensor(label), space[i]))
+                for i, label in enumerate(feature):
+                    out.append(F.one_hot(label, space[i]))
                 return torch.cat(out)
 
             for node, node_feat in enumerate(graph.x):
-                adj_feat[1:1+node_feat_space.sum(), node, node] = convert(node_feat, node_feat_space)
-            for edge in range(graph.edge_index.shape[1]) :
+                adj_feat[1:1 + node_feat_space.sum(), node, node] = convert(node_feat, node_feat_space)
+            for edge in range(graph.edge_index.shape[1]):
                 target, source = graph.edge_index[0][edge], graph.edge_index[1][edge]
-                edge_feat = graph.egde_attr
-                adj_feat[1+node_feat_space.sum():, target, source] = convert(edge_feat, edge_feat_space)
+                edge_feat = graph.edge_attr[edge]
+                adj_feat[1 + node_feat_space.sum():, target, source] = convert(edge_feat, edge_feat_space)
 
             feat.append(adj_feat)
 

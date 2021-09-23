@@ -11,6 +11,7 @@ from gds.datasets.gds_dataset import GDSDataset
 from torch_geometric.utils import to_dense_adj
 import torch.nn.functional as F
 
+
 class OGBPCBADataset(GDSDataset):
     """
     The OGB-molpcba dataset.
@@ -99,10 +100,13 @@ class OGBPCBADataset(GDSDataset):
             os.unlink(metadata_zip_file_path)
         self._metadata_array = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
 
-        if torch_geometric.__version__ >= '1.7.0':
-            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+        if dataset_kwargs['model'] == '3wlgnn':
+            self._collate = self.collate_dense
         else:
-            self._collate = PyGCollater(follow_batch=[])
+            if torch_geometric.__version__ >= '1.7.0':
+                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+            else:
+                self._collate = PyGCollater(follow_batch=[])
 
         self._metric = Evaluator('ogbg-molpcba')
 
@@ -132,16 +136,23 @@ class OGBPCBADataset(GDSDataset):
 
     # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
     def collate_dense(self, samples):
+        def _sym_normalize_adj(adjacency):
+            deg = torch.sum(adjacency, dim=0)  # .squeeze()
+            deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
+            deg_inv = torch.diag(deg_inv)
+            return torch.mm(deg_inv, torch.mm(adjacency, deg_inv))
+
         # The input samples is a list of pairs (graph, label).
         node_feat_space = torch.tensor([119, 4, 12, 12, 10, 6, 6, 2, 2])
         edge_feat_space = torch.tensor([5, 6, 2])
 
         graph_list, y_list, metadata_list = map(list, zip(*samples))
-        y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
+        # multi-task y, use torch.stack instead of torch.tensor
+        y, metadata = torch.stack(y_list), torch.stack(metadata_list)
 
         feat = []
-        for graph in graph_list :
-            adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+        for graph in graph_list:
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = node_feat_space.sum() + edge_feat_space.sum()
 
@@ -149,26 +160,20 @@ class OGBPCBADataset(GDSDataset):
             adj_feat = torch.stack([zero_adj for _ in range(in_dim)])
             adj_feat = torch.cat([adj.unsqueeze(0), adj_feat], dim=0)
 
-            def convert(feat, space) :
+            def convert(feature, space):
                 out = []
-                for i, label in enumerate(feat) :
-                    out.append(F.one_hot(torch.tensor(label), space[i]))
+                for i, label in enumerate(feature):
+                    out.append(F.one_hot(label, space[i]))
                 return torch.cat(out)
 
             for node, node_feat in enumerate(graph.x):
-                adj_feat[1:1+node_feat_space.sum(), node, node] = convert(node_feat, node_feat_space)
-            for edge in range(graph.edge_index.shape[1]) :
+                adj_feat[1:1 + node_feat_space.sum(), node, node] = convert(node_feat, node_feat_space)
+            for edge in range(graph.edge_index.shape[1]):
                 target, source = graph.edge_index[0][edge], graph.edge_index[1][edge]
-                edge_feat = graph.egde_attr
-                adj_feat[1+node_feat_space.sum():, target, source] = convert(edge_feat, edge_feat_space)
+                edge_feat = graph.edge_attr[edge]
+                adj_feat[1 + node_feat_space.sum():, target, source] = convert(edge_feat, edge_feat_space)
 
             feat.append(adj_feat)
 
         feat = torch.stack(feat)
         return feat, y, metadata
-
-    def _sym_normalize_adj(self, adj):
-        deg = torch.sum(adj, dim=0)  # .squeeze()
-        deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
-        deg_inv = torch.diag(deg_inv)
-        return torch.mm(deg_inv, torch.mm(adj, deg_inv))

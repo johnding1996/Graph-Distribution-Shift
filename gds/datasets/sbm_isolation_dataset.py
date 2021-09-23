@@ -130,7 +130,7 @@ class SBMIsolationDataset(GDSDataset):
 
         feat = []
         for graph in graph_list:
-            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())
             zero_adj = torch.zeros_like(adj)
             in_dim = node_feat_space.sum()
 
@@ -145,7 +145,7 @@ class SBMIsolationDataset(GDSDataset):
                 return torch.cat(out)
 
             for node, node_feat in enumerate(graph.x):
-                adj_feat[1:1+node_feat_space.sum(), node, node] = convert(node_feat.unsqueeze(0), node_feat_space)
+                adj_feat[1:1 + node_feat_space.sum(), node, node] = convert(node_feat.unsqueeze(0), node_feat_space)
 
             feat.append(adj_feat)
 
