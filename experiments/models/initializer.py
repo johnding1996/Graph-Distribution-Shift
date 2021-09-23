@@ -1,11 +1,12 @@
 import torch.nn as nn
+from torch_geometric.nn import global_mean_pool
 
 from models.gnn import GNN
 from models.three_wl import ThreeWLGNNNet
 from models.gsn.gnn import GNN_GSN
 
 
-def initialize_model(config, d_out, is_featurizer=False, full_dataset=None):
+def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_pooled=True):
     """
     Initializes models according to the config
         Args:
@@ -21,15 +22,26 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None):
     """
     if full_dataset is None:
         if config.model == "3wlgnn":
-            Model = ThreeWLGNNNet
+            if is_featurizer:
+                featurizer = ThreeWLGNNNet(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
+                classifier = nn.Linear(featurizer.d_out, d_out)
+                model = (featurizer, classifier)
+            else:
+                model = ThreeWLGNNNet(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
         else:
-            Model = GNN
-        if is_featurizer:
-            featurizer = Model(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
-            classifier = nn.Linear(featurizer.d_out, d_out)
-            model = (featurizer, classifier)
-        else:
-            model = Model(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
+            if is_featurizer:
+                if is_pooled :
+                    featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)
+                    classifier = nn.Linear(featurizer.d_out, d_out)
+                    model = (featurizer, classifier)
+                else :
+                    featurizer = GNN(gnn_type=config.model, num_tasks=None, is_pooled=is_pooled, **config.model_kwargs)
+                    classifier = nn.Linear(featurizer.d_out, d_out)
+                    pooler = global_mean_pool
+                    model = (featurizer, pooler, classifier)
+            else:
+                model = GNN(gnn_type=config.model, num_tasks=d_out, is_pooled=is_pooled, **config.model_kwargs)
+
     # We use the full dataset only for GSN
     # Need to be refactored
     else:

@@ -30,14 +30,21 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
         from gds.datasets.ogbgppa_dataset import OGBGPPADataset
         return OGBGPPADataset(version=version, **dataset_kwargs)
 
-    elif dataset == 'ogb-proteins':
-        from gds.datasets.ogbproteins_dataset import OGBPROTEINSDataset
-        return OGBPROTEINSDataset(version=version, **dataset_kwargs)
-
     elif dataset == 'RotatedMNIST':
-        from gds.datasets.superpixel_dataset import SuperPixelDataset
-        return SuperPixelDataset(version=version, **dataset_kwargs)
+        from gds.datasets.rotated_mnist_dataset import RotatedMNISTDataset
+        return RotatedMNISTDataset(version=version, **dataset_kwargs)
 
-    elif dataset == 'SBM1':
-        from gds.datasets.sbm_1_dataset import SBM1Dataset
-        return SBM1Dataset(version=version, **dataset_kwargs)
+    elif dataset == 'SBM-Environment':
+        from gds.datasets.sbm_environment_dataset import SBMEnvironmentDataset
+        return SBMEnvironmentDataset(version=version, **dataset_kwargs)
+
+    elif dataset == 'SBM-Isolation':
+        from gds.datasets.sbm_isolation_dataset import SBMIsolationDataset
+        return SBMIsolationDataset(version=version, **dataset_kwargs)
+
+    elif dataset == 'UPFD':
+        from gds.datasets.upfd_dataset import UPFDDataset
+        return UPFDDataset(version=version, **dataset_kwargs)
+
+    else:
+        raise NotImplementedError

@@ -60,6 +60,7 @@ class SingleModelAlgorithm(GroupAlgorithm):
                 outputs = self.model(x, None)
         else:
             outputs = self.model(x)
+            
         results = {
             'g': g,
             'y_true': y_true,

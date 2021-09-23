@@ -73,6 +73,9 @@ def main():
     parser.add_argument('--irm_lambda', type=float)
     parser.add_argument('--irm_penalty_anneal_iters', type=int)
     parser.add_argument('--algo_log_metric')
+    parser.add_argument('--gsn_id_type', type=str,
+                        choices=['cycle_graph', 'path_graph', 'complete_graph', 'binomial_tree'])
+    parser.add_argument('--gsn_k', type=int)
 
     # Model selection
     parser.add_argument('--val_metric')
@@ -100,6 +103,9 @@ def main():
     parser.add_argument('--eval_epoch', default=None, type=int,
                         help='If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.')
 
+    # Ablation
+    parser.add_argument('--random_split', type=parse_bool, const=True, nargs='?', default=False)
+
     # Misc
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--seed', type=int, default=0)
@@ -115,11 +121,6 @@ def main():
     parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
-
-    # GSN
-    parser.add_argument('--gsn', type=parse_bool, default=False)
-    parser.add_argument('--id_type', type=str, default='cycle_graph')
-    parser.add_argument('--k', type=int, default=6)
 
     config = parser.parse_args()
     config = populate_defaults(config)
@@ -145,7 +146,6 @@ def main():
     if not os.path.exists(config.log_dir):
         os.makedirs(config.log_dir)
     logger = Logger(os.path.join(config.log_dir, 'log.txt'), mode)
-    result_logger = Logger(os.path.join(config.log_dir, 'result.txt'), mode)
 
     # Record config
     log_config(config, logger)
@@ -154,12 +154,16 @@ def main():
     set_seed(config.seed)
 
     # Data
+    if config.algorithm == 'GSN':
+        config.dataset_kwargs['gsn_id_type'] = config.gsn_id_type
+        config.dataset_kwargs['gsn_k'] = config.gsn_k
     full_dataset = gds.get_dataset(
         dataset=config.dataset,
         version=config.version,
         root_dir=config.root_dir,
         download=config.download,
         split_scheme=config.split_scheme,
+        random_split=config.random_split,
         subgraph=True if config.algorithm == 'GSN' else False,
         algorithm=config.algorithm,
         model=config.model,

@@ -65,7 +65,8 @@ class OGBGPPADataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', **dataset_kwargs):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,
+                 **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-PPA is handled through the OGB package. Please set version=none.')
@@ -80,6 +81,9 @@ class OGBGPPADataset(GDSDataset):
         self._y_type = 'float'  # although the task is binary classification, the prediction target contains nan value, thus we need float
         self._y_size = self.ogb_dataset.num_tasks
         self._n_classes = self.ogb_dataset.__num_classes__
+
+        if random_split:
+            raise NotImplementedError
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx = self.ogb_dataset.get_idx_split()

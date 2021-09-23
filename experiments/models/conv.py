@@ -15,7 +15,7 @@ from torch_sparse import coalesce
 
 import pdb
 
-### GIN convolution along the graph structure
+
 class GINConvNew(MessagePassing):
     def __init__(self, emb_dim, dataset_group):
         '''
@@ -47,7 +47,6 @@ class GINConvNew(MessagePassing):
         return aggr_out
 
 
-### GCN convolution along the graph structure
 class GCNConvNew(MessagePassing):
     def __init__(self, emb_dim, dataset_group):
         super(GCNConvNew, self).__init__(aggr='add')

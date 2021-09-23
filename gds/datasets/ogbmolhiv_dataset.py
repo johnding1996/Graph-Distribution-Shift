@@ -4,7 +4,7 @@ import numpy as np
 import torch
 import torch_geometric
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
-from ogb.utils.url import download_url
+from torch_geometric.data import download_url, extract_zip
 from torch_geometric.data.dataloader import Collater as PyGCollater
 from collections import namedtuple
 import tqdm
@@ -63,8 +63,7 @@ class OGBHIVDataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official',
-                 subgraph=False, id_type='cycle_graph', k=6, **dataset_kwargs):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False, subgraph=False, **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.')
@@ -81,6 +80,9 @@ class OGBHIVDataset(GDSDataset):
         # self._n_classes = self.ogb_dataset.__num_classes__
         self._n_classes = 1
 
+        if random_split:
+            raise NotImplementedError
+
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0
@@ -90,10 +92,12 @@ class OGBHIVDataset(GDSDataset):
         self._y_array = self.ogb_dataset.data.y
         self._metadata_fields = ['scaffold', 'y']
 
-        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
+        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'OGB-MolHIV_group.npy')
         if not os.path.exists(metadata_file_path):
-            download_url('https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1',
-                         os.path.join(self.ogb_dataset.root, 'raw'))
+            metadata_zip_file_path = download_url(
+                'https://www.dropbox.com/s/i5z388zxbut0quo/OGB-MolHIV_group.zip?dl=1', self.ogb_dataset.raw_dir)
+            extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)
+            os.unlink(metadata_zip_file_path)
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
 
@@ -106,9 +110,9 @@ class OGBHIVDataset(GDSDataset):
 
         # GSN
         self.subgraph = subgraph
-        self.id_type = id_type
-        self.k = k
         if self.subgraph:
+            self.id_type = dataset_kwargs['gsn_id_type']
+            self.k = dataset_kwargs['gsn_k']
             from gds.datasets.gsn.gsn_data_prep import GSN
             subgraph = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
             self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset.root)
@@ -199,11 +203,3 @@ class OGBHIVDataset(GDSDataset):
         deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
         deg_inv = torch.diag(deg_inv)
         return torch.mm(deg_inv, torch.mm(adj, deg_inv))
-
-
-if __name__ == '__main__':
-    root = '/cmlscratch/kong/datasets/graph_domain'
-    dataset = OGBHIVDataset(root_dir=root)
-
-    import pdb
-    pdb.set_trace()

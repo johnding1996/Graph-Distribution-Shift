@@ -2,7 +2,7 @@
 
 # Lines that begin with #SBATCH specify commands to be used by SLURM for scheduling
 #SBATCH --job-name=graph-dg                           # sets the job name if not set from environment
-#SBATCH --array=0                                   # Submit 8 array jobs, throttling to 4 at a time
+#SBATCH --array=0-89                                   # Submit 8 array jobs, throttling to 4 at a time
 #SBATCH --output slurm-logs/%x_%A_%a.log                # indicates a file to redirect STDOUT to; %j is the jobid, _%A_%a is array task id
 #SBATCH --error slurm-logs/%x_%A_%a.log                 # indicates a file to redirect STDERR to; %j is the jobid,_%A_%a is array task id
 #SBATCH --time=24:00:00                                 # how long you think your job will take to complete; format=hh:mm:ss
@@ -25,21 +25,24 @@ algorithm=${3}
 model=${4}
 root_dir=${5}
 
-log_path=${root_dir}/sanity_check_logs/${dataset}-${algorithm}-${model}.log
+log_path=${root_dir}/eval_logs_0916/${dataset}-${algorithm}-${model}.log
 
-python run_expt.py --device ${device} --dataset ${dataset}  --algorithm ${algorithm} --model ${model}  --root_dir ${root_dir} 2> ${log_path}
+python run_expt.py --device ${device} --dataset ${dataset}  --algorithm ${algorithm} --model ${model}  --root_dir ${root_dir} --eval_only > ${log_path} 2>&1
 
-#> ${log_path} 2>&1
 }
 
+# ppa too large, skip for now
 device=0
-datasets=( ogb-molhiv ) #4
-algorithms=( deepCORAL ) #5
-models=( gcn_virtual ) #6
+datasets=( ogb-molpcba ogb-molhiv RotatedMNIST ) #3
+algorithms=( ERM deepCORAL groupDRO IRM FLAG )            #5
+models=( gin gin_virtual gcn gcn_virtual cheb cheb_virtual ) #6
 root_dir=/cmlscratch/kong/datasets/graph_domain
 
-id=${SLURM_ARRAY_TASK_ID}
+dataset_idx=$(( ${SLURM_ARRAY_TASK_ID} % 3 ))
+algorithm_idx=$(( ${SLURM_ARRAY_TASK_ID} / 3 % 5 ))
+model_idx=$(( ${SLURM_ARRAY_TASK_ID} / 15 % 6 ))
+
 
 #runexp   device          dataset                   algorithm                       model            root_dir
-runexp  ${device}   ${datasets[$id]}   ${algorithms[$id]}  ${models[$id]}  ${root_dir}
+runexp  ${device}   ${datasets[$dataset_idx]}   ${algorithms[$algorithm_idx]}  ${models[$model_idx]}  ${root_dir}
 
