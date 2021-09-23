@@ -458,13 +458,13 @@
                class="code sev- "><tt><i>99</i>             <span class="n">random_index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">num_data</span><span class="p">)</span></tt>
             </div>
             <div id="l100"
-               class="code sev- "><tt><i>100</i>             <span class="n">train_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.6</span><span class="o">*</span><span class="n">num_data</span><span class="p">)]</span></tt>
+               class="code sev- "><tt><i>100</i>             <span class="n">train_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.67</span><span class="o">*</span><span class="n">num_data</span><span class="p">)]</span></tt>
             </div>
             <div id="l101"
-               class="code sev- "><tt><i>101</i>             <span class="n">val_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.6</span><span class="o">*</span><span class="n">num_data</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">num_data</span><span class="p">)]</span></tt>
+               class="code sev- "><tt><i>101</i>             <span class="n">val_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.67</span><span class="o">*</span><span class="n">num_data</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.83</span><span class="o">*</span><span class="n">num_data</span><span class="p">)]</span></tt>
             </div>
             <div id="l102"
-               class="code sev- "><tt><i>102</i>             <span class="n">test_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">num_data</span><span class="p">):]</span></tt>
+               class="code sev- "><tt><i>102</i>             <span class="n">test_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.83</span><span class="o">*</span><span class="n">num_data</span><span class="p">):]</span></tt>
             </div>
             <div id="l103"
                class="code sev- "><tt><i>103</i>         <span class="k">else</span><span class="p">:</span></tt>
