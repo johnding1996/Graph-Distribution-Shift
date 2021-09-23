@@ -6,7 +6,7 @@ from ogb.graphproppred import Evaluator
 from ogb.utils.url import download_url
 from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
-from pyg_upfd_dataset import PyGUPFDDataset
+from .pyg_upfd_dataset import PyGUPFDDataset
 import pdb
 from torch_geometric.utils import to_dense_adj
 
@@ -91,29 +91,35 @@ class UpfdDataset(GDSDataset):
         self._metadata_array = torch.cat((self._metadata_array_wo_y,
                                           torch.unsqueeze(self.ogb_dataset.data.y, dim=1)), 1)
 
-        np.random.seed(0)
-        size = len(self.ogb_dataset)
+  
+        torch.manual_seed(0)
+        num_data = len(torch.squeeze(self._metadata_array_wo_y))
+        # random split
         if random_split == True:
-            random_index = np.random.permutation(size)
-            train_split_idx = random_index[:int(0.6 * size)]
-            val_split_idx = random_index[int(0.6 * size):int(0.8 * size)]
-            test_split_idx = random_index[int(0.8 * size):]
-        else:        
-            graph_size = np.array([self.ogb_dataset[i].x.shape[0] for i in range(size)])
-            sort_index = np.argsort(graph_size)
+            random_index = torch.randperm(num_data)
+            train_split_idx = random_index[:int(0.6*num_data)]
+            val_split_idx = random_index[int(0.6*num_data):int(0.8*num_data)]
+            test_split_idx = random_index[int(0.8*num_data):]
+        else:
+            # use the group info split data
+            train_group_idx, test_group_idx = [0,1,2,3,4,5,6,7], [8,9]
+            train_group_idx, test_group_idx = torch.tensor(train_group_idx), torch.tensor(test_group_idx)
 
-            domain_index = [[sort_index[i], int(i*10/size)] for i in range(size)]
-            domain_index = sorted(domain_index, key=lambda x : x[0])
-            domain_index = [domain_index[i][-1] for i in range(size)]
-            # np.save('domain_group', np.array(domain_index))
+            def split_idx(group_idx) :
+                split_idx = torch.zeros(num_data, dtype=torch.bool)
+            
+                for idx in group_idx :
+                    split_idx += (torch.squeeze(self._metadata_array_wo_y) == idx)
+                return split_idx
 
-            train_split_idx = sort_index[:int(0.8 * size)]
-            val_split_idx = np.random.choice(train_split_idx, int(0.2 * size), replace=False)
-            train_split_idx = np.setdiff1d(train_split_idx, val_split_idx)
-            test_split_idx = sort_index[int(0.8 * size):]
+            
+            train_split_idx, test_split_idx = split_idx(train_group_idx), split_idx(test_group_idx)
+            val_split_idx = torch.zeros(num_data, dtype=torch.bool)
+            num_train_idx = sum(train_split_idx)
+            random_index = torch.randint(num_train_idx, (int(0.2*num_train_idx),))
+            val_split_idx[random_index] = True
+            train_split_idx = train_split_idx ^ val_split_idx
        
-
-
 
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1
