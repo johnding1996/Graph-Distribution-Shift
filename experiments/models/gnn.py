@@ -103,7 +103,7 @@ class GNN_node(torch.nn.Module):
         elif self.dataset_group == 'ppa' :
             self.node_encoder = torch.nn.Embedding(1, emb_dim) # uniform input node embedding
         elif self.dataset_group == 'RotatedMNIST' :
-            self.node_encoder = torch.nn.Linear(3, emb_dim)
+            self.node_encoder = torch.nn.Linear(1, emb_dim)
         elif self.dataset_group == 'SBM' :
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'UPFD' :
@@ -209,7 +209,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
         elif self.dataset_group == 'ppa' :
             self.node_encoder = torch.nn.Embedding(1, emb_dim) # uniform input node embedding
         elif self.dataset_group == 'RotatedMNIST' :
-            self.node_encoder = torch.nn.Linear(3, emb_dim)
+            self.node_encoder = torch.nn.Linear(1, emb_dim)
         elif self.dataset_group == 'SBM' :
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'UPFD' :
