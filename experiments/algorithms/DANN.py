@@ -186,8 +186,9 @@ class OurAbstractDANN(SingleModelAlgorithm):
 ##############################################
         num_classes = d_out
         emb_dim = self.featurizer.d_out
-
-        self.discriminator_gnn = GNN_node(num_layer=2, emb_dim=emb_dim, **config.model_kwargs).to(config.device)
+        # GNN type fixed at GIN for the discriminator, layer num fixed at 2
+        self.discriminator_gnn = GNN_node(num_layer=2, emb_dim=emb_dim, dropout=config.model_kwargs['dropout'],
+                                          dataset_group=config.model_kwargs['dataset_group']).to(config.device)
         self.discriminator_gnn.destroy_node_encoder()
         self.discriminator_pool = global_mean_pool
         self.discriminator_mlp = torch.nn.Sequential(
