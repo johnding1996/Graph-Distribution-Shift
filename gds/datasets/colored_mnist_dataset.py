@@ -84,7 +84,6 @@ class ColoredMNISTDataset(GDSDataset):
             self._collate = PyGCollater(follow_batch=[])
         # self._collate = self.collate_dense
 
-        self._metric = Evaluator('ogbg-ppa')
 
         super().__init__(root_dir, download, split_scheme)
 
@@ -105,10 +104,11 @@ class ColoredMNISTDataset(GDSDataset):
             - results_str (str): String summarizing the evaluation metrics
         """
         assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"
-        y_true = y_true.view(-1, 1)
-        y_pred = torch.argmax(y_pred.detach(), dim=1).view(-1, 1)
+        y_true = y_true.view(-1, 1)        
+        y_pred = (y_pred > 0).long().view(-1, 1)
         input_dict = {"y_true": y_true, "y_pred": y_pred}
-        results = self._metric.eval(input_dict)
+        acc = (y_pred == y_true).sum() / len(y_pred)       
+        results = {'acc': np.float(acc)}
 
         return results, f"Accuracy: {results['acc']:.3f}\n"
 
