@@ -50,7 +50,7 @@ def process_image(params):
 
     n_sp_extracted = args.n_sp + 1  # number of actually extracted superpixels (can be different from requested in SLIC)
     n_sp_query = args.n_sp + (
-        20 if args.dataset == 'mnist' or 'RotatedMNIST' else 50)  # number of superpixels we ask to extract (larger to extract more superpixels - closer to the desired n_sp)
+        20 if args.dataset == 'mnist' or args.dataset == 'RotatedMNIST' or args.dataset == 'ColoredMNIST' else 50)  # number of superpixels we ask to extract (larger to extract more superpixels - closer to the desired n_sp)
     while n_sp_extracted > args.n_sp:
         superpixels = slic(img, n_segments=n_sp_query, compactness=args.compactness, multichannel=len(img.shape) > 2)
         sp_indices = np.unique(superpixels)
@@ -70,7 +70,8 @@ def process_image(params):
     if len(img.shape) == 2:
         img = img[:, :, None]
 
-    n_ch = 1 if img.shape[2] == 1 else 3
+    # n_ch = 1 if img.shape[2] == 1 else 3
+    n_ch = img.shape[2]
 
     sp_intensity, sp_coord = [], []
     for seg in sp_order:
@@ -117,7 +118,7 @@ if __name__ == '__main__':
         assert args.n_sp > 1 and args.n_sp < 32 * 32, (
             'the number of superpixels cannot exceed the total number of pixels or be too small')
 
-    elif args.dataset == 'ColoredMNIST' or 'RotatedMNIST':
+    elif args.dataset == 'ColoredMNIST' or args.dataset == 'RotatedMNIST':
         datasets_instance = get_dataset_class(args.dataset)(args.data_dir, None, None)
         datasets = datasets_instance.datasets
         environments = datasets_instance.environments
@@ -134,7 +135,10 @@ if __name__ == '__main__':
             images.append(image)
             labels.append(label.item())
             data_envs.append(i)
+
     images = torch.stack(images)
+    if args.dataset == 'ColoredMNIST' :
+        images = images.permute(0,2,3,1)
 
     if not isinstance(images, np.ndarray):
         images = np.squeeze(images.numpy())  # [0,1]

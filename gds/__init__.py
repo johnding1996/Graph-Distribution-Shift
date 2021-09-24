@@ -6,6 +6,7 @@ benchmark_datasets = [
     'ogb-molhiv',
     'ogbg-ppa',
     'RotatedMNIST',
+    'ColoredMNIST',
     'SBM-Environment',
     'SBM-Isolation',
     'UPFD'
