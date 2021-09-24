@@ -19,7 +19,7 @@ class PyGColoredMNISTDataset(InMemoryDataset):
         assert self.name in self.names
         if name == 'ColoredMNIST':
             self.num_tasks = 1
-            self.__num_classes__ = 2
+            self.__num_classes__ = 1
         else:
             raise NotImplementedError
 

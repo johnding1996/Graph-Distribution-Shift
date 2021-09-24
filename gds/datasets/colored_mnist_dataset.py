@@ -34,7 +34,7 @@ class ColoredMNISTDataset(GDSDataset):
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
 
-        self._y_array = self.ogb_dataset.data.y
+        self._y_array = self.ogb_dataset.data.y.unsqueeze(dim=-1)
         self._metadata_fields = ['color', 'y']
 
         metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'ColoredMNIST_group.npy')

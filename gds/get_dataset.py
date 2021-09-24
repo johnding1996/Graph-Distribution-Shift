@@ -34,6 +34,10 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
         from gds.datasets.rotated_mnist_dataset import RotatedMNISTDataset
         return RotatedMNISTDataset(version=version, **dataset_kwargs)
 
+    elif dataset == 'ColoredMNIST':
+        from gds.datasets.colored_mnist_dataset import ColoredMNISTDataset
+        return ColoredMNISTDataset(version=version, **dataset_kwargs)
+
     elif dataset == 'SBM-Environment':
         from gds.datasets.sbm_environment_dataset import SBMEnvironmentDataset
         return SBMEnvironmentDataset(version=version, **dataset_kwargs)
