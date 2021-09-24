@@ -31,6 +31,7 @@ def run_epoch(algorithm, dataset, general_logger, epoch, config, train):
             batch_results = algorithm.update(batch)
         else:
             batch_results = algorithm.evaluate(batch)
+       
 
         # These tensors are already detached, but we need to clone them again
         # Otherwise they don't get garbage collected properly in some versions
@@ -56,7 +57,7 @@ def run_epoch(algorithm, dataset, general_logger, epoch, config, train):
         epoch_y_pred,
         epoch_y_true,
         epoch_metadata)
-
+ 
     if config.scheduler_metric_split == dataset['split']:
         algorithm.step_schedulers(
             is_epoch=True,
@@ -86,6 +87,7 @@ def train(algorithm, datasets, general_logger, result_logger, config, epoch_offs
         val_results, y_pred = run_epoch(algorithm, datasets['val'], general_logger, epoch, config, train=False)
         curr_val_metric = val_results[config.val_metric]
         general_logger.write(f'Validation {config.val_metric}: {curr_val_metric:.3f}\n')
+       
 
         if best_val_metric is None:
             is_best = True
@@ -140,7 +142,7 @@ def evaluate(algorithm, datasets, epoch, general_logger, result_logger, config, 
             epoch_y_pred,
             epoch_y_true,
             epoch_metadata)
-
+       
         results['epoch'] = epoch
         dataset['eval_logger'].log(results)
         general_logger.write(f'Eval split {split} at epoch {epoch}:\n')

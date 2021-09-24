@@ -170,7 +170,8 @@ class GNN_GSN(torch.nn.Module):
             use_ids = ((i > 0 and self.inject_ids) or (i == 0)) and (self.model_name == 'GSN_edge_sparse_ogb')
 
             if use_ids:
-                if self.dataset_group != 'mol' and self.dataset_group != 'ppa' :
+                # if self.dataset_group != 'mol' and self.dataset_group != 'ppa' :
+                if self.dataset_group == 'mol' or self.dataset_group == 'ppa' :
                     filter_fn = GSN_edge_sparse_ogb
                 else :
                     filter_fn = GSN_sparse

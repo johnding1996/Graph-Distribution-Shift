@@ -18,7 +18,7 @@ class RotatedMNISTDataset(GDSDataset):
             'compressed_size': None}}
 
     def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,
-                 **dataset_kwargs):
+                 subgraph=False, **dataset_kwargs):
         self._version = version
         # internally call ogb package
         self.ogb_dataset = PyGRotatedMNISTDataset(name='RotatedMNIST', root=root_dir)
@@ -73,6 +73,7 @@ class RotatedMNISTDataset(GDSDataset):
             random_index = np.random.permutation(train_val_sets_size)
             train_split_idx = train_val_split_idx[random_index[:int(4 / 5 * train_val_sets_size)]]
             val_split_idx = train_val_split_idx[random_index[int(4 / 5 * train_val_sets_size):]]
+         
 
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1
@@ -88,10 +89,41 @@ class RotatedMNISTDataset(GDSDataset):
 
         self._metric = Evaluator('ogbg-ppa')
 
+
+        # GSN
+        self.subgraph = subgraph
+        if self.subgraph:
+            self.id_type = dataset_kwargs['gsn_id_type']
+            self.k = dataset_kwargs['gsn_k']
+            from gds.datasets.gsn.gsn_data_prep import GSN
+            subgraph = GSN(dataset_name='RotatedMNIST', dataset_group='MNIST', induced=True, id_type=self.id_type,
+                           k=self.k)
+            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset.root)
+
+            if self.graphs_ptg[0].x.dim() == 1:
+                self.num_features = 1
+            else:
+                self.num_features = self.graphs_ptg[0].num_features
+
+            if hasattr(self.graphs_ptg[0], 'edge_features'):
+                if self.graphs_ptg[0].edge_features.dim() == 1:
+                    self.num_edge_features = 1
+                else:
+                    self.num_edge_features = self.graphs_ptg[0].edge_features.shape[1]
+            else:
+                self.num_edge_features = None
+
+            self.d_in_node_encoder = [self.num_features]
+            self.d_in_edge_encoder = [self.num_edge_features]
+
+
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):
-        return self.ogb_dataset[int(idx)]
+        if self.subgraph:
+            return self.graphs_ptg[int(idx)]
+        else:
+            return self.ogb_dataset[int(idx)]
 
     def eval(self, y_pred, y_true, metadata, prediction_fn=None):
         """

@@ -180,7 +180,7 @@ def load_ogb_data(path, name, degree_as_tag):
         
     def add_zeros(data):
         data.x = torch.zeros(data.num_nodes, dtype=torch.long)
-        return dats
+        return data
  
     if name == 'ogbg-ppa':
         transform = add_zeros

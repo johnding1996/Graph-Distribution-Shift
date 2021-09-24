@@ -249,7 +249,17 @@ class GSN():
         # args['dropout_features'] = [args['dropout_features'] for _ in range(args['num_layers'])] + [args['dropout_features']]
 
         # begin here 
-        evaluator = Evaluator(self.dataset_name)
+        if self.dataset == 'ogb':
+            evaluator = Evaluator(self.dataset_name)
+        elif self.dataset_name == 'MNIST':
+            evaluator = Evaluator('ogbg-ppa')
+        else:
+            raise NotImplementedError
+
+
+        
+
+        
         ## ----------------------------------- infrastructure
 
         torch.manual_seed(self.seed)

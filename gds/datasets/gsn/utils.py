@@ -48,7 +48,7 @@ def prepare_dataset(path,
                     multiprocessing,
                     num_processes,
                     **subgraph_params):
-    if dataset in ['bioinformatics', 'social', 'chemical', 'ogb', 'SR_graphs']:
+    if dataset in ['bioinformatics', 'social', 'chemical', 'ogb', 'SR_graphs', 'MNIST']:
         data_folder = os.path.join(path, 'processed', id_scope)
         if not os.path.exists(data_folder):
             os.makedirs(data_folder)

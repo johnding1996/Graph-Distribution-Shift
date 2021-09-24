@@ -72,7 +72,7 @@ class UPFDDataset(GDSDataset):
             random_index = np.random.permutation(train_val_sets_size)
             train_split_idx = train_val_split_idx[random_index[:int(6 / 8 * train_val_sets_size)]]
             val_split_idx = train_val_split_idx[random_index[int(6 / 8 * train_val_sets_size):]]
-
+       
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1
         self._split_array[test_split_idx] = 2
@@ -84,8 +84,6 @@ class UPFDDataset(GDSDataset):
                 self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
             else:
                 self._collate = PyGCollater(follow_batch=[])
-
-        self._metric = Evaluator('ogbg-ppa')
 
         super().__init__(root_dir, download, split_scheme)
 
@@ -106,12 +104,13 @@ class UPFDDataset(GDSDataset):
             - results_str (str): String summarizing the evaluation metrics
         """
         assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"
-        y_true = y_true.view(-1, 1)
-        y_pred = torch.argmax(y_pred.detach(), dim=1).view(-1, 1)
+        y_true = y_true.view(-1, 1)        
+        y_pred = (y_pred > 0).long().view(-1, 1)
         input_dict = {"y_true": y_true, "y_pred": y_pred}
-        results = self._metric.eval(input_dict)
+        acc = (y_pred == y_true).sum() / len(y_pred)       
+        results = {'acc': np.float(acc)}
 
-        return results, f"Accuracy: {results['acc']:.3f}\n"
+        return results, f"Accuracy: {acc:.3f}\n"
 
     # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
     def collate_dense(self, samples):
