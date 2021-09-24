@@ -4,6 +4,7 @@ import torch
 from torch.nn.utils import clip_grad_norm_
 from utils import move_to
 
+
 class FLAG(SingleModelAlgorithm):
     def __init__(self, config, d_out, grouper, loss,
                  metric, n_train_steps):

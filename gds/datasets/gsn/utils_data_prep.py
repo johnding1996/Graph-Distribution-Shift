@@ -180,11 +180,14 @@ def load_ogb_data(path, name, degree_as_tag):
         
     def add_zeros(data):
         data.x = torch.zeros(data.num_nodes, dtype=torch.long)
-        return data
-    
-    transform = add_zeros if name == 'ogbg-ppa' else None
-    print('Applying transform {} to dataset {}.'.format(transform, name))
-    dataset = PygGraphPropPredDataset(name=name, root=path, transform=transform)
+        return dats
+ 
+    if name == 'ogbg-ppa':
+        transform = add_zeros
+        print('Applying transform {} to dataset {}.'.format(transform, name))
+        dataset = PygGraphPropPredDataset(name=name, root=path, transform=transform)
+    else:
+        dataset = PygGraphPropPredDataset(name=name, root=path)
     Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'edge_features', 'label'])
     graph_list = list()
     for datum in dataset:
