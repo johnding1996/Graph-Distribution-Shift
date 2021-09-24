@@ -104,6 +104,8 @@ class GNN_node(torch.nn.Module):
             self.node_encoder = torch.nn.Embedding(1, emb_dim) # uniform input node embedding
         elif self.dataset_group == 'RotatedMNIST' :
             self.node_encoder = torch.nn.Linear(1, emb_dim)
+        elif self.dataset_group == 'ColoredMNIST' :
+            self.node_encoder = torch.nn.Linear(2, emb_dim)
         elif self.dataset_group == 'SBM' :
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'UPFD' :
@@ -118,7 +120,7 @@ class GNN_node(torch.nn.Module):
 
         for layer in range(num_layer):
             if gnn_type == 'gin':
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
                                                    torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
                                                    torch.nn.Linear(2 * emb_dim, emb_dim))
@@ -126,12 +128,12 @@ class GNN_node(torch.nn.Module):
                 else :
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:
                     self.convs.append(GCNConv(emb_dim, emb_dim))
                 else :
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'cheb' :
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:
                     self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))
                 else :
                     self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
@@ -210,6 +212,8 @@ class GNN_node_Virtualnode(torch.nn.Module):
             self.node_encoder = torch.nn.Embedding(1, emb_dim) # uniform input node embedding
         elif self.dataset_group == 'RotatedMNIST' :
             self.node_encoder = torch.nn.Linear(1, emb_dim)
+        elif self.dataset_group == 'ColoredMNIST' :
+            self.node_encoder = torch.nn.Linear(2, emb_dim)
         elif self.dataset_group == 'SBM' :
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'UPFD' :
@@ -231,7 +235,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
 
         for layer in range(num_layer):
             if gnn_type == 'gin':
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:
                     mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),
                                                    torch.nn.BatchNorm1d(2 * emb_dim), torch.nn.ReLU(),
                                                    torch.nn.Linear(2 * emb_dim, emb_dim))
@@ -239,12 +243,12 @@ class GNN_node_Virtualnode(torch.nn.Module):
                 else :
                     self.convs.append(GINConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'gcn':
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:
                     self.convs.append(GCNConv(emb_dim, emb_dim))
                 else :
                     self.convs.append(GCNConvNew(emb_dim, self.dataset_group))
             elif gnn_type == 'cheb' :
-                if self.dataset_group in  ['RotatedMNIST', 'SBM', 'UPFD']:
+                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:
                     self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))
                 else :
                     self.convs.append(ChebConvNew(emb_dim, Cheb_K, self.dataset_group))
