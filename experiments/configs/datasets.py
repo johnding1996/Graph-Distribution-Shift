@@ -71,7 +71,7 @@ dataset_defaults = {
     'RotatedMNIST': {
         'num_domains': 6,
         'split_scheme': 'official',
-        'model_kwargs': {'three_wl_in_dim': 3, 'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},
+        'model_kwargs': {'three_wl_in_dim': 1, 'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},
         'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['angle', ],
@@ -94,7 +94,7 @@ dataset_defaults = {
     'ColoredMNIST': {
         'num_domains': 3,
         'split_scheme': 'official',
-        'model_kwargs': {'dropout': 0.5, 'dataset_group': 'ColoredMNIST'},
+        'model_kwargs': {'three_wl_in_dim':2, 'dropout': 0.5, 'dataset_group': 'ColoredMNIST'},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['color', ],
