@@ -706,22 +706,13 @@
                
                   <li>
                      <span class="count sev-2">
-                        E203
-                     </span>
-                     Whitespace before ':'</li>
-               
-                  <li>
-                     <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (80 > 79 characters)</li>
+                     Line too long (82 > 79 characters)</li>
                
-               </ul><tt><i>173</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">!=</span> <span class="s1">&#39;mol&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">!=</span> <span class="s1">&#39;ppa&#39;</span> <span class="p">:</span></tt>
+               </ul><tt><i>173</i>                 <span class="c1"># if self.dataset_group != &#39;mol&#39; and self.dataset_group != &#39;ppa&#39; :</span></tt>
             </div>
             <div id="l174"
-               class="code sev- "><tt><i>174</i>                     <span class="n">filter_fn</span> <span class="o">=</span> <span class="n">GSN_edge_sparse_ogb</span></tt>
-            </div>
-            <div id="l175"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -731,163 +722,166 @@
                      </span>
                      Whitespace before ':'</li>
                
-               </ul><tt><i>175</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+               </ul><tt><i>174</i>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;ppa&#39;</span> <span class="p">:</span></tt>
+            </div>
+            <div id="l175"
+               class="code sev- "><tt><i>175</i>                     <span class="n">filter_fn</span> <span class="o">=</span> <span class="n">GSN_edge_sparse_ogb</span></tt>
             </div>
             <div id="l176"
-               class="code sev- "><tt><i>176</i>                     <span class="n">filter_fn</span> <span class="o">=</span> <span class="n">GSN_sparse</span></tt>
-            </div>
-            <div id="l177"
-               class="code sev- "><tt><i>177</i> &nbsp;</tt>
-            </div>
-            <div id="l178"
-               class="code sev- "><tt><i>178</i>                 <span class="n">kwargs_filter</span><span class="p">[</span><span class="s1">&#39;d_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inject_ids</span> <span class="k">else</span> <span class="n">d_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></tt>
-            </div>
-            <div id="l179"
-               class="code sev- "><tt><i>179</i>                 <span class="n">kwargs_filter</span><span class="p">[</span><span class="s1">&#39;id_scope&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_scope</span></tt>
-            </div>
-            <div id="l180"
-               class="code sev- "><tt><i>180</i>             <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l181"
-               class="code sev- "><tt><i>181</i>                 <span class="n">filter_fn</span> <span class="o">=</span> <span class="n">MPNN_edge_sparse_ogb</span></tt>
-            </div>
-            <div id="l182"
-               class="code sev- "><tt><i>182</i>             <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filter_fn</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs_filter</span><span class="p">))</span></tt>
-            </div>
-            <div id="l183"
-               class="code sev- "><tt><i>183</i> &nbsp;</tt>
-            </div>
-            <div id="l184"
-               class="code sev- "><tt><i>184</i>             <span class="n">bn_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">d_out</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn</span> <span class="k">else</span> <span class="kc">None</span></tt>
-            </div>
-            <div id="l185"
-               class="code sev- "><tt><i>185</i>             <span class="bp">self</span><span class="o">.</span><span class="n">batch_norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bn_layer</span><span class="p">)</span></tt>
-            </div>
-            <div id="l186"
-               class="code sev- "><tt><i>186</i> &nbsp;</tt>
-            </div>
-            <div id="l187"
-               class="code sev- "><tt><i>187</i>             <span class="n">d_in</span> <span class="o">=</span> <span class="n">d_out</span></tt>
-            </div>
-            <div id="l188"
-               class="code sev- "><tt><i>188</i> &nbsp;</tt>
-            </div>
-            <div id="l189"
-               class="code sev- "><tt><i>189</i>         <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">)</span></tt>
-            </div>
-            <div id="l190"
-               class="code sev- "><tt><i>190</i>         <span class="bp">self</span><span class="o">.</span><span class="n">batch_norms</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_norms</span><span class="p">)</span></tt>
-            </div>
-            <div id="l191"
-               class="code sev- "><tt><i>191</i>         <span class="c1"># if kwargs[&#39;vn&#39;]:</span></tt>
-            </div>
-            <div id="l192"
-               class="code sev- "><tt><i>192</i>         <span class="c1">#     self.mlp_vn = nn.ModuleList(self.mlp_vn)</span></tt>
-            </div>
-            <div id="l193"
-               class="code sev- "><tt><i>193</i> &nbsp;</tt>
-            </div>
-            <div id="l194"
-               class="code sev- "><tt><i>194</i>         <span class="c1"># -------------- Readout</span></tt>
-            </div>
-            <div id="l195"
-               class="code sev- "><tt><i>195</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">readout</span> <span class="o">==</span> <span class="s1">&#39;sum&#39;</span><span class="p">:</span></tt>
-            </div>
-            <div id="l196"
-               class="code sev- "><tt><i>196</i>             <span class="bp">self</span><span class="o">.</span><span class="n">global_pool</span> <span class="o">=</span> <span class="n">global_add_pool_sparse</span></tt>
-            </div>
-            <div id="l197"
-               class="code sev- "><tt><i>197</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">readout</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span></tt>
-            </div>
-            <div id="l198"
-               class="code sev- "><tt><i>198</i>             <span class="bp">self</span><span class="o">.</span><span class="n">global_pool</span> <span class="o">=</span> <span class="n">global_mean_pool_sparse</span></tt>
-            </div>
-            <div id="l199"
-               class="code sev- "><tt><i>199</i>         <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l200"
-               class="code sev- "><tt><i>200</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid graph pooling type.&quot;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l201"
-               class="code sev- "><tt><i>201</i> &nbsp;</tt>
-            </div>
-            <div id="l202"
-               class="code sev- "><tt><i>202</i>         <span class="c1"># #-------------- Virtual node aggregation operator</span></tt>
-            </div>
-            <div id="l203"
-               class="code sev- "><tt><i>203</i>         <span class="c1"># if self.vn:</span></tt>
-            </div>
-            <div id="l204"
-               class="code sev- "><tt><i>204</i>         <span class="c1">#     if kwargs[&#39;vn_pooling&#39;] == &#39;sum&#39;:</span></tt>
-            </div>
-            <div id="l205"
-               class="code sev- "><tt><i>205</i>         <span class="c1">#         self.global_vn_pool = global_add_pool_sparse</span></tt>
-            </div>
-            <div id="l206"
-               class="code sev- "><tt><i>206</i>         <span class="c1">#     elif kwargs[&#39;vn_pooling&#39;] == &#39;mean&#39;:</span></tt>
-            </div>
-            <div id="l207"
-               class="code sev- "><tt><i>207</i>         <span class="c1">#         self.global_vn_pool = global_mean_pool_sparse</span></tt>
-            </div>
-            <div id="l208"
-               class="code sev- "><tt><i>208</i>         <span class="c1">#     else:</span></tt>
-            </div>
-            <div id="l209"
-               class="code sev- "><tt><i>209</i>         <span class="c1">#         raise ValueError(&quot;Invalid graph virtual node pooling type.&quot;)</span></tt>
-            </div>
-            <div id="l210"
-               class="code sev- "><tt><i>210</i> &nbsp;</tt>
-            </div>
-            <div id="l211"
-               class="code sev- "><tt><i>211</i>         <span class="k">if</span> <span class="n">out_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
-            </div>
-            <div id="l212"
-               class="code sev- "><tt><i>212</i>             <span class="bp">self</span><span class="o">.</span><span class="n">lin_proj</span> <span class="o">=</span> <span class="kc">None</span></tt>
-            </div>
-            <div id="l213"
-               class="code sev- "><tt><i>213</i>         <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l214"
-               class="code sev- "><tt><i>214</i>             <span class="bp">self</span><span class="o">.</span><span class="n">lin_proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_out</span><span class="p">,</span> <span class="n">out_features</span><span class="p">)</span></tt>
-            </div>
-            <div id="l215"
-               class="code sev- "><tt><i>215</i> &nbsp;</tt>
-            </div>
-            <div id="l216"
-               class="code sev- "><tt><i>216</i>         <span class="c1"># -------------- Activation fn (same across the network)</span></tt>
-            </div>
-            <div id="l217"
-               class="code sev- "><tt><i>217</i> &nbsp;</tt>
-            </div>
-            <div id="l218"
-               class="code sev- "><tt><i>218</i>         <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">choose_activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l219"
-               class="code sev- "><tt><i>219</i> &nbsp;</tt>
-            </div>
-            <div id="l220"
-               class="code sev- "><tt><i>220</i>         <span class="k">return</span></tt>
-            </div>
-            <div id="l221"
-               class="code sev- "><tt><i>221</i> &nbsp;</tt>
-            </div>
-            <div id="l222"
-               class="code sev- "><tt><i>222</i>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">return_intermediate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span></tt>
-            </div>
-            <div id="l223"
-               class="code sev- "><tt><i>223</i> &nbsp;</tt>
-            </div>
-            <div id="l224"
                class="code sev-2  le">
                <ul class="violations">
                
                   <li>
                      <span class="count sev-2">
-                        E501
+                        E203
                      </span>
-                     Line too long (119 > 79 characters)</li>
+                     Whitespace before ':'</li>
                
-               </ul><tt><i>224</i>         <span class="c1"># -------------- Code adopted from https://github.com/snap-stanford/ogb/tree/master/examples/graphproppred/mol.</span></tt>
+               </ul><tt><i>176</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+            </div>
+            <div id="l177"
+               class="code sev- "><tt><i>177</i>                     <span class="n">filter_fn</span> <span class="o">=</span> <span class="n">GSN_sparse</span></tt>
+            </div>
+            <div id="l178"
+               class="code sev- "><tt><i>178</i> &nbsp;</tt>
+            </div>
+            <div id="l179"
+               class="code sev- "><tt><i>179</i>                 <span class="n">kwargs_filter</span><span class="p">[</span><span class="s1">&#39;d_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d_id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inject_ids</span> <span class="k">else</span> <span class="n">d_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></tt>
+            </div>
+            <div id="l180"
+               class="code sev- "><tt><i>180</i>                 <span class="n">kwargs_filter</span><span class="p">[</span><span class="s1">&#39;id_scope&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_scope</span></tt>
+            </div>
+            <div id="l181"
+               class="code sev- "><tt><i>181</i>             <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l182"
+               class="code sev- "><tt><i>182</i>                 <span class="n">filter_fn</span> <span class="o">=</span> <span class="n">MPNN_edge_sparse_ogb</span></tt>
+            </div>
+            <div id="l183"
+               class="code sev- "><tt><i>183</i>             <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filter_fn</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs_filter</span><span class="p">))</span></tt>
+            </div>
+            <div id="l184"
+               class="code sev- "><tt><i>184</i> &nbsp;</tt>
+            </div>
+            <div id="l185"
+               class="code sev- "><tt><i>185</i>             <span class="n">bn_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">d_out</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn</span> <span class="k">else</span> <span class="kc">None</span></tt>
+            </div>
+            <div id="l186"
+               class="code sev- "><tt><i>186</i>             <span class="bp">self</span><span class="o">.</span><span class="n">batch_norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bn_layer</span><span class="p">)</span></tt>
+            </div>
+            <div id="l187"
+               class="code sev- "><tt><i>187</i> &nbsp;</tt>
+            </div>
+            <div id="l188"
+               class="code sev- "><tt><i>188</i>             <span class="n">d_in</span> <span class="o">=</span> <span class="n">d_out</span></tt>
+            </div>
+            <div id="l189"
+               class="code sev- "><tt><i>189</i> &nbsp;</tt>
+            </div>
+            <div id="l190"
+               class="code sev- "><tt><i>190</i>         <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">)</span></tt>
+            </div>
+            <div id="l191"
+               class="code sev- "><tt><i>191</i>         <span class="bp">self</span><span class="o">.</span><span class="n">batch_norms</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_norms</span><span class="p">)</span></tt>
+            </div>
+            <div id="l192"
+               class="code sev- "><tt><i>192</i>         <span class="c1"># if kwargs[&#39;vn&#39;]:</span></tt>
+            </div>
+            <div id="l193"
+               class="code sev- "><tt><i>193</i>         <span class="c1">#     self.mlp_vn = nn.ModuleList(self.mlp_vn)</span></tt>
+            </div>
+            <div id="l194"
+               class="code sev- "><tt><i>194</i> &nbsp;</tt>
+            </div>
+            <div id="l195"
+               class="code sev- "><tt><i>195</i>         <span class="c1"># -------------- Readout</span></tt>
+            </div>
+            <div id="l196"
+               class="code sev- "><tt><i>196</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">readout</span> <span class="o">==</span> <span class="s1">&#39;sum&#39;</span><span class="p">:</span></tt>
+            </div>
+            <div id="l197"
+               class="code sev- "><tt><i>197</i>             <span class="bp">self</span><span class="o">.</span><span class="n">global_pool</span> <span class="o">=</span> <span class="n">global_add_pool_sparse</span></tt>
+            </div>
+            <div id="l198"
+               class="code sev- "><tt><i>198</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">readout</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span></tt>
+            </div>
+            <div id="l199"
+               class="code sev- "><tt><i>199</i>             <span class="bp">self</span><span class="o">.</span><span class="n">global_pool</span> <span class="o">=</span> <span class="n">global_mean_pool_sparse</span></tt>
+            </div>
+            <div id="l200"
+               class="code sev- "><tt><i>200</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l201"
+               class="code sev- "><tt><i>201</i>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid graph pooling type.&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l202"
+               class="code sev- "><tt><i>202</i> &nbsp;</tt>
+            </div>
+            <div id="l203"
+               class="code sev- "><tt><i>203</i>         <span class="c1"># #-------------- Virtual node aggregation operator</span></tt>
+            </div>
+            <div id="l204"
+               class="code sev- "><tt><i>204</i>         <span class="c1"># if self.vn:</span></tt>
+            </div>
+            <div id="l205"
+               class="code sev- "><tt><i>205</i>         <span class="c1">#     if kwargs[&#39;vn_pooling&#39;] == &#39;sum&#39;:</span></tt>
+            </div>
+            <div id="l206"
+               class="code sev- "><tt><i>206</i>         <span class="c1">#         self.global_vn_pool = global_add_pool_sparse</span></tt>
+            </div>
+            <div id="l207"
+               class="code sev- "><tt><i>207</i>         <span class="c1">#     elif kwargs[&#39;vn_pooling&#39;] == &#39;mean&#39;:</span></tt>
+            </div>
+            <div id="l208"
+               class="code sev- "><tt><i>208</i>         <span class="c1">#         self.global_vn_pool = global_mean_pool_sparse</span></tt>
+            </div>
+            <div id="l209"
+               class="code sev- "><tt><i>209</i>         <span class="c1">#     else:</span></tt>
+            </div>
+            <div id="l210"
+               class="code sev- "><tt><i>210</i>         <span class="c1">#         raise ValueError(&quot;Invalid graph virtual node pooling type.&quot;)</span></tt>
+            </div>
+            <div id="l211"
+               class="code sev- "><tt><i>211</i> &nbsp;</tt>
+            </div>
+            <div id="l212"
+               class="code sev- "><tt><i>212</i>         <span class="k">if</span> <span class="n">out_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l213"
+               class="code sev- "><tt><i>213</i>             <span class="bp">self</span><span class="o">.</span><span class="n">lin_proj</span> <span class="o">=</span> <span class="kc">None</span></tt>
+            </div>
+            <div id="l214"
+               class="code sev- "><tt><i>214</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l215"
+               class="code sev- "><tt><i>215</i>             <span class="bp">self</span><span class="o">.</span><span class="n">lin_proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_out</span><span class="p">,</span> <span class="n">out_features</span><span class="p">)</span></tt>
+            </div>
+            <div id="l216"
+               class="code sev- "><tt><i>216</i> &nbsp;</tt>
+            </div>
+            <div id="l217"
+               class="code sev- "><tt><i>217</i>         <span class="c1"># -------------- Activation fn (same across the network)</span></tt>
+            </div>
+            <div id="l218"
+               class="code sev- "><tt><i>218</i> &nbsp;</tt>
+            </div>
+            <div id="l219"
+               class="code sev- "><tt><i>219</i>         <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">choose_activation</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l220"
+               class="code sev- "><tt><i>220</i> &nbsp;</tt>
+            </div>
+            <div id="l221"
+               class="code sev- "><tt><i>221</i>         <span class="k">return</span></tt>
+            </div>
+            <div id="l222"
+               class="code sev- "><tt><i>222</i> &nbsp;</tt>
+            </div>
+            <div id="l223"
+               class="code sev- "><tt><i>223</i>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">return_intermediate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span></tt>
+            </div>
+            <div id="l224"
+               class="code sev- "><tt><i>224</i> &nbsp;</tt>
             </div>
             <div id="l225"
                class="code sev-2  le">
@@ -897,23 +891,35 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (98 > 79 characters)</li>
+                     Line too long (119 > 79 characters)</li>
                
-               </ul><tt><i>225</i>         <span class="c1"># -------------- Modified accordingly to allow for the existence of structural identifiers</span></tt>
+               </ul><tt><i>225</i>         <span class="c1"># -------------- Code adopted from https://github.com/snap-stanford/ogb/tree/master/examples/graphproppred/mol.</span></tt>
             </div>
             <div id="l226"
-               class="code sev- "><tt><i>226</i> &nbsp;</tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (98 > 79 characters)</li>
+               
+               </ul><tt><i>226</i>         <span class="c1"># -------------- Modified accordingly to allow for the existence of structural identifiers</span></tt>
             </div>
             <div id="l227"
-               class="code sev- "><tt><i>227</i>         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span></tt>
+               class="code sev- "><tt><i>227</i> &nbsp;</tt>
             </div>
             <div id="l228"
-               class="code sev- "><tt><i>228</i>         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;degrees&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree_encoder</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">degrees</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>228</i>         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span></tt>
             </div>
             <div id="l229"
-               class="code sev- "><tt><i>229</i> &nbsp;</tt>
+               class="code sev- "><tt><i>229</i>         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;degrees&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree_encoder</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">degrees</span><span class="p">)</span></tt>
             </div>
             <div id="l230"
+               class="code sev- "><tt><i>230</i> &nbsp;</tt>
+            </div>
+            <div id="l231"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -923,15 +929,15 @@
                      </span>
                      Line too long (91 > 79 characters)</li>
                
-               </ul><tt><i>230</i>         <span class="c1"># -------------- edge index, initial node features enmbedding, initial vn embedding</span></tt>
-            </div>
-            <div id="l231"
-               class="code sev- "><tt><i>231</i>         <span class="n">edge_index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_index</span></tt>
+               </ul><tt><i>231</i>         <span class="c1"># -------------- edge index, initial node features enmbedding, initial vn embedding</span></tt>
             </div>
             <div id="l232"
-               class="code sev- "><tt><i>232</i>         <span class="c1"># if self.vn:</span></tt>
+               class="code sev- "><tt><i>232</i>         <span class="n">edge_index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_index</span></tt>
             </div>
             <div id="l233"
+               class="code sev- "><tt><i>233</i>         <span class="c1"># if self.vn:</span></tt>
+            </div>
+            <div id="l234"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -947,27 +953,27 @@
                      </span>
                      Trailing whitespace</li>
                
-               </ul><tt><i>233</i>         <span class="c1">#     vn_embedding = self.vn_encoder(torch.zeros(data.batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))                                                    </span></tt>
-            </div>
-            <div id="l234"
-               class="code sev- "><tt><i>234</i>         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_node_encoder</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">x</span><span class="p">)</span></tt>
+               </ul><tt><i>234</i>         <span class="c1">#     vn_embedding = self.vn_encoder(torch.zeros(data.batch[-1].item() + 1).to(edge_index.dtype).to(edge_index.device))                                                    </span></tt>
             </div>
             <div id="l235"
-               class="code sev- "><tt><i>235</i>         <span class="n">x_interm</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>235</i>         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_node_encoder</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">x</span><span class="p">)</span></tt>
             </div>
             <div id="l236"
-               class="code sev- "><tt><i>236</i> &nbsp;</tt>
+               class="code sev- "><tt><i>236</i>         <span class="n">x_interm</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span></tt>
             </div>
             <div id="l237"
-               class="code sev- "><tt><i>237</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">)):</span></tt>
+               class="code sev- "><tt><i>237</i> &nbsp;</tt>
             </div>
             <div id="l238"
-               class="code sev- "><tt><i>238</i> &nbsp;</tt>
+               class="code sev- "><tt><i>238</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">)):</span></tt>
             </div>
             <div id="l239"
-               class="code sev- "><tt><i>239</i>             <span class="c1"># -------------- encode ids (different for each layer)</span></tt>
+               class="code sev- "><tt><i>239</i> &nbsp;</tt>
             </div>
             <div id="l240"
+               class="code sev- "><tt><i>240</i>             <span class="c1"># -------------- encode ids (different for each layer)</span></tt>
+            </div>
+            <div id="l241"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -977,21 +983,21 @@
                      </span>
                      Line too long (116 > 79 characters)</li>
                
-               </ul><tt><i>240</i>             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;identifiers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_encoder</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">data</span><span class="o">.</span><span class="n">identifiers</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inject_ids</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_encoder</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span></tt>
-            </div>
-            <div id="l241"
-               class="code sev- "><tt><i>241</i>                 <span class="n">data</span><span class="o">.</span><span class="n">identifiers</span><span class="p">)</span></tt>
+               </ul><tt><i>241</i>             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;identifiers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_encoder</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">data</span><span class="o">.</span><span class="n">identifiers</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inject_ids</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_encoder</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span></tt>
             </div>
             <div id="l242"
-               class="code sev- "><tt><i>242</i> &nbsp;</tt>
+               class="code sev- "><tt><i>242</i>                 <span class="n">data</span><span class="o">.</span><span class="n">identifiers</span><span class="p">)</span></tt>
             </div>
             <div id="l243"
-               class="code sev- "><tt><i>243</i>             <span class="c1"># -------------- edge features embedding (different for each layer)</span></tt>
+               class="code sev- "><tt><i>243</i> &nbsp;</tt>
             </div>
             <div id="l244"
-               class="code sev- "><tt><i>244</i>             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>244</i>             <span class="c1"># -------------- edge features embedding (different for each layer)</span></tt>
             </div>
             <div id="l245"
+               class="code sev- "><tt><i>245</i>             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;edge_features&#39;</span><span class="p">):</span></tt>
+            </div>
+            <div id="l246"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1001,48 +1007,48 @@
                      </span>
                      Line too long (82 > 79 characters)</li>
                
-               </ul><tt><i>245</i>                 <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;edge_features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">data</span><span class="o">.</span><span class="n">edge_features</span><span class="p">)</span></tt>
-            </div>
-            <div id="l246"
-               class="code sev- "><tt><i>246</i>             <span class="k">else</span><span class="p">:</span></tt>
+               </ul><tt><i>246</i>                 <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;edge_features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_encoder</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">data</span><span class="o">.</span><span class="n">edge_features</span><span class="p">)</span></tt>
             </div>
             <div id="l247"
-               class="code sev- "><tt><i>247</i>                 <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;edge_features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></tt>
+               class="code sev- "><tt><i>247</i>             <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l248"
-               class="code sev- "><tt><i>248</i> &nbsp;</tt>
+               class="code sev- "><tt><i>248</i>                 <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;edge_features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></tt>
             </div>
             <div id="l249"
-               class="code sev- "><tt><i>249</i>             <span class="c1"># if self.vn:</span></tt>
+               class="code sev- "><tt><i>249</i> &nbsp;</tt>
             </div>
             <div id="l250"
-               class="code sev- "><tt><i>250</i>             <span class="c1">#     x_interm[i] = x_interm[i] + vn_embedding[data.batch]</span></tt>
+               class="code sev- "><tt><i>250</i>             <span class="c1"># if self.vn:</span></tt>
             </div>
             <div id="l251"
-               class="code sev- "><tt><i>251</i> &nbsp;</tt>
+               class="code sev- "><tt><i>251</i>             <span class="c1">#     x_interm[i] = x_interm[i] + vn_embedding[data.batch]</span></tt>
             </div>
             <div id="l252"
-               class="code sev- "><tt><i>252</i>             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x_interm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">edge_index</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>252</i> &nbsp;</tt>
             </div>
             <div id="l253"
-               class="code sev- "><tt><i>253</i> &nbsp;</tt>
+               class="code sev- "><tt><i>253</i>             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x_interm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">edge_index</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></tt>
             </div>
             <div id="l254"
-               class="code sev- "><tt><i>254</i>             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_norms</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn</span> <span class="k">else</span> <span class="n">x</span></tt>
+               class="code sev- "><tt><i>254</i> &nbsp;</tt>
             </div>
             <div id="l255"
-               class="code sev- "><tt><i>255</i> &nbsp;</tt>
+               class="code sev- "><tt><i>255</i>             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_norms</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn</span> <span class="k">else</span> <span class="n">x</span></tt>
             </div>
             <div id="l256"
-               class="code sev- "><tt><i>256</i>             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>256</i> &nbsp;</tt>
             </div>
             <div id="l257"
-               class="code sev- "><tt><i>257</i>                 <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_features</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>257</i>             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span></tt>
             </div>
             <div id="l258"
-               class="code sev- "><tt><i>258</i>             <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>258</i>                 <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_features</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
             </div>
             <div id="l259"
+               class="code sev- "><tt><i>259</i>             <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l260"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1052,30 +1058,30 @@
                      </span>
                      Line too long (96 > 79 characters)</li>
                
-               </ul><tt><i>259</i>                 <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_features</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
-            </div>
-            <div id="l260"
-               class="code sev- "><tt><i>260</i> &nbsp;</tt>
+               </ul><tt><i>260</i>                 <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_features</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span></tt>
             </div>
             <div id="l261"
-               class="code sev- "><tt><i>261</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">residual</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>261</i> &nbsp;</tt>
             </div>
             <div id="l262"
-               class="code sev- "><tt><i>262</i>                 <span class="n">x</span> <span class="o">+=</span> <span class="n">x_interm</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>262</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">residual</span><span class="p">:</span></tt>
             </div>
             <div id="l263"
-               class="code sev- "><tt><i>263</i> &nbsp;</tt>
+               class="code sev- "><tt><i>263</i>                 <span class="n">x</span> <span class="o">+=</span> <span class="n">x_interm</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></tt>
             </div>
             <div id="l264"
-               class="code sev- "><tt><i>264</i>             <span class="n">x_interm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>264</i> &nbsp;</tt>
             </div>
             <div id="l265"
-               class="code sev- "><tt><i>265</i> &nbsp;</tt>
+               class="code sev- "><tt><i>265</i>             <span class="n">x_interm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
             </div>
             <div id="l266"
-               class="code sev- "><tt><i>266</i>             <span class="c1"># if i &lt; len(self.conv) - 1 and self.vn:</span></tt>
+               class="code sev- "><tt><i>266</i> &nbsp;</tt>
             </div>
             <div id="l267"
+               class="code sev- "><tt><i>267</i>             <span class="c1"># if i &lt; len(self.conv) - 1 and self.vn:</span></tt>
+            </div>
+            <div id="l268"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1085,18 +1091,18 @@
                      </span>
                      Line too long (97 > 79 characters)</li>
                
-               </ul><tt><i>267</i>             <span class="c1">#     vn_embedding_temp = self.global_vn_pool(x_interm[i], data.batch) + vn_embedding</span></tt>
-            </div>
-            <div id="l268"
-               class="code sev- "><tt><i>268</i>             <span class="c1">#     vn_embedding = self.mlp_vn[i](vn_embedding_temp)</span></tt>
+               </ul><tt><i>268</i>             <span class="c1">#     vn_embedding_temp = self.global_vn_pool(x_interm[i], data.batch) + vn_embedding</span></tt>
             </div>
             <div id="l269"
-               class="code sev- "><tt><i>269</i> &nbsp;</tt>
+               class="code sev- "><tt><i>269</i>             <span class="c1">#     vn_embedding = self.mlp_vn[i](vn_embedding_temp)</span></tt>
             </div>
             <div id="l270"
-               class="code sev- "><tt><i>270</i>             <span class="c1">#     if self.residual:</span></tt>
+               class="code sev- "><tt><i>270</i> &nbsp;</tt>
             </div>
             <div id="l271"
+               class="code sev- "><tt><i>271</i>             <span class="c1">#     if self.residual:</span></tt>
+            </div>
+            <div id="l272"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1106,12 +1112,12 @@
                      </span>
                      Line too long (144 > 79 characters)</li>
                
-               </ul><tt><i>271</i>             <span class="c1">#         vn_embedding = vn_embedding + F.dropout(self.activation(vn_embedding), self.dropout_features[i], training = self.training)</span></tt>
-            </div>
-            <div id="l272"
-               class="code sev- "><tt><i>272</i>             <span class="c1">#     else:</span></tt>
+               </ul><tt><i>272</i>             <span class="c1">#         vn_embedding = vn_embedding + F.dropout(self.activation(vn_embedding), self.dropout_features[i], training = self.training)</span></tt>
             </div>
             <div id="l273"
+               class="code sev- "><tt><i>273</i>             <span class="c1">#     else:</span></tt>
+            </div>
+            <div id="l274"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1121,30 +1127,30 @@
                      </span>
                      Line too long (129 > 79 characters)</li>
                
-               </ul><tt><i>273</i>             <span class="c1">#         vn_embedding = F.dropout(self.activation(vn_embedding), self.dropout_features[i], training = self.training)</span></tt>
-            </div>
-            <div id="l274"
-               class="code sev- "><tt><i>274</i> &nbsp;</tt>
+               </ul><tt><i>274</i>             <span class="c1">#         vn_embedding = F.dropout(self.activation(vn_embedding), self.dropout_features[i], training = self.training)</span></tt>
             </div>
             <div id="l275"
-               class="code sev- "><tt><i>275</i>         <span class="n">prediction</span> <span class="o">=</span> <span class="mi">0</span></tt>
+               class="code sev- "><tt><i>275</i> &nbsp;</tt>
             </div>
             <div id="l276"
-               class="code sev- "><tt><i>276</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>276</i>         <span class="n">prediction</span> <span class="o">=</span> <span class="mi">0</span></tt>
             </div>
             <div id="l277"
-               class="code sev- "><tt><i>277</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_projection</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span></tt>
+               class="code sev- "><tt><i>277</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span></tt>
             </div>
             <div id="l278"
-               class="code sev- "><tt><i>278</i>                 <span class="n">prediction</span> <span class="o">+=</span> <span class="n">x_interm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>278</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_projection</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span></tt>
             </div>
             <div id="l279"
-               class="code sev- "><tt><i>279</i> &nbsp;</tt>
+               class="code sev- "><tt><i>279</i>                 <span class="n">prediction</span> <span class="o">+=</span> <span class="n">x_interm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></tt>
             </div>
             <div id="l280"
-               class="code sev- "><tt><i>280</i>         <span class="n">x_global</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_pool</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">batch</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>280</i> &nbsp;</tt>
             </div>
             <div id="l281"
+               class="code sev- "><tt><i>281</i>         <span class="n">x_global</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_pool</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">batch</span><span class="p">)</span></tt>
+            </div>
+            <div id="l282"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -1154,16 +1160,16 @@
                      </span>
                      Comparison to None should be 'if cond is None:'</li>
                
-               </ul><tt><i>281</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lin_proj</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span></tt>
-            </div>
-            <div id="l282"
-               class="code sev- "><tt><i>282</i>             <span class="k">return</span> <span class="n">x_global</span></tt>
+               </ul><tt><i>282</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lin_proj</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l283"
-               class="code sev- "><tt><i>283</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>283</i>             <span class="k">return</span> <span class="n">x_global</span></tt>
             </div>
             <div id="l284"
-               class="code sev- "><tt><i>284</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lin_proj</span><span class="p">(</span><span class="n">x_global</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>284</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l285"
+               class="code sev- "><tt><i>285</i>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lin_proj</span><span class="p">(</span><span class="n">x_global</span><span class="p">)</span></tt>
             </div>
             
          </div>

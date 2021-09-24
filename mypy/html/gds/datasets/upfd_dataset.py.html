@@ -155,7 +155,6 @@
 <span id="L145" class="lineno"><a class="lineno" href="#L145">145</a></span>
 <span id="L146" class="lineno"><a class="lineno" href="#L146">146</a></span>
 <span id="L147" class="lineno"><a class="lineno" href="#L147">147</a></span>
-<span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -284,7 +283,7 @@ Unimported (x1)">            random_index = np.random.permutation(train_val_sets
 Unannotated (x9)">            train_split_idx = train_val_split_idx[random_index[:int(6 / 8 * train_val_sets_size)]]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x9)">            val_split_idx = train_val_split_idx[random_index[int(6 / 8 * train_val_sets_size):]]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">       </span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._split_array[train_split_idx] = 0</span>
 <span class="line-any" title="Any Types on this line: 
@@ -309,10 +308,6 @@ Unannotated (x2)
 Unimported (x1)">                self._collate = PyGCollater(follow_batch=[])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        self._metric = Evaluator('ogbg-ppa')</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def get_input(self, idx):</span>
@@ -335,17 +330,19 @@ Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        y_true = y_true.view(-1, 1)</span>
+Unannotated (x5)">        y_true = y_true.view(-1, 1)        </span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
-Unimported (x1)">        y_pred = torch.argmax(y_pred.detach(), dim=1).view(-1, 1)</span>
+Unannotated (x8)">        y_pred = (y_pred &gt; 0).long().view(-1, 1)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        results = self._metric.eval(input_dict)</span>
+Unannotated (x9)">        acc = (y_pred == y_true).sum() / len(y_pred)       </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        results = {'acc': np.float(acc)}</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        return results, f"Accuracy: {results['acc']:.3f}\n"</span>
+Unannotated (x6)">        return results, f"Accuracy: {acc:.3f}\n"</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN</span>
 <span class="line-any" title="No Anys on this line!">    def collate_dense(self, samples):</span>

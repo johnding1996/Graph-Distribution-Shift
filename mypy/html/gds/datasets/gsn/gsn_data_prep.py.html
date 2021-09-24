@@ -338,6 +338,16 @@
 <span id="L328" class="lineno"><a class="lineno" href="#L328">328</a></span>
 <span id="L329" class="lineno"><a class="lineno" href="#L329">329</a></span>
 <span id="L330" class="lineno"><a class="lineno" href="#L330">330</a></span>
+<span id="L331" class="lineno"><a class="lineno" href="#L331">331</a></span>
+<span id="L332" class="lineno"><a class="lineno" href="#L332">332</a></span>
+<span id="L333" class="lineno"><a class="lineno" href="#L333">333</a></span>
+<span id="L334" class="lineno"><a class="lineno" href="#L334">334</a></span>
+<span id="L335" class="lineno"><a class="lineno" href="#L335">335</a></span>
+<span id="L336" class="lineno"><a class="lineno" href="#L336">336</a></span>
+<span id="L337" class="lineno"><a class="lineno" href="#L337">337</a></span>
+<span id="L338" class="lineno"><a class="lineno" href="#L338">338</a></span>
+<span id="L339" class="lineno"><a class="lineno" href="#L339">339</a></span>
+<span id="L340" class="lineno"><a class="lineno" href="#L340">340</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-empty" title="No Anys on this line!"># import utils_parsing as parse</span>
@@ -645,8 +655,22 @@ Unannotated (x6)">        self.retain_features = [self.retain_features] + [True 
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # begin here </span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        if self.dataset == 'ogb':</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
-Unimported (x1)">        evaluator = Evaluator(self.dataset_name)</span>
+Unimported (x1)">            evaluator = Evaluator(self.dataset_name)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        elif self.dataset_name == 'MNIST':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">            evaluator = Evaluator('ogbg-ppa')</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-precise" title="No Anys on this line!">            raise NotImplementedError</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        </span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        </span>
 <span class="line-empty" title="No Anys on this line!">        ## ----------------------------------- infrastructure</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 

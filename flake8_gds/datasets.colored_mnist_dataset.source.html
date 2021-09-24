@@ -6,7 +6,7 @@
       <link rel="stylesheet" href="styles.css">
    </head>
    <body>
-      <div id="masthead" class="sev-2"></div>
+      <div id="masthead" class="sev-1"></div>
       <div id="page">
          <h1>
             <a href="datasets.colored_mnist_dataset.report.html">
@@ -29,7 +29,16 @@
                class="code sev- "><tt><i>4</i> <span class="kn">from</span> <span class="nn">gds.datasets.gds_dataset</span> <span class="kn">import</span> <span class="n">GDSDataset</span></tt>
             </div>
             <div id="l5"
-               class="code sev- "><tt><i>5</i> <span class="kn">from</span> <span class="nn">ogb.graphproppred</span> <span class="kn">import</span> <span class="n">Evaluator</span></tt>
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     'ogb.graphproppred.Evaluator' imported but unused</li>
+               
+               </ul><tt><i>5</i> <span class="kn">from</span> <span class="nn">ogb.graphproppred</span> <span class="kn">import</span> <span class="n">Evaluator</span></tt>
             </div>
             <div id="l6"
                class="code sev- "><tt><i>6</i> <span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">download_url</span><span class="p">,</span> <span class="n">extract_zip</span></tt>
@@ -410,48 +419,54 @@
                class="code sev- "><tt><i>86</i> &nbsp;</tt>
             </div>
             <div id="l87"
-               class="code sev- "><tt><i>87</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metric</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span><span class="s1">&#39;ogbg-ppa&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>87</i> &nbsp;</tt>
             </div>
             <div id="l88"
-               class="code sev- "><tt><i>88</i> &nbsp;</tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (2)</li>
+               
+               </ul><tt><i>88</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">download</span><span class="p">,</span> <span class="n">split_scheme</span><span class="p">)</span></tt>
             </div>
             <div id="l89"
-               class="code sev- "><tt><i>89</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">download</span><span class="p">,</span> <span class="n">split_scheme</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>89</i> &nbsp;</tt>
             </div>
             <div id="l90"
-               class="code sev- "><tt><i>90</i> &nbsp;</tt>
+               class="code sev- "><tt><i>90</i>     <span class="k">def</span> <span class="nf">get_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span></tt>
             </div>
             <div id="l91"
-               class="code sev- "><tt><i>91</i>     <span class="k">def</span> <span class="nf">get_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>91</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">)]</span></tt>
             </div>
             <div id="l92"
-               class="code sev- "><tt><i>92</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">)]</span></tt>
+               class="code sev- "><tt><i>92</i> &nbsp;</tt>
             </div>
             <div id="l93"
-               class="code sev- "><tt><i>93</i> &nbsp;</tt>
+               class="code sev- "><tt><i>93</i>     <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">prediction_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
             </div>
             <div id="l94"
-               class="code sev- "><tt><i>94</i>     <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">prediction_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>94</i>         <span class="sd">&quot;&quot;&quot;</span></tt>
             </div>
             <div id="l95"
-               class="code sev- "><tt><i>95</i>         <span class="sd">&quot;&quot;&quot;</span></tt>
+               class="code sev- "><tt><i>95</i> <span class="sd">        Computes all evaluation metrics.</span></tt>
             </div>
             <div id="l96"
-               class="code sev- "><tt><i>96</i> <span class="sd">        Computes all evaluation metrics.</span></tt>
+               class="code sev- "><tt><i>96</i> <span class="sd">        Args:</span></tt>
             </div>
             <div id="l97"
-               class="code sev- "><tt><i>97</i> <span class="sd">        Args:</span></tt>
+               class="code sev- "><tt><i>97</i> <span class="sd">            - y_pred (FloatTensor): Binary logits from a model</span></tt>
             </div>
             <div id="l98"
-               class="code sev- "><tt><i>98</i> <span class="sd">            - y_pred (FloatTensor): Binary logits from a model</span></tt>
+               class="code sev- "><tt><i>98</i> <span class="sd">            - y_true (LongTensor): Ground-truth labels</span></tt>
             </div>
             <div id="l99"
-               class="code sev- "><tt><i>99</i> <span class="sd">            - y_true (LongTensor): Ground-truth labels</span></tt>
+               class="code sev- "><tt><i>99</i> <span class="sd">            - metadata (Tensor): Metadata</span></tt>
             </div>
             <div id="l100"
-               class="code sev- "><tt><i>100</i> <span class="sd">            - metadata (Tensor): Metadata</span></tt>
-            </div>
-            <div id="l101"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -461,9 +476,9 @@
                      </span>
                      Line too long (91 > 79 characters)</li>
                
-               </ul><tt><i>101</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
+               </ul><tt><i>100</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
             </div>
-            <div id="l102"
+            <div id="l101"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -473,21 +488,21 @@
                      </span>
                      Line too long (106 > 79 characters)</li>
                
-               </ul><tt><i>102</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
+               </ul><tt><i>101</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
+            </div>
+            <div id="l102"
+               class="code sev- "><tt><i>102</i> <span class="sd">        Output:</span></tt>
             </div>
             <div id="l103"
-               class="code sev- "><tt><i>103</i> <span class="sd">        Output:</span></tt>
+               class="code sev- "><tt><i>103</i> <span class="sd">            - results (dictionary): Dictionary of evaluation metrics</span></tt>
             </div>
             <div id="l104"
-               class="code sev- "><tt><i>104</i> <span class="sd">            - results (dictionary): Dictionary of evaluation metrics</span></tt>
+               class="code sev- "><tt><i>104</i> <span class="sd">            - results_str (str): String summarizing the evaluation metrics</span></tt>
             </div>
             <div id="l105"
-               class="code sev- "><tt><i>105</i> <span class="sd">            - results_str (str): String summarizing the evaluation metrics</span></tt>
+               class="code sev- "><tt><i>105</i> <span class="sd">        &quot;&quot;&quot;</span></tt>
             </div>
             <div id="l106"
-               class="code sev- "><tt><i>106</i> <span class="sd">        &quot;&quot;&quot;</span></tt>
-            </div>
-            <div id="l107"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -497,19 +512,49 @@
                      </span>
                      Line too long (121 > 79 characters)</li>
                
-               </ul><tt><i>107</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+               </ul><tt><i>106</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+            </div>
+            <div id="l107"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>107</i>         <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        </tt>
             </div>
             <div id="l108"
-               class="code sev- "><tt><i>108</i>         <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>108</i>         <span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></tt>
             </div>
             <div id="l109"
-               class="code sev- "><tt><i>109</i>         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></tt>
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F841
+                     </span>
+                     Local variable 'input_dict' is assigned to but never used</li>
+               
+               </ul><tt><i>109</i>         <span class="n">input_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">}</span></tt>
             </div>
             <div id="l110"
-               class="code sev- "><tt><i>110</i>         <span class="n">input_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">}</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W291
+                     </span>
+                     Trailing whitespace</li>
+               
+               </ul><tt><i>110</i>         <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_true</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>       </tt>
             </div>
             <div id="l111"
-               class="code sev- "><tt><i>111</i>         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">input_dict</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>111</i>         <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="n">acc</span><span class="p">)}</span></tt>
             </div>
             <div id="l112"
                class="code sev- "><tt><i>112</i> &nbsp;</tt>

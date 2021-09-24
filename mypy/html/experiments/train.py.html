@@ -191,6 +191,8 @@
 <span id="L181" class="lineno"><a class="lineno" href="#L181">181</a></span>
 <span id="L182" class="lineno"><a class="lineno" href="#L182">182</a></span>
 <span id="L183" class="lineno"><a class="lineno" href="#L183">183</a></span>
+<span id="L184" class="lineno"><a class="lineno" href="#L184">184</a></span>
+<span id="L185" class="lineno"><a class="lineno" href="#L185">185</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from tqdm import tqdm</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -244,6 +246,7 @@ Unannotated (x5)">            batch_results = algorithm.update(batch)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">            batch_results = algorithm.evaluate(batch)</span>
+<span class="line-empty" title="No Anys on this line!">       </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # These tensors are already detached, but we need to clone them again</span>
 <span class="line-empty" title="No Anys on this line!">        # Otherwise they don't get garbage collected properly in some versions</span>
@@ -292,7 +295,7 @@ Unannotated (x1)">        epoch_y_pred,</span>
 Unannotated (x1)">        epoch_y_true,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        epoch_metadata)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"> </span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    if config.scheduler_metric_split == dataset['split']:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -339,6 +342,7 @@ Unannotated (x16)">        val_results, y_pred = run_epoch(algorithm, datasets['
 Unannotated (x5)">        curr_val_metric = val_results[config.val_metric]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x12)">        general_logger.write(f'Validation {config.val_metric}: {curr_val_metric:.3f}\n')</span>
+<span class="line-empty" title="No Anys on this line!">       </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if best_val_metric is None:</span>
@@ -442,7 +446,7 @@ Unannotated (x1)">            epoch_y_pred,</span>
 Unannotated (x1)">            epoch_y_true,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            epoch_metadata)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">       </span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        results['epoch'] = epoch</span>
 <span class="line-any" title="Any Types on this line: 

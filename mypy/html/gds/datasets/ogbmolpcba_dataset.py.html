@@ -187,6 +187,36 @@
 <span id="L177" class="lineno"><a class="lineno" href="#L177">177</a></span>
 <span id="L178" class="lineno"><a class="lineno" href="#L178">178</a></span>
 <span id="L179" class="lineno"><a class="lineno" href="#L179">179</a></span>
+<span id="L180" class="lineno"><a class="lineno" href="#L180">180</a></span>
+<span id="L181" class="lineno"><a class="lineno" href="#L181">181</a></span>
+<span id="L182" class="lineno"><a class="lineno" href="#L182">182</a></span>
+<span id="L183" class="lineno"><a class="lineno" href="#L183">183</a></span>
+<span id="L184" class="lineno"><a class="lineno" href="#L184">184</a></span>
+<span id="L185" class="lineno"><a class="lineno" href="#L185">185</a></span>
+<span id="L186" class="lineno"><a class="lineno" href="#L186">186</a></span>
+<span id="L187" class="lineno"><a class="lineno" href="#L187">187</a></span>
+<span id="L188" class="lineno"><a class="lineno" href="#L188">188</a></span>
+<span id="L189" class="lineno"><a class="lineno" href="#L189">189</a></span>
+<span id="L190" class="lineno"><a class="lineno" href="#L190">190</a></span>
+<span id="L191" class="lineno"><a class="lineno" href="#L191">191</a></span>
+<span id="L192" class="lineno"><a class="lineno" href="#L192">192</a></span>
+<span id="L193" class="lineno"><a class="lineno" href="#L193">193</a></span>
+<span id="L194" class="lineno"><a class="lineno" href="#L194">194</a></span>
+<span id="L195" class="lineno"><a class="lineno" href="#L195">195</a></span>
+<span id="L196" class="lineno"><a class="lineno" href="#L196">196</a></span>
+<span id="L197" class="lineno"><a class="lineno" href="#L197">197</a></span>
+<span id="L198" class="lineno"><a class="lineno" href="#L198">198</a></span>
+<span id="L199" class="lineno"><a class="lineno" href="#L199">199</a></span>
+<span id="L200" class="lineno"><a class="lineno" href="#L200">200</a></span>
+<span id="L201" class="lineno"><a class="lineno" href="#L201">201</a></span>
+<span id="L202" class="lineno"><a class="lineno" href="#L202">202</a></span>
+<span id="L203" class="lineno"><a class="lineno" href="#L203">203</a></span>
+<span id="L204" class="lineno"><a class="lineno" href="#L204">204</a></span>
+<span id="L205" class="lineno"><a class="lineno" href="#L205">205</a></span>
+<span id="L206" class="lineno"><a class="lineno" href="#L206">206</a></span>
+<span id="L207" class="lineno"><a class="lineno" href="#L207">207</a></span>
+<span id="L208" class="lineno"><a class="lineno" href="#L208">208</a></span>
+<span id="L209" class="lineno"><a class="lineno" href="#L209">209</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -254,7 +284,7 @@
 <span class="line-precise" title="No Anys on this line!">            'compressed_size': None}}</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,</span>
-<span class="line-empty" title="No Anys on this line!">                 **dataset_kwargs):</span>
+<span class="line-any" title="No Anys on this line!">        subgraph=False, **dataset_kwargs):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._version = version</span>
 <span class="line-any" title="Any Types on this line: 
@@ -341,12 +371,63 @@ Unimported (x1)">                self._collate = PyGCollater(follow_batch=[])</s
 Unannotated (x2)
 Unimported (x1)">        self._metric = Evaluator('ogbg-molpcba')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # GSN</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.subgraph = subgraph</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if self.subgraph:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.id_type = dataset_kwargs['gsn_id_type']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.k = dataset_kwargs['gsn_k']</span>
+<span class="line-any" title="No Anys on this line!">            from gds.datasets.gsn.gsn_data_prep import GSN</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">            subgraph = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                           k=self.k)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset.root)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            if self.graphs_ptg[0].x.dim() == 1:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                self.num_features = 1</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">                self.num_features = self.graphs_ptg[0].num_features</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Explicit (x1)">            if hasattr(self.graphs_ptg[0], 'edge_features'):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                if self.graphs_ptg[0].edge_features.dim() == 1:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                    self.num_edge_features = 1</span>
+<span class="line-empty" title="No Anys on this line!">                else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                    self.num_edge_features = self.graphs_ptg[0].edge_features.shape[1]</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                self.num_edge_features = None</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            self.d_in_node_encoder = [self.num_features]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            self.d_in_edge_encoder = [self.num_edge_features]</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def get_input(self, idx):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
+Unannotated (x1)">        if self.subgraph:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            return self.graphs_ptg[int(idx)]</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            return self.ogb_dataset[int(idx)]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def eval(self, y_pred, y_true, metadata, prediction_fn=None):</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>

@@ -153,6 +153,38 @@
 <span id="L143" class="lineno"><a class="lineno" href="#L143">143</a></span>
 <span id="L144" class="lineno"><a class="lineno" href="#L144">144</a></span>
 <span id="L145" class="lineno"><a class="lineno" href="#L145">145</a></span>
+<span id="L146" class="lineno"><a class="lineno" href="#L146">146</a></span>
+<span id="L147" class="lineno"><a class="lineno" href="#L147">147</a></span>
+<span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
+<span id="L149" class="lineno"><a class="lineno" href="#L149">149</a></span>
+<span id="L150" class="lineno"><a class="lineno" href="#L150">150</a></span>
+<span id="L151" class="lineno"><a class="lineno" href="#L151">151</a></span>
+<span id="L152" class="lineno"><a class="lineno" href="#L152">152</a></span>
+<span id="L153" class="lineno"><a class="lineno" href="#L153">153</a></span>
+<span id="L154" class="lineno"><a class="lineno" href="#L154">154</a></span>
+<span id="L155" class="lineno"><a class="lineno" href="#L155">155</a></span>
+<span id="L156" class="lineno"><a class="lineno" href="#L156">156</a></span>
+<span id="L157" class="lineno"><a class="lineno" href="#L157">157</a></span>
+<span id="L158" class="lineno"><a class="lineno" href="#L158">158</a></span>
+<span id="L159" class="lineno"><a class="lineno" href="#L159">159</a></span>
+<span id="L160" class="lineno"><a class="lineno" href="#L160">160</a></span>
+<span id="L161" class="lineno"><a class="lineno" href="#L161">161</a></span>
+<span id="L162" class="lineno"><a class="lineno" href="#L162">162</a></span>
+<span id="L163" class="lineno"><a class="lineno" href="#L163">163</a></span>
+<span id="L164" class="lineno"><a class="lineno" href="#L164">164</a></span>
+<span id="L165" class="lineno"><a class="lineno" href="#L165">165</a></span>
+<span id="L166" class="lineno"><a class="lineno" href="#L166">166</a></span>
+<span id="L167" class="lineno"><a class="lineno" href="#L167">167</a></span>
+<span id="L168" class="lineno"><a class="lineno" href="#L168">168</a></span>
+<span id="L169" class="lineno"><a class="lineno" href="#L169">169</a></span>
+<span id="L170" class="lineno"><a class="lineno" href="#L170">170</a></span>
+<span id="L171" class="lineno"><a class="lineno" href="#L171">171</a></span>
+<span id="L172" class="lineno"><a class="lineno" href="#L172">172</a></span>
+<span id="L173" class="lineno"><a class="lineno" href="#L173">173</a></span>
+<span id="L174" class="lineno"><a class="lineno" href="#L174">174</a></span>
+<span id="L175" class="lineno"><a class="lineno" href="#L175">175</a></span>
+<span id="L176" class="lineno"><a class="lineno" href="#L176">176</a></span>
+<span id="L177" class="lineno"><a class="lineno" href="#L177">177</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -174,7 +206,7 @@
 <span class="line-precise" title="No Anys on this line!">            'compressed_size': None}}</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,</span>
-<span class="line-empty" title="No Anys on this line!">                 **dataset_kwargs):</span>
+<span class="line-any" title="No Anys on this line!">                 subgraph=False, **dataset_kwargs):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._version = version</span>
 <span class="line-empty" title="No Anys on this line!">        # internally call ogb package</span>
@@ -283,6 +315,7 @@ Unimported (x1)">            random_index = np.random.permutation(train_val_sets
 Unannotated (x9)">            train_split_idx = train_val_split_idx[random_index[:int(4 / 5 * train_val_sets_size)]]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x9)">            val_split_idx = train_val_split_idx[random_index[int(4 / 5 * train_val_sets_size):]]</span>
+<span class="line-empty" title="No Anys on this line!">         </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._split_array[train_split_idx] = 0</span>
@@ -311,12 +344,64 @@ Unimported (x1)">                self._collate = PyGCollater(follow_batch=[])</s
 Unannotated (x2)
 Unimported (x1)">        self._metric = Evaluator('ogbg-ppa')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # GSN</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.subgraph = subgraph</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        if self.subgraph:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.id_type = dataset_kwargs['gsn_id_type']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            self.k = dataset_kwargs['gsn_k']</span>
+<span class="line-any" title="No Anys on this line!">            from gds.datasets.gsn.gsn_data_prep import GSN</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">            subgraph = GSN(dataset_name='RotatedMNIST', dataset_group='MNIST', induced=True, id_type=self.id_type,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                           k=self.k)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)">            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset.root)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            if self.graphs_ptg[0].x.dim() == 1:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                self.num_features = 1</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">                self.num_features = self.graphs_ptg[0].num_features</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Explicit (x1)">            if hasattr(self.graphs_ptg[0], 'edge_features'):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                if self.graphs_ptg[0].edge_features.dim() == 1:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                    self.num_edge_features = 1</span>
+<span class="line-empty" title="No Anys on this line!">                else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                    self.num_edge_features = self.graphs_ptg[0].edge_features.shape[1]</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                self.num_edge_features = None</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            self.d_in_node_encoder = [self.num_features]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            self.d_in_edge_encoder = [self.num_edge_features]</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def get_input(self, idx):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
+Unannotated (x1)">        if self.subgraph:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            return self.graphs_ptg[int(idx)]</span>
+<span class="line-empty" title="No Anys on this line!">        else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">            return self.ogb_dataset[int(idx)]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def eval(self, y_pred, y_true, metadata, prediction_fn=None):</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>

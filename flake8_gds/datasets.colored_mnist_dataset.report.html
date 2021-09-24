@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
    </head>
    <body>
-      <div id="masthead" class="sev-2"></div>
+      <div id="masthead" class="sev-1"></div>
       <div id="page">
          <p id="srclink">
             <a title="View full annotated source"
@@ -48,6 +48,42 @@ window.addEventListener('DOMContentLoaded', function () {
          </h1>
 
          <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'ogb.graphproppred.Evaluator' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.colored_mnist_dataset.source.html#l5">
+                  <tt><i>5</i> <span class="kn">from</span> <span class="nn">ogb.graphproppred</span> <span class="kn">import</span> <span class="n">Evaluator</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F841">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F841:</strong> local variable 'input_dict' is assigned to but never used
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.colored_mnist_dataset.source.html#l109">
+                  <tt><i>109</i>         <span class="n">input_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">}</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
          
          <li>
             <a data-code="E501">
@@ -169,22 +205,22 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (91 > 79 characters):</p>
                
-               <a href="datasets.colored_mnist_dataset.source.html#l101">
-                  <tt><i>101</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
+               <a href="datasets.colored_mnist_dataset.source.html#l100">
+                  <tt><i>100</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (106 > 79 characters):</p>
                
-               <a href="datasets.colored_mnist_dataset.source.html#l102">
-                  <tt><i>102</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
+               <a href="datasets.colored_mnist_dataset.source.html#l101">
+                  <tt><i>101</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (121 > 79 characters):</p>
                
-               <a href="datasets.colored_mnist_dataset.source.html#l107">
-                  <tt><i>107</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+               <a href="datasets.colored_mnist_dataset.source.html#l106">
+                  <tt><i>106</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
                </a>
             </li><li>
                
@@ -199,6 +235,47 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <a href="datasets.colored_mnist_dataset.source.html#l143">
                   <tt><i>143</i>         <span class="n">deg_inv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">deg</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">deg</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.colored_mnist_dataset.source.html#l107">
+                  <tt><i>107</i>         <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.colored_mnist_dataset.source.html#l110">
+                  <tt><i>110</i>         <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_true</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>       </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.colored_mnist_dataset.source.html#l88">
+                  <tt><i>88</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">download</span><span class="p">,</span> <span class="n">split_scheme</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>

@@ -143,30 +143,51 @@
                class="code sev- "><tt><i>33</i>             <span class="n">batch_results</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span></tt>
             </div>
             <div id="l34"
-               class="code sev- "><tt><i>34</i> &nbsp;</tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>34</i>        </tt>
             </div>
             <div id="l35"
-               class="code sev- "><tt><i>35</i>         <span class="c1"># These tensors are already detached, but we need to clone them again</span></tt>
+               class="code sev- "><tt><i>35</i> &nbsp;</tt>
             </div>
             <div id="l36"
-               class="code sev- "><tt><i>36</i>         <span class="c1"># Otherwise they don&#39;t get garbage collected properly in some versions</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (2)</li>
+               
+               </ul><tt><i>36</i>         <span class="c1"># These tensors are already detached, but we need to clone them again</span></tt>
             </div>
             <div id="l37"
-               class="code sev- "><tt><i>37</i>         <span class="c1"># The extra detach is just for safety</span></tt>
+               class="code sev- "><tt><i>37</i>         <span class="c1"># Otherwise they don&#39;t get garbage collected properly in some versions</span></tt>
             </div>
             <div id="l38"
-               class="code sev- "><tt><i>38</i>         <span class="c1"># (they should already be detached in batch_results)</span></tt>
+               class="code sev- "><tt><i>38</i>         <span class="c1"># The extra detach is just for safety</span></tt>
             </div>
             <div id="l39"
-               class="code sev- "><tt><i>39</i>         <span class="n">epoch_y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">]))</span></tt>
+               class="code sev- "><tt><i>39</i>         <span class="c1"># (they should already be detached in batch_results)</span></tt>
             </div>
             <div id="l40"
-               class="code sev- "><tt><i>40</i>         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>40</i>         <span class="n">epoch_y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">]))</span></tt>
             </div>
             <div id="l41"
-               class="code sev- "><tt><i>41</i>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">process_outputs_function</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>41</i>         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">])</span></tt>
             </div>
             <div id="l42"
+               class="code sev- "><tt><i>42</i>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">process_outputs_function</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l43"
                class="code sev-1  le">
                <ul class="violations">
                
@@ -182,78 +203,87 @@
                      </span>
                      Line too long (87 > 79 characters)</li>
                
-               </ul><tt><i>42</i>             <span class="n">y_pred</span> <span class="o">=</span> <span class="n">process_outputs_functions</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">process_outputs_function</span><span class="p">](</span><span class="n">y_pred</span><span class="p">)</span></tt>
-            </div>
-            <div id="l43"
-               class="code sev- "><tt><i>43</i>         <span class="n">epoch_y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span></tt>
+               </ul><tt><i>43</i>             <span class="n">y_pred</span> <span class="o">=</span> <span class="n">process_outputs_functions</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">process_outputs_function</span><span class="p">](</span><span class="n">y_pred</span><span class="p">)</span></tt>
             </div>
             <div id="l44"
-               class="code sev- "><tt><i>44</i>         <span class="n">epoch_metadata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]))</span></tt>
+               class="code sev- "><tt><i>44</i>         <span class="n">epoch_y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span></tt>
             </div>
             <div id="l45"
-               class="code sev- "><tt><i>45</i> &nbsp;</tt>
+               class="code sev- "><tt><i>45</i>         <span class="n">epoch_metadata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]))</span></tt>
             </div>
             <div id="l46"
-               class="code sev- "><tt><i>46</i>         <span class="k">if</span> <span class="n">train</span> <span class="ow">and</span> <span class="p">(</span><span class="n">batch_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">config</span><span class="o">.</span><span class="n">log_every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>46</i> &nbsp;</tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i>             <span class="n">log_results</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>47</i>         <span class="k">if</span> <span class="n">train</span> <span class="ow">and</span> <span class="p">(</span><span class="n">batch_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">config</span><span class="o">.</span><span class="n">log_every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span></tt>
             </div>
             <div id="l48"
-               class="code sev- "><tt><i>48</i> &nbsp;</tt>
+               class="code sev- "><tt><i>48</i>             <span class="n">log_results</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">)</span></tt>
             </div>
             <div id="l49"
-               class="code sev- "><tt><i>49</i>         <span class="n">batch_idx</span> <span class="o">+=</span> <span class="mi">1</span></tt>
+               class="code sev- "><tt><i>49</i> &nbsp;</tt>
             </div>
             <div id="l50"
-               class="code sev- "><tt><i>50</i> &nbsp;</tt>
+               class="code sev- "><tt><i>50</i>         <span class="n">batch_idx</span> <span class="o">+=</span> <span class="mi">1</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i>     <span class="n">epoch_y_pred</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_y_pred</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>51</i> &nbsp;</tt>
             </div>
             <div id="l52"
-               class="code sev- "><tt><i>52</i>     <span class="n">epoch_y_true</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_y_true</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>52</i>     <span class="n">epoch_y_pred</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_y_pred</span><span class="p">)</span></tt>
             </div>
             <div id="l53"
-               class="code sev- "><tt><i>53</i>     <span class="n">epoch_metadata</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_metadata</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>53</i>     <span class="n">epoch_y_true</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_y_true</span><span class="p">)</span></tt>
             </div>
             <div id="l54"
-               class="code sev- "><tt><i>54</i> &nbsp;</tt>
+               class="code sev- "><tt><i>54</i>     <span class="n">epoch_metadata</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_metadata</span><span class="p">)</span></tt>
             </div>
             <div id="l55"
-               class="code sev- "><tt><i>55</i>     <span class="n">results</span><span class="p">,</span> <span class="n">results_str</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span></tt>
+               class="code sev- "><tt><i>55</i> &nbsp;</tt>
             </div>
             <div id="l56"
-               class="code sev- "><tt><i>56</i>         <span class="n">epoch_y_pred</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>56</i>     <span class="n">results</span><span class="p">,</span> <span class="n">results_str</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span></tt>
             </div>
             <div id="l57"
-               class="code sev- "><tt><i>57</i>         <span class="n">epoch_y_true</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>57</i>         <span class="n">epoch_y_pred</span><span class="p">,</span></tt>
             </div>
             <div id="l58"
-               class="code sev- "><tt><i>58</i>         <span class="n">epoch_metadata</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>58</i>         <span class="n">epoch_y_true</span><span class="p">,</span></tt>
             </div>
             <div id="l59"
-               class="code sev- "><tt><i>59</i> &nbsp;</tt>
+               class="code sev- "><tt><i>59</i>         <span class="n">epoch_metadata</span><span class="p">)</span></tt>
             </div>
             <div id="l60"
-               class="code sev- "><tt><i>60</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">scheduler_metric_split</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        W293
+                     </span>
+                     Blank line contains whitespace</li>
+               
+               </ul><tt><i>60</i>  </tt>
             </div>
             <div id="l61"
-               class="code sev- "><tt><i>61</i>         <span class="n">algorithm</span><span class="o">.</span><span class="n">step_schedulers</span><span class="p">(</span></tt>
+               class="code sev- "><tt><i>61</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">scheduler_metric_split</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l62"
-               class="code sev- "><tt><i>62</i>             <span class="n">is_epoch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>62</i>         <span class="n">algorithm</span><span class="o">.</span><span class="n">step_schedulers</span><span class="p">(</span></tt>
             </div>
             <div id="l63"
-               class="code sev- "><tt><i>63</i>             <span class="n">metrics</span><span class="o">=</span><span class="n">results</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>63</i>             <span class="n">is_epoch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span></tt>
             </div>
             <div id="l64"
-               class="code sev- "><tt><i>64</i>             <span class="n">log_access</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">train</span><span class="p">))</span></tt>
+               class="code sev- "><tt><i>64</i>             <span class="n">metrics</span><span class="o">=</span><span class="n">results</span><span class="p">,</span></tt>
             </div>
             <div id="l65"
-               class="code sev- "><tt><i>65</i> &nbsp;</tt>
+               class="code sev- "><tt><i>65</i>             <span class="n">log_access</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">train</span><span class="p">))</span></tt>
             </div>
             <div id="l66"
+               class="code sev- "><tt><i>66</i> &nbsp;</tt>
+            </div>
+            <div id="l67"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -263,42 +293,42 @@
                      </span>
                      Line too long (83 > 79 characters)</li>
                
-               </ul><tt><i>66</i>     <span class="c1"># log after updating the scheduler in case it needs to access the internal logs</span></tt>
-            </div>
-            <div id="l67"
-               class="code sev- "><tt><i>67</i>     <span class="n">log_results</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">)</span></tt>
+               </ul><tt><i>67</i>     <span class="c1"># log after updating the scheduler in case it needs to access the internal logs</span></tt>
             </div>
             <div id="l68"
-               class="code sev- "><tt><i>68</i> &nbsp;</tt>
+               class="code sev- "><tt><i>68</i>     <span class="n">log_results</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">)</span></tt>
             </div>
             <div id="l69"
-               class="code sev- "><tt><i>69</i>     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch</span></tt>
+               class="code sev- "><tt><i>69</i> &nbsp;</tt>
             </div>
             <div id="l70"
-               class="code sev- "><tt><i>70</i>     <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;eval_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>70</i>     <span class="n">results</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch</span></tt>
             </div>
             <div id="l71"
-               class="code sev- "><tt><i>71</i>     <span class="k">if</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]:</span></tt>
+               class="code sev- "><tt><i>71</i>     <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;eval_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
             </div>
             <div id="l72"
-               class="code sev- "><tt><i>72</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Epoch eval:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>72</i>     <span class="k">if</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l73"
-               class="code sev- "><tt><i>73</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">results_str</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>73</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Epoch eval:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l74"
-               class="code sev- "><tt><i>74</i> &nbsp;</tt>
+               class="code sev- "><tt><i>74</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">results_str</span><span class="p">)</span></tt>
             </div>
             <div id="l75"
-               class="code sev- "><tt><i>75</i>     <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">epoch_y_pred</span></tt>
+               class="code sev- "><tt><i>75</i> &nbsp;</tt>
             </div>
             <div id="l76"
-               class="code sev- "><tt><i>76</i> &nbsp;</tt>
+               class="code sev- "><tt><i>76</i>     <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">epoch_y_pred</span></tt>
             </div>
             <div id="l77"
                class="code sev- "><tt><i>77</i> &nbsp;</tt>
             </div>
             <div id="l78"
+               class="code sev- "><tt><i>78</i> &nbsp;</tt>
+            </div>
+            <div id="l79"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -308,21 +338,21 @@
                      </span>
                      Line too long (101 > 79 characters)</li>
                
-               </ul><tt><i>78</i> <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">result_logger</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">epoch_offset</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">):</span></tt>
-            </div>
-            <div id="l79"
-               class="code sev- "><tt><i>79</i>     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epoch_offset</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">n_epochs</span><span class="p">):</span></tt>
+               </ul><tt><i>79</i> <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">result_logger</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">epoch_offset</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">):</span></tt>
             </div>
             <div id="l80"
-               class="code sev- "><tt><i>80</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Epoch [</span><span class="si">%d</span><span class="s1">]:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">epoch</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>80</i>     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epoch_offset</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">n_epochs</span><span class="p">):</span></tt>
             </div>
             <div id="l81"
-               class="code sev- "><tt><i>81</i> &nbsp;</tt>
+               class="code sev- "><tt><i>81</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Epoch [</span><span class="si">%d</span><span class="s1">]:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">epoch</span><span class="p">)</span></tt>
             </div>
             <div id="l82"
-               class="code sev- "><tt><i>82</i>         <span class="c1"># First run training</span></tt>
+               class="code sev- "><tt><i>82</i> &nbsp;</tt>
             </div>
             <div id="l83"
+               class="code sev- "><tt><i>83</i>         <span class="c1"># First run training</span></tt>
+            </div>
+            <div id="l84"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -332,15 +362,15 @@
                      </span>
                      Line too long (90 > 79 characters)</li>
                
-               </ul><tt><i>83</i>         <span class="n">run_epoch</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
-            </div>
-            <div id="l84"
-               class="code sev- "><tt><i>84</i> &nbsp;</tt>
+               </ul><tt><i>84</i>         <span class="n">run_epoch</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
             </div>
             <div id="l85"
-               class="code sev- "><tt><i>85</i>         <span class="c1"># Then run val</span></tt>
+               class="code sev- "><tt><i>85</i> &nbsp;</tt>
             </div>
             <div id="l86"
+               class="code sev- "><tt><i>86</i>         <span class="c1"># Then run val</span></tt>
+            </div>
+            <div id="l87"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -350,12 +380,12 @@
                      </span>
                      Line too long (111 > 79 characters)</li>
                
-               </ul><tt><i>86</i>         <span class="n">val_results</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">run_epoch</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">],</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
-            </div>
-            <div id="l87"
-               class="code sev- "><tt><i>87</i>         <span class="n">curr_val_metric</span> <span class="o">=</span> <span class="n">val_results</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">val_metric</span><span class="p">]</span></tt>
+               </ul><tt><i>87</i>         <span class="n">val_results</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">run_epoch</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">],</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
             <div id="l88"
+               class="code sev- "><tt><i>88</i>         <span class="n">curr_val_metric</span> <span class="o">=</span> <span class="n">val_results</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">val_metric</span><span class="p">]</span></tt>
+            </div>
+            <div id="l89"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -365,52 +395,58 @@
                      </span>
                      Line too long (88 > 79 characters)</li>
                
-               </ul><tt><i>88</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Validation </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">val_metric</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">curr_val_metric</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l89"
-               class="code sev- "><tt><i>89</i> &nbsp;</tt>
+               </ul><tt><i>89</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Validation </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">val_metric</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">curr_val_metric</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l90"
-               class="code sev- "><tt><i>90</i>         <span class="k">if</span> <span class="n">best_val_metric</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
-            </div>
-            <div id="l91"
-               class="code sev- "><tt><i>91</i>             <span class="n">is_best</span> <span class="o">=</span> <span class="kc">True</span></tt>
-            </div>
-            <div id="l92"
-               class="code sev- "><tt><i>92</i>         <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l93"
-               class="code sev- "><tt><i>93</i>             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">val_metric_decreasing</span><span class="p">:</span></tt>
-            </div>
-            <div id="l94"
-               class="code sev- "><tt><i>94</i>                 <span class="n">is_best</span> <span class="o">=</span> <span class="n">curr_val_metric</span> <span class="o">&lt;</span> <span class="n">best_val_metric</span></tt>
-            </div>
-            <div id="l95"
-               class="code sev- "><tt><i>95</i>             <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l96"
-               class="code sev- "><tt><i>96</i>                 <span class="n">is_best</span> <span class="o">=</span> <span class="n">curr_val_metric</span> <span class="o">&gt;</span> <span class="n">best_val_metric</span></tt>
-            </div>
-            <div id="l97"
-               class="code sev- "><tt><i>97</i>         <span class="k">if</span> <span class="n">is_best</span><span class="p">:</span></tt>
-            </div>
-            <div id="l98"
-               class="code sev- "><tt><i>98</i>             <span class="n">best_val_metric</span> <span class="o">=</span> <span class="n">curr_val_metric</span></tt>
-            </div>
-            <div id="l99"
                class="code sev-2  le">
                <ul class="violations">
                
                   <li>
                      <span class="count sev-2">
-                        E501
+                        W293
                      </span>
-                     Line too long (96 > 79 characters)</li>
+                     Blank line contains whitespace</li>
                
-               </ul><tt><i>99</i>             <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1"> has the best validation performance so far.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               </ul><tt><i>90</i>        </tt>
+            </div>
+            <div id="l91"
+               class="code sev- "><tt><i>91</i> &nbsp;</tt>
+            </div>
+            <div id="l92"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (2)</li>
+               
+               </ul><tt><i>92</i>         <span class="k">if</span> <span class="n">best_val_metric</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l93"
+               class="code sev- "><tt><i>93</i>             <span class="n">is_best</span> <span class="o">=</span> <span class="kc">True</span></tt>
+            </div>
+            <div id="l94"
+               class="code sev- "><tt><i>94</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l95"
+               class="code sev- "><tt><i>95</i>             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">val_metric_decreasing</span><span class="p">:</span></tt>
+            </div>
+            <div id="l96"
+               class="code sev- "><tt><i>96</i>                 <span class="n">is_best</span> <span class="o">=</span> <span class="n">curr_val_metric</span> <span class="o">&lt;</span> <span class="n">best_val_metric</span></tt>
+            </div>
+            <div id="l97"
+               class="code sev- "><tt><i>97</i>             <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l98"
+               class="code sev- "><tt><i>98</i>                 <span class="n">is_best</span> <span class="o">=</span> <span class="n">curr_val_metric</span> <span class="o">&gt;</span> <span class="n">best_val_metric</span></tt>
+            </div>
+            <div id="l99"
+               class="code sev- "><tt><i>99</i>         <span class="k">if</span> <span class="n">is_best</span><span class="p">:</span></tt>
             </div>
             <div id="l100"
-               class="code sev- "><tt><i>100</i> &nbsp;</tt>
+               class="code sev- "><tt><i>100</i>             <span class="n">best_val_metric</span> <span class="o">=</span> <span class="n">curr_val_metric</span></tt>
             </div>
             <div id="l101"
                class="code sev-2  le">
@@ -420,23 +456,38 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (97 > 79 characters)</li>
+                     Line too long (96 > 79 characters)</li>
                
-               </ul><tt><i>101</i>         <span class="n">save_model_if_needed</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">],</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">)</span></tt>
+               </ul><tt><i>101</i>             <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1"> has the best validation performance so far.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l102"
-               class="code sev- "><tt><i>102</i>         <span class="n">save_pred_if_needed</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">],</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>102</i> &nbsp;</tt>
             </div>
             <div id="l103"
-               class="code sev- "><tt><i>103</i> &nbsp;</tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (97 > 79 characters)</li>
+               
+               </ul><tt><i>103</i>         <span class="n">save_model_if_needed</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">],</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">)</span></tt>
             </div>
             <div id="l104"
-               class="code sev- "><tt><i>104</i>         <span class="c1"># Then run everything else</span></tt>
+               class="code sev- "><tt><i>104</i>         <span class="n">save_pred_if_needed</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">],</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">)</span></tt>
             </div>
             <div id="l105"
-               class="code sev- "><tt><i>105</i>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">evaluate_all_splits</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>105</i> &nbsp;</tt>
             </div>
             <div id="l106"
+               class="code sev- "><tt><i>106</i>         <span class="c1"># Then run everything else</span></tt>
+            </div>
+            <div id="l107"
+               class="code sev- "><tt><i>107</i>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">evaluate_all_splits</span><span class="p">:</span></tt>
+            </div>
+            <div id="l108"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -446,18 +497,18 @@
                      </span>
                      Line too long (101 > 79 characters)</li>
                
-               </ul><tt><i>106</i>             <span class="n">additional_splits</span> <span class="o">=</span> <span class="p">[</span><span class="n">split</span> <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">split</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">]]</span></tt>
-            </div>
-            <div id="l107"
-               class="code sev- "><tt><i>107</i>         <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l108"
-               class="code sev- "><tt><i>108</i>             <span class="n">additional_splits</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">eval_splits</span></tt>
+               </ul><tt><i>108</i>             <span class="n">additional_splits</span> <span class="o">=</span> <span class="p">[</span><span class="n">split</span> <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">split</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">]]</span></tt>
             </div>
             <div id="l109"
-               class="code sev- "><tt><i>109</i>         <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="n">additional_splits</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>109</i>         <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l110"
+               class="code sev- "><tt><i>110</i>             <span class="n">additional_splits</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">eval_splits</span></tt>
+            </div>
+            <div id="l111"
+               class="code sev- "><tt><i>111</i>         <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="n">additional_splits</span><span class="p">:</span></tt>
+            </div>
+            <div id="l112"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -467,9 +518,9 @@
                      </span>
                      Line too long (105 > 79 characters)</li>
                
-               </ul><tt><i>110</i>             <span class="n">_</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">run_epoch</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">],</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </ul><tt><i>112</i>             <span class="n">_</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">run_epoch</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">],</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
-            <div id="l111"
+            <div id="l113"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -479,21 +530,21 @@
                      </span>
                      Line too long (80 > 79 characters)</li>
                
-               </ul><tt><i>111</i>             <span class="n">save_pred_if_needed</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">],</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">)</span></tt>
-            </div>
-            <div id="l112"
-               class="code sev- "><tt><i>112</i> &nbsp;</tt>
-            </div>
-            <div id="l113"
-               class="code sev- "><tt><i>113</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               </ul><tt><i>113</i>             <span class="n">save_pred_if_needed</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">],</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">)</span></tt>
             </div>
             <div id="l114"
                class="code sev- "><tt><i>114</i> &nbsp;</tt>
             </div>
             <div id="l115"
-               class="code sev- "><tt><i>115</i> &nbsp;</tt>
+               class="code sev- "><tt><i>115</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l116"
+               class="code sev- "><tt><i>116</i> &nbsp;</tt>
+            </div>
+            <div id="l117"
+               class="code sev- "><tt><i>117</i> &nbsp;</tt>
+            </div>
+            <div id="l118"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -503,18 +554,18 @@
                      </span>
                      Line too long (89 > 79 characters)</li>
                
-               </ul><tt><i>116</i> <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">result_logger</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">):</span></tt>
-            </div>
-            <div id="l117"
-               class="code sev- "><tt><i>117</i>     <span class="n">algorithm</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span></tt>
-            </div>
-            <div id="l118"
-               class="code sev- "><tt><i>118</i>     <span class="n">torch</span><span class="o">.</span><span class="n">set_grad_enabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></tt>
+               </ul><tt><i>118</i> <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">result_logger</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">):</span></tt>
             </div>
             <div id="l119"
-               class="code sev- "><tt><i>119</i>     <span class="k">for</span> <span class="n">split</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
+               class="code sev- "><tt><i>119</i>     <span class="n">algorithm</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span></tt>
             </div>
             <div id="l120"
+               class="code sev- "><tt><i>120</i>     <span class="n">torch</span><span class="o">.</span><span class="n">set_grad_enabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></tt>
+            </div>
+            <div id="l121"
+               class="code sev- "><tt><i>121</i>     <span class="k">for</span> <span class="n">split</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></tt>
+            </div>
+            <div id="l122"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -524,21 +575,21 @@
                      </span>
                      Line too long (82 > 79 characters)</li>
                
-               </ul><tt><i>120</i>         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">evaluate_all_splits</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">split</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">eval_splits</span><span class="p">):</span></tt>
-            </div>
-            <div id="l121"
-               class="code sev- "><tt><i>121</i>             <span class="k">continue</span></tt>
-            </div>
-            <div id="l122"
-               class="code sev- "><tt><i>122</i>         <span class="n">epoch_y_true</span> <span class="o">=</span> <span class="p">[]</span></tt>
+               </ul><tt><i>122</i>         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">evaluate_all_splits</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">split</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">eval_splits</span><span class="p">):</span></tt>
             </div>
             <div id="l123"
-               class="code sev- "><tt><i>123</i>         <span class="n">epoch_y_pred</span> <span class="o">=</span> <span class="p">[]</span></tt>
+               class="code sev- "><tt><i>123</i>             <span class="k">continue</span></tt>
             </div>
             <div id="l124"
-               class="code sev- "><tt><i>124</i>         <span class="n">epoch_metadata</span> <span class="o">=</span> <span class="p">[]</span></tt>
+               class="code sev- "><tt><i>124</i>         <span class="n">epoch_y_true</span> <span class="o">=</span> <span class="p">[]</span></tt>
             </div>
             <div id="l125"
+               class="code sev- "><tt><i>125</i>         <span class="n">epoch_y_pred</span> <span class="o">=</span> <span class="p">[]</span></tt>
+            </div>
+            <div id="l126"
+               class="code sev- "><tt><i>126</i>         <span class="n">epoch_metadata</span> <span class="o">=</span> <span class="p">[]</span></tt>
+            </div>
+            <div id="l127"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -548,24 +599,24 @@
                      </span>
                      Line too long (88 > 79 characters)</li>
                
-               </ul><tt><i>125</i>         <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;loader&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">progress_bar</span> <span class="k">else</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;loader&#39;</span><span class="p">]</span></tt>
-            </div>
-            <div id="l126"
-               class="code sev- "><tt><i>126</i>         <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span></tt>
-            </div>
-            <div id="l127"
-               class="code sev- "><tt><i>127</i>             <span class="n">batch_results</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span></tt>
+               </ul><tt><i>127</i>         <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;loader&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">progress_bar</span> <span class="k">else</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;loader&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l128"
-               class="code sev- "><tt><i>128</i>             <span class="n">epoch_y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">]))</span></tt>
+               class="code sev- "><tt><i>128</i>         <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span></tt>
             </div>
             <div id="l129"
-               class="code sev- "><tt><i>129</i>             <span class="n">y_pred</span> <span class="o">=</span> <span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>129</i>             <span class="n">batch_results</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span></tt>
             </div>
             <div id="l130"
-               class="code sev- "><tt><i>130</i>             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">process_outputs_function</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>130</i>             <span class="n">epoch_y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">]))</span></tt>
             </div>
             <div id="l131"
+               class="code sev- "><tt><i>131</i>             <span class="n">y_pred</span> <span class="o">=</span> <span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">])</span></tt>
+            </div>
+            <div id="l132"
+               class="code sev- "><tt><i>132</i>             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">process_outputs_function</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+            </div>
+            <div id="l133"
                class="code sev-1  le">
                <ul class="violations">
                
@@ -581,73 +632,67 @@
                      </span>
                      Line too long (91 > 79 characters)</li>
                
-               </ul><tt><i>131</i>                 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">process_outputs_functions</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">process_outputs_function</span><span class="p">](</span><span class="n">y_pred</span><span class="p">)</span></tt>
-            </div>
-            <div id="l132"
-               class="code sev- "><tt><i>132</i>             <span class="n">epoch_y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span></tt>
-            </div>
-            <div id="l133"
-               class="code sev- "><tt><i>133</i>             <span class="n">epoch_metadata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]))</span></tt>
+               </ul><tt><i>133</i>                 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">process_outputs_functions</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">process_outputs_function</span><span class="p">](</span><span class="n">y_pred</span><span class="p">)</span></tt>
             </div>
             <div id="l134"
-               class="code sev- "><tt><i>134</i> &nbsp;</tt>
+               class="code sev- "><tt><i>134</i>             <span class="n">epoch_y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span></tt>
             </div>
             <div id="l135"
-               class="code sev- "><tt><i>135</i>         <span class="n">epoch_y_pred</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_y_pred</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>135</i>             <span class="n">epoch_metadata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detach_and_clone</span><span class="p">(</span><span class="n">batch_results</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]))</span></tt>
             </div>
             <div id="l136"
-               class="code sev- "><tt><i>136</i>         <span class="n">epoch_y_true</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_y_true</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>136</i> &nbsp;</tt>
             </div>
             <div id="l137"
-               class="code sev- "><tt><i>137</i>         <span class="n">epoch_metadata</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_metadata</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>137</i>         <span class="n">epoch_y_pred</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_y_pred</span><span class="p">)</span></tt>
             </div>
             <div id="l138"
-               class="code sev- "><tt><i>138</i> &nbsp;</tt>
+               class="code sev- "><tt><i>138</i>         <span class="n">epoch_y_true</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_y_true</span><span class="p">)</span></tt>
             </div>
             <div id="l139"
-               class="code sev- "><tt><i>139</i>         <span class="n">results</span><span class="p">,</span> <span class="n">results_str</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span></tt>
+               class="code sev- "><tt><i>139</i>         <span class="n">epoch_metadata</span> <span class="o">=</span> <span class="n">collate_list</span><span class="p">(</span><span class="n">epoch_metadata</span><span class="p">)</span></tt>
             </div>
             <div id="l140"
-               class="code sev- "><tt><i>140</i>             <span class="n">epoch_y_pred</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>140</i> &nbsp;</tt>
             </div>
             <div id="l141"
-               class="code sev- "><tt><i>141</i>             <span class="n">epoch_y_true</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>141</i>         <span class="n">results</span><span class="p">,</span> <span class="n">results_str</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span></tt>
             </div>
             <div id="l142"
-               class="code sev- "><tt><i>142</i>             <span class="n">epoch_metadata</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>142</i>             <span class="n">epoch_y_pred</span><span class="p">,</span></tt>
             </div>
             <div id="l143"
-               class="code sev- "><tt><i>143</i> &nbsp;</tt>
+               class="code sev- "><tt><i>143</i>             <span class="n">epoch_y_true</span><span class="p">,</span></tt>
             </div>
             <div id="l144"
-               class="code sev- "><tt><i>144</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch</span></tt>
+               class="code sev- "><tt><i>144</i>             <span class="n">epoch_metadata</span><span class="p">)</span></tt>
             </div>
             <div id="l145"
-               class="code sev- "><tt><i>145</i>         <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;eval_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
-            </div>
-            <div id="l146"
-               class="code sev- "><tt><i>146</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Eval split </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> at epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l147"
-               class="code sev- "><tt><i>147</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">results_str</span><span class="p">)</span></tt>
-            </div>
-            <div id="l148"
-               class="code sev- "><tt><i>148</i> &nbsp;</tt>
-            </div>
-            <div id="l149"
                class="code sev-2  le">
                <ul class="violations">
                
                   <li>
                      <span class="count sev-2">
-                        E501
+                        W293
                      </span>
-                     Line too long (85 > 79 characters)</li>
+                     Blank line contains whitespace</li>
                
-               </ul><tt><i>149</i>         <span class="c1"># Skip saving train preds, since the train loader generally shuffles the data</span></tt>
+               </ul><tt><i>145</i>        </tt>
+            </div>
+            <div id="l146"
+               class="code sev- "><tt><i>146</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch</span></tt>
+            </div>
+            <div id="l147"
+               class="code sev- "><tt><i>147</i>         <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;eval_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+            </div>
+            <div id="l148"
+               class="code sev- "><tt><i>148</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Eval split </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> at epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l149"
+               class="code sev- "><tt><i>149</i>         <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">results_str</span><span class="p">)</span></tt>
             </div>
             <div id="l150"
-               class="code sev- "><tt><i>150</i>         <span class="k">if</span> <span class="n">split</span> <span class="o">!=</span> <span class="s1">&#39;train&#39;</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>150</i> &nbsp;</tt>
             </div>
             <div id="l151"
                class="code sev-2  le">
@@ -657,50 +702,65 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (95 > 79 characters)</li>
+                     Line too long (85 > 79 characters)</li>
                
-               </ul><tt><i>151</i>             <span class="n">save_pred_if_needed</span><span class="p">(</span><span class="n">epoch_y_pred</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">,</span> <span class="n">force_save</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </ul><tt><i>151</i>         <span class="c1"># Skip saving train preds, since the train loader generally shuffles the data</span></tt>
             </div>
             <div id="l152"
-               class="code sev- "><tt><i>152</i> &nbsp;</tt>
+               class="code sev- "><tt><i>152</i>         <span class="k">if</span> <span class="n">split</span> <span class="o">!=</span> <span class="s1">&#39;train&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l153"
-               class="code sev- "><tt><i>153</i> &nbsp;</tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (95 > 79 characters)</li>
+               
+               </ul><tt><i>153</i>             <span class="n">save_pred_if_needed</span><span class="p">(</span><span class="n">epoch_y_pred</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">,</span> <span class="n">force_save</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
             </div>
             <div id="l154"
-               class="code sev- "><tt><i>154</i> <span class="k">def</span> <span class="nf">log_results</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>154</i> &nbsp;</tt>
             </div>
             <div id="l155"
-               class="code sev- "><tt><i>155</i>     <span class="k">if</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">has_log</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>155</i> &nbsp;</tt>
             </div>
             <div id="l156"
-               class="code sev- "><tt><i>156</i>         <span class="n">log</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">get_log</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>156</i> <span class="k">def</span> <span class="nf">log_results</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">general_logger</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span></tt>
             </div>
             <div id="l157"
-               class="code sev- "><tt><i>157</i>         <span class="n">log</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch</span></tt>
+               class="code sev- "><tt><i>157</i>     <span class="k">if</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">has_log</span><span class="p">:</span></tt>
             </div>
             <div id="l158"
-               class="code sev- "><tt><i>158</i>         <span class="n">log</span><span class="p">[</span><span class="s1">&#39;batch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch_idx</span></tt>
+               class="code sev- "><tt><i>158</i>         <span class="n">log</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">get_log</span><span class="p">()</span></tt>
             </div>
             <div id="l159"
-               class="code sev- "><tt><i>159</i>         <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;algo_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">log</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>159</i>         <span class="n">log</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch</span></tt>
             </div>
             <div id="l160"
-               class="code sev- "><tt><i>160</i>         <span class="k">if</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]:</span></tt>
+               class="code sev- "><tt><i>160</i>         <span class="n">log</span><span class="p">[</span><span class="s1">&#39;batch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch_idx</span></tt>
             </div>
             <div id="l161"
-               class="code sev- "><tt><i>161</i>             <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">algorithm</span><span class="o">.</span><span class="n">get_pretty_log_str</span><span class="p">())</span></tt>
+               class="code sev- "><tt><i>161</i>         <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;algo_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">log</span><span class="p">)</span></tt>
             </div>
             <div id="l162"
-               class="code sev- "><tt><i>162</i>         <span class="n">algorithm</span><span class="o">.</span><span class="n">reset_log</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>162</i>         <span class="k">if</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]:</span></tt>
             </div>
             <div id="l163"
-               class="code sev- "><tt><i>163</i> &nbsp;</tt>
+               class="code sev- "><tt><i>163</i>             <span class="n">general_logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">algorithm</span><span class="o">.</span><span class="n">get_pretty_log_str</span><span class="p">())</span></tt>
             </div>
             <div id="l164"
-               class="code sev- "><tt><i>164</i> &nbsp;</tt>
+               class="code sev- "><tt><i>164</i>         <span class="n">algorithm</span><span class="o">.</span><span class="n">reset_log</span><span class="p">()</span></tt>
             </div>
             <div id="l165"
+               class="code sev- "><tt><i>165</i> &nbsp;</tt>
+            </div>
+            <div id="l166"
+               class="code sev- "><tt><i>166</i> &nbsp;</tt>
+            </div>
+            <div id="l167"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -710,15 +770,15 @@
                      </span>
                      Line too long (83 > 79 characters)</li>
                
-               </ul><tt><i>165</i> <span class="k">def</span> <span class="nf">save_pred_if_needed</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">,</span> <span class="n">force_save</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span></tt>
-            </div>
-            <div id="l166"
-               class="code sev- "><tt><i>166</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_pred</span><span class="p">:</span></tt>
-            </div>
-            <div id="l167"
-               class="code sev- "><tt><i>167</i>         <span class="n">prefix</span> <span class="o">=</span> <span class="n">get_pred_prefix</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></tt>
+               </ul><tt><i>167</i> <span class="k">def</span> <span class="nf">save_pred_if_needed</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">,</span> <span class="n">force_save</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span></tt>
             </div>
             <div id="l168"
+               class="code sev- "><tt><i>168</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_pred</span><span class="p">:</span></tt>
+            </div>
+            <div id="l169"
+               class="code sev- "><tt><i>169</i>         <span class="n">prefix</span> <span class="o">=</span> <span class="n">get_pred_prefix</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></tt>
+            </div>
+            <div id="l170"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -728,28 +788,13 @@
                      </span>
                      Line too long (96 > 79 characters)</li>
                
-               </ul><tt><i>168</i>         <span class="k">if</span> <span class="n">force_save</span> <span class="ow">or</span> <span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">save_step</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">config</span><span class="o">.</span><span class="n">save_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span></tt>
-            </div>
-            <div id="l169"
-               class="code sev- "><tt><i>169</i>             <span class="n">save_pred</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">_pred&#39;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l170"
-               class="code sev- "><tt><i>170</i>         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">force_save</span><span class="p">)</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">save_last</span><span class="p">:</span></tt>
+               </ul><tt><i>170</i>         <span class="k">if</span> <span class="n">force_save</span> <span class="ow">or</span> <span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">save_step</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">config</span><span class="o">.</span><span class="n">save_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span></tt>
             </div>
             <div id="l171"
-               class="code sev-1  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-1">
-                        F541
-                     </span>
-                     F-string is missing placeholders</li>
-               
-               </ul><tt><i>171</i>             <span class="n">save_pred</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;epoch-last_pred&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>171</i>             <span class="n">save_pred</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">_pred&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l172"
-               class="code sev- "><tt><i>172</i>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_best</span> <span class="ow">and</span> <span class="n">is_best</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>172</i>         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">force_save</span><span class="p">)</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">save_last</span><span class="p">:</span></tt>
             </div>
             <div id="l173"
                class="code sev-1  le">
@@ -761,15 +806,30 @@
                      </span>
                      F-string is missing placeholders</li>
                
-               </ul><tt><i>173</i>             <span class="n">save_pred</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;epoch-best_pred&#39;</span><span class="p">)</span></tt>
+               </ul><tt><i>173</i>             <span class="n">save_pred</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;epoch-last_pred&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l174"
-               class="code sev- "><tt><i>174</i> &nbsp;</tt>
+               class="code sev- "><tt><i>174</i>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_best</span> <span class="ow">and</span> <span class="n">is_best</span><span class="p">:</span></tt>
             </div>
             <div id="l175"
-               class="code sev- "><tt><i>175</i> &nbsp;</tt>
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F541
+                     </span>
+                     F-string is missing placeholders</li>
+               
+               </ul><tt><i>175</i>             <span class="n">save_pred</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;epoch-best_pred&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l176"
+               class="code sev- "><tt><i>176</i> &nbsp;</tt>
+            </div>
+            <div id="l177"
+               class="code sev- "><tt><i>177</i> &nbsp;</tt>
+            </div>
+            <div id="l178"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -779,28 +839,13 @@
                      </span>
                      Line too long (86 > 79 characters)</li>
                
-               </ul><tt><i>176</i> <span class="k">def</span> <span class="nf">save_model_if_needed</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">):</span></tt>
-            </div>
-            <div id="l177"
-               class="code sev- "><tt><i>177</i>     <span class="n">prefix</span> <span class="o">=</span> <span class="n">get_model_prefix</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></tt>
-            </div>
-            <div id="l178"
-               class="code sev- "><tt><i>178</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_step</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">config</span><span class="o">.</span><span class="n">save_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span></tt>
+               </ul><tt><i>178</i> <span class="k">def</span> <span class="nf">save_model_if_needed</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">is_best</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">):</span></tt>
             </div>
             <div id="l179"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (89 > 79 characters)</li>
-               
-               </ul><tt><i>179</i>         <span class="n">save_model</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>179</i>     <span class="n">prefix</span> <span class="o">=</span> <span class="n">get_model_prefix</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></tt>
             </div>
             <div id="l180"
-               class="code sev- "><tt><i>180</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_last</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>180</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_step</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">config</span><span class="o">.</span><span class="n">save_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span></tt>
             </div>
             <div id="l181"
                class="code sev-2  le">
@@ -810,12 +855,12 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (85 > 79 characters)</li>
+                     Line too long (89 > 79 characters)</li>
                
-               </ul><tt><i>181</i>         <span class="n">save_model</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;epoch-last_model.pth&#39;</span><span class="p">)</span></tt>
+               </ul><tt><i>181</i>         <span class="n">save_model</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l182"
-               class="code sev- "><tt><i>182</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_best</span> <span class="ow">and</span> <span class="n">is_best</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>182</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_last</span><span class="p">:</span></tt>
             </div>
             <div id="l183"
                class="code sev-2  le">
@@ -827,7 +872,22 @@
                      </span>
                      Line too long (85 > 79 characters)</li>
                
-               </ul><tt><i>183</i>         <span class="n">save_model</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;epoch-best_model.pth&#39;</span><span class="p">)</span></tt>
+               </ul><tt><i>183</i>         <span class="n">save_model</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;epoch-last_model.pth&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l184"
+               class="code sev- "><tt><i>184</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">save_best</span> <span class="ow">and</span> <span class="n">is_best</span><span class="p">:</span></tt>
+            </div>
+            <div id="l185"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>185</i>         <span class="n">save_model</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">best_val_metric</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;epoch-best_model.pth&#39;</span><span class="p">)</span></tt>
             </div>
             
          </div>

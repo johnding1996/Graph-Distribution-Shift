@@ -292,6 +292,7 @@
 <span id="L282" class="lineno"><a class="lineno" href="#L282">282</a></span>
 <span id="L283" class="lineno"><a class="lineno" href="#L283">283</a></span>
 <span id="L284" class="lineno"><a class="lineno" href="#L284">284</a></span>
+<span id="L285" class="lineno"><a class="lineno" href="#L285">285</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import copy</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -568,8 +569,9 @@ Unannotated (x11)">            use_ids = ((i &gt; 0 and self.inject_ids) or (i =
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            if use_ids:</span>
+<span class="line-empty" title="No Anys on this line!">                # if self.dataset_group != 'mol' and self.dataset_group != 'ppa' :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                if self.dataset_group != 'mol' and self.dataset_group != 'ppa' :</span>
+Unannotated (x5)">                if self.dataset_group == 'mol' or self.dataset_group == 'ppa' :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x20)">                    filter_fn = GSN_edge_sparse_ogb</span>
 <span class="line-empty" title="No Anys on this line!">                else :</span>

@@ -303,9 +303,6 @@ Unannotated (x2)
 Unimported (x1)">            self._collate = PyGCollater(follow_batch=[])</span>
 <span class="line-empty" title="No Anys on this line!">        # self._collate = self.collate_dense</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        self._metric = Evaluator('ogbg-ppa')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
@@ -330,14 +327,16 @@ Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        y_true = y_true.view(-1, 1)</span>
+Unannotated (x5)">        y_true = y_true.view(-1, 1)        </span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
-Unimported (x1)">        y_pred = torch.argmax(y_pred.detach(), dim=1).view(-1, 1)</span>
+Unannotated (x8)">        y_pred = (y_pred &gt; 0).long().view(-1, 1)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        results = self._metric.eval(input_dict)</span>
+Unannotated (x9)">        acc = (y_pred == y_true).sum() / len(y_pred)       </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        results = {'acc': np.float(acc)}</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">        return results, f"Accuracy: {results['acc']:.3f}\n"</span>
