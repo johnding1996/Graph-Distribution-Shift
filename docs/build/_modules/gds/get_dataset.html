@@ -67,6 +67,10 @@
         <span class="kn">from</span> <span class="nn">gds.datasets.rotated_mnist_dataset</span> <span class="kn">import</span> <span class="n">RotatedMNISTDataset</span>
         <span class="k">return</span> <span class="n">RotatedMNISTDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span>
 
+    <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;ColoredMNIST&#39;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">gds.datasets.colored_mnist_dataset</span> <span class="kn">import</span> <span class="n">ColoredMNISTDataset</span>
+        <span class="k">return</span> <span class="n">ColoredMNISTDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span>
+
     <span class="k">elif</span> <span class="n">dataset</span> <span class="o">==</span> <span class="s1">&#39;SBM-Environment&#39;</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">gds.datasets.sbm_environment_dataset</span> <span class="kn">import</span> <span class="n">SBMEnvironmentDataset</span>
         <span class="k">return</span> <span class="n">SBMEnvironmentDataset</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">)</span>

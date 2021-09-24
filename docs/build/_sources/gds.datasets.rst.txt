@@ -4,6 +4,14 @@ gds.datasets package
 Submodules
 ----------
 
+gds.datasets.colored\_mnist\_dataset module
+-------------------------------------------
+
+.. automodule:: gds.datasets.colored_mnist_dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gds.datasets.download\_utils module
 -----------------------------------
 
@@ -40,6 +48,14 @@ gds.datasets.ogbmolpcba\_dataset module
 ---------------------------------------
 
 .. automodule:: gds.datasets.ogbmolpcba_dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gds.datasets.pyg\_colored\_mnist\_dataset module
+------------------------------------------------
+
+.. automodule:: gds.datasets.pyg_colored_mnist_dataset
    :members:
    :undoc-members:
    :show-inheritance:

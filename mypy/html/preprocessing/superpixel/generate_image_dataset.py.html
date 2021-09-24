@@ -380,10 +380,6 @@
 <span id="L370" class="lineno"><a class="lineno" href="#L370">370</a></span>
 <span id="L371" class="lineno"><a class="lineno" href="#L371">371</a></span>
 <span id="L372" class="lineno"><a class="lineno" href="#L372">372</a></span>
-<span id="L373" class="lineno"><a class="lineno" href="#L373">373</a></span>
-<span id="L374" class="lineno"><a class="lineno" href="#L374">374</a></span>
-<span id="L375" class="lineno"><a class="lineno" href="#L375">375</a></span>
-<span id="L376" class="lineno"><a class="lineno" href="#L376">376</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-empty" title="No Anys on this line!"># https://github.com/facebookresearch/DomainBed/blob/master/domainbed/datasets.py</span>
 <span class="line-empty" title="No Anys on this line!"># Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved</span>
@@ -574,26 +570,18 @@ Unannotated (x1)">        self.num_classes = 2</span>
 Unannotated (x5)">        labels = (labels &lt; 5).float()</span>
 <span class="line-empty" title="No Anys on this line!">        # Flip label with probability 0.25</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        labels = self.torch_xor_(labels,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                                 self.torch_bernoulli_(0.25, len(labels)))</span>
+Unannotated (x8)">        labels = self.torch_xor_(labels, self.torch_bernoulli_(0.25, len(labels)))</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Assign a color based on the label; flip the color with probability e</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        colors = self.torch_xor_(labels,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">                                 self.torch_bernoulli_(environment,</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                                                       len(labels)))</span>
+Unannotated (x9)">        colors = self.torch_xor_(labels, self.torch_bernoulli_(environment, len(labels)))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">        images = torch.stack([images, images], dim=1)</span>
 <span class="line-empty" title="No Anys on this line!">        # Apply the color to the image by zeroing out the other color channel</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">        images[torch.tensor(range(len(images))), (</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                                                         1 - colors).long(), :, :] *= 0</span>
+Unannotated (x11)
+Unimported (x1)">        images[torch.tensor(range(len(images))), (1 - colors).long(), :, :] *= 0</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        x = images.float().div_(255.0)</span>

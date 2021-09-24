@@ -174,6 +174,10 @@
 <span id="L164" class="lineno"><a class="lineno" href="#L164">164</a></span>
 <span id="L165" class="lineno"><a class="lineno" href="#L165">165</a></span>
 <span id="L166" class="lineno"><a class="lineno" href="#L166">166</a></span>
+<span id="L167" class="lineno"><a class="lineno" href="#L167">167</a></span>
+<span id="L168" class="lineno"><a class="lineno" href="#L168">168</a></span>
+<span id="L169" class="lineno"><a class="lineno" href="#L169">169</a></span>
+<span id="L170" class="lineno"><a class="lineno" href="#L170">170</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-empty" title="No Anys on this line!"># Source repo: https://github.com/bknyaz/graph_attention_pool</span>
 <span class="line-empty" title="No Anys on this line!"># Compute superpixels for MNIST/CIFAR-10 using SLIC algorithm</span>
@@ -247,7 +251,7 @@ Unannotated (x4)">    n_sp_extracted = args.n_sp + 1  # number of actually extra
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    n_sp_query = args.n_sp + (</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        20 if args.dataset == 'mnist' or 'RotatedMNIST' else 50)  # number of superpixels we ask to extract (larger to extract more superpixels - closer to the desired n_sp)</span>
+Unannotated (x11)">        20 if args.dataset == 'mnist' or args.dataset == 'RotatedMNIST' or args.dataset == 'ColoredMNIST' else 50)  # number of superpixels we ask to extract (larger to extract more superpixels - closer to the desired n_sp)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    while n_sp_extracted &gt; args.n_sp:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -288,8 +292,9 @@ Unannotated (x4)">    if len(img.shape) == 2:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        img = img[:, :, None]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # n_ch = 1 if img.shape[2] == 1 else 3</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">    n_ch = 1 if img.shape[2] == 1 else 3</span>
+Unannotated (x4)">    n_ch = img.shape[2]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    sp_intensity, sp_coord = [], []</span>
@@ -376,7 +381,7 @@ Unannotated (x7)">        assert args.n_sp &gt; 1 and args.n_sp &lt; 32 * 32, (<
 <span class="line-precise" title="No Anys on this line!">            'the number of superpixels cannot exceed the total number of pixels or be too small')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">    elif args.dataset == 'ColoredMNIST' or 'RotatedMNIST':</span>
+Unannotated (x7)">    elif args.dataset == 'ColoredMNIST' or args.dataset == 'RotatedMNIST':</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x4)
 Unannotated (x4)">        datasets_instance = get_dataset_class(args.dataset)(args.data_dir, None, None)</span>
@@ -405,8 +410,14 @@ Unimported (x3)">            images.append(image)</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x5)">            labels.append(label.item())</span>
 <span class="line-precise" title="No Anys on this line!">            data_envs.append(i)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x5)">    images = torch.stack(images)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    if args.dataset == 'ColoredMNIST' :</span>
+<span class="line-any" title="Any Types on this line: 
+Error (x2)
+Unimported (x2)">        images = images.permute(0,2,3,1)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Explicit (x1)

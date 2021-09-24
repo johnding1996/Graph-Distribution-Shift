@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>datasets/colored_mnist_dataset.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <h1>
+            <a href="datasets.colored_mnist_dataset.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               datasets/colored_mnist_dataset.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="kn">import</span> <span class="nn">os</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> <span class="kn">import</span> <span class="nn">torch</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev- "><tt><i>3</i> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span></tt>
+            </div>
+            <div id="l4"
+               class="code sev- "><tt><i>4</i> <span class="kn">from</span> <span class="nn">gds.datasets.gds_dataset</span> <span class="kn">import</span> <span class="n">GDSDataset</span></tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i> <span class="kn">from</span> <span class="nn">ogb.graphproppred</span> <span class="kn">import</span> <span class="n">Evaluator</span></tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i> <span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">download_url</span><span class="p">,</span> <span class="n">extract_zip</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i> <span class="kn">from</span> <span class="nn">torch_geometric.data.dataloader</span> <span class="kn">import</span> <span class="n">Collater</span> <span class="k">as</span> <span class="n">PyGCollater</span></tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i> <span class="kn">import</span> <span class="nn">torch_geometric</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i> <span class="kn">from</span> <span class="nn">.pyg_colored_mnist_dataset</span> <span class="kn">import</span> <span class="n">PyGColoredMNISTDataset</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev- "><tt><i>10</i> <span class="kn">from</span> <span class="nn">torch_geometric.utils</span> <span class="kn">import</span> <span class="n">to_dense_adj</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev- "><tt><i>11</i> &nbsp;</tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i> &nbsp;</tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i> <span class="k">class</span> <span class="nc">ColoredMNISTDataset</span><span class="p">(</span><span class="n">GDSDataset</span><span class="p">):</span></tt>
+            </div>
+            <div id="l14"
+               class="code sev- "><tt><i>14</i>     <span class="n">_dataset_name</span> <span class="o">=</span> <span class="s1">&#39;ColoredMNIST&#39;</span></tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i>     <span class="n">_versions_dict</span> <span class="o">=</span> <span class="p">{</span></tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i>         <span class="s1">&#39;1.0&#39;</span><span class="p">:</span> <span class="p">{</span></tt>
+            </div>
+            <div id="l17"
+               class="code sev- "><tt><i>17</i>             <span class="s1">&#39;download_url&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span></tt>
+            </div>
+            <div id="l18"
+               class="code sev- "><tt><i>18</i>             <span class="s1">&#39;compressed_size&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}}</span></tt>
+            </div>
+            <div id="l19"
+               class="code sev- "><tt><i>19</i> &nbsp;</tt>
+            </div>
+            <div id="l20"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (114 > 79 characters)</li>
+               
+               </ul><tt><i>20</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root_dir</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">split_scheme</span><span class="o">=</span><span class="s1">&#39;official&#39;</span><span class="p">,</span> <span class="n">random_split</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span></tt>
+            </div>
+            <div id="l21"
+               class="code sev- "><tt><i>21</i>                  <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">):</span></tt>
+            </div>
+            <div id="l22"
+               class="code sev- "><tt><i>22</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="n">version</span></tt>
+            </div>
+            <div id="l23"
+               class="code sev- "><tt><i>23</i>         <span class="c1"># internally call ogb package</span></tt>
+            </div>
+            <div id="l24"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>24</i>         <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span> <span class="o">=</span> <span class="n">PyGColoredMNISTDataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ColoredMNIST&#39;</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">root_dir</span><span class="p">)</span></tt>
+            </div>
+            <div id="l25"
+               class="code sev- "><tt><i>25</i> &nbsp;</tt>
+            </div>
+            <div id="l26"
+               class="code sev- "><tt><i>26</i>         <span class="c1"># set variables</span></tt>
+            </div>
+            <div id="l27"
+               class="code sev- "><tt><i>27</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_data_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">root</span></tt>
+            </div>
+            <div id="l28"
+               class="code sev- "><tt><i>28</i>         <span class="k">if</span> <span class="n">split_scheme</span> <span class="o">==</span> <span class="s1">&#39;official&#39;</span><span class="p">:</span></tt>
+            </div>
+            <div id="l29"
+               class="code sev- "><tt><i>29</i>             <span class="n">split_scheme</span> <span class="o">=</span> <span class="s1">&#39;color&#39;</span></tt>
+            </div>
+            <div id="l30"
+               class="code sev- "><tt><i>30</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_split_scheme</span> <span class="o">=</span> <span class="n">split_scheme</span></tt>
+            </div>
+            <div id="l31"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (138 > 79 characters)</li>
+               
+               </ul><tt><i>31</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_y_type</span> <span class="o">=</span> <span class="s1">&#39;float&#39;</span>  <span class="c1"># although the task is binary classification, the prediction target contains nan value, thus we need float</span></tt>
+            </div>
+            <div id="l32"
+               class="code sev- "><tt><i>32</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_y_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">num_tasks</span></tt>
+            </div>
+            <div id="l33"
+               class="code sev- "><tt><i>33</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">__num_classes__</span></tt>
+            </div>
+            <div id="l34"
+               class="code sev- "><tt><i>34</i> &nbsp;</tt>
+            </div>
+            <div id="l35"
+               class="code sev- "><tt><i>35</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_split_array</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="p">))</span><span class="o">.</span><span class="n">long</span><span class="p">()</span></tt>
+            </div>
+            <div id="l36"
+               class="code sev- "><tt><i>36</i> &nbsp;</tt>
+            </div>
+            <div id="l37"
+               class="code sev- "><tt><i>37</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_y_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span></tt>
+            </div>
+            <div id="l38"
+               class="code sev- "><tt><i>38</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]</span></tt>
+            </div>
+            <div id="l39"
+               class="code sev- "><tt><i>39</i> &nbsp;</tt>
+            </div>
+            <div id="l40"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (93 > 79 characters)</li>
+               
+               </ul><tt><i>40</i>         <span class="n">metadata_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">raw_dir</span><span class="p">,</span> <span class="s1">&#39;ColoredMNIST_group.npy&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l41"
+               class="code sev- "><tt><i>41</i>         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">metadata_file_path</span><span class="p">):</span></tt>
+            </div>
+            <div id="l42"
+               class="code sev- "><tt><i>42</i>             <span class="n">metadata_zip_file_path</span> <span class="o">=</span> <span class="n">download_url</span><span class="p">(</span></tt>
+            </div>
+            <div id="l43"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (114 > 79 characters)</li>
+               
+               </ul><tt><i>43</i>                 <span class="s1">&#39;https://www.dropbox.com/s/envr0eslhtssy2y/ColoredMNIST_group.zip?dl=1&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">raw_dir</span><span class="p">)</span></tt>
+            </div>
+            <div id="l44"
+               class="code sev- "><tt><i>44</i>             <span class="n">extract_zip</span><span class="p">(</span><span class="n">metadata_zip_file_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">raw_dir</span><span class="p">)</span></tt>
+            </div>
+            <div id="l45"
+               class="code sev- "><tt><i>45</i>             <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">metadata_zip_file_path</span><span class="p">)</span></tt>
+            </div>
+            <div id="l46"
+               class="code sev- "><tt><i>46</i> &nbsp;</tt>
+            </div>
+            <div id="l47"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (103 > 79 characters)</li>
+               
+               </ul><tt><i>47</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array_wo_y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">metadata_file_path</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span></tt>
+            </div>
+            <div id="l48"
+               class="code sev- "><tt><i>48</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array_wo_y</span><span class="p">,</span></tt>
+            </div>
+            <div id="l49"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (94 > 79 characters)</li>
+               
+               </ul><tt><i>49</i>                                           <span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span></tt>
+            </div>
+            <div id="l50"
+               class="code sev- "><tt><i>50</i> &nbsp;</tt>
+            </div>
+            <div id="l51"
+               class="code sev- "><tt><i>51</i>         <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></tt>
+            </div>
+            <div id="l52"
+               class="code sev- "><tt><i>52</i>         <span class="n">dataset_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="p">)</span></tt>
+            </div>
+            <div id="l53"
+               class="code sev- "><tt><i>53</i>         <span class="k">if</span> <span class="n">random_split</span><span class="p">:</span></tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i>             <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">dataset_size</span><span class="p">)</span></tt>
+            </div>
+            <div id="l55"
+               class="code sev- "><tt><i>55</i>             <span class="n">train_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">)]</span></tt>
+            </div>
+            <div id="l56"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (93 > 79 characters)</li>
+               
+               </ul><tt><i>56</i>             <span class="n">val_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">)]</span></tt>
+            </div>
+            <div id="l57"
+               class="code sev- "><tt><i>57</i>             <span class="n">test_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">):]</span></tt>
+            </div>
+            <div id="l58"
+               class="code sev- "><tt><i>58</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l59"
+               class="code sev- "><tt><i>59</i>             <span class="c1"># use the group info split data</span></tt>
+            </div>
+            <div id="l60"
+               class="code sev- "><tt><i>60</i>             <span class="n">train_val_group_idx</span><span class="p">,</span> <span class="n">test_group_idx</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></tt>
+            </div>
+            <div id="l61"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (113 > 79 characters)</li>
+               
+               </ul><tt><i>61</i>             <span class="n">train_val_group_idx</span><span class="p">,</span> <span class="n">test_group_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">train_val_group_idx</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">test_group_idx</span><span class="p">)</span></tt>
+            </div>
+            <div id="l62"
+               class="code sev- "><tt><i>62</i> &nbsp;</tt>
+            </div>
+            <div id="l63"
+               class="code sev- "><tt><i>63</i>             <span class="k">def</span> <span class="nf">split_idx</span><span class="p">(</span><span class="n">group_idx</span><span class="p">):</span></tt>
+            </div>
+            <div id="l64"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (104 > 79 characters)</li>
+               
+               </ul><tt><i>64</i>                 <span class="n">split_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array_wo_y</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span></tt>
+            </div>
+            <div id="l65"
+               class="code sev- "><tt><i>65</i>                 <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">group_idx</span><span class="p">:</span></tt>
+            </div>
+            <div id="l66"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (82 > 79 characters)</li>
+               
+               </ul><tt><i>66</i>                     <span class="n">split_idx</span> <span class="o">+=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata_array_wo_y</span><span class="p">)</span> <span class="o">==</span> <span class="n">idx</span><span class="p">)</span></tt>
+            </div>
+            <div id="l67"
+               class="code sev- "><tt><i>67</i>                 <span class="k">return</span> <span class="n">split_idx</span></tt>
+            </div>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i> &nbsp;</tt>
+            </div>
+            <div id="l69"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (107 > 79 characters)</li>
+               
+               </ul><tt><i>69</i>             <span class="n">train_val_split_idx</span><span class="p">,</span> <span class="n">test_split_idx</span> <span class="o">=</span> <span class="n">split_idx</span><span class="p">(</span><span class="n">train_val_group_idx</span><span class="p">),</span> <span class="n">split_idx</span><span class="p">(</span><span class="n">test_group_idx</span><span class="p">)</span></tt>
+            </div>
+            <div id="l70"
+               class="code sev- "><tt><i>70</i> &nbsp;</tt>
+            </div>
+            <div id="l71"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (100 > 79 characters)</li>
+               
+               </ul><tt><i>71</i>             <span class="n">train_val_split_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">dataset_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)[</span><span class="n">train_val_split_idx</span><span class="p">]</span></tt>
+            </div>
+            <div id="l72"
+               class="code sev- "><tt><i>72</i>             <span class="n">train_val_sets_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_val_split_idx</span><span class="p">)</span></tt>
+            </div>
+            <div id="l73"
+               class="code sev- "><tt><i>73</i>             <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">train_val_sets_size</span><span class="p">)</span></tt>
+            </div>
+            <div id="l74"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (98 > 79 characters)</li>
+               
+               </ul><tt><i>74</i>             <span class="n">train_split_idx</span> <span class="o">=</span> <span class="n">train_val_split_idx</span><span class="p">[</span><span class="n">random_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">train_val_sets_size</span><span class="p">)]]</span></tt>
+            </div>
+            <div id="l75"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (96 > 79 characters)</li>
+               
+               </ul><tt><i>75</i>             <span class="n">val_split_idx</span> <span class="o">=</span> <span class="n">train_val_split_idx</span><span class="p">[</span><span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">train_val_sets_size</span><span class="p">):]]</span></tt>
+            </div>
+            <div id="l76"
+               class="code sev- "><tt><i>76</i> &nbsp;</tt>
+            </div>
+            <div id="l77"
+               class="code sev- "><tt><i>77</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_split_array</span><span class="p">[</span><span class="n">train_split_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span></tt>
+            </div>
+            <div id="l78"
+               class="code sev- "><tt><i>78</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_split_array</span><span class="p">[</span><span class="n">val_split_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span></tt>
+            </div>
+            <div id="l79"
+               class="code sev- "><tt><i>79</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_split_array</span><span class="p">[</span><span class="n">test_split_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span></tt>
+            </div>
+            <div id="l80"
+               class="code sev- "><tt><i>80</i> &nbsp;</tt>
+            </div>
+            <div id="l81"
+               class="code sev- "><tt><i>81</i>         <span class="k">if</span> <span class="n">torch_geometric</span><span class="o">.</span><span class="n">__version__</span> <span class="o">&gt;=</span> <span class="s1">&#39;1.7.0&#39;</span><span class="p">:</span></tt>
+            </div>
+            <div id="l82"
+               class="code sev- "><tt><i>82</i>             <span class="bp">self</span><span class="o">.</span><span class="n">_collate</span> <span class="o">=</span> <span class="n">PyGCollater</span><span class="p">(</span><span class="n">follow_batch</span><span class="o">=</span><span class="p">[],</span> <span class="n">exclude_keys</span><span class="o">=</span><span class="p">[])</span></tt>
+            </div>
+            <div id="l83"
+               class="code sev- "><tt><i>83</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l84"
+               class="code sev- "><tt><i>84</i>             <span class="bp">self</span><span class="o">.</span><span class="n">_collate</span> <span class="o">=</span> <span class="n">PyGCollater</span><span class="p">(</span><span class="n">follow_batch</span><span class="o">=</span><span class="p">[])</span></tt>
+            </div>
+            <div id="l85"
+               class="code sev- "><tt><i>85</i>         <span class="c1"># self._collate = self.collate_dense</span></tt>
+            </div>
+            <div id="l86"
+               class="code sev- "><tt><i>86</i> &nbsp;</tt>
+            </div>
+            <div id="l87"
+               class="code sev- "><tt><i>87</i>         <span class="bp">self</span><span class="o">.</span><span class="n">_metric</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span><span class="s1">&#39;ogbg-ppa&#39;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l88"
+               class="code sev- "><tt><i>88</i> &nbsp;</tt>
+            </div>
+            <div id="l89"
+               class="code sev- "><tt><i>89</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">download</span><span class="p">,</span> <span class="n">split_scheme</span><span class="p">)</span></tt>
+            </div>
+            <div id="l90"
+               class="code sev- "><tt><i>90</i> &nbsp;</tt>
+            </div>
+            <div id="l91"
+               class="code sev- "><tt><i>91</i>     <span class="k">def</span> <span class="nf">get_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span></tt>
+            </div>
+            <div id="l92"
+               class="code sev- "><tt><i>92</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ogb_dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">)]</span></tt>
+            </div>
+            <div id="l93"
+               class="code sev- "><tt><i>93</i> &nbsp;</tt>
+            </div>
+            <div id="l94"
+               class="code sev- "><tt><i>94</i>     <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">prediction_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+            </div>
+            <div id="l95"
+               class="code sev- "><tt><i>95</i>         <span class="sd">&quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l96"
+               class="code sev- "><tt><i>96</i> <span class="sd">        Computes all evaluation metrics.</span></tt>
+            </div>
+            <div id="l97"
+               class="code sev- "><tt><i>97</i> <span class="sd">        Args:</span></tt>
+            </div>
+            <div id="l98"
+               class="code sev- "><tt><i>98</i> <span class="sd">            - y_pred (FloatTensor): Binary logits from a model</span></tt>
+            </div>
+            <div id="l99"
+               class="code sev- "><tt><i>99</i> <span class="sd">            - y_true (LongTensor): Ground-truth labels</span></tt>
+            </div>
+            <div id="l100"
+               class="code sev- "><tt><i>100</i> <span class="sd">            - metadata (Tensor): Metadata</span></tt>
+            </div>
+            <div id="l101"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (91 > 79 characters)</li>
+               
+               </ul><tt><i>101</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
+            </div>
+            <div id="l102"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (106 > 79 characters)</li>
+               
+               </ul><tt><i>102</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
+            </div>
+            <div id="l103"
+               class="code sev- "><tt><i>103</i> <span class="sd">        Output:</span></tt>
+            </div>
+            <div id="l104"
+               class="code sev- "><tt><i>104</i> <span class="sd">            - results (dictionary): Dictionary of evaluation metrics</span></tt>
+            </div>
+            <div id="l105"
+               class="code sev- "><tt><i>105</i> <span class="sd">            - results_str (str): String summarizing the evaluation metrics</span></tt>
+            </div>
+            <div id="l106"
+               class="code sev- "><tt><i>106</i> <span class="sd">        &quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l107"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (121 > 79 characters)</li>
+               
+               </ul><tt><i>107</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+            </div>
+            <div id="l108"
+               class="code sev- "><tt><i>108</i>         <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></tt>
+            </div>
+            <div id="l109"
+               class="code sev- "><tt><i>109</i>         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></tt>
+            </div>
+            <div id="l110"
+               class="code sev- "><tt><i>110</i>         <span class="n">input_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">}</span></tt>
+            </div>
+            <div id="l111"
+               class="code sev- "><tt><i>111</i>         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">input_dict</span><span class="p">)</span></tt>
+            </div>
+            <div id="l112"
+               class="code sev- "><tt><i>112</i> &nbsp;</tt>
+            </div>
+            <div id="l113"
+               class="code sev- "><tt><i>113</i>         <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Accuracy: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span></tt>
+            </div>
+            <div id="l114"
+               class="code sev- "><tt><i>114</i> &nbsp;</tt>
+            </div>
+            <div id="l115"
+               class="code sev- "><tt><i>115</i>     <span class="c1"># prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN</span></tt>
+            </div>
+            <div id="l116"
+               class="code sev- "><tt><i>116</i>     <span class="k">def</span> <span class="nf">collate_dense</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span></tt>
+            </div>
+            <div id="l117"
+               class="code sev- "><tt><i>117</i>         <span class="c1"># The input samples is a list of pairs (graph, label).</span></tt>
+            </div>
+            <div id="l118"
+               class="code sev- "><tt><i>118</i> &nbsp;</tt>
+            </div>
+            <div id="l119"
+               class="code sev- "><tt><i>119</i>         <span class="n">graph_list</span><span class="p">,</span> <span class="n">y_list</span><span class="p">,</span> <span class="n">metadata_list</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">samples</span><span class="p">))</span></tt>
+            </div>
+            <div id="l120"
+               class="code sev- "><tt><i>120</i>         <span class="n">y</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y_list</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">metadata_list</span><span class="p">)</span></tt>
+            </div>
+            <div id="l121"
+               class="code sev- "><tt><i>121</i> &nbsp;</tt>
+            </div>
+            <div id="l122"
+               class="code sev- "><tt><i>122</i>         <span class="n">x_node_feat</span> <span class="o">=</span> <span class="p">[]</span></tt>
+            </div>
+            <div id="l123"
+               class="code sev- "><tt><i>123</i>         <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graph_list</span><span class="p">:</span></tt>
+            </div>
+            <div id="l124"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (83 > 79 characters)</li>
+               
+               </ul><tt><i>124</i>             <span class="n">adj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sym_normalize_adj</span><span class="p">(</span><span class="n">to_dense_adj</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_index</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span></tt>
+            </div>
+            <div id="l125"
+               class="code sev- "><tt><i>125</i>             <span class="n">zero_adj</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">adj</span><span class="p">)</span></tt>
+            </div>
+            <div id="l126"
+               class="code sev- "><tt><i>126</i>             <span class="n">in_dim</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></tt>
+            </div>
+            <div id="l127"
+               class="code sev- "><tt><i>127</i> &nbsp;</tt>
+            </div>
+            <div id="l128"
+               class="code sev- "><tt><i>128</i>             <span class="c1"># use node feats to prepare adj</span></tt>
+            </div>
+            <div id="l129"
+               class="code sev- "><tt><i>129</i>             <span class="n">adj_node_feat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">zero_adj</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">in_dim</span><span class="p">)])</span></tt>
+            </div>
+            <div id="l130"
+               class="code sev- "><tt><i>130</i>             <span class="n">adj_node_feat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">adj</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">adj_node_feat</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></tt>
+            </div>
+            <div id="l131"
+               class="code sev- "><tt><i>131</i> &nbsp;</tt>
+            </div>
+            <div id="l132"
+               class="code sev- "><tt><i>132</i>             <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">node_feat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">x</span><span class="p">):</span></tt>
+            </div>
+            <div id="l133"
+               class="code sev- "><tt><i>133</i>                 <span class="n">adj_node_feat</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_feat</span></tt>
+            </div>
+            <div id="l134"
+               class="code sev- "><tt><i>134</i> &nbsp;</tt>
+            </div>
+            <div id="l135"
+               class="code sev- "><tt><i>135</i>             <span class="n">x_node_feat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">adj_node_feat</span><span class="p">)</span></tt>
+            </div>
+            <div id="l136"
+               class="code sev- "><tt><i>136</i> &nbsp;</tt>
+            </div>
+            <div id="l137"
+               class="code sev- "><tt><i>137</i>         <span class="n">x_node_feat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">x_node_feat</span><span class="p">)</span></tt>
+            </div>
+            <div id="l138"
+               class="code sev- "><tt><i>138</i> &nbsp;</tt>
+            </div>
+            <div id="l139"
+               class="code sev- "><tt><i>139</i>         <span class="k">return</span> <span class="n">x_node_feat</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">metadata</span></tt>
+            </div>
+            <div id="l140"
+               class="code sev- "><tt><i>140</i> &nbsp;</tt>
+            </div>
+            <div id="l141"
+               class="code sev- "><tt><i>141</i>     <span class="k">def</span> <span class="nf">_sym_normalize_adj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adj</span><span class="p">):</span></tt>
+            </div>
+            <div id="l142"
+               class="code sev- "><tt><i>142</i>         <span class="n">deg</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">adj</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># .squeeze()</span></tt>
+            </div>
+            <div id="l143"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>143</i>         <span class="n">deg_inv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">deg</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">deg</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span></tt>
+            </div>
+            <div id="l144"
+               class="code sev- "><tt><i>144</i>         <span class="n">deg_inv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">deg_inv</span><span class="p">)</span></tt>
+            </div>
+            <div id="l145"
+               class="code sev- "><tt><i>145</i>         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">deg_inv</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">adj</span><span class="p">,</span> <span class="n">deg_inv</span><span class="p">))</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>

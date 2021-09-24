@@ -333,6 +333,10 @@
 <span id="L323" class="lineno"><a class="lineno" href="#L323">323</a></span>
 <span id="L324" class="lineno"><a class="lineno" href="#L324">324</a></span>
 <span id="L325" class="lineno"><a class="lineno" href="#L325">325</a></span>
+<span id="L326" class="lineno"><a class="lineno" href="#L326">326</a></span>
+<span id="L327" class="lineno"><a class="lineno" href="#L327">327</a></span>
+<span id="L328" class="lineno"><a class="lineno" href="#L328">328</a></span>
+<span id="L329" class="lineno"><a class="lineno" href="#L329">329</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -497,7 +501,12 @@ Unannotated (x2)">        elif self.dataset_group == 'RotatedMNIST':</span>
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Linear(1, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'SBM':</span>
+Unannotated (x2)">        elif self.dataset_group == 'ColoredMNIST' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            self.node_encoder = torch.nn.Linear(2, emb_dim)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        elif self.dataset_group == 'SBM' :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Embedding(8, emb_dim)</span>
@@ -522,7 +531,7 @@ Unannotated (x3)">        for layer in range(num_layer):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            if gnn_type == 'gin':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)
 Unimported (x2)">                    mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),</span>
@@ -541,7 +550,7 @@ Unannotated (x8)">                    self.convs.append(GINConvNew(emb_dim, self
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            elif gnn_type == 'gcn':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">                    self.convs.append(GCNConv(emb_dim, emb_dim))</span>
@@ -549,9 +558,9 @@ Unimported (x1)">                    self.convs.append(GCNConv(emb_dim, emb_dim)
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)">                    self.convs.append(GCNConvNew(emb_dim, self.dataset_group))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            elif gnn_type == 'cheb':</span>
+Unannotated (x2)">            elif gnn_type == 'cheb' :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">                    self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))</span>
@@ -679,7 +688,12 @@ Unannotated (x2)">        elif self.dataset_group == 'RotatedMNIST':</span>
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Linear(1, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif self.dataset_group == 'SBM':</span>
+Unannotated (x2)">        elif self.dataset_group == 'ColoredMNIST' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            self.node_encoder = torch.nn.Linear(2, emb_dim)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        elif self.dataset_group == 'SBM' :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Embedding(8, emb_dim)</span>
@@ -718,7 +732,7 @@ Unannotated (x3)">        for layer in range(num_layer):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            if gnn_type == 'gin':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)
 Unimported (x2)">                    mlp = torch.nn.Sequential(torch.nn.Linear(emb_dim, 2 * emb_dim),</span>
@@ -737,7 +751,7 @@ Unannotated (x8)">                    self.convs.append(GINConvNew(emb_dim, self
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            elif gnn_type == 'gcn':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">                    self.convs.append(GCNConv(emb_dim, emb_dim))</span>
@@ -745,9 +759,9 @@ Unimported (x1)">                    self.convs.append(GCNConv(emb_dim, emb_dim)
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)">                    self.convs.append(GCNConvNew(emb_dim, self.dataset_group))</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            elif gnn_type == 'cheb':</span>
+Unannotated (x2)">            elif gnn_type == 'cheb' :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if self.dataset_group in ['RotatedMNIST', 'SBM', 'UPFD']:</span>
+Unannotated (x1)">                if self.dataset_group in  ['RotatedMNIST', 'ColoredMNIST', 'SBM', 'UPFD']:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Unimported (x1)">                    self.convs.append(ChebConv(emb_dim, emb_dim, Cheb_K))</span>

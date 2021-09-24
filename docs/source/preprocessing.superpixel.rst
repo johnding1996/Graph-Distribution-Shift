@@ -20,14 +20,6 @@ preprocessing.superpixel.generate\_image\_dataset module
    :undoc-members:
    :show-inheritance:
 
-preprocessing.superpixel.sp2pyg module
---------------------------------------
-
-.. automodule:: preprocessing.superpixel.sp2pyg
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 
