@@ -145,7 +145,8 @@ def main():
 
     if not os.path.exists(config.log_dir):
         os.makedirs(config.log_dir)
-    logger = Logger(os.path.join(config.log_dir, 'log.txt'), mode)
+    logger = Logger(os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}.txt'), mode)
+
 
     # Record config
     log_config(config, logger)
@@ -215,9 +216,9 @@ def main():
 
         # Loggers
         datasets[split]['eval_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
         datasets[split]['algo_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
 
     # Logging dataset info
     # Show class breakdown if feasible
@@ -265,7 +266,7 @@ def main():
         if resume_success == False:
             epoch_offset = 0
             best_val_metric = None
-
+        start = time.time()
         train(
             algorithm=algorithm,
             datasets=datasets,
@@ -298,6 +299,8 @@ def main():
     # have to close wandb runner before closing logger (and stdout)
     if config.use_wandb:
         close_wandb(wandb_runner)
+    finish = time.time()
+    logger.write(f'time(s): {finish-start:.3f}\n')
     logger.close()
     for split in datasets:
         datasets[split]['eval_logger'].close()
