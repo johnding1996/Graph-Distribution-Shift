@@ -50,70 +50,6 @@ window.addEventListener('DOMContentLoaded', function () {
          <ul id="index">
          
          <li>
-            <a data-code="F821">
-               <span class="count sev-1">
-                  7
-               </span>
-               <strong>F821:</strong> undefined name 'GCNConv'
-               
-                  (and 4 similar)
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <p>Undefined name 'GCNConv':</p>
-               
-               <a href="datasets.pyg_upfd_dataset.source.html#l140">
-                  <tt><i>140</i>             <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">GCNConv</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">hidden_channels</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Undefined name 'SAGEConv':</p>
-               
-               <a href="datasets.pyg_upfd_dataset.source.html#l142">
-                  <tt><i>142</i>             <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">SAGEConv</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">hidden_channels</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Undefined name 'GATConv':</p>
-               
-               <a href="datasets.pyg_upfd_dataset.source.html#l144">
-                  <tt><i>144</i>             <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">GATConv</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">hidden_channels</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Undefined name 'Linear':</p>
-               
-               <a href="datasets.pyg_upfd_dataset.source.html#l147">
-                  <tt><i>147</i>             <span class="bp">self</span><span class="o">.</span><span class="n">lin0</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">hidden_channels</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Undefined name 'Linear':</p>
-               
-               <a href="datasets.pyg_upfd_dataset.source.html#l148">
-                  <tt><i>148</i>             <span class="bp">self</span><span class="o">.</span><span class="n">lin1</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">hidden_channels</span><span class="p">,</span> <span class="n">hidden_channels</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Undefined name 'Linear':</p>
-               
-               <a href="datasets.pyg_upfd_dataset.source.html#l150">
-                  <tt><i>150</i>         <span class="bp">self</span><span class="o">.</span><span class="n">lin2</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="n">hidden_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">)</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Undefined name 'global_max_pool':</p>
-               
-               <a href="datasets.pyg_upfd_dataset.source.html#l154">
-                  <tt><i>154</i>         <span class="n">h</span> <span class="o">=</span> <span class="n">global_max_pool</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">batch</span><span class="p">)</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
             <a data-code="F401">
                <span class="count sev-1">
                   1
@@ -126,6 +62,24 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <a href="datasets.pyg_upfd_dataset.source.html#l7">
                   <tt><i>7</i> <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F811">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F811:</strong> redefinition of unused 'pdb' from line 11
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l116">
+                  <tt><i>116</i>     <span class="kn">import</span> <span class="nn">pdb</span></tt>
                </a>
             </li>
             </ul>
@@ -153,8 +107,26 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (88 > 79 characters):</p>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l29">
-                  <tt><i>29</i>         <span class="nb">super</span><span class="p">(</span><span class="n">PyGUPFDDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l30">
+                  <tt><i>30</i>         <span class="nb">super</span><span class="p">(</span><span class="n">PyGUPFDDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E203">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E203:</strong> whitespace before ':'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.pyg_upfd_dataset.source.html#l112">
+                  <tt><i>112</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span> <span class="p">:</span></tt>
                </a>
             </li>
             </ul>
@@ -165,14 +137,14 @@ window.addEventListener('DOMContentLoaded', function () {
                <span class="count sev-2">
                   1
                </span>
-               <strong>E302:</strong> expected 2 blank lines, found 31
+               <strong>E302:</strong> expected 2 blank lines, found 1
                
             </a>
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l133">
-                  <tt><i>133</i> <span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l13">
+                  <tt><i>13</i> <span class="k">class</span> <span class="nc">PyGUPFDDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span></tt>
                </a>
             </li>
             </ul>
@@ -183,14 +155,14 @@ window.addEventListener('DOMContentLoaded', function () {
                <span class="count sev-2">
                   1
                </span>
-               <strong>E303:</strong> too many blank lines (31)
+               <strong>E303:</strong> too many blank lines (27)
                
             </a>
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l132">
-                  <tt><i>132</i> <span class="c1">########################################################################</span></tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l145">
+                  <tt><i>145</i> <span class="c1">########################################################################</span></tt>
                </a>
             </li>
             </ul>
@@ -207,8 +179,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_upfd_dataset.source.html#l175">
-                  <tt><i>175</i> &nbsp;</tt>
+               <a href="datasets.pyg_upfd_dataset.source.html#l188">
+                  <tt><i>188</i> &nbsp;</tt>
                </a>
             </li>
             </ul>

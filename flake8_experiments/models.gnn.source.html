@@ -542,7 +542,7 @@
                class="code sev- "><tt><i>119</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l120"
-               class="code sev- "><tt><i>120</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>120</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
             </div>
             <div id="l121"
                class="code sev- "><tt><i>121</i>         <span class="k">else</span><span class="p">:</span></tt>
@@ -1076,7 +1076,7 @@
                class="code sev- "><tt><i>227</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l228"
-               class="code sev- "><tt><i>228</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>228</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
             </div>
             <div id="l229"
                class="code sev- "><tt><i>229</i>         <span class="k">else</span><span class="p">:</span></tt>

@@ -183,6 +183,19 @@
 <span id="L173" class="lineno"><a class="lineno" href="#L173">173</a></span>
 <span id="L174" class="lineno"><a class="lineno" href="#L174">174</a></span>
 <span id="L175" class="lineno"><a class="lineno" href="#L175">175</a></span>
+<span id="L176" class="lineno"><a class="lineno" href="#L176">176</a></span>
+<span id="L177" class="lineno"><a class="lineno" href="#L177">177</a></span>
+<span id="L178" class="lineno"><a class="lineno" href="#L178">178</a></span>
+<span id="L179" class="lineno"><a class="lineno" href="#L179">179</a></span>
+<span id="L180" class="lineno"><a class="lineno" href="#L180">180</a></span>
+<span id="L181" class="lineno"><a class="lineno" href="#L181">181</a></span>
+<span id="L182" class="lineno"><a class="lineno" href="#L182">182</a></span>
+<span id="L183" class="lineno"><a class="lineno" href="#L183">183</a></span>
+<span id="L184" class="lineno"><a class="lineno" href="#L184">184</a></span>
+<span id="L185" class="lineno"><a class="lineno" href="#L185">185</a></span>
+<span id="L186" class="lineno"><a class="lineno" href="#L186">186</a></span>
+<span id="L187" class="lineno"><a class="lineno" href="#L187">187</a></span>
+<span id="L188" class="lineno"><a class="lineno" href="#L188">188</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-precise" title="No Anys on this line!">import os.path as osp</span>
@@ -194,6 +207,7 @@
 <span class="line-any" title="No Anys on this line!">from torch_sparse import coalesce</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.io import read_txt_array</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-precise" title="No Anys on this line!">import pdb</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class PyGUPFDDataset(InMemoryDataset):</span>
 <span class="line-precise" title="No Anys on this line!">    names = ['UPFD']</span>
@@ -323,6 +337,23 @@ Unannotated (x1)">            'y': graph_slice</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)">        edge_index -= node_slice[batch[edge_index[0]]].view(1, -1)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">        np.random.seed(0)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">        x = np.random.randint(8, size=(x.shape[0],))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">        x = torch.from_numpy(x).long()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        assert x.dim() == 1</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)
+Unimported (x1)">        assert x.dtype == torch.int64</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">        self.data = Data(x=x, edge_index=edge_index, y=y)</span>
@@ -354,8 +385,13 @@ Unannotated (x15)">        return (f'{self.__class__.__name__}({len(self)}, name
 <span class="line-empty" title="No Anys on this line!">                f'feature={self.feature})')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-precise" title="No Anys on this line!">if __name__ == '__main__' :</span>
+<span class="line-precise" title="No Anys on this line!">    root = '/cmlscratch/kong/datasets/graph_domain'</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">    PyGUPFDDataset(root, 'UPFD', 'profile')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-precise" title="No Anys on this line!">    import pdb</span>
+<span class="line-precise" title="No Anys on this line!">    pdb.set_trace()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -384,71 +420,40 @@ Unannotated (x15)">        return (f'{self.__class__.__name__}({len(self)}, name
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">########################################################################</span>
-<span class="line-precise" title="No Anys on this line!">class Net(torch.nn.Module):</span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, model, in_channels, hidden_channels, out_channels,</span>
-<span class="line-any" title="No Anys on this line!">                 concat=False):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        super(Net, self).__init__()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.concat = concat</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        if model == 'GCN':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Error (x1)">            self.conv1 = GCNConv(in_channels, hidden_channels)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif model == 'SAGE':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Error (x1)">            self.conv1 = SAGEConv(in_channels, hidden_channels)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        elif model == 'GAT':</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Error (x1)">            self.conv1 = GATConv(in_channels, hidden_channels)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.concat:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Error (x1)">            self.lin0 = Linear(in_channels, hidden_channels)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Error (x1)">            self.lin1 = Linear(2 * hidden_channels, hidden_channels)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Error (x1)">        self.lin2 = Linear(hidden_channels, out_channels)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def forward(self, x, edge_index, batch):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        h = self.conv1(x, edge_index).relu()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Error (x1)">        h = global_max_pool(h, batch)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if self.concat:</span>
-<span class="line-empty" title="No Anys on this line!">            # Get the root node (tweet) features of each graph:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">            root = (batch[1:] - batch[:-1]).nonzero(as_tuple=False).view(-1)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x1)">            root = torch.cat([root.new_zeros(1), root + 1], dim=0)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            news = x[root]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            news = self.lin0(news).relu()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x10)
-Unimported (x1)">            h = self.lin1(torch.cat([news, h], dim=-1)).relu()</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        h = self.lin2(h)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        return h.log_softmax(dim=-1)</span>
+<span class="line-empty" title="No Anys on this line!"># class Net(torch.nn.Module):</span>
+<span class="line-empty" title="No Anys on this line!">#     def __init__(self, model, in_channels, hidden_channels, out_channels,</span>
+<span class="line-empty" title="No Anys on this line!">#                  concat=False):</span>
+<span class="line-empty" title="No Anys on this line!">#         super(Net, self).__init__()</span>
+<span class="line-empty" title="No Anys on this line!">#         self.concat = concat</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         if model == 'GCN':</span>
+<span class="line-empty" title="No Anys on this line!">#             self.conv1 = GCNConv(in_channels, hidden_channels)</span>
+<span class="line-empty" title="No Anys on this line!">#         elif model == 'SAGE':</span>
+<span class="line-empty" title="No Anys on this line!">#             self.conv1 = SAGEConv(in_channels, hidden_channels)</span>
+<span class="line-empty" title="No Anys on this line!">#         elif model == 'GAT':</span>
+<span class="line-empty" title="No Anys on this line!">#             self.conv1 = GATConv(in_channels, hidden_channels)</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         if self.concat:</span>
+<span class="line-empty" title="No Anys on this line!">#             self.lin0 = Linear(in_channels, hidden_channels)</span>
+<span class="line-empty" title="No Anys on this line!">#             self.lin1 = Linear(2 * hidden_channels, hidden_channels)</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         self.lin2 = Linear(hidden_channels, out_channels)</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#     def forward(self, x, edge_index, batch):</span>
+<span class="line-empty" title="No Anys on this line!">#         h = self.conv1(x, edge_index).relu()</span>
+<span class="line-empty" title="No Anys on this line!">#         h = global_max_pool(h, batch)</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         if self.concat:</span>
+<span class="line-empty" title="No Anys on this line!">#             # Get the root node (tweet) features of each graph:</span>
+<span class="line-empty" title="No Anys on this line!">#             root = (batch[1:] - batch[:-1]).nonzero(as_tuple=False).view(-1)</span>
+<span class="line-empty" title="No Anys on this line!">#             root = torch.cat([root.new_zeros(1), root + 1], dim=0)</span>
+<span class="line-empty" title="No Anys on this line!">#             news = x[root]</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#             news = self.lin0(news).relu()</span>
+<span class="line-empty" title="No Anys on this line!">#             h = self.lin1(torch.cat([news, h], dim=-1)).relu()</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         h = self.lin2(h)</span>
+<span class="line-empty" title="No Anys on this line!">#         return h.log_softmax(dim=-1)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>

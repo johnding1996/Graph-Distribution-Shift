@@ -230,7 +230,7 @@
                class="code sev- "><tt><i>46</i>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;UPFD&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>47</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
             </div>
             <div id="l48"
                class="code sev- "><tt><i>48</i>         <span class="k">else</span><span class="p">:</span></tt>
