@@ -163,7 +163,7 @@ dataset_defaults = {
     'UPFD': {
         'num_domains': 10,
         'split_scheme': 'official',
-        'model_kwargs': {'three_wl_in_dim': 10, 'dropout': 0.5, 'dataset_group': 'UPFD'},
+        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'UPFD'},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['size', ],

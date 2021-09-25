@@ -8,6 +8,7 @@ import torch.nn.functional as F
 from torch_sparse import coalesce
 from torch_geometric.io import read_txt_array
 
+import pdb
 
 class PyGUPFDDataset(InMemoryDataset):
     names = ['UPFD']
@@ -83,6 +84,14 @@ class PyGUPFDDataset(InMemoryDataset):
         }
 
         edge_index -= node_slice[batch[edge_index[0]]].view(1, -1)
+
+        np.random.seed(0)
+        x = np.random.randint(8, size=(x.shape[0],))
+        x = torch.from_numpy(x).long()
+
+        assert x.dim() == 1
+        assert x.dtype == torch.int64
+
         self.data = Data(x=x, edge_index=edge_index, y=y)
 
         idx = []
@@ -100,8 +109,12 @@ class PyGUPFDDataset(InMemoryDataset):
                 f'feature={self.feature})')
 
 
+if __name__ == '__main__' :
+    root = '/cmlscratch/kong/datasets/graph_domain'
+    PyGUPFDDataset(root, 'UPFD', 'profile')
 
-
+    import pdb
+    pdb.set_trace()
 
 
 
@@ -130,40 +143,40 @@ class PyGUPFDDataset(InMemoryDataset):
 
 
 ########################################################################
-class Net(torch.nn.Module):
-    def __init__(self, model, in_channels, hidden_channels, out_channels,
-                 concat=False):
-        super(Net, self).__init__()
-        self.concat = concat
-
-        if model == 'GCN':
-            self.conv1 = GCNConv(in_channels, hidden_channels)
-        elif model == 'SAGE':
-            self.conv1 = SAGEConv(in_channels, hidden_channels)
-        elif model == 'GAT':
-            self.conv1 = GATConv(in_channels, hidden_channels)
-
-        if self.concat:
-            self.lin0 = Linear(in_channels, hidden_channels)
-            self.lin1 = Linear(2 * hidden_channels, hidden_channels)
-
-        self.lin2 = Linear(hidden_channels, out_channels)
-
-    def forward(self, x, edge_index, batch):
-        h = self.conv1(x, edge_index).relu()
-        h = global_max_pool(h, batch)
-
-        if self.concat:
-            # Get the root node (tweet) features of each graph:
-            root = (batch[1:] - batch[:-1]).nonzero(as_tuple=False).view(-1)
-            root = torch.cat([root.new_zeros(1), root + 1], dim=0)
-            news = x[root]
-
-            news = self.lin0(news).relu()
-            h = self.lin1(torch.cat([news, h], dim=-1)).relu()
-
-        h = self.lin2(h)
-        return h.log_softmax(dim=-1)
+# class Net(torch.nn.Module):
+#     def __init__(self, model, in_channels, hidden_channels, out_channels,
+#                  concat=False):
+#         super(Net, self).__init__()
+#         self.concat = concat
+#
+#         if model == 'GCN':
+#             self.conv1 = GCNConv(in_channels, hidden_channels)
+#         elif model == 'SAGE':
+#             self.conv1 = SAGEConv(in_channels, hidden_channels)
+#         elif model == 'GAT':
+#             self.conv1 = GATConv(in_channels, hidden_channels)
+#
+#         if self.concat:
+#             self.lin0 = Linear(in_channels, hidden_channels)
+#             self.lin1 = Linear(2 * hidden_channels, hidden_channels)
+#
+#         self.lin2 = Linear(hidden_channels, out_channels)
+#
+#     def forward(self, x, edge_index, batch):
+#         h = self.conv1(x, edge_index).relu()
+#         h = global_max_pool(h, batch)
+#
+#         if self.concat:
+#             # Get the root node (tweet) features of each graph:
+#             root = (batch[1:] - batch[:-1]).nonzero(as_tuple=False).view(-1)
+#             root = torch.cat([root.new_zeros(1), root + 1], dim=0)
+#             news = x[root]
+#
+#             news = self.lin0(news).relu()
+#             h = self.lin1(torch.cat([news, h], dim=-1)).relu()
+#
+#         h = self.lin2(h)
+#         return h.log_softmax(dim=-1)
 
 
 

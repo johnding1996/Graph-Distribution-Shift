@@ -44,7 +44,7 @@ class MLP(torch.nn.Module):
         elif self.dataset_group == 'SBM' :
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'UPFD':
-            self.node_encoder = torch.nn.Linear(10, emb_dim)
+            self.node_encoder = torch.nn.Embedding(8, emb_dim)
         else:
             raise NotImplementedError
         ###List of GNNs
