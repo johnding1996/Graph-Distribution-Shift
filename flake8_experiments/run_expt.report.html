@@ -52,11 +52,11 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="F401">
                <span class="count sev-1">
-                  7
+                  6
                </span>
                <strong>F401:</strong> 'csv' imported but unused
                
-                  (and 6 similar)
+                  (and 5 similar)
                
             </a>
             <ul class="details">
@@ -73,13 +73,6 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <a href="run_expt.source.html#l4">
                   <tt><i>4</i> <span class="kn">import</span> <span class="nn">sys</span></tt>
-               </a>
-            </li><li>
-               
-               <p>'time' imported but unused:</p>
-               
-               <a href="run_expt.source.html#l5">
-                  <tt><i>5</i> <span class="kn">import</span> <span class="nn">time</span></tt>
                </a>
             </li><li>
                
@@ -134,11 +127,11 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  49
+                  50
                </span>
                <strong>E501:</strong> line too long (112 > 79 characters)
                
-                  (and 27 similar)
+                  (and 28 similar)
                
             </a>
             <ul class="details">
@@ -410,80 +403,87 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
+               <p>Line too long (133 > 79 characters):</p>
+               
+               <a href="run_expt.source.html#l148">
+                  <tt><i>148</i>     <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_seed-</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">seed</span><span class="si">}</span><span class="s1">.txt&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
                <p>Line too long (97 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l189">
-                  <tt><i>189</i>             <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">get_subset</span><span class="p">(</span><span class="n">split</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">default_frac</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l190">
+                  <tt><i>190</i>             <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">get_subset</span><span class="p">(</span><span class="n">split</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">default_frac</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (81 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l191">
-                  <tt><i>191</i>             <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">get_subset</span><span class="p">(</span><span class="n">split</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l192">
+                  <tt><i>192</i>             <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">get_subset</span><span class="p">(</span><span class="n">split</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (166 > 79 characters):</p>
+               <p>Line too long (185 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l218">
-                  <tt><i>218</i>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">_eval.csv&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">use_wandb</span><span class="o">=</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">use_wandb</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">))</span></tt>
+               <a href="run_expt.source.html#l219">
+                  <tt><i>219</i>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_seed-</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">seed</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">_eval.csv&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">use_wandb</span><span class="o">=</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">use_wandb</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (166 > 79 characters):</p>
+               <p>Line too long (185 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l220">
-                  <tt><i>220</i>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">_algo.csv&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">use_wandb</span><span class="o">=</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">use_wandb</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">))</span></tt>
+               <a href="run_expt.source.html#l221">
+                  <tt><i>221</i>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">dataset</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">_seed-</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">seed</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">_algo.csv&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">use_wandb</span><span class="o">=</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">use_wandb</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (128 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l224">
-                  <tt><i>224</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">no_group_logging</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">is_classification</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">y_size</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">n_classes</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span></tt>
+               <a href="run_expt.source.html#l225">
+                  <tt><i>225</i>     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">no_group_logging</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">is_classification</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">y_size</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">n_classes</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (90 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l249">
-                  <tt><i>249</i>             <span class="n">save_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;epoch-last_model.pth&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l250">
+                  <tt><i>250</i>             <span class="n">save_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;epoch-last_model.pth&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (84 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l253">
-                  <tt><i>253</i>                     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pth&#39;</span><span class="p">)]</span></tt>
+               <a href="run_expt.source.html#l254">
+                  <tt><i>254</i>                     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pth&#39;</span><span class="p">)]</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (109 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l256">
-                  <tt><i>256</i>                     <span class="n">save_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">latest_epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l257">
+                  <tt><i>257</i>                     <span class="n">save_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">latest_epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (106 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l260">
-                  <tt><i>260</i>                 <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Resuming from epoch </span><span class="si">{</span><span class="n">epoch_offset</span><span class="si">}</span><span class="s1"> with best val metric </span><span class="si">{</span><span class="n">best_val_metric</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l261">
+                  <tt><i>261</i>                 <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Resuming from epoch </span><span class="si">{</span><span class="n">epoch_offset</span><span class="si">}</span><span class="s1"> with best val metric </span><span class="si">{</span><span class="n">best_val_metric</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (96 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l279">
-                  <tt><i>279</i>             <span class="n">eval_model_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;epoch-best_model.pth&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l280">
+                  <tt><i>280</i>             <span class="n">eval_model_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;epoch-best_model.pth&#39;</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (112 > 79 characters):</p>
                
-               <a href="run_expt.source.html#l281">
-                  <tt><i>281</i>             <span class="n">eval_model_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">eval_epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
+               <a href="run_expt.source.html#l282">
+                  <tt><i>282</i>             <span class="n">eval_model_path</span> <span class="o">=</span> <span class="n">model_prefix</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">model_prefix</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;epoch-</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">eval_epoch</span><span class="si">}</span><span class="s1">_model.pth&#39;</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
@@ -492,7 +492,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E303">
                <span class="count sev-2">
-                  3
+                  4
                </span>
                <strong>E303:</strong> too many blank lines (3)
                
@@ -511,15 +511,22 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Too many blank lines (2):</p>
                
-               <a href="run_expt.source.html#l235">
-                  <tt><i>235</i>     <span class="c1">## Initialize algorithm</span></tt>
+               <a href="run_expt.source.html#l151">
+                  <tt><i>151</i>     <span class="c1"># Record config</span></tt>
                </a>
             </li><li>
                
                <p>Too many blank lines (2):</p>
                
-               <a href="run_expt.source.html#l245">
-                  <tt><i>245</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">eval_only</span><span class="p">:</span></tt>
+               <a href="run_expt.source.html#l236">
+                  <tt><i>236</i>     <span class="c1">## Initialize algorithm</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (2):</p>
+               
+               <a href="run_expt.source.html#l246">
+                  <tt><i>246</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">eval_only</span><span class="p">:</span></tt>
                </a>
             </li>
             </ul>
@@ -536,13 +543,13 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="run_expt.source.html#l235">
-                  <tt><i>235</i>     <span class="c1">## Initialize algorithm</span></tt>
+               <a href="run_expt.source.html#l236">
+                  <tt><i>236</i>     <span class="c1">## Initialize algorithm</span></tt>
                </a>
             </li><li>
                
-               <a href="run_expt.source.html#l246">
-                  <tt><i>246</i>         <span class="c1">## Load saved results if resuming</span></tt>
+               <a href="run_expt.source.html#l247">
+                  <tt><i>247</i>         <span class="c1">## Load saved results if resuming</span></tt>
                </a>
             </li>
             </ul>
@@ -559,13 +566,13 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="run_expt.source.html#l234">
-                  <tt><i>234</i>     </tt>
+               <a href="run_expt.source.html#l235">
+                  <tt><i>235</i>     </tt>
                </a>
             </li><li>
                
-               <a href="run_expt.source.html#l243">
-                  <tt><i>243</i>    </tt>
+               <a href="run_expt.source.html#l244">
+                  <tt><i>244</i>    </tt>
                </a>
             </li>
             </ul>
@@ -582,8 +589,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="run_expt.source.html#l265">
-                  <tt><i>265</i>         <span class="k">if</span> <span class="n">resume_success</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
+               <a href="run_expt.source.html#l266">
+                  <tt><i>266</i>         <span class="k">if</span> <span class="n">resume_success</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
                </a>
             </li>
             </ul>
