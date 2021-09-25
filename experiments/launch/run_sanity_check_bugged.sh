@@ -33,9 +33,9 @@ python run_expt.py --device ${device} --dataset ${dataset}  --algorithm ${algori
 }
 
 device=0
-datasets=( ogb-molhiv    ) #4
-algorithms=( deepCORAL )            #5
-models=( gcn_virtual  ) #6
+datasets=( ogb-molhiv ) #4
+algorithms=( deepCORAL ) #5
+models=( gcn_virtual ) #6
 root_dir=/cmlscratch/kong/datasets/graph_domain
 
 id=${SLURM_ARRAY_TASK_ID}

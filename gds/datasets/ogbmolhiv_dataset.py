@@ -4,11 +4,13 @@ import numpy as np
 import torch
 import torch_geometric
 from ogb.graphproppred import PygGraphPropPredDataset, Evaluator
-from ogb.utils.url import download_url
+from torch_geometric.data import download_url, extract_zip
 from torch_geometric.data.dataloader import Collater as PyGCollater
 from collections import namedtuple
 import tqdm
 from gds.datasets.gds_dataset import GDSDataset
+from torch_geometric.utils import to_dense_adj
+import torch.nn.functional as F
 
 
 class OGBHIVDataset(GDSDataset):
@@ -62,8 +64,8 @@ class OGBHIVDataset(GDSDataset):
             'download_url': None,
             'compressed_size': None}}
 
-    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official',
-                 gsn=False, id_type='cycle_graph', k=6, **dataset_kwargs):
+    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,
+                 subgraph=False, **dataset_kwargs):
         self._version = version
         if version is not None:
             raise ValueError('Versioning for OGB-MolHIV is handled through the OGB package. Please set version=none.')
@@ -80,6 +82,9 @@ class OGBHIVDataset(GDSDataset):
         # self._n_classes = self.ogb_dataset.__num_classes__
         self._n_classes = 1
 
+        if random_split:
+            raise NotImplementedError
+
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx = self.ogb_dataset.get_idx_split()
         self._split_array[split_idx['train']] = 0
@@ -89,40 +94,58 @@ class OGBHIVDataset(GDSDataset):
         self._y_array = self.ogb_dataset.data.y
         self._metadata_fields = ['scaffold', 'y']
 
-        
-
-        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'scaffold_group.npy')
+        metadata_file_path = os.path.join(self.ogb_dataset.root, 'raw', 'OGB-MolHIV_group.npy')
         if not os.path.exists(metadata_file_path):
-            download_url('https://www.dropbox.com/s/mh00btxbuejtg9x/scaffold_group.npy?dl=1',
-                         os.path.join(self.ogb_dataset.root, 'raw'))
+            metadata_zip_file_path = download_url(
+                'https://www.dropbox.com/s/i5z388zxbut0quo/OGB-MolHIV_group.zip?dl=1', self.ogb_dataset.raw_dir)
+            extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)
+            os.unlink(metadata_zip_file_path)
         self._metadata_array_wo_y = torch.from_numpy(np.load(metadata_file_path)).reshape(-1, 1).long()
         self._metadata_array = torch.cat((self._metadata_array_wo_y, self.ogb_dataset.data.y), 1)
 
-        if torch_geometric.__version__ >= '1.7.0':
-            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+        if dataset_kwargs['model'] == '3wlgnn':
+            self._collate = self.collate_dense
         else:
-            self._collate = PyGCollater(follow_batch=[])
+            if torch_geometric.__version__ >= '1.7.0':
+                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+            else:
+                self._collate = PyGCollater(follow_batch=[])
 
         self._metric = Evaluator('ogbg-molhiv')
 
-
         # GSN
-        self.gsn = gsn
-        self.id_type = id_type
-        self.k = k
-        if self.gsn:
+        self.subgraph = subgraph
+        if self.subgraph:
+            self.id_type = dataset_kwargs['gsn_id_type']
+            self.k = dataset_kwargs['gsn_k']
             from gds.datasets.gsn.gsn_data_prep import GSN
-            gsn = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type, k=self.k)
-            graphs_ptg = gsn.preprocess()
-            import pdb;pdb.set_trace()
+            subgraph = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type,
+                           k=self.k)
+            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset.root)
 
-        
+            if self.graphs_ptg[0].x.dim() == 1:
+                self.num_features = 1
+            else:
+                self.num_features = self.graphs_ptg[0].num_features
 
+            if hasattr(self.graphs_ptg[0], 'edge_features'):
+                if self.graphs_ptg[0].edge_features.dim() == 1:
+                    self.num_edge_features = 1
+                else:
+                    self.num_edge_features = self.graphs_ptg[0].edge_features.shape[1]
+            else:
+                self.num_edge_features = None
+
+            self.d_in_node_encoder = [self.num_features]
+            self.d_in_edge_encoder = [self.num_edge_features]
 
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):
-        return self.ogb_dataset[int(idx)]
+        if self.subgraph:
+            return self.graphs_ptg[int(idx)]
+        else:
+            return self.ogb_dataset[int(idx)]
 
     def eval(self, y_pred, y_true, metadata, prediction_fn=None):
         """
@@ -144,9 +167,48 @@ class OGBHIVDataset(GDSDataset):
 
         return results, f"ROCAUC: {results['rocauc']:.3f}\n"
 
-if __name__ == '__main__':
-    root = '/cmlscratch/kong/datasets/graph_domain'
-    dataset = OGBHIVDataset(root_dir=root)
+    # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
+    def collate_dense(self, samples):
+        def _sym_normalize_adj(adjacency):
+            deg = torch.sum(adjacency, dim=0)  # .squeeze()
+            deg_inv = torch.where(deg > 0, 1. / torch.sqrt(deg), torch.zeros(deg.size()))
+            deg_inv = torch.diag(deg_inv)
+            return torch.mm(deg_inv, torch.mm(adjacency, deg_inv))
 
-    import pdb
-    pdb.set_trace()
+        # The input samples is a list of pairs (graph, label).
+        node_feat_space = torch.tensor([119, 4, 12, 12, 10, 6, 6, 2, 2])
+        edge_feat_space = torch.tensor([5, 6, 2])
+
+        graph_list, y_list, metadata_list = map(list, zip(*samples))
+        y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
+
+        # insert size one at dim 0 because this dataset's y is 1d
+        y = y.unsqueeze(0)
+
+        feat = []
+        for graph in graph_list:
+            adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())
+            zero_adj = torch.zeros_like(adj)
+            in_dim = node_feat_space.sum() + edge_feat_space.sum()
+
+            # use node feats to prepare adj
+            adj_feat = torch.stack([zero_adj for _ in range(in_dim)])
+            adj_feat = torch.cat([adj.unsqueeze(0), adj_feat], dim=0)
+
+            def convert(feature, space):
+                out = []
+                for i, label in enumerate(feature):
+                    out.append(F.one_hot(label, space[i]))
+                return torch.cat(out)
+
+            for node, node_feat in enumerate(graph.x):
+                adj_feat[1:1 + node_feat_space.sum(), node, node] = convert(node_feat, node_feat_space)
+            for edge in range(graph.edge_index.shape[1]):
+                target, source = graph.edge_index[0][edge], graph.edge_index[1][edge]
+                edge_feat = graph.edge_attr[edge]
+                adj_feat[1 + node_feat_space.sum():, target, source] = convert(edge_feat, edge_feat_space)
+
+            feat.append(adj_feat)
+
+        feat = torch.stack(feat)
+        return feat, y, metadata

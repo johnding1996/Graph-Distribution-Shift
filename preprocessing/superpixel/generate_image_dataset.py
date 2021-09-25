@@ -136,17 +136,13 @@ class ColoredMNIST(MultipleEnvironmentMNIST):
         # Assign a binary label based on the digit
         labels = (labels < 5).float()
         # Flip label with probability 0.25
-        labels = self.torch_xor_(labels,
-                                 self.torch_bernoulli_(0.25, len(labels)))
+        labels = self.torch_xor_(labels, self.torch_bernoulli_(0.25, len(labels)))
 
         # Assign a color based on the label; flip the color with probability e
-        colors = self.torch_xor_(labels,
-                                 self.torch_bernoulli_(environment,
-                                                       len(labels)))
+        colors = self.torch_xor_(labels, self.torch_bernoulli_(environment, len(labels)))
         images = torch.stack([images, images], dim=1)
         # Apply the color to the image by zeroing out the other color channel
-        images[torch.tensor(range(len(images))), (
-                                                         1 - colors).long(), :, :] *= 0
+        images[torch.tensor(range(len(images))), (1 - colors).long(), :, :] *= 0
 
         x = images.float().div_(255.0)
         y = labels.view(-1).long()

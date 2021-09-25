@@ -164,4 +164,7 @@ wandb/
 # dependent repos
 benchmarking-gnns-master/
 
+# CML launch scripts by Kezhi
+launch_kezhi/
+
 

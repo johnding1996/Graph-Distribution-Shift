@@ -73,6 +73,9 @@ def main():
     parser.add_argument('--irm_lambda', type=float)
     parser.add_argument('--irm_penalty_anneal_iters', type=int)
     parser.add_argument('--algo_log_metric')
+    parser.add_argument('--gsn_id_type', type=str,
+                        choices=['cycle_graph', 'path_graph', 'complete_graph', 'binomial_tree'])
+    parser.add_argument('--gsn_k', type=int)
 
     # Model selection
     parser.add_argument('--val_metric')
@@ -100,6 +103,9 @@ def main():
     parser.add_argument('--eval_epoch', default=None, type=int,
                         help='If eval_only is set, then eval_epoch allows you to specify evaluating at a particular epoch. By default, it evaluates the best epoch by validation performance.')
 
+    # Ablation
+    parser.add_argument('--random_split', type=parse_bool, const=True, nargs='?', default=False)
+
     # Misc
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--seed', type=int, default=0)
@@ -116,20 +122,12 @@ def main():
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
-    # GSN
-    parser.add_argument('--gsn', type=parse_bool, default=False)
-    parser.add_argument('--id_type', type=str, default='cycle_graph')
-    parser.add_argument('--k', type=int, default=6)
-
     config = parser.parse_args()
     config = populate_defaults(config)
 
-
-    # For the GlobalWheat detection dataset,
-    # we need to change the multiprocessing strategy or there will be
-    # too many open file descriptors.
-    if config.dataset == 'globalwheat':
-        torch.multiprocessing.set_sharing_strategy('file_system')
+    # For the 3wlgnn model, we need to set batch_size to 1
+    if config.model == '3wlgnn':
+        config.batch_size = 1
 
     # Set device
     config.device = torch.device("cuda:" + str(config.device)) if torch.cuda.is_available() else torch.device("cpu")
@@ -147,8 +145,8 @@ def main():
 
     if not os.path.exists(config.log_dir):
         os.makedirs(config.log_dir)
-    logger = Logger(os.path.join(config.log_dir, 'log.txt'), mode)
-    result_logger = Logger(os.path.join(config.log_dir, 'result.txt'), mode)
+    logger = Logger(os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}.txt'), mode)
+
 
     # Record config
     log_config(config, logger)
@@ -157,15 +155,19 @@ def main():
     set_seed(config.seed)
 
     # Data
+    if config.algorithm == 'GSN':
+        config.dataset_kwargs['gsn_id_type'] = config.gsn_id_type
+        config.dataset_kwargs['gsn_k'] = config.gsn_k
     full_dataset = gds.get_dataset(
         dataset=config.dataset,
         version=config.version,
         root_dir=config.root_dir,
         download=config.download,
         split_scheme=config.split_scheme,
-        gsn=config.gsn,
-        id_type=config.id_type,
-        k=config.k,
+        random_split=config.random_split,
+        subgraph=True if config.algorithm == 'GSN' else False,
+        algorithm=config.algorithm,
+        model=config.model,
         **config.dataset_kwargs)
 
     train_grouper = CombinatorialGrouper(
@@ -214,9 +216,9 @@ def main():
 
         # Loggers
         datasets[split]['eval_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
         datasets[split]['algo_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
 
     # Logging dataset info
     # Show class breakdown if feasible
@@ -230,13 +232,16 @@ def main():
         log_grouper = train_grouper
     log_group_data(datasets, log_grouper, logger)
 
+    
     ## Initialize algorithm
     algorithm = initialize_algorithm(
         config=config,
         datasets=datasets,
+        full_dataset=full_dataset,
         train_grouper=train_grouper)
 
     model_prefix = get_model_prefix(datasets['train'], config)
+   
 
     if not config.eval_only:
         ## Load saved results if resuming
@@ -261,7 +266,7 @@ def main():
         if resume_success == False:
             epoch_offset = 0
             best_val_metric = None
-
+        start = time.time()
         train(
             algorithm=algorithm,
             datasets=datasets,
@@ -294,6 +299,8 @@ def main():
     # have to close wandb runner before closing logger (and stdout)
     if config.use_wandb:
         close_wandb(wandb_runner)
+    finish = time.time()
+    logger.write(f'time(s): {finish-start:.3f}\n')
     logger.close()
     for split in datasets:
         datasets[split]['eval_logger'].close()
