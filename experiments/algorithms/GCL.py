@@ -37,19 +37,20 @@ class GCL(SingleModelAlgorithm):
         adj = adj[idx_nondrop, :][:, idx_nondrop]
         edge_index = adj.nonzero().t()
 
-        But here we directly operate on the node index+edge lists, 
-        being careful to keep the edge attributes aligned
+        This is nice, and pretty efficient, but here we have
+        to directly operate on the node index+edge lists, 
+        to be careful to keep the edge attributes aligned
         """
 
         aug_ratio = self.aug_ratio
         node_num, _ = data.x.size()
         _, edge_num = data.edge_index.size()
 
-        # Directly model the uniform drop prior over nodes
+        # Directly model the uniform drop prob over nodes
         drop_num = int(node_num  * aug_ratio)
         idx_perm = torch.randperm(node_num)
         idx_drop = idx_perm[:drop_num]
-        idx_nondrop = idx_perm[drop_num:].sort().values.cuda()
+        idx_nondrop = idx_perm[drop_num:].sort().values.cuda() # sort for humans/debug
 
         # Realize this ^ as a subselecting of the edges in the graph,
         # Noting that this isn't an elegant process because we need to 
@@ -63,9 +64,12 @@ class GCL(SingleModelAlgorithm):
         new_edge_index = orig_edge_index[:,edge_subselect]
         _, new_edge_num = new_edge_index.size()
 
-        if data.edge_attr:
+        if data.edge_attr is not None:
             orig_edge_attr = data.edge_attr
             new_edge_attr = orig_edge_attr[edge_subselect] 
+
+        # assumption is we are removing undirected edge pairs i<->j
+        assert (edge_num-new_edge_num)%2 is 0
 
         try:
             data.edge_attr = new_edge_attr
@@ -77,10 +81,69 @@ class GCL(SingleModelAlgorithm):
 
     # Other augmentation types, TODO
     def weighted_drop_nodes(self, data):
+        """
+        same as drop nodes but instead of uniform drop over nodes
+        weighting of drop by degree of node
+        """
         raise NotImplementedError
     def permute_edges(self, data):
-        raise NotImplementedError
+
+        """
+        Ported from same repo as drop_nodes
+
+        Current: 
+        In-place replacement k edges (i->j) with k edges (i'->j') 
+        where i and j are uniformly generated over the node idx, i' != j'
+
+        TODO 1:
+        Currently the edge_attr of (i->j) in inherited by (i'->j') 
+        for datasets that include edge_attr, this is not very 
+        semantically sound, as the joint distribution between 
+        (i_feat,j_feat,e_attr), i_feat,j_feat in {node_features}, 
+        e_attr in {edge_attr_types}, is not being respected
+
+        TODO 2:
+        A non-naive, 'paired' version will also rely on assumption 
+        that this is a default pytorch geometric data object where 
+        edge ordering is such that two the directions of a single 
+        edge occur in pairs. So that we can operate on bidirectional 
+        edges easily by stride-2 indexing
+        Eg. data.edge_index = tensor([[0, 1, 1, 2, 2, 3],
+                                     [1, 0, 2, 1, 3, 2]])
+
+        """
+        aug_ratio = self.aug_ratio
+        node_num, _ = data.x.size()
+        _, edge_num = data.edge_index.size()
+
+        paired_perms = False # for later, TODO
+        if paired_perms: assert edge_num%2 is 0 # undirected g, paired edges
+
+        permute_num = int(edge_num * aug_ratio)
+
+        orig_edge_index = data.edge_index
+
+        if permute_num > 0:
+            edges_to_insert = torch.multinomial(torch.ones(permute_num,node_num), 2, replacement=False).t().cuda() 
+            insertion_indices =  torch.multinomial(torch.ones(edge_num), permute_num, replacement=False)
+
+            if paired_perms:
+                raise NotImplementedError            
+
+            orig_edge_index[:,insertion_indices] = edges_to_insert
+        else:
+            # augmentation silently does nothing
+            pass
+        try:
+            data.edge_index = orig_edge_index #modified in place
+        except:
+            pass
+
     def extract_subgraph(self, data):
+        """
+        TODO
+        paper uses a random walk to generate a subgraph of nodes
+        """
         raise NotImplementedError
 
     def update(self, batch):
@@ -99,8 +162,11 @@ class GCL(SingleModelAlgorithm):
         }
 
         # Augmentation options
+        # currently singular, TODO make composeable
         if self.aug_type == 'node_drop':
             aug_fn = self.drop_nodes
+        elif self.aug_type == 'edge_perm':
+            aug_fn = self.permute_edges
         else:
             raise NotImplementedError
 
