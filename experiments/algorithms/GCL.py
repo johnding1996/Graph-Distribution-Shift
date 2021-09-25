@@ -43,7 +43,7 @@ class GCL(SingleModelAlgorithm):
         """
 
         aug_ratio = self.aug_ratio
-        node_num, _ = data.x.size()
+        node_num = data.x.size()[0]
         _, edge_num = data.edge_index.size()
 
         # Directly model the uniform drop prob over nodes
@@ -79,13 +79,6 @@ class GCL(SingleModelAlgorithm):
             pass
             # data = data
 
-    # Other augmentation types, TODO
-    def weighted_drop_nodes(self, data):
-        """
-        same as drop nodes but instead of uniform drop over nodes
-        weighting of drop by degree of node
-        """
-        raise NotImplementedError
     def permute_edges(self, data):
 
         """
@@ -113,7 +106,7 @@ class GCL(SingleModelAlgorithm):
 
         """
         aug_ratio = self.aug_ratio
-        node_num, _ = data.x.size()
+        node_num = data.x.size()[0]
         _, edge_num = data.edge_index.size()
 
         paired_perms = False # for later, TODO
@@ -130,19 +123,28 @@ class GCL(SingleModelAlgorithm):
             if paired_perms:
                 raise NotImplementedError            
 
-            orig_edge_index[:,insertion_indices] = edges_to_insert
+            orig_edge_index[:,insertion_indices] = edges_to_insert # modified in place
         else:
             # augmentation silently does nothing
             pass
-        try:
-            data.edge_index = orig_edge_index #modified in place
-        except:
-            pass
+
+        # May not be in-place for paired/non-naive version
+        # try:
+        #     data.edge_index = new_edge_index
+        # except:
+        #     pass
 
     def extract_subgraph(self, data):
         """
         TODO
         paper uses a random walk to generate a subgraph of nodes
+        """
+        raise NotImplementedError
+
+    def weighted_drop_nodes(self, data):
+        """
+        same as drop nodes but instead of uniform drop over nodes
+        weighting of drop by degree of node
         """
         raise NotImplementedError
 
