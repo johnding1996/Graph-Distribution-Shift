@@ -8,7 +8,7 @@ from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
 from .pyg_upfd_dataset import PyGUPFDDataset
 from torch_geometric.utils import to_dense_adj
-
+import torch.nn.functional as F
 
 class UPFDDataset(GDSDataset):
     _dataset_name = 'UPFD'
@@ -34,7 +34,7 @@ class UPFDDataset(GDSDataset):
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
 
-        self._y_array = self.ogb_dataset.data.y.unsqueeze(dim=-1)
+        self._y_array = self.ogb_dataset.data.y.unsqueeze(-1)
         self._metadata_fields = ['size', 'y']
 
         metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'UPFD_group.npy')
@@ -121,27 +121,36 @@ class UPFDDataset(GDSDataset):
             return torch.mm(deg_inv, torch.mm(adjacency, deg_inv))
 
         # The input samples is a list of pairs (graph, label).
+        node_feat_space = torch.tensor([8])
+
         graph_list, y_list, metadata_list = map(list, zip(*samples))
         y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
 
         # insert size one at dim 0 because this dataset's y is 1d
         y = y.unsqueeze(0)
 
-        x_node_feat = []
+        feat = []
         for graph in graph_list:
             adj = _sym_normalize_adj(to_dense_adj(graph.edge_index, max_num_nodes=graph.x.size(0)).squeeze())
             zero_adj = torch.zeros_like(adj)
-            in_dim = graph.x.shape[1]
+            in_dim = node_feat_space.sum()
 
             # use node feats to prepare adj
-            adj_node_feat = torch.stack([zero_adj for _ in range(in_dim)])
-            adj_node_feat = torch.cat([adj.unsqueeze(0), adj_node_feat], dim=0)
+            adj_feat = torch.stack([zero_adj for _ in range(in_dim)])
+            adj_feat = torch.cat([adj.unsqueeze(0), adj_feat], dim=0)
+
+            def convert(feature, space):
+                out = []
+                for i, label in enumerate(feature):
+                    out.append(F.one_hot(label, space[i]))
+                return torch.cat(out)
 
             for node, node_feat in enumerate(graph.x):
-                adj_node_feat[1:, node, node] = node_feat
+                adj_feat[1:1 + node_feat_space.sum(), node, node] = convert(node_feat.unsqueeze(0), node_feat_space)
 
-            x_node_feat.append(adj_node_feat)
+            feat.append(adj_feat)
 
-        x_node_feat = torch.stack(x_node_feat)
+        feat = torch.stack(feat)
 
-        return x_node_feat, y, metadata
+
+        return feat, y, metadata

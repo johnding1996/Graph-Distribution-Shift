@@ -15,7 +15,8 @@ class ColoredMNISTDataset(GDSDataset):
     _versions_dict = {
         '1.0': {
             'download_url': None,
-            'compressed_size': None}}
+            'compressed_size': None}
+    }
 
     def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,
                  **dataset_kwargs):
@@ -34,7 +35,7 @@ class ColoredMNISTDataset(GDSDataset):
 
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
 
-        self._y_array = self.ogb_dataset.data.y.unsqueeze(dim=-1)
+        self._y_array = self.ogb_dataset.data.y.unsqueeze(-1)
         self._metadata_fields = ['color', 'y']
 
         metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'ColoredMNIST_group.npy')
@@ -118,6 +119,9 @@ class ColoredMNISTDataset(GDSDataset):
 
         graph_list, y_list, metadata_list = map(list, zip(*samples))
         y, metadata = torch.tensor(y_list), torch.stack(metadata_list)
+
+        # insert size one at dim 0 because this dataset's y is 1d
+        y = y.unsqueeze(0)
 
         x_node_feat = []
         for graph in graph_list:
