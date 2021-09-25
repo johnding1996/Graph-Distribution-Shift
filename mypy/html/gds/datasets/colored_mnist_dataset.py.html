@@ -153,6 +153,10 @@
 <span id="L143" class="lineno"><a class="lineno" href="#L143">143</a></span>
 <span id="L144" class="lineno"><a class="lineno" href="#L144">144</a></span>
 <span id="L145" class="lineno"><a class="lineno" href="#L145">145</a></span>
+<span id="L146" class="lineno"><a class="lineno" href="#L146">146</a></span>
+<span id="L147" class="lineno"><a class="lineno" href="#L147">147</a></span>
+<span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
+<span id="L149" class="lineno"><a class="lineno" href="#L149">149</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -171,7 +175,8 @@
 <span class="line-precise" title="No Anys on this line!">    _versions_dict = {</span>
 <span class="line-precise" title="No Anys on this line!">        '1.0': {</span>
 <span class="line-precise" title="No Anys on this line!">            'download_url': None,</span>
-<span class="line-precise" title="No Anys on this line!">            'compressed_size': None}}</span>
+<span class="line-precise" title="No Anys on this line!">            'compressed_size': None}</span>
+<span class="line-empty" title="No Anys on this line!">    }</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def __init__(self, version=None, root_dir='data', download=False, split_scheme='official', random_split=False,</span>
 <span class="line-empty" title="No Anys on this line!">                 **dataset_kwargs):</span>
@@ -203,7 +208,7 @@ Unannotated (x7)
 Unimported (x1)">        self._split_array = torch.zeros(len(self.ogb_dataset)).long()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        self._y_array = self.ogb_dataset.data.y.unsqueeze(dim=-1)</span>
+Unannotated (x7)">        self._y_array = self.ogb_dataset.data.y.unsqueeze(-1)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        self._metadata_fields = ['color', 'y']</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -351,6 +356,10 @@ Explicit (x17)">        graph_list, y_list, metadata_list = map(list, zip(*sampl
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
 Unimported (x2)">        y, metadata = torch.tensor(y_list), torch.stack(metadata_list)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # insert size one at dim 0 because this dataset's y is 1d</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        y = y.unsqueeze(0)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        x_node_feat = []</span>

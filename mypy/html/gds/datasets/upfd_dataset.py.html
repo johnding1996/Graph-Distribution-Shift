@@ -155,6 +155,15 @@
 <span id="L145" class="lineno"><a class="lineno" href="#L145">145</a></span>
 <span id="L146" class="lineno"><a class="lineno" href="#L146">146</a></span>
 <span id="L147" class="lineno"><a class="lineno" href="#L147">147</a></span>
+<span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
+<span id="L149" class="lineno"><a class="lineno" href="#L149">149</a></span>
+<span id="L150" class="lineno"><a class="lineno" href="#L150">150</a></span>
+<span id="L151" class="lineno"><a class="lineno" href="#L151">151</a></span>
+<span id="L152" class="lineno"><a class="lineno" href="#L152">152</a></span>
+<span id="L153" class="lineno"><a class="lineno" href="#L153">153</a></span>
+<span id="L154" class="lineno"><a class="lineno" href="#L154">154</a></span>
+<span id="L155" class="lineno"><a class="lineno" href="#L155">155</a></span>
+<span id="L156" class="lineno"><a class="lineno" href="#L156">156</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -166,7 +175,7 @@
 <span class="line-any" title="No Anys on this line!">import torch_geometric</span>
 <span class="line-precise" title="No Anys on this line!">from .pyg_upfd_dataset import PyGUPFDDataset</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.utils import to_dense_adj</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class UPFDDataset(GDSDataset):</span>
 <span class="line-precise" title="No Anys on this line!">    _dataset_name = 'UPFD'</span>
@@ -204,7 +213,7 @@ Unannotated (x7)
 Unimported (x1)">        self._split_array = torch.zeros(len(self.ogb_dataset)).long()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        self._y_array = self.ogb_dataset.data.y.unsqueeze(dim=-1)</span>
+Unannotated (x7)">        self._y_array = self.ogb_dataset.data.y.unsqueeze(-1)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        self._metadata_fields = ['size', 'y']</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -362,6 +371,10 @@ Unimported (x2)">            return torch.mm(deg_inv, torch.mm(adjacency, deg_in
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # The input samples is a list of pairs (graph, label).</span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">        node_feat_space = torch.tensor([8])</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
 Explicit (x17)">        graph_list, y_list, metadata_list = map(list, zip(*samples))</span>
 <span class="line-any" title="Any Types on this line: 
@@ -373,7 +386,7 @@ Unimported (x2)">        y, metadata = torch.tensor(y_list), torch.stack(metadat
 Unannotated (x4)">        y = y.unsqueeze(0)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        x_node_feat = []</span>
+Unannotated (x1)">        feat = []</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        for graph in graph_list:</span>
 <span class="line-any" title="Any Types on this line: 
@@ -383,30 +396,43 @@ Unimported (x1)">            adj = _sym_normalize_adj(to_dense_adj(graph.edge_in
 Unannotated (x4)
 Unimported (x1)">            zero_adj = torch.zeros_like(adj)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            in_dim = graph.x.shape[1]</span>
+Unannotated (x4)">            in_dim = node_feat_space.sum()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # use node feats to prepare adj</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
-Unimported (x1)">            adj_node_feat = torch.stack([zero_adj for _ in range(in_dim)])</span>
+Unimported (x1)">            adj_feat = torch.stack([zero_adj for _ in range(in_dim)])</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
-Unimported (x1)">            adj_node_feat = torch.cat([adj.unsqueeze(0), adj_node_feat], dim=0)</span>
+Unimported (x1)">            adj_feat = torch.cat([adj.unsqueeze(0), adj_feat], dim=0)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">            def convert(feature, space):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                out = []</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">                for i, label in enumerate(feature):</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)
+Unimported (x1)">                    out.append(F.one_hot(label, space[i]))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">                return torch.cat(out)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">            for node, node_feat in enumerate(graph.x):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                adj_node_feat[1:, node, node] = node_feat</span>
+Unannotated (x15)">                adj_feat[1:1 + node_feat_space.sum(), node, node] = convert(node_feat.unsqueeze(0), node_feat_space)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            x_node_feat.append(adj_node_feat)</span>
+Unannotated (x4)">            feat.append(adj_feat)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
-Unimported (x1)">        x_node_feat = torch.stack(x_node_feat)</span>
+Unimported (x1)">        feat = torch.stack(feat)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        return x_node_feat, y, metadata</span>
+Unannotated (x3)">        return feat, y, metadata</span>
 </pre></td>
 </tr></tbody>
 </table>
