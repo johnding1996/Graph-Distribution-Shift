@@ -32,6 +32,9 @@ class GNN(torch.nn.Module):
 
         super(GNN, self).__init__()
 
+        if self.gnn_type.endswith('layers') :
+            num_layers = int(self.gnn_type.split('_')[1])
+
         self.num_layers = num_layers
         self.dropout = dropout
         self.emb_dim = emb_dim

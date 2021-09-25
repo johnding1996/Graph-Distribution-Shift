@@ -4,6 +4,7 @@ from torch_geometric.nn import global_mean_pool
 from models.gnn import GNN
 from models.three_wl import ThreeWLGNNNet
 from models.gsn.gnn import GNN_GSN
+from models.mlp import MLP
 
 
 def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_pooled=True):
@@ -28,6 +29,14 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_p
                 model = (featurizer, classifier)
             else:
                 model = ThreeWLGNNNet(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
+        elif config.model == 'mlp' :
+            assert config.algorithm == 'ERM' # combinations with other algorithms not checked
+            if is_featurizer:
+                featurizer = MLP(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
+                classifier = nn.Linear(featurizer.d_out, d_out)
+                model = (featurizer, classifier)
+            else:
+                model = MLP(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
         else:
             if is_featurizer:
                 if is_pooled :

@@ -5,5 +5,7 @@ model_defaults = {
     'gcn_virtual':{},
     'cheb':{},
     'cheb_virtual':{},
-    '3wlgnn':{}
+    '3wlgnn':{},
+    'mlp':{},
+    'gin_15_layers':{}
 }
