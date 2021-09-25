@@ -35,6 +35,8 @@ algorithm_defaults = {
         'train_loader': 'standard',
         'uniform_over_groups': False,
         'eval_loader': 'standard',
+        'aug_type': 'node_drop',
+        'aug_ratio': 0.2 # 0.0 should be equiv to ERM
     },
     'DANN': {
         'train_loader': 'standard',
