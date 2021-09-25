@@ -92,6 +92,15 @@
 <span id="L82" class="lineno"><a class="lineno" href="#L82">82</a></span>
 <span id="L83" class="lineno"><a class="lineno" href="#L83">83</a></span>
 <span id="L84" class="lineno"><a class="lineno" href="#L84">84</a></span>
+<span id="L85" class="lineno"><a class="lineno" href="#L85">85</a></span>
+<span id="L86" class="lineno"><a class="lineno" href="#L86">86</a></span>
+<span id="L87" class="lineno"><a class="lineno" href="#L87">87</a></span>
+<span id="L88" class="lineno"><a class="lineno" href="#L88">88</a></span>
+<span id="L89" class="lineno"><a class="lineno" href="#L89">89</a></span>
+<span id="L90" class="lineno"><a class="lineno" href="#L90">90</a></span>
+<span id="L91" class="lineno"><a class="lineno" href="#L91">91</a></span>
+<span id="L92" class="lineno"><a class="lineno" href="#L92">92</a></span>
+<span id="L93" class="lineno"><a class="lineno" href="#L93">93</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch.nn as nn</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import global_mean_pool</span>
@@ -99,6 +108,7 @@
 <span class="line-any" title="No Anys on this line!">from models.gnn import GNN</span>
 <span class="line-any" title="No Anys on this line!">from models.three_wl import ThreeWLGNNNet</span>
 <span class="line-any" title="No Anys on this line!">from models.gsn.gnn import GNN_GSN</span>
+<span class="line-any" title="No Anys on this line!">from models.mlp import MLP</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_pooled=True):</span>
@@ -133,6 +143,24 @@ Unannotated (x3)">                model = (featurizer, classifier)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
 Unimported (x1)">                model = ThreeWLGNNNet(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        elif config.model == 'mlp' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            assert config.algorithm == 'ERM' # combinations with other algorithms not checked</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            if is_featurizer:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">                featurizer = MLP(gnn_type=config.model, num_tasks=None, **config.model_kwargs)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)
+Unimported (x1)">                classifier = nn.Linear(featurizer.d_out, d_out)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">                model = (featurizer, classifier)</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">                model = MLP(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            if is_featurizer:</span>

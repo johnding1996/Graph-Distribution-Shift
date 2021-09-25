@@ -44,6 +44,14 @@ experiments.models.layers module
    :undoc-members:
    :show-inheritance:
 
+experiments.models.mlp module
+-----------------------------
+
+.. automodule:: experiments.models.mlp
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 experiments.models.three\_wl module
 -----------------------------------
 

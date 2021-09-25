@@ -337,6 +337,9 @@
 <span id="L327" class="lineno"><a class="lineno" href="#L327">327</a></span>
 <span id="L328" class="lineno"><a class="lineno" href="#L328">328</a></span>
 <span id="L329" class="lineno"><a class="lineno" href="#L329">329</a></span>
+<span id="L330" class="lineno"><a class="lineno" href="#L330">330</a></span>
+<span id="L331" class="lineno"><a class="lineno" href="#L331">331</a></span>
+<span id="L332" class="lineno"><a class="lineno" href="#L332">332</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -374,6 +377,11 @@ Unannotated (x2)">        self.dataset_group = dataset_group</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        super(GNN, self).__init__()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        if self.gnn_type.endswith('layers') :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            num_layers = int(self.gnn_type.split('_')[1])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.num_layers = num_layers</span>
