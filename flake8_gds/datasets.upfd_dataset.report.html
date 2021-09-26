@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
    </head>
    <body>
-      <div id="masthead" class="sev-1"></div>
+      <div id="masthead" class="sev-2"></div>
       <div id="page">
          <p id="srclink">
             <a title="View full annotated source"
@@ -50,49 +50,13 @@ window.addEventListener('DOMContentLoaded', function () {
          <ul id="index">
          
          <li>
-            <a data-code="F401">
-               <span class="count sev-1">
-                  1
-               </span>
-               <strong>F401:</strong> 'ogb.graphproppred.Evaluator' imported but unused
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="datasets.upfd_dataset.source.html#l5">
-                  <tt><i>5</i> <span class="kn">from</span> <span class="nn">ogb.graphproppred</span> <span class="kn">import</span> <span class="n">Evaluator</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="F841">
-               <span class="count sev-1">
-                  1
-               </span>
-               <strong>F841:</strong> local variable 'input_dict' is assigned to but never used
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="datasets.upfd_dataset.source.html#l109">
-                  <tt><i>109</i>         <span class="n">input_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">}</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  20
+                  19
                </span>
                <strong>E501:</strong> line too long (114 > 79 characters)
                
-                  (and 18 similar)
+                  (and 17 similar)
                
             </a>
             <ul class="details">
@@ -198,43 +162,59 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (91 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l100">
-                  <tt><i>100</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l101">
+                  <tt><i>101</i> <span class="sd">            - prediction_fn (function): A function that turns y_pred into predicted labels.</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (106 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l101">
-                  <tt><i>101</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (121 > 79 characters):</p>
-               
-               <a href="datasets.upfd_dataset.source.html#l106">
-                  <tt><i>106</i>         <span class="k">assert</span> <span class="n">prediction_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted&quot;</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l102">
+                  <tt><i>102</i> <span class="sd">                                        Only None is supported because OGB Evaluators accept binary logits</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (89 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l119">
-                  <tt><i>119</i>             <span class="n">deg_inv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">deg</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">deg</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l124">
+                  <tt><i>124</i>             <span class="n">deg_inv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">deg</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">deg</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (109 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l134">
-                  <tt><i>134</i>             <span class="n">adj</span> <span class="o">=</span> <span class="n">_sym_normalize_adj</span><span class="p">(</span><span class="n">to_dense_adj</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">max_num_nodes</span><span class="o">=</span><span class="n">graph</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l139">
+                  <tt><i>139</i>             <span class="n">adj</span> <span class="o">=</span> <span class="n">_sym_normalize_adj</span><span class="p">(</span><span class="n">to_dense_adj</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">max_num_nodes</span><span class="o">=</span><span class="n">graph</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (116 > 79 characters):</p>
                
-               <a href="datasets.upfd_dataset.source.html#l149">
-                  <tt><i>149</i>                 <span class="n">adj_feat</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span> <span class="o">+</span> <span class="n">node_feat_space</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">node_feat</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">node_feat_space</span><span class="p">)</span></tt>
+               <a href="datasets.upfd_dataset.source.html#l154">
+                  <tt><i>154</i>                 <span class="n">adj_feat</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span> <span class="o">+</span> <span class="n">node_feat_space</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">node_feat</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">node_feat_space</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.upfd_dataset.source.html#l81">
+                  <tt><i>81</i>         <span class="k">if</span> <span class="n">dataset_kwargs</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;3wlgnn&#39;</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.upfd_dataset.source.html#l161">
+                  <tt><i>161</i>         <span class="k">return</span> <span class="n">feat</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">metadata</span></tt>
                </a>
             </li>
             </ul>
@@ -252,12 +232,35 @@ window.addEventListener('DOMContentLoaded', function () {
             <li>
                
                <a href="datasets.upfd_dataset.source.html#l107">
-                  <tt><i>107</i>         <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        </tt>
+                  <tt><i>107</i>         <span class="c1"># y_true = y_true.view(-1, 1)        </span></tt>
                </a>
             </li><li>
                
                <a href="datasets.upfd_dataset.source.html#l110">
-                  <tt><i>110</i>         <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_true</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>       </tt>
+                  <tt><i>110</i>         <span class="c1"># acc = (y_pred == y_true).sum() / len(y_pred)       </span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.upfd_dataset.source.html#l75">
+                  <tt><i>75</i>        </tt>
+               </a>
+            </li><li>
+               
+               <a href="datasets.upfd_dataset.source.html#l79">
+                  <tt><i>79</i>        </tt>
                </a>
             </li>
             </ul>
@@ -276,42 +279,6 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <a href="datasets.upfd_dataset.source.html#l13">
                   <tt><i>13</i> <span class="k">class</span> <span class="nc">UPFDDataset</span><span class="p">(</span><span class="n">GDSDataset</span><span class="p">):</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E303">
-               <span class="count sev-2">
-                  1
-               </span>
-               <strong>E303:</strong> too many blank lines (2)
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="datasets.upfd_dataset.source.html#l156">
-                  <tt><i>156</i>         <span class="k">return</span> <span class="n">feat</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">metadata</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="W293">
-               <span class="count sev-2">
-                  1
-               </span>
-               <strong>W293:</strong> blank line contains whitespace
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="datasets.upfd_dataset.source.html#l75">
-                  <tt><i>75</i>        </tt>
                </a>
             </li>
             </ul>

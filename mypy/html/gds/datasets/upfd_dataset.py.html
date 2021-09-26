@@ -164,6 +164,11 @@
 <span id="L154" class="lineno"><a class="lineno" href="#L154">154</a></span>
 <span id="L155" class="lineno"><a class="lineno" href="#L155">155</a></span>
 <span id="L156" class="lineno"><a class="lineno" href="#L156">156</a></span>
+<span id="L157" class="lineno"><a class="lineno" href="#L157">157</a></span>
+<span id="L158" class="lineno"><a class="lineno" href="#L158">158</a></span>
+<span id="L159" class="lineno"><a class="lineno" href="#L159">159</a></span>
+<span id="L160" class="lineno"><a class="lineno" href="#L160">160</a></span>
+<span id="L161" class="lineno"><a class="lineno" href="#L161">161</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -299,6 +304,7 @@ Unannotated (x2)">        self._split_array[train_split_idx] = 0</span>
 Unannotated (x2)">        self._split_array[val_split_idx] = 1</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._split_array[test_split_idx] = 2</span>
+<span class="line-empty" title="No Anys on this line!">       </span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        if dataset_kwargs['model'] == '3wlgnn':</span>
@@ -315,7 +321,9 @@ Unimported (x1)">                self._collate = PyGCollater(follow_batch=[], ex
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Unimported (x1)">                self._collate = PyGCollater(follow_batch=[])</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self._metric = Evaluator('ogbg-molhiv')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -336,22 +344,22 @@ Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
 <span class="line-empty" title="No Anys on this line!">            - results (dictionary): Dictionary of evaluation metrics</span>
 <span class="line-empty" title="No Anys on this line!">            - results_str (str): String summarizing the evaluation metrics</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
+<span class="line-empty" title="No Anys on this line!">        # y_true = y_true.view(-1, 1)        </span>
+<span class="line-empty" title="No Anys on this line!">        # y_pred = (y_pred &gt; 0).long().view(-1, 1)</span>
+<span class="line-empty" title="No Anys on this line!">        # input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
+<span class="line-empty" title="No Anys on this line!">        # acc = (y_pred == y_true).sum() / len(y_pred)       </span>
+<span class="line-empty" title="No Anys on this line!">        # results = {'acc': np.float(acc)}</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # return results, f"Accuracy: {acc:.3f}\n"</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        y_true = y_true.view(-1, 1)        </span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        y_pred = (y_pred &gt; 0).long().view(-1, 1)</span>
+Unannotated (x1)">        assert prediction_fn is None</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        acc = (y_pred == y_true).sum() / len(y_pred)       </span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">        results = {'acc': np.float(acc)}</span>
+Unannotated (x5)">        results = self._metric.eval(input_dict)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">        return results, f"Accuracy: {acc:.3f}\n"</span>
+Unannotated (x7)">        return results, f"ROCAUC: {results['rocauc']:.3f}\n"</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN</span>
 <span class="line-any" title="No Anys on this line!">    def collate_dense(self, samples):</span>

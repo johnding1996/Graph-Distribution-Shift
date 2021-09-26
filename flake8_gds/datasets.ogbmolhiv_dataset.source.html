@@ -704,7 +704,22 @@
                class="code sev- "><tt><i>164</i>         <span class="n">input_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">}</span></tt>
             </div>
             <div id="l165"
-               class="code sev- "><tt><i>165</i> &nbsp;</tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E702
+                     </span>
+                     Multiple statements on one line (semicolon)</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E231
+                     </span>
+                     Missing whitespace after ';'</li>
+               
+               </ul><tt><i>165</i>         <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
             </div>
             <div id="l166"
                class="code sev- "><tt><i>166</i>         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">input_dict</span><span class="p">)</span></tt>
