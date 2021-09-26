@@ -76,6 +76,7 @@ class UPFDDataset(GDSDataset):
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1
         self._split_array[test_split_idx] = 2
+       
 
         if dataset_kwargs['model'] == '3wlgnn':
             self._collate = self.collate_dense
@@ -84,7 +85,7 @@ class UPFDDataset(GDSDataset):
                 self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
             else:
                 self._collate = PyGCollater(follow_batch=[])
-
+        self._metric = Evaluator('ogbg-molhiv')
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):
@@ -103,14 +104,18 @@ class UPFDDataset(GDSDataset):
             - results (dictionary): Dictionary of evaluation metrics
             - results_str (str): String summarizing the evaluation metrics
         """
-        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"
-        y_true = y_true.view(-1, 1)        
-        y_pred = (y_pred > 0).long().view(-1, 1)
-        input_dict = {"y_true": y_true, "y_pred": y_pred}
-        acc = (y_pred == y_true).sum() / len(y_pred)       
-        results = {'acc': np.float(acc)}
+        # y_true = y_true.view(-1, 1)        
+        # y_pred = (y_pred > 0).long().view(-1, 1)
+        # input_dict = {"y_true": y_true, "y_pred": y_pred}
+        # acc = (y_pred == y_true).sum() / len(y_pred)       
+        # results = {'acc': np.float(acc)}
 
-        return results, f"Accuracy: {acc:.3f}\n"
+        # return results, f"Accuracy: {acc:.3f}\n"
+        assert prediction_fn is None
+        input_dict = {"y_true": y_true, "y_pred": y_pred}
+        results = self._metric.eval(input_dict)
+
+        return results, f"ROCAUC: {results['rocauc']:.3f}\n"
 
     # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
     def collate_dense(self, samples):

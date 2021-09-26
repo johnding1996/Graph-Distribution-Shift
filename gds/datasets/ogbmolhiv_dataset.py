@@ -162,7 +162,7 @@ class OGBHIVDataset(GDSDataset):
         """
         assert prediction_fn is None, "OGBHIVDataset.eval() does not support prediction_fn. Only binary logits accepted"
         input_dict = {"y_true": y_true, "y_pred": y_pred}
-
+        import pdb;pdb.set_trace()
         results = self._metric.eval(input_dict)
 
         return results, f"ROCAUC: {results['rocauc']:.3f}\n"
