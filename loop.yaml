@@ -1,0 +1,134 @@
+apiVersion: kubeflow.org/v1beta1
+kind: Experiment
+metadata:
+  name: jiuhai-experiment01
+  namespace: default
+spec:
+  maxTrialCount: 64
+  parallelTrialCount: 64
+  maxFailedTrialCount: 32
+  resumePolicy: LongRunning
+  objective:
+    type: minimize
+    goal: -10000
+    objectiveMetricName: objective
+    additionalMetricNames:
+      - rocauc
+  algorithm:
+    algorithmName: grid
+    algorithmSettings: []
+  parameters:
+    - name: seed
+      parameterType: int
+      feasibleSpace:
+        min: '1'
+        max: '3'
+        step: '1'
+    - name: dataset
+      parameterType: categorical
+      feasibleSpace:
+        list:
+          - ogb-molpcba
+          - ogb-molhiv
+          - ogbg-ppa
+          - UPFD
+          - SBM-Isolation
+          - SBM-Environment
+          - RotatedMNIST
+          - ColoredMNIST
+    - name: algorithm
+      parameterType: categorical
+      feasibleSpace:
+        list:
+          - ERM
+          - groupDRO
+          - IRM
+          - deepCORAL
+          - FLAG
+          - MLDG
+          - DANN
+          - DANN-G
+    - name: modelname
+      parameterType: categorical
+      feasibleSpace:
+        list:
+          - gin
+  metricsCollectorSpec:
+    collector:
+      kind: File
+    source:
+      filter:
+        metricsFormat:
+          - ([\w|-]+)\s*:\s*((-?\d+)(\.\d+)?)
+      fileSystemPath:
+        path: /tmp/output.log
+        kind: File
+  trialTemplate:
+    primaryContainerName: training-container
+    successCondition: status.conditions.#(type=="Complete")#|#(status=="True")#
+    failureCondition: status.conditions.#(type=="Failed")#|#(status=="True")#
+    retain: false
+    trialParameters:
+      - name: dataset
+        reference: dataset
+        description: ''
+      - name: modelname
+        reference: modelname
+        description: ''
+      - name: algorithm
+        reference: algorithm
+        description: ''
+      - name: seed
+        reference: seed
+        description: ''
+    trialSpec:
+      apiVersion: batch/v1
+      kind: Job
+      metadata:
+        generateName: jiuhai-gpu-pod
+      spec:
+        template:
+          spec:
+            serviceAccountName: dgl-s3-user
+            restartPolicy: Never
+            volumes:
+              - name: asail-data # This is a fsx folder on the cluster, which has high performance
+                persistentVolumeClaim:
+                  claimName: asail-k8s-data-claim
+            affinity:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                    - matchExpressions:
+                        - key: beta.kubernetes.io/instance-type
+                          operator: In
+                          values:
+                            - g4dn.4xlarge
+                            - g4dn.8xlarge
+                            - g4dn.12xlarge
+                            - g4dn.metal
+            containers:
+              - name: training-container
+                image: public.ecr.aws/s1o7b3d9/asail-public-dev:jiuhai-pytorch1.8-cuda10.2
+                args:
+                  - "bash"
+                  - "-c"
+                  - |
+                    git clone https://JiuhaiChen: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@github.com/johnding1996/Graph-Distribution-Shift.git         
+                    cd Graph-Distribution-Shift
+                    rm .python-version
+                    pip install -e .
+                    ln -s /data/jiuhai/s3data/data data
+                    ln -s /data/jiuhai/s3data/logs logs
+                    mkdir tmp
+                    python experiments/run_expt.py  --dataset ${trialParameters.dataset}   --algorithm ${trialParameters.algorithm} --model ${trialParameters.modelname} --root_dir data --n_epochs 300  --seed ${trialParameters.seed} 2>&1 | tee /tmp/output.log 
+                    cp  /tmp/output.log  /data/jiuhai/s3data/logs/output_${trialParameters.dataset}_${trialParameters.algorithm}_${trialParameters.modelname}_${trialParameters.seed}.log    \
+                resources:
+                  # reequests:
+                  #   memory: 1000Mi
+                  limits:
+                    nvidia.com/gpu: 1
+                    # memory: 1000Mi
+                volumeMounts:
+                  - name: asail-data
+                    mountPath: /data
