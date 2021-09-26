@@ -254,7 +254,7 @@
                class="code sev- "><tt><i>55</i>             <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">dataset_size</span><span class="p">)</span></tt>
             </div>
             <div id="l56"
-               class="code sev- "><tt><i>56</i>             <span class="n">train_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">)]</span></tt>
+               class="code sev- "><tt><i>56</i>             <span class="n">train_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">)]</span></tt>
             </div>
             <div id="l57"
                class="code sev-2  le">
@@ -266,10 +266,10 @@
                      </span>
                      Line too long (93 > 79 characters)</li>
                
-               </ul><tt><i>57</i>             <span class="n">val_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">)]</span></tt>
+               </ul><tt><i>57</i>             <span class="n">val_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">)]</span></tt>
             </div>
             <div id="l58"
-               class="code sev- "><tt><i>58</i>             <span class="n">test_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">5</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">):]</span></tt>
+               class="code sev- "><tt><i>58</i>             <span class="n">test_split_idx</span> <span class="o">=</span> <span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">dataset_size</span><span class="p">):]</span></tt>
             </div>
             <div id="l59"
                class="code sev- "><tt><i>59</i>         <span class="k">else</span><span class="p">:</span></tt>
@@ -374,7 +374,7 @@
                      </span>
                      Line too long (98 > 79 characters)</li>
                
-               </ul><tt><i>75</i>             <span class="n">train_split_idx</span> <span class="o">=</span> <span class="n">train_val_split_idx</span><span class="p">[</span><span class="n">random_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">train_val_sets_size</span><span class="p">)]]</span></tt>
+               </ul><tt><i>75</i>             <span class="n">train_split_idx</span> <span class="o">=</span> <span class="n">train_val_split_idx</span><span class="p">[</span><span class="n">random_index</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">train_val_sets_size</span><span class="p">)]]</span></tt>
             </div>
             <div id="l76"
                class="code sev-2  le">
@@ -386,7 +386,7 @@
                      </span>
                      Line too long (96 > 79 characters)</li>
                
-               </ul><tt><i>76</i>             <span class="n">val_split_idx</span> <span class="o">=</span> <span class="n">train_val_split_idx</span><span class="p">[</span><span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">train_val_sets_size</span><span class="p">):]]</span></tt>
+               </ul><tt><i>76</i>             <span class="n">val_split_idx</span> <span class="o">=</span> <span class="n">train_val_split_idx</span><span class="p">[</span><span class="n">random_index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">train_val_sets_size</span><span class="p">):]]</span></tt>
             </div>
             <div id="l77"
                class="code sev- "><tt><i>77</i> &nbsp;</tt>

@@ -248,11 +248,11 @@ Unannotated (x1)">        if random_split:</span>
 Unannotated (x5)
 Unimported (x1)">            random_index = np.random.permutation(dataset_size)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            train_split_idx = random_index[:int(4 / 6 * dataset_size)]</span>
+Unannotated (x7)">            train_split_idx = random_index[:int(3 / 6 * dataset_size)]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x11)">            val_split_idx = random_index[int(4 / 6 * dataset_size):int(5 / 6 * dataset_size)]</span>
+Unannotated (x11)">            val_split_idx = random_index[int(3 / 6 * dataset_size):int(4 / 6 * dataset_size)]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">            test_split_idx = random_index[int(5 / 6 * dataset_size):]</span>
+Unannotated (x7)">            test_split_idx = random_index[int(4 / 6 * dataset_size):]</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-empty" title="No Anys on this line!">            # use the group info split data</span>
 <span class="line-any" title="Any Types on this line: 
@@ -285,9 +285,9 @@ Unannotated (x3)">            train_val_sets_size = len(train_val_split_idx)</sp
 Unannotated (x5)
 Unimported (x1)">            random_index = np.random.permutation(train_val_sets_size)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">            train_split_idx = train_val_split_idx[random_index[:int(4 / 5 * train_val_sets_size)]]</span>
+Unannotated (x9)">            train_split_idx = train_val_split_idx[random_index[:int(3 / 4 * train_val_sets_size)]]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">            val_split_idx = train_val_split_idx[random_index[int(4 / 5 * train_val_sets_size):]]</span>
+Unannotated (x9)">            val_split_idx = train_val_split_idx[random_index[int(3 / 4 * train_val_sets_size):]]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self._split_array[train_split_idx] = 0</span>
