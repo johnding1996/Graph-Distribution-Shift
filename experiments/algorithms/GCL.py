@@ -8,7 +8,12 @@ from utils import move_to
 class GCL(SingleModelAlgorithm):
     def __init__(self, config, d_out, grouper, loss,
                  metric, n_train_steps):
-        model = initialize_model(config, d_out).to(config.device)
+        # model = initialize_model(config, d_out).to(config.device)
+        featurizer, projector, classifier, combined_model = initialize_model(config, d_out, is_featurizer=True, include_projector=True)
+        featurizer = featurizer.to(config.device)
+        projector = projector.to(config.device)
+        classifier = classifier.to(config.device)
+        model = combined_model.to(config.device)
         # initialize module
         super().__init__(
             config=config,
@@ -18,9 +23,20 @@ class GCL(SingleModelAlgorithm):
             metric=metric,
             n_train_steps=n_train_steps,
         )
-        # If ratio is 0.0, should be equiv to ERM
+        # algorithm hyperparameters
+        self.use_cl = config.use_cl
         self.aug_type = config.aug_type
+        # If use_cl=False and aug_ratio is 0.0, should be equiv to ERM
         self.aug_ratio = config.aug_ratio
+        # set model components
+        self.featurizer = featurizer
+        self.projector = projector
+        self.classifier = classifier
+        # self.model = model #set by base class I think
+
+        # additional logging, copied from deepCORAL, 
+        # but throws error at end of epoch bc its "missing"
+        # self.logged_fields.append('gsimclr_loss')
 
     def drop_nodes(self, data):
         """
@@ -136,17 +152,29 @@ class GCL(SingleModelAlgorithm):
 
     def extract_subgraph(self, data):
         """
-        TODO
+        TODO Would be nice to have the 3rd, as they all model distinct
+        ways of conceptualizing types of graph 'semantemes'
+
         paper uses a random walk to generate a subgraph of nodes
         """
         raise NotImplementedError
 
-    def weighted_drop_nodes(self, data):
-        """
-        same as drop nodes but instead of uniform drop over nodes
-        weighting of drop by degree of node
-        """
-        raise NotImplementedError
+    def gsimclr_loss(self, z1, z2):
+        # Temporarily put here in framework to minimize sprawl of changes
+        # z1 and z2 are the projector embeddings for a pair of graphs
+        # See Appendix A Algo 1 https://yyou1996.github.io/files/neurips2020_graphcl_supplement.pdf
+        # Code from: https://github.com/Shen-Lab/GraphCL/blob/d857849d51bb168568267e07007c0b0c8bb6d869/transferLearning_MoleculeNet_PPI/bio/pretrain_graphcl.py#L57
+        T = 0.1
+        batch_size, _ = z1.size()
+        z1_abs = z1.norm(dim=1)
+        z2_abs = z2.norm(dim=1)
+
+        sim_matrix = torch.einsum('ik,jk->ij', z1, z2) / torch.einsum('i,j->ij', z1_abs, z2_abs)
+        sim_matrix = torch.exp(sim_matrix / T)
+        pos_sim = sim_matrix[range(batch_size), range(batch_size)]
+        loss = pos_sim / (sim_matrix.sum(dim=1) - pos_sim)
+        loss = - torch.log(loss).mean()
+        return loss
 
     def update(self, batch):
 
@@ -172,12 +200,52 @@ class GCL(SingleModelAlgorithm):
         else:
             raise NotImplementedError
 
-        # Unpack batch of graphs and apply augmentation 
+        #######################################################################
+        # NOTE How the augmentations are applied in GCL paper codebase...
+        #######################################################################
+        # 1) In one version of the pretraining reference code, 
+        # augmentations are applied in the get(idx) method of 
+        # the PyG InMemoryDataset subclass being used. This then always returns
+        # the pair of data objects, data, data_aug 
+        # See: https://github.com/Shen-Lab/GraphCL/blob/e9e598d478d4a4bff94a3e95a078569c028f1d88/unsupervised_TU/aug.py#L203
+        # 2) In a second version, there are 2 dataloaders created and zipped
+        # and since they are not shuffled, the orig and augmented graphs are aligned
+        # See: https://github.com/Shen-Lab/GraphCL/blob/d857849d51bb168568267e07007c0b0c8bb6d869/transferLearning_MoleculeNet_PPI/chem/pretrain_graphcl.py#L80
+        # Thus ... with a two argument loss fn gsimclr_loss(z1, z2), and nice
+        # formulation using einsum and subtracting of the diagonal to separate out
+        # positive pairs from negative pairs, you can compute the contrastive loss
+
+        # Currently we have the node dropping and edge permuting augmentations
+        # implemented, with intention to add subgraph if time allows/useful.
+        # See the permute edges function for commentary on the way the original
+        # edge permutation was implemented.
+
+        # For shortest path to implementation in this framework as it stands,
+        # we're going to start by just applying the augmentation here in line, 
+        # after the dataloader has returned a batch of graphs, however
+        # initial intuition is that this might be pretty inefficient since it can't
+        # be parallelized by the dataloader workers ... instead it's blocking 
+        # during training, though, the computations are all torch or native python
+        #######################################################################
+
+        # if not "use_cl" unpack batch of graphs and apply augmentation 
         # to each graph, in place
+        # TODO, if "use_cl" create orig, aug pairs,
+        # extract features,projections,outputs
+        # h1, h2, z1, z2, y_pred1, y_pred2
+        # then modify opjective to call new gsimclr loss
+
         graphs = x.to_data_list()
         for i in range(len(graphs)): 
             aug_fn(graphs[i])
         x = Batch.from_data_list(graphs)
+
+        # placeholder
+        gsimclr_loss = 0.
+        if isinstance(gsimclr_loss, torch.Tensor):
+            results['gsimclr_loss'] = gsimclr_loss.item()
+        else:
+            results['gsimclr_loss'] = gsimclr_loss
         
         # Continue as with other methods/ERM
         outputs = self.model(x)
@@ -200,7 +268,8 @@ class GCL(SingleModelAlgorithm):
 
         # log results
         self.update_log(results)
-        return self.sanitize_dict(results)
+        sanitized =  self.sanitize_dict(results)
+        return sanitized
 
     def objective(self, results):
         return self.loss.compute(results['y_pred'], results['y_true'], return_dict=False)

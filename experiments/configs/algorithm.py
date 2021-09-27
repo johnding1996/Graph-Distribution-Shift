@@ -35,6 +35,7 @@ algorithm_defaults = {
         'train_loader': 'standard',
         'uniform_over_groups': False,
         'eval_loader': 'standard',
+        'use_cl': False,
         'aug_type': 'edge_perm', #'node_drop', can only use a single aug_type currently
         'aug_ratio': 0.2 # 0.0 should be equiv to ERM
     },

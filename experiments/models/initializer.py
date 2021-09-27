@@ -7,7 +7,7 @@ from models.gsn.gnn import GNN_GSN
 from models.mlp import MLP
 
 
-def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_pooled=True):
+def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_pooled=True, include_projector=False):
     """
     Initializes models according to the config
         Args:
@@ -77,13 +77,30 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_p
                             d_degree=full_dataset.d_degree,
                             dataset_group=config.model_kwargs['dataset_group'])
 
+    # The projector head is used to construct the inputs to
+    # the similarity loss function for GCL, based on simclr
+    # Assumes from above is model=(featurizer, classifier)
+    # Usage of (featurizer, projector, classifier) in 
+    # GCL algorithm class will be similar to deepCORAL
+    if include_projector: 
+        assert config.algorithm == 'GCL', 'The projector component ' \
+                                          'is only used with GCL'
+        assert is_featurizer, 'Need pre-packing of (featurizer, classifier) ' \
+                              'into model to add projector'
+        assert is_pooled, 'Expects only (featurizer, classifier), ' \
+                          'not (featurizer, pooler, classifier), i.e. whole graph embeddings'
+        graph_embedding_dim = featurizer.d_out
+        projector = nn.Sequential(nn.Linear(graph_embedding_dim, graph_embedding_dim), nn.ReLU(inplace=True), nn.Linear(graph_embedding_dim, graph_embedding_dim))
+        featurizer, classifier = model
+        model = (featurizer, projector, classifier, nn.Sequential(featurizer, classifier))
+    
     # The `needs_y` attribute specifies whether the model's forward function
     # needs to take in both (x, y).
     # If False, Algorithm.process_batch will call model(x).
     # If True, Algorithm.process_batch() will call model(x, y) during training,
     # and model(x, None) during eval.
     if not hasattr(model, 'needs_y'):
-        # Sometimes model is a tuple of (featurizer, classifier)
+        # Sometimes model is a tuple of (featurizer, classifier, ...)
         if isinstance(model, tuple):
             for submodel in model:
                 submodel.needs_y = False
