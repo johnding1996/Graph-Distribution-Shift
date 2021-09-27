@@ -320,6 +320,8 @@
 <span id="L310" class="lineno"><a class="lineno" href="#L310">310</a></span>
 <span id="L311" class="lineno"><a class="lineno" href="#L311">311</a></span>
 <span id="L312" class="lineno"><a class="lineno" href="#L312">312</a></span>
+<span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
+<span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import copy</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -390,11 +392,17 @@ Unannotated (x3)">        emb_dim = self.featurizer.d_out</span>
 Unannotated (x11)
 Unimported (x2)">        self.discriminator = torch.nn.Sequential(torch.nn.Linear(emb_dim, emb_dim),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x2)">                                  torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),</span>
+Unannotated (x3)
+Unimported (x1)">                                                 torch.nn.ReLU(),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">                                                 torch.nn.Linear(emb_dim, emb_dim),</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">                                                 torch.nn.ReLU(),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
-Unimported (x1)">                                  torch.nn.Linear(emb_dim, config.num_domains)).to(config.device)</span>
+Unimported (x1)">                                                 torch.nn.Linear(emb_dim, config.num_domains)).to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
 Unimported (x1)">        self.class_embeddings = torch.nn.Embedding(num_classes,</span>
