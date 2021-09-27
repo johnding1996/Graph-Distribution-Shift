@@ -1523,31 +1523,34 @@
                class="code sev- "><tt><i>305</i>     <span class="n">finish</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span></tt>
             </div>
             <div id="l306"
-               class="code sev- "><tt><i>306</i>     <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;time(s): </span><span class="si">{</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>306</i>     <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">eval_only</span><span class="p">:</span></tt>
             </div>
             <div id="l307"
-               class="code sev- "><tt><i>307</i>     <span class="n">logger</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>307</i>         <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;time(s): </span><span class="si">{</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l308"
-               class="code sev- "><tt><i>308</i>     <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>308</i>     <span class="n">logger</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></tt>
             </div>
             <div id="l309"
-               class="code sev- "><tt><i>309</i>         <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="s1">&#39;eval_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>309</i>     <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span></tt>
             </div>
             <div id="l310"
-               class="code sev- "><tt><i>310</i>         <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="s1">&#39;algo_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>310</i>         <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="s1">&#39;eval_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></tt>
             </div>
             <div id="l311"
-               class="code sev- "><tt><i>311</i> &nbsp;</tt>
+               class="code sev- "><tt><i>311</i>         <span class="n">datasets</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="s1">&#39;algo_logger&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></tt>
             </div>
             <div id="l312"
                class="code sev- "><tt><i>312</i> &nbsp;</tt>
             </div>
             <div id="l313"
-               class="code sev- "><tt><i>313</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>313</i> &nbsp;</tt>
             </div>
             <div id="l314"
-               class="code sev- "><tt><i>314</i>     <span class="n">main</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>314</i> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span></tt>
+            </div>
+            <div id="l315"
+               class="code sev- "><tt><i>315</i>     <span class="n">main</span><span class="p">()</span></tt>
             </div>
             
          </div>

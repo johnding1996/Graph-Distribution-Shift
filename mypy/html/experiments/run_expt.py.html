@@ -322,6 +322,7 @@
 <span id="L312" class="lineno"><a class="lineno" href="#L312">312</a></span>
 <span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
 <span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
+<span id="L315" class="lineno"><a class="lineno" href="#L315">315</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -861,7 +862,9 @@ Unimported (x1)">        close_wandb(wandb_runner)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    finish = time.time()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">    logger.write(f'time(s): {finish-start:.3f}\n')</span>
+Unannotated (x2)">    if not config.eval_only:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x10)">        logger.write(f'time(s): {finish-start:.3f}\n')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    logger.close()</span>
 <span class="line-any" title="Any Types on this line: 
