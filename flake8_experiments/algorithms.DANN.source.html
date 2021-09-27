@@ -65,7 +65,7 @@
                class="code sev- "><tt><i>13</i> &nbsp;</tt>
             </div>
             <div id="l14"
-               class="code sev- "><tt><i>14</i>     <span class="c1"># def __init__(self, input_shape, num_classes, num_domains,</span></tt>
+               class="code sev- "><tt><i>14</i>     <span class="c1"># def __init__(self, input_shape, num_classes, num_train_domains,</span></tt>
             </div>
             <div id="l15"
                class="code sev- "><tt><i>15</i>     <span class="c1">#              hparams, conditional, class_balance):</span></tt>
@@ -137,7 +137,13 @@
                      </span>
                      At least two spaces before inline comment</li>
                
-               </ul><tt><i>32</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>32</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
             </div>
             <div id="l33"
                class="code sev- "><tt><i>33</i> &nbsp;</tt>
@@ -210,9 +216,9 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (112 > 79 characters)</li>
+                     Line too long (118 > 79 characters)</li>
                
-               </ul><tt><i>48</i>                                                  <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               </ul><tt><i>48</i>                                                  <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
             <div id="l49"
                class="code sev- "><tt><i>49</i>         <span class="bp">self</span><span class="o">.</span><span class="n">class_embeddings</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span></tt>
@@ -614,7 +620,7 @@
                class="code sev- "><tt><i>160</i> &nbsp;</tt>
             </div>
             <div id="l161"
-               class="code sev- "><tt><i>161</i>     <span class="c1"># def __init__(self, input_shape, num_classes, num_domains,</span></tt>
+               class="code sev- "><tt><i>161</i>     <span class="c1"># def __init__(self, input_shape, num_classes, num_train_domains,</span></tt>
             </div>
             <div id="l162"
                class="code sev- "><tt><i>162</i>     <span class="c1">#              hparams, conditional, class_balance):</span></tt>
@@ -698,7 +704,13 @@
                      </span>
                      At least two spaces before inline comment</li>
                
-               </ul><tt><i>180</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (85 > 79 characters)</li>
+               
+               </ul><tt><i>180</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
             </div>
             <div id="l181"
                class="code sev- "><tt><i>181</i> &nbsp;</tt>
@@ -780,9 +792,9 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (95 > 79 characters)</li>
+                     Line too long (101 > 79 characters)</li>
                
-               </ul><tt><i>196</i>         <span class="bp">self</span><span class="o">.</span><span class="n">discriminator_mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               </ul><tt><i>196</i>         <span class="bp">self</span><span class="o">.</span><span class="n">discriminator_mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
             <div id="l197"
                class="code sev- "><tt><i>197</i>         <span class="c1"># self.discriminator_mlp = torch.nn.Sequential(</span></tt>
@@ -810,9 +822,9 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (82 > 79 characters)</li>
+                     Line too long (88 > 79 characters)</li>
                
-               </ul><tt><i>200</i>         <span class="c1">#                             torch.nn.Linear(emb_dim, config.num_domains)</span></tt>
+               </ul><tt><i>200</i>         <span class="c1">#                             torch.nn.Linear(emb_dim, config.num_train_domains)</span></tt>
             </div>
             <div id="l201"
                class="code sev- "><tt><i>201</i>         <span class="c1">#                         ).to(config.device)</span></tt>

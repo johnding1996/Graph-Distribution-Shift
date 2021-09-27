@@ -337,7 +337,7 @@
 <span class="line-precise" title="No Anys on this line!">class AbstractDANN(SingleModelAlgorithm):</span>
 <span class="line-empty" title="No Anys on this line!">    """Domain-Adversarial Neural Networks (abstract class)"""</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # def __init__(self, input_shape, num_classes, num_domains,</span>
+<span class="line-empty" title="No Anys on this line!">    # def __init__(self, input_shape, num_classes, num_train_domains,</span>
 <span class="line-empty" title="No Anys on this line!">    #              hparams, conditional, class_balance):</span>
 <span class="line-any" title="No Anys on this line!">    def __init__(self, config, d_out, grouper, loss,</span>
 <span class="line-empty" title="No Anys on this line!">                 metric, n_train_steps, conditional, class_balance):</span>
@@ -369,7 +369,7 @@ Unannotated (x1)">            metric=metric,</span>
 Unannotated (x1)">            n_train_steps=n_train_steps,</span>
 <span class="line-empty" title="No Anys on this line!">        )</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        assert config.num_domains &lt;= 1000 # domain space shouldn't be too large</span>
+Unannotated (x3)">        assert config.num_train_domains &lt;= 1000 # domain space shouldn't be too large</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.featurizer = featurizer</span>
@@ -403,7 +403,7 @@ Unannotated (x3)
 Unimported (x1)">                                                 torch.nn.ReLU(),</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
-Unimported (x1)">                                                 torch.nn.Linear(emb_dim, config.num_domains)).to(config.device)</span>
+Unimported (x1)">                                                 torch.nn.Linear(emb_dim, config.num_train_domains)).to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
 Unimported (x1)">        self.class_embeddings = torch.nn.Embedding(num_classes,</span>
@@ -599,7 +599,7 @@ Unannotated (x7)">        return self.loss.compute(results['y_pred'], results['y
 <span class="line-precise" title="No Anys on this line!">class OurAbstractDANN(SingleModelAlgorithm):</span>
 <span class="line-empty" title="No Anys on this line!">    """Domain-Adversarial Neural Networks (abstract class)"""</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # def __init__(self, input_shape, num_classes, num_domains,</span>
+<span class="line-empty" title="No Anys on this line!">    # def __init__(self, input_shape, num_classes, num_train_domains,</span>
 <span class="line-empty" title="No Anys on this line!">    #              hparams, conditional, class_balance):</span>
 <span class="line-any" title="No Anys on this line!">    def __init__(self, config, d_out, grouper, loss,</span>
 <span class="line-empty" title="No Anys on this line!">                 metric, n_train_steps):</span>
@@ -631,7 +631,7 @@ Unannotated (x1)">            metric=metric,</span>
 Unannotated (x1)">            n_train_steps=n_train_steps,</span>
 <span class="line-empty" title="No Anys on this line!">        )</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        assert config.num_domains &lt;= 1000 # domain space shouldn't be too large</span>
+Unannotated (x3)">        assert config.num_train_domains &lt;= 1000 # domain space shouldn't be too large</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.featurizer = featurizer</span>
@@ -662,11 +662,11 @@ Unimported (x1)
 Unannotated (x1)">        self.discriminator_pool = global_mean_pool</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x11)
-Unimported (x1)">        self.discriminator_mlp = torch.nn.Linear(emb_dim, config.num_domains).to(config.device)</span>
+Unimported (x1)">        self.discriminator_mlp = torch.nn.Linear(emb_dim, config.num_train_domains).to(config.device)</span>
 <span class="line-empty" title="No Anys on this line!">        # self.discriminator_mlp = torch.nn.Sequential(</span>
 <span class="line-empty" title="No Anys on this line!">        #                             torch.nn.Linear(emb_dim, emb_dim),</span>
 <span class="line-empty" title="No Anys on this line!">        #                             torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),</span>
-<span class="line-empty" title="No Anys on this line!">        #                             torch.nn.Linear(emb_dim, config.num_domains)</span>
+<span class="line-empty" title="No Anys on this line!">        #                             torch.nn.Linear(emb_dim, config.num_train_domains)</span>
 <span class="line-empty" title="No Anys on this line!">        #                         ).to(config.device)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Optimizers</span>

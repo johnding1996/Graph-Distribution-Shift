@@ -194,6 +194,11 @@
 <span id="L184" class="lineno"><a class="lineno" href="#L184">184</a></span>
 <span id="L185" class="lineno"><a class="lineno" href="#L185">185</a></span>
 <span id="L186" class="lineno"><a class="lineno" href="#L186">186</a></span>
+<span id="L187" class="lineno"><a class="lineno" href="#L187">187</a></span>
+<span id="L188" class="lineno"><a class="lineno" href="#L188">188</a></span>
+<span id="L189" class="lineno"><a class="lineno" href="#L189">189</a></span>
+<span id="L190" class="lineno"><a class="lineno" href="#L190">190</a></span>
+<span id="L191" class="lineno"><a class="lineno" href="#L191">191</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">dataset_defaults = {</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molpcba': {</span>
@@ -267,6 +272,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'RotatedMNIST': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 6,</span>
+<span class="line-precise" title="No Anys on this line!">        'num_train_domains':5,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 1, 'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
@@ -290,6 +296,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ColoredMNIST': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 3,</span>
+<span class="line-precise" title="No Anys on this line!">        'num_train_domains':2,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim':2+8, 'dropout': 0.5, 'dataset_group': 'ColoredMNIST'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
@@ -311,6 +318,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM-Environment': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 4,</span>
+<span class="line-precise" title="No Anys on this line!">        'num_train_domains':3,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual_mnist',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},</span>
@@ -335,6 +343,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM-Isolation': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
+<span class="line-precise" title="No Anys on this line!">        'num_train_domains':8,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual_mnist',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},</span>
@@ -359,6 +368,7 @@
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'UPFD': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
+<span class="line-precise" title="No Anys on this line!">        'num_train_domains':8,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'UPFD'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>

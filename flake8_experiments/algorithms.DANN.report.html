@@ -88,7 +88,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  13
+                  15
                </span>
                <strong>E501:</strong> line too long (90 > 79 characters)
                
@@ -102,6 +102,13 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <a href="algorithms.DANN.source.html#l18">
                   <tt><i>18</i>         <span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span> <span class="o">=</span> <span class="n">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="algorithms.DANN.source.html#l32">
+                  <tt><i>32</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
                </a>
             </li><li>
                
@@ -119,10 +126,10 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>Line too long (112 > 79 characters):</p>
+               <p>Line too long (118 > 79 characters):</p>
                
                <a href="algorithms.DANN.source.html#l48">
-                  <tt><i>48</i>                                                  <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+                  <tt><i>48</i>                                                  <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
@@ -147,6 +154,13 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="algorithms.DANN.source.html#l180">
+                  <tt><i>180</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
+               </a>
+            </li><li>
+               
                <p>Line too long (99 > 79 characters):</p>
                
                <a href="algorithms.DANN.source.html#l192">
@@ -161,10 +175,10 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>Line too long (95 > 79 characters):</p>
+               <p>Line too long (101 > 79 characters):</p>
                
                <a href="algorithms.DANN.source.html#l196">
-                  <tt><i>196</i>         <span class="bp">self</span><span class="o">.</span><span class="n">discriminator_mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+                  <tt><i>196</i>         <span class="bp">self</span><span class="o">.</span><span class="n">discriminator_mlp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
@@ -175,10 +189,10 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>Line too long (82 > 79 characters):</p>
+               <p>Line too long (88 > 79 characters):</p>
                
                <a href="algorithms.DANN.source.html#l200">
-                  <tt><i>200</i>         <span class="c1">#                             torch.nn.Linear(emb_dim, config.num_domains)</span></tt>
+                  <tt><i>200</i>         <span class="c1">#                             torch.nn.Linear(emb_dim, config.num_train_domains)</span></tt>
                </a>
             </li><li>
                
@@ -274,7 +288,7 @@ window.addEventListener('DOMContentLoaded', function () {
             <li>
                
                <a href="algorithms.DANN.source.html#l32">
-                  <tt><i>32</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
+                  <tt><i>32</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
                </a>
             </li><li>
                
@@ -284,7 +298,7 @@ window.addEventListener('DOMContentLoaded', function () {
             </li><li>
                
                <a href="algorithms.DANN.source.html#l180">
-                  <tt><i>180</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
+                  <tt><i>180</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_domains</span> <span class="o">&lt;=</span> <span class="mi">1000</span> <span class="c1"># domain space shouldn&#39;t be too large</span></tt>
                </a>
             </li>
             </ul>
