@@ -8,7 +8,7 @@ from torch_geometric.data.dataloader import Collater as PyGCollater
 import torch_geometric
 from .pyg_colored_mnist_dataset import PyGColoredMNISTDataset
 from torch_geometric.utils import to_dense_adj
-
+import torch.nn.functional as F
 
 class ColoredMNISTDataset(GDSDataset):
     _dataset_name = 'ColoredMNIST'
@@ -87,6 +87,7 @@ class ColoredMNISTDataset(GDSDataset):
             else:
                 self._collate = PyGCollater(follow_batch=[])
 
+        self._metric = Evaluator('ogbg-molhiv')
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):
@@ -105,14 +106,18 @@ class ColoredMNISTDataset(GDSDataset):
             - results (dictionary): Dictionary of evaluation metrics
             - results_str (str): String summarizing the evaluation metrics
         """
-        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"
-        y_true = y_true.view(-1, 1)        
-        y_pred = (y_pred > 0).long().view(-1, 1)
-        input_dict = {"y_true": y_true, "y_pred": y_pred}
-        acc = (y_pred == y_true).sum() / len(y_pred)       
-        results = {'acc': np.float(acc)}
+        # y_true = y_true.view(-1, 1)
+        # y_pred = (y_pred > 0).long().view(-1, 1)
+        # input_dict = {"y_true": y_true, "y_pred": y_pred}
+        # acc = (y_pred == y_true).sum() / len(y_pred)
+        # results = {'acc': np.float(acc)}
 
-        return results, f"Accuracy: {results['acc']:.3f}\n"
+        # return results, f"Accuracy: {acc:.3f}\n"
+        assert prediction_fn is None
+        input_dict = {"y_true": y_true, "y_pred": y_pred}
+        results = self._metric.eval(input_dict)
+
+        return results, f"ROCAUC: {results['rocauc']:.3f}\n"
 
     # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN
     def collate_dense(self, samples):
@@ -128,14 +133,18 @@ class ColoredMNISTDataset(GDSDataset):
         for graph in graph_list:
             adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
             zero_adj = torch.zeros_like(adj)
-            in_dim = graph.x.shape[1]
+            # in_dim = graph.x.shape[1]
+            in_dim = 10
 
             # use node feats to prepare adj
             adj_node_feat = torch.stack([zero_adj for _ in range(in_dim)])
             adj_node_feat = torch.cat([adj.unsqueeze(0), adj_node_feat], dim=0)
 
             for node, node_feat in enumerate(graph.x):
-                adj_node_feat[1:, node, node] = node_feat
+                adj_node_feat[1:3, node, node] = node_feat[:2]
+
+
+                adj_node_feat[3:, node, node] = F.one_hot(node_feat[2].long(), 8)
 
             x_node_feat.append(adj_node_feat)
 

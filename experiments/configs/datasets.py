@@ -94,11 +94,11 @@ dataset_defaults = {
     'ColoredMNIST': {
         'num_domains': 3,
         'split_scheme': 'official',
-        'model_kwargs': {'three_wl_in_dim':2, 'dropout': 0.5, 'dataset_group': 'ColoredMNIST'},
+        'model_kwargs': {'three_wl_in_dim':2+8, 'dropout': 0.5, 'dataset_group': 'ColoredMNIST'},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['color', ],
-        'val_metric': 'acc',
+        'val_metric': 'rocauc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
         'batch_size': 128,
