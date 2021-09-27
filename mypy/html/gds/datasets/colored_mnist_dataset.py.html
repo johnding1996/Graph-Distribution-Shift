@@ -158,6 +158,15 @@
 <span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
 <span id="L149" class="lineno"><a class="lineno" href="#L149">149</a></span>
 <span id="L150" class="lineno"><a class="lineno" href="#L150">150</a></span>
+<span id="L151" class="lineno"><a class="lineno" href="#L151">151</a></span>
+<span id="L152" class="lineno"><a class="lineno" href="#L152">152</a></span>
+<span id="L153" class="lineno"><a class="lineno" href="#L153">153</a></span>
+<span id="L154" class="lineno"><a class="lineno" href="#L154">154</a></span>
+<span id="L155" class="lineno"><a class="lineno" href="#L155">155</a></span>
+<span id="L156" class="lineno"><a class="lineno" href="#L156">156</a></span>
+<span id="L157" class="lineno"><a class="lineno" href="#L157">157</a></span>
+<span id="L158" class="lineno"><a class="lineno" href="#L158">158</a></span>
+<span id="L159" class="lineno"><a class="lineno" href="#L159">159</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -169,7 +178,7 @@
 <span class="line-any" title="No Anys on this line!">import torch_geometric</span>
 <span class="line-precise" title="No Anys on this line!">from .pyg_colored_mnist_dataset import PyGColoredMNISTDataset</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.utils import to_dense_adj</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class ColoredMNISTDataset(GDSDataset):</span>
 <span class="line-precise" title="No Anys on this line!">    _dataset_name = 'ColoredMNIST'</span>
@@ -314,6 +323,9 @@ Unannotated (x2)
 Unimported (x1)">                self._collate = PyGCollater(follow_batch=[])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        self._metric = Evaluator('ogbg-molhiv')</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">    def get_input(self, idx):</span>
@@ -333,22 +345,22 @@ Unannotated (x4)">        return self.ogb_dataset[int(idx)]</span>
 <span class="line-empty" title="No Anys on this line!">            - results (dictionary): Dictionary of evaluation metrics</span>
 <span class="line-empty" title="No Anys on this line!">            - results_str (str): String summarizing the evaluation metrics</span>
 <span class="line-empty" title="No Anys on this line!">        """</span>
+<span class="line-empty" title="No Anys on this line!">        # y_true = y_true.view(-1, 1)</span>
+<span class="line-empty" title="No Anys on this line!">        # y_pred = (y_pred &gt; 0).long().view(-1, 1)</span>
+<span class="line-empty" title="No Anys on this line!">        # input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
+<span class="line-empty" title="No Anys on this line!">        # acc = (y_pred == y_true).sum() / len(y_pred)</span>
+<span class="line-empty" title="No Anys on this line!">        # results = {'acc': np.float(acc)}</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # return results, f"Accuracy: {acc:.3f}\n"</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        assert prediction_fn is None, "OGBPCBADataset.eval() does not support prediction_fn. Only binary logits accepted"</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        y_true = y_true.view(-1, 1)        </span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">        y_pred = (y_pred &gt; 0).long().view(-1, 1)</span>
+Unannotated (x1)">        assert prediction_fn is None</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        input_dict = {"y_true": y_true, "y_pred": y_pred}</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x9)">        acc = (y_pred == y_true).sum() / len(y_pred)       </span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)
-Unimported (x1)">        results = {'acc': np.float(acc)}</span>
+Unannotated (x5)">        results = self._metric.eval(input_dict)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        return results, f"Accuracy: {results['acc']:.3f}\n"</span>
+Unannotated (x7)">        return results, f"ROCAUC: {results['rocauc']:.3f}\n"</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # prepare dense tensors for GNNs using them; such as RingGNN, 3WLGNN</span>
 <span class="line-any" title="No Anys on this line!">    def collate_dense(self, samples):</span>
@@ -375,8 +387,9 @@ Unimported (x1)">            adj = self._sym_normalize_adj(to_dense_adj(graph.ed
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Unimported (x1)">            zero_adj = torch.zeros_like(adj)</span>
+<span class="line-empty" title="No Anys on this line!">            # in_dim = graph.x.shape[1]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">            in_dim = graph.x.shape[1]</span>
+Unannotated (x1)">            in_dim = 10</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # use node feats to prepare adj</span>
 <span class="line-any" title="Any Types on this line: 
@@ -389,7 +402,12 @@ Unimported (x1)">            adj_node_feat = torch.cat([adj.unsqueeze(0), adj_no
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">            for node, node_feat in enumerate(graph.x):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                adj_node_feat[1:, node, node] = node_feat</span>
+Unannotated (x5)">                adj_node_feat[1:3, node, node] = node_feat[:2]</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x9)
+Unimported (x1)">                adj_node_feat[3:, node, node] = F.one_hot(node_feat[2].long(), 8)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            x_node_feat.append(adj_node_feat)</span>

@@ -148,11 +148,11 @@
     <p id="t94" class="pln"><span class="n"><a href="#t94">94</a></span><span class="t">    <span class="str">'ColoredMNIST'</span><span class="op">:</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
     <p id="t95" class="pln"><span class="n"><a href="#t95">95</a></span><span class="t">        <span class="str">'num_domains'</span><span class="op">:</span> <span class="num">3</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t96" class="pln"><span class="n"><a href="#t96">96</a></span><span class="t">        <span class="str">'split_scheme'</span><span class="op">:</span> <span class="str">'official'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t97" class="pln"><span class="n"><a href="#t97">97</a></span><span class="t">        <span class="str">'model_kwargs'</span><span class="op">:</span> <span class="op">{</span><span class="str">'three_wl_in_dim'</span><span class="op">:</span><span class="num">2</span><span class="op">,</span> <span class="str">'dropout'</span><span class="op">:</span> <span class="num">0.5</span><span class="op">,</span> <span class="str">'dataset_group'</span><span class="op">:</span> <span class="str">'ColoredMNIST'</span><span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t97" class="pln"><span class="n"><a href="#t97">97</a></span><span class="t">        <span class="str">'model_kwargs'</span><span class="op">:</span> <span class="op">{</span><span class="str">'three_wl_in_dim'</span><span class="op">:</span><span class="num">2</span><span class="op">+</span><span class="num">8</span><span class="op">,</span> <span class="str">'dropout'</span><span class="op">:</span> <span class="num">0.5</span><span class="op">,</span> <span class="str">'dataset_group'</span><span class="op">:</span> <span class="str">'ColoredMNIST'</span><span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t98" class="pln"><span class="n"><a href="#t98">98</a></span><span class="t">        <span class="str">'default_frac'</span><span class="op">:</span> <span class="num">1.0</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t99" class="pln"><span class="n"><a href="#t99">99</a></span><span class="t">        <span class="str">'loss_function'</span><span class="op">:</span> <span class="str">'BCEWithLogitsLoss'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t100" class="pln"><span class="n"><a href="#t100">100</a></span><span class="t">        <span class="str">'groupby_fields'</span><span class="op">:</span> <span class="op">[</span><span class="str">'color'</span><span class="op">,</span> <span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t101" class="pln"><span class="n"><a href="#t101">101</a></span><span class="t">        <span class="str">'val_metric'</span><span class="op">:</span> <span class="str">'acc'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t101" class="pln"><span class="n"><a href="#t101">101</a></span><span class="t">        <span class="str">'val_metric'</span><span class="op">:</span> <span class="str">'rocauc'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t102" class="pln"><span class="n"><a href="#t102">102</a></span><span class="t">        <span class="str">'val_metric_decreasing'</span><span class="op">:</span> <span class="key">False</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t103" class="pln"><span class="n"><a href="#t103">103</a></span><span class="t">        <span class="str">'optimizer'</span><span class="op">:</span> <span class="str">'Adam'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t104" class="pln"><span class="n"><a href="#t104">104</a></span><span class="t">        <span class="str">'batch_size'</span><span class="op">:</span> <span class="num">128</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
@@ -243,7 +243,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
-            created at 2021-09-27 07:06 +0000
+            created at 2021-09-27 08:46 +0000
         </p>
     </div>
 </div>

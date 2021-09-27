@@ -74,12 +74,27 @@
 <span id="L64" class="lineno"><a class="lineno" href="#L64">64</a></span>
 <span id="L65" class="lineno"><a class="lineno" href="#L65">65</a></span>
 <span id="L66" class="lineno"><a class="lineno" href="#L66">66</a></span>
+<span id="L67" class="lineno"><a class="lineno" href="#L67">67</a></span>
+<span id="L68" class="lineno"><a class="lineno" href="#L68">68</a></span>
+<span id="L69" class="lineno"><a class="lineno" href="#L69">69</a></span>
+<span id="L70" class="lineno"><a class="lineno" href="#L70">70</a></span>
+<span id="L71" class="lineno"><a class="lineno" href="#L71">71</a></span>
+<span id="L72" class="lineno"><a class="lineno" href="#L72">72</a></span>
+<span id="L73" class="lineno"><a class="lineno" href="#L73">73</a></span>
+<span id="L74" class="lineno"><a class="lineno" href="#L74">74</a></span>
+<span id="L75" class="lineno"><a class="lineno" href="#L75">75</a></span>
+<span id="L76" class="lineno"><a class="lineno" href="#L76">76</a></span>
+<span id="L77" class="lineno"><a class="lineno" href="#L77">77</a></span>
+<span id="L78" class="lineno"><a class="lineno" href="#L78">78</a></span>
+<span id="L79" class="lineno"><a class="lineno" href="#L79">79</a></span>
+<span id="L80" class="lineno"><a class="lineno" href="#L80">80</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-precise" title="No Anys on this line!">import os.path as osp</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.data import InMemoryDataset, download_url, extract_zip, Data</span>
 <span class="line-precise" title="No Anys on this line!">from typing import Optional, Callable, List</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class PyGColoredMNISTDataset(InMemoryDataset):</span>
@@ -140,14 +155,42 @@ Unimported (x1)">        inputs = torch.load(self.raw_paths[0])</span>
 <span class="line-empty" title="No Anys on this line!">        # data_list = [Data(**data_dict) for data_dict in inputs]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        data_list = []</span>
+Unannotated (x1)">        total_num_nodes = 0</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        for data_dict in inputs :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            data_dict['x'] = data_dict['x'][:, :2]</span>
+Unannotated (x5)">            total_num_nodes += data_dict['x'].shape[0]</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">        np.random.seed(0)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">        padded_cate = np.random.randint(8, size=total_num_nodes)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        data_list = []</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        ptr = 0</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        for i, data_dict in enumerate(inputs) :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">            num_node = data_dict['x'].shape[0]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x12)
+Unimported (x1)">            cate = torch.tensor(padded_cate[ptr:ptr+num_node]).view((-1,1))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)
+Unimported (x1)">            x = torch.cat((data_dict['x'][:, :2], cate), dim=1)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            data_dict['x'] = x</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            data_list.append(Data(**data_dict))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">            ptr += num_node</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        assert ptr == total_num_nodes</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        if self.pre_filter is not None:</span>

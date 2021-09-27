@@ -351,6 +351,14 @@
 <span id="L341" class="lineno"><a class="lineno" href="#L341">341</a></span>
 <span id="L342" class="lineno"><a class="lineno" href="#L342">342</a></span>
 <span id="L343" class="lineno"><a class="lineno" href="#L343">343</a></span>
+<span id="L344" class="lineno"><a class="lineno" href="#L344">344</a></span>
+<span id="L345" class="lineno"><a class="lineno" href="#L345">345</a></span>
+<span id="L346" class="lineno"><a class="lineno" href="#L346">346</a></span>
+<span id="L347" class="lineno"><a class="lineno" href="#L347">347</a></span>
+<span id="L348" class="lineno"><a class="lineno" href="#L348">348</a></span>
+<span id="L349" class="lineno"><a class="lineno" href="#L349">349</a></span>
+<span id="L350" class="lineno"><a class="lineno" href="#L350">350</a></span>
+<span id="L351" class="lineno"><a class="lineno" href="#L351">351</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -537,6 +545,9 @@ Unannotated (x2)">        elif self.dataset_group == 'ColoredMNIST' :</span>
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Linear(2, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            self.node_encoder_cate = torch.nn.Embedding(8, emb_dim)</span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        elif self.dataset_group == 'SBM' :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
@@ -621,7 +632,13 @@ Unannotated (x1)">        if self.node_encoder is None:</span>
 Unannotated (x2)">            h_list = [x]</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">            h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]</span>
+Unannotated (x2)">            if self.dataset_group == 'ColoredMNIST' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x32)
+Unimported (x2)">                h_list = [self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze()) + perturb if perturb is not None else self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze())]</span>
+<span class="line-empty" title="No Anys on this line!">            else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x10)">                h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(self.num_layer):</span>
@@ -728,6 +745,9 @@ Unannotated (x2)">        elif self.dataset_group == 'ColoredMNIST' :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)
 Unimported (x1)">            self.node_encoder = torch.nn.Linear(2, emb_dim)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            self.node_encoder_cate = torch.nn.Embedding(8, emb_dim)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        elif self.dataset_group == 'SBM' :</span>
 <span class="line-any" title="Any Types on this line: 
@@ -852,7 +872,13 @@ Unannotated (x1)">        if self.node_encoder is None:</span>
 Unannotated (x2)">            h_list = [x]</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">            h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]</span>
+Unannotated (x2)">            if self.dataset_group == 'ColoredMNIST' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x32)
+Unimported (x2)">                h_list = [self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze()) + perturb if perturb is not None else self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze())]</span>
+<span class="line-empty" title="No Anys on this line!">            else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x10)">                h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        for layer in range(self.num_layer):</span>
