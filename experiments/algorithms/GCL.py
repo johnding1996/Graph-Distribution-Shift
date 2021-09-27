@@ -25,6 +25,7 @@ class GCL(SingleModelAlgorithm):
         )
         # algorithm hyperparameters
         self.use_cl = config.use_cl
+        self.aug_prob = config.aug_prob
         self.aug_type = config.aug_type
         # If use_cl=False and aug_ratio is 0.0, should be equiv to ERM
         self.aug_ratio = config.aug_ratio
@@ -39,6 +40,7 @@ class GCL(SingleModelAlgorithm):
         # self.logged_fields.append('gsimclr_loss')
 
     def drop_nodes(self, data):
+        #print("Node Drop!")
         """
         https://github.com/Shen-Lab/GraphCL/blob/1d43f79d7f33f8133f9d4b4b8254d8aaeb09a615/semisupervised_TU/pre-training/tu_dataset.py#L139
         Original method operates on 
@@ -84,8 +86,9 @@ class GCL(SingleModelAlgorithm):
             orig_edge_attr = data.edge_attr
             new_edge_attr = orig_edge_attr[edge_subselect] 
 
-        # assumption is we are removing undirected edge pairs i<->j
-        assert (edge_num-new_edge_num)%2 is 0
+        # This would only hold for undirected graph datasets
+        # where the assumption is we are removing undirected edge pairs i<->j
+        # assert (edge_num-new_edge_num)%2 is 0
 
         try:
             data.edge_attr = new_edge_attr
@@ -96,7 +99,7 @@ class GCL(SingleModelAlgorithm):
             # data = data
 
     def permute_edges(self, data):
-
+        #print("Edge Permute!")
         """
         Ported from same repo as drop_nodes
 
@@ -178,28 +181,6 @@ class GCL(SingleModelAlgorithm):
 
     def update(self, batch):
 
-        assert self.is_training
-        # process batch
-
-        x, y_true, metadata = batch
-        x = move_to(x, self.device)
-        y_true = move_to(y_true, self.device)
-        g = move_to(self.grouper.metadata_to_group(metadata), self.device)
-        results = {
-            'g': g,
-            'y_true': y_true,
-            'metadata': metadata,
-        }
-
-        # Augmentation options
-        # currently singular, TODO make composeable
-        if self.aug_type == 'node_drop':
-            aug_fn = self.drop_nodes
-        elif self.aug_type == 'edge_perm':
-            aug_fn = self.permute_edges
-        else:
-            raise NotImplementedError
-
         #######################################################################
         # NOTE How the augmentations are applied in GCL paper codebase...
         #######################################################################
@@ -228,6 +209,44 @@ class GCL(SingleModelAlgorithm):
         # during training, though, the computations are all torch or native python
         #######################################################################
 
+        assert self.is_training
+        # process batch
+
+        x, y_true, metadata = batch
+        x = move_to(x, self.device)
+        y_true = move_to(y_true, self.device)
+        g = move_to(self.grouper.metadata_to_group(metadata), self.device)
+        results = {
+            'g': g,
+            'y_true': y_true,
+            'metadata': metadata,
+        }
+
+        # Augmentation options
+        # currently singular, TODO make composeable
+        augmentations = {
+            'node_drop': self.drop_nodes,
+            'edge_perm': self.permute_edges
+        }
+        aug_list = list(augmentations.values())
+
+        if self.aug_type ==  'random':
+            def rand_aug(data):
+                n = torch.randint(2,(1,)).item()
+                fn = aug_list[n]
+                return fn(data)
+            aug_fn = rand_aug
+        else:
+            if self.aug_type in augmentations:
+                aug_fn = augmentations[self.aug_type]
+            else:
+                raise NotImplementedError
+
+        
+        batch_size = x.num_graphs
+        # torch.multinomial is slow so we want to do this once per batch
+        aug_mask = torch.multinomial(torch.tensor((1-self.aug_prob, self.aug_prob)), batch_size, replacement=True)
+
         # if not "use_cl" unpack batch of graphs and apply augmentation 
         # to each graph, in place
         # TODO, if "use_cl" create orig, aug pairs,
@@ -236,16 +255,15 @@ class GCL(SingleModelAlgorithm):
         # then modify opjective to call new gsimclr loss
 
         graphs = x.to_data_list()
-        for i in range(len(graphs)): 
-            aug_fn(graphs[i])
-        x = Batch.from_data_list(graphs)
+        
+        for i in range(batch_size): 
+            if aug_mask[i]:
+                aug_fn(graphs[i])
+            else:
+                #print("UNCHANGED!")
+                pass # original graph kept
 
-        # placeholder
-        gsimclr_loss = 0.
-        if isinstance(gsimclr_loss, torch.Tensor):
-            results['gsimclr_loss'] = gsimclr_loss.item()
-        else:
-            results['gsimclr_loss'] = gsimclr_loss
+        x = Batch.from_data_list(graphs)
         
         # Continue as with other methods/ERM
         outputs = self.model(x)
@@ -253,6 +271,13 @@ class GCL(SingleModelAlgorithm):
 
         objective = self.objective(results)
         results['objective'] = objective.item()
+
+        # placeholder
+        # gsimclr_loss = 0.
+        # if isinstance(gsimclr_loss, torch.Tensor):
+        #     results['gsimclr_loss'] = gsimclr_loss.item()
+        # else:
+        #     results['gsimclr_loss'] = gsimclr_loss
 
         self.optimizer.zero_grad()
         self.model.zero_grad()
