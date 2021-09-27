@@ -199,6 +199,14 @@
 <span id="L189" class="lineno"><a class="lineno" href="#L189">189</a></span>
 <span id="L190" class="lineno"><a class="lineno" href="#L190">190</a></span>
 <span id="L191" class="lineno"><a class="lineno" href="#L191">191</a></span>
+<span id="L192" class="lineno"><a class="lineno" href="#L192">192</a></span>
+<span id="L193" class="lineno"><a class="lineno" href="#L193">193</a></span>
+<span id="L194" class="lineno"><a class="lineno" href="#L194">194</a></span>
+<span id="L195" class="lineno"><a class="lineno" href="#L195">195</a></span>
+<span id="L196" class="lineno"><a class="lineno" href="#L196">196</a></span>
+<span id="L197" class="lineno"><a class="lineno" href="#L197">197</a></span>
+<span id="L198" class="lineno"><a class="lineno" href="#L198">198</a></span>
+<span id="L199" class="lineno"><a class="lineno" href="#L199">199</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">dataset_defaults = {</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molpcba': {</span>
@@ -223,6 +231,7 @@
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multitask_binary_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual',</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molhiv': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 19089,</span>
@@ -246,6 +255,7 @@
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual',</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ogbg-ppa': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 1581,  # not mapped</span>
@@ -269,6 +279,7 @@
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual',</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'RotatedMNIST': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 6,</span>
@@ -293,6 +304,7 @@
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'cheb',</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ColoredMNIST': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 3,</span>
@@ -315,6 +327,7 @@
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'cheb',</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM-Environment': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 4,</span>
@@ -340,6 +353,7 @@
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'gin_10_layers',</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM-Isolation': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
@@ -365,6 +379,7 @@
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'cheb',</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'UPFD': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
@@ -389,6 +404,7 @@
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
+<span class="line-precise" title="No Anys on this line!">        'model': 'cheb',</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-empty" title="No Anys on this line!">}</span>
 </pre></td>
