@@ -177,35 +177,38 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (111 > 79 characters)</li>
+                     Line too long (94 > 79 characters)</li>
                
-               </ul><tt><i>34</i> <span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="s1">&#39;gcn&#39;</span><span class="p">,</span> <span class="s1">&#39;gin_virtual&#39;</span><span class="p">,</span> <span class="s1">&#39;gcn_virtual&#39;</span><span class="p">,</span> <span class="s1">&#39;cheb&#39;</span><span class="p">,</span> <span class="s1">&#39;cheb_virtual&#39;</span><span class="p">,</span> <span class="s1">&#39;3wlgnn&#39;</span><span class="p">,</span> <span class="s1">&#39;mlp&#39;</span><span class="p">,</span> <span class="s1">&#39;gin_15_layers&#39;</span><span class="p">]</span></tt>
+               </ul><tt><i>34</i> <span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gin&#39;</span><span class="p">,</span> <span class="s1">&#39;gcn&#39;</span><span class="p">,</span> <span class="s1">&#39;gin_virtual&#39;</span><span class="p">,</span> <span class="s1">&#39;gcn_virtual&#39;</span><span class="p">,</span> <span class="s1">&#39;cheb&#39;</span><span class="p">,</span> <span class="s1">&#39;cheb_virtual&#39;</span><span class="p">,</span> <span class="s1">&#39;3wlgnn&#39;</span><span class="p">,</span> <span class="s1">&#39;mlp&#39;</span><span class="p">,</span></tt>
             </div>
             <div id="l35"
-               class="code sev- "><tt><i>35</i> &nbsp;</tt>
+               class="code sev- "><tt><i>35</i>           <span class="s1">&#39;gin_15_layers&#39;</span><span class="p">,</span> <span class="s1">&#39;gin_10_layers&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l36"
-               class="code sev- "><tt><i>36</i> <span class="c1"># See algorithms/initializer.py</span></tt>
+               class="code sev- "><tt><i>36</i> &nbsp;</tt>
             </div>
             <div id="l37"
-               class="code sev- "><tt><i>37</i> <span class="n">algorithms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">algorithm_defaults</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></tt>
+               class="code sev- "><tt><i>37</i> <span class="c1"># See algorithms/initializer.py</span></tt>
             </div>
             <div id="l38"
-               class="code sev- "><tt><i>38</i> &nbsp;</tt>
+               class="code sev- "><tt><i>38</i> <span class="n">algorithms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">algorithm_defaults</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></tt>
             </div>
             <div id="l39"
-               class="code sev- "><tt><i>39</i> <span class="c1"># See optimizer.py</span></tt>
+               class="code sev- "><tt><i>39</i> &nbsp;</tt>
             </div>
             <div id="l40"
-               class="code sev- "><tt><i>40</i> <span class="n">optimizers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SGD&#39;</span><span class="p">,</span> <span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="s1">&#39;AdamW&#39;</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>40</i> <span class="c1"># See optimizer.py</span></tt>
             </div>
             <div id="l41"
-               class="code sev- "><tt><i>41</i> &nbsp;</tt>
+               class="code sev- "><tt><i>41</i> <span class="n">optimizers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SGD&#39;</span><span class="p">,</span> <span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="s1">&#39;AdamW&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l42"
-               class="code sev- "><tt><i>42</i> <span class="c1"># See scheduler.py</span></tt>
+               class="code sev- "><tt><i>42</i> &nbsp;</tt>
             </div>
             <div id="l43"
+               class="code sev- "><tt><i>43</i> <span class="c1"># See scheduler.py</span></tt>
+            </div>
+            <div id="l44"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -215,18 +218,18 @@
                      </span>
                      Line too long (106 > 79 characters)</li>
                
-               </ul><tt><i>43</i> <span class="n">schedulers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;linear_schedule_with_warmup&#39;</span><span class="p">,</span> <span class="s1">&#39;cosine_schedule_with_warmup&#39;</span><span class="p">,</span> <span class="s1">&#39;ReduceLROnPlateau&#39;</span><span class="p">,</span> <span class="s1">&#39;StepLR&#39;</span><span class="p">,</span></tt>
-            </div>
-            <div id="l44"
-               class="code sev- "><tt><i>44</i>               <span class="s1">&#39;MultiStepLR&#39;</span><span class="p">]</span></tt>
+               </ul><tt><i>44</i> <span class="n">schedulers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;linear_schedule_with_warmup&#39;</span><span class="p">,</span> <span class="s1">&#39;cosine_schedule_with_warmup&#39;</span><span class="p">,</span> <span class="s1">&#39;ReduceLROnPlateau&#39;</span><span class="p">,</span> <span class="s1">&#39;StepLR&#39;</span><span class="p">,</span></tt>
             </div>
             <div id="l45"
-               class="code sev- "><tt><i>45</i> &nbsp;</tt>
+               class="code sev- "><tt><i>45</i>               <span class="s1">&#39;MultiStepLR&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l46"
-               class="code sev- "><tt><i>46</i> <span class="c1"># See losses.py</span></tt>
+               class="code sev- "><tt><i>46</i> &nbsp;</tt>
             </div>
             <div id="l47"
+               class="code sev- "><tt><i>47</i> <span class="c1"># See losses.py</span></tt>
+            </div>
+            <div id="l48"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -236,7 +239,7 @@
                      </span>
                      Line too long (115 > 79 characters)</li>
                
-               </ul><tt><i>47</i> <span class="n">losses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cross_entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;lm_cross_entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;MSE&#39;</span><span class="p">,</span> <span class="s1">&#39;multitask_bce&#39;</span><span class="p">,</span> <span class="s1">&#39;fasterrcnn_criterion&#39;</span><span class="p">,</span> <span class="s1">&#39;BCEWithLogitsLoss&#39;</span><span class="p">]</span></tt>
+               </ul><tt><i>48</i> <span class="n">losses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cross_entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;lm_cross_entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;MSE&#39;</span><span class="p">,</span> <span class="s1">&#39;multitask_bce&#39;</span><span class="p">,</span> <span class="s1">&#39;fasterrcnn_criterion&#39;</span><span class="p">,</span> <span class="s1">&#39;BCEWithLogitsLoss&#39;</span><span class="p">]</span></tt>
             </div>
             
          </div>
