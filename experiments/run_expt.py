@@ -303,7 +303,8 @@ def main():
     if config.use_wandb:
         close_wandb(wandb_runner)
     finish = time.time()
-    logger.write(f'time(s): {finish-start:.3f}\n')
+    if not config.eval_only:
+        logger.write(f'time(s): {finish-start:.3f}\n')
     logger.close()
     for split in datasets:
         datasets[split]['eval_logger'].close()
