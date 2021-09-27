@@ -34,6 +34,9 @@ class GNN(torch.nn.Module):
 
         if self.gnn_type.endswith('layers') :
             num_layers = int(self.gnn_type.split('_')[1])
+            residual = True
+        else :
+            residual = False
 
         self.num_layers = num_layers
         self.dropout = dropout
@@ -51,10 +54,12 @@ class GNN(torch.nn.Module):
 
         if self.gnn_type.endswith('virtual'):
             self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group,
-                                                 gnn_type=self.gnn_type.split('_')[0], dropout=dropout)
+                                                 gnn_type=self.gnn_type.split('_')[0], dropout=dropout,
+                                                 residual=residual)
         else:
             self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group,
-                                     gnn_type=self.gnn_type.split('_')[0], dropout=dropout)
+                                     gnn_type=self.gnn_type.split('_')[0], dropout=dropout,
+                                     residual=residual)
 
         # Pooling function to generate whole-graph embeddings
         if self.is_pooled:
