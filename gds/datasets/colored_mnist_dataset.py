@@ -79,12 +79,13 @@ class ColoredMNISTDataset(GDSDataset):
         self._split_array[val_split_idx] = 1
         self._split_array[test_split_idx] = 2
 
-        if torch_geometric.__version__ >= '1.7.0':
-            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+        if dataset_kwargs['model'] == '3wlgnn':
+            self._collate = self.collate_dense
         else:
-            self._collate = PyGCollater(follow_batch=[])
-        # self._collate = self.collate_dense
-
+            if torch_geometric.__version__ >= '1.7.0':
+                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])
+            else:
+                self._collate = PyGCollater(follow_batch=[])
 
         super().__init__(root_dir, download, split_scheme)
 
