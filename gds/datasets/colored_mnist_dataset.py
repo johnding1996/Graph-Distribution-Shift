@@ -53,9 +53,9 @@ class ColoredMNISTDataset(GDSDataset):
         dataset_size = len(self.ogb_dataset)
         if random_split:
             random_index = np.random.permutation(dataset_size)
-            train_split_idx = random_index[:int(4 / 6 * dataset_size)]
-            val_split_idx = random_index[int(4 / 6 * dataset_size):int(5 / 6 * dataset_size)]
-            test_split_idx = random_index[int(5 / 6 * dataset_size):]
+            train_split_idx = random_index[:int(3 / 6 * dataset_size)]
+            val_split_idx = random_index[int(3 / 6 * dataset_size):int(4 / 6 * dataset_size)]
+            test_split_idx = random_index[int(4 / 6 * dataset_size):]
         else:
             # use the group info split data
             train_val_group_idx, test_group_idx = range(0, 2), range(2, 3)
@@ -72,8 +72,8 @@ class ColoredMNISTDataset(GDSDataset):
             train_val_split_idx = torch.arange(dataset_size, dtype=torch.int64)[train_val_split_idx]
             train_val_sets_size = len(train_val_split_idx)
             random_index = np.random.permutation(train_val_sets_size)
-            train_split_idx = train_val_split_idx[random_index[:int(4 / 5 * train_val_sets_size)]]
-            val_split_idx = train_val_split_idx[random_index[int(4 / 5 * train_val_sets_size):]]
+            train_split_idx = train_val_split_idx[random_index[:int(3 / 4 * train_val_sets_size)]]
+            val_split_idx = train_val_split_idx[random_index[int(3 / 4 * train_val_sets_size):]]
 
         self._split_array[train_split_idx] = 0
         self._split_array[val_split_idx] = 1
