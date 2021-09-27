@@ -157,6 +157,7 @@
 <span id="L147" class="lineno"><a class="lineno" href="#L147">147</a></span>
 <span id="L148" class="lineno"><a class="lineno" href="#L148">148</a></span>
 <span id="L149" class="lineno"><a class="lineno" href="#L149">149</a></span>
+<span id="L150" class="lineno"><a class="lineno" href="#L150">150</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -297,17 +298,20 @@ Unannotated (x2)">        self._split_array[val_split_idx] = 1</span>
 Unannotated (x2)">        self._split_array[test_split_idx] = 2</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">        if torch_geometric.__version__ &gt;= '1.7.0':</span>
+Unannotated (x3)">        if dataset_kwargs['model'] == '3wlgnn':</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)
-Unimported (x1)">            self._collate = PyGCollater(follow_batch=[], exclude_keys=[])</span>
+Unannotated (x2)">            self._collate = self.collate_dense</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
-Unimported (x1)">            self._collate = PyGCollater(follow_batch=[])</span>
-<span class="line-empty" title="No Anys on this line!">        # self._collate = self.collate_dense</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+Unimported (x1)">            if torch_geometric.__version__ &gt;= '1.7.0':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">                self._collate = PyGCollater(follow_batch=[], exclude_keys=[])</span>
+<span class="line-empty" title="No Anys on this line!">            else:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">                self._collate = PyGCollater(follow_batch=[])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        super().__init__(root_dir, download, split_scheme)</span>
