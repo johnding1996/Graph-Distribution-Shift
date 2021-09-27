@@ -319,6 +319,9 @@
 <span id="L309" class="lineno"><a class="lineno" href="#L309">309</a></span>
 <span id="L310" class="lineno"><a class="lineno" href="#L310">310</a></span>
 <span id="L311" class="lineno"><a class="lineno" href="#L311">311</a></span>
+<span id="L312" class="lineno"><a class="lineno" href="#L312">312</a></span>
+<span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
+<span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -528,6 +531,10 @@ Unimported (x1)">    parser.add_argument('--progress_bar', type=parse_bool, cons
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
 Unimported (x1)">    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # early stopping</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--patience', type=int, default=15)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    config = parser.parse_args()</span>
