@@ -42,8 +42,10 @@ class AbstractDANN(SingleModelAlgorithm):
         num_classes = d_out
         emb_dim = self.featurizer.d_out
         self.discriminator = torch.nn.Sequential(torch.nn.Linear(emb_dim, emb_dim),
-                                  torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),
-                                  torch.nn.Linear(emb_dim, config.num_domains)).to(config.device)
+                                                 torch.nn.ReLU(),
+                                                 torch.nn.Linear(emb_dim, emb_dim),
+                                                 torch.nn.ReLU(),
+                                                 torch.nn.Linear(emb_dim, config.num_domains)).to(config.device)
         self.class_embeddings = torch.nn.Embedding(num_classes,
             self.featurizer.d_out).to(config.device)
 
