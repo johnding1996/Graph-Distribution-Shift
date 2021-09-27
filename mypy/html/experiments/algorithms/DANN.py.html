@@ -322,6 +322,7 @@
 <span id="L312" class="lineno"><a class="lineno" href="#L312">312</a></span>
 <span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
 <span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
+<span id="L315" class="lineno"><a class="lineno" href="#L315">315</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import copy</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -650,8 +651,8 @@ Unannotated (x2)">        num_classes = d_out</span>
 Unannotated (x3)">        emb_dim = self.featurizer.d_out</span>
 <span class="line-empty" title="No Anys on this line!">        # GNN type fixed at GIN for the discriminator, layer num fixed at 2</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x8)
-Unimported (x1)">        self.discriminator_gnn = GNN_node(num_layer=2, emb_dim=emb_dim, dropout=config.model_kwargs['dropout'],</span>
+Unannotated (x5)
+Unimported (x1)">        self.discriminator_gnn = GNN_node(num_layer=2, emb_dim=emb_dim, dropout=0, batchnorm=False,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">                                          dataset_group=config.model_kwargs['dataset_group']).to(config.device)</span>
 <span class="line-any" title="Any Types on this line: 
@@ -660,19 +661,13 @@ Unannotated (x3)">        self.discriminator_gnn.destroy_node_encoder()</span>
 Unimported (x1)
 Unannotated (x1)">        self.discriminator_pool = global_mean_pool</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">        self.discriminator_mlp = torch.nn.Sequential(</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)
-Unimported (x1)">                                    torch.nn.Linear(emb_dim, emb_dim),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x2)">                                    torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x6)
-Unimported (x1)">                                    torch.nn.Linear(emb_dim, config.num_domains)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                                ).to(config.device)</span>
+Unannotated (x11)
+Unimported (x1)">        self.discriminator_mlp = torch.nn.Linear(emb_dim, config.num_domains).to(config.device)</span>
+<span class="line-empty" title="No Anys on this line!">        # self.discriminator_mlp = torch.nn.Sequential(</span>
+<span class="line-empty" title="No Anys on this line!">        #                             torch.nn.Linear(emb_dim, emb_dim),</span>
+<span class="line-empty" title="No Anys on this line!">        #                             torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),</span>
+<span class="line-empty" title="No Anys on this line!">        #                             torch.nn.Linear(emb_dim, config.num_domains)</span>
+<span class="line-empty" title="No Anys on this line!">        #                         ).to(config.device)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # Optimizers</span>
 <span class="line-any" title="Any Types on this line: 

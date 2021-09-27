@@ -340,6 +340,12 @@
 <span id="L330" class="lineno"><a class="lineno" href="#L330">330</a></span>
 <span id="L331" class="lineno"><a class="lineno" href="#L331">331</a></span>
 <span id="L332" class="lineno"><a class="lineno" href="#L332">332</a></span>
+<span id="L333" class="lineno"><a class="lineno" href="#L333">333</a></span>
+<span id="L334" class="lineno"><a class="lineno" href="#L334">334</a></span>
+<span id="L335" class="lineno"><a class="lineno" href="#L335">335</a></span>
+<span id="L336" class="lineno"><a class="lineno" href="#L336">336</a></span>
+<span id="L337" class="lineno"><a class="lineno" href="#L337">337</a></span>
+<span id="L338" class="lineno"><a class="lineno" href="#L338">338</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -410,12 +416,12 @@ Unannotated (x1)">            raise ValueError("Number of GNN layers must be gre
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        if self.gnn_type.endswith('virtual'):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group,</span>
+Unannotated (x13)">            self.gnn_node = GNN_node_Virtualnode(num_layers, emb_dim, dataset_group=self.dataset_group,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">                                                 gnn_type=self.gnn_type.split('_')[0], dropout=dropout)</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group,</span>
+Unannotated (x13)">            self.gnn_node = GNN_node(num_layers, emb_dim, dataset_group=self.dataset_group,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">                                     gnn_type=self.gnn_type.split('_')[0], dropout=dropout)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -464,7 +470,8 @@ Unannotated (x7)">            return self.graph_pred_linear(self.pool(h_node, ba
 <span class="line-empty" title="No Anys on this line!">        node representations</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last", residual=False):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last",</span>
+<span class="line-any" title="No Anys on this line!">                 residual=False, batchnorm=True):</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
 <span class="line-empty" title="No Anys on this line!">            emb_dim (int): node embedding dimensionality</span>
 <span class="line-empty" title="No Anys on this line!">            num_layer (int): number of GNN message passing layers</span>
@@ -487,6 +494,8 @@ Unannotated (x2)">        self.JK = JK</span>
 <span class="line-empty" title="No Anys on this line!">        ### add residual connection or not</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.residual = residual</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.batchnorm = batchnorm</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if self.num_layer &lt; 2:</span>
@@ -606,7 +615,9 @@ Unannotated (x3)">        for layer in range(self.num_layer):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)">            h = self.convs[layer](h_list[layer], edge_index, edge_attr)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
+Unannotated (x1)">            if self.batchnorm :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                h = self.batch_norms[layer](h)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            if layer == self.num_layer - 1:</span>
@@ -652,7 +663,8 @@ Unannotated (x1)">        return node_representation</span>
 <span class="line-empty" title="No Anys on this line!">        node representations</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last", residual=False):</span>
+<span class="line-any" title="No Anys on this line!">    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last",</span>
+<span class="line-any" title="No Anys on this line!">                 residual=False, batchnorm=True):</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
 <span class="line-empty" title="No Anys on this line!">            emb_dim (int): node embedding dimensionality</span>
 <span class="line-empty" title="No Anys on this line!">        '''</span>
@@ -674,6 +686,8 @@ Unannotated (x2)">        self.JK = JK</span>
 <span class="line-empty" title="No Anys on this line!">        ### add residual connection or not</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.residual = residual</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self.batchnorm = batchnorm</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if self.num_layer &lt; 2:</span>
@@ -836,7 +850,9 @@ Unannotated (x9)">            h_list[layer] = h_list[layer] + virtualnode_embedd
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x10)">            h = self.convs[layer](h_list[layer], edge_index, edge_attr)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x6)">            h = self.batch_norms[layer](h)</span>
+Unannotated (x1)">            if self.batchnorm:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">                h = self.batch_norms[layer](h)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            if layer == self.num_layer - 1:</span>
 <span class="line-empty" title="No Anys on this line!">                # remove relu for the last layer</span>
