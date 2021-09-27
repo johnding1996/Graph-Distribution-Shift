@@ -41,6 +41,7 @@ class MLP(torch.nn.Module):
             self.node_encoder = torch.nn.Linear(1, emb_dim)
         elif self.dataset_group == 'ColoredMNIST' :
             self.node_encoder = torch.nn.Linear(2, emb_dim)
+            self.node_encoder_cate = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'SBM' :
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'UPFD':
@@ -65,7 +66,10 @@ class MLP(torch.nn.Module):
 
     def forward(self, batched_data):
         x = batched_data.x
-        x = self.node_encoder(x)
+        if self.dataset_group == 'ColoredMNIST' :
+            x = self.node_encoder(x[:, :2]) + self.node_encoder_cate(x[:, 2:].to(torch.int).squeeze())
+        else :
+            x = self.node_encoder(x)
         for i in range(self.num_layers) :
             x = self.fcs[i](x)
             x = self.batch_norms[i](x)
