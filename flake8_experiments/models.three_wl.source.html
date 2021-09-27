@@ -209,7 +209,7 @@
                class="code sev- "><tt><i>46</i> &nbsp;</tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i> <span class="k">class</span> <span class="nc">ThreeWLGNNEdgeNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>47</i> <span class="c1"># class ThreeWLGNNEdgeNet(nn.Module):</span></tt>
             </div>
             <div id="l48"
                class="code sev-2  le">
@@ -219,36 +219,45 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (100 > 79 characters)</li>
+                     Line too long (102 > 79 characters)</li>
                
-               </ul><tt><i>48</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gnn_type</span><span class="p">,</span> <span class="n">num_tasks</span><span class="p">,</span> <span class="n">feature_dim</span><span class="p">,</span> <span class="n">n_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">depth_of_mlp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span></tt>
+               </ul><tt><i>48</i> <span class="c1">#     def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,</span></tt>
             </div>
             <div id="l49"
-               class="code sev- "><tt><i>49</i>                  <span class="n">residual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>49</i> <span class="c1">#                  residual=False, **model_kwargs):</span></tt>
             </div>
             <div id="l50"
-               class="code sev- "><tt><i>50</i> &nbsp;</tt>
+               class="code sev- "><tt><i>50</i> <span class="c1">#</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i>         <span class="k">assert</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;3wlgnn-edge&#39;</span></tt>
+               class="code sev- "><tt><i>51</i> <span class="c1">#         assert gnn_type == &#39;3wlgnn-edge&#39;</span></tt>
             </div>
             <div id="l52"
-               class="code sev- "><tt><i>52</i>         <span class="nb">super</span><span class="p">(</span><span class="n">ThreeWLGNNEdgeNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>52</i> <span class="c1">#         super(ThreeWLGNNEdgeNet, self).__init__()</span></tt>
             </div>
             <div id="l53"
-               class="code sev- "><tt><i>53</i> &nbsp;</tt>
+               class="code sev- "><tt><i>53</i> <span class="c1">#</span></tt>
             </div>
             <div id="l54"
-               class="code sev- "><tt><i>54</i>         <span class="bp">self</span><span class="o">.</span><span class="n">in_dim_node</span> <span class="o">=</span> <span class="n">feature_dim</span></tt>
+               class="code sev- "><tt><i>54</i> <span class="c1">#         self.in_dim_node = feature_dim</span></tt>
             </div>
             <div id="l55"
-               class="code sev- "><tt><i>55</i>         <span class="bp">self</span><span class="o">.</span><span class="n">residual</span> <span class="o">=</span> <span class="n">residual</span></tt>
+               class="code sev- "><tt><i>55</i> <span class="c1">#         self.residual = residual</span></tt>
             </div>
             <div id="l56"
-               class="code sev- "><tt><i>56</i> &nbsp;</tt>
+               class="code sev- "><tt><i>56</i> <span class="c1">#</span></tt>
             </div>
             <div id="l57"
-               class="code sev- "><tt><i>57</i>         <span class="n">block_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">hidden_dim</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_layers</span>  <span class="c1"># L here is the block number</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (80 > 79 characters)</li>
+               
+               </ul><tt><i>57</i> <span class="c1">#         block_features = [hidden_dim] * n_layers  # L here is the block number</span></tt>
             </div>
             <div id="l58"
                class="code sev-2  le">
@@ -258,24 +267,24 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (108 > 79 characters)</li>
+                     Line too long (110 > 79 characters)</li>
                
-               </ul><tt><i>58</i>         <span class="n">original_features_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_dim_node</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_bond_type</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Number of features of the input</span></tt>
+               </ul><tt><i>58</i> <span class="c1">#         original_features_num = self.in_dim_node + self.num_bond_type + 1  # Number of features of the input</span></tt>
             </div>
             <div id="l59"
-               class="code sev- "><tt><i>59</i> &nbsp;</tt>
+               class="code sev- "><tt><i>59</i> <span class="c1">#</span></tt>
             </div>
             <div id="l60"
-               class="code sev- "><tt><i>60</i>         <span class="c1"># sequential mlp blocks</span></tt>
+               class="code sev- "><tt><i>60</i> <span class="c1">#         # sequential mlp blocks</span></tt>
             </div>
             <div id="l61"
-               class="code sev- "><tt><i>61</i>         <span class="n">last_layer_features</span> <span class="o">=</span> <span class="n">original_features_num</span></tt>
+               class="code sev- "><tt><i>61</i> <span class="c1">#         last_layer_features = original_features_num</span></tt>
             </div>
             <div id="l62"
-               class="code sev- "><tt><i>62</i>         <span class="bp">self</span><span class="o">.</span><span class="n">reg_blocks</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>62</i> <span class="c1">#         self.reg_blocks = nn.ModuleList()</span></tt>
             </div>
             <div id="l63"
-               class="code sev- "><tt><i>63</i>         <span class="k">for</span> <span class="n">layer</span><span class="p">,</span> <span class="n">next_layer_features</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">block_features</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>63</i> <span class="c1">#         for layer, next_layer_features in enumerate(block_features):</span></tt>
             </div>
             <div id="l64"
                class="code sev-2  le">
@@ -285,24 +294,24 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (107 > 79 characters)</li>
+                     Line too long (109 > 79 characters)</li>
                
-               </ul><tt><i>64</i>             <span class="n">mlp_block</span> <span class="o">=</span> <span class="n">RegularBlock</span><span class="p">(</span><span class="n">depth_of_mlp</span><span class="p">,</span> <span class="n">last_layer_features</span><span class="p">,</span> <span class="n">next_layer_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">residual</span><span class="p">)</span></tt>
+               </ul><tt><i>64</i> <span class="c1">#             mlp_block = RegularBlock(depth_of_mlp, last_layer_features, next_layer_features, self.residual)</span></tt>
             </div>
             <div id="l65"
-               class="code sev- "><tt><i>65</i>             <span class="bp">self</span><span class="o">.</span><span class="n">reg_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mlp_block</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>65</i> <span class="c1">#             self.reg_blocks.append(mlp_block)</span></tt>
             </div>
             <div id="l66"
-               class="code sev- "><tt><i>66</i>             <span class="n">last_layer_features</span> <span class="o">=</span> <span class="n">next_layer_features</span></tt>
+               class="code sev- "><tt><i>66</i> <span class="c1">#             last_layer_features = next_layer_features</span></tt>
             </div>
             <div id="l67"
-               class="code sev- "><tt><i>67</i> &nbsp;</tt>
+               class="code sev- "><tt><i>67</i> <span class="c1">#</span></tt>
             </div>
             <div id="l68"
-               class="code sev- "><tt><i>68</i>         <span class="bp">self</span><span class="o">.</span><span class="n">fc_layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>68</i> <span class="c1">#         self.fc_layers = nn.ModuleList()</span></tt>
             </div>
             <div id="l69"
-               class="code sev- "><tt><i>69</i>         <span class="k">for</span> <span class="n">output_features</span> <span class="ow">in</span> <span class="n">block_features</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>69</i> <span class="c1">#         for output_features in block_features:</span></tt>
             </div>
             <div id="l70"
                class="code sev-2  le">
@@ -312,9 +321,9 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (114 > 79 characters)</li>
+                     Line too long (116 > 79 characters)</li>
                
-               </ul><tt><i>70</i>             <span class="c1"># each block&#39;s output will be pooled (thus have 2*output_features), and pass through a fully connected</span></tt>
+               </ul><tt><i>70</i> <span class="c1">#             # each block&#39;s output will be pooled (thus have 2*output_features), and pass through a fully connected</span></tt>
             </div>
             <div id="l71"
                class="code sev-2  le">
@@ -324,39 +333,39 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (83 > 79 characters)</li>
+                     Line too long (85 > 79 characters)</li>
                
-               </ul><tt><i>71</i>             <span class="n">fc</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">output_features</span><span class="p">,</span> <span class="n">num_tasks</span><span class="p">,</span> <span class="n">activation_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></tt>
+               </ul><tt><i>71</i> <span class="c1">#             fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)</span></tt>
             </div>
             <div id="l72"
-               class="code sev- "><tt><i>72</i>             <span class="bp">self</span><span class="o">.</span><span class="n">fc_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>72</i> <span class="c1">#             self.fc_layers.append(fc)</span></tt>
             </div>
             <div id="l73"
-               class="code sev- "><tt><i>73</i> &nbsp;</tt>
+               class="code sev- "><tt><i>73</i> <span class="c1">#</span></tt>
             </div>
             <div id="l74"
-               class="code sev- "><tt><i>74</i>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_no_edge_feat</span><span class="p">,</span> <span class="n">x_with_edge_feat</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>74</i> <span class="c1">#     def forward(self, x_no_edge_feat, x_with_edge_feat):</span></tt>
             </div>
             <div id="l75"
-               class="code sev- "><tt><i>75</i>         <span class="n">x</span> <span class="o">=</span> <span class="n">x_with_edge_feat</span></tt>
+               class="code sev- "><tt><i>75</i> <span class="c1">#         x = x_with_edge_feat</span></tt>
             </div>
             <div id="l76"
-               class="code sev- "><tt><i>76</i> &nbsp;</tt>
+               class="code sev- "><tt><i>76</i> <span class="c1">#</span></tt>
             </div>
             <div id="l77"
-               class="code sev- "><tt><i>77</i>         <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>77</i> <span class="c1">#         scores = torch.tensor(0, device=x.device, dtype=x.dtype)</span></tt>
             </div>
             <div id="l78"
-               class="code sev- "><tt><i>78</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reg_blocks</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>78</i> <span class="c1">#         for i, block in enumerate(self.reg_blocks):</span></tt>
             </div>
             <div id="l79"
-               class="code sev- "><tt><i>79</i>             <span class="n">x</span> <span class="o">=</span> <span class="n">block</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>79</i> <span class="c1">#             x = block(x)</span></tt>
             </div>
             <div id="l80"
-               class="code sev- "><tt><i>80</i>             <span class="n">scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_layers</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">diag_offdiag_maxpool</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">+</span> <span class="n">scores</span></tt>
+               class="code sev- "><tt><i>80</i> <span class="c1">#             scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores</span></tt>
             </div>
             <div id="l81"
-               class="code sev- "><tt><i>81</i>         <span class="k">return</span> <span class="n">scores</span></tt>
+               class="code sev- "><tt><i>81</i> <span class="c1">#         return scores</span></tt>
             </div>
             <div id="l82"
                class="code sev- "><tt><i>82</i> &nbsp;</tt>

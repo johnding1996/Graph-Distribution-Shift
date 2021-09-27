@@ -324,66 +324,41 @@ Unannotated (x11)">            scores = self.fc_layers[i](diag_offdiag_maxpool(x
 Unannotated (x1)">        return scores</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-precise" title="No Anys on this line!">class ThreeWLGNNEdgeNet(nn.Module):</span>
-<span class="line-any" title="No Anys on this line!">    def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,</span>
-<span class="line-any" title="No Anys on this line!">                 residual=False, **model_kwargs):</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        assert gnn_type == '3wlgnn-edge'</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        super(ThreeWLGNNEdgeNet, self).__init__()</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.in_dim_node = feature_dim</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        self.residual = residual</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        block_features = [hidden_dim] * n_layers  # L here is the block number</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">        original_features_num = self.in_dim_node + self.num_bond_type + 1  # Number of features of the input</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        # sequential mlp blocks</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        last_layer_features = original_features_num</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">        self.reg_blocks = nn.ModuleList()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        for layer, next_layer_features in enumerate(block_features):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">            mlp_block = RegularBlock(depth_of_mlp, last_layer_features, next_layer_features, self.residual)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            self.reg_blocks.append(mlp_block)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">            last_layer_features = next_layer_features</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">        self.fc_layers = nn.ModuleList()</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        for output_features in block_features:</span>
-<span class="line-empty" title="No Anys on this line!">            # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x8)">            fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            self.fc_layers.append(fc)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">    def forward(self, x_no_edge_feat, x_with_edge_feat):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">        x = x_with_edge_feat</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)
-Unimported (x1)">        scores = torch.tensor(0, device=x.device, dtype=x.dtype)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        for i, block in enumerate(self.reg_blocks):</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">            x = block(x)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x11)">            scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        return scores</span>
+<span class="line-empty" title="No Anys on this line!"># class ThreeWLGNNEdgeNet(nn.Module):</span>
+<span class="line-empty" title="No Anys on this line!">#     def __init__(self, gnn_type, num_tasks, feature_dim, n_layers=3, depth_of_mlp=2, hidden_dim=128,</span>
+<span class="line-empty" title="No Anys on this line!">#                  residual=False, **model_kwargs):</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         assert gnn_type == '3wlgnn-edge'</span>
+<span class="line-empty" title="No Anys on this line!">#         super(ThreeWLGNNEdgeNet, self).__init__()</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         self.in_dim_node = feature_dim</span>
+<span class="line-empty" title="No Anys on this line!">#         self.residual = residual</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         block_features = [hidden_dim] * n_layers  # L here is the block number</span>
+<span class="line-empty" title="No Anys on this line!">#         original_features_num = self.in_dim_node + self.num_bond_type + 1  # Number of features of the input</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         # sequential mlp blocks</span>
+<span class="line-empty" title="No Anys on this line!">#         last_layer_features = original_features_num</span>
+<span class="line-empty" title="No Anys on this line!">#         self.reg_blocks = nn.ModuleList()</span>
+<span class="line-empty" title="No Anys on this line!">#         for layer, next_layer_features in enumerate(block_features):</span>
+<span class="line-empty" title="No Anys on this line!">#             mlp_block = RegularBlock(depth_of_mlp, last_layer_features, next_layer_features, self.residual)</span>
+<span class="line-empty" title="No Anys on this line!">#             self.reg_blocks.append(mlp_block)</span>
+<span class="line-empty" title="No Anys on this line!">#             last_layer_features = next_layer_features</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         self.fc_layers = nn.ModuleList()</span>
+<span class="line-empty" title="No Anys on this line!">#         for output_features in block_features:</span>
+<span class="line-empty" title="No Anys on this line!">#             # each block's output will be pooled (thus have 2*output_features), and pass through a fully connected</span>
+<span class="line-empty" title="No Anys on this line!">#             fc = FullyConnected(2 * output_features, num_tasks, activation_fn=None)</span>
+<span class="line-empty" title="No Anys on this line!">#             self.fc_layers.append(fc)</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#     def forward(self, x_no_edge_feat, x_with_edge_feat):</span>
+<span class="line-empty" title="No Anys on this line!">#         x = x_with_edge_feat</span>
+<span class="line-empty" title="No Anys on this line!">#</span>
+<span class="line-empty" title="No Anys on this line!">#         scores = torch.tensor(0, device=x.device, dtype=x.dtype)</span>
+<span class="line-empty" title="No Anys on this line!">#         for i, block in enumerate(self.reg_blocks):</span>
+<span class="line-empty" title="No Anys on this line!">#             x = block(x)</span>
+<span class="line-empty" title="No Anys on this line!">#             scores = self.fc_layers[i](diag_offdiag_maxpool(x)) + scores</span>
+<span class="line-empty" title="No Anys on this line!">#         return scores</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">class MLPReadout(nn.Module):</span>
