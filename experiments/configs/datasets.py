@@ -21,6 +21,7 @@ dataset_defaults = {
         'algo_log_metric': 'multitask_binary_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
+        'model': 'gin_virtual',
     },
     'ogb-molhiv': {
         'num_domains': 19089,
@@ -44,6 +45,7 @@ dataset_defaults = {
         'algo_log_metric': 'binary_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
+        'model': 'gin_virtual',
     },
     'ogbg-ppa': {
         'num_domains': 1581,  # not mapped
@@ -67,6 +69,7 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
+        'model': 'gin_virtual',
     },
     'RotatedMNIST': {
         'num_domains': 6,
@@ -91,6 +94,7 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
+        'model': 'cheb',
     },
     'ColoredMNIST': {
         'num_domains': 3,
@@ -113,6 +117,7 @@ dataset_defaults = {
         'no_group_logging': True,
         'process_outputs_function': None,
         'algo_log_metric': 'binary_accuracy',
+        'model': 'cheb',
     },
     'SBM-Environment': {
         'num_domains': 4,
@@ -138,6 +143,7 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
+        'model': 'gin_10_layers',
     },
     'SBM-Isolation': {
         'num_domains': 10,
@@ -163,6 +169,7 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
+        'model': 'cheb',
     },
     'UPFD': {
         'num_domains': 10,
@@ -187,5 +194,6 @@ dataset_defaults = {
         'algo_log_metric': 'binary_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
+        'model': 'cheb',
     },
 }

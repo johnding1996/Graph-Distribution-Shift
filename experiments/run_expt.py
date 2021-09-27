@@ -34,7 +34,8 @@ def main():
     # Required arguments
     parser.add_argument('-d', '--dataset', choices=gds.supported_datasets, required=True)
     parser.add_argument('-a', '--algorithm', choices=supported.algorithms, required=True)
-    parser.add_argument('-m', '--model', choices=supported.models, required=True)
+    parser.add_argument('-m', '--model', choices=supported.models)
+
 
     # Dataset
     parser.add_argument('--split_scheme',
