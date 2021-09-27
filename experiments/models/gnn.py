@@ -86,7 +86,8 @@ class GNN_node(torch.nn.Module):
         node representations
     """
 
-    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last", residual=False):
+    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last",
+                 residual=False, batchnorm=True):
         '''
             emb_dim (int): node embedding dimensionality
             num_layer (int): number of GNN message passing layers
@@ -102,6 +103,7 @@ class GNN_node(torch.nn.Module):
         self.JK = JK
         ### add residual connection or not
         self.residual = residual
+        self.batchnorm = batchnorm
 
         if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
@@ -164,7 +166,8 @@ class GNN_node(torch.nn.Module):
         for layer in range(self.num_layer):
 
             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
-            h = self.batch_norms[layer](h)
+            if self.batchnorm :
+                h = self.batch_norms[layer](h)
 
             if layer == self.num_layer - 1:
                 # remove relu for the last layer
@@ -195,7 +198,8 @@ class GNN_node_Virtualnode(torch.nn.Module):
         node representations
     """
 
-    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last", residual=False):
+    def __init__(self, num_layer, emb_dim, dataset_group='mol', gnn_type='gin', dropout=0.5, JK="last",
+                 residual=False, batchnorm=True):
         '''
             emb_dim (int): node embedding dimensionality
         '''
@@ -210,6 +214,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
         self.JK = JK
         ### add residual connection or not
         self.residual = residual
+        self.batchnorm = batchnorm
 
         if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
@@ -295,7 +300,8 @@ class GNN_node_Virtualnode(torch.nn.Module):
 
             ### Message passing among graph nodes
             h = self.convs[layer](h_list[layer], edge_index, edge_attr)
-            h = self.batch_norms[layer](h)
+            if self.batchnorm:
+                h = self.batch_norms[layer](h)
             if layer == self.num_layer - 1:
                 # remove relu for the last layer
                 h = F.dropout(h, self.drop_ratio, training=self.training)

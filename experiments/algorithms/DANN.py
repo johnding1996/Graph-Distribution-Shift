@@ -189,15 +189,16 @@ class OurAbstractDANN(SingleModelAlgorithm):
         num_classes = d_out
         emb_dim = self.featurizer.d_out
         # GNN type fixed at GIN for the discriminator, layer num fixed at 2
-        self.discriminator_gnn = GNN_node(num_layer=2, emb_dim=emb_dim, dropout=config.model_kwargs['dropout'],
+        self.discriminator_gnn = GNN_node(num_layer=2, emb_dim=emb_dim, dropout=0, batchnorm=False,
                                           dataset_group=config.model_kwargs['dataset_group']).to(config.device)
         self.discriminator_gnn.destroy_node_encoder()
         self.discriminator_pool = global_mean_pool
-        self.discriminator_mlp = torch.nn.Sequential(
-                                    torch.nn.Linear(emb_dim, emb_dim),
-                                    torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),
-                                    torch.nn.Linear(emb_dim, config.num_domains)
-                                ).to(config.device)
+        self.discriminator_mlp = torch.nn.Linear(emb_dim, config.num_domains).to(config.device)
+        # self.discriminator_mlp = torch.nn.Sequential(
+        #                             torch.nn.Linear(emb_dim, emb_dim),
+        #                             torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),
+        #                             torch.nn.Linear(emb_dim, config.num_domains)
+        #                         ).to(config.device)
 
         # Optimizers
         self.disc_opt = torch.optim.Adam(
