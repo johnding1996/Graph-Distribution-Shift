@@ -167,7 +167,7 @@ dataset_defaults = {
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['size', ],
-        'val_metric': 'acc',
+        'val_metric': 'rocauc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
         'batch_size': 128,
