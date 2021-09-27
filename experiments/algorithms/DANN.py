@@ -11,7 +11,7 @@ from torch_geometric.nn import global_mean_pool
 class AbstractDANN(SingleModelAlgorithm):
     """Domain-Adversarial Neural Networks (abstract class)"""
 
-    # def __init__(self, input_shape, num_classes, num_domains,
+    # def __init__(self, input_shape, num_classes, num_train_domains,
     #              hparams, conditional, class_balance):
     def __init__(self, config, d_out, grouper, loss,
                  metric, n_train_steps, conditional, class_balance):
@@ -29,7 +29,7 @@ class AbstractDANN(SingleModelAlgorithm):
             metric=metric,
             n_train_steps=n_train_steps,
         )
-        assert config.num_domains <= 1000 # domain space shouldn't be too large
+        assert config.num_train_domains <= 1000 # domain space shouldn't be too large
 
         self.featurizer = featurizer
         self.classifier = classifier
@@ -45,7 +45,7 @@ class AbstractDANN(SingleModelAlgorithm):
                                                  torch.nn.ReLU(),
                                                  torch.nn.Linear(emb_dim, emb_dim),
                                                  torch.nn.ReLU(),
-                                                 torch.nn.Linear(emb_dim, config.num_domains)).to(config.device)
+                                                 torch.nn.Linear(emb_dim, config.num_train_domains)).to(config.device)
         self.class_embeddings = torch.nn.Embedding(num_classes,
             self.featurizer.d_out).to(config.device)
 
@@ -158,7 +158,7 @@ class AbstractDANN(SingleModelAlgorithm):
 class OurAbstractDANN(SingleModelAlgorithm):
     """Domain-Adversarial Neural Networks (abstract class)"""
 
-    # def __init__(self, input_shape, num_classes, num_domains,
+    # def __init__(self, input_shape, num_classes, num_train_domains,
     #              hparams, conditional, class_balance):
     def __init__(self, config, d_out, grouper, loss,
                  metric, n_train_steps):
@@ -177,7 +177,7 @@ class OurAbstractDANN(SingleModelAlgorithm):
             metric=metric,
             n_train_steps=n_train_steps,
         )
-        assert config.num_domains <= 1000 # domain space shouldn't be too large
+        assert config.num_train_domains <= 1000 # domain space shouldn't be too large
 
         self.featurizer = featurizer
         self.classifier = classifier
@@ -193,11 +193,11 @@ class OurAbstractDANN(SingleModelAlgorithm):
                                           dataset_group=config.model_kwargs['dataset_group']).to(config.device)
         self.discriminator_gnn.destroy_node_encoder()
         self.discriminator_pool = global_mean_pool
-        self.discriminator_mlp = torch.nn.Linear(emb_dim, config.num_domains).to(config.device)
+        self.discriminator_mlp = torch.nn.Linear(emb_dim, config.num_train_domains).to(config.device)
         # self.discriminator_mlp = torch.nn.Sequential(
         #                             torch.nn.Linear(emb_dim, emb_dim),
         #                             torch.nn.BatchNorm1d(emb_dim), torch.nn.ReLU(),
-        #                             torch.nn.Linear(emb_dim, config.num_domains)
+        #                             torch.nn.Linear(emb_dim, config.num_train_domains)
         #                         ).to(config.device)
 
         # Optimizers
