@@ -43,7 +43,7 @@ def main():
     parser.add_argument('--dataset_kwargs', nargs='*', action=ParseKwargs, default={})
     parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',
                         help='If true, tries to downloads the dataset if it does not exist in root_dir.')
-    parser.add_argument('--use_frac', type=bool, default=True,
+    parser.add_argument('--use_frac', type=parse_bool, default=True,
                         help='Convenience parameter that scales all dataset splits down to the specified fraction, '
                              'for development purposes. Note that this also scales the test set down, so the reported '
                              'numbers are not comparable with the full test set.')
@@ -128,7 +128,6 @@ def main():
 
     config = parser.parse_args()
     config = populate_defaults(config)
-
     # For the 3wlgnn model, we need to set batch_size to 1
     if config.model == '3wlgnn':
         config.batch_size = 1
