@@ -124,7 +124,7 @@ def main():
     parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
     # early stopping
-    parser.add_argument('--patience', type=int, default=15)
+    parser.add_argument('--patience', type=int, default=30)
 
     config = parser.parse_args()
     config = populate_defaults(config)
