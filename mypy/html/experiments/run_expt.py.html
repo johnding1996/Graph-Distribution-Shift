@@ -323,7 +323,6 @@
 <span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
 <span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
 <span id="L315" class="lineno"><a class="lineno" href="#L315">315</a></span>
-<span id="L316" class="lineno"><a class="lineno" href="#L316">316</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -383,7 +382,8 @@ Unannotated (x3)
 Unimported (x1)">    parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',</span>
 <span class="line-any" title="No Anys on this line!">                        help='If true, tries to downloads the dataset if it does not exist in root_dir.')</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    parser.add_argument('--use_frac', type=bool, default=True,</span>
+Unannotated (x3)
+Unimported (x1)">    parser.add_argument('--use_frac', type=parse_bool, default=True,</span>
 <span class="line-any" title="No Anys on this line!">                        help='Convenience parameter that scales all dataset splits down to the specified fraction, '</span>
 <span class="line-empty" title="No Anys on this line!">                             'for development purposes. Note that this also scales the test set down, so the reported '</span>
 <span class="line-empty" title="No Anys on this line!">                             'numbers are not comparable with the full test set.')</span>
@@ -544,7 +544,6 @@ Unannotated (x4)">    config = parser.parse_args()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
 Unimported (x1)">    config = populate_defaults(config)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # For the 3wlgnn model, we need to set batch_size to 1</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    if config.model == '3wlgnn':</span>
