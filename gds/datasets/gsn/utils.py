@@ -48,7 +48,7 @@ def prepare_dataset(path,
                     multiprocessing,
                     num_processes,
                     **subgraph_params):
-    if dataset in ['bioinformatics', 'social', 'chemical', 'ogb', 'SR_graphs', 'MNIST']:
+    if dataset in ['bioinformatics', 'social', 'chemical', 'ogb', 'SR_graphs', 'MNIST', 'SBM', 'UPFD']:
         data_folder = os.path.join(path, 'processed', id_scope)
         if not os.path.exists(data_folder):
             os.makedirs(data_folder)
@@ -98,7 +98,7 @@ def prepare_dataset(path,
                     loaded = True
 
     if not loaded:
-
+       
         graphs_ptg, num_classes, num_node_type, num_edge_type, orbit_partition_sizes = generate_dataset(path,
                                                                                                         name,
                                                                                                         k,

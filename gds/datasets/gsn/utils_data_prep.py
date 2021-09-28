@@ -9,6 +9,13 @@ import torch
 from sklearn.model_selection import StratifiedKFold
 from ogb.graphproppred import PygGraphPropPredDataset
 from torch_geometric.utils import to_undirected
+from gds.datasets.pyg_colored_mnist_dataset import PyGColoredMNISTDataset
+from gds.datasets.pyg_rotated_mnist_dataset import PyGRotatedMNISTDataset
+
+from gds.datasets.pyg_sbm_environment_dataset import PyGSBMEnvironmentDataset
+from gds.datasets.pyg_sbm_isolation_dataset import PyGSBMIsolationDataset
+
+from gds.datasets.pyg_upfd_dataset import PyGUPFDDataset
 
 class S2VGraph(object):
     def __init__(self, g, label, node_tags=None, node_features=None):
@@ -177,7 +184,7 @@ def load_zinc_data(path, name, degree_as_tag, num_atom_type=28, num_bond_type=4)
 def load_ogb_data(path, name, degree_as_tag):
     
      ### splits and preprocessing according to https://github.com/snap-stanford/ogb
-        
+
     def add_zeros(data):
         data.x = torch.zeros(data.num_nodes, dtype=torch.long)
         return data
@@ -194,6 +201,54 @@ def load_ogb_data(path, name, degree_as_tag):
         graph = Graph(datum.x, datum.edge_index, datum.edge_attr, datum.y)
         graph_list.append(graph)
     num_classes = dataset.num_classes if name == 'ogbg-ppa' else dataset.num_tasks
+    return graph_list, num_classes
+
+
+def load_mnist_data(path, name):
+    
+     ### splits and preprocessing according to https://github.com/snap-stanford/ogb
+   
+    if name == 'RotatedMNIST':     
+        dataset = PyGRotatedMNISTDataset(name='RotatedMNIST', root=path)
+    elif name == 'ColoredMNIST':
+        dataset = PyGColoredMNISTDataset(name='ColoredMNIST', root=path)
+    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'edge_features', 'label'])
+    graph_list = list()
+    for datum in dataset:
+        graph = Graph(datum.x, datum.edge_index, datum.edge_attr, datum.y)
+        graph_list.append(graph)
+    num_classes = dataset.__num_classes__
+    return graph_list, num_classes
+
+
+def load_sbm_data(path, name):
+    
+     ### splits and preprocessing according to https://github.com/snap-stanford/ogb
+  
+    if name == 'SBM-Environment':     
+        dataset = PyGSBMEnvironmentDataset(name='SBM-Environment', root=path)
+    elif name == 'SBM-Isolation':
+        dataset = PyGSBMIsolationDataset(name='SBM-Isolation', root=path)
+    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'edge_features', 'label'])
+    graph_list = list()
+    for datum in dataset:
+        graph = Graph(datum.x, datum.edge_index, datum.edge_attr, datum.y)
+        graph_list.append(graph)
+    num_classes = dataset.__num_classes__
+    return graph_list, num_classes
+
+
+def load_upfd_data(path, name):
+    
+     ### splits and preprocessing according to https://github.com/snap-stanford/ogb
+        
+    dataset = PyGUPFDDataset(path, 'UPFD', 'profile')
+    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'edge_features', 'label'])
+    graph_list = list()
+    for datum in dataset:
+        graph = Graph(datum.x, datum.edge_index, datum.edge_attr, datum.y)
+        graph_list.append(graph)
+    num_classes = dataset.__num_classes__
     return graph_list, num_classes
 
 

@@ -42,7 +42,7 @@ class GSN():
         ###### these are to select the dataset:
         # - dataset can be bionformatics or social and states the class;
         # - name is for the specific problem itself
-        self.dataset = dataset_group
+        self.dataset_group = dataset_group
         self.dataset_name = dataset_name
 
         ######  set degree_as_tag to True to use the degree as node features;
@@ -248,16 +248,6 @@ class GSN():
         # args['bn'] = [args['bn'] for _ in range(args['num_layers'])]
         # args['dropout_features'] = [args['dropout_features'] for _ in range(args['num_layers'])] + [args['dropout_features']]
 
-        # begin here 
-        if self.dataset == 'ogb':
-            evaluator = Evaluator(self.dataset_name)
-        elif self.dataset_name == 'MNIST':
-            evaluator = Evaluator('ogbg-ppa')
-        else:
-            raise NotImplementedError
-
-
-        
 
         
         ## ----------------------------------- infrastructure
@@ -282,8 +272,9 @@ class GSN():
                            'edge_list': self.custom_edge_list,
                            'directed': self.directed,
                            'directed_orbits': self.directed_orbits}
+      
         graphs_ptg, num_classes, orbit_partition_sizes = prepare_dataset(root_path,
-                                                                         self.dataset,
+                                                                         self.dataset_group,
                                                                          self.dataset_name,
                                                                          self.id_scope,
                                                                          self.id_type,
@@ -309,13 +300,8 @@ class GSN():
         else:
             num_edge_features = None
 
-        if self.dataset == 'chemical' and self.dataset_name == 'ZINC':
-            d_in_node_encoder, d_in_edge_encoder = torch.load(
-                os.path.join(root_path, 'processed', 'num_feature_types.pt'))
-            d_in_node_encoder, d_in_edge_encoder = [d_in_node_encoder], [d_in_edge_encoder]
-        else:
-            d_in_node_encoder = [num_features]
-            d_in_edge_encoder = [num_edge_features]
+        d_in_node_encoder = [num_features]
+        d_in_edge_encoder = [num_edge_features]
         ## ----------------------------------- encode ids and degrees (and possibly edge features)
 
         degree_encoding = self.degree_encoding if self.degree_as_tag else None

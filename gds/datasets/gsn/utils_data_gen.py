@@ -3,7 +3,7 @@ import torch
 import torch_geometric as torch_geo
 from torch_geometric.utils import sort_edge_index, remove_self_loops
 from torch_geometric.data import Data
-from .utils_data_prep import load_data, load_zinc_data, load_ogb_data, load_g6_graphs
+from .utils_data_prep import load_data, load_zinc_data, load_ogb_data, load_g6_graphs, load_mnist_data, load_sbm_data, load_upfd_data
 from .utils_graph_processing import automorphism_orbits
 
 import multiprocessing as mp
@@ -45,6 +45,15 @@ def generate_dataset(data_path,
     data_path = os.path.join(data_path, os.pardir)
     if dataset_name == 'ZINC':
         graphs, num_classes, num_node_type, num_edge_type = load_zinc_data(data_path, dataset_name, False)
+    elif dataset_name in {'RotatedMNIST', 'ColoredMNIST'}:
+        graphs, num_classes = load_mnist_data(data_path, dataset_name)
+        num_node_type, num_edge_type = None, None
+    elif dataset_name in {'SBM-Environment', 'SBM-Isolation'}:
+        graphs, num_classes = load_sbm_data(data_path, dataset_name)
+        num_node_type, num_edge_type = None, None
+    elif dataset_name in {'UPFD'}:
+        graphs, num_classes = load_upfd_data(data_path, dataset_name)
+        num_node_type, num_edge_type = None, None
     else:
         graphs, num_classes = load_ogb_data(data_path, dataset_name, False)
         num_node_type, num_edge_type = None, None
