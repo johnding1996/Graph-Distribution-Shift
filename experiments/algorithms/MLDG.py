@@ -92,13 +92,12 @@ class MLDG(SingleModelAlgorithm):
             grad_inner_j = torch.autograd.grad(loss_inner_j, inner_net.parameters(),
                 allow_unused=True)
             # `objective` is populated for reporting purposes
-            hparams_mldg_beta = 1
-            objective += (hparams_mldg_beta * loss_inner_j).item()
+            objective += (self.config.mldg_beta * loss_inner_j).item()
 
 
             for p, g_j in zip(self.model.parameters(), grad_inner_j):
                 if g_j is not None:
-                    p.grad.data.add_(hparams_mldg_beta * g_j.data / n_groups_per_batch)
+                    p.grad.data.add_(self.config.mldg_beta * g_j.data / n_groups_per_batch)
 
             # The network has now accumulated gradients Gi + beta * Gj
             # Repeat for all train-test splits, do .step()

@@ -6,9 +6,10 @@ from typing import Optional, Callable, List
 
 
 class PyGRotatedMNISTDataset(InMemoryDataset):
-    names = ['RotatedMNIST']
+    names = ['RotatedMNIST', 'RotatedMNIST_expired']
     urls = {
-        'RotatedMNIST': 'https://www.dropbox.com/s/5kybifusm8jexna/RotatedMNIST.zip?dl=1'
+        'RotatedMNIST': 'https://www.dropbox.com/s/3tgk65bpjp8mvhj/RotatedMNIST.zip?dl=1',
+        'RotatedMNIST_expired': 'https://www.dropbox.com/s/5kybifusm8jexna/RotatedMNIST_expired.zip?dl=1'
     }
 
     def __init__(self, root: str, name: str,

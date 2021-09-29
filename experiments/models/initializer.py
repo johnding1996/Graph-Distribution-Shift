@@ -21,8 +21,6 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_p
             If is_featurizer=False:
             - model: a model that is equivalent to nn.Sequential(featurizer, classifier)
     """
-    import pdb
-    pdb.set_trace()
 
     if full_dataset is None:
         if config.model == "3wlgnn":

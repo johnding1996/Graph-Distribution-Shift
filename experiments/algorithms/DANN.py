@@ -37,6 +37,8 @@ class AbstractDANN(SingleModelAlgorithm):
 
 
 ##############################################
+
+        self.hparams_lambda = config.dann_lambda
         self.conditional = conditional
         self.class_balance = class_balance
         num_classes = d_out
@@ -134,9 +136,8 @@ class AbstractDANN(SingleModelAlgorithm):
             disc_loss.backward()
             self.disc_opt.step()
         else:
-            hparams_lambda = 1.0
             gen_loss = (classifier_loss +
-                        (hparams_lambda * -disc_loss))
+                        (self.hparams_lambda * -disc_loss))
             self.disc_opt.zero_grad()
             self.gen_opt.zero_grad()
             gen_loss.backward()
@@ -186,6 +187,7 @@ class OurAbstractDANN(SingleModelAlgorithm):
 
 
 ##############################################
+        self.hparams_lambda = config.dann_lambda
         num_classes = d_out
         emb_dim = self.featurizer.d_out
         # GNN type fixed at GIN for the discriminator, layer num fixed at 2
@@ -271,9 +273,8 @@ class OurAbstractDANN(SingleModelAlgorithm):
             disc_loss.backward()
             self.disc_opt.step()
         else:
-            hparams_lambda = 1.0
             gen_loss = (classifier_loss +
-                        (hparams_lambda * -disc_loss))
+                        (self.hparams_lambda * -disc_loss))
             self.disc_opt.zero_grad()
             self.gen_opt.zero_grad()
             gen_loss.backward()

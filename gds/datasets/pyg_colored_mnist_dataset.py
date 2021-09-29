@@ -7,9 +7,10 @@ import numpy as np
 
 
 class PyGColoredMNISTDataset(InMemoryDataset):
-    names = ['ColoredMNIST']
+    names = ['ColoredMNIST', 'ColoredMNIST_expired']
     urls = {
-        'ColoredMNIST': 'https://www.dropbox.com/s/bz0mkww2ivu8rwn/ColoredMNIST.zip?dl=1'
+        'ColoredMNIST': 'https://www.dropbox.com/s/3zfi43erynkmi0i/ColoredMNIST.zip?dl=1',
+        'ColoredMNIST_expired': 'https://www.dropbox.com/s/bz0mkww2ivu8rwn/ColoredMNIST_expired.zip?dl=1'
     }
 
     def __init__(self, root: str, name: str,
