@@ -121,7 +121,7 @@ class GNN_node(torch.nn.Module):
             self.node_encoder = torch.nn.Linear(1, emb_dim)
         elif self.dataset_group == 'ColoredMNIST' :
             self.node_encoder = torch.nn.Linear(2, emb_dim)
-            self.node_encoder_cate = torch.nn.Embedding(8, emb_dim)
+            # self.node_encoder_cate = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'SBM' :
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'UPFD':
@@ -167,10 +167,10 @@ class GNN_node(torch.nn.Module):
         if self.node_encoder is None:
             h_list = [x]
         else:
-            if self.dataset_group == 'ColoredMNIST' :
-                h_list = [self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze()) + perturb if perturb is not None else self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze())]
-            else :
-                h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]
+            # if self.dataset_group == 'ColoredMNIST' :
+            #     h_list = [self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze()) + perturb if perturb is not None else self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze())]
+            # else :
+            h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]
 
         for layer in range(self.num_layer):
 
@@ -236,7 +236,7 @@ class GNN_node_Virtualnode(torch.nn.Module):
             self.node_encoder = torch.nn.Linear(1, emb_dim)
         elif self.dataset_group == 'ColoredMNIST' :
             self.node_encoder = torch.nn.Linear(2, emb_dim)
-            self.node_encoder_cate = torch.nn.Embedding(8, emb_dim)
+            # self.node_encoder_cate = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'SBM' :
             self.node_encoder = torch.nn.Embedding(8, emb_dim)
         elif self.dataset_group == 'UPFD':
@@ -302,10 +302,10 @@ class GNN_node_Virtualnode(torch.nn.Module):
         if self.node_encoder is None:
             h_list = [x]
         else:
-            if self.dataset_group == 'ColoredMNIST' :
-                h_list = [self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze()) + perturb if perturb is not None else self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze())]
-            else :
-                h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]
+            # if self.dataset_group == 'ColoredMNIST' :
+            #     h_list = [self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze()) + perturb if perturb is not None else self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze())]
+            # else :
+            h_list = [self.node_encoder(x) + perturb if perturb is not None else self.node_encoder(x)]
 
         for layer in range(self.num_layer):
             ### add message from virtual nodes to graph nodes

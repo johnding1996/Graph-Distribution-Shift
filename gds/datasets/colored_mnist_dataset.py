@@ -134,19 +134,19 @@ class ColoredMNISTDataset(GDSDataset):
         for graph in graph_list:
             adj = self._sym_normalize_adj(to_dense_adj(graph.edge_index).squeeze())
             zero_adj = torch.zeros_like(adj)
-            # in_dim = graph.x.shape[1]
-            in_dim = 10
+            in_dim = graph.x.shape[1]
+            # in_dim = 10
 
             # use node feats to prepare adj
             adj_node_feat = torch.stack([zero_adj for _ in range(in_dim)])
             adj_node_feat = torch.cat([adj.unsqueeze(0), adj_node_feat], dim=0)
 
             for node, node_feat in enumerate(graph.x):
-                adj_node_feat[1:3, node, node] = node_feat[:2]
-                adj_node_feat[3:, node, node] = F.one_hot(node_feat[2].long(), 8)
+                adj_node_feat[1:, node, node] = node_feat
+                # adj_node_feat[1:3, node, node] = node_feat[:2]
+                # adj_node_feat[3:, node, node] = F.one_hot(node_feat[2].long(), 8)
 
             x_node_feat.append(adj_node_feat)
-
         x_node_feat = torch.stack(x_node_feat)
 
         return x_node_feat, y, metadata

@@ -52,25 +52,31 @@ class PyGColoredMNISTDataset(InMemoryDataset):
 
     def process(self):
         inputs = torch.load(self.raw_paths[0])
+
         # data_list = [Data(**data_dict) for data_dict in inputs]
 
-        total_num_nodes = 0
-        for data_dict in inputs :
-            total_num_nodes += data_dict['x'].shape[0]
-
-        np.random.seed(0)
-        padded_cate = np.random.randint(8, size=total_num_nodes)
-
         data_list = []
-        ptr = 0
-        for i, data_dict in enumerate(inputs) :
-            num_node = data_dict['x'].shape[0]
-            cate = torch.tensor(padded_cate[ptr:ptr+num_node]).view((-1,1))
-            x = torch.cat((data_dict['x'][:, :2], cate), dim=1)
-            data_dict['x'] = x
+        for data_dict in inputs :
+            data_dict['x'] = data_dict['x'][:, :2]
             data_list.append(Data(**data_dict))
-            ptr += num_node
-        assert ptr == total_num_nodes
+
+        # total_num_nodes = 0
+        # for data_dict in inputs :
+        #     total_num_nodes += data_dict['x'].shape[0]
+        #
+        # np.random.seed(0)
+        # padded_cate = np.random.randint(8, size=total_num_nodes)
+        #
+        # data_list = []
+        # ptr = 0
+        # for i, data_dict in enumerate(inputs) :
+        #     num_node = data_dict['x'].shape[0]
+        #     cate = torch.tensor(padded_cate[ptr:ptr+num_node]).view((-1,1))
+        #     x = torch.cat((data_dict['x'][:, :2], cate), dim=1)
+        #     data_dict['x'] = x
+        #     data_list.append(Data(**data_dict))
+        #     ptr += num_node
+        # assert ptr == total_num_nodes
 
         if self.pre_filter is not None:
             data_list = [d for d in data_list if self.pre_filter(d)]

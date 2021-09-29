@@ -100,7 +100,7 @@ dataset_defaults = {
         'num_domains': 3,
         'num_train_domains':2,
         'split_scheme': 'official',
-        'model_kwargs': {'three_wl_in_dim':2+8, 'dropout': 0.5, 'dataset_group': 'ColoredMNIST'},
+        'model_kwargs': {'three_wl_in_dim':2, 'dropout': 0.5, 'dataset_group': 'ColoredMNIST'},
         'default_frac': 1.0,
         'loss_function': 'BCEWithLogitsLoss',
         'groupby_fields': ['color', ],
@@ -116,7 +116,7 @@ dataset_defaults = {
         'process_outputs_function': None,
         'algo_log_metric': 'binary_accuracy',
         'model': 'cheb',
-        'irm_lambda': 1.,
+        'irm_lambda': 100.,
         'coral_penalty_weight': 0.1,
     },
     'SBM-Environment': {
