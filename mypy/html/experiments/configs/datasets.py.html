@@ -205,8 +205,6 @@
 <span id="L195" class="lineno"><a class="lineno" href="#L195">195</a></span>
 <span id="L196" class="lineno"><a class="lineno" href="#L196">196</a></span>
 <span id="L197" class="lineno"><a class="lineno" href="#L197">197</a></span>
-<span id="L198" class="lineno"><a class="lineno" href="#L198">198</a></span>
-<span id="L199" class="lineno"><a class="lineno" href="#L199">199</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">dataset_defaults = {</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molpcba': {</span>
@@ -224,14 +222,14 @@
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 4,</span>
-<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multitask_binary_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual',</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ogb-molhiv': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 19089,</span>
@@ -248,14 +246,14 @@
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 4,</span>
-<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual',</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ogbg-ppa': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 1581,  # not mapped</span>
@@ -267,23 +265,23 @@
 <span class="line-precise" title="No Anys on this line!">        'val_metric': 'acc',</span>
 <span class="line-precise" title="No Anys on this line!">        'val_metric_decreasing': False,</span>
 <span class="line-precise" title="No Anys on this line!">        'optimizer': 'Adam',</span>
-<span class="line-precise" title="No Anys on this line!">        'batch_size': 16,</span>
+<span class="line-precise" title="No Anys on this line!">        'batch_size': 32,</span>
 <span class="line-precise" title="No Anys on this line!">        'lr': 1e-03,</span>
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 4,</span>
-<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual',</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'RotatedMNIST': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 6,</span>
-<span class="line-precise" title="No Anys on this line!">        'num_train_domains':5,</span>
+<span class="line-precise" title="No Anys on this line!">        'num_train_domains': 5,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 1, 'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
@@ -297,14 +295,14 @@
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 4,</span>
-<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'cheb',</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'ColoredMNIST': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 3,</span>
@@ -322,18 +320,17 @@
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 2,</span>
-<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1000.,</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'cheb',</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM-Environment': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 4,</span>
 <span class="line-precise" title="No Anys on this line!">        'num_train_domains':3,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual_mnist',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
@@ -346,20 +343,19 @@
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 2,</span>
-<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'gin_10_layers',</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'SBM-Isolation': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
 <span class="line-precise" title="No Anys on this line!">        'num_train_domains':8,</span>
 <span class="line-precise" title="No Anys on this line!">        'split_scheme': 'official',</span>
-<span class="line-precise" title="No Anys on this line!">        'model': 'gin_virtual_mnist',</span>
 <span class="line-precise" title="No Anys on this line!">        'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'SBM'},</span>
 <span class="line-precise" title="No Anys on this line!">        'default_frac': 1.0,</span>
 <span class="line-precise" title="No Anys on this line!">        'loss_function': 'cross_entropy',</span>
@@ -372,14 +368,14 @@
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 4,</span>
-<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'multiclass_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'cheb',</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'UPFD': {</span>
 <span class="line-precise" title="No Anys on this line!">        'num_domains': 10,</span>
@@ -397,14 +393,14 @@
 <span class="line-precise" title="No Anys on this line!">        'weight_decay': 0.,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_epochs': 150,</span>
 <span class="line-precise" title="No Anys on this line!">        'n_groups_per_batch': 4,</span>
-<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-precise" title="No Anys on this line!">        'no_group_logging': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'process_outputs_function': None,</span>
 <span class="line-precise" title="No Anys on this line!">        'algo_log_metric': 'binary_accuracy',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_id_type': 'cycle_graph',</span>
 <span class="line-precise" title="No Anys on this line!">        'gsn_k': 6,</span>
 <span class="line-precise" title="No Anys on this line!">        'model': 'cheb',</span>
+<span class="line-precise" title="No Anys on this line!">        'irm_lambda': 1.,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-empty" title="No Anys on this line!">}</span>
 </pre></td>
