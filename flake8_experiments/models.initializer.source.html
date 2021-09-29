@@ -131,24 +131,18 @@
                class="code sev- "><tt><i>23</i> <span class="sd">    &quot;&quot;&quot;</span></tt>
             </div>
             <div id="l24"
-               class="code sev- "><tt><i>24</i>     <span class="kn">import</span> <span class="nn">pdb</span></tt>
+               class="code sev- "><tt><i>24</i> &nbsp;</tt>
             </div>
             <div id="l25"
-               class="code sev- "><tt><i>25</i>     <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>25</i>     <span class="k">if</span> <span class="n">full_dataset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l26"
-               class="code sev- "><tt><i>26</i> &nbsp;</tt>
+               class="code sev- "><tt><i>26</i>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;3wlgnn&quot;</span><span class="p">:</span></tt>
             </div>
             <div id="l27"
-               class="code sev- "><tt><i>27</i>     <span class="k">if</span> <span class="n">full_dataset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>27</i>             <span class="k">if</span> <span class="n">is_featurizer</span><span class="p">:</span></tt>
             </div>
             <div id="l28"
-               class="code sev- "><tt><i>28</i>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;3wlgnn&quot;</span><span class="p">:</span></tt>
-            </div>
-            <div id="l29"
-               class="code sev- "><tt><i>29</i>             <span class="k">if</span> <span class="n">is_featurizer</span><span class="p">:</span></tt>
-            </div>
-            <div id="l30"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -158,18 +152,18 @@
                      </span>
                      Line too long (104 > 79 characters)</li>
                
-               </ul><tt><i>30</i>                 <span class="n">featurizer</span> <span class="o">=</span> <span class="n">ThreeWLGNNNet</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </ul><tt><i>28</i>                 <span class="n">featurizer</span> <span class="o">=</span> <span class="n">ThreeWLGNNNet</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+            </div>
+            <div id="l29"
+               class="code sev- "><tt><i>29</i>                 <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
+            </div>
+            <div id="l30"
+               class="code sev- "><tt><i>30</i>                 <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
             </div>
             <div id="l31"
-               class="code sev- "><tt><i>31</i>                 <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>31</i>             <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l32"
-               class="code sev- "><tt><i>32</i>                 <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
-            </div>
-            <div id="l33"
-               class="code sev- "><tt><i>33</i>             <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l34"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -179,9 +173,9 @@
                      </span>
                      Line too long (100 > 79 characters)</li>
                
-               </ul><tt><i>34</i>                 <span class="n">model</span> <span class="o">=</span> <span class="n">ThreeWLGNNNet</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </ul><tt><i>32</i>                 <span class="n">model</span> <span class="o">=</span> <span class="n">ThreeWLGNNNet</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
             </div>
-            <div id="l35"
+            <div id="l33"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -191,9 +185,9 @@
                      </span>
                      Whitespace before ':'</li>
                
-               </ul><tt><i>35</i>         <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;mlp&#39;</span> <span class="p">:</span></tt>
+               </ul><tt><i>33</i>         <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;mlp&#39;</span> <span class="p">:</span></tt>
             </div>
-            <div id="l36"
+            <div id="l34"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -209,12 +203,12 @@
                      </span>
                      Line too long (122 > 79 characters)</li>
                
-               </ul><tt><i>36</i>             <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;ERM&#39;</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;IRM&#39;</span> <span class="c1"># combinations with other algorithms not checked</span></tt>
+               </ul><tt><i>34</i>             <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;ERM&#39;</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;IRM&#39;</span> <span class="c1"># combinations with other algorithms not checked</span></tt>
             </div>
-            <div id="l37"
-               class="code sev- "><tt><i>37</i>             <span class="k">if</span> <span class="n">is_featurizer</span><span class="p">:</span></tt>
+            <div id="l35"
+               class="code sev- "><tt><i>35</i>             <span class="k">if</span> <span class="n">is_featurizer</span><span class="p">:</span></tt>
             </div>
-            <div id="l38"
+            <div id="l36"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -224,18 +218,18 @@
                      </span>
                      Line too long (94 > 79 characters)</li>
                
-               </ul><tt><i>38</i>                 <span class="n">featurizer</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </ul><tt><i>36</i>                 <span class="n">featurizer</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+            </div>
+            <div id="l37"
+               class="code sev- "><tt><i>37</i>                 <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
+            </div>
+            <div id="l38"
+               class="code sev- "><tt><i>38</i>                 <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
             </div>
             <div id="l39"
-               class="code sev- "><tt><i>39</i>                 <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>39</i>             <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l40"
-               class="code sev- "><tt><i>40</i>                 <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
-            </div>
-            <div id="l41"
-               class="code sev- "><tt><i>41</i>             <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l42"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -245,45 +239,45 @@
                      </span>
                      Line too long (90 > 79 characters)</li>
                
-               </ul><tt><i>42</i>                 <span class="n">model</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </ul><tt><i>40</i>                 <span class="n">model</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+            </div>
+            <div id="l41"
+               class="code sev- "><tt><i>41</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l42"
+               class="code sev- "><tt><i>42</i>             <span class="k">if</span> <span class="n">is_featurizer</span><span class="p">:</span></tt>
             </div>
             <div id="l43"
-               class="code sev- "><tt><i>43</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E203
+                     </span>
+                     Whitespace before ':'</li>
+               
+               </ul><tt><i>43</i>                 <span class="k">if</span> <span class="n">is_pooled</span> <span class="p">:</span></tt>
             </div>
             <div id="l44"
-               class="code sev- "><tt><i>44</i>             <span class="k">if</span> <span class="n">is_featurizer</span><span class="p">:</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (119 > 79 characters)</li>
+               
+               </ul><tt><i>44</i>                     <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
             </div>
             <div id="l45"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E203
-                     </span>
-                     Whitespace before ':'</li>
-               
-               </ul><tt><i>45</i>                 <span class="k">if</span> <span class="n">is_pooled</span> <span class="p">:</span></tt>
+               class="code sev- "><tt><i>45</i>                     <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
             </div>
             <div id="l46"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (119 > 79 characters)</li>
-               
-               </ul><tt><i>46</i>                     <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>46</i>                     <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i>                     <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
-            </div>
-            <div id="l48"
-               class="code sev- "><tt><i>48</i>                     <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
-            </div>
-            <div id="l49"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -293,9 +287,9 @@
                      </span>
                      Whitespace before ':'</li>
                
-               </ul><tt><i>49</i>                 <span class="k">else</span> <span class="p">:</span></tt>
+               </ul><tt><i>47</i>                 <span class="k">else</span> <span class="p">:</span></tt>
             </div>
-            <div id="l50"
+            <div id="l48"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -305,21 +299,21 @@
                      </span>
                      Line too long (119 > 79 characters)</li>
                
-               </ul><tt><i>50</i>                     <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </ul><tt><i>48</i>                     <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+            </div>
+            <div id="l49"
+               class="code sev- "><tt><i>49</i>                     <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
+            </div>
+            <div id="l50"
+               class="code sev- "><tt><i>50</i>                     <span class="n">pooler</span> <span class="o">=</span> <span class="n">global_mean_pool</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i>                     <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>51</i>                     <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">pooler</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
             </div>
             <div id="l52"
-               class="code sev- "><tt><i>52</i>                     <span class="n">pooler</span> <span class="o">=</span> <span class="n">global_mean_pool</span></tt>
+               class="code sev- "><tt><i>52</i>             <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l53"
-               class="code sev- "><tt><i>53</i>                     <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">pooler</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
-            </div>
-            <div id="l54"
-               class="code sev- "><tt><i>54</i>             <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l55"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -329,36 +323,36 @@
                      </span>
                      Line too long (111 > 79 characters)</li>
                
-               </ul><tt><i>55</i>                 <span class="n">model</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+               </ul><tt><i>53</i>                 <span class="n">model</span> <span class="o">=</span> <span class="n">GNN</span><span class="p">(</span><span class="n">gnn_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">num_tasks</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="n">is_pooled</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">)</span></tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i> &nbsp;</tt>
+            </div>
+            <div id="l55"
+               class="code sev- "><tt><i>55</i>     <span class="c1"># We use the full dataset only for GSN</span></tt>
             </div>
             <div id="l56"
-               class="code sev- "><tt><i>56</i> &nbsp;</tt>
+               class="code sev- "><tt><i>56</i>     <span class="c1"># Need to be refactored</span></tt>
             </div>
             <div id="l57"
-               class="code sev- "><tt><i>57</i>     <span class="c1"># We use the full dataset only for GSN</span></tt>
+               class="code sev- "><tt><i>57</i>     <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l58"
-               class="code sev- "><tt><i>58</i>     <span class="c1"># Need to be refactored</span></tt>
+               class="code sev- "><tt><i>58</i>         <span class="k">if</span> <span class="n">is_featurizer</span><span class="p">:</span></tt>
             </div>
             <div id="l59"
-               class="code sev- "><tt><i>59</i>     <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>59</i>             <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN_GSN</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span></tt>
             </div>
             <div id="l60"
-               class="code sev- "><tt><i>60</i>         <span class="k">if</span> <span class="n">is_featurizer</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>60</i>                                  <span class="n">out_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span></tt>
             </div>
             <div id="l61"
-               class="code sev- "><tt><i>61</i>             <span class="n">featurizer</span> <span class="o">=</span> <span class="n">GNN_GSN</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>61</i>                                  <span class="n">encoder_ids</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">encoder_ids</span><span class="p">,</span></tt>
             </div>
             <div id="l62"
-               class="code sev- "><tt><i>62</i>                                  <span class="n">out_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>62</i>                                  <span class="n">d_in_id</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_id</span><span class="p">,</span></tt>
             </div>
             <div id="l63"
-               class="code sev- "><tt><i>63</i>                                  <span class="n">encoder_ids</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">encoder_ids</span><span class="p">,</span></tt>
-            </div>
-            <div id="l64"
-               class="code sev- "><tt><i>64</i>                                  <span class="n">d_in_id</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_id</span><span class="p">,</span></tt>
-            </div>
-            <div id="l65"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -368,9 +362,9 @@
                      </span>
                      Line too long (81 > 79 characters)</li>
                
-               </ul><tt><i>65</i>                                  <span class="n">in_edge_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_edge_features</span><span class="p">,</span></tt>
+               </ul><tt><i>63</i>                                  <span class="n">in_edge_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_edge_features</span><span class="p">,</span></tt>
             </div>
-            <div id="l66"
+            <div id="l64"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -380,7 +374,22 @@
                      </span>
                      Line too long (82 > 79 characters)</li>
                
-               </ul><tt><i>66</i>                                  <span class="n">d_in_node_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_node_encoder</span><span class="p">,</span></tt>
+               </ul><tt><i>64</i>                                  <span class="n">d_in_node_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_node_encoder</span><span class="p">,</span></tt>
+            </div>
+            <div id="l65"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (82 > 79 characters)</li>
+               
+               </ul><tt><i>65</i>                                  <span class="n">d_in_edge_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_edge_encoder</span><span class="p">,</span></tt>
+            </div>
+            <div id="l66"
+               class="code sev- "><tt><i>66</i>                                  <span class="n">d_degree</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_degree</span><span class="p">,</span></tt>
             </div>
             <div id="l67"
                class="code sev-2  le">
@@ -390,105 +399,90 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (82 > 79 characters)</li>
-               
-               </ul><tt><i>67</i>                                  <span class="n">d_in_edge_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_edge_encoder</span><span class="p">,</span></tt>
-            </div>
-            <div id="l68"
-               class="code sev- "><tt><i>68</i>                                  <span class="n">d_degree</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_degree</span><span class="p">,</span></tt>
-            </div>
-            <div id="l69"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
                      Line too long (84 > 79 characters)</li>
                
-               </ul><tt><i>69</i>                                  <span class="n">dataset_group</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_group&#39;</span><span class="p">])</span></tt>
+               </ul><tt><i>67</i>                                  <span class="n">dataset_group</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_group&#39;</span><span class="p">])</span></tt>
+            </div>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i>             <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
+            </div>
+            <div id="l69"
+               class="code sev- "><tt><i>69</i>             <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
             </div>
             <div id="l70"
-               class="code sev- "><tt><i>70</i>             <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">featurizer</span><span class="o">.</span><span class="n">d_out</span><span class="p">,</span> <span class="n">d_out</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>70</i>         <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l71"
-               class="code sev- "><tt><i>71</i>             <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>71</i>             <span class="n">model</span> <span class="o">=</span> <span class="n">GNN_GSN</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span></tt>
             </div>
             <div id="l72"
-               class="code sev- "><tt><i>72</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>72</i>                             <span class="n">out_features</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span></tt>
             </div>
             <div id="l73"
-               class="code sev- "><tt><i>73</i>             <span class="n">model</span> <span class="o">=</span> <span class="n">GNN_GSN</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>73</i>                             <span class="n">encoder_ids</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">encoder_ids</span><span class="p">,</span></tt>
             </div>
             <div id="l74"
-               class="code sev- "><tt><i>74</i>                             <span class="n">out_features</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>74</i>                             <span class="n">d_in_id</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_id</span><span class="p">,</span></tt>
             </div>
             <div id="l75"
-               class="code sev- "><tt><i>75</i>                             <span class="n">encoder_ids</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">encoder_ids</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>75</i>                             <span class="n">in_edge_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_edge_features</span><span class="p">,</span></tt>
             </div>
             <div id="l76"
-               class="code sev- "><tt><i>76</i>                             <span class="n">d_in_id</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_id</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>76</i>                             <span class="n">d_in_node_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_node_encoder</span><span class="p">,</span></tt>
             </div>
             <div id="l77"
-               class="code sev- "><tt><i>77</i>                             <span class="n">in_edge_features</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">num_edge_features</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>77</i>                             <span class="n">d_in_edge_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_edge_encoder</span><span class="p">,</span></tt>
             </div>
             <div id="l78"
-               class="code sev- "><tt><i>78</i>                             <span class="n">d_in_node_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_node_encoder</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>78</i>                             <span class="n">d_degree</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_degree</span><span class="p">,</span></tt>
             </div>
             <div id="l79"
-               class="code sev- "><tt><i>79</i>                             <span class="n">d_in_edge_encoder</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_in_edge_encoder</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>79</i>                             <span class="n">dataset_group</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_group&#39;</span><span class="p">])</span></tt>
             </div>
             <div id="l80"
-               class="code sev- "><tt><i>80</i>                             <span class="n">d_degree</span><span class="o">=</span><span class="n">full_dataset</span><span class="o">.</span><span class="n">d_degree</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>80</i> &nbsp;</tt>
             </div>
             <div id="l81"
-               class="code sev- "><tt><i>81</i>                             <span class="n">dataset_group</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_group&#39;</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>81</i>     <span class="c1"># The `needs_y` attribute specifies whether the model&#39;s forward function</span></tt>
             </div>
             <div id="l82"
-               class="code sev- "><tt><i>82</i> &nbsp;</tt>
+               class="code sev- "><tt><i>82</i>     <span class="c1"># needs to take in both (x, y).</span></tt>
             </div>
             <div id="l83"
-               class="code sev- "><tt><i>83</i>     <span class="c1"># The `needs_y` attribute specifies whether the model&#39;s forward function</span></tt>
+               class="code sev- "><tt><i>83</i>     <span class="c1"># If False, Algorithm.process_batch will call model(x).</span></tt>
             </div>
             <div id="l84"
-               class="code sev- "><tt><i>84</i>     <span class="c1"># needs to take in both (x, y).</span></tt>
+               class="code sev- "><tt><i>84</i>     <span class="c1"># If True, Algorithm.process_batch() will call model(x, y) during training,</span></tt>
             </div>
             <div id="l85"
-               class="code sev- "><tt><i>85</i>     <span class="c1"># If False, Algorithm.process_batch will call model(x).</span></tt>
+               class="code sev- "><tt><i>85</i>     <span class="c1"># and model(x, None) during eval.</span></tt>
             </div>
             <div id="l86"
-               class="code sev- "><tt><i>86</i>     <span class="c1"># If True, Algorithm.process_batch() will call model(x, y) during training,</span></tt>
+               class="code sev- "><tt><i>86</i>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;needs_y&#39;</span><span class="p">):</span></tt>
             </div>
             <div id="l87"
-               class="code sev- "><tt><i>87</i>     <span class="c1"># and model(x, None) during eval.</span></tt>
+               class="code sev- "><tt><i>87</i>         <span class="c1"># Sometimes model is a tuple of (featurizer, classifier)</span></tt>
             </div>
             <div id="l88"
-               class="code sev- "><tt><i>88</i>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;needs_y&#39;</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>88</i>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span></tt>
             </div>
             <div id="l89"
-               class="code sev- "><tt><i>89</i>         <span class="c1"># Sometimes model is a tuple of (featurizer, classifier)</span></tt>
+               class="code sev- "><tt><i>89</i>             <span class="k">for</span> <span class="n">submodel</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span></tt>
             </div>
             <div id="l90"
-               class="code sev- "><tt><i>90</i>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>90</i>                 <span class="n">submodel</span><span class="o">.</span><span class="n">needs_y</span> <span class="o">=</span> <span class="kc">False</span></tt>
             </div>
             <div id="l91"
-               class="code sev- "><tt><i>91</i>             <span class="k">for</span> <span class="n">submodel</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>91</i>         <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l92"
-               class="code sev- "><tt><i>92</i>                 <span class="n">submodel</span><span class="o">.</span><span class="n">needs_y</span> <span class="o">=</span> <span class="kc">False</span></tt>
+               class="code sev- "><tt><i>92</i>             <span class="n">model</span><span class="o">.</span><span class="n">needs_y</span> <span class="o">=</span> <span class="kc">False</span></tt>
             </div>
             <div id="l93"
-               class="code sev- "><tt><i>93</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>93</i> &nbsp;</tt>
             </div>
             <div id="l94"
-               class="code sev- "><tt><i>94</i>             <span class="n">model</span><span class="o">.</span><span class="n">needs_y</span> <span class="o">=</span> <span class="kc">False</span></tt>
-            </div>
-            <div id="l95"
-               class="code sev- "><tt><i>95</i> &nbsp;</tt>
-            </div>
-            <div id="l96"
-               class="code sev- "><tt><i>96</i>     <span class="k">return</span> <span class="n">model</span></tt>
+               class="code sev- "><tt><i>94</i>     <span class="k">return</span> <span class="n">model</span></tt>
             </div>
             
          </div>

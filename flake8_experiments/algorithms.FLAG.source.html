@@ -77,63 +77,66 @@
                class="code sev- "><tt><i>20</i>         <span class="p">)</span></tt>
             </div>
             <div id="l21"
-               class="code sev- "><tt><i>21</i> &nbsp;</tt>
+               class="code sev- "><tt><i>21</i>         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span></tt>
             </div>
             <div id="l22"
-               class="code sev- "><tt><i>22</i>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>22</i> &nbsp;</tt>
             </div>
             <div id="l23"
-               class="code sev- "><tt><i>23</i>         <span class="n">step_size</span> <span class="o">=</span> <span class="mf">1e-3</span></tt>
+               class="code sev- "><tt><i>23</i>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span></tt>
             </div>
             <div id="l24"
-               class="code sev- "><tt><i>24</i>         <span class="n">m</span> <span class="o">=</span> <span class="mi">3</span></tt>
+               class="code sev- "><tt><i>24</i>         <span class="n">step_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">flag_step_size</span></tt>
             </div>
             <div id="l25"
-               class="code sev- "><tt><i>25</i> &nbsp;</tt>
+               class="code sev- "><tt><i>25</i>         <span class="n">m</span> <span class="o">=</span> <span class="mi">3</span></tt>
             </div>
             <div id="l26"
-               class="code sev- "><tt><i>26</i>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_training</span></tt>
+               class="code sev- "><tt><i>26</i> &nbsp;</tt>
             </div>
             <div id="l27"
-               class="code sev- "><tt><i>27</i>         <span class="c1"># process batch</span></tt>
+               class="code sev- "><tt><i>27</i>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_training</span></tt>
             </div>
             <div id="l28"
-               class="code sev- "><tt><i>28</i> &nbsp;</tt>
+               class="code sev- "><tt><i>28</i>         <span class="c1"># process batch</span></tt>
             </div>
             <div id="l29"
-               class="code sev- "><tt><i>29</i>         <span class="n">x</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">batch</span></tt>
+               class="code sev- "><tt><i>29</i> &nbsp;</tt>
             </div>
             <div id="l30"
-               class="code sev- "><tt><i>30</i>         <span class="n">x</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>30</i>         <span class="n">x</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">batch</span></tt>
             </div>
             <div id="l31"
-               class="code sev- "><tt><i>31</i>         <span class="n">y_true</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>31</i>         <span class="n">x</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
             <div id="l32"
-               class="code sev- "><tt><i>32</i>         <span class="n">g</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grouper</span><span class="o">.</span><span class="n">metadata_to_group</span><span class="p">(</span><span class="n">metadata</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>32</i>         <span class="n">y_true</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
             <div id="l33"
-               class="code sev- "><tt><i>33</i>         <span class="n">results</span> <span class="o">=</span> <span class="p">{</span></tt>
+               class="code sev- "><tt><i>33</i>         <span class="n">g</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grouper</span><span class="o">.</span><span class="n">metadata_to_group</span><span class="p">(</span><span class="n">metadata</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
             <div id="l34"
-               class="code sev- "><tt><i>34</i>             <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="n">g</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>34</i>         <span class="n">results</span> <span class="o">=</span> <span class="p">{</span></tt>
             </div>
             <div id="l35"
-               class="code sev- "><tt><i>35</i>             <span class="s1">&#39;y_true&#39;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>35</i>             <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="n">g</span><span class="p">,</span></tt>
             </div>
             <div id="l36"
-               class="code sev- "><tt><i>36</i>             <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>36</i>             <span class="s1">&#39;y_true&#39;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span></tt>
             </div>
             <div id="l37"
-               class="code sev- "><tt><i>37</i>         <span class="p">}</span></tt>
+               class="code sev- "><tt><i>37</i>             <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span></tt>
             </div>
             <div id="l38"
-               class="code sev- "><tt><i>38</i> &nbsp;</tt>
+               class="code sev- "><tt><i>38</i>         <span class="p">}</span></tt>
             </div>
             <div id="l39"
                class="code sev- "><tt><i>39</i> &nbsp;</tt>
             </div>
             <div id="l40"
+               class="code sev- "><tt><i>40</i> &nbsp;</tt>
+            </div>
+            <div id="l41"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -143,9 +146,9 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>40</i>         <span class="n">perturb_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">emb_dim</span><span class="p">)</span></tt>
+               </ul><tt><i>41</i>         <span class="n">perturb_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">emb_dim</span><span class="p">)</span></tt>
             </div>
-            <div id="l41"
+            <div id="l42"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -155,129 +158,45 @@
                      </span>
                      Line too long (83 > 79 characters)</li>
                
-               </ul><tt><i>41</i>         <span class="n">perturb</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="o">*</span><span class="n">perturb_shape</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">step_size</span><span class="p">,</span> <span class="n">step_size</span><span class="p">)</span></tt>
-            </div>
-            <div id="l42"
-               class="code sev- "><tt><i>42</i>         <span class="n">perturb</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">perturb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
+               </ul><tt><i>42</i>         <span class="n">perturb</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="o">*</span><span class="n">perturb_shape</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">step_size</span><span class="p">,</span> <span class="n">step_size</span><span class="p">)</span></tt>
             </div>
             <div id="l43"
-               class="code sev- "><tt><i>43</i>         <span class="n">perturb</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>43</i>         <span class="n">perturb</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">(</span><span class="n">perturb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span></tt>
             </div>
             <div id="l44"
-               class="code sev- "><tt><i>44</i> &nbsp;</tt>
+               class="code sev- "><tt><i>44</i>         <span class="n">perturb</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span></tt>
             </div>
             <div id="l45"
-               class="code sev- "><tt><i>45</i>         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>45</i> &nbsp;</tt>
             </div>
             <div id="l46"
-               class="code sev- "><tt><i>46</i> &nbsp;</tt>
+               class="code sev- "><tt><i>46</i>         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span></tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i>         <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">perturb</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>47</i> &nbsp;</tt>
             </div>
             <div id="l48"
-               class="code sev- "><tt><i>48</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span></tt>
+               class="code sev- "><tt><i>48</i>         <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">perturb</span><span class="p">)</span></tt>
             </div>
             <div id="l49"
-               class="code sev- "><tt><i>49</i>         <span class="n">objective</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>49</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span></tt>
             </div>
             <div id="l50"
-               class="code sev- "><tt><i>50</i>         <span class="n">objective</span> <span class="o">/=</span> <span class="n">m</span></tt>
+               class="code sev- "><tt><i>50</i>         <span class="n">objective</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i> &nbsp;</tt>
+               class="code sev- "><tt><i>51</i>         <span class="n">objective</span> <span class="o">/=</span> <span class="n">m</span></tt>
             </div>
             <div id="l52"
-               class="code sev- "><tt><i>52</i>         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>52</i> &nbsp;</tt>
             </div>
             <div id="l53"
-               class="code sev- "><tt><i>53</i>             <span class="n">objective</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>53</i>         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span></tt>
             </div>
             <div id="l54"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E501
-                     </span>
-                     Line too long (89 > 79 characters)</li>
-               
-               </ul><tt><i>54</i>             <span class="n">perturb_data</span> <span class="o">=</span> <span class="n">perturb</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">+</span> <span class="n">step_size</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">perturb</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span></tt>
+               class="code sev- "><tt><i>54</i>             <span class="n">objective</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span></tt>
             </div>
             <div id="l55"
-               class="code sev- "><tt><i>55</i>             <span class="n">perturb</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">perturb_data</span><span class="o">.</span><span class="n">data</span></tt>
-            </div>
-            <div id="l56"
-               class="code sev- "><tt><i>56</i>             <span class="n">perturb</span><span class="o">.</span><span class="n">grad</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span></tt>
-            </div>
-            <div id="l57"
-               class="code sev- "><tt><i>57</i> &nbsp;</tt>
-            </div>
-            <div id="l58"
-               class="code sev- "><tt><i>58</i>             <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">perturb</span><span class="p">)</span></tt>
-            </div>
-            <div id="l59"
-               class="code sev- "><tt><i>59</i>             <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span></tt>
-            </div>
-            <div id="l60"
-               class="code sev- "><tt><i>60</i>             <span class="n">objective</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
-            </div>
-            <div id="l61"
-               class="code sev- "><tt><i>61</i>             <span class="n">objective</span> <span class="o">/=</span> <span class="n">m</span></tt>
-            </div>
-            <div id="l62"
-               class="code sev- "><tt><i>62</i> &nbsp;</tt>
-            </div>
-            <div id="l63"
-               class="code sev- "><tt><i>63</i>         <span class="n">objective</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span></tt>
-            </div>
-            <div id="l64"
-               class="code sev- "><tt><i>64</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_grad_norm</span><span class="p">:</span></tt>
-            </div>
-            <div id="l65"
-               class="code sev- "><tt><i>65</i>             <span class="n">clip_grad_norm_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_grad_norm</span><span class="p">)</span></tt>
-            </div>
-            <div id="l66"
-               class="code sev- "><tt><i>66</i>         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span></tt>
-            </div>
-            <div id="l67"
-               class="code sev- "><tt><i>67</i> &nbsp;</tt>
-            </div>
-            <div id="l68"
-               class="code sev- "><tt><i>68</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">m</span></tt>
-            </div>
-            <div id="l69"
-               class="code sev- "><tt><i>69</i>         <span class="bp">self</span><span class="o">.</span><span class="n">step_schedulers</span><span class="p">(</span></tt>
-            </div>
-            <div id="l70"
-               class="code sev- "><tt><i>70</i>             <span class="n">is_epoch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span></tt>
-            </div>
-            <div id="l71"
-               class="code sev- "><tt><i>71</i>             <span class="n">metrics</span><span class="o">=</span><span class="n">results</span><span class="p">,</span></tt>
-            </div>
-            <div id="l72"
-               class="code sev- "><tt><i>72</i>             <span class="n">log_access</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
-            </div>
-            <div id="l73"
-               class="code sev- "><tt><i>73</i> &nbsp;</tt>
-            </div>
-            <div id="l74"
-               class="code sev- "><tt><i>74</i>         <span class="c1"># log results</span></tt>
-            </div>
-            <div id="l75"
-               class="code sev- "><tt><i>75</i>         <span class="bp">self</span><span class="o">.</span><span class="n">update_log</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
-            </div>
-            <div id="l76"
-               class="code sev- "><tt><i>76</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_dict</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
-            </div>
-            <div id="l77"
-               class="code sev- "><tt><i>77</i> &nbsp;</tt>
-            </div>
-            <div id="l78"
-               class="code sev- "><tt><i>78</i>     <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span></tt>
-            </div>
-            <div id="l79"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -287,7 +206,91 @@
                      </span>
                      Line too long (89 > 79 characters)</li>
                
-               </ul><tt><i>79</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </ul><tt><i>55</i>             <span class="n">perturb_data</span> <span class="o">=</span> <span class="n">perturb</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">+</span> <span class="n">step_size</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">perturb</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span></tt>
+            </div>
+            <div id="l56"
+               class="code sev- "><tt><i>56</i>             <span class="n">perturb</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">perturb_data</span><span class="o">.</span><span class="n">data</span></tt>
+            </div>
+            <div id="l57"
+               class="code sev- "><tt><i>57</i>             <span class="n">perturb</span><span class="o">.</span><span class="n">grad</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span></tt>
+            </div>
+            <div id="l58"
+               class="code sev- "><tt><i>58</i> &nbsp;</tt>
+            </div>
+            <div id="l59"
+               class="code sev- "><tt><i>59</i>             <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">perturb</span><span class="p">)</span></tt>
+            </div>
+            <div id="l60"
+               class="code sev- "><tt><i>60</i>             <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span></tt>
+            </div>
+            <div id="l61"
+               class="code sev- "><tt><i>61</i>             <span class="n">objective</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+            </div>
+            <div id="l62"
+               class="code sev- "><tt><i>62</i>             <span class="n">objective</span> <span class="o">/=</span> <span class="n">m</span></tt>
+            </div>
+            <div id="l63"
+               class="code sev- "><tt><i>63</i> &nbsp;</tt>
+            </div>
+            <div id="l64"
+               class="code sev- "><tt><i>64</i>         <span class="n">objective</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span></tt>
+            </div>
+            <div id="l65"
+               class="code sev- "><tt><i>65</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_grad_norm</span><span class="p">:</span></tt>
+            </div>
+            <div id="l66"
+               class="code sev- "><tt><i>66</i>             <span class="n">clip_grad_norm_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_grad_norm</span><span class="p">)</span></tt>
+            </div>
+            <div id="l67"
+               class="code sev- "><tt><i>67</i>         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span></tt>
+            </div>
+            <div id="l68"
+               class="code sev- "><tt><i>68</i> &nbsp;</tt>
+            </div>
+            <div id="l69"
+               class="code sev- "><tt><i>69</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">m</span></tt>
+            </div>
+            <div id="l70"
+               class="code sev- "><tt><i>70</i>         <span class="bp">self</span><span class="o">.</span><span class="n">step_schedulers</span><span class="p">(</span></tt>
+            </div>
+            <div id="l71"
+               class="code sev- "><tt><i>71</i>             <span class="n">is_epoch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span></tt>
+            </div>
+            <div id="l72"
+               class="code sev- "><tt><i>72</i>             <span class="n">metrics</span><span class="o">=</span><span class="n">results</span><span class="p">,</span></tt>
+            </div>
+            <div id="l73"
+               class="code sev- "><tt><i>73</i>             <span class="n">log_access</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+            </div>
+            <div id="l74"
+               class="code sev- "><tt><i>74</i> &nbsp;</tt>
+            </div>
+            <div id="l75"
+               class="code sev- "><tt><i>75</i>         <span class="c1"># log results</span></tt>
+            </div>
+            <div id="l76"
+               class="code sev- "><tt><i>76</i>         <span class="bp">self</span><span class="o">.</span><span class="n">update_log</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+            </div>
+            <div id="l77"
+               class="code sev- "><tt><i>77</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_dict</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+            </div>
+            <div id="l78"
+               class="code sev- "><tt><i>78</i> &nbsp;</tt>
+            </div>
+            <div id="l79"
+               class="code sev- "><tt><i>79</i>     <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span></tt>
+            </div>
+            <div id="l80"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (89 > 79 characters)</li>
+               
+               </ul><tt><i>80</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
             
          </div>

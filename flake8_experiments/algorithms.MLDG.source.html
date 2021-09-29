@@ -371,18 +371,15 @@
                class="code sev- "><tt><i>94</i>             <span class="c1"># `objective` is populated for reporting purposes</span></tt>
             </div>
             <div id="l95"
-               class="code sev- "><tt><i>95</i>             <span class="n">hparams_mldg_beta</span> <span class="o">=</span> <span class="mi">1</span></tt>
+               class="code sev- "><tt><i>95</i>             <span class="n">objective</span> <span class="o">+=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">mldg_beta</span> <span class="o">*</span> <span class="n">loss_inner_j</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></tt>
             </div>
             <div id="l96"
-               class="code sev- "><tt><i>96</i>             <span class="n">objective</span> <span class="o">+=</span> <span class="p">(</span><span class="n">hparams_mldg_beta</span> <span class="o">*</span> <span class="n">loss_inner_j</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>96</i> &nbsp;</tt>
             </div>
             <div id="l97"
                class="code sev- "><tt><i>97</i> &nbsp;</tt>
             </div>
             <div id="l98"
-               class="code sev- "><tt><i>98</i> &nbsp;</tt>
-            </div>
-            <div id="l99"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -392,12 +389,12 @@
                      </span>
                      Too many blank lines (2)</li>
                
-               </ul><tt><i>99</i>             <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">g_j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">grad_inner_j</span><span class="p">):</span></tt>
+               </ul><tt><i>98</i>             <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">g_j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">grad_inner_j</span><span class="p">):</span></tt>
+            </div>
+            <div id="l99"
+               class="code sev- "><tt><i>99</i>                 <span class="k">if</span> <span class="n">g_j</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l100"
-               class="code sev- "><tt><i>100</i>                 <span class="k">if</span> <span class="n">g_j</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
-            </div>
-            <div id="l101"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -405,71 +402,71 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (87 > 79 characters)</li>
+                     Line too long (91 > 79 characters)</li>
                
-               </ul><tt><i>101</i>                     <span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">hparams_mldg_beta</span> <span class="o">*</span> <span class="n">g_j</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="n">n_groups_per_batch</span><span class="p">)</span></tt>
+               </ul><tt><i>100</i>                     <span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">mldg_beta</span> <span class="o">*</span> <span class="n">g_j</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="n">n_groups_per_batch</span><span class="p">)</span></tt>
+            </div>
+            <div id="l101"
+               class="code sev- "><tt><i>101</i> &nbsp;</tt>
             </div>
             <div id="l102"
-               class="code sev- "><tt><i>102</i> &nbsp;</tt>
+               class="code sev- "><tt><i>102</i>             <span class="c1"># The network has now accumulated gradients Gi + beta * Gj</span></tt>
             </div>
             <div id="l103"
-               class="code sev- "><tt><i>103</i>             <span class="c1"># The network has now accumulated gradients Gi + beta * Gj</span></tt>
+               class="code sev- "><tt><i>103</i>             <span class="c1"># Repeat for all train-test splits, do .step()</span></tt>
             </div>
             <div id="l104"
-               class="code sev- "><tt><i>104</i>             <span class="c1"># Repeat for all train-test splits, do .step()</span></tt>
+               class="code sev- "><tt><i>104</i> &nbsp;</tt>
             </div>
             <div id="l105"
-               class="code sev- "><tt><i>105</i> &nbsp;</tt>
+               class="code sev- "><tt><i>105</i>         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span></tt>
             </div>
             <div id="l106"
-               class="code sev- "><tt><i>106</i>         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>106</i>         <span class="n">objective</span> <span class="o">/=</span> <span class="n">n_groups_per_batch</span></tt>
             </div>
             <div id="l107"
-               class="code sev- "><tt><i>107</i>         <span class="n">objective</span> <span class="o">/=</span> <span class="n">n_groups_per_batch</span></tt>
+               class="code sev- "><tt><i>107</i> &nbsp;</tt>
             </div>
             <div id="l108"
-               class="code sev- "><tt><i>108</i> &nbsp;</tt>
+               class="code sev- "><tt><i>108</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">objective</span></tt>
             </div>
             <div id="l109"
-               class="code sev- "><tt><i>109</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">objective</span></tt>
+               class="code sev- "><tt><i>109</i>         <span class="bp">self</span><span class="o">.</span><span class="n">step_schedulers</span><span class="p">(</span></tt>
             </div>
             <div id="l110"
-               class="code sev- "><tt><i>110</i>         <span class="bp">self</span><span class="o">.</span><span class="n">step_schedulers</span><span class="p">(</span></tt>
+               class="code sev- "><tt><i>110</i>             <span class="n">is_epoch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span></tt>
             </div>
             <div id="l111"
-               class="code sev- "><tt><i>111</i>             <span class="n">is_epoch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>111</i>             <span class="n">metrics</span><span class="o">=</span><span class="n">results</span><span class="p">,</span></tt>
             </div>
             <div id="l112"
-               class="code sev- "><tt><i>112</i>             <span class="n">metrics</span><span class="o">=</span><span class="n">results</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>112</i>             <span class="n">log_access</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
             <div id="l113"
-               class="code sev- "><tt><i>113</i>             <span class="n">log_access</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>113</i> &nbsp;</tt>
             </div>
             <div id="l114"
-               class="code sev- "><tt><i>114</i> &nbsp;</tt>
+               class="code sev- "><tt><i>114</i>         <span class="c1"># log results</span></tt>
             </div>
             <div id="l115"
-               class="code sev- "><tt><i>115</i>         <span class="c1"># log results</span></tt>
+               class="code sev- "><tt><i>115</i> &nbsp;</tt>
             </div>
             <div id="l116"
-               class="code sev- "><tt><i>116</i> &nbsp;</tt>
+               class="code sev- "><tt><i>116</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
             </div>
             <div id="l117"
-               class="code sev- "><tt><i>117</i>         <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>117</i>         <span class="bp">self</span><span class="o">.</span><span class="n">update_log</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
             </div>
             <div id="l118"
-               class="code sev- "><tt><i>118</i>         <span class="bp">self</span><span class="o">.</span><span class="n">update_log</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>118</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_dict</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
             </div>
             <div id="l119"
-               class="code sev- "><tt><i>119</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_dict</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>119</i> &nbsp;</tt>
             </div>
             <div id="l120"
-               class="code sev- "><tt><i>120</i> &nbsp;</tt>
+               class="code sev- "><tt><i>120</i>     <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span></tt>
             </div>
             <div id="l121"
-               class="code sev- "><tt><i>121</i>     <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span></tt>
-            </div>
-            <div id="l122"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -479,7 +476,7 @@
                      </span>
                      Line too long (89 > 79 characters)</li>
                
-               </ul><tt><i>122</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </ul><tt><i>121</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
             </div>
             
          </div>

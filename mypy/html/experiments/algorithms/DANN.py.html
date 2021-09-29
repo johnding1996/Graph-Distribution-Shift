@@ -323,6 +323,7 @@
 <span id="L313" class="lineno"><a class="lineno" href="#L313">313</a></span>
 <span id="L314" class="lineno"><a class="lineno" href="#L314">314</a></span>
 <span id="L315" class="lineno"><a class="lineno" href="#L315">315</a></span>
+<span id="L316" class="lineno"><a class="lineno" href="#L316">316</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import copy</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -381,6 +382,9 @@ Unimported (x1)">        self.register_buffer('update_count', torch.tensor([0]))
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">##############################################</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.hparams_lambda = config.dann_lambda</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        self.conditional = conditional</span>
 <span class="line-any" title="Any Types on this line: 
@@ -563,11 +567,9 @@ Unannotated (x3)">            disc_loss.backward()</span>
 Unannotated (x3)">            self.disc_opt.step()</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            hparams_lambda = 1.0</span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            gen_loss = (classifier_loss +</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                        (hparams_lambda * -disc_loss))</span>
+Unannotated (x4)">                        (self.hparams_lambda * -disc_loss))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            self.disc_opt.zero_grad()</span>
 <span class="line-any" title="Any Types on this line: 
@@ -645,6 +647,8 @@ Unimported (x1)">        self.register_buffer('update_count', torch.tensor([0]))
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">##############################################</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        self.hparams_lambda = config.dann_lambda</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        num_classes = d_out</span>
 <span class="line-any" title="Any Types on this line: 
@@ -795,11 +799,9 @@ Unannotated (x3)">            disc_loss.backward()</span>
 Unannotated (x3)">            self.disc_opt.step()</span>
 <span class="line-empty" title="No Anys on this line!">        else:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            hparams_lambda = 1.0</span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            gen_loss = (classifier_loss +</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">                        (hparams_lambda * -disc_loss))</span>
+Unannotated (x4)">                        (self.hparams_lambda * -disc_loss))</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">            self.disc_opt.zero_grad()</span>
 <span class="line-any" title="Any Types on this line: 

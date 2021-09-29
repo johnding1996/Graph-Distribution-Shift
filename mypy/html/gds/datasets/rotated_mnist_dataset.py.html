@@ -185,6 +185,7 @@
 <span id="L175" class="lineno"><a class="lineno" href="#L175">175</a></span>
 <span id="L176" class="lineno"><a class="lineno" href="#L176">176</a></span>
 <span id="L177" class="lineno"><a class="lineno" href="#L177">177</a></span>
+<span id="L178" class="lineno"><a class="lineno" href="#L178">178</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -239,6 +240,7 @@ Unannotated (x4)">        self._y_array = self.ogb_dataset.data.y</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        self._metadata_fields = ['angle', 'y']</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        #https://www.dropbox.com/s/zulrcyh846w9maw/RotatedMNIST_group_expired.zip?dl=1</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'RotatedMNIST_group.npy')</span>
 <span class="line-any" title="Any Types on this line: 
@@ -247,7 +249,7 @@ Unannotated (x2)">        if not os.path.exists(metadata_file_path):</span>
 Unannotated (x2)
 Unimported (x1)">            metadata_zip_file_path = download_url(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                'https://www.dropbox.com/s/zulrcyh846w9maw/RotatedMNIST_group.zip?dl=1', self.ogb_dataset.raw_dir)</span>
+Unannotated (x2)">                'https://www.dropbox.com/s/xv6bx7ihqmeuv80/RotatedMNIST_group.zip?dl=1', self.ogb_dataset.raw_dir)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Unimported (x1)">            extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)</span>

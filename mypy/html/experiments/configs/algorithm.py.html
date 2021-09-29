@@ -71,6 +71,11 @@
 <span id="L61" class="lineno"><a class="lineno" href="#L61">61</a></span>
 <span id="L62" class="lineno"><a class="lineno" href="#L62">62</a></span>
 <span id="L63" class="lineno"><a class="lineno" href="#L63">63</a></span>
+<span id="L64" class="lineno"><a class="lineno" href="#L64">64</a></span>
+<span id="L65" class="lineno"><a class="lineno" href="#L65">65</a></span>
+<span id="L66" class="lineno"><a class="lineno" href="#L66">66</a></span>
+<span id="L67" class="lineno"><a class="lineno" href="#L67">67</a></span>
+<span id="L68" class="lineno"><a class="lineno" href="#L68">68</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">algorithm_defaults = {</span>
 <span class="line-precise" title="No Anys on this line!">    'ERM': {</span>
@@ -104,6 +109,7 @@
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'standard',</span>
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': False,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
+<span class="line-precise" title="No Anys on this line!">        'flag_step_size': 1e-3</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'GSN': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'standard',</span>
@@ -115,24 +121,28 @@
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'distinct_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
+<span class="line-precise" title="No Anys on this line!">        'dann_lambda': 1.</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'CDANN': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'group',</span>
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'distinct_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
+<span class="line-precise" title="No Anys on this line!">        'dann_lambda': 1.</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'DANN-G': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'group',</span>
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'distinct_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
+<span class="line-precise" title="No Anys on this line!">        'dann_lambda': 1.</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'MLDG': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'group',</span>
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'distinct_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
+<span class="line-precise" title="No Anys on this line!">        'mldg_beta': 1.</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-empty" title="No Anys on this line!">}</span>
 </pre></td>

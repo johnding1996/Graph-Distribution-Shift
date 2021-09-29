@@ -53,7 +53,7 @@
                class="code sev- "><tt><i>9</i> <span class="k">class</span> <span class="nc">PyGColoredMNISTDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span></tt>
             </div>
             <div id="l10"
-               class="code sev- "><tt><i>10</i>     <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ColoredMNIST&#39;</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>10</i>     <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ColoredMNIST&#39;</span><span class="p">,</span> <span class="s1">&#39;ColoredMNIST_expired&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l11"
                class="code sev- "><tt><i>11</i>     <span class="n">urls</span> <span class="o">=</span> <span class="p">{</span></tt>
@@ -66,176 +66,155 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (89 > 79 characters)</li>
+                     Line too long (90 > 79 characters)</li>
                
-               </ul><tt><i>12</i>         <span class="s1">&#39;ColoredMNIST&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.dropbox.com/s/bz0mkww2ivu8rwn/ColoredMNIST.zip?dl=1&#39;</span></tt>
+               </ul><tt><i>12</i>         <span class="s1">&#39;ColoredMNIST&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.dropbox.com/s/3zfi43erynkmi0i/ColoredMNIST.zip?dl=1&#39;</span><span class="p">,</span></tt>
             </div>
             <div id="l13"
-               class="code sev- "><tt><i>13</i>     <span class="p">}</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (105 > 79 characters)</li>
+               
+               </ul><tt><i>13</i>         <span class="s1">&#39;ColoredMNIST_expired&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.dropbox.com/s/bz0mkww2ivu8rwn/ColoredMNIST_expired.zip?dl=1&#39;</span></tt>
             </div>
             <div id="l14"
-               class="code sev- "><tt><i>14</i> &nbsp;</tt>
+               class="code sev- "><tt><i>14</i>     <span class="p">}</span></tt>
             </div>
             <div id="l15"
-               class="code sev- "><tt><i>15</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>15</i> &nbsp;</tt>
             </div>
             <div id="l16"
-               class="code sev- "><tt><i>16</i>                  <span class="n">transform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>16</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span></tt>
             </div>
             <div id="l17"
-               class="code sev- "><tt><i>17</i>                  <span class="n">pre_transform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>17</i>                  <span class="n">transform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
             </div>
             <div id="l18"
-               class="code sev- "><tt><i>18</i>                  <span class="n">pre_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>18</i>                  <span class="n">pre_transform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span></tt>
             </div>
             <div id="l19"
-               class="code sev- "><tt><i>19</i>         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span></tt>
+               class="code sev- "><tt><i>19</i>                  <span class="n">pre_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span></tt>
             </div>
             <div id="l20"
-               class="code sev- "><tt><i>20</i>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">names</span></tt>
+               class="code sev- "><tt><i>20</i>         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span></tt>
             </div>
             <div id="l21"
-               class="code sev- "><tt><i>21</i>         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ColoredMNIST&#39;</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>21</i>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">names</span></tt>
             </div>
             <div id="l22"
-               class="code sev- "><tt><i>22</i>             <span class="bp">self</span><span class="o">.</span><span class="n">num_tasks</span> <span class="o">=</span> <span class="mi">1</span></tt>
+               class="code sev- "><tt><i>22</i>         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ColoredMNIST&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l23"
-               class="code sev- "><tt><i>23</i>             <span class="bp">self</span><span class="o">.</span><span class="n">__num_classes__</span> <span class="o">=</span> <span class="mi">1</span></tt>
+               class="code sev- "><tt><i>23</i>             <span class="bp">self</span><span class="o">.</span><span class="n">num_tasks</span> <span class="o">=</span> <span class="mi">1</span></tt>
             </div>
             <div id="l24"
-               class="code sev- "><tt><i>24</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>24</i>             <span class="bp">self</span><span class="o">.</span><span class="n">__num_classes__</span> <span class="o">=</span> <span class="mi">1</span></tt>
             </div>
             <div id="l25"
-               class="code sev- "><tt><i>25</i>             <span class="k">raise</span> <span class="ne">NotImplementedError</span></tt>
+               class="code sev- "><tt><i>25</i>         <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l26"
-               class="code sev- "><tt><i>26</i> &nbsp;</tt>
+               class="code sev- "><tt><i>26</i>             <span class="k">raise</span> <span class="ne">NotImplementedError</span></tt>
             </div>
             <div id="l27"
-               class="code sev- "><tt><i>27</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>27</i> &nbsp;</tt>
             </div>
             <div id="l28"
-               class="code sev- "><tt><i>28</i>         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>28</i>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span></tt>
             </div>
             <div id="l29"
-               class="code sev- "><tt><i>29</i> &nbsp;</tt>
+               class="code sev- "><tt><i>29</i>         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
             </div>
             <div id="l30"
-               class="code sev- "><tt><i>30</i>     <span class="nd">@property</span></tt>
+               class="code sev- "><tt><i>30</i> &nbsp;</tt>
             </div>
             <div id="l31"
-               class="code sev- "><tt><i>31</i>     <span class="k">def</span> <span class="nf">raw_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>31</i>     <span class="nd">@property</span></tt>
             </div>
             <div id="l32"
-               class="code sev- "><tt><i>32</i>         <span class="k">return</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>32</i>     <span class="k">def</span> <span class="nf">raw_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></tt>
             </div>
             <div id="l33"
-               class="code sev- "><tt><i>33</i> &nbsp;</tt>
+               class="code sev- "><tt><i>33</i>         <span class="k">return</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l34"
-               class="code sev- "><tt><i>34</i>     <span class="nd">@property</span></tt>
+               class="code sev- "><tt><i>34</i> &nbsp;</tt>
             </div>
             <div id="l35"
-               class="code sev- "><tt><i>35</i>     <span class="k">def</span> <span class="nf">processed_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>35</i>     <span class="nd">@property</span></tt>
             </div>
             <div id="l36"
-               class="code sev- "><tt><i>36</i>         <span class="k">return</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;processed&#39;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>36</i>     <span class="k">def</span> <span class="nf">processed_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></tt>
             </div>
             <div id="l37"
-               class="code sev- "><tt><i>37</i> &nbsp;</tt>
+               class="code sev- "><tt><i>37</i>         <span class="k">return</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;processed&#39;</span><span class="p">)</span></tt>
             </div>
             <div id="l38"
-               class="code sev- "><tt><i>38</i>     <span class="nd">@property</span></tt>
+               class="code sev- "><tt><i>38</i> &nbsp;</tt>
             </div>
             <div id="l39"
-               class="code sev- "><tt><i>39</i>     <span class="k">def</span> <span class="nf">raw_file_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span></tt>
+               class="code sev- "><tt><i>39</i>     <span class="nd">@property</span></tt>
             </div>
             <div id="l40"
-               class="code sev- "><tt><i>40</i>         <span class="c1"># raw file name must match the dataset name</span></tt>
+               class="code sev- "><tt><i>40</i>     <span class="k">def</span> <span class="nf">raw_file_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span></tt>
             </div>
             <div id="l41"
-               class="code sev- "><tt><i>41</i>         <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">.pt&#39;</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>41</i>         <span class="c1"># raw file name must match the dataset name</span></tt>
             </div>
             <div id="l42"
-               class="code sev- "><tt><i>42</i> &nbsp;</tt>
+               class="code sev- "><tt><i>42</i>         <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">.pt&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l43"
-               class="code sev- "><tt><i>43</i>     <span class="nd">@property</span></tt>
+               class="code sev- "><tt><i>43</i> &nbsp;</tt>
             </div>
             <div id="l44"
-               class="code sev- "><tt><i>44</i>     <span class="k">def</span> <span class="nf">processed_file_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span></tt>
+               class="code sev- "><tt><i>44</i>     <span class="nd">@property</span></tt>
             </div>
             <div id="l45"
-               class="code sev- "><tt><i>45</i>         <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_processed_mean_px_feat.pt&#39;</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>45</i>     <span class="k">def</span> <span class="nf">processed_file_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span></tt>
             </div>
             <div id="l46"
-               class="code sev- "><tt><i>46</i> &nbsp;</tt>
+               class="code sev- "><tt><i>46</i>         <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_processed_mean_px_feat.pt&#39;</span><span class="p">]</span></tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i>     <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>47</i> &nbsp;</tt>
             </div>
             <div id="l48"
-               class="code sev- "><tt><i>48</i>         <span class="n">path</span> <span class="o">=</span> <span class="n">download_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_dir</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>48</i>     <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
             </div>
             <div id="l49"
-               class="code sev- "><tt><i>49</i>         <span class="n">extract_zip</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_dir</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>49</i>         <span class="n">path</span> <span class="o">=</span> <span class="n">download_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_dir</span><span class="p">)</span></tt>
             </div>
             <div id="l50"
-               class="code sev- "><tt><i>50</i>         <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>50</i>         <span class="n">extract_zip</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_dir</span><span class="p">)</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i> &nbsp;</tt>
+               class="code sev- "><tt><i>51</i>         <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></tt>
             </div>
             <div id="l52"
-               class="code sev- "><tt><i>52</i>     <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>52</i> &nbsp;</tt>
             </div>
             <div id="l53"
-               class="code sev- "><tt><i>53</i>         <span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>53</i>     <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></tt>
             </div>
             <div id="l54"
-               class="code sev- "><tt><i>54</i>         <span class="c1"># data_list = [Data(**data_dict) for data_dict in inputs]</span></tt>
+               class="code sev- "><tt><i>54</i>         <span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
             </div>
             <div id="l55"
-               class="code sev- "><tt><i>55</i> &nbsp;</tt>
+               class="code sev- "><tt><i>55</i>         <span class="c1"># data_list = [Data(**data_dict) for data_dict in inputs]</span></tt>
             </div>
             <div id="l56"
-               class="code sev- "><tt><i>56</i>         <span class="n">total_num_nodes</span> <span class="o">=</span> <span class="mi">0</span></tt>
+               class="code sev- "><tt><i>56</i> &nbsp;</tt>
             </div>
             <div id="l57"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E203
-                     </span>
-                     Whitespace before ':'</li>
-               
-               </ul><tt><i>57</i>         <span class="k">for</span> <span class="n">data_dict</span> <span class="ow">in</span> <span class="n">inputs</span> <span class="p">:</span></tt>
+               class="code sev- "><tt><i>57</i>         <span class="n">total_num_nodes</span> <span class="o">=</span> <span class="mi">0</span></tt>
             </div>
             <div id="l58"
-               class="code sev- "><tt><i>58</i>             <span class="n">total_num_nodes</span> <span class="o">+=</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></tt>
-            </div>
-            <div id="l59"
-               class="code sev- "><tt><i>59</i> &nbsp;</tt>
-            </div>
-            <div id="l60"
-               class="code sev- "><tt><i>60</i>         <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></tt>
-            </div>
-            <div id="l61"
-               class="code sev- "><tt><i>61</i>         <span class="n">padded_cate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">total_num_nodes</span><span class="p">)</span></tt>
-            </div>
-            <div id="l62"
-               class="code sev- "><tt><i>62</i> &nbsp;</tt>
-            </div>
-            <div id="l63"
-               class="code sev- "><tt><i>63</i>         <span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span></tt>
-            </div>
-            <div id="l64"
-               class="code sev- "><tt><i>64</i>         <span class="n">ptr</span> <span class="o">=</span> <span class="mi">0</span></tt>
-            </div>
-            <div id="l65"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -245,12 +224,45 @@
                      </span>
                      Whitespace before ':'</li>
                
-               </ul><tt><i>65</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data_dict</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="p">:</span></tt>
+               </ul><tt><i>58</i>         <span class="k">for</span> <span class="n">data_dict</span> <span class="ow">in</span> <span class="n">inputs</span> <span class="p">:</span></tt>
+            </div>
+            <div id="l59"
+               class="code sev- "><tt><i>59</i>             <span class="n">total_num_nodes</span> <span class="o">+=</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></tt>
+            </div>
+            <div id="l60"
+               class="code sev- "><tt><i>60</i> &nbsp;</tt>
+            </div>
+            <div id="l61"
+               class="code sev- "><tt><i>61</i>         <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></tt>
+            </div>
+            <div id="l62"
+               class="code sev- "><tt><i>62</i>         <span class="n">padded_cate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">total_num_nodes</span><span class="p">)</span></tt>
+            </div>
+            <div id="l63"
+               class="code sev- "><tt><i>63</i> &nbsp;</tt>
+            </div>
+            <div id="l64"
+               class="code sev- "><tt><i>64</i>         <span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span></tt>
+            </div>
+            <div id="l65"
+               class="code sev- "><tt><i>65</i>         <span class="n">ptr</span> <span class="o">=</span> <span class="mi">0</span></tt>
             </div>
             <div id="l66"
-               class="code sev- "><tt><i>66</i>             <span class="n">num_node</span> <span class="o">=</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></tt>
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E203
+                     </span>
+                     Whitespace before ':'</li>
+               
+               </ul><tt><i>66</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data_dict</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="p">:</span></tt>
             </div>
             <div id="l67"
+               class="code sev- "><tt><i>67</i>             <span class="n">num_node</span> <span class="o">=</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></tt>
+            </div>
+            <div id="l68"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -260,46 +272,46 @@
                      </span>
                      Missing whitespace after ','</li>
                
-               </ul><tt><i>67</i>             <span class="n">cate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">padded_cate</span><span class="p">[</span><span class="n">ptr</span><span class="p">:</span><span class="n">ptr</span><span class="o">+</span><span class="n">num_node</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span></tt>
-            </div>
-            <div id="l68"
-               class="code sev- "><tt><i>68</i>             <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">cate</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></tt>
+               </ul><tt><i>68</i>             <span class="n">cate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">padded_cate</span><span class="p">[</span><span class="n">ptr</span><span class="p">:</span><span class="n">ptr</span><span class="o">+</span><span class="n">num_node</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span></tt>
             </div>
             <div id="l69"
-               class="code sev- "><tt><i>69</i>             <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span></tt>
+               class="code sev- "><tt><i>69</i>             <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">cate</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></tt>
             </div>
             <div id="l70"
-               class="code sev- "><tt><i>70</i>             <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Data</span><span class="p">(</span><span class="o">**</span><span class="n">data_dict</span><span class="p">))</span></tt>
+               class="code sev- "><tt><i>70</i>             <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span></tt>
             </div>
             <div id="l71"
-               class="code sev- "><tt><i>71</i>             <span class="n">ptr</span> <span class="o">+=</span> <span class="n">num_node</span></tt>
+               class="code sev- "><tt><i>71</i>             <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Data</span><span class="p">(</span><span class="o">**</span><span class="n">data_dict</span><span class="p">))</span></tt>
             </div>
             <div id="l72"
-               class="code sev- "><tt><i>72</i>         <span class="k">assert</span> <span class="n">ptr</span> <span class="o">==</span> <span class="n">total_num_nodes</span></tt>
+               class="code sev- "><tt><i>72</i>             <span class="n">ptr</span> <span class="o">+=</span> <span class="n">num_node</span></tt>
             </div>
             <div id="l73"
-               class="code sev- "><tt><i>73</i> &nbsp;</tt>
+               class="code sev- "><tt><i>73</i>         <span class="k">assert</span> <span class="n">ptr</span> <span class="o">==</span> <span class="n">total_num_nodes</span></tt>
             </div>
             <div id="l74"
-               class="code sev- "><tt><i>74</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>74</i> &nbsp;</tt>
             </div>
             <div id="l75"
-               class="code sev- "><tt><i>75</i>             <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data_list</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_filter</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span></tt>
+               class="code sev- "><tt><i>75</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l76"
-               class="code sev- "><tt><i>76</i> &nbsp;</tt>
+               class="code sev- "><tt><i>76</i>             <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data_list</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_filter</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span></tt>
             </div>
             <div id="l77"
-               class="code sev- "><tt><i>77</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>77</i> &nbsp;</tt>
             </div>
             <div id="l78"
-               class="code sev- "><tt><i>78</i>             <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pre_transform</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data_list</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>78</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l79"
-               class="code sev- "><tt><i>79</i> &nbsp;</tt>
+               class="code sev- "><tt><i>79</i>             <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pre_transform</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data_list</span><span class="p">]</span></tt>
             </div>
             <div id="l80"
-               class="code sev- "><tt><i>80</i>         <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">data_list</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>80</i> &nbsp;</tt>
+            </div>
+            <div id="l81"
+               class="code sev- "><tt><i>81</i>         <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">data_list</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></tt>
             </div>
             
          </div>

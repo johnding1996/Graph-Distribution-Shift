@@ -166,7 +166,6 @@
 <span id="L156" class="lineno"><a class="lineno" href="#L156">156</a></span>
 <span id="L157" class="lineno"><a class="lineno" href="#L157">157</a></span>
 <span id="L158" class="lineno"><a class="lineno" href="#L158">158</a></span>
-<span id="L159" class="lineno"><a class="lineno" href="#L159">159</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -222,6 +221,7 @@ Unannotated (x7)">        self._y_array = self.ogb_dataset.data.y.unsqueeze(-1)<
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">        self._metadata_fields = ['color', 'y']</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # https://www.dropbox.com/s/envr0eslhtssy2y/ColoredMNIST_group_expired.zip?dl=1</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'ColoredMNIST_group.npy')</span>
 <span class="line-any" title="Any Types on this line: 
@@ -230,7 +230,7 @@ Unannotated (x2)">        if not os.path.exists(metadata_file_path):</span>
 Unannotated (x2)
 Unimported (x1)">            metadata_zip_file_path = download_url(</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                'https://www.dropbox.com/s/envr0eslhtssy2y/ColoredMNIST_group.zip?dl=1', self.ogb_dataset.raw_dir)</span>
+Unannotated (x2)">                'https://www.dropbox.com/s/ax1ek3yc6n1q739/ColoredMNIST_group.zip?dl=1', self.ogb_dataset.raw_dir)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Unimported (x1)">            extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)</span>
@@ -403,8 +403,6 @@ Unimported (x1)">            adj_node_feat = torch.cat([adj.unsqueeze(0), adj_no
 Unannotated (x5)">            for node, node_feat in enumerate(graph.x):</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">                adj_node_feat[1:3, node, node] = node_feat[:2]</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x9)
 Unimported (x1)">                adj_node_feat[3:, node, node] = F.one_hot(node_feat[2].long(), 8)</span>
