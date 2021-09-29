@@ -102,9 +102,9 @@ class MultipleEnvironmentMNIST(MultipleDomainDataset):
         original_labels = torch.cat((original_dataset_tr.targets,
                                      original_dataset_te.targets))
 
-        # shuffle = torch.randperm(len(original_images))
-        # original_images = original_images[shuffle]
-        # original_labels = original_labels[shuffle]
+        shuffle = torch.randperm(len(original_images))
+        original_images = original_images[shuffle]
+        original_labels = original_labels[shuffle]
 
         self.datasets = []
 
