@@ -96,6 +96,7 @@
 <span id="L86" class="lineno"><a class="lineno" href="#L86">86</a></span>
 <span id="L87" class="lineno"><a class="lineno" href="#L87">87</a></span>
 <span id="L88" class="lineno"><a class="lineno" href="#L88">88</a></span>
+<span id="L89" class="lineno"><a class="lineno" href="#L89">89</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -215,9 +216,9 @@ Unimported (x1)">            self.graph_pred_linear = torch.nn.Linear(self.emb_d
 Unannotated (x3)">        x = batched_data.x</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        if self.dataset_group == 'ColoredMNIST' :</span>
+<span class="line-empty" title="No Anys on this line!">            # x = self.node_encoder(x[:, :2]) + self.node_encoder_cate(x[:, 2:].to(torch.int).squeeze())</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x15)
-Unimported (x1)">            x = self.node_encoder(x[:, :2]) + self.node_encoder_cate(x[:, 2:].to(torch.int).squeeze())</span>
+Unannotated (x5)">            x = self.node_encoder(x[:, :2])</span>
 <span class="line-empty" title="No Anys on this line!">        else :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            x = self.node_encoder(x)</span>

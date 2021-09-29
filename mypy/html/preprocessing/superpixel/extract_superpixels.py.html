@@ -178,6 +178,9 @@
 <span id="L168" class="lineno"><a class="lineno" href="#L168">168</a></span>
 <span id="L169" class="lineno"><a class="lineno" href="#L169">169</a></span>
 <span id="L170" class="lineno"><a class="lineno" href="#L170">170</a></span>
+<span id="L171" class="lineno"><a class="lineno" href="#L171">171</a></span>
+<span id="L172" class="lineno"><a class="lineno" href="#L172">172</a></span>
+<span id="L173" class="lineno"><a class="lineno" href="#L173">173</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-empty" title="No Anys on this line!"># Source repo: https://github.com/bknyaz/graph_attention_pool</span>
 <span class="line-empty" title="No Anys on this line!"># Compute superpixels for MNIST/CIFAR-10 using SLIC algorithm</span>
@@ -209,7 +212,7 @@ Explicit (x1)">    parser = argparse.ArgumentParser(description='Extract SLIC su
 Unannotated (x3)">    parser.add_argument('-D', '--dataset', type=str, default='mnist',</span>
 <span class="line-any" title="No Anys on this line!">                        choices=['mnist', 'cifar10', 'ColoredMNIST', 'RotatedMNIST'])</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    parser.add_argument('-d', '--data_dir', type=str, default='./data', help='path to the data  set')</span>
+Unannotated (x3)">    parser.add_argument('-d', '--data_dir', type=str, default='./data', help='path to the dataset')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('-o', '--out_dir', type=str, default='./data', help='path where to save superpixels')</span>
 <span class="line-any" title="Any Types on this line: 
@@ -477,6 +480,12 @@ Explicit (x1)
 Unannotated (x4)">    with open(f'{args.out_dir}/{args.dataset}_group.npy', 'wb') as f:</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x3)">        np.save(f, data_envs)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Explicit (x1)
+Unannotated (x4)">    with open(f'{args.out_dir}/{args.dataset}_images.npy', 'wb') as f:</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x4)">        np.save(f, images)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-precise" title="No Anys on this line!">    print('done in {}'.format(datetime.datetime.now() - dt))</span>
 </pre></td>
