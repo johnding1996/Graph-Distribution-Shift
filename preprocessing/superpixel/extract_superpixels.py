@@ -167,4 +167,7 @@ if __name__ == '__main__':
     with open(f'{args.out_dir}/{args.dataset}_group.npy', 'wb') as f:
         np.save(f, data_envs)
 
+    with open(f'{args.out_dir}/{args.dataset}_images.npy', 'wb') as f:
+        np.save(f, images)
+
     print('done in {}'.format(datetime.datetime.now() - dt))
