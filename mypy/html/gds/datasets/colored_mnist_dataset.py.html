@@ -387,9 +387,9 @@ Unimported (x1)">            adj = self._sym_normalize_adj(to_dense_adj(graph.ed
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Unimported (x1)">            zero_adj = torch.zeros_like(adj)</span>
-<span class="line-empty" title="No Anys on this line!">            # in_dim = graph.x.shape[1]</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            in_dim = 10</span>
+Unannotated (x5)">            in_dim = graph.x.shape[1]</span>
+<span class="line-empty" title="No Anys on this line!">            # in_dim = 10</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # use node feats to prepare adj</span>
 <span class="line-any" title="Any Types on this line: 
@@ -402,14 +402,12 @@ Unimported (x1)">            adj_node_feat = torch.cat([adj.unsqueeze(0), adj_no
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">            for node, node_feat in enumerate(graph.x):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x5)">                adj_node_feat[1:3, node, node] = node_feat[:2]</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x9)
-Unimported (x1)">                adj_node_feat[3:, node, node] = F.one_hot(node_feat[2].long(), 8)</span>
+Unannotated (x4)">                adj_node_feat[1:, node, node] = node_feat</span>
+<span class="line-empty" title="No Anys on this line!">                # adj_node_feat[1:3, node, node] = node_feat[:2]</span>
+<span class="line-empty" title="No Anys on this line!">                # adj_node_feat[3:, node, node] = F.one_hot(node_feat[2].long(), 8)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            x_node_feat.append(adj_node_feat)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Unimported (x1)">        x_node_feat = torch.stack(x_node_feat)</span>

@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
    </head>
    <body>
-      <div id="masthead" class="sev-2"></div>
+      <div id="masthead" class="sev-1"></div>
       <div id="page">
          <p id="srclink">
             <a title="View full annotated source"
@@ -50,13 +50,31 @@ window.addEventListener('DOMContentLoaded', function () {
          <ul id="index">
          
          <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'torch.nn.functional as F' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.colored_mnist_dataset.source.html#l11">
+                  <tt><i>11</i> <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
             <a data-code="E501">
                <span class="count sev-2">
                   20
                </span>
                <strong>E501:</strong> line too long (114 > 79 characters)
                
-                  (and 16 similar)
+                  (and 15 similar)
                
             </a>
             <ul class="details">
@@ -188,10 +206,10 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>Line too long (81 > 79 characters):</p>
+               <p>Line too long (83 > 79 characters):</p>
                
-               <a href="datasets.colored_mnist_dataset.source.html#l146">
-                  <tt><i>146</i>                 <span class="n">adj_node_feat</span><span class="p">[</span><span class="mi">3</span><span class="p">:,</span> <span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">node_feat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">long</span><span class="p">(),</span> <span class="mi">8</span><span class="p">)</span></tt>
+               <a href="datasets.colored_mnist_dataset.source.html#l147">
+                  <tt><i>147</i>                 <span class="c1"># adj_node_feat[3:, node, node] = F.one_hot(node_feat[2].long(), 8)</span></tt>
                </a>
             </li><li>
                

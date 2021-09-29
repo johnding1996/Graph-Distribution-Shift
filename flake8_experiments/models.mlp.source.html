@@ -212,7 +212,7 @@
                class="code sev- "><tt><i>43</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
             </div>
             <div id="l44"
-               class="code sev- "><tt><i>44</i>             <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">emb_dim</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>44</i>             <span class="c1"># self.node_encoder_cate = torch.nn.Embedding(8, emb_dim)</span></tt>
             </div>
             <div id="l45"
                class="code sev-2  le">
@@ -323,16 +323,7 @@
                class="code sev- "><tt><i>68</i>         <span class="n">x</span> <span class="o">=</span> <span class="n">batched_data</span><span class="o">.</span><span class="n">x</span></tt>
             </div>
             <div id="l69"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E203
-                     </span>
-                     Whitespace before ':'</li>
-               
-               </ul><tt><i>69</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;ColoredMNIST&#39;</span> <span class="p">:</span></tt>
+               class="code sev- "><tt><i>69</i>         <span class="c1"># if self.dataset_group == &#39;ColoredMNIST&#39; :</span></tt>
             </div>
             <div id="l70"
                class="code sev-2  le">
@@ -342,27 +333,18 @@
                      <span class="count sev-2">
                         E501
                      </span>
-                     Line too long (104 > 79 characters)</li>
+                     Line too long (106 > 79 characters)</li>
                
-               </ul><tt><i>70</i>             <span class="c1"># x = self.node_encoder(x[:, :2]) + self.node_encoder_cate(x[:, 2:].to(torch.int).squeeze())</span></tt>
+               </ul><tt><i>70</i>         <span class="c1">#     # x = self.node_encoder(x[:, :2]) + self.node_encoder_cate(x[:, 2:].to(torch.int).squeeze())</span></tt>
             </div>
             <div id="l71"
-               class="code sev- "><tt><i>71</i>             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>71</i>         <span class="c1">#     x = self.node_encoder(x[:, :2])</span></tt>
             </div>
             <div id="l72"
-               class="code sev-2  le">
-               <ul class="violations">
-               
-                  <li>
-                     <span class="count sev-2">
-                        E203
-                     </span>
-                     Whitespace before ':'</li>
-               
-               </ul><tt><i>72</i>         <span class="k">else</span> <span class="p">:</span></tt>
+               class="code sev- "><tt><i>72</i>         <span class="c1"># else :</span></tt>
             </div>
             <div id="l73"
-               class="code sev- "><tt><i>73</i>             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>73</i>         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></tt>
             </div>
             <div id="l74"
                class="code sev-2  le">

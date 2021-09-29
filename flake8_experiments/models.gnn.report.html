@@ -234,17 +234,17 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>Line too long (234 > 79 characters):</p>
+               <p>Line too long (236 > 79 characters):</p>
                
                <a href="models.gnn.source.html#l171">
-                  <tt><i>171</i>                 <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span> <span class="o">+</span> <span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())]</span></tt>
+                  <tt><i>171</i>             <span class="c1">#     h_list = [self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze()) + perturb if perturb is not None else self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze())]</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (106 > 79 characters):</p>
+               <p>Line too long (102 > 79 characters):</p>
                
                <a href="models.gnn.source.html#l173">
-                  <tt><i>173</i>                 <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span></tt>
+                  <tt><i>173</i>             <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span></tt>
                </a>
             </li><li>
                
@@ -353,17 +353,17 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>Line too long (234 > 79 characters):</p>
+               <p>Line too long (236 > 79 characters):</p>
                
                <a href="models.gnn.source.html#l306">
-                  <tt><i>306</i>                 <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span> <span class="o">+</span> <span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())]</span></tt>
+                  <tt><i>306</i>             <span class="c1">#     h_list = [self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze()) + perturb if perturb is not None else self.node_encoder(x[:,:2]) + self.node_encoder_cate(x[:,2:].to(torch.int).squeeze())]</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (106 > 79 characters):</p>
+               <p>Line too long (102 > 79 characters):</p>
                
                <a href="models.gnn.source.html#l308">
-                  <tt><i>308</i>                 <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span></tt>
+                  <tt><i>308</i>             <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span></tt>
                </a>
             </li><li>
                
@@ -500,7 +500,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E203">
                <span class="count sev-2">
-                  13
+                  9
                </span>
                <strong>E203:</strong> whitespace before ':'
                
@@ -533,16 +533,6 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <a href="models.gnn.source.html#l170">
-                  <tt><i>170</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;ColoredMNIST&#39;</span> <span class="p">:</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.gnn.source.html#l172">
-                  <tt><i>172</i>             <span class="k">else</span> <span class="p">:</span></tt>
-               </a>
-            </li><li>
-               
                <a href="models.gnn.source.html#l178">
                   <tt><i>178</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">batchnorm</span> <span class="p">:</span></tt>
                </a>
@@ -560,43 +550,6 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <a href="models.gnn.source.html#l273">
                   <tt><i>273</i>             <span class="k">elif</span> <span class="n">gnn_type</span> <span class="o">==</span> <span class="s1">&#39;cheb&#39;</span> <span class="p">:</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.gnn.source.html#l305">
-                  <tt><i>305</i>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">==</span> <span class="s1">&#39;ColoredMNIST&#39;</span> <span class="p">:</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="models.gnn.source.html#l307">
-                  <tt><i>307</i>             <span class="k">else</span> <span class="p">:</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E231">
-               <span class="count sev-2">
-                  8
-               </span>
-               <strong>E231:</strong> missing whitespace after ','
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <p>Missing whitespace after ',' (in 4 places):</p>
-               
-               <a href="models.gnn.source.html#l171">
-                  <tt><i>171</i>                 <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span> <span class="o">+</span> <span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())]</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Missing whitespace after ',' (in 4 places):</p>
-               
-               <a href="models.gnn.source.html#l306">
-                  <tt><i>306</i>                 <span class="n">h_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span> <span class="o">+</span> <span class="n">perturb</span> <span class="k">if</span> <span class="n">perturb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_encoder_cate</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())]</span></tt>
                </a>
             </li>
             </ul>

@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
    </head>
    <body>
-      <div id="masthead" class="sev-2"></div>
+      <div id="masthead" class="sev-1"></div>
       <div id="page">
          <p id="srclink">
             <a title="View full annotated source"
@@ -48,6 +48,24 @@ window.addEventListener('DOMContentLoaded', function () {
          </h1>
 
          <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'numpy as np' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="datasets.pyg_colored_mnist_dataset.source.html#l6">
+                  <tt><i>6</i> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
          
          <li>
             <a data-code="E501">
@@ -88,7 +106,7 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E203">
                <span class="count sev-2">
-                  2
+                  1
                </span>
                <strong>E203:</strong> whitespace before ':'
                
@@ -96,31 +114,8 @@ window.addEventListener('DOMContentLoaded', function () {
             <ul class="details">
             <li>
                
-               <a href="datasets.pyg_colored_mnist_dataset.source.html#l58">
-                  <tt><i>58</i>         <span class="k">for</span> <span class="n">data_dict</span> <span class="ow">in</span> <span class="n">inputs</span> <span class="p">:</span></tt>
-               </a>
-            </li><li>
-               
-               <a href="datasets.pyg_colored_mnist_dataset.source.html#l66">
-                  <tt><i>66</i>         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data_dict</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="p">:</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E231">
-               <span class="count sev-2">
-                  1
-               </span>
-               <strong>E231:</strong> missing whitespace after ','
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="datasets.pyg_colored_mnist_dataset.source.html#l68">
-                  <tt><i>68</i>             <span class="n">cate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">padded_cate</span><span class="p">[</span><span class="n">ptr</span><span class="p">:</span><span class="n">ptr</span><span class="o">+</span><span class="n">num_node</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span></tt>
+               <a href="datasets.pyg_colored_mnist_dataset.source.html#l59">
+                  <tt><i>59</i>         <span class="k">for</span> <span class="n">data_dict</span> <span class="ow">in</span> <span class="n">inputs</span> <span class="p">:</span></tt>
                </a>
             </li>
             </ul>
