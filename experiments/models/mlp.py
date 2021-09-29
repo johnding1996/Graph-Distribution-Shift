@@ -67,7 +67,8 @@ class MLP(torch.nn.Module):
     def forward(self, batched_data):
         x = batched_data.x
         if self.dataset_group == 'ColoredMNIST' :
-            x = self.node_encoder(x[:, :2]) + self.node_encoder_cate(x[:, 2:].to(torch.int).squeeze())
+            # x = self.node_encoder(x[:, :2]) + self.node_encoder_cate(x[:, 2:].to(torch.int).squeeze())
+            x = self.node_encoder(x[:, :2])
         else :
             x = self.node_encoder(x)
         for i in range(self.num_layers) :
