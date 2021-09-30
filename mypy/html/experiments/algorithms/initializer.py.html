@@ -141,12 +141,22 @@
 <span id="L131" class="lineno"><a class="lineno" href="#L131">131</a></span>
 <span id="L132" class="lineno"><a class="lineno" href="#L132">132</a></span>
 <span id="L133" class="lineno"><a class="lineno" href="#L133">133</a></span>
+<span id="L134" class="lineno"><a class="lineno" href="#L134">134</a></span>
+<span id="L135" class="lineno"><a class="lineno" href="#L135">135</a></span>
+<span id="L136" class="lineno"><a class="lineno" href="#L136">136</a></span>
+<span id="L137" class="lineno"><a class="lineno" href="#L137">137</a></span>
+<span id="L138" class="lineno"><a class="lineno" href="#L138">138</a></span>
+<span id="L139" class="lineno"><a class="lineno" href="#L139">139</a></span>
+<span id="L140" class="lineno"><a class="lineno" href="#L140">140</a></span>
+<span id="L141" class="lineno"><a class="lineno" href="#L141">141</a></span>
+<span id="L142" class="lineno"><a class="lineno" href="#L142">142</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from algorithms.ERM import ERM</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.IRM import IRM</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.deepCORAL import DeepCORAL</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.groupDRO import GroupDRO</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.FLAG import FLAG</span>
+<span class="line-any" title="No Anys on this line!">from algorithms.GCL import GCL</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.GSN import GSN</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.DANN import DANN, CDANN, DANNG</span>
 <span class="line-any" title="No Anys on this line!">from algorithms.MLDG import MLDG</span>
@@ -286,6 +296,23 @@ Unannotated (x3)">    elif config.algorithm == 'FLAG':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Unimported (x1)">        algorithm = FLAG(</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            config=config,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            d_out=d_out,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            grouper=train_grouper,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            loss=loss,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            metric=metric,</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            n_train_steps=n_train_steps)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    elif config.algorithm == 'GCL':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)
+Unimported (x1)">        algorithm = GCL(</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            config=config,</span>
 <span class="line-any" title="Any Types on this line: 

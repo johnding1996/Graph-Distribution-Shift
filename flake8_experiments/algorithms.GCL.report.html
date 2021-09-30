@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: algorithms/GCL.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="algorithms.GCL.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               algorithms/GCL.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F632">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F632:</strong> use ==/!= to compare constant literals (str, bytes, int, float, tuple)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l132">
+                  <tt><i>132</i>         <span class="k">if</span> <span class="n">paired_perms</span><span class="p">:</span> <span class="k">assert</span> <span class="n">edge_num</span><span class="o">%</span><span class="mi">2</span> <span class="ow">is</span> <span class="mi">0</span> <span class="c1"># undirected g, paired edges</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="F841">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F841:</strong> local variable 'idx_drop' is assigned to but never used
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l70">
+                  <tt><i>70</i>         <span class="n">idx_drop</span> <span class="o">=</span> <span class="n">idx_perm</span><span class="p">[:</span><span class="n">drop_num</span><span class="p">]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  24
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l38">
+                  <tt><i>38</i>         <span class="c1"># additional logging, copied from deepCORAL, </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l46">
+                  <tt><i>46</i> <span class="sd">        Original method operates on </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l59">
+                  <tt><i>59</i> <span class="sd">        to directly operate on the node index+edge lists, </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l74">
+                  <tt><i>74</i>         <span class="c1"># Noting that this isn&#39;t an elegant process because we need to </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l87">
+                  <tt><i>87</i>             <span class="n">new_edge_attr</span> <span class="o">=</span> <span class="n">orig_edge_attr</span><span class="p">[</span><span class="n">edge_subselect</span><span class="p">]</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l106">
+                  <tt><i>106</i> <span class="sd">        Current: </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l107">
+                  <tt><i>107</i> <span class="sd">        In-place replacement k edges (i-&gt;j) with k edges (i&#39;-&gt;j&#39;) </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l111">
+                  <tt><i>111</i> <span class="sd">        Currently the edge_attr of (i-&gt;j) in inherited by (i&#39;-&gt;j&#39;) </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l112">
+                  <tt><i>112</i> <span class="sd">        for datasets that include edge_attr, this is not very </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l113">
+                  <tt><i>113</i> <span class="sd">        semantically sound, as the joint distribution between </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l114">
+                  <tt><i>114</i> <span class="sd">        (i_feat,j_feat,e_attr), i_feat,j_feat in {node_features}, </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l118">
+                  <tt><i>118</i> <span class="sd">        A non-naive, &#39;paired&#39; version will also rely on assumption </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l119">
+                  <tt><i>119</i> <span class="sd">        that this is a default pytorch geometric data object where </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l120">
+                  <tt><i>120</i> <span class="sd">        edge ordering is such that two the directions of a single </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l121">
+                  <tt><i>121</i> <span class="sd">        edge occur in pairs. So that we can operate on bidirectional </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l139">
+                  <tt><i>139</i>             <span class="n">edges_to_insert</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">permute_num</span><span class="p">,</span><span class="n">node_num</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span> </tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l143">
+                  <tt><i>143</i>                 <span class="k">raise</span> <span class="ne">NotImplementedError</span>            </tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l187">
+                  <tt><i>187</i>         <span class="c1"># 1) In one version of the pretraining reference code, </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l188">
+                  <tt><i>188</i>         <span class="c1"># augmentations are applied in the get(idx) method of </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l190">
+                  <tt><i>190</i>         <span class="c1"># the pair of data objects, data, data_aug </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l205">
+                  <tt><i>205</i>         <span class="c1"># we&#39;re going to start by just applying the augmentation here in line, </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l208">
+                  <tt><i>208</i>         <span class="c1"># be parallelized by the dataloader workers ... instead it&#39;s blocking </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l250">
+                  <tt><i>250</i>         <span class="c1"># if not &quot;use_cl&quot; unpack batch of graphs and apply augmentation </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l259">
+                  <tt><i>259</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span> </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  20
+               </span>
+               <strong>E501:</strong> line too long (135 > 79 characters)
+               
+                  (and 15 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (135 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l12">
+                  <tt><i>12</i>         <span class="n">featurizer</span><span class="p">,</span> <span class="n">projector</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">combined_model</span> <span class="o">=</span> <span class="n">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_projector</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (86 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l71">
+                  <tt><i>71</i>         <span class="n">idx_nondrop</span> <span class="o">=</span> <span class="n">idx_perm</span><span class="p">[</span><span class="n">drop_num</span><span class="p">:]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span> <span class="c1"># sort for humans/debug</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l78">
+                  <tt><i>78</i>         <span class="n">src_subselect</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">idx_nondrop</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">orig_edge_index</span><span class="p">[</span><span class="mi">0</span><span class="p">])[:,</span><span class="mi">1</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l79">
+                  <tt><i>79</i>         <span class="n">dest_subselect</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">idx_nondrop</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">orig_edge_index</span><span class="p">[</span><span class="mi">1</span><span class="p">])[:,</span><span class="mi">1</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (116 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l80">
+                  <tt><i>80</i>         <span class="n">edge_subselect</span> <span class="o">=</span> <span class="n">src_subselect</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">src_subselect</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">dest_subselect</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span><span class="o">.</span><span class="n">values</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (114 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l139">
+                  <tt><i>139</i>             <span class="n">edges_to_insert</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">permute_num</span><span class="p">,</span><span class="n">node_num</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (104 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l140">
+                  <tt><i>140</i>             <span class="n">insertion_indices</span> <span class="o">=</span>  <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">edge_num</span><span class="p">),</span> <span class="n">permute_num</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (86 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l145">
+                  <tt><i>145</i>             <span class="n">orig_edge_index</span><span class="p">[:,</span><span class="n">insertion_indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges_to_insert</span> <span class="c1"># modified in place</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (99 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l168">
+                  <tt><i>168</i>         <span class="c1"># See Appendix A Algo 1 https://yyou1996.github.io/files/neurips2020_graphcl_supplement.pdf</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (163 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l169">
+                  <tt><i>169</i>         <span class="c1"># Code from: https://github.com/Shen-Lab/GraphCL/blob/d857849d51bb168568267e07007c0b0c8bb6d869/transferLearning_MoleculeNet_PPI/bio/pretrain_graphcl.py#L57</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (96 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l175">
+                  <tt><i>175</i>         <span class="n">sim_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ik,jk-&gt;ij&#39;</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">z2</span><span class="p">)</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,j-&gt;ij&#39;</span><span class="p">,</span> <span class="n">z1_abs</span><span class="p">,</span> <span class="n">z2_abs</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (124 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l191">
+                  <tt><i>191</i>         <span class="c1"># See: https://github.com/Shen-Lab/GraphCL/blob/e9e598d478d4a4bff94a3e95a078569c028f1d88/unsupervised_TU/aug.py#L203</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l193">
+                  <tt><i>193</i>         <span class="c1"># and since they are not shuffled, the orig and augmented graphs are aligned</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (158 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l194">
+                  <tt><i>194</i>         <span class="c1"># See: https://github.com/Shen-Lab/GraphCL/blob/d857849d51bb168568267e07007c0b0c8bb6d869/transferLearning_MoleculeNet_PPI/chem/pretrain_graphcl.py#L80</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l196">
+                  <tt><i>196</i>         <span class="c1"># formulation using einsum and subtracting of the diagonal to separate out</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l197">
+                  <tt><i>197</i>         <span class="c1"># positive pairs from negative pairs, you can compute the contrastive loss</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l207">
+                  <tt><i>207</i>         <span class="c1"># initial intuition is that this might be pretty inefficient since it can&#39;t</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l209">
+                  <tt><i>209</i>         <span class="c1"># during training, though, the computations are all torch or native python</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (114 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l248">
+                  <tt><i>248</i>         <span class="n">aug_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">aug_prob</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">aug_prob</span><span class="p">)),</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="algorithms.GCL.source.html#l300">
+                  <tt><i>300</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  9
+               </span>
+               <strong>E231:</strong> missing whitespace after ','
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Missing whitespace after ',' (in 2 places):</p>
+               
+               <a href="algorithms.GCL.source.html#l78">
+                  <tt><i>78</i>         <span class="n">src_subselect</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">idx_nondrop</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">orig_edge_index</span><span class="p">[</span><span class="mi">0</span><span class="p">])[:,</span><span class="mi">1</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',' (in 2 places):</p>
+               
+               <a href="algorithms.GCL.source.html#l79">
+                  <tt><i>79</i>         <span class="n">dest_subselect</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">idx_nondrop</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">orig_edge_index</span><span class="p">[</span><span class="mi">1</span><span class="p">])[:,</span><span class="mi">1</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="algorithms.GCL.source.html#l80">
+                  <tt><i>80</i>         <span class="n">edge_subselect</span> <span class="o">=</span> <span class="n">src_subselect</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">src_subselect</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">dest_subselect</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span><span class="o">.</span><span class="n">values</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="algorithms.GCL.source.html#l82">
+                  <tt><i>82</i>         <span class="n">new_edge_index</span> <span class="o">=</span> <span class="n">orig_edge_index</span><span class="p">[:,</span><span class="n">edge_subselect</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="algorithms.GCL.source.html#l139">
+                  <tt><i>139</i>             <span class="n">edges_to_insert</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">permute_num</span><span class="p">,</span><span class="n">node_num</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span> </tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="algorithms.GCL.source.html#l145">
+                  <tt><i>145</i>             <span class="n">orig_edge_index</span><span class="p">[:,</span><span class="n">insertion_indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges_to_insert</span> <span class="c1"># modified in place</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="algorithms.GCL.source.html#l235">
+                  <tt><i>235</i>                 <span class="n">n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,(</span><span class="mi">1</span><span class="p">,))</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E261">
+               <span class="count sev-2">
+                  5
+               </span>
+               <strong>E261:</strong> at least two spaces before inline comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l71">
+                  <tt><i>71</i>         <span class="n">idx_nondrop</span> <span class="o">=</span> <span class="n">idx_perm</span><span class="p">[</span><span class="n">drop_num</span><span class="p">:]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span> <span class="c1"># sort for humans/debug</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l131">
+                  <tt><i>131</i>         <span class="n">paired_perms</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># for later, TODO</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l132">
+                  <tt><i>132</i>         <span class="k">if</span> <span class="n">paired_perms</span><span class="p">:</span> <span class="k">assert</span> <span class="n">edge_num</span><span class="o">%</span><span class="mi">2</span> <span class="ow">is</span> <span class="mi">0</span> <span class="c1"># undirected g, paired edges</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l145">
+                  <tt><i>145</i>             <span class="n">orig_edge_index</span><span class="p">[:,</span><span class="n">insertion_indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges_to_insert</span> <span class="c1"># modified in place</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l264">
+                  <tt><i>264</i>                 <span class="k">pass</span> <span class="c1"># original graph kept</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E222">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>E222:</strong> multiple spaces after operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l140">
+                  <tt><i>140</i>             <span class="n">insertion_indices</span> <span class="o">=</span>  <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">edge_num</span><span class="p">),</span> <span class="n">permute_num</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l233">
+                  <tt><i>233</i>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aug_type</span> <span class="o">==</span>  <span class="s1">&#39;random&#39;</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l296">
+                  <tt><i>296</i>         <span class="n">sanitized</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_dict</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E265">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>E265:</strong> block comment should start with '# '
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l43">
+                  <tt><i>43</i>         <span class="c1">#print(&quot;Node Drop!&quot;)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l102">
+                  <tt><i>102</i>         <span class="c1">#print(&quot;Edge Permute!&quot;)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l263">
+                  <tt><i>263</i>                 <span class="c1">#print(&quot;UNCHANGED!&quot;)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l245">
+                  <tt><i>245</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l258">
+                  <tt><i>258</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.GCL.source.html#l267">
+                  <tt><i>267</i>         </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E221">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E221:</strong> multiple spaces before operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l68">
+                  <tt><i>68</i>         <span class="n">drop_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">node_num</span>  <span class="o">*</span> <span class="n">aug_ratio</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E228">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E228:</strong> missing whitespace around modulo operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l132">
+                  <tt><i>132</i>         <span class="k">if</span> <span class="n">paired_perms</span><span class="p">:</span> <span class="k">assert</span> <span class="n">edge_num</span><span class="o">%</span><span class="mi">2</span> <span class="ow">is</span> <span class="mi">0</span> <span class="c1"># undirected g, paired edges</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l8">
+                  <tt><i>8</i> <span class="k">class</span> <span class="nc">GCL</span><span class="p">(</span><span class="n">SingleModelAlgorithm</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l246">
+                  <tt><i>246</i>         <span class="n">batch_size</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">num_graphs</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E701">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E701:</strong> multiple statements on one line (colon)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l132">
+                  <tt><i>132</i>         <span class="k">if</span> <span class="n">paired_perms</span><span class="p">:</span> <span class="k">assert</span> <span class="n">edge_num</span><span class="o">%</span><span class="mi">2</span> <span class="ow">is</span> <span class="mi">0</span> <span class="c1"># undirected g, paired edges</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E722">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E722:</strong> do not use bare 'except'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.GCL.source.html#l97">
+                  <tt><i>97</i>         <span class="k">except</span><span class="p">:</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

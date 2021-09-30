@@ -28,6 +28,14 @@ experiments.algorithms.FLAG module
    :undoc-members:
    :show-inheritance:
 
+experiments.algorithms.GCL module
+---------------------------------
+
+.. automodule:: experiments.algorithms.GCL
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 experiments.algorithms.GSN module
 ---------------------------------
 

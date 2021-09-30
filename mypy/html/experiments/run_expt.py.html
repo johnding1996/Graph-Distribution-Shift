@@ -348,6 +348,9 @@
 <span id="L338" class="lineno"><a class="lineno" href="#L338">338</a></span>
 <span id="L339" class="lineno"><a class="lineno" href="#L339">339</a></span>
 <span id="L340" class="lineno"><a class="lineno" href="#L340">340</a></span>
+<span id="L341" class="lineno"><a class="lineno" href="#L341">341</a></span>
+<span id="L342" class="lineno"><a class="lineno" href="#L342">342</a></span>
+<span id="L343" class="lineno"><a class="lineno" href="#L343">343</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -468,6 +471,8 @@ Unannotated (x3)">    parser.add_argument('--flag_step_size', type=float)</span>
 Unannotated (x3)">    parser.add_argument('--dann_lambda', type=float)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('--mldg_beta', type=float)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--gcl_aug_ratio', type=float)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('--parameter', type=float)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -599,9 +604,13 @@ Unannotated (x3)">    elif config.algorithm == 'IRM':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        config.parameter = config.irm_lambda</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    elif config.algorithm == 'flag':</span>
+Unannotated (x3)">    elif config.algorithm == 'FLAG':</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        config.parameter = config.flag_step_size</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    elif config.algorithm == 'GCL':</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x4)">        config.parameter = config.gcl_aug_ratio</span>
 <span class="line-empty" title="No Anys on this line!">    else:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        config.parameter = None</span>

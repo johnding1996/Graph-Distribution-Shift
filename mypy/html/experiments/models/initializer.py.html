@@ -102,6 +102,23 @@
 <span id="L92" class="lineno"><a class="lineno" href="#L92">92</a></span>
 <span id="L93" class="lineno"><a class="lineno" href="#L93">93</a></span>
 <span id="L94" class="lineno"><a class="lineno" href="#L94">94</a></span>
+<span id="L95" class="lineno"><a class="lineno" href="#L95">95</a></span>
+<span id="L96" class="lineno"><a class="lineno" href="#L96">96</a></span>
+<span id="L97" class="lineno"><a class="lineno" href="#L97">97</a></span>
+<span id="L98" class="lineno"><a class="lineno" href="#L98">98</a></span>
+<span id="L99" class="lineno"><a class="lineno" href="#L99">99</a></span>
+<span id="L100" class="lineno"><a class="lineno" href="#L100">100</a></span>
+<span id="L101" class="lineno"><a class="lineno" href="#L101">101</a></span>
+<span id="L102" class="lineno"><a class="lineno" href="#L102">102</a></span>
+<span id="L103" class="lineno"><a class="lineno" href="#L103">103</a></span>
+<span id="L104" class="lineno"><a class="lineno" href="#L104">104</a></span>
+<span id="L105" class="lineno"><a class="lineno" href="#L105">105</a></span>
+<span id="L106" class="lineno"><a class="lineno" href="#L106">106</a></span>
+<span id="L107" class="lineno"><a class="lineno" href="#L107">107</a></span>
+<span id="L108" class="lineno"><a class="lineno" href="#L108">108</a></span>
+<span id="L109" class="lineno"><a class="lineno" href="#L109">109</a></span>
+<span id="L110" class="lineno"><a class="lineno" href="#L110">110</a></span>
+<span id="L111" class="lineno"><a class="lineno" href="#L111">111</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch.nn as nn</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import global_mean_pool</span>
@@ -112,7 +129,7 @@
 <span class="line-any" title="No Anys on this line!">from models.mlp import MLP</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="No Anys on this line!">def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_pooled=True):</span>
+<span class="line-any" title="No Anys on this line!">def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_pooled=True, include_projector=False):</span>
 <span class="line-empty" title="No Anys on this line!">    """</span>
 <span class="line-empty" title="No Anys on this line!">    Initializes models according to the config</span>
 <span class="line-empty" title="No Anys on this line!">        Args:</span>
@@ -242,6 +259,33 @@ Unannotated (x2)">                            d_degree=full_dataset.d_degree,</s
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                            dataset_group=config.model_kwargs['dataset_group'])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # The projector head is used to construct the inputs to</span>
+<span class="line-empty" title="No Anys on this line!">    # the similarity loss function for GCL, based on simclr</span>
+<span class="line-empty" title="No Anys on this line!">    # Assumes from above is model=(featurizer, classifier)</span>
+<span class="line-empty" title="No Anys on this line!">    # Usage of (featurizer, projector, classifier) in </span>
+<span class="line-empty" title="No Anys on this line!">    # GCL algorithm class will be similar to deepCORAL</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">    if include_projector: </span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        assert config.algorithm == 'GCL', 'The projector component ' \</span>
+<span class="line-empty" title="No Anys on this line!">                                          'is only used with GCL'</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        assert is_featurizer, 'Need pre-packing of (featurizer, classifier) ' \</span>
+<span class="line-empty" title="No Anys on this line!">                              'into model to add projector'</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">        assert is_pooled, 'Expects only (featurizer, classifier), ' \</span>
+<span class="line-empty" title="No Anys on this line!">                          'not (featurizer, pooler, classifier), i.e. whole graph embeddings'</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        graph_embedding_dim = featurizer.d_out</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x13)
+Unimported (x4)">        projector = nn.Sequential(nn.Linear(graph_embedding_dim, graph_embedding_dim), nn.ReLU(inplace=True), nn.Linear(graph_embedding_dim, graph_embedding_dim))</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">        featurizer, classifier = model</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x8)
+Unimported (x1)">        model = (featurizer, projector, classifier, nn.Sequential(featurizer, classifier))</span>
+<span class="line-empty" title="No Anys on this line!">    </span>
 <span class="line-empty" title="No Anys on this line!">    # The `needs_y` attribute specifies whether the model's forward function</span>
 <span class="line-empty" title="No Anys on this line!">    # needs to take in both (x, y).</span>
 <span class="line-empty" title="No Anys on this line!">    # If False, Algorithm.process_batch will call model(x).</span>
@@ -250,7 +294,7 @@ Unannotated (x3)">                            dataset_group=config.model_kwargs[
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Explicit (x1)">    if not hasattr(model, 'needs_y'):</span>
-<span class="line-empty" title="No Anys on this line!">        # Sometimes model is a tuple of (featurizer, classifier)</span>
+<span class="line-empty" title="No Anys on this line!">        # Sometimes model is a tuple of (featurizer, classifier, ...)</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)
 Explicit (x1)">        if isinstance(model, tuple):</span>

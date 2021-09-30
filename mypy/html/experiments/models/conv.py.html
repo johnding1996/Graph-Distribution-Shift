@@ -189,8 +189,13 @@
 <span id="L179" class="lineno"><a class="lineno" href="#L179">179</a></span>
 <span id="L180" class="lineno"><a class="lineno" href="#L180">180</a></span>
 <span id="L181" class="lineno"><a class="lineno" href="#L181">181</a></span>
+<span id="L182" class="lineno"><a class="lineno" href="#L182">182</a></span>
+<span id="L183" class="lineno"><a class="lineno" href="#L183">183</a></span>
+<span id="L184" class="lineno"><a class="lineno" href="#L184">184</a></span>
 </pre></td>
-<td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
+<td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import copy</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">from torch_geometric.nn import MessagePassing</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
 <span class="line-any" title="No Anys on this line!">from ogb.graphproppred.mol_encoder import BondEncoder</span>
@@ -430,12 +435,14 @@ Unimported (x1)
 Unannotated (x2)">                                         lambda_max, dtype=x.dtype,</span>
 <span class="line-imprecise" title="Any Types on this line: 
 Unimported (x1)">                                         batch=batch)</span>
-<span class="line-any" title="Any Types on this line: 
-Unimported (x2)
-Unannotated (x10)">        edge_index, norm = coalesce(edge_index, norm, m=x.shape[0], n=x.shape[0])</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">        # edge_index, norm = coalesce(edge_index, norm, m=x.shape[0], n=x.shape[0])</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x4)
 Unannotated (x4)">        edge_index, norm, loop_edge_index, loop_norm = segregate_self_loops(edge_index, norm)</span>
+<span class="line-any" title="Any Types on this line: 
+Unimported (x6)
+Unannotated (x6)">        loop_edge_index, loop_norm = coalesce(loop_edge_index, loop_norm, m=x.shape[0], n=x.shape[0])</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">        Tx_0 = x</span>
@@ -444,7 +451,6 @@ Unannotated (x2)">        Tx_1 = x  # Dummy.</span>
 <span class="line-any" title="Any Types on this line: 
 Unimported (x4)
 Unannotated (x1)">        out = self.lins[0](Tx_0)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # propagate_type: (x: Tensor, norm: Tensor)</span>
 <span class="line-any" title="Any Types on this line: 

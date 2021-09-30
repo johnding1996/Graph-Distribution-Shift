@@ -52,20 +52,20 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  17
+                  20
                </span>
-               <strong>E501:</strong> line too long (92 > 79 characters)
+               <strong>E501:</strong> line too long (117 > 79 characters)
                
-                  (and 13 similar)
+                  (and 15 similar)
                
             </a>
             <ul class="details">
             <li>
                
-               <p>Line too long (92 > 79 characters):</p>
+               <p>Line too long (117 > 79 characters):</p>
                
                <a href="models.initializer.source.html#l10">
-                  <tt><i>10</i> <span class="k">def</span> <span class="nf">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">full_dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></tt>
+                  <tt><i>10</i> <span class="k">def</span> <span class="nf">initialize_model</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">is_featurizer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">full_dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_pooled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_projector</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span></tt>
                </a>
             </li><li>
                
@@ -179,6 +179,27 @@ window.addEventListener('DOMContentLoaded', function () {
                <a href="models.initializer.source.html#l67">
                   <tt><i>67</i>                                  <span class="n">dataset_group</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_group&#39;</span><span class="p">])</span></tt>
                </a>
+            </li><li>
+               
+               <p>Line too long (93 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l92">
+                  <tt><i>92</i>                           <span class="s1">&#39;not (featurizer, pooler, classifier), i.e. whole graph embeddings&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (162 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l94">
+                  <tt><i>94</i>         <span class="n">projector</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">graph_embedding_dim</span><span class="p">,</span> <span class="n">graph_embedding_dim</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">graph_embedding_dim</span><span class="p">,</span> <span class="n">graph_embedding_dim</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (90 > 79 characters):</p>
+               
+               <a href="models.initializer.source.html#l96">
+                  <tt><i>96</i>         <span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">projector</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">featurizer</span><span class="p">,</span> <span class="n">classifier</span><span class="p">))</span></tt>
+               </a>
             </li>
             </ul>
          </li>
@@ -212,6 +233,29 @@ window.addEventListener('DOMContentLoaded', function () {
          </li>
          
          <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.initializer.source.html#l84">
+                  <tt><i>84</i>     <span class="c1"># Usage of (featurizer, projector, classifier) in </span></tt>
+               </a>
+            </li><li>
+               
+               <a href="models.initializer.source.html#l86">
+                  <tt><i>86</i>     <span class="k">if</span> <span class="n">include_projector</span><span class="p">:</span> </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
             <a data-code="E261">
                <span class="count sev-2">
                   1
@@ -224,6 +268,24 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <a href="models.initializer.source.html#l34">
                   <tt><i>34</i>             <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;ERM&#39;</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;IRM&#39;</span> <span class="c1"># combinations with other algorithms not checked</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="models.initializer.source.html#l97">
+                  <tt><i>97</i>     </tt>
                </a>
             </li>
             </ul>
