@@ -145,14 +145,16 @@ class ChebConvNew(MessagePassing):
             lambda_max = torch.tensor(lambda_max, dtype=x.dtype,
                                       device=x.device)
         assert lambda_max is not None
-        # breakpoint()
+        breakpoint()
         edge_index, norm = self.__norm__(edge_index, x.size(self.node_dim),
                                          None, self.normalization,
                                          lambda_max, dtype=x.dtype,
                                          batch=batch)
+        breakpoint()
         edge_index, norm = coalesce(edge_index, norm, m=x.shape[0], n=x.shape[0])
+        breakpoint()
         edge_index, norm, loop_edge_index, loop_norm = segregate_self_loops(edge_index, norm)
-        # breakpoint()
+        breakpoint()
         Tx_0 = x
         Tx_1 = x  # Dummy.
         out = self.lins[0](Tx_0)

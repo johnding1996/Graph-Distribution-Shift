@@ -132,7 +132,7 @@ class GCL(SingleModelAlgorithm):
         node_num = data.x.size()[0]
         _, edge_num = data.edge_index.size()
 
-        paired_perms = False # for later, TODO
+        paired_perms = True #False # for later, TODO
         if paired_perms: 
             assert edge_num%2 is 0 # undirected g, paired edges
 
@@ -144,12 +144,45 @@ class GCL(SingleModelAlgorithm):
 
         if permute_num > 0:
             edges_to_insert = torch.multinomial(torch.ones(permute_num,node_num), 2, replacement=False).t().cuda()
-            insertion_indices =  torch.multinomial(torch.ones(edge_num), permute_num, replacement=False)
+            orig_edges_to_insert = edges_to_insert.clone().detach()
+            edges_to_insert = edges_to_insert.unique(dim=1)
+            # insertion_indices =  torch.multinomial(torch.ones(edge_num), permute_num, replacement=False)
+            # breakpoint()
+            src_nodes_match = torch.nonzero(edges_to_insert[0][...,None] == orig_edge_index[0])
+            dst_nodes_match = torch.nonzero(edges_to_insert[1][...,None] == orig_edge_index[1])
+            comb_nodes = torch.cat((src_nodes_match, dst_nodes_match))
+            unique_idx_pairs, match_cts = comb_nodes.unique(return_counts=True,dim=0)
+            both_match = unique_idx_pairs[match_cts > 1]
+            match_mask = torch.ones(edges_to_insert.size()[1]).bool()
+            match_mask[both_match[:,0]] = False
+            edges_to_insert = edges_to_insert[:, match_mask]
+            # if both_match.size()[0] > 0: breakpoint()
+            reduced_permute_num = edges_to_insert.size()[1]
+            insertion_indices =  torch.multinomial(torch.ones(edge_num), reduced_permute_num, replacement=False)
 
             if paired_perms:
-                raise NotImplementedError            
+                src_nodes, dst_nodes = edges_to_insert[0], edges_to_insert[1]
+                duped_src_nodes, duped_dst_nodes = src_nodes.repeat_interleave(2), dst_nodes.repeat_interleave(2) # torch.arange(start=1,end=48, step=2)
+                swap_mask = torch.arange(start=1,end=reduced_permute_num*2, step=2)
+                # if both_match.size()[0] > 0: breakpoint()
+                duped_src_nodes[swap_mask], duped_dst_nodes[swap_mask] = duped_dst_nodes[swap_mask], duped_src_nodes[swap_mask]
+                src_nodes, dst_nodes = duped_src_nodes, duped_dst_nodes
+                edges_to_insert = torch.stack((src_nodes,dst_nodes))
+                
+                insertion_indices = 2 * torch.div(insertion_indices, 2, rounding_mode='floor')
+                duped_insertion_indices = insertion_indices.repeat_interleave(2)
+                incr_mask = torch.arange(start=1,end=reduced_permute_num*2, step=2)
+                duped_insertion_indices[incr_mask] += 1
+                insertion_indices = duped_insertion_indices
+            
+            # orig_edge_index[:,insertion_indices] = edges_to_insert # modified in place
+            new_edge_index = orig_edge_index.clone().detach()
+            new_edge_index[:,insertion_indices] = edges_to_insert
 
-            orig_edge_index[:,insertion_indices] = edges_to_insert # modified in place
+            uniques, new_to_uniques_idx, counts = new_edge_index.unique(return_counts=True, return_inverse=True,dim=1)
+            dupes = uniques[:,counts > 1].size()[1]
+            if dupes > 0: breakpoint()
+
         else:
             # augmentation silently does nothing
             pass
@@ -168,6 +201,8 @@ class GCL(SingleModelAlgorithm):
             data.x = data.x[intersection]
             data.num_nodes = intersection.size()[0]
         
+        # breakpoint()
+
         return data
 
     def extract_subgraph(self, data):
