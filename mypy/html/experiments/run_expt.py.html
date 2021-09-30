@@ -328,6 +328,10 @@
 <span id="L318" class="lineno"><a class="lineno" href="#L318">318</a></span>
 <span id="L319" class="lineno"><a class="lineno" href="#L319">319</a></span>
 <span id="L320" class="lineno"><a class="lineno" href="#L320">320</a></span>
+<span id="L321" class="lineno"><a class="lineno" href="#L321">321</a></span>
+<span id="L322" class="lineno"><a class="lineno" href="#L322">322</a></span>
+<span id="L323" class="lineno"><a class="lineno" href="#L323">323</a></span>
+<span id="L324" class="lineno"><a class="lineno" href="#L324">324</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -373,7 +377,23 @@ Unimported (x1)">    parser.add_argument('-a', '--algorithm', choices=supported.
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)
 Unimported (x1)">    parser.add_argument('-m', '--model', choices=supported.models)</span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--seed', type=int)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">    parser.add_argument('--use_frac', type=parse_bool,</span>
+<span class="line-any" title="No Anys on this line!">                help='Convenience parameter that scales all dataset splits down to the specified fraction, '</span>
+<span class="line-empty" title="No Anys on this line!">                     'for development purposes. Note that this also scales the test set down, so the reported '</span>
+<span class="line-empty" title="No Anys on this line!">                     'numbers are not comparable with the full test set.')</span>
+<span class="line-empty" title="No Anys on this line!">    </span>
+<span class="line-empty" title="No Anys on this line!">    # early stopping</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--patience', type=int, default=30)</span>
+<span class="line-empty" title="No Anys on this line!">   </span>
+<span class="line-empty" title="No Anys on this line!">    # Resume</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)
+Unimported (x1)">    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # Dataset</span>
 <span class="line-any" title="Any Types on this line: 
@@ -386,12 +406,6 @@ Unimported (x1)">    parser.add_argument('--dataset_kwargs', nargs='*', action=P
 Unannotated (x3)
 Unimported (x1)">    parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',</span>
 <span class="line-any" title="No Anys on this line!">                        help='If true, tries to downloads the dataset if it does not exist in root_dir.')</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">    parser.add_argument('--use_frac', type=parse_bool, default=True,</span>
-<span class="line-any" title="No Anys on this line!">                        help='Convenience parameter that scales all dataset splits down to the specified fraction, '</span>
-<span class="line-empty" title="No Anys on this line!">                             'for development purposes. Note that this also scales the test set down, so the reported '</span>
-<span class="line-empty" title="No Anys on this line!">                             'numbers are not comparable with the full test set.')</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('--version', default=None, type=str)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
@@ -516,8 +530,6 @@ Unimported (x1)">    parser.add_argument('--random_split', type=parse_bool, cons
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('--device', type=int, default=0)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    parser.add_argument('--seed', type=int, default=0)</span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    parser.add_argument('--root_dir', default='./data',</span>
 <span class="line-any" title="No Anys on this line!">                        help='The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).')</span>
 <span class="line-any" title="Any Types on this line: 
@@ -544,13 +556,9 @@ Unimported (x1)">    parser.add_argument('--use_wandb', type=parse_bool, const=T
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
 Unimported (x1)">    parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)
-Unimported (x1)">    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # early stopping</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">    parser.add_argument('--patience', type=int, default=30)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    config = parser.parse_args()</span>
