@@ -68,13 +68,56 @@ window.addEventListener('DOMContentLoaded', function () {
          </li>
          
          <li>
+            <a data-code="E203">
+               <span class="count sev-2">
+                  6
+               </span>
+               <strong>E203:</strong> whitespace before ':'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.MLDG.source.html#l53">
+                  <tt><i>53</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rand_group_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.MLDG.source.html#l74">
+                  <tt><i>74</i>             <span class="k">try</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.MLDG.source.html#l85">
+                  <tt><i>85</i>             <span class="k">except</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.MLDG.source.html#l97">
+                  <tt><i>97</i>             <span class="k">try</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.MLDG.source.html#l99">
+                  <tt><i>99</i>             <span class="k">except</span> <span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="algorithms.MLDG.source.html#l106">
+                  <tt><i>106</i>             <span class="k">if</span> <span class="n">grad_inner_j</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="p">:</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  5
+                  6
                </span>
                <strong>E501:</strong> line too long (92 > 79 characters)
                
-                  (and 4 similar)
+                  (and 5 similar)
                
             </a>
             <ul class="details">
@@ -94,83 +137,54 @@ window.addEventListener('DOMContentLoaded', function () {
                </a>
             </li><li>
                
-               <p>Line too long (84 > 79 characters):</p>
+               <p>Line too long (82 > 79 characters):</p>
                
-               <a href="algorithms.MLDG.source.html#l92">
-                  <tt><i>92</i>             <span class="n">grad_inner_j</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">loss_inner_j</span><span class="p">,</span> <span class="n">inner_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span></tt>
+               <a href="algorithms.MLDG.source.html#l84">
+                  <tt><i>84</i>                         <span class="n">p_tgt</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">p_src</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="n">n_groups_per_batch</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
-               <p>Line too long (91 > 79 characters):</p>
+               <p>Line too long (107 > 79 characters):</p>
                
-               <a href="algorithms.MLDG.source.html#l100">
-                  <tt><i>100</i>                     <span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">mldg_beta</span> <span class="o">*</span> <span class="n">g_j</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="n">n_groups_per_batch</span><span class="p">)</span></tt>
+               <a href="algorithms.MLDG.source.html#l98">
+                  <tt><i>98</i>                 <span class="n">grad_inner_j</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">loss_inner_j</span><span class="p">,</span> <span class="n">inner_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">allow_unused</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="algorithms.MLDG.source.html#l109">
+                  <tt><i>109</i>                         <span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">mldg_beta</span> <span class="o">*</span> <span class="n">g_j</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="n">n_groups_per_batch</span><span class="p">)</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (89 > 79 characters):</p>
                
-               <a href="algorithms.MLDG.source.html#l121">
-                  <tt><i>121</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
+               <a href="algorithms.MLDG.source.html#l130">
+                  <tt><i>130</i>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">],</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
          </li>
          
          <li>
-            <a data-code="E303">
+            <a data-code="E722">
                <span class="count sev-2">
                   2
                </span>
-               <strong>E303:</strong> too many blank lines (2)
+               <strong>E722:</strong> do not use bare 'except'
                
             </a>
             <ul class="details">
             <li>
                
-               <a href="algorithms.MLDG.source.html#l31">
-                  <tt><i>31</i>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span></tt>
+               <a href="algorithms.MLDG.source.html#l85">
+                  <tt><i>85</i>             <span class="k">except</span> <span class="p">:</span></tt>
                </a>
             </li><li>
                
-               <a href="algorithms.MLDG.source.html#l98">
-                  <tt><i>98</i>             <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">g_j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">grad_inner_j</span><span class="p">):</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E128">
-               <span class="count sev-2">
-                  1
-               </span>
-               <strong>E128:</strong> continuation line under-indented for visual indent
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="algorithms.MLDG.source.html#l93">
-                  <tt><i>93</i>                 <span class="n">allow_unused</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
-               </a>
-            </li>
-            </ul>
-         </li>
-         
-         <li>
-            <a data-code="E203">
-               <span class="count sev-2">
-                  1
-               </span>
-               <strong>E203:</strong> whitespace before ':'
-               
-            </a>
-            <ul class="details">
-            <li>
-               
-               <a href="algorithms.MLDG.source.html#l53">
-                  <tt><i>53</i>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rand_group_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">:</span></tt>
+               <a href="algorithms.MLDG.source.html#l99">
+                  <tt><i>99</i>             <span class="k">except</span> <span class="p">:</span></tt>
                </a>
             </li>
             </ul>
@@ -189,6 +203,24 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <a href="algorithms.MLDG.source.html#l10">
                   <tt><i>10</i> <span class="k">class</span> <span class="nc">MLDG</span><span class="p">(</span><span class="n">SingleModelAlgorithm</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E303:</strong> too many blank lines (2)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="algorithms.MLDG.source.html#l31">
+                  <tt><i>31</i>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span></tt>
                </a>
             </li>
             </ul>

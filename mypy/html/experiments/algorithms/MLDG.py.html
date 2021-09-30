@@ -129,6 +129,15 @@
 <span id="L119" class="lineno"><a class="lineno" href="#L119">119</a></span>
 <span id="L120" class="lineno"><a class="lineno" href="#L120">120</a></span>
 <span id="L121" class="lineno"><a class="lineno" href="#L121">121</a></span>
+<span id="L122" class="lineno"><a class="lineno" href="#L122">122</a></span>
+<span id="L123" class="lineno"><a class="lineno" href="#L123">123</a></span>
+<span id="L124" class="lineno"><a class="lineno" href="#L124">124</a></span>
+<span id="L125" class="lineno"><a class="lineno" href="#L125">125</a></span>
+<span id="L126" class="lineno"><a class="lineno" href="#L126">126</a></span>
+<span id="L127" class="lineno"><a class="lineno" href="#L127">127</a></span>
+<span id="L128" class="lineno"><a class="lineno" href="#L128">128</a></span>
+<span id="L129" class="lineno"><a class="lineno" href="#L129">129</a></span>
+<span id="L130" class="lineno"><a class="lineno" href="#L130">130</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">import torch</span>
 <span class="line-any" title="No Anys on this line!">import torch.nn.functional as F</span>
@@ -250,24 +259,29 @@ Unimported (x1)">                'y_pred': inner_net(Batch.from_data_list(x[grou
 Unannotated (x3)">                'y_true': y_true[group_indices_i]</span>
 <span class="line-empty" title="No Anys on this line!">            })</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">            try :</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            inner_opt.zero_grad()</span>
+Unannotated (x3)">                inner_opt.zero_grad()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            inner_obj.backward()</span>
+Unannotated (x3)">                inner_obj.backward()</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">            inner_opt.step()</span>
+Unannotated (x3)">                inner_opt.step()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">            # The network has now accumulated gradients Gi</span>
-<span class="line-empty" title="No Anys on this line!">            # The clone-network has now parameters P - lr * Gi</span>
+<span class="line-empty" title="No Anys on this line!">                # The network has now accumulated gradients Gi</span>
+<span class="line-empty" title="No Anys on this line!">                # The clone-network has now parameters P - lr * Gi</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)
-Explicit (x8)">            for p_tgt, p_src in zip(self.model.parameters(),</span>
+Explicit (x8)">                for p_tgt, p_src in zip(self.model.parameters(),</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">                                    inner_net.parameters()):</span>
+Unannotated (x3)">                                        inner_net.parameters()):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x2)">                if p_src.grad is not None:</span>
+Unannotated (x2)">                    if p_src.grad is not None:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x10)">                    p_tgt.grad.data.add_(p_src.grad.data / n_groups_per_batch)</span>
+Unannotated (x10)">                        p_tgt.grad.data.add_(p_src.grad.data / n_groups_per_batch)</span>
+<span class="line-empty" title="No Anys on this line!">            except :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                print('group_i backward error')</span>
+<span class="line-any" title="No Anys on this line!">                pass</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">            objective += inner_obj.item()</span>
@@ -281,22 +295,30 @@ Unimported (x1)">                'y_pred': inner_net(Batch.from_data_list(x[grou
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">                'y_true': y_true[group_indices_j]</span>
 <span class="line-empty" title="No Anys on this line!">            })</span>
+<span class="line-empty" title="No Anys on this line!">            # To deal with pcba, where there could be labels of all nan</span>
+<span class="line-empty" title="No Anys on this line!">            try :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x8)
-Unimported (x1)">            grad_inner_j = torch.autograd.grad(loss_inner_j, inner_net.parameters(),</span>
-<span class="line-any" title="No Anys on this line!">                allow_unused=True)</span>
+Unimported (x1)">                grad_inner_j = torch.autograd.grad(loss_inner_j, inner_net.parameters(), allow_unused=True)</span>
+<span class="line-empty" title="No Anys on this line!">            except :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                print('group_j backward error')</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                grad_inner_j = None</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # `objective` is populated for reporting purposes</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)">            objective += (self.config.mldg_beta * loss_inner_j).item()</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">            if grad_inner_j is not None :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
-Explicit (x8)">            for p, g_j in zip(self.model.parameters(), grad_inner_j):</span>
+Explicit (x8)">                for p, g_j in zip(self.model.parameters(), grad_inner_j):</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">                if g_j is not None:</span>
+Unannotated (x1)">                    if g_j is not None:</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x12)">                    p.grad.data.add_(self.config.mldg_beta * g_j.data / n_groups_per_batch)</span>
+Unannotated (x12)">                        p.grad.data.add_(self.config.mldg_beta * g_j.data / n_groups_per_batch)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">            # The network has now accumulated gradients Gi + beta * Gj</span>
 <span class="line-empty" title="No Anys on this line!">            # Repeat for all train-test splits, do .step()</span>
@@ -313,12 +335,12 @@ Unannotated (x2)">        self.step_schedulers(</span>
 <span class="line-any" title="No Anys on this line!">            is_epoch=False,</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">            metrics=results,</span>
-<span class="line-any" title="No Anys on this line!">            log_access=False)</span>
+<span class="line-any" title="No Anys on this line!">            log_access=False</span>
+<span class="line-empty" title="No Anys on this line!">        )</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">        # log results</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x4)">        results['y_pred'] = self.model(x)</span>
+Unannotated (x5)">        results['y_pred'] = self.model(x).data</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        self.update_log(results)</span>
 <span class="line-any" title="Any Types on this line: 
