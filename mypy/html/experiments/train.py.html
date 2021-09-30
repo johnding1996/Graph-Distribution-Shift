@@ -197,15 +197,6 @@
 <span id="L187" class="lineno"><a class="lineno" href="#L187">187</a></span>
 <span id="L188" class="lineno"><a class="lineno" href="#L188">188</a></span>
 <span id="L189" class="lineno"><a class="lineno" href="#L189">189</a></span>
-<span id="L190" class="lineno"><a class="lineno" href="#L190">190</a></span>
-<span id="L191" class="lineno"><a class="lineno" href="#L191">191</a></span>
-<span id="L192" class="lineno"><a class="lineno" href="#L192">192</a></span>
-<span id="L193" class="lineno"><a class="lineno" href="#L193">193</a></span>
-<span id="L194" class="lineno"><a class="lineno" href="#L194">194</a></span>
-<span id="L195" class="lineno"><a class="lineno" href="#L195">195</a></span>
-<span id="L196" class="lineno"><a class="lineno" href="#L196">196</a></span>
-<span id="L197" class="lineno"><a class="lineno" href="#L197">197</a></span>
-<span id="L198" class="lineno"><a class="lineno" href="#L198">198</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-any" title="No Anys on this line!">from tqdm import tqdm</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -340,10 +331,6 @@ Unannotated (x2)">    return results, epoch_y_pred</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">def train(algorithm, datasets, general_logger, result_logger, config, epoch_offset, best_val_metric):</span>
 <span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">    # initialize for early stopping and metrics</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">    epochs_since_last_best_metric = 0</span>
-<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">    for epoch in range(epoch_offset, config.n_epochs):</span>
 <span class="line-any" title="Any Types on this line: 
@@ -379,12 +366,8 @@ Unannotated (x1)">        if is_best:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">            best_val_metric = curr_val_metric</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            epochs_since_last_best_metric = 0</span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x8)">            general_logger.write(f'Epoch {epoch} has the best validation performance so far.\n')</span>
-<span class="line-empty" title="No Anys on this line!">        else:</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">            epochs_since_last_best_metric += 1</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
@@ -409,11 +392,6 @@ Unannotated (x15)">            save_pred_if_needed(y_pred, datasets[split], epoc
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">        general_logger.write('\n')</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-empty" title="No Anys on this line!">        # check early stopping</span>
-<span class="line-any" title="Any Types on this line: 
-Unannotated (x7)">        if config.patience and epochs_since_last_best_metric &gt; config.patience:</span>
-<span class="line-any" title="No Anys on this line!">            break</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
