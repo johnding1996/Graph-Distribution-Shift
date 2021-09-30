@@ -143,9 +143,19 @@ class GCL(SingleModelAlgorithm):
         orig_edge_index = data.edge_index
 
         if permute_num > 0:
-            edges_to_insert = torch.multinomial(torch.ones(permute_num,node_num), 2, replacement=False).t().cuda()
-            orig_edges_to_insert = edges_to_insert.clone().detach()
-            edges_to_insert = edges_to_insert.unique(dim=1)
+            good_draws = 0
+            while good_draws < permute_num:
+                edges_to_insert = torch.multinomial(torch.ones(permute_num,node_num), 2, replacement=False).t().cuda()
+                orig_edges_to_insert = edges_to_insert.clone().detach()
+                edges_to_insert = edges_to_insert.unique(dim=1)
+                w_reversed_edges = torch.cat((orig_edges_to_insert,torch.stack((orig_edges_to_insert[1],orig_edges_to_insert[0]))),dim=1)
+                unique_pairs, rev_to_cts, cts = w_reversed_edges.unique(return_counts=True,return_inverse=True,dim=1)
+                non_dupe = w_reversed_edges[:,:permute_num][:,cts[rev_to_cts[:permute_num]]<=1]
+                good_draws = non_dupe.size()[1]
+                edges_to_insert = non_dupe
+            # single_copies = w_reversed_edges[:,:permute_num][:,cts[rev_to_cts[:permute_num]]>1].unique(dim=1)
+            # edges_to_insert = torch.cat((non_dupe,single_copies),dim=1)
+            
             # insertion_indices =  torch.multinomial(torch.ones(edge_num), permute_num, replacement=False)
             # breakpoint()
             src_nodes_match = torch.nonzero(edges_to_insert[0][...,None] == orig_edge_index[0])
@@ -158,7 +168,12 @@ class GCL(SingleModelAlgorithm):
             edges_to_insert = edges_to_insert[:, match_mask]
             # if both_match.size()[0] > 0: breakpoint()
             reduced_permute_num = edges_to_insert.size()[1]
-            insertion_indices =  torch.multinomial(torch.ones(edge_num), reduced_permute_num, replacement=False)
+
+            mask_idx = torch.arange(start=1,end=edge_num, step=2)
+            nat_nums = torch.ones(edge_num)
+            nat_nums[mask_idx] = False # only evens
+            evens = nat_nums
+            orig_insertion_indices =  torch.multinomial(evens, reduced_permute_num, replacement=False)
 
             if paired_perms:
                 src_nodes, dst_nodes = edges_to_insert[0], edges_to_insert[1]
@@ -169,19 +184,19 @@ class GCL(SingleModelAlgorithm):
                 src_nodes, dst_nodes = duped_src_nodes, duped_dst_nodes
                 edges_to_insert = torch.stack((src_nodes,dst_nodes))
                 
-                insertion_indices = 2 * torch.div(insertion_indices, 2, rounding_mode='floor')
-                duped_insertion_indices = insertion_indices.repeat_interleave(2)
+                # insertion_indices = 2 * torch.div(orig_insertion_indices, 2, rounding_mode='floor')
+                duped_insertion_indices = orig_insertion_indices.repeat_interleave(2)
                 incr_mask = torch.arange(start=1,end=reduced_permute_num*2, step=2)
                 duped_insertion_indices[incr_mask] += 1
                 insertion_indices = duped_insertion_indices
             
-            # orig_edge_index[:,insertion_indices] = edges_to_insert # modified in place
-            new_edge_index = orig_edge_index.clone().detach()
-            new_edge_index[:,insertion_indices] = edges_to_insert
+            orig_edge_index[:,insertion_indices] = edges_to_insert # modified in place
+            # new_edge_index = orig_edge_index.clone().detach()
+            # new_edge_index[:,insertion_indices] = edges_to_insert
 
-            uniques, new_to_uniques_idx, counts = new_edge_index.unique(return_counts=True, return_inverse=True,dim=1)
-            dupes = uniques[:,counts > 1].size()[1]
-            if dupes > 0: breakpoint()
+            # uniques, new_to_uniques_idx, counts = new_edge_index.unique(return_counts=True, return_inverse=True,dim=1)
+            # dupes = uniques[:,counts > 1].size()[1]
+            # if dupes > 0: breakpoint()
 
         else:
             # augmentation silently does nothing
