@@ -21,6 +21,7 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_p
             If is_featurizer=False:
             - model: a model that is equivalent to nn.Sequential(featurizer, classifier)
     """
+
     if full_dataset is None:
         if config.model == "3wlgnn":
             if is_featurizer:
@@ -30,7 +31,7 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_p
             else:
                 model = ThreeWLGNNNet(gnn_type=config.model, num_tasks=d_out, **config.model_kwargs)
         elif config.model == 'mlp' :
-            assert config.algorithm == 'ERM' # combinations with other algorithms not checked
+            assert config.algorithm == 'ERM' or config.algorithm == 'IRM' # combinations with other algorithms not checked
             if is_featurizer:
                 featurizer = MLP(gnn_type=config.model, num_tasks=None, **config.model_kwargs)
                 classifier = nn.Linear(featurizer.d_out, d_out)

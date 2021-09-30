@@ -18,9 +18,10 @@ class FLAG(SingleModelAlgorithm):
             metric=metric,
             n_train_steps=n_train_steps,
         )
+        self.config = config
 
     def update(self, batch):
-        step_size = 1e-3
+        step_size = self.config.flag_step_size
         m = 3
 
         assert self.is_training

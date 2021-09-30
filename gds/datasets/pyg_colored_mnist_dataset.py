@@ -3,12 +3,14 @@ import os.path as osp
 import torch
 from torch_geometric.data import InMemoryDataset, download_url, extract_zip, Data
 from typing import Optional, Callable, List
+import numpy as np
 
 
 class PyGColoredMNISTDataset(InMemoryDataset):
-    names = ['ColoredMNIST']
+    names = ['ColoredMNIST', 'ColoredMNIST_expired']
     urls = {
-        'ColoredMNIST': 'https://www.dropbox.com/s/bz0mkww2ivu8rwn/ColoredMNIST.zip?dl=1'
+        'ColoredMNIST': 'https://www.dropbox.com/s/3zfi43erynkmi0i/ColoredMNIST.zip?dl=1',
+        'ColoredMNIST_expired': 'https://www.dropbox.com/s/bz0mkww2ivu8rwn/ColoredMNIST_expired.zip?dl=1'
     }
 
     def __init__(self, root: str, name: str,
@@ -50,12 +52,31 @@ class PyGColoredMNISTDataset(InMemoryDataset):
 
     def process(self):
         inputs = torch.load(self.raw_paths[0])
+
         # data_list = [Data(**data_dict) for data_dict in inputs]
 
         data_list = []
         for data_dict in inputs :
             data_dict['x'] = data_dict['x'][:, :2]
             data_list.append(Data(**data_dict))
+
+        # total_num_nodes = 0
+        # for data_dict in inputs :
+        #     total_num_nodes += data_dict['x'].shape[0]
+        #
+        # np.random.seed(0)
+        # padded_cate = np.random.randint(8, size=total_num_nodes)
+        #
+        # data_list = []
+        # ptr = 0
+        # for i, data_dict in enumerate(inputs) :
+        #     num_node = data_dict['x'].shape[0]
+        #     cate = torch.tensor(padded_cate[ptr:ptr+num_node]).view((-1,1))
+        #     x = torch.cat((data_dict['x'][:, :2], cate), dim=1)
+        #     data_dict['x'] = x
+        #     data_list.append(Data(**data_dict))
+        #     ptr += num_node
+        # assert ptr == total_num_nodes
 
         if self.pre_filter is not None:
             data_list = [d for d in data_list if self.pre_filter(d)]

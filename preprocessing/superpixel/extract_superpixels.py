@@ -24,7 +24,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Extract SLIC superpixels from images')
     parser.add_argument('-D', '--dataset', type=str, default='mnist',
                         choices=['mnist', 'cifar10', 'ColoredMNIST', 'RotatedMNIST'])
-    parser.add_argument('-d', '--data_dir', type=str, default='./data', help='path to the data  set')
+    parser.add_argument('-d', '--data_dir', type=str, default='./data', help='path to the dataset')
     parser.add_argument('-o', '--out_dir', type=str, default='./data', help='path where to save superpixels')
     parser.add_argument('-s', '--split', type=str, default='train', choices=['train', 'val', 'test'])
     parser.add_argument('-t', '--threads', type=int, default=0, help='number of parallel threads')
@@ -166,5 +166,8 @@ if __name__ == '__main__':
 
     with open(f'{args.out_dir}/{args.dataset}_group.npy', 'wb') as f:
         np.save(f, data_envs)
+
+    with open(f'{args.out_dir}/{args.dataset}_images.npy', 'wb') as f:
+        np.save(f, images)
 
     print('done in {}'.format(datetime.datetime.now() - dt))

@@ -34,7 +34,18 @@ def main():
     # Required arguments
     parser.add_argument('-d', '--dataset', choices=gds.supported_datasets, required=True)
     parser.add_argument('-a', '--algorithm', choices=supported.algorithms, required=True)
-    parser.add_argument('-m', '--model', choices=supported.models, required=True)
+    parser.add_argument('-m', '--model', choices=supported.models)
+    parser.add_argument('--seed', type=int)
+    parser.add_argument('--use_frac', type=parse_bool,
+                help='Convenience parameter that scales all dataset splits down to the specified fraction, '
+                     'for development purposes. Note that this also scales the test set down, so the reported '
+                     'numbers are not comparable with the full test set.')
+    
+    # early stopping
+    parser.add_argument('--patience', type=int, default=30)
+   
+    # Resume
+    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
     # Dataset
     parser.add_argument('--split_scheme',
@@ -42,10 +53,6 @@ def main():
     parser.add_argument('--dataset_kwargs', nargs='*', action=ParseKwargs, default={})
     parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',
                         help='If true, tries to downloads the dataset if it does not exist in root_dir.')
-    parser.add_argument('--use_frac', type=bool, default=True,
-                        help='Convenience parameter that scales all dataset splits down to the specified fraction, '
-                             'for development purposes. Note that this also scales the test set down, so the reported '
-                             'numbers are not comparable with the full test set.')
     parser.add_argument('--version', default=None, type=str)
 
     # Loaders
@@ -67,10 +74,15 @@ def main():
                         help='keyword arguments for loss initialization passed as key1=value1 key2=value2')
 
     # Algorithm
-    parser.add_argument('--groupby_fields', nargs='+')
-    parser.add_argument('--group_dro_step_size', type=float)
+    ## To be tuned
     parser.add_argument('--coral_penalty_weight', type=float)
     parser.add_argument('--irm_lambda', type=float)
+    parser.add_argument('--flag_step_size', type=float)
+    parser.add_argument('--dann_lambda', type=float)
+    parser.add_argument('--mldg_beta', type=float)
+    ## Not to be tuned
+    parser.add_argument('--groupby_fields', nargs='+')
+    parser.add_argument('--group_dro_step_size', type=float)
     parser.add_argument('--irm_penalty_anneal_iters', type=int)
     parser.add_argument('--algo_log_metric')
     parser.add_argument('--gsn_id_type', type=str,
@@ -108,7 +120,6 @@ def main():
 
     # Misc
     parser.add_argument('--device', type=int, default=0)
-    parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--root_dir', default='./data',
                         help='The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).')
     parser.add_argument('--log_dir', default='./logs')
@@ -120,11 +131,12 @@ def main():
     parser.add_argument('--no_group_logging', type=parse_bool, const=True, nargs='?')
     parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
-    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
+
+
+
 
     config = parser.parse_args()
     config = populate_defaults(config)
-
     # For the 3wlgnn model, we need to set batch_size to 1
     if config.model == '3wlgnn':
         config.batch_size = 1
@@ -300,7 +312,8 @@ def main():
     if config.use_wandb:
         close_wandb(wandb_runner)
     finish = time.time()
-    logger.write(f'time(s): {finish-start:.3f}\n')
+    if not config.eval_only:
+        logger.write(f'time(s): {finish-start:.3f}\n')
     logger.close()
     for split in datasets:
         datasets[split]['eval_logger'].close()

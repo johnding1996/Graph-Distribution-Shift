@@ -7,5 +7,6 @@ model_defaults = {
     'cheb_virtual':{},
     '3wlgnn':{},
     'mlp':{},
-    'gin_15_layers':{}
+    'gin_15_layers':{},
+    'gin_10_layers':{}
 }
