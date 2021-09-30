@@ -147,8 +147,10 @@ def main():
         config.parameter = config.mldg_beta
     elif config.algorithm == 'IRM':
         config.parameter = config.irm_lambda
-    elif config.algorithm == 'flag':
+    elif config.algorithm == 'FLAG':
         config.parameter = config.flag_step_size
+    elif config.algorithm == 'GCL':
+        config.parameter = config.gcl_aug_ratio
     else:
         config.parameter = None
 
