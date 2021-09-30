@@ -25,10 +25,10 @@ class GCL(SingleModelAlgorithm):
         )
         # algorithm hyperparameters
         self.use_cl = config.use_cl
-        self.aug_prob = config.aug_prob
+        self.aug_prob = config.gcl_aug_prob
         self.aug_type = config.aug_type
         # If use_cl=False and aug_ratio is 0.0, should be equiv to ERM
-        self.aug_ratio = config.aug_ratio
+        self.aug_ratio = config.gcl_aug_ratio
         # set model components
         self.featurizer = featurizer
         self.projector = projector

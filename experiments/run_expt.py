@@ -80,6 +80,7 @@ def main():
     parser.add_argument('--flag_step_size', type=float)
     parser.add_argument('--dann_lambda', type=float)
     parser.add_argument('--mldg_beta', type=float)
+    parser.add_argument('--gcl_aug_ratio', type=float)
     ## Not to be tuned
     parser.add_argument('--groupby_fields', nargs='+')
     parser.add_argument('--group_dro_step_size', type=float)
