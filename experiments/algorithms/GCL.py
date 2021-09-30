@@ -169,56 +169,59 @@ class GCL(SingleModelAlgorithm):
             # if both_match.size()[0] > 0: breakpoint()
             reduced_permute_num = edges_to_insert.size()[1]
 
-            mask_idx = torch.arange(start=1,end=edge_num, step=2)
-            nat_nums = torch.ones(edge_num)
-            nat_nums[mask_idx] = False # only evens
-            evens = nat_nums
-            orig_insertion_indices =  torch.multinomial(evens, reduced_permute_num, replacement=False)
+            if reduced_permute_num > 0:
 
-            if paired_perms:
-                src_nodes, dst_nodes = edges_to_insert[0], edges_to_insert[1]
-                duped_src_nodes, duped_dst_nodes = src_nodes.repeat_interleave(2), dst_nodes.repeat_interleave(2) # torch.arange(start=1,end=48, step=2)
-                swap_mask = torch.arange(start=1,end=reduced_permute_num*2, step=2)
-                # if both_match.size()[0] > 0: breakpoint()
-                duped_src_nodes[swap_mask], duped_dst_nodes[swap_mask] = duped_dst_nodes[swap_mask], duped_src_nodes[swap_mask]
-                src_nodes, dst_nodes = duped_src_nodes, duped_dst_nodes
-                edges_to_insert = torch.stack((src_nodes,dst_nodes))
+                mask_idx = torch.arange(start=1,end=edge_num, step=2)
+                nat_nums = torch.ones(edge_num)
+                nat_nums[mask_idx] = False # only evens
+                evens = nat_nums
+                orig_insertion_indices =  torch.multinomial(evens, reduced_permute_num, replacement=False)
+
+                if paired_perms:
+                    src_nodes, dst_nodes = edges_to_insert[0], edges_to_insert[1]
+                    duped_src_nodes, duped_dst_nodes = src_nodes.repeat_interleave(2), dst_nodes.repeat_interleave(2) # torch.arange(start=1,end=48, step=2)
+                    swap_mask = torch.arange(start=1,end=reduced_permute_num*2, step=2)
+                    # if both_match.size()[0] > 0: breakpoint()
+                    duped_src_nodes[swap_mask], duped_dst_nodes[swap_mask] = duped_dst_nodes[swap_mask], duped_src_nodes[swap_mask]
+                    src_nodes, dst_nodes = duped_src_nodes, duped_dst_nodes
+                    edges_to_insert = torch.stack((src_nodes,dst_nodes))
+                    
+                    # insertion_indices = 2 * torch.div(orig_insertion_indices, 2, rounding_mode='floor')
+                    duped_insertion_indices = orig_insertion_indices.repeat_interleave(2)
+                    incr_mask = torch.arange(start=1,end=reduced_permute_num*2, step=2)
+                    duped_insertion_indices[incr_mask] += 1
+                    insertion_indices = duped_insertion_indices
                 
-                # insertion_indices = 2 * torch.div(orig_insertion_indices, 2, rounding_mode='floor')
-                duped_insertion_indices = orig_insertion_indices.repeat_interleave(2)
-                incr_mask = torch.arange(start=1,end=reduced_permute_num*2, step=2)
-                duped_insertion_indices[incr_mask] += 1
-                insertion_indices = duped_insertion_indices
-            
-            orig_edge_index[:,insertion_indices] = edges_to_insert # modified in place
-            # new_edge_index = orig_edge_index.clone().detach()
-            # new_edge_index[:,insertion_indices] = edges_to_insert
+                orig_edge_index[:,insertion_indices] = edges_to_insert # modified in place
+                # new_edge_index = orig_edge_index.clone().detach()
+                # new_edge_index[:,insertion_indices] = edges_to_insert
 
-            # uniques, new_to_uniques_idx, counts = new_edge_index.unique(return_counts=True, return_inverse=True,dim=1)
-            # dupes = uniques[:,counts > 1].size()[1]
-            # if dupes > 0: breakpoint()
+                # uniques, new_to_uniques_idx, counts = new_edge_index.unique(return_counts=True, return_inverse=True,dim=1)
+                # dupes = uniques[:,counts > 1].size()[1]
+                # if dupes > 0: breakpoint()
 
         else:
             # augmentation silently does nothing
             pass
 
-        node_indices = move_to(torch.arange(node_num), self.device)
-        node_idx_in_edges = orig_edge_index.flatten()
-        combined = torch.cat((node_indices,node_idx_in_edges))
-        uniques, counts = combined.unique(return_counts=True)
-        difference = uniques[counts == 1].sort().values
-        intersection = uniques[counts > 1]
+        # node_indices = move_to(torch.arange(node_num), self.device)
+        # node_idx_in_edges = orig_edge_index.flatten()
+        # combined = torch.cat((node_indices,node_idx_in_edges))
+        # uniques, counts = combined.unique(return_counts=True)
+        # difference = uniques[counts == 1].sort().values
+        # intersection = uniques[counts > 1]
 
-        if difference.size()[0] >= 1:
-            for i, node_idx in enumerate(difference):
-                orig_edge_index = orig_edge_index + (-1 * (orig_edge_index > node_idx)) # - (1 or 0)
-            data.edge_index = orig_edge_index
-            data.x = data.x[intersection]
-            data.num_nodes = intersection.size()[0]
+        # if difference.size()[0] >= 1:
+        #     for i, node_idx in enumerate(difference):
+        #         orig_edge_index = orig_edge_index + (-1 * (orig_edge_index > node_idx)) # - (1 or 0)
+        #     data.edge_index = orig_edge_index
+        #     data.x = data.x[intersection]
+        #     data.num_nodes = intersection.size()[0]
         
         # breakpoint()
+        if sum(torch.nonzero(orig_edge_index[0] == orig_edge_index[1])) > 0 :breakpoint() 
 
-        return data
+        # return data
 
     def extract_subgraph(self, data):
         """
@@ -325,7 +328,8 @@ class GCL(SingleModelAlgorithm):
         
         for i in range(batch_size): 
             if aug_mask[i]:
-                graphs[i] = aug_fn(graphs[i])
+                # graphs[i] = aug_fn(graphs[i])
+                aug_fn(graphs[i])
             else:
                 #print("UNCHANGED!")
                 pass # original graph kept
