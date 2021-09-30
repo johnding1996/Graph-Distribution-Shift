@@ -116,7 +116,7 @@ dataset_defaults = {
         'process_outputs_function': None,
         'algo_log_metric': 'binary_accuracy',
         'model': 'cheb',
-        'irm_lambda': 100.,
+        'irm_lambda': 1.,
         'coral_penalty_weight': 0.1,
     },
     'SBM-Environment': {

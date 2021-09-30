@@ -71,16 +71,20 @@ class MLDG(SingleModelAlgorithm):
                 'y_true': y_true[group_indices_i]
             })
 
-            inner_opt.zero_grad()
-            inner_obj.backward()
-            inner_opt.step()
+            try :
+                inner_opt.zero_grad()
+                inner_obj.backward()
+                inner_opt.step()
 
-            # The network has now accumulated gradients Gi
-            # The clone-network has now parameters P - lr * Gi
-            for p_tgt, p_src in zip(self.model.parameters(),
-                                    inner_net.parameters()):
-                if p_src.grad is not None:
-                    p_tgt.grad.data.add_(p_src.grad.data / n_groups_per_batch)
+                # The network has now accumulated gradients Gi
+                # The clone-network has now parameters P - lr * Gi
+                for p_tgt, p_src in zip(self.model.parameters(),
+                                        inner_net.parameters()):
+                    if p_src.grad is not None:
+                        p_tgt.grad.data.add_(p_src.grad.data / n_groups_per_batch)
+            except :
+                print('group_i backward error')
+                pass
 
             objective += inner_obj.item()
 
@@ -89,15 +93,20 @@ class MLDG(SingleModelAlgorithm):
                 'y_pred': inner_net(Batch.from_data_list(x[group_indices_j])),
                 'y_true': y_true[group_indices_j]
             })
-            grad_inner_j = torch.autograd.grad(loss_inner_j, inner_net.parameters(),
-                allow_unused=True)
+            # To deal with pcba, where there could be labels of all nan
+            try :
+                grad_inner_j = torch.autograd.grad(loss_inner_j, inner_net.parameters(), allow_unused=True)
+            except :
+                print('group_j backward error')
+                grad_inner_j = None
+
             # `objective` is populated for reporting purposes
             objective += (self.config.mldg_beta * loss_inner_j).item()
 
-
-            for p, g_j in zip(self.model.parameters(), grad_inner_j):
-                if g_j is not None:
-                    p.grad.data.add_(self.config.mldg_beta * g_j.data / n_groups_per_batch)
+            if grad_inner_j is not None :
+                for p, g_j in zip(self.model.parameters(), grad_inner_j):
+                    if g_j is not None:
+                        p.grad.data.add_(self.config.mldg_beta * g_j.data / n_groups_per_batch)
 
             # The network has now accumulated gradients Gi + beta * Gj
             # Repeat for all train-test splits, do .step()
@@ -109,11 +118,11 @@ class MLDG(SingleModelAlgorithm):
         self.step_schedulers(
             is_epoch=False,
             metrics=results,
-            log_access=False)
+            log_access=False
+        )
 
         # log results
-
-        results['y_pred'] = self.model(x)
+        results['y_pred'] = self.model(x).data
         self.update_log(results)
         return self.sanitize_dict(results)
 
