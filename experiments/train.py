@@ -78,9 +78,6 @@ def run_epoch(algorithm, dataset, general_logger, epoch, config, train):
 
 def train(algorithm, datasets, general_logger, result_logger, config, epoch_offset, best_val_metric):
 
-    # initialize for early stopping and metrics
-    epochs_since_last_best_metric = 0
-
     for epoch in range(epoch_offset, config.n_epochs):
         general_logger.write('\nEpoch [%d]:\n' % epoch)
 
@@ -102,10 +99,8 @@ def train(algorithm, datasets, general_logger, result_logger, config, epoch_offs
                 is_best = curr_val_metric > best_val_metric
         if is_best:
             best_val_metric = curr_val_metric
-            epochs_since_last_best_metric = 0
             general_logger.write(f'Epoch {epoch} has the best validation performance so far.\n')
-        else:
-            epochs_since_last_best_metric += 1
+
 
 
         save_model_if_needed(algorithm, datasets['val'], epoch, config, is_best, best_val_metric)
@@ -121,10 +116,6 @@ def train(algorithm, datasets, general_logger, result_logger, config, epoch_offs
             save_pred_if_needed(y_pred, datasets[split], epoch, config, is_best)
 
         general_logger.write('\n')
-
-        # check early stopping
-        if config.patience and epochs_since_last_best_metric > config.patience:
-            break
 
 
 

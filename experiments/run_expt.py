@@ -41,8 +41,6 @@ def main():
                      'for development purposes. Note that this also scales the test set down, so the reported '
                      'numbers are not comparable with the full test set.')
     
-    # early stopping
-    parser.add_argument('--patience', type=int, default=30)
    
     # Resume
     parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
@@ -80,6 +78,8 @@ def main():
     parser.add_argument('--flag_step_size', type=float)
     parser.add_argument('--dann_lambda', type=float)
     parser.add_argument('--mldg_beta', type=float)
+    parser.add_argument('--parameter', type=float)
+
     ## Not to be tuned
     parser.add_argument('--groupby_fields', nargs='+')
     parser.add_argument('--group_dro_step_size', type=float)
@@ -137,6 +137,21 @@ def main():
 
     config = parser.parse_args()
     config = populate_defaults(config)
+    
+    if config.algorithm == 'deepCORAL':
+        config.parameter = config.coral_penalty_weight
+    elif config.algorithm == 'DANN':
+        config.parameter = config.dann_lambda
+    elif config.algorithm == 'MLDG':
+        config.parameter = config.mldg_beta
+    elif config.algorithm == 'IRM':
+        config.parameter = config.irm_lambda
+    elif config.algorithm == 'flag':
+        config.parameter = config.flag_step_size
+    else:
+        config.parameter = None
+
+    
     # For the 3wlgnn model, we need to set batch_size to 1
     if config.model == '3wlgnn':
         config.batch_size = 1
@@ -155,9 +170,10 @@ def main():
         resume = False
         mode = 'w'
 
+
     if not os.path.exists(config.log_dir):
         os.makedirs(config.log_dir)
-    logger = Logger(os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}.txt'), mode)
+    logger = Logger(os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}.txt'), mode)
 
 
     # Record config
@@ -228,9 +244,9 @@ def main():
 
         # Loggers
         datasets[split]['eval_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
         datasets[split]['algo_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
 
     # Logging dataset info
     # Show class breakdown if feasible
