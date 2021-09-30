@@ -5,6 +5,9 @@ from torch_geometric.data import Batch
 from torch.nn.utils import clip_grad_norm_
 from utils import move_to
 
+import math
+from torch_geometric.utils import to_undirected
+
 class GCL(SingleModelAlgorithm):
     def __init__(self, config, d_out, grouper, loss,
                  metric, n_train_steps):
@@ -94,6 +97,7 @@ class GCL(SingleModelAlgorithm):
             data.edge_attr = new_edge_attr
             data.edge_index = new_edge_index
             # data.x =  ... We do not modify the node features
+            # breakpoint()
         except:
             pass
             # data = data
@@ -129,14 +133,17 @@ class GCL(SingleModelAlgorithm):
         _, edge_num = data.edge_index.size()
 
         paired_perms = False # for later, TODO
-        if paired_perms: assert edge_num%2 is 0 # undirected g, paired edges
+        if paired_perms: 
+            assert edge_num%2 is 0 # undirected g, paired edges
 
         permute_num = int(edge_num * aug_ratio)
+        if paired_perms: 
+           permute_num = 2 * math.ceil(permute_num / 2)
 
         orig_edge_index = data.edge_index
 
         if permute_num > 0:
-            edges_to_insert = torch.multinomial(torch.ones(permute_num,node_num), 2, replacement=False).t().cuda() 
+            edges_to_insert = torch.multinomial(torch.ones(permute_num,node_num), 2, replacement=False).t().cuda()
             insertion_indices =  torch.multinomial(torch.ones(edge_num), permute_num, replacement=False)
 
             if paired_perms:
@@ -147,11 +154,21 @@ class GCL(SingleModelAlgorithm):
             # augmentation silently does nothing
             pass
 
-        # May not be in-place for paired/non-naive version
-        # try:
-        #     data.edge_index = new_edge_index
-        # except:
-        #     pass
+        node_indices = move_to(torch.arange(node_num), self.device)
+        node_idx_in_edges = orig_edge_index.flatten()
+        combined = torch.cat((node_indices,node_idx_in_edges))
+        uniques, counts = combined.unique(return_counts=True)
+        difference = uniques[counts == 1].sort().values
+        intersection = uniques[counts > 1]
+
+        if difference.size()[0] >= 1:
+            for i, node_idx in enumerate(difference):
+                orig_edge_index = orig_edge_index + (-1 * (orig_edge_index > node_idx)) # - (1 or 0)
+            data.edge_index = orig_edge_index
+            data.x = data.x[intersection]
+            data.num_nodes = intersection.size()[0]
+        
+        return data
 
     def extract_subgraph(self, data):
         """
@@ -258,11 +275,11 @@ class GCL(SingleModelAlgorithm):
         
         for i in range(batch_size): 
             if aug_mask[i]:
-                aug_fn(graphs[i])
+                graphs[i] = aug_fn(graphs[i])
             else:
                 #print("UNCHANGED!")
                 pass # original graph kept
-
+        
         x = Batch.from_data_list(graphs)
         
         # Continue as with other methods/ERM

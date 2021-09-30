@@ -124,7 +124,6 @@ class ChebConvNew(MessagePassing):
 
         edge_weight = (2.0 * edge_weight) / lambda_max
         edge_weight.masked_fill_(edge_weight == float('inf'), 0)
-
         edge_index, edge_weight = add_self_loops(edge_index, edge_weight,
                                                  fill_value=-1.,
                                                  num_nodes=num_nodes)
@@ -146,14 +145,14 @@ class ChebConvNew(MessagePassing):
             lambda_max = torch.tensor(lambda_max, dtype=x.dtype,
                                       device=x.device)
         assert lambda_max is not None
-
+        # breakpoint()
         edge_index, norm = self.__norm__(edge_index, x.size(self.node_dim),
                                          None, self.normalization,
                                          lambda_max, dtype=x.dtype,
                                          batch=batch)
         edge_index, norm = coalesce(edge_index, norm, m=x.shape[0], n=x.shape[0])
         edge_index, norm, loop_edge_index, loop_norm = segregate_self_loops(edge_index, norm)
-
+        # breakpoint()
         Tx_0 = x
         Tx_1 = x  # Dummy.
         out = self.lins[0](Tx_0)
