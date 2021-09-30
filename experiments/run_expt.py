@@ -35,7 +35,17 @@ def main():
     parser.add_argument('-d', '--dataset', choices=gds.supported_datasets, required=True)
     parser.add_argument('-a', '--algorithm', choices=supported.algorithms, required=True)
     parser.add_argument('-m', '--model', choices=supported.models)
-
+    parser.add_argument('--seed', type=int)
+    parser.add_argument('--use_frac', type=parse_bool,
+                help='Convenience parameter that scales all dataset splits down to the specified fraction, '
+                     'for development purposes. Note that this also scales the test set down, so the reported '
+                     'numbers are not comparable with the full test set.')
+    
+    # early stopping
+    parser.add_argument('--patience', type=int, default=30)
+   
+    # Resume
+    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
     # Dataset
     parser.add_argument('--split_scheme',
@@ -43,10 +53,6 @@ def main():
     parser.add_argument('--dataset_kwargs', nargs='*', action=ParseKwargs, default={})
     parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',
                         help='If true, tries to downloads the dataset if it does not exist in root_dir.')
-    parser.add_argument('--use_frac', type=parse_bool, default=True,
-                        help='Convenience parameter that scales all dataset splits down to the specified fraction, '
-                             'for development purposes. Note that this also scales the test set down, so the reported '
-                             'numbers are not comparable with the full test set.')
     parser.add_argument('--version', default=None, type=str)
 
     # Loaders
@@ -114,7 +120,6 @@ def main():
 
     # Misc
     parser.add_argument('--device', type=int, default=0)
-    parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--root_dir', default='./data',
                         help='The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).')
     parser.add_argument('--log_dir', default='./logs')
@@ -126,10 +131,9 @@ def main():
     parser.add_argument('--no_group_logging', type=parse_bool, const=True, nargs='?')
     parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
-    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
-    # early stopping
-    parser.add_argument('--patience', type=int, default=30)
+
+
 
     config = parser.parse_args()
     config = populate_defaults(config)
