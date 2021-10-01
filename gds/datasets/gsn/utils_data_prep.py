@@ -9,6 +9,7 @@ import torch
 from sklearn.model_selection import StratifiedKFold
 from ogb.graphproppred import PygGraphPropPredDataset
 from torch_geometric.utils import to_undirected
+import torch_geometric.transforms as T
 from gds.datasets.pyg_colored_mnist_dataset import PyGColoredMNISTDataset
 from gds.datasets.pyg_rotated_mnist_dataset import PyGRotatedMNISTDataset
 
@@ -209,9 +210,9 @@ def load_mnist_data(path, name):
      ### splits and preprocessing according to https://github.com/snap-stanford/ogb
    
     if name == 'RotatedMNIST':     
-        dataset = PyGRotatedMNISTDataset(name='RotatedMNIST', root=path)
+        dataset = PyGRotatedMNISTDataset(name='RotatedMNIST', root=path, transform=T.ToUndirected())
     elif name == 'ColoredMNIST':
-        dataset = PyGColoredMNISTDataset(name='ColoredMNIST', root=path)
+        dataset = PyGColoredMNISTDataset(name='ColoredMNIST', root=path, transform=T.ToUndirected())
     Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'label'])
     graph_list = list()
     for datum in dataset:
