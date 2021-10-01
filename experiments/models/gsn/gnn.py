@@ -8,6 +8,7 @@ from .graph_filters.GSN_edge_sparse_ogb import GSN_edge_sparse_ogb
 from .graph_filters.GSN_sparse import GSN_sparse
 
 from .graph_filters.MPNN_edge_sparse_ogb import MPNN_edge_sparse_ogb
+from .graph_filters.MPNN_sparse import MPNN_sparse
 
 from .models_misc import mlp, choose_activation
 from .utils_graph_learning import global_add_pool_sparse, global_mean_pool_sparse, DiscreteEmbedding
@@ -55,7 +56,7 @@ class GNN_GSN(torch.nn.Module):
         d_h = [2 * emb_dim]
         aggr = 'add'
         flow = 'source_to_target'
-        msg_kind = 'ogb'
+        # msg_kind = 'ogb'
         train_eps = False
         activation_mlp = 'relu'
         bn_mlp = True
@@ -79,12 +80,27 @@ class GNN_GSN(torch.nn.Module):
                                                         emb_dim,
                                                         **encoders_kwargs)
             d_in = self.input_node_encoder.d_out
+            msg_kind = 'ogb'
         elif self.dataset_group == 'ppa' :
             self.input_node_encoder = torch.nn.Embedding(1, emb_dim)
             d_in = emb_dim
+            msg_kind = 'ogb'
         elif self.dataset_group == 'RotatedMNIST':
-            self.node_encoder = torch.nn.Linear(3, emb_dim)
+            self.input_node_encoder = torch.nn.Linear(1, emb_dim)
             d_in = emb_dim
+            msg_kind = 'gin'
+        elif self.dataset_group == 'ColoredMNIST':
+            self.input_node_encoder = torch.nn.Linear(2, emb_dim)
+            d_in = emb_dim
+            msg_kind = 'gin'            
+        elif self.dataset_group == 'SBM':
+            self.input_node_encoder = torch.nn.Embedding(8, emb_dim)
+            d_in = emb_dim
+            msg_kind = 'gin'
+        elif self.dataset_group == 'UPFD':
+            self.input_node_encoder = torch.nn.Embedding(8, emb_dim)
+            d_in = emb_dim
+            msg_kind = 'gin'
         else :
             raise NotImplementedError
 
@@ -105,6 +121,11 @@ class GNN_GSN(torch.nn.Module):
                 edge_encoder_layer = torch.nn.Linear(7, emb_dim)
                 self.edge_encoder.append(edge_encoder_layer)
                 d_ef.append(emb_dim)
+        elif self.dataset_group == 'UPFD' :
+            for i in range(self.num_layers):
+                edge_encoder_layer = torch.nn.Linear(7, emb_dim)
+                self.edge_encoder.append(edge_encoder_layer)
+                d_ef.append(None)
         else :
             pass
 
@@ -167,7 +188,8 @@ class GNN_GSN(torch.nn.Module):
                 'extend_dims': True
             }
 
-            use_ids = ((i > 0 and self.inject_ids) or (i == 0)) and (self.model_name == 'GSN_edge_sparse_ogb')
+            use_ids = ((i > 0 and self.inject_ids) or (i == 0)) 
+
 
             if use_ids:
                 # if self.dataset_group != 'mol' and self.dataset_group != 'ppa' :
@@ -179,7 +201,11 @@ class GNN_GSN(torch.nn.Module):
                 kwargs_filter['d_id'] = d_id[i] if self.inject_ids else d_id[0]
                 kwargs_filter['id_scope'] = id_scope
             else:
-                filter_fn = MPNN_edge_sparse_ogb
+                if self.dataset_group == 'mol' or self.dataset_group == 'ppa' :
+                    filter_fn = MPNN_edge_sparse_ogb
+                else:
+                    filter_fn = MPNN_sparse
+
             self.conv.append(filter_fn(**kwargs_filter))
 
             bn_layer = nn.BatchNorm1d(d_out) if self.bn else None

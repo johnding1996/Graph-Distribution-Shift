@@ -212,10 +212,10 @@ def load_mnist_data(path, name):
         dataset = PyGRotatedMNISTDataset(name='RotatedMNIST', root=path)
     elif name == 'ColoredMNIST':
         dataset = PyGColoredMNISTDataset(name='ColoredMNIST', root=path)
-    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'edge_features', 'label'])
+    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'label'])
     graph_list = list()
     for datum in dataset:
-        graph = Graph(datum.x, datum.edge_index, datum.edge_attr, datum.y)
+        graph = Graph(datum.x, datum.edge_index, datum.y)
         graph_list.append(graph)
     num_classes = dataset.__num_classes__
     return graph_list, num_classes
@@ -229,10 +229,10 @@ def load_sbm_data(path, name):
         dataset = PyGSBMEnvironmentDataset(name='SBM-Environment', root=path)
     elif name == 'SBM-Isolation':
         dataset = PyGSBMIsolationDataset(name='SBM-Isolation', root=path)
-    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'edge_features', 'label'])
+    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'label'])
     graph_list = list()
     for datum in dataset:
-        graph = Graph(datum.x, datum.edge_index, datum.edge_attr, datum.y)
+        graph = Graph(datum.x, datum.edge_index, datum.y)
         graph_list.append(graph)
     num_classes = dataset.__num_classes__
     return graph_list, num_classes
@@ -243,10 +243,10 @@ def load_upfd_data(path, name):
      ### splits and preprocessing according to https://github.com/snap-stanford/ogb
         
     dataset = PyGUPFDDataset(path, 'UPFD', 'profile')
-    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'edge_features', 'label'])
+    Graph = namedtuple('Graph', ['node_features', 'edge_mat', 'label'])
     graph_list = list()
     for datum in dataset:
-        graph = Graph(datum.x, datum.edge_index, datum.edge_attr, datum.y)
+        graph = Graph(datum.x, datum.edge_index, datum.y)
         graph_list.append(graph)
     num_classes = dataset.__num_classes__
     return graph_list, num_classes

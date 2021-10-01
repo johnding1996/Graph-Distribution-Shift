@@ -180,7 +180,7 @@ dataset_defaults = {
         'val_metric': 'rocauc',
         'val_metric_decreasing': False,
         'optimizer': 'Adam',
-        'batch_size': 128,
+        'batch_size': 32,
         'lr': 1e-03,
         'weight_decay': 0.,
         'n_epochs': 150,

@@ -285,12 +285,13 @@ class GSN():
                                                                          self.multiprocessing,
                                                                          self.num_processes,
                                                                          **subgraph_params)
-
+     
         ## node and edge feature dimensions
         if graphs_ptg[0].x.dim() == 1:
             num_features = 1
         else:
             num_features = graphs_ptg[0].num_features
+
 
         if hasattr(graphs_ptg[0], 'edge_features'):
             if graphs_ptg[0].edge_features.dim() == 1:
