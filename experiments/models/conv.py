@@ -1,3 +1,5 @@
+import copy
+
 import torch
 from torch_geometric.nn import MessagePassing
 import torch.nn.functional as F
@@ -151,13 +153,14 @@ class ChebConvNew(MessagePassing):
                                          None, self.normalization,
                                          lambda_max, dtype=x.dtype,
                                          batch=batch)
-        edge_index, norm = coalesce(edge_index, norm, m=x.shape[0], n=x.shape[0])
+
+        # edge_index, norm = coalesce(edge_index, norm, m=x.shape[0], n=x.shape[0])
         edge_index, norm, loop_edge_index, loop_norm = segregate_self_loops(edge_index, norm)
+        loop_edge_index, loop_norm = coalesce(loop_edge_index, loop_norm, m=x.shape[0], n=x.shape[0])
 
         Tx_0 = x
         Tx_1 = x  # Dummy.
         out = self.lins[0](Tx_0)
-
 
         # propagate_type: (x: Tensor, norm: Tensor)
         if len(self.lins) > 1:

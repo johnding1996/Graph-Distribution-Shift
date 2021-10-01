@@ -37,10 +37,11 @@ class RotatedMNISTDataset(GDSDataset):
         self._y_array = self.ogb_dataset.data.y
         self._metadata_fields = ['angle', 'y']
 
+        #https://www.dropbox.com/s/zulrcyh846w9maw/RotatedMNIST_group_expired.zip?dl=1
         metadata_file_path = os.path.join(self.ogb_dataset.raw_dir, 'RotatedMNIST_group.npy')
         if not os.path.exists(metadata_file_path):
             metadata_zip_file_path = download_url(
-                'https://www.dropbox.com/s/zulrcyh846w9maw/RotatedMNIST_group.zip?dl=1', self.ogb_dataset.raw_dir)
+                'https://www.dropbox.com/s/xv6bx7ihqmeuv80/RotatedMNIST_group.zip?dl=1', self.ogb_dataset.raw_dir)
             extract_zip(metadata_zip_file_path, self.ogb_dataset.raw_dir)
             os.unlink(metadata_zip_file_path)
 

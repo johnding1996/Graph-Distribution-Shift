@@ -35,7 +35,15 @@ def main():
     parser.add_argument('-d', '--dataset', choices=gds.supported_datasets, required=True)
     parser.add_argument('-a', '--algorithm', choices=supported.algorithms, required=True)
     parser.add_argument('-m', '--model', choices=supported.models)
-
+    parser.add_argument('--seed', type=int)
+    parser.add_argument('--use_frac', type=parse_bool,
+                help='Convenience parameter that scales all dataset splits down to the specified fraction, '
+                     'for development purposes. Note that this also scales the test set down, so the reported '
+                     'numbers are not comparable with the full test set.')
+    
+   
+    # Resume
+    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
     # Dataset
     parser.add_argument('--split_scheme',
@@ -43,10 +51,6 @@ def main():
     parser.add_argument('--dataset_kwargs', nargs='*', action=ParseKwargs, default={})
     parser.add_argument('--download', default=False, type=parse_bool, const=True, nargs='?',
                         help='If true, tries to downloads the dataset if it does not exist in root_dir.')
-    parser.add_argument('--use_frac', type=parse_bool, default=True,
-                        help='Convenience parameter that scales all dataset splits down to the specified fraction, '
-                             'for development purposes. Note that this also scales the test set down, so the reported '
-                             'numbers are not comparable with the full test set.')
     parser.add_argument('--version', default=None, type=str)
 
     # Loaders
@@ -68,10 +72,18 @@ def main():
                         help='keyword arguments for loss initialization passed as key1=value1 key2=value2')
 
     # Algorithm
-    parser.add_argument('--groupby_fields', nargs='+')
-    parser.add_argument('--group_dro_step_size', type=float)
+    ## To be tuned
     parser.add_argument('--coral_penalty_weight', type=float)
     parser.add_argument('--irm_lambda', type=float)
+    parser.add_argument('--flag_step_size', type=float)
+    parser.add_argument('--dann_lambda', type=float)
+    parser.add_argument('--mldg_beta', type=float)
+    parser.add_argument('--gcl_aug_ratio', type=float)
+    parser.add_argument('--parameter', type=float)
+
+    ## Not to be tuned
+    parser.add_argument('--groupby_fields', nargs='+')
+    parser.add_argument('--group_dro_step_size', type=float)
     parser.add_argument('--irm_penalty_anneal_iters', type=int)
     parser.add_argument('--algo_log_metric')
     parser.add_argument('--gsn_id_type', type=str,
@@ -109,7 +121,6 @@ def main():
 
     # Misc
     parser.add_argument('--device', type=int, default=0)
-    parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--root_dir', default='./data',
                         help='The directory where [dataset]/data can be found (or should be downloaded to, if it does not exist).')
     parser.add_argument('--log_dir', default='./logs')
@@ -121,13 +132,29 @@ def main():
     parser.add_argument('--no_group_logging', type=parse_bool, const=True, nargs='?')
     parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
-    parser.add_argument('--resume', type=parse_bool, const=True, nargs='?', default=False)
 
-    # early stopping
-    parser.add_argument('--patience', type=int, default=30)
+
+
 
     config = parser.parse_args()
     config = populate_defaults(config)
+    
+    if config.algorithm == 'deepCORAL':
+        config.parameter = config.coral_penalty_weight
+    elif config.algorithm == 'DANN':
+        config.parameter = config.dann_lambda
+    elif config.algorithm == 'MLDG':
+        config.parameter = config.mldg_beta
+    elif config.algorithm == 'IRM':
+        config.parameter = config.irm_lambda
+    elif config.algorithm == 'FLAG':
+        config.parameter = config.flag_step_size
+    elif config.algorithm == 'GCL':
+        config.parameter = config.gcl_aug_ratio
+    else:
+        config.parameter = None
+
+    
     # For the 3wlgnn model, we need to set batch_size to 1
     if config.model == '3wlgnn':
         config.batch_size = 1
@@ -146,9 +173,10 @@ def main():
         resume = False
         mode = 'w'
 
+
     if not os.path.exists(config.log_dir):
         os.makedirs(config.log_dir)
-    logger = Logger(os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}.txt'), mode)
+    logger = Logger(os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}.txt'), mode)
 
 
     # Record config
@@ -219,9 +247,9 @@ def main():
 
         # Loggers
         datasets[split]['eval_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
         datasets[split]['algo_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.model}_seed-{config.seed}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
 
     # Logging dataset info
     # Show class breakdown if feasible

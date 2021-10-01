@@ -3,6 +3,7 @@ from algorithms.IRM import IRM
 from algorithms.deepCORAL import DeepCORAL
 from algorithms.groupDRO import GroupDRO
 from algorithms.FLAG import FLAG
+from algorithms.GCL import GCL
 from algorithms.GSN import GSN
 from algorithms.DANN import DANN, CDANN, DANNG
 from algorithms.MLDG import MLDG
@@ -80,6 +81,14 @@ def initialize_algorithm(config, datasets, full_dataset, train_grouper):
             n_train_steps=n_train_steps)
     elif config.algorithm == 'FLAG':
         algorithm = FLAG(
+            config=config,
+            d_out=d_out,
+            grouper=train_grouper,
+            loss=loss,
+            metric=metric,
+            n_train_steps=n_train_steps)
+    elif config.algorithm == 'GCL':
+        algorithm = GCL(
             config=config,
             d_out=d_out,
             grouper=train_grouper,
