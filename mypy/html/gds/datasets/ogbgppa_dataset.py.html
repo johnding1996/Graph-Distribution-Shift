@@ -208,8 +208,21 @@
 <span id="L198" class="lineno"><a class="lineno" href="#L198">198</a></span>
 <span id="L199" class="lineno"><a class="lineno" href="#L199">199</a></span>
 <span id="L200" class="lineno"><a class="lineno" href="#L200">200</a></span>
+<span id="L201" class="lineno"><a class="lineno" href="#L201">201</a></span>
+<span id="L202" class="lineno"><a class="lineno" href="#L202">202</a></span>
+<span id="L203" class="lineno"><a class="lineno" href="#L203">203</a></span>
+<span id="L204" class="lineno"><a class="lineno" href="#L204">204</a></span>
+<span id="L205" class="lineno"><a class="lineno" href="#L205">205</a></span>
+<span id="L206" class="lineno"><a class="lineno" href="#L206">206</a></span>
+<span id="L207" class="lineno"><a class="lineno" href="#L207">207</a></span>
+<span id="L208" class="lineno"><a class="lineno" href="#L208">208</a></span>
+<span id="L209" class="lineno"><a class="lineno" href="#L209">209</a></span>
+<span id="L210" class="lineno"><a class="lineno" href="#L210">210</a></span>
+<span id="L211" class="lineno"><a class="lineno" href="#L211">211</a></span>
+<span id="L212" class="lineno"><a class="lineno" href="#L212">212</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import os</span>
+<span class="line-any" title="No Anys on this line!">import numpy as np</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="No Anys on this line!">import pandas as pd</span>
 <span class="line-any" title="No Anys on this line!">import torch</span>
@@ -310,20 +323,42 @@ Unannotated (x3)">        self._y_size = self.ogb_dataset.num_tasks</span>
 Unannotated (x3)">        self._n_classes = self.ogb_dataset.__num_classes__</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x1)">        if random_split:</span>
-<span class="line-precise" title="No Anys on this line!">            raise NotImplementedError</span>
-<span class="line-empty" title="No Anys on this line!"></span>
-<span class="line-any" title="Any Types on this line: 
 Unannotated (x7)
 Unimported (x1)">        self._split_array = torch.zeros(len(self.ogb_dataset)).long()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">        split_idx = self.ogb_dataset.get_idx_split()</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['train']] = 0</span>
+Unannotated (x3)
+Unimported (x1)">        np.random.seed(0)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['valid']] = 1</span>
+Unannotated (x3)">        dataset_size = len(self.ogb_dataset)</span>
 <span class="line-any" title="Any Types on this line: 
-Unannotated (x3)">        self._split_array[split_idx['test']] = 2</span>
+Unannotated (x1)">        if random_split:</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)
+Unimported (x1)">            random_index = np.random.permutation(dataset_size)</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">            train_split_idx = random_index[:len(split_idx['train'])]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x13)">            val_split_idx = random_index[len(split_idx['train']):len(split_idx['train'])+len(split_idx['valid'])]</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x10)">            test_split_idx = random_index[len(split_idx['train'])+len(split_idx['valid']):]</span>
+<span class="line-empty" title="No Anys on this line!">        else :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            train_split_idx = split_idx['train']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            val_split_idx = split_idx['valid']</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">            test_split_idx = split_idx['test']</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self._split_array[train_split_idx] = 0</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self._split_array[val_split_idx] = 1</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        self._split_array[test_split_idx] = 2</span>
+<span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x6)">        self._y_array = self.ogb_dataset.data.y.squeeze()</span>
