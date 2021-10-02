@@ -133,12 +133,13 @@ def main():
     parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
 
-
-
-
     config = parser.parse_args()
     config = populate_defaults(config)
-    
+
+    # To speed up slow algorithms
+    if config.algorithm == 'MLDG' or config.algorithm == 'FLAG' and config.dataset != 'SBM-Isolation' :
+        config.n_epochs /= 2
+
     if config.algorithm == 'deepCORAL':
         config.parameter = config.coral_penalty_weight
     elif config.algorithm == 'DANN' or config.algorithm == 'DANN-G':
