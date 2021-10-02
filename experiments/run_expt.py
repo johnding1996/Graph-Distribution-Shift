@@ -141,7 +141,7 @@ def main():
     
     if config.algorithm == 'deepCORAL':
         config.parameter = config.coral_penalty_weight
-    elif config.algorithm == 'DANN':
+    elif config.algorithm == 'DANN' or config.algorithm == 'DANN-G':
         config.parameter = config.dann_lambda
     elif config.algorithm == 'MLDG':
         config.parameter = config.mldg_beta
