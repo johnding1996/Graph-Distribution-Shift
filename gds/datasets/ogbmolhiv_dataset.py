@@ -82,14 +82,25 @@ class OGBHIVDataset(GDSDataset):
         # self._n_classes = self.ogb_dataset.__num_classes__
         self._n_classes = 1
 
-        if random_split:
-            raise NotImplementedError
-
         self._split_array = torch.zeros(len(self.ogb_dataset)).long()
         split_idx = self.ogb_dataset.get_idx_split()
-        self._split_array[split_idx['train']] = 0
-        self._split_array[split_idx['valid']] = 1
-        self._split_array[split_idx['test']] = 2
+
+        np.random.seed(0)
+        dataset_size = len(self.ogb_dataset)
+        if random_split:
+            random_index = np.random.permutation(dataset_size)
+            train_split_idx = random_index[:len(split_idx['train'])]
+            val_split_idx = random_index[len(split_idx['train']):len(split_idx['train']) + len(split_idx['valid'])]
+            test_split_idx = random_index[len(split_idx['train']) + len(split_idx['valid']):]
+        else:
+            train_split_idx = split_idx['train']
+            val_split_idx = split_idx['valid']
+            test_split_idx = split_idx['test']
+
+        self._split_array[train_split_idx] = 0
+        self._split_array[val_split_idx] = 1
+        self._split_array[test_split_idx] = 2
+
 
         self._y_array = self.ogb_dataset.data.y
         self._metadata_fields = ['scaffold', 'y']
