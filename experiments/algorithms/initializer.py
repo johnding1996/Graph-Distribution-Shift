@@ -129,6 +129,7 @@ def initialize_algorithm(config, datasets, full_dataset, train_grouper):
             metric=metric,
             n_train_steps=n_train_steps)
     elif config.algorithm == 'MLDG':
+        assert config.dataset != 'ogb-molpcba' and config.dataset != 'ogbg-ppa'
         algorithm = MLDG(
             config=config,
             d_out=d_out,
