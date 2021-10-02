@@ -137,7 +137,7 @@ def main():
     config = populate_defaults(config)
 
     # To speed up slow algorithms
-    if config.algorithm == 'MLDG' or config.algorithm == 'FLAG' and config.dataset != 'SBM-Isolation' :
+    if (config.algorithm == 'MLDG' or config.algorithm == 'FLAG') and config.dataset != 'SBM-Isolation' :
         config.n_epochs /= 2
 
     if config.algorithm == 'deepCORAL':
