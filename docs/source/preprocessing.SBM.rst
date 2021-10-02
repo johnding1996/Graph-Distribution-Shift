@@ -12,10 +12,26 @@ preprocessing.SBM.sbm\_environment module
    :undoc-members:
    :show-inheritance:
 
+preprocessing.SBM.sbm\_environment\_vis module
+----------------------------------------------
+
+.. automodule:: preprocessing.SBM.sbm_environment_vis
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 preprocessing.SBM.sbm\_isolation module
 ---------------------------------------
 
 .. automodule:: preprocessing.SBM.sbm_isolation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+preprocessing.SBM.sbm\_isolation\_vis module
+--------------------------------------------
+
+.. automodule:: preprocessing.SBM.sbm_isolation_vis
    :members:
    :undoc-members:
    :show-inheritance:
