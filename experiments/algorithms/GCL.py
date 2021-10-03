@@ -1,5 +1,7 @@
 from algorithms.single_model_algorithm import SingleModelAlgorithm
 from models.initializer import initialize_model
+from optimizer import initialize_optimizer
+from scheduler import initialize_scheduler
 import torch
 from torch_geometric.data import Batch
 from torch.nn.utils import clip_grad_norm_
@@ -30,8 +32,11 @@ class GCL(SingleModelAlgorithm):
         # self.model = model #set by base class
 
         # algorithm hyperparameters
+        # save copy in case
+        self.config = config
         # If gcl_contrastive_pretrain=False and aug_prob and/or aug_ratio is 0.0, should be equiv to ERM
         self.gcl_contrastive_pretrain = config.gcl_contrastive_pretrain
+        self.gcl_reinit_optim_sched = config.gcl_reinit_optim_sched
         self.aug_prob = config.gcl_aug_prob
         self.aug_type = config.aug_type
         self.aug_ratio = config.gcl_aug_ratio
@@ -50,7 +55,7 @@ class GCL(SingleModelAlgorithm):
         self.dummy_output = None
 
         # sanity check the pretraining augmentation spec
-        if self.gcl_contrastive_pretrain:
+        if self.gcl_contrastive_pretrain==True:
             aug_compatibility = (self.gcl_contrast_type=='orig') or \
                                 (self.gcl_contrast_type=='opposite' and self.aug_type != 'random') or \
                                 (self.gcl_contrast_type=='random' and self.aug_type == 'random')
@@ -78,7 +83,7 @@ class GCL(SingleModelAlgorithm):
                 raise NotImplementedError
         
         # Set contrastive augmentation relative to main augmentation
-        if self.gcl_contrastive_pretrain:   
+        if self.gcl_contrastive_pretrain==True:   
             if self.gcl_contrast_type == 'orig':
                 self.orig_aug_fn = lambda data: None
             elif self.gcl_contrast_type == 'random':
@@ -92,10 +97,10 @@ class GCL(SingleModelAlgorithm):
                 raise NotImplementedError
 
         # The logging stuff always gives me errors honestly
-        # if self.gcl_contrastive_pretrain:
+        # if self.gcl_contrastive_pretrain==True:
             # self.logged_fields.append('train_step_counter')
             # self.logged_fields.append('epoch_counter')
-
+            
 
     def drop_nodes(self, data):
         """
@@ -259,7 +264,7 @@ class GCL(SingleModelAlgorithm):
         """
         # Block to count steps/epochs until time to switch to finetuning/ERM
         # when finished with contrastive pretrain phase
-        if self.gcl_contrastive_pretrain:
+        if self.gcl_contrastive_pretrain==True:
             self.train_step_counter += 1
             if self.train_step_counter % self.steps_per_epoch == 0:
                 self.epoch_counter += 1

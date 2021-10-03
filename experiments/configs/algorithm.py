@@ -36,7 +36,8 @@ algorithm_defaults = {
         'train_loader': 'standard',
         'uniform_over_groups': False,
         'eval_loader': 'standard',
-        'gcl_contrastive_pretrain': True, #True, False,
+        'gcl_contrastive_pretrain': True, # False would be what was run before, ERM+aug
+        'gcl_reinit_optim_sched': False, # False is just naively swap the losses and continue, True not implm yet
         'gcl_pretrain_fraction': 0.5, # 0.0, would mean no pretraining phase, 0.5 is 100 of 200 epochs
         'gcl_contrast_type': 'opposite', # 'orig', 'opposite', 'random', relative to 'aug_type'
         'gcl_aug_prob': 1.0, #0.0 should be equiv to ERM, as aug is never applied, 1.0 is GCL setting where orig data is never used

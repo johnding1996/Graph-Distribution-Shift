@@ -79,6 +79,10 @@ def main():
     parser.add_argument('--dann_lambda', type=float)
     parser.add_argument('--mldg_beta', type=float)
     parser.add_argument('--gcl_aug_ratio', type=float)
+    parser.add_argument('--gcl_aug_prob', type=float)
+    parser.add_argument('--gcl_aug_type', type=str)
+    parser.add_argument('--gcl_pretrain_fraction', type=float)
+    parser.add_argument('--gcl_contrast_type', type=str)
     parser.add_argument('--parameter', type=float)
 
     ## Not to be tuned
