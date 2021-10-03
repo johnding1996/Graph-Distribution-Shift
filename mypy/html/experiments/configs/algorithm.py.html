@@ -104,7 +104,7 @@
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'distinct_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
-<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 0.1,</span>
+<span class="line-precise" title="No Anys on this line!">        'coral_penalty_weight': 1.,</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'IRM': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'group',</span>
@@ -118,7 +118,7 @@
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'standard',</span>
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': False,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
-<span class="line-precise" title="No Anys on this line!">        'flag_step_size': 1e-3</span>
+<span class="line-precise" title="No Anys on this line!">        'flag_step_size': 1e-2</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'GCL': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'standard',</span>
@@ -127,7 +127,7 @@
 <span class="line-precise" title="No Anys on this line!">        'use_cl': False,</span>
 <span class="line-precise" title="No Anys on this line!">        'gcl_aug_prob': 0.5, #0.0 should be equiv to ERM, as aug is never applied, 1.0 is GCL setting where orig data is never seen</span>
 <span class="line-precise" title="No Anys on this line!">        'aug_type': 'random', #'node_drop','edge_perm','random' can only use a single aug_type currently, or random choice of them</span>
-<span class="line-precise" title="No Anys on this line!">        'gcl_aug_ratio': 0.2 # 0.0 should be equiv to ERM, as each graph is unchanged, 0.2 is GCL paper default</span>
+<span class="line-precise" title="No Anys on this line!">        'gcl_aug_ratio': 0.1 # 0.0 should be equiv to ERM, as each graph is unchanged, 0.2 is GCL paper default</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'GSN': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'standard',</span>
@@ -139,7 +139,7 @@
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'distinct_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
-<span class="line-precise" title="No Anys on this line!">        'dann_lambda': 1.</span>
+<span class="line-precise" title="No Anys on this line!">        'dann_lambda': 0.1</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'CDANN': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'group',</span>
@@ -153,14 +153,14 @@
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'distinct_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
-<span class="line-precise" title="No Anys on this line!">        'dann_lambda': 1.</span>
+<span class="line-precise" title="No Anys on this line!">        'dann_lambda': 0.1</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-precise" title="No Anys on this line!">    'MLDG': {</span>
 <span class="line-precise" title="No Anys on this line!">        'train_loader': 'group',</span>
 <span class="line-precise" title="No Anys on this line!">        'uniform_over_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'distinct_groups': True,</span>
 <span class="line-precise" title="No Anys on this line!">        'eval_loader': 'standard',</span>
-<span class="line-precise" title="No Anys on this line!">        'mldg_beta': 1.</span>
+<span class="line-precise" title="No Anys on this line!">        'mldg_beta': 0.1</span>
 <span class="line-empty" title="No Anys on this line!">    },</span>
 <span class="line-empty" title="No Anys on this line!">}</span>
 </pre></td>
