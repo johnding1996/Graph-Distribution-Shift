@@ -356,6 +356,13 @@
 <span id="L346" class="lineno"><a class="lineno" href="#L346">346</a></span>
 <span id="L347" class="lineno"><a class="lineno" href="#L347">347</a></span>
 <span id="L348" class="lineno"><a class="lineno" href="#L348">348</a></span>
+<span id="L349" class="lineno"><a class="lineno" href="#L349">349</a></span>
+<span id="L350" class="lineno"><a class="lineno" href="#L350">350</a></span>
+<span id="L351" class="lineno"><a class="lineno" href="#L351">351</a></span>
+<span id="L352" class="lineno"><a class="lineno" href="#L352">352</a></span>
+<span id="L353" class="lineno"><a class="lineno" href="#L353">353</a></span>
+<span id="L354" class="lineno"><a class="lineno" href="#L354">354</a></span>
+<span id="L355" class="lineno"><a class="lineno" href="#L355">355</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -584,10 +591,22 @@ Unannotated (x3)
 Unimported (x1)">    parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    parser.add_argument('--jiuhai', action='store_true', default=False)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
 Unannotated (x4)">    config = parser.parse_args()</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)
 Unimported (x1)">    config = populate_defaults(config)</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">    if config.jiuhai :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        if config.dataset in {'ogb-molpcba', 'ogbg-ppa'} :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x5)">            if config.algorithm in {'deepCORAL', 'FLAG', 'GCL'} or config.model in {'gin_10_layers', 'cheb'} :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x1)">                raise ValueError('For Jiuhai\'s experiments, these are too slow, kill.')</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # To speed up slow algorithms</span>
 <span class="line-any" title="Any Types on this line: 
