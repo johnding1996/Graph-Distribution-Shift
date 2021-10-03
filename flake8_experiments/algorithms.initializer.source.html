@@ -437,43 +437,37 @@
                class="code sev- "><tt><i>131</i>     <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;MLDG&#39;</span><span class="p">:</span></tt>
             </div>
             <div id="l132"
-               class="code sev- "><tt><i>132</i>         <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">dataset</span> <span class="o">!=</span> <span class="s1">&#39;ogb-molpcba&#39;</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">dataset</span> <span class="o">!=</span> <span class="s1">&#39;ogbg-ppa&#39;</span></tt>
+               class="code sev- "><tt><i>132</i>         <span class="n">algorithm</span> <span class="o">=</span> <span class="n">MLDG</span><span class="p">(</span></tt>
             </div>
             <div id="l133"
-               class="code sev- "><tt><i>133</i> &nbsp;</tt>
+               class="code sev- "><tt><i>133</i>             <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span></tt>
             </div>
             <div id="l134"
-               class="code sev- "><tt><i>134</i>         <span class="n">algorithm</span> <span class="o">=</span> <span class="n">MLDG</span><span class="p">(</span></tt>
+               class="code sev- "><tt><i>134</i>             <span class="n">d_out</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span></tt>
             </div>
             <div id="l135"
-               class="code sev- "><tt><i>135</i>             <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>135</i>             <span class="n">grouper</span><span class="o">=</span><span class="n">train_grouper</span><span class="p">,</span></tt>
             </div>
             <div id="l136"
-               class="code sev- "><tt><i>136</i>             <span class="n">d_out</span><span class="o">=</span><span class="n">d_out</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>136</i>             <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span></tt>
             </div>
             <div id="l137"
-               class="code sev- "><tt><i>137</i>             <span class="n">grouper</span><span class="o">=</span><span class="n">train_grouper</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>137</i>             <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span></tt>
             </div>
             <div id="l138"
-               class="code sev- "><tt><i>138</i>             <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>138</i>             <span class="n">n_train_steps</span><span class="o">=</span><span class="n">n_train_steps</span><span class="p">)</span></tt>
             </div>
             <div id="l139"
-               class="code sev- "><tt><i>139</i>             <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>139</i>     <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l140"
-               class="code sev- "><tt><i>140</i>             <span class="n">n_train_steps</span><span class="o">=</span><span class="n">n_train_steps</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>140</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s2"> not recognized&quot;</span><span class="p">)</span></tt>
             </div>
             <div id="l141"
-               class="code sev- "><tt><i>141</i>     <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>141</i> &nbsp;</tt>
             </div>
             <div id="l142"
-               class="code sev- "><tt><i>142</i>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">algorithm</span><span class="si">}</span><span class="s2"> not recognized&quot;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l143"
-               class="code sev- "><tt><i>143</i> &nbsp;</tt>
-            </div>
-            <div id="l144"
-               class="code sev- "><tt><i>144</i>     <span class="k">return</span> <span class="n">algorithm</span></tt>
+               class="code sev- "><tt><i>142</i>     <span class="k">return</span> <span class="n">algorithm</span></tt>
             </div>
             
          </div>

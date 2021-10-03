@@ -363,6 +363,13 @@
 <span id="L353" class="lineno"><a class="lineno" href="#L353">353</a></span>
 <span id="L354" class="lineno"><a class="lineno" href="#L354">354</a></span>
 <span id="L355" class="lineno"><a class="lineno" href="#L355">355</a></span>
+<span id="L356" class="lineno"><a class="lineno" href="#L356">356</a></span>
+<span id="L357" class="lineno"><a class="lineno" href="#L357">357</a></span>
+<span id="L358" class="lineno"><a class="lineno" href="#L358">358</a></span>
+<span id="L359" class="lineno"><a class="lineno" href="#L359">359</a></span>
+<span id="L360" class="lineno"><a class="lineno" href="#L360">360</a></span>
+<span id="L361" class="lineno"><a class="lineno" href="#L361">361</a></span>
+<span id="L362" class="lineno"><a class="lineno" href="#L362">362</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -599,6 +606,7 @@ Unannotated (x4)">    config = parser.parse_args()</span>
 Unannotated (x3)
 Unimported (x1)">    config = populate_defaults(config)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-empty" title="No Anys on this line!">    # hard code:</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x2)">    if config.jiuhai :</span>
 <span class="line-any" title="Any Types on this line: 
@@ -607,6 +615,16 @@ Unannotated (x2)">        if config.dataset in {'ogb-molpcba', 'ogbg-ppa'} :</sp
 Unannotated (x5)">            if config.algorithm in {'deepCORAL', 'FLAG', 'GCL'} or config.model in {'gin_10_layers', 'cheb'} :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x1)">                raise ValueError('For Jiuhai\'s experiments, these are too slow, kill.')</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    if config.algorithm == 'MLDG' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">        assert config.dataset != 'ogb-molpcba' and config.dataset != 'ogbg-ppa'</span>
+<span class="line-empty" title="No Anys on this line!"></span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">    if config.model == 'cheb' and config.algorithm == 'GCL' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        config.gcl_aug_ratio = 0.1</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-empty" title="No Anys on this line!">    # To speed up slow algorithms</span>
 <span class="line-any" title="Any Types on this line: 
