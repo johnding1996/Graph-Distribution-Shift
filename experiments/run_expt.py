@@ -133,8 +133,15 @@ def main():
     parser.add_argument('--use_wandb', type=parse_bool, const=True, nargs='?', default=False)
     parser.add_argument('--progress_bar', type=parse_bool, const=True, nargs='?', default=False)
 
+    parser.add_argument('--jiuhai', action='store_true', default=False)
+
     config = parser.parse_args()
     config = populate_defaults(config)
+
+    if config.jiuhai :
+        if config.dataset in {'ogb-molpcba', 'ogbg-ppa'} :
+            if config.algorithm in {'deepCORAL', 'FLAG', 'GCL'} or config.model in {'gin_10_layers', 'cheb'} :
+                raise ValueError('For Jiuhai\'s experiments, these are too slow, kill.')
 
     # To speed up slow algorithms
     if (config.algorithm == 'MLDG' or config.algorithm == 'FLAG') and config.dataset != 'SBM-Isolation' :
