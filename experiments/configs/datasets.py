@@ -3,7 +3,7 @@ dataset_defaults = {
         'num_domains': 120084,
         'split_scheme': 'official',
         'model_kwargs': {'three_wl_in_dim': 186, 'dropout': 0.5, 'dataset_group': 'mol'},
-        'default_frac': 0.10,
+        'default_frac': 1.0,
         'loss_function': 'multitask_bce',
         'groupby_fields': ['scaffold', ],
         'val_metric': 'ap',
@@ -19,9 +19,7 @@ dataset_defaults = {
         'algo_log_metric': 'multitask_binary_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
-        'model': 'gin_virtual',
-        'irm_lambda': 1.,
-        'coral_penalty_weight': 0.1,
+        'model': 'gin_virtual'
     },
     'ogb-molhiv': {
         'num_domains': 19089,
@@ -44,14 +42,14 @@ dataset_defaults = {
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
         'model': 'gin_virtual',
-        'irm_lambda': 1.,
-        'coral_penalty_weight': 0.1,
+        'flag_step_size': 1e-3,
+        'gcl_aug_ratio': 0.3
     },
     'ogbg-ppa': {
         'num_domains': 1581,  # not mapped
         'split_scheme': 'official',
         'model_kwargs': {'three_wl_in_dim': 7, 'dropout': 0.5, 'dataset_group': 'ppa'},
-        'default_frac': 0.10,
+        'default_frac': 1.0,
         'loss_function': 'cross_entropy',
         'groupby_fields': ['species', ],
         'val_metric': 'acc',
@@ -68,8 +66,7 @@ dataset_defaults = {
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
         'model': 'gin_virtual',
-        'irm_lambda': 1.,
-        'coral_penalty_weight': 0.1,
+        'flag_step_size': 1e-3
     },
     'RotatedMNIST': {
         'num_domains': 6,
@@ -92,9 +89,7 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
-        'model': 'cheb',
-        'irm_lambda': 1.,
-        'coral_penalty_weight': 0.1,
+        'model': 'cheb'
     },
     'ColoredMNIST': {
         'num_domains': 3,
@@ -116,8 +111,7 @@ dataset_defaults = {
         'process_outputs_function': None,
         'algo_log_metric': 'binary_accuracy',
         'model': 'cheb',
-        'irm_lambda': 1.,
-        'coral_penalty_weight': 0.1,
+        'irm_lambda': 100.
     },
     'SBM-Environment': {
         'num_domains': 4,
@@ -141,8 +135,9 @@ dataset_defaults = {
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
         'model': 'gin_10_layers',
-        'irm_lambda': 1.,
-        'coral_penalty_weight': 0.1,
+        'dann_lambda': 1,
+        'mldg_beta': 10,
+        'gcl_aug_ratio': 0.2
     },
     'SBM-Isolation': {
         'num_domains': 10,
@@ -166,8 +161,9 @@ dataset_defaults = {
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
         'model': 'cheb',
-        'irm_lambda': 1.,
-        'coral_penalty_weight': 0.1,
+        'dann_lambda': 1,
+        'mldg_beta': 1,
+        'gcl_aug_ratio': 0.3
     },
     'UPFD': {
         'num_domains': 10,
@@ -190,8 +186,6 @@ dataset_defaults = {
         'algo_log_metric': 'binary_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
-        'model': 'cheb',
-        'irm_lambda': 1.,
-        'coral_penalty_weight': 0.1,
+        'model': 'cheb'
     },
 }
