@@ -43,12 +43,13 @@ class GCL(SingleModelAlgorithm):
 
         self.gcl_contrast_type = config.gcl_contrast_type
         self.gcl_pretrain_fraction = config.gcl_pretrain_fraction
-        # self.gcl_finetune_layer_lr_scale =  config.gcl_finetune_layer_lr_scale
+        self.gcl_finetune_lr_scale =  config.gcl_finetune_lr_scale
 
         # derived parameters to control switch to finetune
         self.transition_epoch = round(config.n_epochs * self.gcl_pretrain_fraction)
         self.steps_per_epoch = n_train_steps // config.n_epochs
         self.transition_step = self.transition_epoch * self.steps_per_epoch
+        self.total_train_steps = n_train_steps
         self.train_step_counter = -1
         self.epoch_counter = -1
         self.is_pretraining = self.gcl_contrastive_pretrain
@@ -100,7 +101,7 @@ class GCL(SingleModelAlgorithm):
         # if self.gcl_contrastive_pretrain==True:
             # self.logged_fields.append('train_step_counter')
             # self.logged_fields.append('epoch_counter')
-            
+
 
     def drop_nodes(self, data):
         """
@@ -268,14 +269,20 @@ class GCL(SingleModelAlgorithm):
             self.train_step_counter += 1
             if self.train_step_counter % self.steps_per_epoch == 0:
                 self.epoch_counter += 1
-            if self.train_step_counter == self.transition_step:
-                self.is_pretraining = False 
-                print("Switching from self-supervised GCL pretraining to standard ERM (no augmentation) finetuning")
-                self.aug_prob = 0.0  
-                # ^ this makes the multinomial draw for the augmentation mask degenerate to [0, 0, 0 ...]
-                # NOTE Its not really correct to just switch here and do nothing except change loss functions
-                # because we dont't reset the optimizer or scheduler when we do this, not sure how big of a 
-                # difference this makes overall
+            if self.is_pretraining == True:
+                if self.train_step_counter >= self.transition_step:
+                    self.is_pretraining = False 
+                    print("Switching from self-supervised GCL pretraining to standard ERM (no augmentation) finetuning")
+                    self.aug_prob = 0.0  
+                    # ^ this makes the multinomial draw for the augmentation mask degenerate to [0, 0, 0 ...]
+
+                    if self.config.gcl_reinit_optim_sched:
+                        # modify the lr, as a fraction of the original, maybe 1.0 though
+                        self.config.lr = self.config.lr*self.config.gcl_finetune_lr_scale
+                        # reset the optimizer, and init the schedule based on remaining train steps
+                        self.optimizer = initialize_optimizer(self.config, self.model)
+                        scheduler = initialize_scheduler(self.config, self.optimizer, (self.total_train_steps-self.train_step_counter))
+                        self.schedulers=[scheduler, ]
 
         assert self.is_training
         # process batch
