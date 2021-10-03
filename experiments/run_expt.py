@@ -139,6 +139,10 @@ def main():
     # To speed up slow algorithms
     if (config.algorithm == 'MLDG' or config.algorithm == 'FLAG') and config.dataset != 'SBM-Isolation' :
         config.n_epochs = config.n_epochs//2
+    if config.algorithm == 'DANN' or config.algorithm == 'DANN-G' :
+        config.n_epochs *= 2
+    if config.algorithm == 'IRM' :
+        config.n_epochs = int(config.n_epochs * 1.5)
 
     if config.algorithm == 'deepCORAL':
         config.parameter = config.coral_penalty_weight
