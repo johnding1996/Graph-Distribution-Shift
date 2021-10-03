@@ -99,7 +99,8 @@ class RotatedMNISTDataset(GDSDataset):
             from gds.datasets.gsn.gsn_data_prep import GSN
             subgraph = GSN(dataset_name='RotatedMNIST', dataset_group='MNIST', induced=True, id_type=self.id_type,
                            k=self.k)
-            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset.root)
+
+            self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess('data/RotatedMNIST')
 
             if self.graphs_ptg[0].x.dim() == 1:
                 self.num_features = 1
