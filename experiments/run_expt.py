@@ -138,10 +138,17 @@ def main():
     config = parser.parse_args()
     config = populate_defaults(config)
 
+    # hard code:
     if config.jiuhai :
         if config.dataset in {'ogb-molpcba', 'ogbg-ppa'} :
             if config.algorithm in {'deepCORAL', 'FLAG', 'GCL'} or config.model in {'gin_10_layers', 'cheb'} :
                 raise ValueError('For Jiuhai\'s experiments, these are too slow, kill.')
+
+    if config.algorithm == 'MLDG' :
+        assert config.dataset != 'ogb-molpcba' and config.dataset != 'ogbg-ppa'
+
+    if config.model == 'cheb' and config.algorithm == 'GCL' :
+        config.gcl_aug_ratio = 0.1
 
     # To speed up slow algorithms
     if (config.algorithm == 'MLDG' or config.algorithm == 'FLAG') and config.dataset != 'SBM-Isolation' :
