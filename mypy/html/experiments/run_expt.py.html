@@ -352,6 +352,10 @@
 <span id="L342" class="lineno"><a class="lineno" href="#L342">342</a></span>
 <span id="L343" class="lineno"><a class="lineno" href="#L343">343</a></span>
 <span id="L344" class="lineno"><a class="lineno" href="#L344">344</a></span>
+<span id="L345" class="lineno"><a class="lineno" href="#L345">345</a></span>
+<span id="L346" class="lineno"><a class="lineno" href="#L346">346</a></span>
+<span id="L347" class="lineno"><a class="lineno" href="#L347">347</a></span>
+<span id="L348" class="lineno"><a class="lineno" href="#L348">348</a></span>
 </pre></td>
 <td class="table-code"><pre><span class="line-precise" title="No Anys on this line!">import argparse</span>
 <span class="line-precise" title="No Anys on this line!">import csv</span>
@@ -590,6 +594,14 @@ Unimported (x1)">    config = populate_defaults(config)</span>
 Unannotated (x11)">    if (config.algorithm == 'MLDG' or config.algorithm == 'FLAG') and config.dataset != 'SBM-Isolation' :</span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x5)">        config.n_epochs = config.n_epochs//2</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x7)">    if config.algorithm == 'DANN' or config.algorithm == 'DANN-G' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x2)">        config.n_epochs *= 2</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x3)">    if config.algorithm == 'IRM' :</span>
+<span class="line-any" title="Any Types on this line: 
+Unannotated (x6)">        config.n_epochs = int(config.n_epochs * 1.5)</span>
 <span class="line-empty" title="No Anys on this line!"></span>
 <span class="line-any" title="Any Types on this line: 
 Unannotated (x3)">    if config.algorithm == 'deepCORAL':</span>
