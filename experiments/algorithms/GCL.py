@@ -23,24 +23,81 @@ class GCL(SingleModelAlgorithm):
             metric=metric,
             n_train_steps=n_train_steps,
         )
-        # algorithm hyperparameters
-        self.use_cl = config.use_cl
-        self.aug_prob = config.gcl_aug_prob
-        self.aug_type = config.aug_type
-        # If use_cl=False and aug_ratio is 0.0, should be equiv to ERM
-        self.aug_ratio = config.gcl_aug_ratio
         # set model components
         self.featurizer = featurizer
         self.projector = projector
         self.classifier = classifier
-        # self.model = model #set by base class I think
+        # self.model = model #set by base class
 
-        # additional logging, copied from deepCORAL, 
-        # but throws error at end of epoch bc its "missing"
-        # self.logged_fields.append('gsimclr_loss')
+        # algorithm hyperparameters
+        # If gcl_contrastive_pretrain=False and aug_prob and/or aug_ratio is 0.0, should be equiv to ERM
+        self.gcl_contrastive_pretrain = config.gcl_contrastive_pretrain
+        self.aug_prob = config.gcl_aug_prob
+        self.aug_type = config.aug_type
+        self.aug_ratio = config.gcl_aug_ratio
+
+        self.gcl_contrast_type = config.gcl_contrast_type
+        self.gcl_pretrain_fraction = config.gcl_pretrain_fraction
+        # self.gcl_finetune_layer_lr_scale =  config.gcl_finetune_layer_lr_scale
+
+        # derived parameters to control switch to finetune
+        self.transition_epoch = round(config.n_epochs * self.gcl_pretrain_fraction)
+        self.steps_per_epoch = n_train_steps // config.n_epochs
+        self.transition_step = self.transition_epoch * self.steps_per_epoch
+        self.train_step_counter = -1
+        self.epoch_counter = -1
+        self.is_pretraining = self.gcl_contrastive_pretrain
+        self.dummy_output = None
+
+        # sanity check the pretraining augmentation spec
+        if self.gcl_contrastive_pretrain:
+            aug_compatibility = (self.gcl_contrast_type=='orig') or \
+                                (self.gcl_contrast_type=='opposite' and self.aug_type != 'random') or \
+                                (self.gcl_contrast_type=='random' and self.aug_type == 'random')
+            assert aug_compatibility
+
+        # Construct augmentation options
+        self.augmentations = {
+            'node_drop': self.drop_nodes,
+            'edge_perm': self.permute_edges
+        }
+        self.aug_list = list(self.augmentations.values())
+
+        def rand_aug(data):
+            n = torch.randint(2,(1,)).item()
+            fn = self.aug_list[n]
+            return fn(data)
+
+        # Set main augmentation, also the one applied if doing ERM+Aug
+        if self.aug_type ==  'random':
+            self.aug_fn = rand_aug
+        else:
+            if self.aug_type in self.augmentations:
+                self.aug_fn = self.augmentations[self.aug_type]
+            else:
+                raise NotImplementedError
+        
+        # Set contrastive augmentation relative to main augmentation
+        if self.gcl_contrastive_pretrain:   
+            if self.gcl_contrast_type == 'orig':
+                self.orig_aug_fn = lambda data: None
+            elif self.gcl_contrast_type == 'random':
+                self.orig_aug_fn = rand_aug
+            elif self.gcl_contrast_type == 'opposite':
+                if self.aug_type=='node_drop':
+                    self.orig_aug_fn = self.augmentations['edge_perm']  
+                else:
+                    self.orig_aug_fn = self.augmentations['node_drop']
+            else:
+                raise NotImplementedError
+
+        # The logging stuff always gives me errors honestly
+        # if self.gcl_contrastive_pretrain:
+            # self.logged_fields.append('train_step_counter')
+            # self.logged_fields.append('epoch_counter')
+
 
     def drop_nodes(self, data):
-        #print("Node Drop!")
         """
         https://github.com/Shen-Lab/GraphCL/blob/1d43f79d7f33f8133f9d4b4b8254d8aaeb09a615/semisupervised_TU/pre-training/tu_dataset.py#L139
         Original method operates on 
@@ -99,7 +156,6 @@ class GCL(SingleModelAlgorithm):
             # data = data
 
     def permute_edges(self, data):
-        #print("Edge Permute!")
         """
         Ported from same repo as drop_nodes
 
@@ -147,11 +203,6 @@ class GCL(SingleModelAlgorithm):
             # augmentation silently does nothing
             pass
 
-        # May not be in-place for paired/non-naive version
-        # try:
-        #     data.edge_index = new_edge_index
-        # except:
-        #     pass
 
     def extract_subgraph(self, data):
         """
@@ -164,9 +215,9 @@ class GCL(SingleModelAlgorithm):
 
     def gsimclr_loss(self, z1, z2):
         # Temporarily put here in framework to minimize sprawl of changes
-        # z1 and z2 are the projector embeddings for a pair of graphs
+        # z1 and z2 are the projector embeddings for two batches of graphs (batch_size, proj_embedding)
         # See Appendix A Algo 1 https://yyou1996.github.io/files/neurips2020_graphcl_supplement.pdf
-        # Code from: https://github.com/Shen-Lab/GraphCL/blob/d857849d51bb168568267e07007c0b0c8bb6d869/transferLearning_MoleculeNet_PPI/bio/pretrain_graphcl.py#L57
+        # Code from: https://github.com/Shen-Lab/GraphCL in file transferLearning_MoleculeNet_PPI/bio/pretrain_graphcl.py
         T = 0.1
         batch_size, _ = z1.size()
         z1_abs = z1.norm(dim=1)
@@ -180,7 +231,7 @@ class GCL(SingleModelAlgorithm):
         return loss
 
     def update(self, batch):
-
+        """
         #######################################################################
         # NOTE How the augmentations are applied in GCL paper codebase...
         #######################################################################
@@ -192,22 +243,34 @@ class GCL(SingleModelAlgorithm):
         # 2) In a second version, there are 2 dataloaders created and zipped
         # and since they are not shuffled, the orig and augmented graphs are aligned
         # See: https://github.com/Shen-Lab/GraphCL/blob/d857849d51bb168568267e07007c0b0c8bb6d869/transferLearning_MoleculeNet_PPI/chem/pretrain_graphcl.py#L80
-        # Thus ... with a two argument loss fn gsimclr_loss(z1, z2), and nice
-        # formulation using einsum and subtracting of the diagonal to separate out
-        # positive pairs from negative pairs, you can compute the contrastive loss
 
         # Currently we have the node dropping and edge permuting augmentations
         # implemented, with intention to add subgraph if time allows/useful.
         # See the permute edges function for commentary on the way the original
         # edge permutation was implemented.
 
-        # For shortest path to implementation in this framework as it stands,
-        # we're going to start by just applying the augmentation here in line, 
+        # The shortest path to implementation in this framework was
+        # just applying the augmentation here in line, 
         # after the dataloader has returned a batch of graphs, however
         # initial intuition is that this might be pretty inefficient since it can't
         # be parallelized by the dataloader workers ... instead it's blocking 
         # during training, though, the computations are all torch or native python
         #######################################################################
+        """
+        # Block to count steps/epochs until time to switch to finetuning/ERM
+        # when finished with contrastive pretrain phase
+        if self.gcl_contrastive_pretrain:
+            self.train_step_counter += 1
+            if self.train_step_counter % self.steps_per_epoch == 0:
+                self.epoch_counter += 1
+            if self.train_step_counter == self.transition_step:
+                self.is_pretraining = False 
+                print("Switching from self-supervised GCL pretraining to standard ERM (no augmentation) finetuning")
+                self.aug_prob = 0.0  
+                # ^ this makes the multinomial draw for the augmentation mask degenerate to [0, 0, 0 ...]
+                # NOTE Its not really correct to just switch here and do nothing except change loss functions
+                # because we dont't reset the optimizer or scheduler when we do this, not sure how big of a 
+                # difference this makes overall
 
         assert self.is_training
         # process batch
@@ -222,63 +285,59 @@ class GCL(SingleModelAlgorithm):
             'metadata': metadata,
         }
 
-        # Augmentation options
-        # currently singular, TODO make composeable
-        augmentations = {
-            'node_drop': self.drop_nodes,
-            'edge_perm': self.permute_edges
-        }
-        aug_list = list(augmentations.values())
-
-        if self.aug_type ==  'random':
-            def rand_aug(data):
-                n = torch.randint(2,(1,)).item()
-                fn = aug_list[n]
-                return fn(data)
-            aug_fn = rand_aug
-        else:
-            if self.aug_type in augmentations:
-                aug_fn = augmentations[self.aug_type]
-            else:
-                raise NotImplementedError
-
-        
+        # Create the masks used to implement the randomness of the "aug_prob" parameter
         batch_size = x.num_graphs
-        # torch.multinomial is slow so we want to do this once per batch
         aug_mask = torch.multinomial(torch.tensor((1-self.aug_prob, self.aug_prob)), batch_size, replacement=True)
+        if self.is_pretraining:
+            orig_aug_mask = torch.multinomial(torch.tensor((1-self.aug_prob, self.aug_prob)), batch_size, replacement=True)
 
-        # if not "use_cl" unpack batch of graphs and apply augmentation 
-        # to each graph, in place
-        # TODO, if "use_cl" create orig, aug pairs,
-        # extract features,projections,outputs
-        # h1, h2, z1, z2, y_pred1, y_pred2
-        # then modify opjective to call new gsimclr loss
-
+        # When performing "gcl_contrastive_pretrain" unpack batch of graphs 
+        # and create a copy of them, before applying the respective augmentation type to each.
+        # If just doing ERM+Aug, skip the copying and pair wise operations. 
+        # Forgive the fact that "orig" is often operated on second, implementation artifact
+        
         graphs = x.to_data_list()
-        
-        for i in range(batch_size): 
+
+        if self.is_pretraining:
+            orig_graphs = [x.clone() for x in graphs]
+
+        for i in range(batch_size):
             if aug_mask[i]:
-                aug_fn(graphs[i])
-            else:
-                #print("UNCHANGED!")
-                pass # original graph kept
-
-        x = Batch.from_data_list(graphs)
+                self.aug_fn(graphs[i])
+            if self.is_pretraining and orig_aug_mask[i]:
+                self.orig_aug_fn(orig_graphs[i])
         
-        # Continue as with other methods/ERM
-        outputs = self.model(x)
-        results['y_pred'] = outputs
+        x = Batch.from_data_list(graphs)
+        if self.is_pretraining:
+            orig_x = Batch.from_data_list(orig_graphs)
 
-        objective = self.objective(results)
-        results['objective'] = objective.item()
+        # The loss calculation for "gcl_contrastive_pretrain" involves feeding the two
+        # lists of pairwise augmented graphs through the featurizer and projector
+        # before the simclr style loss. 
+        if self.is_pretraining:
+            # TODO ignore this its just to prevent logging error
+            # do once per training run
+            if self.dummy_output == None:
+                self.dummy_output = self.model(x)
+            results['y_pred'] = self.dummy_output[:batch_size] 
 
-        # placeholder
-        # gsimclr_loss = 0.
-        # if isinstance(gsimclr_loss, torch.Tensor):
-        #     results['gsimclr_loss'] = gsimclr_loss.item()
-        # else:
-        #     results['gsimclr_loss'] = gsimclr_loss
+            z_0 = self.projector(self.featurizer(orig_x))
+            z_1 = self.projector(self.featurizer(x))
+            results['z_0'], results['z_1'] = z_0, z_1
+            # Just directly calling the loss here not using the objective() interface
+            objective = self.gsimclr_loss(z_0, z_1)
+            results['objective'] = objective.item()
 
+        else: 
+            # Continue as with other methods/ERM
+            # this block runs when just doing ERM+Aug as well
+            outputs = self.model(x)
+            results['y_pred'] = outputs
+
+            objective = self.objective(results)
+            results['objective'] = objective.item()
+        
+        # Regardless of which loss used, do the backwards pass the same way
         self.optimizer.zero_grad()
         self.model.zero_grad()
         objective.backward()
