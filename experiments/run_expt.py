@@ -138,6 +138,11 @@ def main():
     config = parser.parse_args()
     config = populate_defaults(config)
 
+    
+    config.suffix = str(time.time())[-3:]
+
+    
+
     # hard code:
     if config.jiuhai :
         if config.dataset in {'ogb-molpcba', 'ogbg-ppa'} :
@@ -195,7 +200,7 @@ def main():
 
     if not os.path.exists(config.log_dir):
         os.makedirs(config.log_dir)
-    logger = Logger(os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}.txt'), mode)
+    logger = Logger(os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{config.suffix}.txt'), mode)
 
 
     # Record config
@@ -266,9 +271,9 @@ def main():
 
         # Loggers
         datasets[split]['eval_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{split}_eval.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{split}_eval_{config.suffix}.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
         datasets[split]['algo_logger'] = BatchLogger(
-            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{split}_algo.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
+            os.path.join(config.log_dir, f'{config.dataset}_{config.algorithm}_{config.parameter}_{config.model}_seed-{config.seed}_{split}_algo_{config.suffix}.csv'), mode=mode, use_wandb=(config.use_wandb and verbose))
 
     # Logging dataset info
     # Show class breakdown if feasible

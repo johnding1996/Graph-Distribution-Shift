@@ -221,7 +221,7 @@ def get_pred_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     split = dataset['split']
     replicate_str = get_replicate_str(dataset, config)
-    prefix = Path(config.log_dir) / f"{dataset_name}_{config.algorithm}_{config.parameter}_{config.model}_{replicate_str}_split-{split}_"
+    prefix = Path(config.log_dir) / f"{dataset_name}_{config.algorithm}_{config.parameter}_{config.model}_{replicate_str}_split-{split}_{config.suffix}_"
 
     return prefix
 
@@ -229,7 +229,7 @@ def get_pred_prefix(dataset, config):
 def get_model_prefix(dataset, config):
     dataset_name = dataset['dataset'].dataset_name
     replicate_str = get_replicate_str(dataset, config)
-    prefix = Path(config.log_dir) / f"{dataset_name}_{config.algorithm}_{config.parameter}_{config.model}_{replicate_str}_"
+    prefix = Path(config.log_dir) / f"{dataset_name}_{config.algorithm}_{config.parameter}_{config.model}_{replicate_str}_{config.suffix}_"
 
     return prefix
 
