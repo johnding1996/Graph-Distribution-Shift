@@ -134,7 +134,7 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
-        'model': 'gin_10_layers',
+        'model': 'gin_virtual',
         'dann_lambda': 1,
         'mldg_beta': 10,
         'gcl_aug_ratio': 0.2
