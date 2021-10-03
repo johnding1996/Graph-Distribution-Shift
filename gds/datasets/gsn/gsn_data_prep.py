@@ -34,7 +34,7 @@ class GSN():
 
         # set multiprocessing to true in order to do the precomputation in parallel
         self.multiprocessing = False
-        self.num_processes = 64
+        self.num_processes = 32
 
         ###### data loader parameters
         self.num_workers = 0

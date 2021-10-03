@@ -87,7 +87,9 @@ def main():
     parser.add_argument('--irm_penalty_anneal_iters', type=int)
     parser.add_argument('--algo_log_metric')
     parser.add_argument('--gsn_id_type', type=str,
-                        choices=['cycle_graph', 'path_graph', 'complete_graph', 'binomial_tree'])
+                        choices=['cycle_graph', 'path_graph', 'complete_graph', 'binomial_tree', 'nonisomorphic_trees'
+
+])
     parser.add_argument('--gsn_k', type=int)
 
     # Model selection
