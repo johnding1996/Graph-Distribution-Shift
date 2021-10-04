@@ -129,7 +129,7 @@ class OGBPCBADataset(GDSDataset):
             self.id_type = dataset_kwargs['gsn_id_type']
             self.k = dataset_kwargs['gsn_k']
             from gds.datasets.gsn.gsn_data_prep import GSN
-            subgraph = GSN(dataset_name='ogbg-molhiv', dataset_group='ogb', induced=True, id_type=self.id_type,
+            subgraph = GSN(dataset_name='ogbg-molpcba', dataset_group='ogb', induced=True, id_type=self.id_type,
                            k=self.k)
             self.graphs_ptg, self.encoder_ids, self.d_id, self.d_degree = subgraph.preprocess(self.ogb_dataset.root)
 
@@ -148,12 +148,13 @@ class OGBPCBADataset(GDSDataset):
 
             self.d_in_node_encoder = [self.num_features]
             self.d_in_edge_encoder = [self.num_edge_features]
-
+        # import pdb;pdb.set_trace()
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):
         if self.subgraph:
             return self.graphs_ptg[int(idx)]
+            
         else:
             return self.ogb_dataset[int(idx)]
 

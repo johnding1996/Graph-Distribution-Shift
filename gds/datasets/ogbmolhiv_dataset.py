@@ -149,7 +149,6 @@ class OGBHIVDataset(GDSDataset):
 
             self.d_in_node_encoder = [self.num_features]
             self.d_in_edge_encoder = [self.num_edge_features]
-
         super().__init__(root_dir, download, split_scheme)
 
     def get_input(self, idx):

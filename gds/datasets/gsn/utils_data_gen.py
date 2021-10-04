@@ -75,7 +75,7 @@ def generate_dataset(data_path,
     else:
         graphs_ptg = list()
         for i, data in tqdm(enumerate(graphs)):
-            new_data = _prepare(data, subgraph_dicts, subgraph_params, dataset_name, extract_ids_fn, count_fn)
+            new_data = _prepare(data, subgraph_dicts, subgraph_params, dataset_name, extract_ids_fn, count_fn, orbit_partition_sizes)
 
             graphs_ptg.append(new_data)
 
@@ -84,7 +84,7 @@ def generate_dataset(data_path,
 
 # ------------------------------------------------------------------------
 
-def _prepare(data, subgraph_dicts, subgraph_params, dataset_name, ex_fn, cnt_fn):
+def _prepare(data, subgraph_dicts, subgraph_params, dataset_name, ex_fn, cnt_fn, orbit_partition_sizes):
     new_data = Data()
     setattr(new_data, 'edge_index', data.edge_mat)
     setattr(new_data, 'x', data.node_features)
