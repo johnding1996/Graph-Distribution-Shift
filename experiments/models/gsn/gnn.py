@@ -23,6 +23,7 @@ class GNN_GSN(torch.nn.Module):
                  out_features,
                  encoder_ids,
                  d_in_id,
+                 seed,
                  in_edge_features=None,
                  d_in_node_encoder=None,
                  d_in_edge_encoder=None,
@@ -33,7 +34,7 @@ class GNN_GSN(torch.nn.Module):
 
         super(GNN_GSN, self).__init__()
 
-        seed = 0
+        # seed = 0
 
         # -------------- Initializations
         self.dataset_group = dataset_group
