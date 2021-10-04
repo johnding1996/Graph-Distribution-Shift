@@ -87,7 +87,7 @@ def main():
     parser.add_argument('--irm_penalty_anneal_iters', type=int)
     parser.add_argument('--algo_log_metric')
     parser.add_argument('--gsn_id_type', type=str,
-                        choices=['cycle_graph', 'path_graph', 'complete_graph', 'binomial_tree', 'nonisomorphic_trees'], default='cycle_graph')
+                        choices=['cycle_graph', 'path_graph', 'complete_graph', 'binomial_tree', 'nonisomorphic_trees'])
     parser.add_argument('--gsn_k', type=int)
 
     # Model selection
@@ -178,10 +178,12 @@ def main():
     else:
         config.parameter = None
 
+  
     
     # For the 3wlgnn model, we need to set batch_size to 1
     if config.model == '3wlgnn':
         config.batch_size = 1
+        config.gsn_id_type = None
 
     # Set device
     config.device = torch.device("cuda:" + str(config.device)) if torch.cuda.is_available() else torch.device("cpu")
