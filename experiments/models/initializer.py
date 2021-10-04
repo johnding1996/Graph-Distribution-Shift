@@ -60,12 +60,12 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_p
                                  out_features=None,
                                  encoder_ids=full_dataset.encoder_ids,
                                  d_in_id=full_dataset.d_id,
+                                 seed=config.seed
                                  in_edge_features=full_dataset.num_edge_features,
                                  d_in_node_encoder=full_dataset.d_in_node_encoder,
                                  d_in_edge_encoder=full_dataset.d_in_edge_encoder,
                                  d_degree=full_dataset.d_degree,
-                                 dataset_group=config.model_kwargs['dataset_group'],
-                                 seed=config.seed)
+                                 dataset_group=config.model_kwargs['dataset_group'])
             classifier = nn.Linear(featurizer.d_out, d_out)
             model = (featurizer, classifier)
         else:
@@ -73,12 +73,12 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_p
                             out_features=d_out,
                             encoder_ids=full_dataset.encoder_ids,
                             d_in_id=full_dataset.d_id,
+                            seed=config.seed,
                             in_edge_features=full_dataset.num_edge_features,
                             d_in_node_encoder=full_dataset.d_in_node_encoder,
                             d_in_edge_encoder=full_dataset.d_in_edge_encoder,
                             d_degree=full_dataset.d_degree,
-                            dataset_group=config.model_kwargs['dataset_group'],
-                            seed=config.seed)
+                            dataset_group=config.model_kwargs['dataset_group'])
 
     # The projector head is used to construct the inputs to
     # the similarity loss function for GCL, based on simclr
