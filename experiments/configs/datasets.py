@@ -19,7 +19,8 @@ dataset_defaults = {
         'algo_log_metric': 'multitask_binary_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
-        'model': 'gin_virtual'
+        'model': 'gin_virtual',
+        'algorithm': 'FLAG'
     },
     'ogb-molhiv': {
         'num_domains': 19089,
@@ -43,7 +44,8 @@ dataset_defaults = {
         'gsn_k': 6,
         'model': 'gin_virtual',
         'flag_step_size': 1e-3,
-        'gcl_aug_ratio': 0.3
+        'gcl_aug_ratio': 0.3,
+        'algorithm': 'GCL'
     },
     'ogbg-ppa': {
         'num_domains': 1581,  # not mapped
@@ -66,7 +68,8 @@ dataset_defaults = {
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
         'model': 'gin_virtual',
-        'flag_step_size': 1e-3
+        'flag_step_size': 1e-3,
+        'algorithm': 'FLAG'
     },
     'RotatedMNIST': {
         'num_domains': 6,
@@ -89,7 +92,8 @@ dataset_defaults = {
         'algo_log_metric': 'multiclass_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
-        'model': 'cheb'
+        'model': 'cheb',
+        'algorithm': 'MLDG'
     },
     'ColoredMNIST': {
         'num_domains': 3,
@@ -111,7 +115,8 @@ dataset_defaults = {
         'process_outputs_function': None,
         'algo_log_metric': 'binary_accuracy',
         'model': 'cheb',
-        'irm_lambda': 100.
+        'irm_lambda': 100.,
+        'algorithm': 'FLAG'
     },
     'SBM-Environment': {
         'num_domains': 4,
@@ -137,7 +142,8 @@ dataset_defaults = {
         'model': 'gin_virtual',
         'dann_lambda': 1,
         'mldg_beta': 10,
-        'gcl_aug_ratio': 0.2
+        'gcl_aug_ratio': 0.2,
+        'algorithm': 'FLAG'
     },
     'SBM-Isolation': {
         'num_domains': 10,
@@ -163,7 +169,8 @@ dataset_defaults = {
         'model': 'cheb',
         'dann_lambda': 1,
         'mldg_beta': 1,
-        'gcl_aug_ratio': 0.3
+        'gcl_aug_ratio': 0.3,
+        'algorithm': 'GCL'
     },
     'UPFD': {
         'num_domains': 10,
@@ -186,6 +193,7 @@ dataset_defaults = {
         'algo_log_metric': 'binary_accuracy',
         'gsn_id_type': 'cycle_graph',
         'gsn_k': 6,
-        'model': 'cheb'
+        'model': 'cheb',
+        'algorithm': 'DANN-G'
     },
 }
