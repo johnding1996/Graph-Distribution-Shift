@@ -73,7 +73,7 @@ dataset_defaults = {
     },
     'RotatedMNIST': {
         'num_domains': 6,
-        'num_train_domains': 5,
+        'num_train_domains': 6,
         'split_scheme': 'official',
         'model_kwargs': {'three_wl_in_dim': 1, 'dropout': 0.5, 'dataset_group': 'RotatedMNIST'},
         'default_frac': 1.0,
@@ -174,7 +174,7 @@ dataset_defaults = {
     },
     'UPFD': {
         'num_domains': 10,
-        'num_train_domains':8,
+        'num_train_domains':10,
         'split_scheme': 'official',
         'model_kwargs': {'three_wl_in_dim': 8, 'dropout': 0.5, 'dataset_group': 'UPFD'},
         'default_frac': 1.0,
