@@ -252,14 +252,14 @@ class GSN():
         
         ## ----------------------------------- infrastructure
 
-        torch.manual_seed(self.seed)
-        torch.cuda.manual_seed(self.seed)
-        torch.cuda.manual_seed_all(self.seed)
-        torch.backends.cudnn.deterministic = True
-        torch.backends.cudnn.benchmark = False
-        np.random.seed(self.np_seed)
+        # torch.manual_seed(self.seed)
+        # torch.cuda.manual_seed(self.seed)
+        # torch.cuda.manual_seed_all(self.seed)
+        # torch.backends.cudnn.deterministic = True
+        # torch.backends.cudnn.benchmark = False
+        # np.random.seed(self.np_seed)
         os.environ['PYTHONHASHSEED'] = str(self.seed)
-        random.seed(self.seed)
+        # random.seed(self.seed)
         print('[info] Setting all random seeds {}'.format(self.seed))
 
         torch.set_num_threads(self.num_threads)
