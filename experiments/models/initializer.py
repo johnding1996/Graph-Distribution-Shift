@@ -60,7 +60,7 @@ def initialize_model(config, d_out, is_featurizer=False, full_dataset=None, is_p
                                  out_features=None,
                                  encoder_ids=full_dataset.encoder_ids,
                                  d_in_id=full_dataset.d_id,
-                                 seed=config.seed
+                                 seed=config.seed,
                                  in_edge_features=full_dataset.num_edge_features,
                                  d_in_node_encoder=full_dataset.d_in_node_encoder,
                                  d_in_edge_encoder=full_dataset.d_in_edge_encoder,
