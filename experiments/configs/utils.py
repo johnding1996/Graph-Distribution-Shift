@@ -13,7 +13,7 @@ def populate_defaults(config):
 
     orig_config = copy.deepcopy(config)
     assert config.dataset is not None, 'dataset must be specified'
-    assert config.algorithm is not None, 'algorithm must be specified'
+    # assert config.algorithm is not None, 'algorithm must be specified'
 
     # implied defaults from choice of dataset
     config = populate_config(
