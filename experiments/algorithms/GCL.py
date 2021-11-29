@@ -4,6 +4,7 @@ from optimizer import initialize_optimizer
 from scheduler import initialize_scheduler
 import torch
 from torch_geometric.data import Batch
+from torch_geometric.utils import degree
 from torch.nn.utils import clip_grad_norm_
 from utils import move_to
 
@@ -138,6 +139,36 @@ class GCL(SingleModelAlgorithm):
         # Noting that this isn't an elegant process because we need to 
         # preserve the orig edge attributes
         orig_edge_index = data.edge_index
+
+        #######################################################################
+        # prototyping degree weighted drop
+        weighted_drop = True
+        if weighted_drop and drop_num > 0:
+            out_degrees = degree(orig_edge_index[0],num_nodes=node_num,dtype=int)
+            if data.is_directed():
+                in_degrees = degree(orig_edge_index[1],num_nodes=node_num,dtype=int)
+                io_degrees = out_degrees + in_degrees
+            else:
+                io_degrees = out_degrees
+
+            if data.contains_isolated_nodes():
+                # not sure how principled this is?
+                io_degrees[io_degrees==0] = 0.1
+            n_power = 4.0  #2.0
+            io_degrees = io_degrees ** (n_power)
+
+            deg_probs = io_degrees / io_degrees.sum()
+            drop_probs = 1. - deg_probs
+            # the orig code seems to drop weight the "highest degree" rather 
+            # than the inverse? but commented code suggests they were trying both maybe?
+            # can't figure out what power they used, "n" could stand for negative? 
+            idx_to_drop = torch.multinomial(drop_probs, drop_num, replacement=False)
+            idx_to_not_drop = torch.tensor([n for n in range(node_num) if not n in idx_to_drop], device = orig_edge_index.device)
+
+            idx_nondrop = idx_to_not_drop
+
+            # breakpoint()
+        #######################################################################
 
         src_subselect = torch.nonzero(idx_nondrop[...,None] == orig_edge_index[0])[:,1]
         dest_subselect = torch.nonzero(idx_nondrop[...,None] == orig_edge_index[1])[:,1]
