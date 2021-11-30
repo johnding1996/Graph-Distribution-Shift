@@ -81,6 +81,8 @@ def main():
     parser.add_argument('--gcl_aug_ratio', type=float)
     parser.add_argument('--gcl_aug_prob', type=float)
     parser.add_argument('--gcl_aug_type', type=str)
+    parser.add_argument('--gcl_weighted_drop', type=parse_bool, const=True, nargs='?')
+    parser.add_argument('--gcl_subg_inv_ratio', type=parse_bool, const=True, nargs='?')
     parser.add_argument('--gcl_pretrain_fraction', type=float)
     parser.add_argument('--gcl_contrast_type', type=str)
     parser.add_argument('--parameter', type=float)

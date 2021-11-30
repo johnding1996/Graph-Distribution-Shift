@@ -45,6 +45,8 @@ algorithm_defaults = {
         'gcl_aug_prob': 1.0, #0.0 should be equiv to ERM, as aug is never applied, 1.0 is GCL setting where orig data is never used
         # 'aug_type': 'node_drop', #'node_drop','edge_perm','random' can only use a single aug_type currently, or random choice of the two
         'gcl_aug_type': 'node_drop',
+        'gcl_weighted_drop': False,
+        'gcl_subg_inv_ratio': False,
         'gcl_aug_ratio': 0.2 #0.0 should be equiv to ERM, as each graph is unchanged, 0.2 is GCL paper default
     },
     'GSN': {

@@ -4,9 +4,12 @@ from optimizer import initialize_optimizer
 from scheduler import initialize_scheduler
 import torch
 from torch_geometric.data import Batch
-from torch_geometric.utils import degree
+from torch_geometric.utils import degree, subgraph
+from torch_sparse import SparseTensor
 from torch.nn.utils import clip_grad_norm_
 from utils import move_to
+
+import numpy as np # TEMP
 
 class GCL(SingleModelAlgorithm):
     def __init__(self, config, d_out, grouper, loss,
@@ -67,12 +70,14 @@ class GCL(SingleModelAlgorithm):
         # Construct augmentation options
         self.augmentations = {
             'node_drop': self.drop_nodes,
-            'edge_perm': self.permute_edges
+            'edge_perm': self.permute_edges,
+            'subgraph': self.extract_subgraph,
         }
         self.aug_list = list(self.augmentations.values())
 
         def rand_aug(data):
-            n = torch.randint(2,(1,)).item()
+            # n = torch.randint(2,(1,)).item()
+            n = torch.randint(3,(1,)).item()
             fn = self.aug_list[n]
             return fn(data)
 
@@ -86,6 +91,7 @@ class GCL(SingleModelAlgorithm):
                 raise NotImplementedError
         
         # Set contrastive augmentation relative to main augmentation
+        # TODO add cases for subgraph
         if self.gcl_contrastive_pretrain==True:   
             if self.gcl_contrast_type == 'orig':
                 self.orig_aug_fn = lambda data: None
@@ -103,6 +109,10 @@ class GCL(SingleModelAlgorithm):
         # if self.gcl_contrastive_pretrain==True:
             # self.logged_fields.append('train_step_counter')
             # self.logged_fields.append('epoch_counter')
+        
+        self.weighted_drop = config.gcl_weighted_drop #False #True # TEMP
+        self.sub_ratio_inv = config.gcl_subg_inv_ratio #False
+        # self.aug_fn = self.extract_subgraph # TEMP
 
 
     def drop_nodes(self, data):
@@ -120,20 +130,24 @@ class GCL(SingleModelAlgorithm):
         adj = adj[idx_nondrop, :][:, idx_nondrop]
         edge_index = adj.nonzero().t()
 
-        This is nice, and pretty efficient, but here we have
-        to directly operate on the node index+edge lists, 
+        This is nice, and pretty efficient (unweighted is anyway).
+        Here we have to directly operate on the node index+edge lists, 
         to be careful to keep the edge attributes aligned
         """
+        # print(f"{'WEIGHTED' if self.weighted_drop else ''} NODE DROP")
 
         aug_ratio = self.aug_ratio
         node_num = data.x.size()[0]
         _, edge_num = data.edge_index.size()
 
-        # Directly model the uniform drop prob over nodes
+        weighted_drop = self.weighted_drop
+        # Directly model the uniform or degree weighted drop prob over nodes
         drop_num = int(node_num  * aug_ratio)
-        idx_perm = torch.randperm(node_num)
-        idx_drop = idx_perm[:drop_num]
-        idx_nondrop = idx_perm[drop_num:].sort().values.cuda() # sort for humans/debug
+
+        if not weighted_drop:
+            idx_perm = torch.randperm(node_num)
+            idx_drop = idx_perm[:drop_num]
+            idx_nondrop = idx_perm[drop_num:].sort().values.cuda() # sort for humans/debug
 
         # Realize this ^ as a subselecting of the edges in the graph,
         # Noting that this isn't an elegant process because we need to 
@@ -142,23 +156,28 @@ class GCL(SingleModelAlgorithm):
 
         #######################################################################
         # prototyping degree weighted drop
-        weighted_drop = True
         if weighted_drop and drop_num > 0:
-            out_degrees = degree(orig_edge_index[0],num_nodes=node_num,dtype=int)
-            if data.is_directed():
-                in_degrees = degree(orig_edge_index[1],num_nodes=node_num,dtype=int)
+            out_degrees = degree(orig_edge_index[0],num_nodes=node_num,dtype=float) #int)
+            in_degrees = degree(orig_edge_index[1],num_nodes=node_num,dtype=float) #int)
+            # if data.is_directed():
+            if (~(out_degrees == in_degrees)).sum() > 0:
                 io_degrees = out_degrees + in_degrees
             else:
                 io_degrees = out_degrees
 
-            if data.contains_isolated_nodes():
-                # not sure how principled this is?
-                io_degrees[io_degrees==0] = 0.1
-            n_power = 4.0  #2.0
+            # if data.contains_isolated_nodes():
+            #     # not sure how principled this is?
+            #     io_degrees[io_degrees==0] = 0.1
+            #     breakpoint()
+            io_degrees[io_degrees==0] = 0.1
+
+            n_power = -2.0 #-4.0
             io_degrees = io_degrees ** (n_power)
 
             deg_probs = io_degrees / io_degrees.sum()
-            drop_probs = 1. - deg_probs
+            drop_probs = deg_probs
+            # drop_probs = 1. - deg_probs
+
             # the orig code seems to drop weight the "highest degree" rather 
             # than the inverse? but commented code suggests they were trying both maybe?
             # can't figure out what power they used, "n" could stand for negative? 
@@ -170,28 +189,47 @@ class GCL(SingleModelAlgorithm):
             # breakpoint()
         #######################################################################
 
-        src_subselect = torch.nonzero(idx_nondrop[...,None] == orig_edge_index[0])[:,1]
-        dest_subselect = torch.nonzero(idx_nondrop[...,None] == orig_edge_index[1])[:,1]
-        edge_subselect = src_subselect[torch.nonzero(src_subselect[..., None] == dest_subselect)[:,0]].sort().values
+        # src_subselect = torch.nonzero(idx_nondrop[...,None] == orig_edge_index[0])[:,1]
+        # dest_subselect = torch.nonzero(idx_nondrop[...,None] == orig_edge_index[1])[:,1]
+        # edge_subselect = src_subselect[torch.nonzero(src_subselect[..., None] == dest_subselect)[:,0]].sort().values
 
-        new_edge_index = orig_edge_index[:,edge_subselect]
-        _, new_edge_num = new_edge_index.size()
+        # new_edge_index = orig_edge_index[:,edge_subselect]
+        # _, new_edge_num = new_edge_index.size()
 
-        if data.edge_attr is not None:
-            orig_edge_attr = data.edge_attr
-            new_edge_attr = orig_edge_attr[edge_subselect] 
+        # if data.edge_attr is not None:
+        orig_edge_attr = data.edge_attr
+            # new_edge_attr = orig_edge_attr[edge_subselect] 
 
         # This would only hold for undirected graph datasets
         # where the assumption is we are removing undirected edge pairs i<->j
         # assert (edge_num-new_edge_num)%2 is 0
 
-        try:
-            data.edge_attr = new_edge_attr
-            data.edge_index = new_edge_index
-            # data.x =  ... We do not modify the node features
-        except:
+        #######################################################################
+        # Alternate PyG-thonic method using subgraph
+        if drop_num > 0:
+            subg = subgraph(idx_nondrop, orig_edge_index, 
+                            edge_attr=orig_edge_attr, 
+                            relabel_nodes=False, 
+                            num_nodes=node_num)
+            pyg_new_edge_index, pyg_new_edge_attr = subg
+
+            data.edge_attr = pyg_new_edge_attr
+            data.edge_index = pyg_new_edge_index
+        else:
             pass
             # data = data
+        # breakpoint()
+        #######################################################################
+
+        # try:
+        #     # data.edge_attr = new_edge_attr
+        #     # data.edge_index = new_edge_index
+        #     data.edge_attr = pyg_new_edge_attr
+        #     data.edge_index = pyg_new_edge_index
+        #     # data.x =  ... We do not modify the node features
+        # except:
+        #     pass
+        #     # data = data
 
     def permute_edges(self, data):
         """
@@ -218,6 +256,8 @@ class GCL(SingleModelAlgorithm):
                                      [1, 0, 2, 1, 3, 2]])
 
         """
+        # print(f"EDGE PERMUTE")
+
         aug_ratio = self.aug_ratio
         node_num = data.x.size()[0]
         _, edge_num = data.edge_index.size()
@@ -247,9 +287,93 @@ class GCL(SingleModelAlgorithm):
         TODO Would be nice to have the 3rd, as they all model distinct
         ways of conceptualizing types of graph 'semantemes'
 
-        paper uses a random walk to generate a subgraph of nodes
+        paper uses a random walk (of sorts) to generate a subgraph of nodes
+
+        copied and modified impl used below:
+            currently leaving in numpy bc of use of set operations requiring
+            torch tensors to be copied no matter what
+            NOTE ... uh okay it seems like there was a sizeable bug in the ref 
+            code because it didn't actually expand the neighbor set 
+            at each iter because the setA.union(setB) method is not
+            an in-place operator, it returns the union ... 
+            it seems like the count might have been introduced to stop the inf 
+            that occurs when the subgraph stops growing while below the sub_num
+            since the neighborset isn't growing. 
+            This can be required if the graph has more than one component maybe
+            But overall it is very unclear what 
+            sort/quality of subgraphs this method would have produced...
+
         """
-        raise NotImplementedError
+        # print(f"{'INV' if self.sub_ratio_inv else 'REG'} RATIO SUBGRAPH")
+
+        aug_ratio = self.aug_ratio
+        data.cpu()
+
+        node_num, _ = data.x.size()
+        _, edge_num = data.edge_index.size()
+
+        if self.sub_ratio_inv:
+            sub_num = int(node_num * (1-aug_ratio)) # hmmm
+        else:
+            sub_num = int(node_num * aug_ratio)
+
+        edge_index = data.edge_index.numpy()
+
+        idx_sub = [np.random.randint(node_num, size=1)[0]]
+        idx_neigh = set([n.item() for n in edge_index[1][edge_index[0]==idx_sub[0]]])
+
+        count = 0
+        while len(idx_sub) <= sub_num:
+            count = count + 1
+            if count > node_num*10: 
+                # larger iter limit to really only be used 
+                # when stuck in small disjoint component
+                break
+            if len(idx_neigh) == 0:
+                break
+            sample_node = np.random.choice(list(idx_neigh))
+            if sample_node in idx_sub:
+                continue
+            idx_sub.append(sample_node)
+            # idx_neigh.union(set([n for n in edge_index[1][edge_index[0]==idx_sub[-1]]])) 
+            idx_neigh = idx_neigh.union(set([n for n in edge_index[1][edge_index[0]==idx_sub[-1]]])) # ¯\_(ツ)_/¯
+
+        # idx_drop = [n for n in range(node_num) if not n in idx_sub] # unused
+        idx_nondrop_np = idx_sub
+        
+        # print(f"Sampled subgraph size {len(idx_nondrop_np)}") #,len(idx_nondrop_inv)}")
+        idx_nondrop = idx_nondrop_np
+
+        data.cuda()
+        subg = subgraph(idx_nondrop, data.edge_index, 
+                            edge_attr=data.edge_attr, 
+                            relabel_nodes=False, 
+                            num_nodes=node_num)
+        pyg_new_edge_index, pyg_new_edge_attr = subg
+
+        data.edge_attr = pyg_new_edge_attr
+        data.edge_index = pyg_new_edge_index
+
+        # breakpoint()
+
+        # # TODO add a comparable/principled PyG rand walk subgraph
+        # # eh, maybe later
+        # N = node_num
+        # E = edge_num
+        # walk_length = 6 #2
+        # start_ct = 1 #sub_num
+        # orig_adj = SparseTensor(
+        #     row=orig_edge_index[0], col=orig_edge_index[1],
+        #     value=torch.arange(E, device=orig_edge_index.device),
+        #     sparse_sizes=(N, N))
+        # start = torch.randint(0, N, (start_ct, ), dtype=torch.long).cuda()
+        # idx_to_keep = orig_adj.random_walk(start.flatten(), walk_length).view(-1)
+        # idx_nondrop_pyg = idx_to_keep
+
+        # breakpoint()
+        #######################################################################
+
+
 
     def gsimclr_loss(self, z1, z2):
         # Temporarily put here in framework to minimize sprawl of changes
